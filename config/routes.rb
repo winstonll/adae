@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :posts
+
   #api
   namespace :api do
     namespace :v1 do
