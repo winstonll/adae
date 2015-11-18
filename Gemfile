@@ -38,9 +38,6 @@ gem 'devise'
 # Use Unicorn as the app server
 # gem 'unicorn'
 
-# Use Capistrano for deployment
-gem 'capistrano-rails', group: :development
-
 group :development do
   gem "better_errors"
   gem "binding_of_caller"
