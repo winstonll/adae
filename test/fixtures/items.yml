@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  description: MyString
+  image: MyString
+  user_id: 1
+  deposit: 1
+  rent2buy: false
+  tags: MyString
+
+two:
+  title: MyString
+  description: MyString
+  image: MyString
+  user_id: 1
+  deposit: 1
+  rent2buy: false
+  tags: MyString

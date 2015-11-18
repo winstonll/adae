@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>adae</title>
+
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+  <link href='http://fonts.googleapis.com/css?family=Quicksand:300,400,700' rel='stylesheet' type='text/css'>
+</head>
+  <header>
+    <nav class="main-nav">
+      <ul>
+         <% if flash[:notice] %>
+         <p id="notice"><%= flash[:notice] %></p>
+         <% end %>
+
+
+         <% if flash[:alert] %>
+         <p id="alert"><%= flash[:alert] %></p>
+         <% end %>
+
+         <li class="userinfo">
+          <% if current_user %>
+          Signed in as <%= link_to current_user.username, user_path(current_user) %>. <%= link_to "Log out", session_path("current"), :method => :delete %>
+          <% else %>
+          <%= link_to "Log in", new_session_path %> or <%= link_to "Sign up", new_user_path %>
+          <% end %>
+        </li>
+        <li><%= link_to 'Home', root_path %></li> 
+        <li><%= link_to "Share an Item", root_path %></li> 
+        <li><%= link_to "View All Items", items_path %></li> 
+      </ul>
+    </nav>
+  </header>
+
+  <body>
+    <%= yield %>
+  </body>
+  
+</html>
