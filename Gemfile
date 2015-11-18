@@ -31,11 +31,15 @@ gem 'cancancan', '~> 1.9'
 gem 'carrierwave'
 gem 'rmagick'
 gem 'honeypot-captcha'
+
+# Authentication library
+gem 'devise'
+
 # Use Unicorn as the app server
 # gem 'unicorn'
 
 # Use Capistrano for deployment
-# gem 'capistrano-rails', group: :development
+gem 'capistrano-rails', group: :development
 
 group :development do
   gem "better_errors"
@@ -44,6 +48,8 @@ group :development do
   gem "quiet_assets"
   gem "awesome_print"
   gem "faker"
+  gem 'capistrano-rails'
+  gem 'capistrano-rbenv', '~> 2.0', require: false
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
 
