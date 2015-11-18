@@ -12,13 +12,13 @@
 
 <h4 class= "account-heading"> Your reviews </h4>
 <div class= "user-reviews">
-	<%# @user.reviews.each do |review| %>
+	<% @user.reviews.each do |review| %>
 	<li class="user-review">
-		<p>For <%#=link_to(review.item.title, item_path(review.item))  %> 
+		<p>For <%=link_to(review.item.title, item_path(review.item))  %> 
 		your review is:
-		<%#=review.comment %>
-		<p class="edit-review"><%#= link_to 'Edit Review', edit_item_review_path(review.item, review) %></p>
-		<p class ="delete-review"><%#= link_to 'Delete Review', item_review_path(review.item, review), method: :delete, data: {confirm: "Are you sure?"}  %></p>
+		<%=review.comment %>
+		<p class="edit-review"><%= link_to 'Edit Review', edit_item_review_path(review.item, review) %></p>
+		<p class ="delete-review"><%= link_to 'Delete Review', item_review_path(review.item, review), method: :delete, data: {confirm: "Are you sure?"}  %></p>
 		</p>
 		
 
@@ -29,11 +29,11 @@
 <h4 class= "account-heading">Your Ratings</h4>
 
 <div class = "user-ratings">
-	<%# @user.ratings.each do |rating| %>
+	<% @user.ratings.each do |rating| %>
 	<li class="user-rating">
-		For <%#=link_to(rating.item.title, item_path(rating.item))  %> 
+		For <%=link_to(rating.item.title, item_path(rating.item))  %> 
 		your rating is:
-		<%#= link_to 'Edit rating', edit_item_rating_path(rating.item, rating) %>
+		<%= link_to 'Edit rating', edit_item_rating_path(rating.item, rating) %>
 	</li>
 	<%# end %>
 	<br>

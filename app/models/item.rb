@@ -8,15 +8,15 @@ class Item < ActiveRecord::Base
 	has_many :users_that_reviewed_this, through: :reviews, source: :user
 	has_many :users_that_rated_this, through: :ratings, source: :user
 
-	#mount_uploader :image, ImageUploader
+	mount_uploader :image, ImageUploader
 
-	# def ratings_by_user(user)
-	# 	rating = ratings.find_by(user: user)
+	 def ratings_by_user(user)
+	 	rating = ratings.find_by(user: user)
 	# 	rating.average_rating_by_user
-	# end
+	 end
 
 
 	# def overall_rating 
-	# 	(self.ratings.sum("knowledge_rating + support_rating + comfort_rating + accessibility_rating + recommendation_rating ") / (20 * ratings.count(:user_id).to_f) * 100).round(0)
+	# 	(self.ratings.sum("1_rating + 2_rating + 3_rating + 4_rating + 5_rating ") / (20 * ratings.count(:user_id).to_f) * 100).round(0)
 	# end
 end

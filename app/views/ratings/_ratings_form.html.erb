@@ -1,0 +1,48 @@
+<%= form_for([@item, @rating]) do |f| %>
+    <% if @rating.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@rating.errors.count, "error") %> prohibited this rating from being saved:</h2>
+
+        <ul>
+        <% @rating.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+<div class="question-area">  
+  <h4 class="item-rating-qs">Rate your Item</h4>
+    <label class="field"> 
+        <%= f.radio_button :score, 4 %>
+        Strongly Agree
+    </label>
+      
+    <label class="field">
+        <%= f.radio_button :score, 3 %>
+        Agree
+    </label>
+
+    <label class="field">
+        <%= f.radio_button :score, 2 %>
+        Neither Agree Nor Disagree
+    </label>
+
+    <label class="field">
+        <%= f.radio_button :score, 1 %>
+        Disagree
+    </label>
+
+    <label class="field">
+        <%= f.radio_button :score, 0 %>
+        Strongly Disagree
+    </label>
+</div>
+
+<br>
+    <div class="item-submit">
+      <%= f.submit %>
+    </div>
+  <% end %>
+<br>
+<div>
