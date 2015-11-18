@@ -29,11 +29,7 @@ gem 'spring',        group: :development
 # Authentication library
 gem 'devise'
 
-group :development, :test do
-  gem 'rspec-rails', '~> 3.0'
-end
-
-gem 'capybara'
+gem 'active_model_serializers', '~> 0.8.0'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
@@ -46,6 +42,4 @@ gem 'capybara'
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
-
-
 
