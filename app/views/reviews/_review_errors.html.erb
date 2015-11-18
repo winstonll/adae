@@ -1,0 +1,11 @@
+<div id="error_explanation">
+	<h4><%= pluralize(@review.errors.count, "error") %>
+		prevented this review from being saved:
+	</h4>
+
+	<ul>
+		<% @review.errors.full_messages.each do |msg| %>
+			<li><%= msg %></li>
+		<% end %>
+	</ul>
+</div>
