@@ -29,9 +29,6 @@ gem 'spring',        group: :development
 # Authentication library
 gem 'devise'
 
-# Active Model Serializer
-gem 'active_model_serializers'
-
 group :development, :test do
   gem 'rspec-rails', '~> 3.0'
 end
