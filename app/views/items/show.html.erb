@@ -1,0 +1,61 @@
+<div class="item-info">
+  <%= image_tag @item.image_url(:avatar)  %>
+  <div class="item-details">
+  	<p class="item-detail-title"><%= @item.title %></p>
+  	<p class="item-detail-description"><%= @item.description %></p>
+  	<p class="item-detail-deposit">Deposit for this Item: $ <%= @item.deposit %></p>
+  </div>
+
+  <div class="rating-info">
+    <!-- <div class = "overall-rating">
+      Overall Rating: 
+      <%# if @item.ratings.present? %>
+      <%#= @item.overall_rating %>%
+      <%# else %>
+      No Ratings Avaliable - be the first to leave a rating!
+      <%# end %>
+
+    </div>
+
+    <div class = "rating-by-user">
+      Your Rating: 
+      <%# if present_or_rated?(@item) %>
+      <%#= @item.ratings_by_user(current_user) %> 
+      <%#= link_to "Edit Rating", edit_item_rating_path(@item, @rating) %> 
+      <%# else %>
+      <%#= link_to "Add a Rating", new_item_rating_path(@item) %>
+      <%# end %> 
+    </div> -->
+  </div>
+
+</div>
+
+
+<h3 class="item-reviews">Reviews for <%= @item.title %> </h3>
+
+<div id="review-list">
+  <%#= render @item.reviews %>
+</div>
+
+<h3 class="create-review">Create a New Review</h3>
+<%#= form_for([@item, @review],:remote => true) do |f| %>
+
+<div class="create_review-fields">
+  <div id='review-errors'>
+    <%# if @review.errors.any? %>
+    <%#= render partial: 'reviews/review_errors' %>
+    <%# end %>
+  </div>
+
+  <div class="field">
+    <%#= f.label :comment %><br />
+    <%#= f.text_area :comment %>
+  </div>
+  <div class="actions">
+    <%#= f.submit %>
+  </div>
+  <%# end %>
+
+</div>    
+
+

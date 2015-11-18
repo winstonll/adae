@@ -7,12 +7,14 @@
 <p> Name: <%= @user.first_name %></p>
 <p> Last Name: <%= @user.last_name %></p>
 <p> Email: <%= @user.email %></p>
+<p> Address: <%= @user.full_address %></p>
+<p> Phone Number: <%= @user.phone_number %></p>
 
 <h4 class= "account-heading"> Your reviews </h4>
 <div class= "user-reviews">
 	<%# @user.reviews.each do |review| %>
 	<li class="user-review">
-		<p>For <%#=link_to(review.item.first_name, item_path(review.item))  %> 
+		<p>For <%#=link_to(review.item.title, item_path(review.item))  %> 
 		your review is:
 		<%#=review.comment %>
 		<p class="edit-review"><%#= link_to 'Edit Review', edit_item_review_path(review.item, review) %></p>
@@ -29,7 +31,7 @@
 <div class = "user-ratings">
 	<%# @user.ratings.each do |rating| %>
 	<li class="user-rating">
-		For <%#=link_to(rating.item.first_name, item_path(rating.item))  %> 
+		For <%#=link_to(rating.item.title, item_path(rating.item))  %> 
 		your rating is:
 		<%#= link_to 'Edit rating', edit_item_rating_path(rating.item, rating) %>
 	</li>
@@ -42,7 +44,7 @@
 
 <div>
 	<% @items.each do |item| %>
-		D.O.C: <%= link_to item.first_name, item_path(item) %> | 
+		Item: <%= link_to item.title, item_path(item) %> | 
 		<%= link_to 'Edit this Item', edit_item_path(item) %>
 		<%= link_to 'Delete this Item', item, method: :delete, data: {confirm: "Are you sure you want to delete this Item?"}  %>
 	<% end %>

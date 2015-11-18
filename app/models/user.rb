@@ -11,6 +11,10 @@ class User < ActiveRecord::Base
   		"#{first_name} #{last_name}"
   	end
 
+  	def full_address
+		full_address = "#{address_line1} #{city} #{postal_code}"	
+	end
+
 	def rated?(item)
 		ratings.find_by(item: item)
 	end

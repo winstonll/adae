@@ -1339,3 +1339,54 @@ Started GET "/" for ::1 at 2015-11-18 10:50:38 -0500
 Processing by ItemsController#homepage as HTML
   Rendered items/homepage.html.erb within layouts/application (0.2ms)
 Completed 200 OK in 33ms (Views: 32.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for ::1 at 2015-11-18 11:15:48 -0500
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by ItemsController#homepage as HTML
+  Rendered items/homepage.html.erb within layouts/application (2.2ms)
+Completed 200 OK in 241ms (Views: 197.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for ::1 at 2015-11-18 11:15:49 -0500
+Processing by ItemsController#homepage as HTML
+  Rendered items/homepage.html.erb within layouts/application (0.1ms)
+Completed 200 OK in 35ms (Views: 34.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for ::1 at 2015-11-18 11:32:15 -0500
+Processing by ItemsController#homepage as HTML
+  Rendered items/homepage.html.erb within layouts/application (0.2ms)
+Completed 200 OK in 35ms (Views: 34.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for ::1 at 2015-11-18 11:32:17 -0500
+Processing by ItemsController#homepage as HTML
+  Rendered items/homepage.html.erb within layouts/application (0.4ms)
+Completed 200 OK in 73ms (Views: 72.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/items/new" for ::1 at 2015-11-18 11:32:19 -0500
+Processing by ItemsController#new as HTML
+  Rendered items/_form.html.erb (422.8ms)
+  Rendered items/new.html.erb within layouts/application (439.4ms)
+Completed 200 OK in 525ms (Views: 472.9ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/" for ::1 at 2015-11-18 11:32:36 -0500
+Processing by ItemsController#homepage as HTML
+  Rendered items/homepage.html.erb within layouts/application (0.2ms)
+Completed 200 OK in 46ms (Views: 45.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/items" for ::1 at 2015-11-18 11:32:38 -0500
+Processing by ItemsController#index as HTML
+  Rendered items/_items.html.erb (0.3ms)
+  Rendered items/index.html.erb within layouts/application (2.1ms)
+Completed 200 OK in 45ms (Views: 44.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for ::1 at 2015-11-18 11:32:40 -0500
+Processing by ItemsController#homepage as HTML
+  Rendered items/homepage.html.erb within layouts/application (0.2ms)
+Completed 200 OK in 38ms (Views: 37.9ms | ActiveRecord: 0.0ms)
