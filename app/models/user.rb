@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
 	has_many :items
   	has_many :items_reviewed, through: :reviews, source: :items
   	has_many :items_rated, through: :ratings, source: :items
-  	validates :full_address, :address_line1, :city, :postal_code, :phone_number,  presence: true
+  	validates :first_name, :last_name, :address_line1, :city, :postal_code, :phone_number,  presence: true
 
 
   	def full_name

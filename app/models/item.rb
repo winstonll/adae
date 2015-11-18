@@ -1,5 +1,5 @@
 class Item < ActiveRecord::Base
-	validates :title, :description, :user_id, :deposit, :rent2buy, :tags, :image,  presence: true
+	validates :title, :description, :deposit, :rent2buy, :tags,  presence: true
 	
 	belongs_to :user
 
@@ -15,7 +15,9 @@ class Item < ActiveRecord::Base
 	# 	rating.average_rating_by_user
 	 end
 
-
+	 def score
+	 	(self.ratings.count(:user_id).to_f / 100).round(0)
+	 end
 	# def overall_rating 
 	# 	(self.ratings.sum("1_rating + 2_rating + 3_rating + 4_rating + 5_rating ") / (20 * ratings.count(:user_id).to_f) * 100).round(0)
 	# end

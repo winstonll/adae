@@ -4,7 +4,11 @@ User.create!(
 	last_name: "user",
 	email: "admin@example.com",
 	password: "asdf",
-	password_confirmation: "asdf"
+	password_confirmation: "asdf",
+	phone_number: "123456789",
+	address_line1: Faker::Address.street_address,
+	city: "Toronto",
+	postal_code: Faker::Address.zip_code
 )
 
 puts "Creating Users"
@@ -19,7 +23,6 @@ puts "========================================================="
 		password: "asdf",
 		password_confirmation: "asdf",
 		phone_number: Faker::PhoneNumber.phone_number,
-		full_address: nil,
 		address_line1: Faker::Address.street_address,
 	    city: Faker::Address.city,
 	    postal_code: Faker::Address.zip_code
@@ -33,13 +36,11 @@ puts "========================================================="
   	Item.create!(
 	    title: Faker::Commerce.product_name,
 	    description: Faker::Lorem.sentence,
-	    image: Faker::Avatar.image,
 	    deposit: Faker::Commerce.price,
 	    rent2buy: true,
 	    tags:Faker::Commerce.department
     )
 end
-
 
 puts "Creating Reviews"
 puts "========================================================="

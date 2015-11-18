@@ -1,15 +1,469 @@
+* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+/* STYLESSS*/
+
+
+html {
+ 
+  /*background: -webkit-linear-gradient(90deg, #DAE2F8 10%, #f48686 90%); /* Chrome 10+, Saf5.1+ */
+  /*background:    -moz-linear-gradient(90deg, #DAE2F8 10%, #f48686 90%); /* FF3.6+ */
+  /*background:     -ms-linear-gradient(90deg, #DAE2F8 10%, #f48686 90%); /* IE10 */
+  /*background:      -o-linear-gradient(90deg, #DAE2F8 10%, #f48686 90%); /* Opera 11.10+ */
+  /*background:         linear-gradient(90deg, #DAE2F8 10%, #f48686 90%); /* W3C */
+        
+}
+
+
+a {
+	font-size: 19px;
+	font-family: 'Quicksand', sans-serif;
+	font-weight: 400;
+	color: black;
+	text-decoration: none;
+}
+
+h1 {
+	font-size: 30px;
+	font-family: 'Quicksand', sans-serif;
+	font-weight: 300;
+	text-align: center;
+}
+
+h2 {
+	font-size: 25px;
+	font-family: 'Quicksand', sans-serif;
+	font-weight: 700;
+}
+
+h3 {
+	font-size: 23px;
+	font-family: 'Quicksand', sans-serif;
+	font-weight: 400;
+}
+
+h4 {
+	font-size: 20px;
+	font-family: 'Quicksand', sans-serif;
+	font-weight: 700;
+}
+
+h5 {
+	font-size: 20px;
+	font-family: 'Quicksand', sans-serif;
+	font-weight: 400;
+}
+
+p, ul, ol, li {
+	font-size: 17px;
+	font-family: 'Quicksand', sans-serif;
+	font-weight: 300;
+}
+
 /*
- * This is a manifest file that'll be compiled into application.css, which will include all the files
- * listed below.
- *
- * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
- * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
- *
- * You're free to add application-wide styles to this file and they'll appear at the bottom of the
- * compiled file so the styles you add here take precedence over styles defined in any styles
- * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
- * file per style scope.
- *
- *= require_tree .
- *= require_self
- */
+HOMEPAGE
+*/
+.share-item-area {
+	display: block;
+	width: 80%;
+
+	/*background-color: #ebebeb;*/
+	margin: 0 auto;	
+}
+
+.share-item {
+	display: inline-block;
+	background-color: #419bf9;
+	font-family: 'Quicksand', sans-serif;
+	font-size: 25px;
+	font-weight: 400;
+	text-transform: uppercase;
+	border: 2px solid #000000;
+	width: 12em;
+	height: 3em;
+	margin-top: 2em;
+	margin-bottom: 2em;
+	margin-right: 0.75em;
+	margin-left: 0.60em ;
+}
+
+.share-item:hover {
+	background-color: #275d95;
+}
+
+.share-item:active {
+	background-color: #dbc1ef;
+}
+
+/*
+ADD item FORMS
+*/
+
+label {
+	display: block;
+	width: 100%; 
+	font-family: 'Quicksand', sans-serif;
+	font-size: 18px;
+	font-weight: 400;
+}
+
+h4, .item-rating-qs {
+	font-size: 20px;
+	font-family: 'Quicksand', sans-serif;
+	color: #000000;
+	font-weight: 700;
+	display: block;
+	width: 100%;
+}
+
+.question-area {
+	display: block;
+	width: 70%;
+	background-color: #419bf9;
+	margin: 0 auto;
+	
+
+}
+
+.item-submit {
+	display: inline-block;
+	text-align: center;
+	font-size: 20px;
+	font-family: 'Quicksand', sans-serif;
+	font-weight: 700;
+	margin-left: 20%;
+	margin-bottom: 5em;
+}
+
+.new-item-form {
+	/*display: inline-block;
+	width: 60%;
+	margin: 0 auto;	*/
+}
+
+#item_organization_name, 
+#item_first_name, 
+#item_last_name, 
+#item_address_line1, 
+#item_address_line2,
+#item_city,
+#item_province,
+#item_area_code,
+#item_waiting_period,
+#item_phone_number {
+	display: block;
+	width: 28em;
+	background-color: #ffffff;
+	margin-top: 0.25em;
+	margin-bottom: 0.75em;	
+	
+}
+
+.add-item {
+	display: block;
+	width: 70%;
+	background-color: #ebebeb;
+	margin: 0 auto;
+	padding: 1em 2em 1em 2em;
+}
+
+#items {
+	display: block;
+	width: 80%;
+	margin-left: 18%;
+	margin-right: 18%;
+}
+
+.main-form {
+	display: block;
+	width: 60%;
+	margin: 0 38% auto;
+}
+
+
+/*
+itemS INDEX/SEARCH
+*/
+.item-index {
+	display: block;
+	width: 70%;
+	padding: 1em;
+	background-color: #419bf9;
+	opacity: 0.75;
+	margin-bottom: 0.5em;
+	text-align: center;
+}
+
+.search-bar {
+	display: block;
+	margin-left: 20%;
+
+}
+
+.search-bar-label {
+ 	display: inline-block;
+ 	font-size: 18px;
+	font-family: 'Quicksand', sans-serif;
+	text-transform: uppercase;
+	font-weight: 400;
+	margin-left: 1em;
+}
+
+#search {
+	width: 50%;
+	height: 2em;
+}
+
+
+/*
+item PROFILE
+*/
+
+.rating-info {
+	display: inline-block;
+	vertical-align: top;
+	margin: auto;
+	width: 40%;
+}
+
+.rating-by-user {
+	display: block;
+	float: right;
+	vertical-align: top;
+	font-size: 20px;
+	font-family: 'Quicksand', sans-serif;
+	font-weight: 400;
+	text-transform: uppercase;
+	width: auto;
+	margin-bottom: 1em;	
+}
+
+.overall-rating {
+	display: block;
+	vertical-align: top;
+	font-size: 25px;
+	font-family: 'Quicksand', sans-serif;
+	font-weight: 400;
+	text-transform: uppercase;
+	text-align: right;
+	
+	
+	margin-left: 5em;
+	margin-top: 0.25em;
+	margin-bottom: 0.5em;	
+}
+.item-info {
+	width: 95%;
+	margin: auto;
+
+}
+
+.item-reviews {
+	display: inline-block;
+	font-size: 26px;
+	font-family: 'Quicksand', sans-serif;
+	font-weight: 400;
+	text-transform: uppercase;
+	
+	margin-left: 16em;
+	margin-bottom: 0.75em;
+}
+
+.create-review {
+	display: inline-block;
+	font-size: 26px;
+	font-family: 'Quicksand', sans-serif;
+	font-weight: 400;
+	text-transform: uppercase;
+	margin-left: 18em;
+	margin-bottom: 0.75em;
+
+}
+
+.create_review-fields {
+	display: block;
+	width: 50%;
+	margin: 0 auto;
+}
+
+#review_comment {
+	display: inline-block;
+	width: 100%;
+	height: 5em;
+	
+}
+
+.actions {
+	margin-top: 1em;
+	margin-bottom: 5em;
+}
+
+img {
+	display: inline-block;
+	width: 200px;
+	height: 200px;
+
+}
+
+.item-details {
+	display: inline-block;
+	width: 35%;
+	vertical-align: top;
+	margin-left: 3em ;
+}
+
+.item-detail-name {
+	margin-top: 0;
+	font-size: 30px;
+	font-weight: 700;
+
+}
+
+.item-detail{
+	display: block;
+	vertical-align: top;
+	margin-top: 0;
+	margin-bottom: 0.5em;	
+
+}
+
+
+#review-list {
+	display: block;
+	width: 50%;
+	margin: 0 auto;
+}
+
+.review {
+	display: block;
+	padding: 1em;
+	background-color: #419bf9;
+	opacity: 0.75;
+	margin-bottom: 0.5em;
+	text-align: center;
+
+}
+
+#error_explaination, h4, ul{
+	color: red;
+}
+
+
+/*
+USER ACCOUNT PAGE
+*/
+
+.account-heading {
+	color: #000000;
+}
+
+a.account-links {
+	display: block;
+}
+
+.user-reviews {
+	display: inline-block;
+	width: 50%;
+
+}
+
+.user-review {
+
+}
+
+.user-ratings {
+	display: inline-block;
+	width: 50%;
+
+}
+
+.user-rating {
+
+
+}
+
+.edit-review {
+	display: inline-block;
+	margin-top: 0;
+	margin-right: 2em;
+	margin-left: 2em;
+
+}
+
+.delete-review {
+	display: inline-block;
+	margin-top: 0;
+	margin-right: 2em;
+	
+	
+}
+
+
+/*
+NAV
+*/
+
+li.userinfo {
+	display: block;
+	float: right;
+	padding-right: 5px;
+	color: #000000;
+}
+
+/*
+EDIT REVIEWS
+*/
+
+.edit-review-heading {
+	color: #000000;
+}
+
+
+
+

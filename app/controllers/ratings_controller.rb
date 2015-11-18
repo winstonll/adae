@@ -49,7 +49,7 @@ class RatingsController < ApplicationController
 
   def load_item
     item = params[:item_id]
-    @item = item.find(item)
+    @item = Item.find(item)
   end
 
   def load_rating
