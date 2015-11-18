@@ -18,6 +18,14 @@ class ItemsController < ApplicationController
     end
   end
 
+  def show
+    @item = Item.find(params[:id])
+    @review = @item.reviews.build
+    if current_user
+    @rating = current_user.ratings.find_by(:item => @item)
+    end
+  end
+
   def new
     @item = Item.new
   end
@@ -54,8 +62,8 @@ class ItemsController < ApplicationController
   end
 
   private
-  def provider_params
-    params.require(:provider).permit(:title, :description, :image, :user_id, :deposit, :rent2buy, :tags)
+  def item_params
+    params.require(:item).permit(:title, :description, :image, :user_id, :deposit, :rent2buy, :tags)
   end
 
 end

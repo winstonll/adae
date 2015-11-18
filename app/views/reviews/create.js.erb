@@ -1,0 +1,7 @@
+<% if @review.errors.any? %>
+	$("#review-errors").html("<%= j(render partial:'review_errors') %>");
+<% else %>
+	$('#review-list').html("<%= j(render @item.reviews) %>");
+	$('#review_comment').val('');
+	$('#review-errors').html('');
+<% end %> 

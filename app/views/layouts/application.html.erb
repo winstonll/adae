@@ -15,21 +15,21 @@
          <p id="notice"><%= flash[:notice] %></p>
          <% end %>
 
-
          <% if flash[:alert] %>
          <p id="alert"><%= flash[:alert] %></p>
          <% end %>
 
          <li class="userinfo">
           <% if current_user %>
-          Signed in as <%= link_to current_user.username, user_path(current_user) %>. <%= link_to "Log out", session_path("current"), :method => :delete %>
+          Signed in as <%= link_to current_user.full_name, user_path(current_user) %>. <%= link_to "Log out", session_path("current"), :method => :delete %>
           <% else %>
           <%= link_to "Log in", new_session_path %> or <%= link_to "Sign up", new_user_path %>
           <% end %>
+
+          <li><%= link_to 'Home', root_path %></li> 
+          <li><%= link_to "Share an Item", root_path %></li> 
+          <li><%= link_to "View All Items", items_path %></li> 
         </li>
-        <li><%= link_to 'Home', root_path %></li> 
-        <li><%= link_to "Share an Item", root_path %></li> 
-        <li><%= link_to "View All Items", items_path %></li> 
       </ul>
     </nav>
   </header>
