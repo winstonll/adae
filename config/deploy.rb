@@ -1,8 +1,9 @@
 # config valid only for current version of Capistrano
 lock '3.4.0'
 
-set :application, 'my_app_name'
-set :repo_url, 'git@example.com:me/my_repo.git'
+set :application, 'adae'
+set :repo_url, 'git@github.com:winstonll/adae.git'
+set :domain, '159.203.22.61'
 
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
@@ -33,6 +34,13 @@ set :repo_url, 'git@example.com:me/my_repo.git'
 
 # Default value for keep_releases is 5
 # set :keep_releases, 5
+
+desc 'Restart application'
+task :restart do
+  on roles(:app), in: :sequence, wait: 5 do
+    execute "service thin restart"  ## -> line you should add
+  end
+end
 
 namespace :deploy do
 

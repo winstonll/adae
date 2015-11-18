@@ -21,9 +21,9 @@ test:
   database: db/test.sqlite3
 
 production:
-  database: <your database name here>
+  database: test_dev
   adapter: postgresql
   encoding: unicode
   pool: 5
-  username: <your username here>
-  password: <your password here>
+  username: postgres
+  password: 123456
