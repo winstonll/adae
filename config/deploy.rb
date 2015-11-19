@@ -3,6 +3,7 @@ lock '3.4.0'
 
 set :application, 'adae'
 set :repo_url, 'git@github.com:winstonll/adae.git'
+set :rbenv_ruby, '2.2.1'
 set :domain, '159.203.22.61'
 
 # Default branch is :master
