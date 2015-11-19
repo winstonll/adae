@@ -17,5 +17,5 @@
 /tmp/*.scssc
 */.sass-cache/*
 
-.DS_Store
-/public/system
+# Ignore Picture Uploads
+/public/uploads
