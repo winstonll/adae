@@ -10,8 +10,6 @@ class ReviewsController < ApplicationController
     @review = @item.reviews.build(review_params)
     if current_user
       @review.user = current_user
-      @review.name = current_user.first_name
-      @review.email = current_user.email
     end
     respond_to do |format|
       if @review.save
@@ -49,7 +47,7 @@ class ReviewsController < ApplicationController
 
   def load_item
     item = params[:item_id]
-    @item = item.find(item)
+    @item = Item.find(item)
   end
 
   def load_review

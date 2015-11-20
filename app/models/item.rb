@@ -1,5 +1,5 @@
 class Item < ActiveRecord::Base
-	validates :title, :description, :deposit, :rent2buy, :tags,  presence: true
+	validates :title, :description, :deposit, :tags,  presence: true
 	
 	belongs_to :user
 
