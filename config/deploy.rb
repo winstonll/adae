@@ -9,7 +9,7 @@ set :puma_workers,    0
 
 # config/deploy.rb
 set :rbenv_type, :user # or :system, depends on your rbenv setup
-set :rbenv_ruby, '2.2.1'
+set :rbenv_ruby, '2.2.0'
 
 # Don't change these unless you know what you're doing
 set :pty,             true
