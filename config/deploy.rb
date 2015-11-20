@@ -7,6 +7,10 @@ set :user,            'atsushi'
 set :puma_threads,    [4, 16]
 set :puma_workers,    0
 
+# config/deploy.rb
+set :rbenv_type, :user # or :system, depends on your rbenv setup
+set :rbenv_ruby, '2.2.1'
+
 # Don't change these unless you know what you're doing
 set :pty,             true
 set :use_sudo,        false
