@@ -27,8 +27,8 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
-gem 'bcrypt-ruby', '~> 3.1.0'
-gem 'cancancan', '~> 1.9'
+gem 'bcrypt-ruby'
+gem 'cancancan'
 
 gem 'carrierwave'
 gem 'rmagick'
