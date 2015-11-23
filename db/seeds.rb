@@ -31,20 +31,22 @@ end
 
 puts "Creating Items"
 puts "========================================================="
-150.times do
-
-  	Item.create!(
+	
+user = User.all
+user.each do |user|
+	 Item.create!(
 	    title: Faker::Commerce.product_name,
 	    description: Faker::Lorem.sentence,
 	    deposit: Faker::Commerce.price,
 	    rent2buy: true,
-	    tags:Faker::Commerce.department
+	    tags:Faker::Commerce.department,
+	    user_id: user.id
     )
 end
 
 puts "Creating Reviews"
 puts "========================================================="
-150.times do
+50.times do
 	reviewer_user = User.all.sample
 	r = Review.create!(
 		comment: Faker::Lorem.paragraph,
@@ -57,7 +59,7 @@ end
 
 puts "Creating Ratings"
 puts "========================================================="
-150.times do
+50.times do
 	r = Rating.create!(
 		user_id: User.all.sample.id,
 		item_id: Item.all.sample.id,
