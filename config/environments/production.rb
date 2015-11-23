@@ -1,8 +1,6 @@
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
-  set :stage, :production
-
   role :app, %w{deploy@159.203.22.61}
   role :web, %w{deploy@159.203.22.61}
   role :db,  %w{deploy@159.203.22.61}
