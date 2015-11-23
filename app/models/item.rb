@@ -10,15 +10,11 @@ class Item < ActiveRecord::Base
 
 	mount_uploader :image, ImageUploader
 
-	 def ratings_by_user(user)
-	 	rating = ratings.find_by(user: user)
-	# 	rating.average_rating_by_user
-	 end
+	def ratings_by_user(user)
+		ratings.find_by(user: user).score
+	end
 
-	 def score
-	 	(self.ratings.count(:user_id).to_f / 100).round(0)
-	 end
-	# def overall_rating 
-	# 	(self.ratings.sum("1_rating + 2_rating + 3_rating + 4_rating + 5_rating ") / (20 * ratings.count(:user_id).to_f) * 100).round(0)
-	# end
+	def total_score
+		(self.ratings.sum(:score) / (5 * ratings.count(:user_id).to_f) * 100).round(0)
+	end
 end

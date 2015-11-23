@@ -1,7 +1,8 @@
 <div class="item-info">
   <%= image_tag @item.image_url(:avatar)  %>
   <div class="item-details">
-  	<p class="item-detail-title"><%= @item.title %></p>
+  	<p class="item-detail-title"><%= @item.title %></p> 
+    <p class="item-detail-title">posted by <%= @item.user.full_name%></p>
   	<p class="item-detail-description"><%= @item.description %></p>
   	<p class="item-detail-deposit">Deposit for this Item: $ <%= @item.deposit %></p>
   </div>
@@ -10,7 +11,7 @@
     <div class = "overall-rating">
       Rating Score: 
       <% if @item.ratings.present? %>
-        <%= @item.score %>%
+        <%= @item.total_score %>%
       <% else %>
         No Ratings Avaliable - be the first to leave a rating!
       <% end %>
