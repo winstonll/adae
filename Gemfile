@@ -36,6 +36,8 @@ gem 'honeypot-captcha'
 
 gem 'thin'
 
+gem 'pg'
+
 # Authentication library
 gem 'devise'
 
@@ -49,13 +51,13 @@ group :development do
   gem "quiet_assets"
   gem "awesome_print"
   gem "faker"
-  
+
   gem 'capistrano'
   gem 'capistrano-rbenv', github: 'capistrano/rbenv'
   gem 'capistrano-rails'
   gem 'capistrano-bundler'
   gem 'capistrano3-puma'
-  
+
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
 
@@ -67,4 +69,3 @@ group :development do
 end
 
 gem 'puma'
-
