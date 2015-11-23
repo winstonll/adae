@@ -51,7 +51,7 @@ group :development do
   gem "faker"
   
   gem 'capistrano'
-  gem 'capistrano-rbenv'
+  gem 'capistrano-rbenv', github: 'capistrano/rbenv'
   gem 'capistrano-rails'
   gem 'capistrano-bundler'
   gem 'capistrano3-puma'
