@@ -1,4 +1,4 @@
-<h1>Hello! <%= @user.username %> Welcome to your profile!</h1>
+<h1>Hello! <%= @user.full_name %> Welcome to your profile!</h1>
 <div class="account-links">
 	<p class="p-account-links"><%= link_to "Update Account Information", edit_user_path(@user) %></p>
 	<p class="p-account-links"><%= link_to "Delete Account", @user, method: :delete, data: {confirm: "Are you sure you want to delete this user?"}  %></p>
@@ -20,10 +20,8 @@
 		<p class="edit-review"><%= link_to 'Edit Review', edit_item_review_path(review.item, review) %></p>
 		<p class ="delete-review"><%= link_to 'Delete Review', item_review_path(review.item, review), method: :delete, data: {confirm: "Are you sure?"}  %></p>
 		</p>
-		
-
 	</li>
-	<%# end %>
+	<% end %>
 </div>
 
 <h4 class= "account-heading">Your Ratings</h4>
@@ -33,9 +31,10 @@
 	<li class="user-rating">
 		For <%=link_to(rating.item.title, item_path(rating.item))  %> 
 		your rating is:
+		<%=rating.score%>
 		<%= link_to 'Edit rating', edit_item_rating_path(rating.item, rating) %>
 	</li>
-	<%# end %>
+	<% end %>
 	<br>
 </div>
 
@@ -48,8 +47,6 @@
 		<%= link_to 'Edit this Item', edit_item_path(item) %>
 		<%= link_to 'Delete this Item', item, method: :delete, data: {confirm: "Are you sure you want to delete this Item?"}  %>
 	<% end %>
-
-	
 </div>
 
 

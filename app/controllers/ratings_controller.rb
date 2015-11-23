@@ -12,7 +12,6 @@ class RatingsController < ApplicationController
   end
 
   def create
-
    @rating = @item.ratings.build(rating_params)
     if current_user
       @rating.user = current_user
