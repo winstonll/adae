@@ -24,7 +24,7 @@ require 'capistrano/rbenv'
 require 'capistrano/rails/assets'
 require 'capistrano/rails/migrations'
 require 'capistrano/rails'
-require 'capistrano/puma'
+#require 'capistrano/puma'
 # require 'capistrano/passenger'
 
 # Loads custom tasks from `lib/capistrano/tasks' if you have any defined.
