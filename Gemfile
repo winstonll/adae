@@ -34,7 +34,8 @@ gem 'carrierwave'
 gem 'rmagick'
 gem 'honeypot-captcha'
 
-gem 'thin'
+#gem 'thin'
+gem 'puma'
 
 gem 'pg'
 
@@ -56,7 +57,7 @@ group :development do
   gem 'capistrano-rbenv', github: 'capistrano/rbenv'
   gem 'capistrano-rails'
   gem 'capistrano-bundler'
-  #gem 'capistrano3-puma'
+  gem 'capistrano3-puma'
 
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
@@ -67,5 +68,3 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
 end
-
-#gem 'puma'

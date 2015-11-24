@@ -73,12 +73,11 @@ namespace :deploy do
   desc 'Restart application'
   task :restart do
     on roles(:app), in: :sequence, wait: 5 do
-      execute "service thin restart"
+      invoke 'puma:restart'
     end
   end
 
   before :starting,     :check_revision
-  after  :publishing,   :restart
   after  :finishing,    :compile_assets
   after  :finishing,    :cleanup
   after  :finishing,    :restart
