@@ -5,11 +5,8 @@ one:
   last_name: MyString
   email: MyString
   password_digest: MyString
-  address_line1: MyString
-  city: MyString
   image: MyString
   phone_number: MyString
-  postal_code: MyString
   phone_verified: false
 
 two:
@@ -17,9 +14,6 @@ two:
   last_name: MyString
   email: MyString
   password_digest: MyString
-  address_line1: MyString
-  city: MyString
   image: MyString
   phone_number: MyString
-  postal_code: MyString
   phone_verified: false
