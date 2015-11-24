@@ -5,10 +5,7 @@ User.create!(
 	email: "admin@example.com",
 	password: "asdf",
 	password_confirmation: "asdf",
-	phone_number: "123456789",
-	address_line1: Faker::Address.street_address,
-	city: "Toronto",
-	postal_code: Faker::Address.zip_code
+	phone_number: "123456789"
 )
 
 puts "Creating Users"
@@ -22,10 +19,7 @@ puts "========================================================="
 		email: Faker::Internet.email,
 		password: "asdf",
 		password_confirmation: "asdf",
-		phone_number: Faker::PhoneNumber.phone_number,
-		address_line1: Faker::Address.street_address,
-	    city: Faker::Address.city,
-	    postal_code: Faker::Address.zip_code
+		phone_number: Faker::PhoneNumber.phone_number
 	)
 end
 

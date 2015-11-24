@@ -166,12 +166,6 @@ h4, .item-rating-qs {
 #item_organization_name,
 #item_first_name,
 #item_last_name,
-#item_address_line1,
-#item_address_line2,
-#item_city,
-#item_province,
-#item_area_code,
-#item_waiting_period,
 #item_phone_number {
 	display: block;
 	width: 28em;
