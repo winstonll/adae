@@ -11,7 +11,7 @@ User.create!(
 puts "Creating Users"
 puts "========================================================="
 
-50.times do
+25.times do
 	name = Faker::Name.name.split
 	User.create!(
 		first_name: name.first,
@@ -39,7 +39,7 @@ end
 
 puts "Creating Reviews"
 puts "========================================================="
-50.times do
+25.times do
 	reviewer_user = User.all.sample
 	r = Review.create!(
 		comment: Faker::Lorem.paragraph,
@@ -52,7 +52,7 @@ end
 
 puts "Creating Ratings"
 puts "========================================================="
-50.times do
+25.times do
 	r = Rating.create!(
 		user_id: User.all.sample.id,
 		item_id: Item.all.sample.id,
