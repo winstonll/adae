@@ -56,7 +56,7 @@ group :development do
   gem 'capistrano-rbenv', github: 'capistrano/rbenv'
   gem 'capistrano-rails'
   gem 'capistrano-bundler'
-  gem 'capistrano3-puma'
+  #gem 'capistrano3-puma'
 
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
@@ -68,4 +68,4 @@ group :development do
   gem 'spring'
 end
 
-gem 'puma'
+#gem 'puma'
