@@ -1,4 +1,4 @@
-* http://meyerweb.com/eric/tools/css/reset/ 
+/* http://meyerweb.com/eric/tools/css/reset/ 
    v2.0 | 20110126
    License: none (public domain)
 */
@@ -12,8 +12,8 @@ b, u, i, center,
 dl, dt, dd, ol, ul, li,
 fieldset, form, label, legend,
 table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed, 
-figure, figcaption, footer, header, hgroup, 
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
 menu, nav, output, ruby, section, summary,
 time, mark, audio, video {
 	margin: 0;
@@ -24,7 +24,7 @@ time, mark, audio, video {
 	vertical-align: baseline;
 }
 /* HTML5 display-role reset for older browsers */
-article, aside, details, figcaption, figure, 
+article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
 	display: block;
 }
@@ -51,13 +51,13 @@ table {
 
 
 html {
- 
+
   /*background: -webkit-linear-gradient(90deg, #DAE2F8 10%, #f48686 90%); /* Chrome 10+, Saf5.1+ */
   /*background:    -moz-linear-gradient(90deg, #DAE2F8 10%, #f48686 90%); /* FF3.6+ */
   /*background:     -ms-linear-gradient(90deg, #DAE2F8 10%, #f48686 90%); /* IE10 */
   /*background:      -o-linear-gradient(90deg, #DAE2F8 10%, #f48686 90%); /* Opera 11.10+ */
   /*background:         linear-gradient(90deg, #DAE2F8 10%, #f48686 90%); /* W3C */
-        
+
 }
 
 
@@ -114,7 +114,7 @@ HOMEPAGE
 	width: 80%;
 
 	/*background-color: #ebebeb;*/
-	margin: 0 auto;	
+	margin: 0 auto;
 }
 
 .share-item {
@@ -147,7 +147,7 @@ ADD item FORMS
 
 label {
 	display: block;
-	width: 100%; 
+	width: 100%;
 	font-family: 'Quicksand', sans-serif;
 	font-size: 18px;
 	font-weight: 400;
@@ -167,7 +167,7 @@ h4, .item-rating-qs {
 	width: 70%;
 	background-color: #419bf9;
 	margin: 0 auto;
-	
+
 
 }
 
@@ -187,10 +187,10 @@ h4, .item-rating-qs {
 	margin: 0 auto;	*/
 }
 
-#item_organization_name, 
-#item_first_name, 
-#item_last_name, 
-#item_address_line1, 
+#item_organization_name,
+#item_first_name,
+#item_last_name,
+#item_address_line1,
 #item_address_line2,
 #item_city,
 #item_province,
@@ -201,8 +201,8 @@ h4, .item-rating-qs {
 	width: 28em;
 	background-color: #ffffff;
 	margin-top: 0.25em;
-	margin-bottom: 0.75em;	
-	
+	margin-bottom: 0.75em;
+
 }
 
 .add-item {
@@ -281,7 +281,7 @@ item PROFILE
 	font-weight: 400;
 	text-transform: uppercase;
 	width: auto;
-	margin-bottom: 1em;	
+	margin-bottom: 1em;
 }
 
 .overall-rating {
@@ -292,11 +292,11 @@ item PROFILE
 	font-weight: 400;
 	text-transform: uppercase;
 	text-align: right;
-	
-	
+
+
 	margin-left: 5em;
 	margin-top: 0.25em;
-	margin-bottom: 0.5em;	
+	margin-bottom: 0.5em;
 }
 .item-info {
 	width: 95%;
@@ -310,7 +310,7 @@ item PROFILE
 	font-family: 'Quicksand', sans-serif;
 	font-weight: 400;
 	text-transform: uppercase;
-	
+
 	margin-left: 16em;
 	margin-bottom: 0.75em;
 }
@@ -336,7 +336,7 @@ item PROFILE
 	display: inline-block;
 	width: 100%;
 	height: 5em;
-	
+
 }
 
 .actions {
@@ -369,7 +369,7 @@ img {
 	display: block;
 	vertical-align: top;
 	margin-top: 0;
-	margin-bottom: 0.5em;	
+	margin-bottom: 0.5em;
 
 }
 
@@ -440,8 +440,8 @@ a.account-links {
 	display: inline-block;
 	margin-top: 0;
 	margin-right: 2em;
-	
-	
+
+
 }
 
 
@@ -463,7 +463,3 @@ EDIT REVIEWS
 .edit-review-heading {
 	color: #000000;
 }
-
-
-
-
