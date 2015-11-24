@@ -39,7 +39,7 @@ html {
 
 a {
 	font-size: 19px;
-	font-family: 'Quicksand', sans-serif;
+	font-family: 'Avenir Next', sans-serif;
 	font-weight: 400;
 	color: black;
 	text-decoration: none;
@@ -47,38 +47,38 @@ a {
 
 h1 {
 	font-size: 30px;
-	font-family: 'Quicksand', sans-serif;
+	font-family: 'Avenir Next', sans-serif;
 	font-weight: 300;
 	text-align: center;
 }
 
 h2 {
 	font-size: 25px;
-	font-family: 'Quicksand', sans-serif;
+	font-family: 'Avenir Next', sans-serif;
 	font-weight: 700;
 }
 
 h3 {
 	font-size: 23px;
-	font-family: 'Quicksand', sans-serif;
+	font-family: 'Avenir Next', sans-serif;
 	font-weight: 400;
 }
 
 h4 {
 	font-size: 20px;
-	font-family: 'Quicksand', sans-serif;
+	font-family: 'Avenir Next', sans-serif;
 	font-weight: 700;
 }
 
 h5 {
 	font-size: 20px;
-	font-family: 'Quicksand', sans-serif;
+	font-family: 'Avenir Next', sans-serif;
 	font-weight: 400;
 }
 
 p, ul, ol, li {
 	font-size: 17px;
-	font-family: 'Quicksand', sans-serif;
+	font-family: 'Avenir Next', sans-serif;
 	font-weight: 300;
 }
 
@@ -96,7 +96,7 @@ HOMEPAGE
 .share-item {
 	display: inline-block;
 	background-color: #419bf9;
-	font-family: 'Quicksand', sans-serif;
+	font-family: 'Avenir Next', sans-serif;
 	font-size: 25px;
 	font-weight: 400;
 	text-transform: uppercase;
@@ -124,14 +124,14 @@ ADD item FORMS
 label {
 	display: block;
 	width: 100%;
-	font-family: 'Quicksand', sans-serif;
+	font-family: 'Avenir Next', sans-serif;
 	font-size: 18px;
 	font-weight: 400;
 }
 
 h4, .item-rating-qs {
 	font-size: 20px;
-	font-family: 'Quicksand', sans-serif;
+	font-family: 'Avenir Next', sans-serif;
 	color: #000000;
 	font-weight: 700;
 	display: block;
@@ -151,7 +151,7 @@ h4, .item-rating-qs {
 	display: inline-block;
 	text-align: center;
 	font-size: 20px;
-	font-family: 'Quicksand', sans-serif;
+	font-family: 'Avenir Next', sans-serif;
 	font-weight: 700;
 	margin-left: 20%;
 	margin-bottom: 5em;
@@ -219,7 +219,7 @@ itemS INDEX/SEARCH
 .search-bar-label {
  	display: inline-block;
  	font-size: 18px;
-	font-family: 'Quicksand', sans-serif;
+	font-family: 'Avenir Next', sans-serif;
 	text-transform: uppercase;
 	font-weight: 400;
 	margin-left: 1em;
@@ -247,7 +247,7 @@ item PROFILE
 	float: right;
 	vertical-align: top;
 	font-size: 20px;
-	font-family: 'Quicksand', sans-serif;
+	font-family: 'Avenir Next', sans-serif;
 	font-weight: 400;
 	text-transform: uppercase;
 	width: auto;
@@ -258,7 +258,7 @@ item PROFILE
 	display: block;
 	vertical-align: top;
 	font-size: 25px;
-	font-family: 'Quicksand', sans-serif;
+	font-family: 'Avenir Next', sans-serif;
 	font-weight: 400;
 	text-transform: uppercase;
 	text-align: right;
@@ -277,7 +277,7 @@ item PROFILE
 .item-reviews {
 	display: inline-block;
 	font-size: 26px;
-	font-family: 'Quicksand', sans-serif;
+	font-family: 'Avenir Next', sans-serif;
 	font-weight: 400;
 	text-transform: uppercase;
 
@@ -288,7 +288,7 @@ item PROFILE
 .create-review {
 	display: inline-block;
 	font-size: 26px;
-	font-family: 'Quicksand', sans-serif;
+	font-family: 'Avenir Next', sans-serif;
 	font-weight: 400;
 	text-transform: uppercase;
 	margin-left: 18em;
