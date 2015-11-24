@@ -38,7 +38,6 @@ user.each do |user|
 	    title: Faker::Commerce.product_name,
 	    description: Faker::Lorem.sentence,
 	    deposit: Faker::Commerce.price,
-	    rent2buy: true,
 	    tags:Faker::Commerce.department,
 	    user_id: user.id
     )
