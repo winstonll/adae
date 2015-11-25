@@ -51,9 +51,13 @@ body,ul {
     position: relative;
     top: 15px;
     right: 10%;
+  .search-field-placeholder{
+    font-size: 13px;
+    padding-left: 10px;
+  }
 
     #search {
-    	width: 40%;
+    	width: 60%;
     	height: 33px;
       background-color: #fff;
       border-radius: 3px 0px 0px 3px;
@@ -71,6 +75,7 @@ body,ul {
       width: 100px;
       border-radius: 0px 3px 3px 0px;
       border: none;
+      cursor: pointer;
     }
   }
 

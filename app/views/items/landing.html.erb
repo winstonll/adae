@@ -18,7 +18,7 @@
     <div id="search-field">
       <div class="search-bar">
     		<%= form_tag items_path, method: :get, authentication: false, id: 'search-form' do %>
-    			<%= text_field_tag :search, params[:search]  %>
+    			<%= text_field_tag :search, params[:search],{placeholder: 'Enter your e-mail here for the Beta Invite & get $5 credit when you sign up!', class: 'search-field-placeholder'}  %>
     			<button class="search-bar-label">Submit</button>
     		<% end %>
     	</div>
