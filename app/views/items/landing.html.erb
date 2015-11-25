@@ -12,4 +12,15 @@
 		<div id="summary-container">
 			<p class="summary">Share what you have, get what you want. <br> Peer-to-Peer marketplace that is safe and secure.</p>
 		</div>
+    <div class="coming-soon">
+      <%= image_tag "App Store_Play Store_COMING SOON.png", id: "coming-soon" %></a>
+    </div>
+    <div id="search-field">
+      <div class="search-bar">
+    		<%= form_tag items_path, method: :get, authentication: false, id: 'search-form' do %>
+    			<%= text_field_tag :search, params[:search],{placeholder: 'Enter your e-mail here for the Beta Invite & get $5 credit when you sign up!', class: 'search-field-placeholder'}  %>
+    			<button class="search-bar-label">Submit</button>
+    		<% end %>
+    	</div>
 	</div>
+</div>
