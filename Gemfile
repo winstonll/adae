@@ -36,7 +36,7 @@ gem 'honeypot-captcha'
 
 #gem 'thin'
 gem 'puma'
-
+gem 'rails-api'
 gem 'pg'
 
 # Authentication library
