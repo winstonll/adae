@@ -1,5 +1,5 @@
 # Change these
-server '159.203.22.61', port: 21, roles: [:web, :app, :db], primary: true
+server '159.203.22.61', port: 22, roles: [:web, :app, :db], primary: true
 
 set :repo_url,        'git@github.com:winstonll/adae.git'
 set :application,     'adae'
