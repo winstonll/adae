@@ -6,7 +6,7 @@
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
-  
+
   <link href='http://fonts.googleapis.com/css?family=Quicksand:300,400,700' rel='stylesheet' type='text/css'>
 </head>
   <header>
@@ -27,9 +27,11 @@
           <%= link_to "Log in", new_session_path %> or <%= link_to "Sign up", new_user_path %>
           <% end %>
         </li>
+
         <li><%= link_to 'Home', root_path %></li>
-        <li><%= link_to "Share an Item", homepage_path %></li>
+        <li><%= link_to "Share an Item", additem_path %></li>
         <li><%= link_to "View All Items", items_path %></li>
+
       </ul>
     </nav>
   </header>
