@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   root 'items#landing'
 
-   get 'homepage' => 'items#homepage'
+   get 'additem' => 'items#additem'
 
   concern :reviewable do
     resources :ratings, only: [:new, :create, :show, :edit, :update, :destroy]
