@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_filter :load_user, only:[:show, :edit, :update, :destroy]
-  load_and_authorize_resource
+  # load_and_authorize_resource
 
 	def show
 	  @items = current_user.items
