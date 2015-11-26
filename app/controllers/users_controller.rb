@@ -1,50 +1,59 @@
 class UsersController < ApplicationController
-  before_filter :load_user, only:[:show, :edit, :update, :destroy]
-  # load_and_authorize_resource
+  before_action :set_user, only: [:show, :update, :destroy]
 
-	def show
-	  @items = current_user.items
-	end
+  # GET /users
+  # GET /users.json
+  def index
+    @users = User.all
 
-	def new
-	  @user = User.new
-	end
+    render json: @users
+  end
 
-	def create
-	  @user = User.new(user_params)
-	  if @user.save
-	  session[:user_id] = @user.id
-	  redirect_to user_path(@user), notice: "Signed up!"
-	  else
-	  render 'new'
-	  end
-	end
+  # GET /users/1
+  # GET /users/1.json
+  def show
+    render json: @user
+  end
 
-	def edit
-	end
+  # POST /users
+  # POST /users.json
+  def create
+    @user = User.new(user_params)
 
-	def update
-	  if @user.update_attributes(user_params)
-	  redirect_to @user
-	  else
-	  render :edit
-	  end
-	end
+    if @user.save
+      render json: @user, status: :created, location: @user
+    else
+      render json: @user.errors, status: :unprocessable_entity
+    end
+  end
 
-	def destroy
-	  @user.destroy
-	  redirect_to root_path, notice: "User account deleted!"
-	end
+  # PATCH/PUT /users/1
+  # PATCH/PUT /users/1.json
+  def update
+    @user = User.find(params[:id])
 
+    if @user.update(user_params)
+      head :no_content
+    else
+      render json: @user.errors, status: :unprocessable_entity
+    end
+  end
 
-	private
-	def user_params
-	  params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation,
-	  :phone_number)
-	end
+  # DELETE /users/1
+  # DELETE /users/1.json
+  def destroy
+    @user.destroy
 
-	def load_user
-	  @user = User.find(params[:id])
-	end
+    head :no_content
+  end
 
+  private
+
+    def set_user
+      @user = User.find(params[:id])
+    end
+
+    def user_params
+      params.require(:user).permit(:first_name, :last_name, :email, :image, :phone_number, :phone_verified)
+    end
 end

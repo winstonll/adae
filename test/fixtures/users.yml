@@ -4,7 +4,6 @@ one:
   first_name: MyString
   last_name: MyString
   email: MyString
-  password_digest: MyString
   image: MyString
   phone_number: MyString
   phone_verified: false
@@ -13,7 +12,6 @@ two:
   first_name: MyString
   last_name: MyString
   email: MyString
-  password_digest: MyString
   image: MyString
   phone_number: MyString
   phone_verified: false
