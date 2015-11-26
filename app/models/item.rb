@@ -3,6 +3,7 @@ class Item < ActiveRecord::Base
 	
 	belongs_to :user
 
+	has_many :prices, :dependent => :destroy
 	has_many :reviews, :dependent => :destroy
 	has_many :ratings, :dependent => :destroy
 	has_many :users_that_reviewed_this, through: :reviews, source: :user
