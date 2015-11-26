@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
-  devise_for :users
+  devise_for :users, controllers: { sessions: "users/sessions" }
   root 'items#landing'
 
   get 'additem' => 'items#additem'
+  get 'create' => 'registrations#create'
 
   concern :reviewable do
     resources :ratings, only: [:new, :create, :show, :edit, :update, :destroy]
@@ -10,8 +11,4 @@ Rails.application.routes.draw do
   end
 
   resources :items,                                 :concerns => :reviewable
-
-  resources :users
-  resources :sessions, only: [:new, :create, :destroy]
-
 end
