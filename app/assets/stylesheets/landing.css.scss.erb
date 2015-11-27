@@ -5,7 +5,7 @@ body,ul {
 
 
 #landing{
-  background-image: url(<%= asset_path 'landing_bg.jpg' %>); 
+  background-image: url(<%= asset_path 'landing_bg.jpg' %>);
   background-position: center;
   background-repeat: no-repeat;
   -webkit-background-size: cover;
@@ -78,5 +78,108 @@ body,ul {
       cursor: pointer;
     }
   }
+}
 
+#key-points-container, #how-it-works-container{
+    width: 100%;
+    margin-top: 5em;
+    background-color: #fff;
+    text-align: center;
+    display: inline-block;
+
+    .how-it-works-header {
+      color: #4a4a4a;
+      font-weight: 600;
+      font-size: 20px;
+			text-align: center;
+			padding-bottom: 50px;
+			width: 100%
+    }
+
+    .key-points-section {
+      width: 350px;
+      display: inline-block;
+      vertical-align: top;
+      padding-bottom: 40px;
+			font-family: avenir next;
+
+      .key-points-header {
+        font-size: 22px;
+				margin-bottom: -20px;
+				color: #4a4a4a;
+	      font-weight: 600;
+      }
+
+      .key-points-logo {
+				margin-bottom: -1em;
+      }
+
+      .discover-logo {
+				margin-bottom: -1em;
+      }
+
+      .key-points-summary {
+        font-weight: 400;
+        text-align: left;
+        font-size: 15px;
+        line-height: 1.3;
+				padding:30px;
+				padding-left: 50px;
+				margin-bottom: -2em;
+      }
+
+			.how-it-works-summary {
+        font-weight: 400;
+        text-align: left;
+        font-size: 15px;
+        line-height: 1.3;
+				padding:30px;
+				padding-left: 50px;
+				text-indent: -18px;
+      }
+    }
+			.how-it-works{
+				display: block;
+				margin: 0 auto;
+				padding: 10px;
+				border: none;
+				background-color: #7ED321;
+				color: #fff;
+				font-size: 15px;
+				border-radius: 4px;
+				font-family: avenir next;
+				cursor: pointer;
+				&:hover {
+						background-color: #52D321;
+					}
+			}
+  }
+
+	#explore-container{
+		width:100%;
+		height: 100%;
+		background-color: #F2F2F2;
+
+	.title{
+		color: #4a4a4a;
+		font-weight: 400;
+		font-size: 24px;
+		text-align: center;
+		padding-top: 70px;
+	}
+
+	.hood{
+		max-width: 80%;
+		margin: 0 auto;
+		position: relative;
+		left: 3em;
+
+	.hood-pics{
+		margin: 10px;
+		cursor: pointer;
+		&:hover {
+				opacity: .9;
+			}
+	}
+	}
 }

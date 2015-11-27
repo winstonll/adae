@@ -8,8 +8,7 @@ class SessionsController < ApplicationController
         default_url = (session.delete(:previous_url) || root_path)
   			redirect_to default_url, :notice => "Logged in!"
   		else
-  			flash.now[:alert] = "Invalid email or password"
-      		render "new"
+      	render "new"
     	end
   end
 

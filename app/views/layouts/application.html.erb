@@ -15,9 +15,11 @@
 
          <li class="userinfo">
           <% if current_user %>
-          Signed in as <%= link_to current_user.full_name, user_path(current_user) %>. <%= link_to "Log out", session_path("current"), :method => :delete %>
+            Signed in as <%= link_to current_user.full_name, user_path(current_user) %>. <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
           <% else %>
-          <%= link_to "Log in", new_session_path %> or <%= link_to "Sign up", new_user_path %>
+            <%= link_to('Login', new_user_session_path)  %>
+
+            <%= link_to('Register', new_user_registration_path)  %>
           <% end %>
         </li>
 
