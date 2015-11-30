@@ -1,15 +1,17 @@
 module Api
   class UsersController < Api::ApplicationController
-
+    # User name and password needed to access the users controller API and send
+    # requests
     http_basic_authenticate_with name: "admin", password: "Az2L%r[S";
 
+    # GET show all users
     def index
       @users = User.all
       render json: @users, status: :ok
     end
 
+    # GET show specific user
     def show
-
       @user = User.where(id: params[:id]).first
 
       if !@user.nil?
@@ -22,10 +24,12 @@ module Api
       end
     end
 
+    # POST create user
     def create
       puts user_params
     end
 
+    # DELETE destroy user and its association
     def destroy
       @user = User.where(id: params[:id])
 
