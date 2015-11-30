@@ -1,6 +1,8 @@
 module Api
   class UsersController < Api::ApplicationController
 
+    http_basic_authenticate_with name: "admin", password: "Az2L%r[S";
+
     def index
       @users = User.all
       render json: @users, status: :ok
@@ -9,7 +11,7 @@ module Api
     def show
 
       @user = User.where(id: params[:id]).first
-      
+
       if !@user.nil?
         render json: @user
       else
