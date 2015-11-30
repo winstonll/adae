@@ -3,10 +3,13 @@ Rails.application.routes.draw do
 
   devise_for :users, controllers: { sessions: "users/sessions" }
 
-  namespace :api do
-    resources :items, :users
-  end
+  #namespace :api do
+  #  resources :items, :users
+  #end
 
+  namespace :api do
+    resources :users
+  end
 
   root 'items#landing'
 
