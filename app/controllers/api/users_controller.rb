@@ -24,11 +24,6 @@ module Api
       end
     end
 
-    # POST create user
-    def create
-      puts user_params
-    end
-
     # DELETE destroy user and its association
     def destroy
       @user = User.where(id: params[:id])
