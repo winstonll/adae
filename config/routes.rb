@@ -11,11 +11,11 @@ Rails.application.routes.draw do
   #  resources :users
   #end
 
-  constraints subdomain: 'api' do
-    namespace :api, path: '/' do
+  #constraints subdomain: 'api' do
+    namespace :api do
       resources :users
     end
-  end
+  #end
 
   root 'items#landing'
 
