@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   #  resources :users
   #end
 
-  constraints :subdomain => /api.*/ do
+  constraints subdomain: 'api' do
     namespace :api, path: '/' do
       resources :users
     end
