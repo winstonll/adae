@@ -38,14 +38,14 @@
 
 		<%= fields_for :price do |f| %>
 		<div class="new-item-form">
+			<%=f.label :amount %>
+     		<%=f.number_field :amount, :step => 'any' %>
+		</div>
+		<div class="new-item-form">
       		<%=f.label :timeframe %>
      		<%= select_tag(:timeframe, options_for_select([["Hour"],["Day"],["Week"]])) %>
 		</div>
 
-		<div class="new-item-form">
-			<%=f.label :amount %>
-     		<%=f.number_field :amount , :step => '0.01'%>
-		</div>
    		<% end %>
 
 	<%= f.submit %>

@@ -21,9 +21,10 @@ class ItemsController < ApplicationController
   def show
     @item = Item.find(params[:id])
     @review = @item.reviews.build
-    if current_user
-    @rating = current_user.ratings.find_by(:item => @item)
-    end
+    @price = Price.where(item_id: @item.id).first
+    # if current_user
+    # @rating = current_user.ratings.find_by(:item => @item)
+    # end
   end
 
   def new
@@ -32,8 +33,10 @@ class ItemsController < ApplicationController
   
   def create
     @item = Item.new(item_params)
-    @item.user_id = current_user.id
     if @item.save
+    @price = Price.create(:timeframe => params[:timeframe], :amount => params[:amount], :item_id => @item.id)
+    @price.save
+    # @item.user_id = current_user.id
       redirect_to @item, notice: "Item Successfully Added!"
     else
       flash[:message] = "Something did not validate"
@@ -58,7 +61,7 @@ class ItemsController < ApplicationController
   def destroy
     @item = Item.find(params[:id])
     @item.destroy
-    redirect_to user_path(current_user)
+    # redirect_to user_path(current_user)
   end
 
   private
