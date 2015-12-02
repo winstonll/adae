@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   #mount_devise_token_auth_for 'User', at: 'auth'
 
-  #devise_for :users, controllers: { sessions: "users/sessions" }
+  devise_for :users, controllers: { sessions: "users/sessions" }
 
   #namespace :api do
   #  resources :items, :users
@@ -13,7 +13,9 @@ Rails.application.routes.draw do
 
   #constraints subdomain: 'api' do
     namespace :api do
-      resources :users
+      #namespace :v1 do
+        resources :users
+      #end
     end
   #end
 
