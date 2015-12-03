@@ -1,4 +1,4 @@
-DeviseTokenAuth.setup do |config|
+#DeviseTokenAuth.setup do |config|
   # By default the authorization headers will change after each request. The
   # client is responsible for keeping track of the changing tokens. Change
   # this to false to prevent the Authorization header from changing after
@@ -25,4 +25,4 @@ DeviseTokenAuth.setup do |config|
   # attribute updates. Set it to :password if you want it to be checked only if
   # password is updated.
   # config.check_current_password_before_update = :attributes
-end
+#end

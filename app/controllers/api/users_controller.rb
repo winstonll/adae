@@ -1,4 +1,4 @@
-module Api  
+module Api
   class UsersController < ApplicationController
     # User name and password needed to access the users controller API and send
     # requests
@@ -36,6 +36,8 @@ module Api
     # curl -i -X POST -d 'user[email]=test2@hotmail.com&user[password]=12345678' http://localhost:3000/api/users
     def create
       user = User.new(user_params)
+
+      user.uid = user.email
 
       if user.save
         render nothing: true, status: 204#, location: user

@@ -38,7 +38,7 @@ gem 'honeypot-captcha'
 gem 'puma'
 gem 'rails-api'
 
-gem 'devise_token_auth'
+#gem 'devise_token_auth'
 gem 'omniauth'
 gem 'pg'
 
