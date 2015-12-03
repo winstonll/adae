@@ -29,13 +29,12 @@ class ItemsController < ApplicationController
 
   def new
     @item = Item.new
+    @price = Price.new
   end
   
   def create
     @item = Item.new(item_params)
     if @item.save
-    @price = Price.create(:timeframe => params[:timeframe], :amount => params[:amount], :item_id => @item.id)
-    @price.save
     # @item.user_id = current_user.id
       redirect_to @item, notice: "Item Successfully Added!"
     else
@@ -66,7 +65,7 @@ class ItemsController < ApplicationController
 
   private
   def item_params
-    params.require(:item).permit(:title, :description, :image, :user_id, :deposit, :tags)
+    params.require(:item).permit(:title, :description, :image, :user_id, :deposit, :tags, prices_attributes: [:id, :timeframe, :amount])
   end
 
 end
