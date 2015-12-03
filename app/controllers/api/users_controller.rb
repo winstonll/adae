@@ -12,19 +12,19 @@ module Api
 
     # GET show all users
     def index
-      @users = User.all
+      users = User.all
       if name = params[:name]
-        @users = User.where(name: name)
+        users = User.where(name: name)
       end
-      render json: @users, status: :ok
+      render json: users, status: :ok
     end
 
     # GET show specific user
     def show
-      @user = User.find(params[:id])
+      user = User.find(params[:id])
 
-      if !@user.nil?
-        render json: @user
+      if !user.nil?
+        render json: user, status: :ok
       else
         render json: {
           error: "No such user; check the user id",
@@ -48,9 +48,9 @@ module Api
 
     # DELETE destroy user and its association
     def destroy
-      @user = User.where(id: params[:id])
+      user = User.where(id: params[:id])
 
-      if !@user.empty?
+      if !user.nil?
         User.destroy(params[:id])
         head :no_content
       else
