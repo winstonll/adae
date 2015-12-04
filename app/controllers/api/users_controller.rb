@@ -33,7 +33,7 @@ module Api
       end
     end
 
-    # curl -i -X POST -d 'user[email]=test2@hotmail.com&user[password]=12345678' http://localhost:3000/api/users
+    # curl -i -X POST -d 'users[email]=test2@hotmail.com&user[password]=12345678' http://localhost:3000/api/users
     def create
       user = User.new(user_params)
 
@@ -64,7 +64,7 @@ module Api
     private
 
       def user_params
-        params.require(:user).permit(:email, :password, :uid)
+        params.require(:users).permit(:email, :password, :uid)
       end
   end
 end

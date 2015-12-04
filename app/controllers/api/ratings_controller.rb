@@ -47,7 +47,7 @@ module Api
     private
 
       def rating_params
-        params.require(:prices).permit(:score, :user_id, :item_id)
+        params.require(:ratings).permit(:score, :user_id, :item_id)
       end
   end
 end
