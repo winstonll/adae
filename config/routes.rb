@@ -14,8 +14,7 @@ Rails.application.routes.draw do
   #constraints subdomain: 'api' do
     namespace :api do
       #namespace :v1 do
-        resources :users
-        resources :items
+        resources :users, :items, :locations, :prices, :ratings, :reviews, :transactions
       #end
     end
   #end
