@@ -1,4 +1,4 @@
-module Api
+module Api::V1
   class UsersController < ApplicationController
     # User name and password needed to access the users controller API and send
     # requests
@@ -8,7 +8,6 @@ module Api
     #use this to authenticate
     #include DeviseTokenAuth::Concerns::SetUserByToken
     #before_action :authenticate_user!
-
 
     # GET show all users
     def index
@@ -64,7 +63,8 @@ module Api
     private
 
       def user_params
-        params.require(:users).permit(:email, :password, :uid, :password_confirmation)
+        params.require(:users).permit(:email, :password, :uid, :password_confirmation, :auth_token)
       end
+
   end
 end

@@ -12,14 +12,21 @@ class User < ActiveRecord::Base
           :recoverable, :rememberable, :trackable, :validatable,
           :confirmable, :omniauthable
 
+	before_create :generate_authentication_token
+
   #include DeviseTokenAuth::Concerns::User
 
-	def full_name
-		"#{name} #{surname}"
+	def generate_authentication_token
+		begin
+			self.auth_token = Devise.friendly_token
+		end while self.class.exists?(auth_token: self.auth_token)
 	end
 
-	def rated?(item)
-		ratings.find_by(item: item)
-	end
+	#def full_name
+	#	"#{name} #{surname}"
+	#end
 
+	#def rated?(item)
+	#	ratings.find_by(item: item)
+	#end
 end
