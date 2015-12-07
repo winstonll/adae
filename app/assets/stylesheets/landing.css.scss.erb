@@ -160,10 +160,10 @@ body,ul {
       }
   }
 
-	#explore-container{
-		width:100%;
-		height: 100%;
-		background-color: #F2F2F2;
+.explore-container{
+	width:100%;
+	height: 800px;
+	background-color: #F2F2F2;
 
 	.title{
 		color: #4a4a4a;
@@ -173,18 +173,83 @@ body,ul {
 		padding-top: 70px;
 	}
 
-	.hood{
-		max-width: 80%;
-		margin: 0 auto;
-		position: relative;
-		left: 3em;
 
-	.hood-pics{
-		margin: 10px;
-		cursor: pointer;
-		&:hover {
-				opacity: .9;
-			}
+	.square-content{
+		margin-left: 5.5em;
 	}
+
+	.square {
+    float:left;
+    position: relative;
+    width: 20%;
+    padding-bottom : 20%; /* = width for a 1:1 aspect ratio */
+    margin:1.66%;
+    background-color:#1E1E1E;
+    overflow:hidden;
+	}
+
+	.content {
+	    position:absolute;
+	    height:90%; /* = 100% - 2*5% padding */
+	    width:90%; /* = 100% - 2*5% padding */
+	    padding: 5%;
+
+	}
+	.table{
+	    display:table;
+	    width:100%;
+	    height:100%;
+	}
+	.table-cell{
+	    display:table-cell;
+	    vertical-align:middle;
+	}
+
+	/*  For responsive images */
+
+	.content .rs{
+	    width:auto;
+	    height:auto;
+	    max-height:90%;
+	    max-width:100%;
+
+	}
+	/*  For responsive images as background */
+
+	.bg{
+	    background-position:center center;
+	    background-repeat:no-repeat;
+	    background-size:cover; /* you change this to "contain" if you don't want the images to be cropped */
+
+	}
+
+	.img1{
+	    background-image: url('u of t.jpg');
+	}
+	.img2{
+	    background-image: url('harbourfront.jpg');
+	}
+	.img3{
+	    background-image: url('discovery.jpg');
+	}
+
+	.img4{
+	    background-image: url('dundas & yonge.jpg');
+	}
+
+	.img5{
+	    background-image: url('annex.jpg');
+	}
+
+	.img6{
+	    background-image: url('yorkville.jpg');
+	}
+
+	.img7{
+	    background-image: url('distillery.jpg');
+	}
+
+	.img8{
+	    background-image: url('dufferin.jpg');
 	}
 }
