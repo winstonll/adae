@@ -84,6 +84,9 @@ p, ul, ol, li {
 	font-weight: 300;
 }
 
+button{
+	font-family: 'Avenir Next', sans-serif;
+}
 /*
 HOMEPAGE
 */
