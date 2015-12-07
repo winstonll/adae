@@ -17,7 +17,8 @@ puts "========================================================="
 		email: Faker::Internet.email,
 		password: "asdf1234",
 		password_confirmation: "asdf1234",
-	)
+		uid: Faker::Internet.email
+		)
 end
 
 puts "Creating Items"
