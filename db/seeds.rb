@@ -17,7 +17,8 @@ puts "========================================================="
 		email: Faker::Internet.email,
 		password: "asdf1234",
 		password_confirmation: "asdf1234",
-	)
+		uid: Faker::Internet.email
+		)
 end
 
 puts "Creating Items"
@@ -32,6 +33,19 @@ user.each do |user|
 	    tags:Faker::Commerce.department,
 	    user_id: user.id
     )
+end
+
+puts "Creating Prices"
+puts "========================================================="
+
+item = Item.all
+
+item.each do |item|
+	Price.create!(
+		timeframe: ["Hour", "Day", "Week"].sample,
+		amount: Faker::Commerce.price,
+		item_id: item.id
+		)
 end
 
 puts "Creating Reviews"

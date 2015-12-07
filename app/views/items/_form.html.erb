@@ -36,16 +36,16 @@
 			<%= f.file_field :image  %>
 		</div>
 
-		<%= fields_for :price do |f| %>
-		<div class="new-item-form">
-      		<%=f.label :timeframe %>
-     		<%= select_tag(:timeframe, options_for_select([["Hour"],["Day"],["Week"]])) %>
-		</div>
+		<%= f.fields_for :prices, @price do |p| %>
+        <div class="new-item-form">
+            <%=p.label :timeframe %>
+            <%= p.select(:timeframe, [["Hour"],["Day"],["Week"]], :prompt => 'Select') %>
+        </div>
 
-		<div class="new-item-form">
-			<%=f.label :amount %>
-     		<%=f.number_field :amount , :step => '0.01'%>
-		</div>
+        <div class="new-item-form">
+            <%=p.label :amount %>
+            <%=p.number_field :amount %>
+        </div>
    		<% end %>
 
 	<%= f.submit %>

@@ -14,12 +14,13 @@ body,ul {
   background-size: cover;
   text-align: center;
   color: #fff;
+  margin-bottom: 5em;
 
   #logo{
     height: 72px;
     width: auto;
     position: relative;
-    left: 4em;
+    left: 2.7em;
     top: 1em;
     padding-top: 2em;
   }
@@ -65,6 +66,7 @@ body,ul {
       }
     }
     .search-bar-label {
+      vertical-align: top;
       background-color: #419BF9;
       color: #fff;
      	display: inline-block;
@@ -79,10 +81,13 @@ body,ul {
     }
   }
 }
+.how-it-works-toggle {
+  display:none;
+  margin-top: 5em;
 
-#key-points-container, #how-it-works-container{
+}
+#key-points-container, .how-it-works-container{
     width: 100%;
-    margin-top: 5em;
     background-color: #fff;
     text-align: center;
     display: inline-block;
@@ -138,27 +143,28 @@ body,ul {
 				text-indent: -18px;
       }
     }
-			.how-it-works{
-				display: block;
-				margin: 0 auto;
-				padding: 10px;
-				border: none;
-				background-color: #7ED321;
-				color: #fff;
-				font-size: 15px;
-				border-radius: 4px;
-				font-family: avenir next;
-				cursor: pointer;
-				&:hover {
-						background-color: #52D321;
-					}
-			}
   }
 
-	#explore-container{
-		width:100%;
-		height: 100%;
-		background-color: #F2F2F2;
+  .how-it-works, .how-it-works-on {
+    display: block;
+    margin: 0 auto;
+    padding: 10px;
+    border: none;
+    background-color: #7ED321;
+    color: #fff;
+    font-size: 15px;
+    border-radius: 4px;
+    font-family: avenir next;
+    cursor: pointer;
+    &:hover {
+        background-color: #52D321;
+      }
+  }
+
+.explore-container{
+	width:100%;
+	height: 800px;
+	background-color: #F2F2F2;
 
 	.title{
 		color: #4a4a4a;
@@ -168,18 +174,83 @@ body,ul {
 		padding-top: 70px;
 	}
 
-	.hood{
-		max-width: 80%;
-		margin: 0 auto;
-		position: relative;
-		left: 3em;
 
-	.hood-pics{
-		margin: 10px;
-		cursor: pointer;
-		&:hover {
-				opacity: .9;
-			}
+	.square-content{
+		margin-left: 5.5em;
 	}
+
+	.square {
+    float:left;
+    position: relative;
+    width: 20%;
+    padding-bottom : 20%; /* = width for a 1:1 aspect ratio */
+    margin:1.66%;
+    background-color:#1E1E1E;
+    overflow:hidden;
+	}
+
+	.content {
+	    position:absolute;
+	    height:90%; /* = 100% - 2*5% padding */
+	    width:90%; /* = 100% - 2*5% padding */
+	    padding: 5%;
+
+	}
+	.table{
+	    display:table;
+	    width:100%;
+	    height:100%;
+	}
+	.table-cell{
+	    display:table-cell;
+	    vertical-align:middle;
+	}
+
+	/*  For responsive images */
+
+	.content .rs{
+	    width:auto;
+	    height:auto;
+	    max-height:90%;
+	    max-width:100%;
+
+	}
+	/*  For responsive images as background */
+
+	.bg{
+	    background-position:center center;
+	    background-repeat:no-repeat;
+	    background-size:cover; /* you change this to "contain" if you don't want the images to be cropped */
+
+	}
+
+	.img1{
+	    background-image: url('u of t.jpg');
+	}
+	.img2{
+	    background-image: url('harbourfront.jpg');
+	}
+	.img3{
+	    background-image: url('discovery.jpg');
+	}
+
+	.img4{
+	    background-image: url('dundas & yonge.jpg');
+	}
+
+	.img5{
+	    background-image: url('annex.jpg');
+	}
+
+	.img6{
+	    background-image: url('yorkville.jpg');
+	}
+
+	.img7{
+	    background-image: url('distillery.jpg');
+	}
+
+	.img8{
+	    background-image: url('dufferin.jpg');
 	}
 }

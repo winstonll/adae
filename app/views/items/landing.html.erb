@@ -1,5 +1,7 @@
 <%= stylesheet_link_tag "landing" %>
 
+<%= javascript_include_tag "landing" %>
+
 <!-- Welcome section -->
 <title>adae - Share what you have, get what you want.</title>
 <div id="landing">
@@ -51,97 +53,176 @@
         		the deposit & transactions in a secure and easy way.
         	</p>
 		</div>
+</div>
 
     <button class="how-it-works">How It Works</button>
-</div>
+    <button class="how-it-works-on">How It Works</button>
 
-<div id="how-it-works-container">
-  <h3 class="how-it-works-header">If you want something:</h3>
-		<div class="key-points-section">
-			<%= image_tag("tails.png", size: "55x55", class: "discover-logo") %>
-			<p class="how-it-works-summary">
-        <strong>1.</strong> Browse Listings. if you don’t see
-            what you want, post a Request.
-        	</p>
-		</div>
-		<div class="key-points-section">
-			<%= image_tag("money_transfer.png", size: "55x55", class: "key-points-logo") %>
-			<p class="how-it-works-summary">
-        <strong>2.</strong> Fund your account, or add a credit card
-          when you see something you like to rent.
-				</p>
-		</div>
-		<div class="key-points-section">
-			<%= image_tag("contact.png", size: "55", class: "key-points-logo")%>
-			<p class="how-it-works-summary">
-        		<strong>3.</strong> Reserve item and contact the owner.
-        	</p>
-		</div>
-</div>
-
-<div id="how-it-works-container" >
-		<div class="key-points-section">
-			<%= image_tag("meetingscan_stock.png", size: "100x50", class: "discover-logo") %>
-			<p class="how-it-works-summary">
-        <strong>4.</strong> Scan the unique transaction QR code on
-          the owner’s phone for exchange confirmation.
-				</p>
-		</div>
-		<div class="key-points-section">
-			<%= image_tag("checkout_price_tag_usd.png", size: "65x50", class: "key-points-logo") %>
-			<p class="how-it-works-summary">
-        <strong>5.</strong> If you like it, keep the item and use
-          the rentals fees as purchase credits.
-				</p>
-		</div>
-</div>
-
-  <div id="how-it-works-container">
-    <h3 class="how-it-works-header">If you are offering something:</h3>
+<div class="how-it-works-toggle">
+  <div class="how-it-works-container">
+    <h3 class="how-it-works-header">If you want something:</h3>
   		<div class="key-points-section">
-  			<%= image_tag("list.png", size: "110x50", class: "discover-logo") %>
+  			<%= image_tag("tails.png", size: "55x55", class: "discover-logo") %>
   			<p class="how-it-works-summary">
-          <strong>1.</strong> List your item, set a price.
-            Remeber to take nice photos!
-					</p>
+          <strong>1.</strong> Browse Listings. if you don’t see
+              what you want, post a Request.
+          	</p>
   		</div>
   		<div class="key-points-section">
-  			<%= image_tag("service_bell.png", size: "65x50", class: "key-points-logo") %>
+  			<%= image_tag("money_transfer.png", size: "55x55", class: "key-points-logo") %>
   			<p class="how-it-works-summary">
-          <strong>2.</strong> Check your account regularly for rental requests.
-            Choose whom to share your item with.
-					</p>
+          <strong>2.</strong> Fund your account, or add a credit card
+            when you see something you'd like to rent or buy.
+  				</p>
   		</div>
   		<div class="key-points-section">
-  			<%= image_tag("meetingscan_stock.png", size: "100x50", class: "key-points-logo")%>
+  			<%= image_tag("contact.png", size: "55", class: "key-points-logo")%>
   			<p class="how-it-works-summary">
-          		<strong>3.</strong> Have the in-app QR code on your phone scanned
-                by your customer to confirm the exchange.
+          		<strong>3.</strong> Reserve item and contact the owner.
           	</p>
   		</div>
   </div>
 
-  <div id="how-it-works-container" >
+  <div class="how-it-works-container" >
   		<div class="key-points-section">
-  			<%= image_tag("receive.png", size: "120x50", class: "discover-logo") %>
+  			<%= image_tag("meetingscan_stock.png", size: "100x50", class: "discover-logo") %>
   			<p class="how-it-works-summary">
-          <strong>4.</strong> If your customer likes your item, they may also ask to purchase it.
-          If they return it, you get to keep the rental fee and share
-          your item again with another person.
-				</p>
+          <strong>4.</strong> Scan the unique transaction QR code on
+            the owner’s phone for exchange confirmation.
+  				</p>
   		</div>
   		<div class="key-points-section">
-  			<%= image_tag("money_bag.png", size: "50x50", class: "key-points-logo") %>
+  			<%= image_tag("checkout_price_tag_usd.png", size: "65x50", class: "key-points-logo") %>
   			<p class="how-it-works-summary">
-          <strong>5.</strong> Cash out your money and enjoy the earnings.
-				</p>
+          <strong>5.</strong> If you like it, keep the item and use
+            the rentals fees as purchase credits.
+  				</p>
   		</div>
   </div>
 
-  <div id="explore-container">
-    <h4 class ="title"> Explore Your Neighbourhood </h4>
-    <div class="hood">
-      <%= image_tag("u of t.jpg", size: "230x230", class: "hood-pics") %>
+    <div class="how-it-works-container">
+      <h3 class="how-it-works-header">If you are offering something:</h3>
+    		<div class="key-points-section">
+    			<%= image_tag("list.png", size: "110x50", class: "discover-logo") %>
+    			<p class="how-it-works-summary">
+            <strong>1.</strong> List your item, set a price.
+              You can also list your time for others: ex. tutoring, helping..etc.
+  					</p>
+    		</div>
+    		<div class="key-points-section">
+    			<%= image_tag("service_bell.png", size: "65x50", class: "key-points-logo") %>
+    			<p class="how-it-works-summary">
+            <strong>2.</strong> Check your account regularly for rental & purchase requests.
+              Choose whom to share your item with.
+  					</p>
+    		</div>
+    		<div class="key-points-section">
+    			<%= image_tag("meetingscan_stock.png", size: "100x50", class: "key-points-logo")%>
+    			<p class="how-it-works-summary">
+            		<strong>3.</strong> Have the in-app QR code on your phone scanned
+                  by your customer to confirm the exchange.
+            	</p>
+    		</div>
+    </div>
+
+    <div class="how-it-works-container" >
+    		<div class="key-points-section">
+    			<%= image_tag("receive.png", size: "120x50", class: "discover-logo") %>
+    			<p class="how-it-works-summary">
+            <strong>4.</strong> If your customer likes your item, they may also ask to purchase it.
+            If they return it, you get to keep the rental fee and share
+            your item again with another person.
+  				</p>
+    		</div>
+    		<div class="key-points-section">
+    			<%= image_tag("money_bag.png", size: "50x50", class: "key-points-logo") %>
+    			<p class="how-it-works-summary">
+            <strong>5.</strong> Cash out your money and enjoy the earnings.
+  				</p>
+    		</div>
+    </div>
+  </div>
+
+<div class="explore-container">
+		<h4 class ="title"> Explore Your Neighbourhood </h4>
+<div class="square-content">
+	<div class="square bg img1">
+	   <div class="content">
+	        <div class="table">
+	            <div class="table-cell">
+	            </div>
+	        </div>
+	    </div>
+	</div>
+
+	<div class="square bg img2">
+	   <div class="content">
+	        <div class="table">
+	            <div class="table-cell">
+	            </div>
+	        </div>
+	    </div>
+	</div>
+
+	<div class="square bg img3">
+	   <div class="content">
+	        <div class="table">
+	            <div class="table-cell">
+	            </div>
+	        </div>
+	    </div>
+	</div>
+
+	<div class="square bg img4">
+	   <div class="content">
+	        <div class="table">
+	            <div class="table-cell">
+	            </div>
+	        </div>
+	    </div>
+	</div>
+
+	<div class="square bg img5">
+	   <div class="content">
+	        <div class="table">
+	            <div class="table-cell">
+	            </div>
+	        </div>
+	    </div>
+	</div>
+
+	<div class="square bg img6">
+	   <div class="content">
+	        <div class="table">
+	            <div class="table-cell">
+	            </div>
+	        </div>
+	    </div>
+	</div>
+
+	<div class="square bg img7">
+	   <div class="content">
+	        <div class="table">
+	            <div class="table-cell">
+	            </div>
+	        </div>
+	    </div>
+	</div>
+
+	<div class="square bg img8">
+	   <div class="content">
+	        <div class="table">
+	            <div class="table-cell">
+	            </div>
+	        </div>
+	    </div>
+	</div>
+	</div>
+</div>
+
+
+
+    <!--  <%= image_tag("u of t.jpg", size: "230x230", class: "hood-pics") %>
       <%= image_tag("harbourfront.jpg", size: "230x230", class: "hood-pics") %>
       <%= image_tag("discovery.jpg", size: "230x230", class: "hood-pics") %>
       <%= image_tag("dundas & yonge.jpg", size: "230x230", class: "hood-pics") %>
@@ -149,5 +230,3 @@
       <%= image_tag("yorkville.jpg", size: "230x230", class: "hood-pics") %>
       <%= image_tag("distillery.jpg", size: "230x230", class: "hood-pics") %>
       <%= image_tag("dufferin.jpg", size: "230x230", class: "hood-pics") %>
-    </div>
-</div>

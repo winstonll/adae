@@ -1,4 +1,4 @@
-module Api
+module Api::V1
   class UsersController < ApplicationController
     # User name and password needed to access the users controller API and send
     # requests
@@ -9,19 +9,21 @@ module Api
     #include DeviseTokenAuth::Concerns::SetUserByToken
     #before_action :authenticate_user!
 
-
     # GET show all users
     def index
-      @users = User.all
-      render json: @users, status: :ok
+      users = User.all
+      if name = params[:name]
+        users = User.where(name: name)
+      end
+      render json: users, status: :ok
     end
 
     # GET show specific user
     def show
-      @user = User.where(id: params[:id]).first
+      user = User.find(params[:id])
 
-      if !@user.nil?
-        render json: @user
+      if !user.nil?
+        render json: user, status: :ok
       else
         render json: {
           error: "No such user; check the user id",
@@ -30,11 +32,24 @@ module Api
       end
     end
 
+    # curl -i -X POST -d 'users[email]=test2@hotmail.com&user[password]=12345678' http://localhost:3000/api/users
+    def create
+      user = User.new(user_params)
+
+      user.uid = user.email
+
+      if user.save
+        render nothing: true, status: 204#, location: user
+      else
+        render json: user.errors, status: 422
+      end
+    end
+
     # DELETE destroy user and its association
     def destroy
-      @user = User.where(id: params[:id])
+      user = User.where(id: params[:id])
 
-      if !@user.empty?
+      if !user.nil?
         User.destroy(params[:id])
         head :no_content
       else
@@ -48,11 +63,7 @@ module Api
     private
 
       def user_params
-        params.require(:user).permit(:name, :id)
-      end
-
-      def query_params
-        params.permit(:name, :email)
+        params.require(:users).permit(:email, :password, :uid, :password_confirmation, :auth_token)
       end
 
   end
