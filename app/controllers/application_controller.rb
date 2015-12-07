@@ -1,13 +1,14 @@
 class ApplicationController < ActionController::Base
+  #include DeviseTokenAuth::Concerns::SetUserByToken
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
-  protect_from_forgery
+  #protect_from_forgery
 
-  rescue_from CanCan::AccessDenied do |exception|
-    redirect_to root_url, :alert => exception.message
-  end
+  # rescue_from CanCan::AccessDenied do |exception|
+  #   redirect_to root_url, :alert => exception.message
+  # end
 
-   private
+  private
 
   def current_user
     @current_user ||= User.find(session[:user_id]) if session[:user_id]

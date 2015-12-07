@@ -36,7 +36,10 @@ gem 'honeypot-captcha'
 
 #gem 'thin'
 gem 'puma'
+gem 'rails-api'
 
+gem 'devise_token_auth'
+gem 'omniauth'
 gem 'pg'
 
 # Authentication library

@@ -1,11 +1,10 @@
 
 User.create!(
-	first_name: "admin",
-	last_name: "user",
+	name: "admin",
 	email: "admin@example.com",
-	password: "asdf",
-	password_confirmation: "asdf",
-	phone_number: "123456789"
+	password: "asdf1234",
+	password_confirmation: "asdf1234",
+	
 )
 
 puts "Creating Users"
@@ -14,12 +13,10 @@ puts "========================================================="
 25.times do
 	name = Faker::Name.name.split
 	User.create!(
-		first_name: name.first,
-		last_name: name.last,
+		name: name.first,
 		email: Faker::Internet.email,
-		password: "asdf",
-		password_confirmation: "asdf",
-		phone_number: Faker::PhoneNumber.phone_number
+		password: "asdf1234",
+		password_confirmation: "asdf1234",
 	)
 end
 
@@ -46,7 +43,7 @@ puts "========================================================="
 		user_id: User.all.sample.id,
 		item_id: Item.all.sample.id
     )
-    puts "Made review for #{r.item.title} by #{r.user.full_name}"
+    puts "Made review for #{r.item.title} by #{r.user.name}"
 end
 
 
