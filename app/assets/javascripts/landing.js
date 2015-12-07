@@ -1,0 +1,13 @@
+$(document).ready(function(){
+    $('.how-it-works-on').hide();
+    $('.how-it-works').click(function(){
+        $('.how-it-works').hide();
+        $('.how-it-works-on').show();
+        $('.how-it-works-toggle').slideDown();
+    });
+    $('.how-it-works-on').click(function(){
+    	$('.how-it-works').show();
+        $('.how-it-works-on').hide();
+    	$('.how-it-works-toggle').slideUp();
+    });
+});
