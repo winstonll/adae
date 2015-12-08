@@ -19,9 +19,24 @@ module Api::V1
 
     end
 
-    # curl -i -X POST -d 'users[email]=test2@hotmail.com&user[password]=12345678' http://localhost:3000/api/users
+    # curl -i -X POST -d 'users[email]=test2@hotmail.com&users[password]=12345678' http://localhost:3000/api/v1/users
     def create
+      user_password = params[:sessions][:password]
+      user_email = params[:sessions][:email]
 
+      user = user_email.present? && User.find_by(email: user_email)
+
+      if user.valid_password? user_password
+        sign_in(user, store: false)
+
+        #puts "hello"
+
+        user.generate_authentication_token
+        user.save
+        render json: user, status: 200#, location: [:api, user]
+      else
+        render json: { errors: "Invalid email or password" }, status: 422
+      end
     end
 
     # DELETE destroy user and its association
@@ -32,7 +47,7 @@ module Api::V1
     private
 
       def session_params
-        params.require(:sessions).permit(:email, :password, :uid, :password_confirmation, :auth_token)
+        params.require(:sessions).permit(:email, :password, :password_confirmation, :auth_token)
       end
 
   end
