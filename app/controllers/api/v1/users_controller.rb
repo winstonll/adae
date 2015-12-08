@@ -60,10 +60,8 @@ module Api::V1
 
     def update
       user = User.find(params[:id])
-      puts user_params
-      puts params[:users][:email]
 
-      if user.update(email: params[:users][:email])
+      if user.update(user_params)
 
         render json: user, status: 200#, location: [:api, user]
       else
@@ -74,7 +72,7 @@ module Api::V1
     private
 
       def user_params
-        params.require(:users).permit(:email, :password, :password_confirmation, :auth_token)
+        params.require(:users).permit(:email, :password, :password_confirmation, :auth_token, :name)
       end
 
   end
