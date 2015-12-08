@@ -36,8 +36,6 @@ module Api::V1
     def create
       user = User.new(user_params)
 
-      user.uid = user.email
-
       if user.save
         render nothing: true, status: 204#, location: user
       else
@@ -76,7 +74,7 @@ module Api::V1
     private
 
       def user_params
-        params.require(:users).permit(:email, :password, :uid, :password_confirmation, :auth_token)
+        params.require(:users).permit(:email, :password, :password_confirmation, :auth_token)
       end
 
   end

@@ -28,8 +28,8 @@ module Api::V1
 
       if user.valid_password? user_password
 
-        sign_in user, bypass: true
-        #sign_in user, store: false
+        #sign_in user, bypass: true
+        sign_in user, store: false
 
         user.generate_authentication_token
         user.save
