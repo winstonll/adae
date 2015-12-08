@@ -15,7 +15,7 @@
 
          <li class="userinfo">
           <%# if current_user %>
-            Signed in as <%#= link_to current_user.full_name, user_path(current_user) %>. <%#= link_to('Logout', destroy_user_session_path, :method => :delete) %>
+            <!-- Signed in as <%#= link_to current_user.full_name, user_path(current_user) %>. <%#= link_to('Logout', destroy_user_session_path, :method => :delete) %> -->
           <%# else %>
             <%#= link_to('Login', new_user_session_path)  %>
 
@@ -32,6 +32,7 @@
   </header>
 
   <body>
+    <%= render partial: "common/navbar" unless current_page?(root_path) %>
     <%= yield %>
   </body>
 

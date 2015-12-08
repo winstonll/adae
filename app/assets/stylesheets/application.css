@@ -215,26 +215,6 @@ itemS INDEX/SEARCH
 	text-align: center;
 }
 
-.search-bar {
-	display: block;
-	margin-left: 20%;
-
-}
-
-.search-bar-label {
- 	display: inline-block;
- 	font-size: 18px;
-	font-family: 'Avenir Next', sans-serif;
-	font-weight: 400;
-	margin-left: 1em;
-}
-
-#search {
-	width: 50%;
-	height: 2em;
-}
-
-
 /*
 item PROFILE
 */
