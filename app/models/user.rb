@@ -22,9 +22,9 @@ class User < ActiveRecord::Base
 		end while self.class.exists?(auth_token: self.auth_token)
 	end
 
-	#def full_name
-	#	"#{name} #{surname}"
-	#end
+	def full_name
+		"#{name} #{surname}"
+	end
 
 	#def rated?(item)
 	#	ratings.find_by(item: item)

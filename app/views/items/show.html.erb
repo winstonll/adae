@@ -2,7 +2,7 @@
   <%= image_tag @item.image_url(:avatar)  %>
   <div class="item-details">
   	<p class="item-detail-title"><%= @item.title %></p> 
-    <p class="item-detail-title">posted by <%#= @item.user.name%></p>
+    <p class="item-detail-title">posted by <%= @item.user.full_name%></p>
   	<p class="item-detail-description"><%= @item.description %></p>
     <p class="item-detail-description"><%= @item.tags %></p>
   	<p class="item-detail-deposit">Deposit for this Item: $ <%= @item.deposit %></p>

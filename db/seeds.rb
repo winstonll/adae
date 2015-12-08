@@ -14,6 +14,7 @@ puts "========================================================="
 	name = Faker::Name.name.split
 	User.create!(
 		name: name.first,
+		surname: name.last,
 		email: Faker::Internet.email,
 		password: "asdf1234",
 		password_confirmation: "asdf1234",
