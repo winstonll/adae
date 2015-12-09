@@ -8,6 +8,7 @@ module Api::V1
     #use this to authenticate
     #include DeviseTokenAuth::Concerns::SetUserByToken
     #before_action :authenticate_user!
+    before_action :authenticate_with_token!, only: [:update, :destroy]
 
     # GET show all users
     def index
@@ -45,7 +46,7 @@ module Api::V1
 
     # DELETE destroy user and its association
     def destroy
-      user = User.where(id: params[:id])
+      user = current_user
 
       if !user.nil?
         User.destroy(params[:id])
@@ -59,7 +60,7 @@ module Api::V1
     end
 
     def update
-      user = User.find(params[:id])
+      user = current_user #User.find(params[:id])
 
       if user.update(user_params)
 
