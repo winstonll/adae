@@ -1,7 +1,6 @@
 <%= stylesheet_link_tag "navbar" %>
 
 <nav class="nav" role="navigation" id="home-navbar">
-  <section class="left">
     <div class="adae-nav">
       <%= image_tag("adaelogoblue.png")%>
     </div>
@@ -10,9 +9,7 @@
         <%= text_field_tag :search, params[:search],{placeholder: 'What are you looking for? ex. Texbooks, Video Games, Tutors...', class: 'search-field-placeholder'}  %>
       <% end %>
     </div>
-  </section>
 
-  <section class="right">
-    
+      <%= link_to 'List an Item', new_item_path, class: "share-item" %>
   </section>
 </nav>
