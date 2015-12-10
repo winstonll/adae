@@ -1,9 +1,13 @@
+body {
+  padding-top: 70px;
+}
+
 #home-navbar {
   height: 60px;
   width: 100%;
   background-color: #fff;
   padding-left: 35px;
-  position: fixed;
+  position: absolute;
   border: 1px solid #bbbbbb;
   top: 0px;
   left: 0px;
@@ -16,34 +20,34 @@
       border-right: 1px solid #bbbbbb;
 
       img {
-        margin-top: 10px;
+        margin-top: 15px;
         margin-left: -20px;
       }
     }
 
     .search-bar {
       top: 0px;
-      position: fixed;
+      position: absolute;
       padding-left: 45px;
 
       .search-field-placeholder {
-        margin-left: 30px;
-        margin-top: 5px;
+        margin-left: 55px;
+        margin-top: 6px;
         width: 440px;
         height: 50px;
-        padding:0px 0px 0px 38px;
-        background: url(<%= asset_path 'search.png'%>) no-repeat 6px 10px;
+        padding:1px 0px 0px 38px;
+        background: url(<%= asset_path 'search.png'%>) no-repeat 6px 13px;
         border: none;
         background-color: #fff;
         color: #6f6f6f;
-        font-size: 14px;
-        font-weight: 300;
+        font-size: 13px;
+        font-weight: 380;
       }
     }
 
     .share-item {
-      position: fixed;
-      top: 10px;
+      position: absolute;
+      top: 8px;
       right: 100px;
       background-color: #fff;
       border: 2px solid #419bf9;

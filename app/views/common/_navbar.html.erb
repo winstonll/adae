@@ -9,7 +9,10 @@
         <%= text_field_tag :search, params[:search],{placeholder: 'What are you looking for? ex. Texbooks, Video Games, Tutors...', class: 'search-field-placeholder'}  %>
       <% end %>
     </div>
-
+    <% if current_page?(new_item_path) %>
+      <%= link_to "Listings", items_path, class: "share-item" %>
+    <% else %>
       <%= link_to 'List an Item', new_item_path, class: "share-item" %>
+    <% end %>
   </section>
 </nav>
