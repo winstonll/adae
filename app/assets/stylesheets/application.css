@@ -123,45 +123,12 @@ h4, .item-rating-qs {
 	margin-bottom: 5em;
 }
 
-.new-item-form {
-	/*display: inline-block;
-	width: 60%;
-	margin: 0 auto;	*/
-}
-
-#item_organization_name,
-#item_first_name,
-#item_last_name,
-#item_phone_number {
-	display: block;
-	width: 28em;
-	background-color: #ffffff;
-	margin-top: 0.25em;
-	margin-bottom: 0.75em;
-
-}
-
-.add-item {
-	display: block;
-	width: 70%;
-	background-color: #ebebeb;
-	margin: 0 auto;
-	padding: 1em 2em 1em 2em;
-}
-
 #items {
 	display: block;
 	width: 80%;
 	margin-left: 18%;
 	margin-right: 18%;
 }
-
-.main-form {
-	display: block;
-	width: 60%;
-	margin: 0 38% auto;
-}
-
 
 /*
 itemS INDEX/SEARCH
