@@ -3,7 +3,7 @@
 <%= form_for @item, html: {multipart: true}  do |f| %>
 	<% if @item.errors.any? %>
 		<div id="error_explaination">
-			<h2><%= pluralize(@item.errors.count, "error") %> prohibited this form from being submitted</h2>
+			<h2><%= pluralize(@item.errors.count, "error") %> please correct the following before submitting</h2>
 			<ul>
 				<% @item.errors.full_messages.each do |msg| %>
 				<li><%= msg %> </li>
@@ -12,7 +12,7 @@
 		</div>
 	<% end %>
 
-	<div class="main-form">
+	<div class="item-container">
 		<div class="new-item-form">
 			<%= f.label :title %>
 			<%= f.text_field :title %>
