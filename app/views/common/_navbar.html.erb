@@ -1,8 +1,12 @@
 <%= stylesheet_link_tag "navbar" %>
 
 <nav class="nav" role="navigation" id="home-navbar">
-    <div class="adae-nav">
-      <%= image_tag("adaelogoblue.png")%>
+    <div class="adae-home">
+      <a href="<%= root_path %>" title="home">
+        <div class="home-logo">
+          <%= image_tag("adaelogoblue.png")%>
+        </div>
+      </a>
     </div>
     <div class="search-bar">
       <%= form_tag items_path, method: :get, authentication: false, id: 'search-form' do %>
