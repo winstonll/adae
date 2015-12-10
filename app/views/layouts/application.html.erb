@@ -34,6 +34,7 @@
   <body>
     <%= render partial: "common/navbar" unless current_page?(root_path) %>
     <%= yield %>
+    <%= render partial: "common/footer"%>
   </body>
 
 </html>
