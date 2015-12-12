@@ -169,7 +169,7 @@ body,ul {
 	width:100%;
 	height: 100%;
 	background-color: #F2F2F2;
-	float:left;
+  display: inline-block;
 	padding-bottom: 5em;
 
 	.title{
@@ -180,7 +180,6 @@ body,ul {
 		padding-top: 70px;
 	}
 
-
 	.square-content{
 		margin: 0 auto;
 		padding-left: 6%;
@@ -188,48 +187,17 @@ body,ul {
 	}
 
 	.square {
-    float:left;
-    position: relative;
+    display: inline-block;
     width: 20%;
-    padding-top : 20%; /* = width for a 1:1 aspect ratio */
+    padding-top: 20%;
     margin:1.5%;
     background-color:#1E1E1E;
-    overflow:hidden;
 	}
-
-	.content {
-	    position:absolute;
-	    height:70%; /* = 100% - 2*5% padding */
-	    width:70%; /* = 100% - 2*5% padding */
-	    padding: 5%;
-
-	}
-	.table{
-	    display:table;
-	    width:100%;
-	    height:100%;
-	}
-	.table-cell{
-	    display:table-cell;
-	    vertical-align:middle;
-	}
-
-	/*  For responsive images */
-
-	.content .rs{
-	    width:auto;
-	    height:auto;
-	    max-height:90%;
-	    max-width:100%;
-
-	}
-	/*  For responsive images as background */
 
 	.bg{
 	    background-position:center center;
 	    background-repeat:no-repeat;
 	    background-size:cover; /* you change this to "contain" if you don't want the images to be cropped */
-
 	}
 
 	.img1{
