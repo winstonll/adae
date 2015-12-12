@@ -21,6 +21,8 @@ Rails.application.routes.draw do
 
   root 'items#landing'
 
+  get 'search' => "search#search"
+
   get 'additem' => 'items#additem'
   get 'create' => 'registrations#create'
 
