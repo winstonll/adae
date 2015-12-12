@@ -1,9 +1,9 @@
 <%= stylesheet_link_tag "footer" %>
 
-<footer class ="footer">
-  <div class = "footer-sections">
-  <div class ="about-us-list">
-    <ul class = "about-us">
+<footer class="footer">
+  <div class= "footer-sections">
+  <div class="about-us-list">
+    <ul class= "about-us">
       <li id="header">About Us</li>
       <li><a href="/about">The Team</a></li>
       <li><a href="/faq">FAQ</a></li>
@@ -12,24 +12,24 @@
     </ul>
   </div>
 
-  <div class ="list-name">
-    <ul class = "app-pics">
-      <li id="header-2">Download the App</li>
-      <li><a href="/about"><%= image_tag "coming-soon-app-pics-footer.png", id: "coming-soon-footer" %></a></li>
+  <div class="list-name">
+    <ul class= "app-pics">
+      <li class="header-2">Download the App</li>
+      <li><%= image_tag "coming-soon-app-pics-footer.png", id: "coming-soon-footer" %></li>
     </ul>
   </div>
 
-  <div class ="list-name">
-    <ul class = "app-pics">
-      <li id="header-2">Follow Us</li>
-      <li><%= image_tag "facebook-white.png", id: "social-fb" %></li>
-      <li><%= image_tag "twitter-white.png", id: "social-twitter" %></li>
+  <div class="list-name">
+    <ul class= "app-pics">
+      <li class="header-2">Follow Us</li>
+      <%= image_tag "facebook-white.png", id: "social-fb" %></li>
+      <%= image_tag "twitter-white.png", id: "social-twitter" %></li>
     </ul>
   </div>
 
-  <div class ="list-name">
-    <ul class = "app-pics">
-      <li id="header-2">Secure Transactions</li>
+  <div class="list-name">
+    <ul class= "app-pics">
+      <li class="header-2">Secure Transactions</li>
       <li><a target="_blank" href="https://stripe.com/checkout"><%= image_tag "stripe-badge.png", id: "stripe" %></a></li>
     </ul>
   </div>
