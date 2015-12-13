@@ -1,15 +1,6 @@
 Rails.application.routes.draw do
-  #mount_devise_token_auth_for 'User', at: 'auth'
-
+  
   devise_for :users
-
-  #namespace :api do
-  #  resources :items, :users
-  #end
-
-  #namespace :api do
-  #  resources :users
-  #end
 
   #constraints subdomain: 'api' do
     namespace :api do
