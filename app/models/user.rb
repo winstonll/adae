@@ -26,7 +26,7 @@ class User < ActiveRecord::Base
 		"#{name} #{surname}"
 	end
 
-	#def rated?(item)
-	#	ratings.find_by(item: item)
-	#end
+	def rated?(item)
+		ratings.find_by(item: item)
+	end
 end
