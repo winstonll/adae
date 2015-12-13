@@ -1,5 +1,5 @@
 module Api::V1
-  class SessionsController < ApplicationController
+  class SessionsController < BaseController
     # User name and password needed to access the users controller API and send
     # requests
 
@@ -19,7 +19,7 @@ module Api::V1
 
     end
 
-    # curl -i -X POST -d 'users[email]=test2@hotmail.com&users[password]=12345678' http://localhost:3000/api/v1/users
+    # curl -X POST -d 'sessions[email]=masteryoda@hotmail.com&sessions[password]=123567890' http://localhost:3000/api/v1/sessions
     def create
       user_password = params[:sessions][:password]
       user_email = params[:sessions][:email]

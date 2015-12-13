@@ -1,5 +1,5 @@
 module Api::V1
-  class ItemsController < ApplicationController
+  class ItemsController < BaseController
     def index
       item = Item.all
       if title = params[:title]

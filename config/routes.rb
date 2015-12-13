@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   #mount_devise_token_auth_for 'User', at: 'auth'
 
-  devise_for :users, controllers: { sessions: "api/v1/sessions" }
+  devise_for :users
 
   #namespace :api do
   #  resources :items, :users
