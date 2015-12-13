@@ -8,9 +8,9 @@ class ReviewsController < ApplicationController
 
   def create
     @review = @item.reviews.build(review_params)
-    # if current_user
-    #   @review.user = current_user
-    # end
+    if current_user
+      @review.user = current_user
+    end
     respond_to do |format|
       if @review.save
         format.html {redirect_to item_path(@item.id), notice: 'Review added successfully.' }
@@ -28,7 +28,7 @@ class ReviewsController < ApplicationController
 
   def update
       if @review.update_attributes(review_params)
-        # redirect_to user_path(current_user)
+        redirect_to user_path(current_user)
       else
         render :edit
     end
@@ -36,7 +36,7 @@ class ReviewsController < ApplicationController
 
   def destroy
     @review.destroy
-    # redirect_to user_path(current_user)
+    redirect_to user_path(current_user)
   end
 
   private

@@ -13,9 +13,9 @@ class RatingsController < ApplicationController
 
   def create
    @rating = @item.ratings.build(rating_params)
-    # if current_user
-    #   @rating.user = current_user
-    # end
+    if current_user
+      @rating.user = current_user
+    end
 
     if @rating.save
       redirect_to @item, notice: 'Rating created succesfully'
