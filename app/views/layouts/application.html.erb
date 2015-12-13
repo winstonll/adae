@@ -10,25 +10,6 @@
   <link href='http://fonts.googleapis.com/css?family=Quicksand:300,400,700' rel='stylesheet' type='text/css'>
 </head>
   <header>
-    <nav class="main-nav">
-      <ul>
-
-         <li class="userinfo">
-          <%# if current_user %>
-            <!-- Signed in as <%#= link_to current_user.full_name, user_path(current_user) %>. <%#= link_to('Logout', destroy_user_session_path, :method => :delete) %> -->
-          <%# else %>
-            <%#= link_to('Login', new_user_session_path)  %>
-
-            <%#= link_to('Register', new_user_registration_path)  %>
-          <%# end %>
-        </li>
-
-        <li><%#= link_to 'Home', root_path %></li>
-        <li><%#= link_to "Share an Item", additem_path %></li>
-        <li><%#= link_to "View All Items", items_path %></li>
-
-      </ul>
-    </nav>
   </header>
 
   <body>
