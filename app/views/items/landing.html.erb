@@ -4,13 +4,6 @@
 
 <!-- Welcome section -->
 <title>adae - Share what you have, get what you want.</title>
-<%if user_signed_in?%>
-	<%= link_to "Logout", destroy_user_session_path, :method => :delete%>
-
-<%else%>
-	<%= link_to "Sign Up", new_user_registration_path%>
-	<%= link_to "Login", new_user_session_path%>
-<%end%>
 <div id="landing">
 	<div id="landing-container">
 		<div class="logo-name-container">
