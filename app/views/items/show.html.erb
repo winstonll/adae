@@ -21,9 +21,9 @@
     </div>
 
     <div class = "rating-by-user">
-      Your Rating: 
       <% if present_or_rated?(@item) %>
-        <%#= @item.ratings_by_user(current_user) %> 
+      Your Rating: 
+        <%= @item.ratings_by_user(current_user) %> 
         <%= link_to "Edit Rating", edit_item_rating_path(@item, @rating) %> 
       <% else %>
         <%= link_to "Add a Rating", new_item_rating_path(@item) %>
