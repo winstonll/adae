@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  
+
   devise_for :users
 
   #constraints subdomain: 'api' do
@@ -10,7 +10,7 @@ Rails.application.routes.draw do
     end
   #end
 
-  root 'items#landing'
+  root 'home#landing'
 
   get 'search' => "search#search"
 

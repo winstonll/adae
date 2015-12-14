@@ -33,7 +33,7 @@ module Api::V1
       end
     end
 
-    # curl -i -X POST -d 'users[email]=test2@hotmail.com&users[password]=12345678' http://localhost:3000/api/users
+    # curl -i -X POST -d 'users[email]=test2@hotmail.com&users[password]=12345678' http://localhost:3000/api/v1/users
     def create
       user = User.new(user_params)
 
@@ -63,8 +63,6 @@ module Api::V1
     def update
       user = current_user #User.find(params[:id])
 
-      puts current_user
-
       if user.update(user_params)
 
         render json: user, status: 200#, location: [:api, user]
@@ -76,7 +74,7 @@ module Api::V1
     private
 
       def user_params
-        params.require(:users).permit(:email, :password, :password_confirmation, :auth_token, :name)
+        params.require(:users).permit(:email, :password, :password_confirmation, :name)
       end
 
   end
