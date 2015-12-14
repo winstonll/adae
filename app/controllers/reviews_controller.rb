@@ -1,5 +1,6 @@
 class ReviewsController < ApplicationController
   before_filter :load_item
+  before_filter :ensure_logged_in
   before_filter :load_review, only:[:show, :edit, :update, :destroy]
   
   def show

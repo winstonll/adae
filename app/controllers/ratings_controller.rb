@@ -1,7 +1,7 @@
 class RatingsController < ApplicationController
   before_filter :load_item
   before_filter :ensure_logged_in
-  before_filter :load_rating, only:[:show, :destroy, :edit, :update]
+  before_filter :load_rating, only:[:show, :edit, :update, :destroy]
  
   def show
 
