@@ -4,8 +4,8 @@
 	<p class="p-account-links"><%= link_to "Delete Account", @user, method: :delete, data: {confirm: "Are you sure you want to delete this user?"}  %></p>
 </div>
 
-<p> Name: <%= @user.first_name %></p>
-<p> Last Name: <%= @user.last_name %></p>
+<p> Name: <%= @user.name %></p>
+<p> Last Name: <%= @user.surname %></p>
 <p> Email: <%= @user.email %></p>
 <p> Phone Number: <%= @user.phone_number %></p>
 
@@ -13,7 +13,7 @@
 <div class= "user-reviews">
 	<% @user.reviews.each do |review| %>
 	<li class="user-review">
-		<p>For <%=link_to(review.item.title, item_path(review.item))  %> 
+		<p>For <%=link_to(review.item.title, item_path(review.item)) %> 
 		your review is:
 		<%=review.comment %>
 		<p class="edit-review"><%= link_to 'Edit Review', edit_item_review_path(review.item, review) %></p>
@@ -28,7 +28,7 @@
 <div class = "user-ratings">
 	<% @user.ratings.each do |rating| %>
 	<li class="user-rating">
-		For <%=link_to(rating.item.title, item_path(rating.item))  %> 
+		For <%=link_to(rating.item.title, item_path(rating.item)) %> 
 		your rating is:
 		<%=rating.score%>
 		<%= link_to 'Edit rating', edit_item_rating_path(rating.item, rating) %>
