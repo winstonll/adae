@@ -21,6 +21,7 @@ Rails.application.routes.draw do
     get 'terms'   => "home#terms",   as: :terms
     get 'about'   => "home#about",   as: :about
     get 'faq'     => "home#faq",     as: :faq
+    get 'careers'     => "home#careers",     as: :careers
 
   concern :reviewable do
     resources :ratings, only: [:new, :create, :show, :edit, :update, :destroy]
