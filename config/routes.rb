@@ -17,6 +17,11 @@ Rails.application.routes.draw do
   get 'additem' => 'items#additem'
   get 'create' => 'registrations#create'
 
+  # simple/static pages
+    get 'terms'   => "home#terms",   as: :terms
+    get 'about'   => "home#about",   as: :about
+    get 'faq'     => "home#faq",     as: :faq
+
   concern :reviewable do
     resources :ratings, only: [:new, :create, :show, :edit, :update, :destroy]
     resources :reviews, only: [:show, :edit, :update, :create, :destroy]
