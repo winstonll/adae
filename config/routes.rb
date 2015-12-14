@@ -22,5 +22,7 @@ Rails.application.routes.draw do
     resources :reviews, only: [:show, :edit, :update, :create, :destroy]
   end
 
+  resources :users
+
   resources :items,                                 :concerns => :reviewable
 end
