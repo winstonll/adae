@@ -1,4 +1,4 @@
-class SessionsController < ApplicationController
+class Users::SessionsController < ApplicationController
 	skip_before_filter :require_login
 
   def create
@@ -13,8 +13,9 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-  	session[:user_id] = nil
+		user = User.find(session[:user_id])
+		sign_out user
     redirect_to items_url, notice: "Logged out!"
   end
-  
+
 end
