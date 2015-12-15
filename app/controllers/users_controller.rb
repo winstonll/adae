@@ -1,15 +1,15 @@
 class UsersController < ApplicationController
 	before_filter :load_user, only:[:show, :edit, :update, :destroy]
 	#load_and_authorize_resource
- 
+
  	def show
  	  @items = current_user.items
  	end
- 
+
  	def new
  	  @user = User.new
  	end
- 
+
  	def create
  	  @user = User.new(user_params)
  	  if @user.save
@@ -19,30 +19,31 @@ class UsersController < ApplicationController
  	  render 'new'
  	  end
  	end
- 
+
  	def edit
  	end
- 
+
  	def update
  	  if @user.update_attributes(user_params)
- 	  redirect_to @user
+			sign_in(@user, :bypass => true)
+ 	  	redirect_to @user
  	  else
  	  render :edit
  	  end
  	end
- 
+
  	def destroy
  	  @user.destroy
  	  redirect_to root_path, notice: "User account deleted!"
  	end
- 
- 
+
+
  	private
  	def user_params
  	  params.require(:user).permit(:name, :surname, :email, :password, :password_confirmation,
  	  :phone_number)
  	end
- 
+
  	def load_user
  	  @user = User.find(params[:id])
  	end
