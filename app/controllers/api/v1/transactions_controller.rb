@@ -1,5 +1,5 @@
 module Api::V1
-  class TransactionsController < ApplicationController
+  class TransactionsController < BaseController
     def index
       transaction = Transaction.all
       if item_id = params[:item_id]

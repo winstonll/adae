@@ -1,5 +1,5 @@
 module Api::V1
-  class RatingsController < ApplicationController
+  class RatingsController < BaseController
     def index
       rating = Rating.all
       if item_id = params[:item_id]

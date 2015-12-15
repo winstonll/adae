@@ -1,15 +1,6 @@
 Rails.application.routes.draw do
-  #mount_devise_token_auth_for 'User', at: 'auth'
 
-  devise_for :users, controllers: { sessions: "api/v1/sessions" }
-
-  #namespace :api do
-  #  resources :items, :users
-  #end
-
-  #namespace :api do
-  #  resources :users
-  #end
+  devise_for :users#, controllers: { sessions: 'sessions' }
 
   #constraints subdomain: 'api' do
     namespace :api do
@@ -19,15 +10,27 @@ Rails.application.routes.draw do
     end
   #end
 
-  root 'items#landing'
+  root 'home#landing'
+
+  get 'search' => "search#search"
 
   get 'additem' => 'items#additem'
   get 'create' => 'registrations#create'
+
+  # simple/static pages
+    get 'terms'   => "home#terms",   as: :terms
+    get 'about'   => "home#about",   as: :about
+    get 'faq'     => "home#faq",     as: :faq
+    get 'careers' => "home#careers", as: :careers
+    get 'privacy' => "home#privacy", as: :privacy
+
 
   concern :reviewable do
     resources :ratings, only: [:new, :create, :show, :edit, :update, :destroy]
     resources :reviews, only: [:show, :edit, :update, :create, :destroy]
   end
+
+  resources :users
 
   resources :items,                                 :concerns => :reviewable
 end

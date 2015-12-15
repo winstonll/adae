@@ -1,7 +1,7 @@
 class RatingsController < ApplicationController
   before_filter :load_item
   before_filter :ensure_logged_in
-  before_filter :load_rating, only:[:show, :destroy, :edit, :update]
+  before_filter :load_rating, only:[:show, :edit, :update, :destroy]
  
   def show
 
@@ -13,9 +13,9 @@ class RatingsController < ApplicationController
 
   def create
    @rating = @item.ratings.build(rating_params)
-    # if current_user
-    #   @rating.user = current_user
-    # end
+    if current_user
+      @rating.user = current_user
+    end
 
     if @rating.save
       redirect_to @item, notice: 'Rating created succesfully'

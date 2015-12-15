@@ -14,10 +14,10 @@ puts "========================================================="
 	name = Faker::Name.name.split
 	User.create!(
 		name: name.first,
+		surname: name.last,
 		email: Faker::Internet.email,
 		password: "asdf1234",
 		password_confirmation: "asdf1234",
-		uid: Faker::Internet.email
 		)
 end
 
@@ -30,7 +30,8 @@ user.each do |user|
 	    title: Faker::Commerce.product_name,
 	    description: Faker::Lorem.sentence,
 	    deposit: Faker::Commerce.price,
-	    tags:Faker::Commerce.department,
+	    tags: Faker::Commerce.department,
+	    postal_code: Faker::Address.postcode,
 	    user_id: user.id
     )
 end

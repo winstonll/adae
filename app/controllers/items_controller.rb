@@ -1,30 +1,30 @@
 class ItemsController < ApplicationController
 
   def index
-    @query = params[:search]
+    # @query = params[:search]
 
-    if @query
-      @items = []
-      %w[title description tags].each do |field|
-        @items += Item.where("LOWER(#{field}) LIKE LOWER(?)", "%#{params[:search]}%") 
-      end
-    else
+    # if @query
+    #   @items = []
+    #   %w[title description tags].each do |field|
+    #     @items += Item.where("LOWER(#{field}) LIKE LOWER(?)", "%#{params[:search]}%") 
+    #   end
+    # else
       @items = Item.all 
-    end
+    # end
 
-    respond_to do |format|
-      format.html
-      format.js
-    end
+    # respond_to do |format|
+    #   format.html
+    #   format.js
+    # end
   end
 
   def show
     @item = Item.find(params[:id])
     @review = @item.reviews.build
     @price = Price.where(item_id: @item.id).first
-    # if current_user
-    # @rating = current_user.ratings.find_by(:item => @item)
-    # end
+    if current_user
+    @rating = current_user.ratings.find_by(:item => @item)
+    end
   end
 
   def new
@@ -35,7 +35,7 @@ class ItemsController < ApplicationController
   def create
     @item = Item.new(item_params)
     if @item.save
-    # @item.user_id = current_user.id
+    @item.user_id = current_user.id
       redirect_to @item, notice: "Item Successfully Added!"
     else
       flash[:message] = "Something did not validate"
@@ -60,12 +60,12 @@ class ItemsController < ApplicationController
   def destroy
     @item = Item.find(params[:id])
     @item.destroy
-    # redirect_to user_path(current_user)
+    redirect_to user_path(current_user)
   end
 
   private
   def item_params
-    params.require(:item).permit(:title, :description, :image, :user_id, :deposit, :tags, prices_attributes: [:id, :timeframe, :amount])
+    params.require(:item).permit(:title, :description, :image, :user_id, :deposit, :tags, :postal_code, prices_attributes: [:id, :timeframe, :amount])
   end
 
 end

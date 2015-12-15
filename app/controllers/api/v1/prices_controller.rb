@@ -1,5 +1,5 @@
 module Api::V1
-  class PricesController < ApplicationController
+  class PricesController < BaseController
     def index
       price = Price.all
       if item_id = params[:item_id]

@@ -1,0 +1,99 @@
+body {
+  padding-top: 70px;
+}
+
+#home-navbar {
+  height: 60px;
+  width: 100%;
+  background-color: #fff;
+  position: absolute;
+  border: 1px solid #eaeaea;
+  top: 0px;
+  left: 0px;
+  z-index: 1;
+
+  .adae-home {
+    width: 110px;
+    height: 60px;
+    border-style: none solid none none;
+    border-right: 1px solid #eaeaea;
+
+    .home-logo {
+      height: 60px;
+
+        img {
+          margin-top: 15px;
+          margin-left: 15px;
+          height: 30px;
+        }
+      }
+  }
+
+    .search-bar {
+      position: absolute;
+      top: 0px;
+
+      form {
+       width:0;
+       height:0;
+       margin-left: 145px;
+      }
+
+      .search-field-placeholder {
+        margin-top: 5px;
+        width: 440px;
+        height: 50px;
+        padding:1px 0px 0px 38px;
+        background: url(<%= asset_path 'search.png'%>) no-repeat 6px 13px;
+        border: none;
+        background-color: #fff;
+        color: #6f6f6f;
+        font-size: 13px;
+        font-weight: 380;
+      }
+    }
+
+    .share-item {
+      position: absolute;
+      top: 8px;
+      right: 250px;
+      background-color: #fff;
+      border: 2px solid #419bf9;
+      border-radius: 5px;
+      font-size: 13px;
+      font-weight: 600;
+      padding: 14px 14px 14px 14px;
+      color: #419bf9;
+
+      &:hover {
+              background-color: #275d95;
+      }
+    }
+
+
+    .user-info {
+      position: absolute;
+      top: 20px;
+      right: 0px;
+
+      .logout {
+        color: black;
+        padding: 22px;
+        border-style: none none none solid;
+        border-left: 1px solid #eaeaea;
+      }
+      .signup {
+        color: #419bf9;
+        padding: 22px;
+        border-style: none none none solid;
+        border-left: 1px solid #eaeaea;
+      }
+
+      .login {
+        color: black;
+        padding: 22px;
+        border-style: none none none solid;
+        border-left: 1px solid #eaeaea;
+      }
+    }
+}

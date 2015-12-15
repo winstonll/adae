@@ -1,0 +1,81 @@
+/* Static Pages */
+.static-page-header {
+  height: 200px;
+  background-color: #eee;
+  display: table;
+  width: 100%;
+
+  .static-page-header-text-container {
+    display: table-cell;
+    vertical-align: middle;
+    color: #4a4a4a;
+    font-size: 1.25em;
+    font-weight: 300;
+  }
+
+  .static-subtitle{
+    text-align: center;
+    color: #5a5a5a;
+  }
+}
+
+.static-page {
+  background-color: #FFF;
+  color: #5a5a5a;
+  padding: 25px 100px;
+  line-height: 24px;
+
+  .static-page-section {
+    width: 60%;
+    margin: 0 auto;
+
+    h3{
+      color: #419BF9;
+    }
+
+    h4{
+      color: #419BF9;
+      font-weight: 400;
+      font-size: 16px;
+      padding-top: 2em;
+    }
+
+    p {
+      padding-bottom: 5px;
+      text-align: left;
+    }
+
+    .long-list-style{
+      padding-left: 15px;
+      text-indent: -8px;
+    }
+
+    #safe{
+      padding-bottom: 2px !important;
+    }
+
+    ul {
+      color: #5a5a5a;
+
+      li {
+        padding-top: 1em;
+        text-align: left;
+
+      }
+    }
+
+    a {
+      color: #419BF9;
+      text-decoration: underline;
+    }
+  }
+}
+
+.static-page-social {
+  padding-bottom: 2em;
+
+  .static-page-social-accounts {
+    max-width: 40px;
+    margin-right: 20px;
+  }
+}

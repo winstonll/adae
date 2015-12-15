@@ -1,5 +1,5 @@
 module Api::V1
-  class LocationsController < ApplicationController
+  class LocationsController < BaseController
     def index
       location = Location.all
       if city = params[:city]

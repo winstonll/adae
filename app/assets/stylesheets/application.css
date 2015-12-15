@@ -3,14 +3,19 @@
 article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
 	display: block;
+	font-family: 'Avenir Next', sans-serif;
+
 }
 body {
+	margin: 0;
 	line-height: 1;
 	font-family: 'Avenir Next', sans-serif;
 
 }
 ol, ul {
 	list-style: none;
+	font-family: 'Avenir Next', sans-serif;
+
 }
 blockquote, q {
 	quotes: none;
@@ -40,11 +45,9 @@ html {
 
 
 a {
-	font-size: 19px;
 	font-family: 'Avenir Next', sans-serif;
-	font-weight: 400;
-	color: black;
 	text-decoration: none;
+	color: inherit;
 }
 
 h1 {
@@ -79,47 +82,8 @@ h5 {
 }
 
 p, ul, ol, li {
-	font-size: 17px;
 	font-family: 'Avenir Next', sans-serif;
-	font-weight: 300;
-}
-
-button{
-	font-family: 'Avenir Next', sans-serif;
-}
-/*
-HOMEPAGE
-*/
-.share-item-area {
-	display: block;
-	width: 80%;
-
-	/*background-color: #ebebeb;*/
-	margin: 0 auto;
-}
-
-.share-item {
-	display: inline-block;
-	background-color: #419bf9;
-	font-family: 'Avenir Next', sans-serif;
-	font-size: 25px;
-	font-weight: 400;
-	text-transform: uppercase;
-	border: 2px solid #000000;
-	width: 12em;
-	height: 3em;
-	margin-top: 2em;
-	margin-bottom: 2em;
-	margin-right: 0.75em;
-	margin-left: 0.60em ;
-}
-
-.share-item:hover {
-	background-color: #275d95;
-}
-
-.share-item:active {
-	background-color: #dbc1ef;
+	text-align: center;
 }
 
 /*
@@ -162,45 +126,12 @@ h4, .item-rating-qs {
 	margin-bottom: 5em;
 }
 
-.new-item-form {
-	/*display: inline-block;
-	width: 60%;
-	margin: 0 auto;	*/
-}
-
-#item_organization_name,
-#item_first_name,
-#item_last_name,
-#item_phone_number {
-	display: block;
-	width: 28em;
-	background-color: #ffffff;
-	margin-top: 0.25em;
-	margin-bottom: 0.75em;
-
-}
-
-.add-item {
-	display: block;
-	width: 70%;
-	background-color: #ebebeb;
-	margin: 0 auto;
-	padding: 1em 2em 1em 2em;
-}
-
 #items {
 	display: block;
 	width: 80%;
 	margin-left: 18%;
 	margin-right: 18%;
 }
-
-.main-form {
-	display: block;
-	width: 60%;
-	margin: 0 38% auto;
-}
-
 
 /*
 itemS INDEX/SEARCH
@@ -214,26 +145,6 @@ itemS INDEX/SEARCH
 	margin-bottom: 0.5em;
 	text-align: center;
 }
-
-.search-bar {
-	display: block;
-	margin-left: 20%;
-
-}
-
-.search-bar-label {
- 	display: inline-block;
- 	font-size: 18px;
-	font-family: 'Avenir Next', sans-serif;
-	font-weight: 400;
-	margin-left: 1em;
-}
-
-#search {
-	width: 50%;
-	height: 2em;
-}
-
 
 /*
 item PROFILE
@@ -362,7 +273,7 @@ img {
 
 }
 
-#error_explaination, h4, ul{
+#error_explaination{
 	color: red;
 }
 
@@ -414,18 +325,6 @@ a.account-links {
 	margin-right: 2em;
 
 
-}
-
-
-/*
-NAV
-*/
-
-li.userinfo {
-	display: block;
-	float: right;
-	padding-right: 5px;
-	color: #000000;
 }
 
 /*

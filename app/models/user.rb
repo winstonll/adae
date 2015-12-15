@@ -9,8 +9,8 @@ class User < ActiveRecord::Base
 
   # Include default devise modules.
   devise :database_authenticatable, :registerable,
-          :recoverable, :rememberable, :trackable, :validatable,
-          :confirmable, :omniauthable
+          :recoverable, :rememberable, :trackable, :validatable#,
+          #:confirmable, :omniauthable
 
 	before_create :generate_authentication_token
 
@@ -22,11 +22,11 @@ class User < ActiveRecord::Base
 		end while self.class.exists?(auth_token: self.auth_token)
 	end
 
-	#def full_name
-	#	"#{name} #{surname}"
-	#end
+	def full_name
+		"#{name} #{surname}"
+	end
 
-	#def rated?(item)
-	#	ratings.find_by(item: item)
-	#end
+	def rated?(item)
+		ratings.find_by(item: item)
+	end
 end
