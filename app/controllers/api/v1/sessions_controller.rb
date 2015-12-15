@@ -19,7 +19,7 @@ module Api::V1
 
     end
 
-    # curl -X POST -d 'sessions[email]=masteryoda@hotmail.com&sessions[password]=123567890' http://localhost:3000/api/v1/sessions
+    # curl -X POST -d 'sessions[email]=testing@hotmail.com&sessions[password]=1234567890' http://localhost:3000/api/v1/sessions
     def create
       user_password = params[:sessions][:password]
       user_email = params[:sessions][:email]
