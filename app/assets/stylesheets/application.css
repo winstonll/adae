@@ -3,18 +3,18 @@
 article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
 	display: block;
-	font-family: 'Avenir Next', sans-serif;
+	font-family: 'Avenir Next', 'Avenir', sans-serif;
 
 }
 body {
 	margin: 0;
 	line-height: 1;
-	font-family: 'Avenir Next', sans-serif;
+	font-family: 'Avenir Next', 'Avenir', sans-serif;
 
 }
 ol, ul {
 	list-style: none;
-	font-family: 'Avenir Next', sans-serif;
+	font-family: 'Avenir Next', 'Avenir', sans-serif;
 
 }
 blockquote, q {
@@ -45,44 +45,44 @@ html {
 
 
 a {
-	font-family: 'Avenir Next', sans-serif;
+	font-family: 'Avenir Next', 'Avenir', sans-serif;
 	text-decoration: none;
 	color: inherit;
 }
 
 h1 {
 	font-size: 30px;
-	font-family: 'Avenir Next', sans-serif;
+	font-family: 'Avenir Next', 'Avenir', sans-serif;
 	font-weight: 300;
 	text-align: center;
 }
 
 h2 {
 	font-size: 25px;
-	font-family: 'Avenir Next', sans-serif;
+	font-family: 'Avenir Next', 'Avenir', sans-serif;
 	font-weight: 700;
 }
 
 h3 {
 	font-size: 23px;
-	font-family: 'Avenir Next', sans-serif;
+	font-family: 'Avenir Next', 'Avenir', sans-serif;
 	font-weight: 400;
 }
 
 h4 {
 	font-size: 20px;
-	font-family: 'Avenir Next', sans-serif;
+	font-family: 'Avenir Next', 'Avenir', sans-serif;
 	font-weight: 700;
 }
 
 h5 {
 	font-size: 20px;
-	font-family: 'Avenir Next', sans-serif;
+	font-family: 'Avenir Next', 'Avenir', sans-serif;
 	font-weight: 400;
 }
 
 p, ul, ol, li {
-	font-family: 'Avenir Next', sans-serif;
+	font-family: 'Avenir Next', 'Avenir', sans-serif;
 	text-align: center;
 }
 
@@ -93,14 +93,14 @@ ADD item FORMS
 label {
 	display: block;
 	width: 100%;
-	font-family: 'Avenir Next', sans-serif;
+	font-family: 'Avenir Next', 'Avenir', sans-serif;
 	font-size: 18px;
 	font-weight: 400;
 }
 
 h4, .item-rating-qs {
 	font-size: 20px;
-	font-family: 'Avenir Next', sans-serif;
+	font-family: 'Avenir Next', 'Avenir', sans-serif;
 	color: #000000;
 	font-weight: 700;
 	display: block;
@@ -120,7 +120,7 @@ h4, .item-rating-qs {
 	display: inline-block;
 	text-align: center;
 	font-size: 20px;
-	font-family: 'Avenir Next', sans-serif;
+	font-family: 'Avenir Next', 'Avenir', sans-serif;
 	font-weight: 700;
 	margin-left: 20%;
 	margin-bottom: 5em;
@@ -162,7 +162,7 @@ item PROFILE
 	float: right;
 	vertical-align: top;
 	font-size: 20px;
-	font-family: 'Avenir Next', sans-serif;
+	font-family: 'Avenir Next', 'Avenir', sans-serif;
 	font-weight: 400;
 	text-transform: uppercase;
 	width: auto;
@@ -173,7 +173,7 @@ item PROFILE
 	display: block;
 	vertical-align: top;
 	font-size: 25px;
-	font-family: 'Avenir Next', sans-serif;
+	font-family: 'Avenir Next', 'Avenir', sans-serif;
 	font-weight: 400;
 	text-transform: uppercase;
 	text-align: right;
@@ -192,7 +192,7 @@ item PROFILE
 .item-reviews {
 	display: inline-block;
 	font-size: 26px;
-	font-family: 'Avenir Next', sans-serif;
+	font-family: 'Avenir Next', 'Avenir', sans-serif;
 	font-weight: 400;
 	text-transform: uppercase;
 
@@ -203,7 +203,7 @@ item PROFILE
 .create-review {
 	display: inline-block;
 	font-size: 26px;
-	font-family: 'Avenir Next', sans-serif;
+	font-family: 'Avenir Next', 'Avenir', sans-serif;
 	font-weight: 400;
 	text-transform: uppercase;
 	margin-left: 18em;
