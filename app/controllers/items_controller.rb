@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-
+  before_filter :ensure_logged_in, only: [:create, :new, :update, :edit, :destroy]
   def index
     # @query = params[:search]
 
