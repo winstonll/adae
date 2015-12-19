@@ -12,14 +12,26 @@ class User < ActiveRecord::Base
           :recoverable, :rememberable, :trackable, :validatable#,
           #:confirmable, :omniauthable
 
-	before_create :generate_authentication_token
+	before_create :ensure_authentication_token # :generate_authentication_token
 
   #include DeviseTokenAuth::Concerns::User
 
+	def ensure_authentication_token
+		if auth_token.blank?
+			self.auth_token = generate_authentication_token
+		end
+	end
+
+	private
+
 	def generate_authentication_token
-		begin
-			self.auth_token = Devise.friendly_token
-		end while self.class.exists?(auth_token: self.auth_token)
+		loop do
+			token = Devise.friendly_token
+			break token unless User.where(auth_token: token).first
+		end
+		#begin
+		#	self.auth_token = Devise.friendly_token
+		#end while self.class.exists?(auth_token: self.auth_token)
 	end
 
 	def full_name

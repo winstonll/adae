@@ -9,6 +9,7 @@ module Api::V1
     #include DeviseTokenAuth::Concerns::SetUserByToken
     #before_action :authenticate_user!
     before_action :authenticate_with_token!, only: [:update, :destroy]
+    #before_filter :authenticate_user!
 
     # GET show all users
     def index
@@ -33,7 +34,7 @@ module Api::V1
       end
     end
 
-    # curl -i -X POST -d 'users[email]=test2@hotmail.com&users[password]=12345678' http://localhost:3000/api/v1/users
+    # curl -i -X POST -d 'users[email]=masteryoda@hotmail.com&users[password]=1234567890' http://localhost:3000/api/v1/users
     def create
       user = User.new(user_params)
 
@@ -74,7 +75,8 @@ module Api::V1
     private
 
       def user_params
-        params.require(:users).permit(:email, :password, :password_confirmation, :name)
+        params.require(:users).permit(:email, :password, :password_confirmation,
+        :name, :surname, :phone_number, :phone_verified)
       end
 
   end
