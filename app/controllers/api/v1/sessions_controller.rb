@@ -1,10 +1,5 @@
 module Api::V1
   class SessionsController < BaseController
-    # User name and password needed to access the users controller API and send
-    # requests
-
-    #http_basic_authenticate_with name: "admin", password: "Az2L%r[S";
-
     #use this to authenticate
     #include DeviseTokenAuth::Concerns::SetUserByToken
     #before_action :authenticate_user!

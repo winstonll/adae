@@ -1,23 +1,17 @@
 module Api::V1
   class UsersController < BaseController
-    # User name and password needed to access the users controller API and send
-    # requests
-
-    #http_basic_authenticate_with name: "admin", password: "Az2L%r[S";
-
     #use this to authenticate
     #include DeviseTokenAuth::Concerns::SetUserByToken
-    #before_action :authenticate_user!
-    before_action :authenticate_with_token!, only: [:update, :destroy]
-    #before_filter :authenticate_user!
 
-    # GET show all users
+    before_action :authenticate_user_token!, only: [:update, :destroy]
+
+    # curl -X GET --header "ApiToken: CDMdztrYZnsC6573ock9" http://localhost:3000/api/v1/users
     def index
       users = User.all
       if name = params[:name]
         users = User.where(name: name)
       end
-      render json: users, status: :ok
+      render json: users, status: :ok, :except => [:auth_token]
     end
 
     # GET show specific user
@@ -25,7 +19,7 @@ module Api::V1
       user = User.find(params[:id])
 
       if !user.nil?
-        render json: user, status: :ok
+        render json: user, status: :ok, :except => [:auth_token]
       else
         render json: {
           error: "No such user; check the user id",
@@ -34,7 +28,7 @@ module Api::V1
       end
     end
 
-    # curl -i -X POST -d 'users[email]=masteryoda@hotmail.com&users[password]=1234567890' http://localhost:3000/api/v1/users
+    # curl -i -X POST --header "ApiToken: CDMdztrYZnsC6573ock9" -d 'users[email]=masteryoda@hotmail.com&users[password]=1234567890' http://localhost:3000/api/v1/users
     def create
       user = User.new(user_params)
 
@@ -60,7 +54,7 @@ module Api::V1
       end
     end
 
-    # curl -X PUT --header "Authorization: amojcUyMjJZPRqrnPtKy" -d 'users[name]=tony' http://localhost:3000/api/v1/users/1
+    # curl -X PUT --header "ApiToken: CDMdztrYZnsC6573ock9" --header "Authorization: CDMdztrYZnsC6573ock9" -d 'users[name]=admin' http://localhost:3000/api/v1/users/1
     def update
       user = current_user #User.find(params[:id])
 
