@@ -21,7 +21,15 @@ class User < ActiveRecord::Base
 			self.auth_token = generate_authentication_token
 		end
 	end
-
+	
+	def full_name
+		"#{name} #{surname}"
+	end
+	
+	def rated?(item)
+		ratings.find_by(item: item)
+	end
+	
 	private
 
 	def generate_authentication_token
@@ -34,11 +42,4 @@ class User < ActiveRecord::Base
 		#end while self.class.exists?(auth_token: self.auth_token)
 	end
 
-	def full_name
-		"#{name} #{surname}"
-	end
-
-	def rated?(item)
-		ratings.find_by(item: item)
-	end
 end
