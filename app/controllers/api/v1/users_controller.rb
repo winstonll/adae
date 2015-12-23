@@ -54,7 +54,7 @@ module Api::V1
       end
     end
 
-    # curl -X PUT --header "ApiToken: CDMdztrYZnsC6573ock9" --header "Authorization: CDMdztrYZnsC6573ock9" -d 'users[name]=admin' http://localhost:3000/api/v1/users/1
+    # curl -X PUT --header "ApiToken: eP2QVqKP9n-QDDhgMBeT" --header "Authorization: Dc1xPGrFNFMGXHYTVFh5" -d 'users[name]=admin' http://localhost:3000/api/v1/users/1
     def update
       user = current_user #User.find(params[:id])
 

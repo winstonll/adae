@@ -4,7 +4,7 @@ User.create!(
 	email: "admin@example.com",
 	password: "asdf1234",
 	password_confirmation: "asdf1234",
-	
+	api_token: Devise.friendly_token
 )
 
 puts "Creating Users"
@@ -23,7 +23,7 @@ end
 
 puts "Creating Items"
 puts "========================================================="
-	
+
 user = User.all
 user.each do |user|
 	 Item.create!(
@@ -72,4 +72,3 @@ puts "========================================================="
 	)
 	puts "Made rating of #{r.score} for #{r.item.title}"
 end
-

@@ -15,11 +15,9 @@ module Authenticable
   end
 
   def authenticate_api
-    #puts request.headers['Authorization']
-    #puts request.headers['Auth_token']
     api_key = request.headers['ApiToken']
 
-    @user = User.where(auth_token: api_key).first if api_key
+    @user = User.where(api_token: api_key).first if api_key
 
     unless @user
       render json: { errors: "Invalid API access token" }, status: 422
