@@ -1,3 +1,5 @@
+<%= stylesheet_link_tag "items" %>
+
 <div class="item-info">
   <%= image_tag @item.image_url(:avatar)  %>
   <div class="item-details">
@@ -8,6 +10,7 @@
   	<p class="item-detail-deposit">Deposit for this Item: $ <%= @item.deposit %></p>
     <p class="item-detail-deposit">Price is $ <%= @price.amount %> per <%= @price.timeframe %> </p>
   </div>
+</div>
 
   <div class="rating-info">
     <div class = "overall-rating">
@@ -31,8 +34,6 @@
     </div>
   </div>
 
-</div>
-
 
 <h3 class="item-reviews">Reviews for <%= @item.title %> </h3>
 
@@ -54,7 +55,7 @@
     <%= f.label :comment %><br />
     <%= f.text_area :comment %>
   </div>
-  <div class="actions">
+  <div class="review-submit">
     <%= f.submit %>
   </div>
   <% end %>
