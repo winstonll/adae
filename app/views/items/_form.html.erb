@@ -1,3 +1,28 @@
+<script type="text/javascript">
+  $(document).ready(function() {
+    // Make sure the add answer button is showing
+    $("#add-tag-button").css("display", "inline-block");
+
+    var tagBoxCounter = 4;
+    var MAX_BOX_COUNT = 6;
+
+     $("#add-tag-button").click(function() {
+       // add another tag text box when clicked under existing text box.
+       var newBoxNumber = tagBoxCounter + 1;
+
+       if (newBoxNumber <= MAX_BOX_COUNT) {
+         var newHtml = '<input type="text" name="tag_box_' + newBoxNumber +'" id="tag-box-' + newBoxNumber +'" class="tag-box" placeholder="Answer here">';
+
+         $(".tag-input-box").append(newHtml);
+         tagBoxCounter++;
+       } else {
+         $("#add-tag-button").css("display", "none");
+       }
+     });
+   });
+</script>
+
+
 <%= stylesheet_link_tag "items" %>
 
 <%= form_for @item, html: {multipart: true}  do |f| %>
@@ -14,33 +39,49 @@
 
 	<div class="item-container">
 		<div class="new-item-form">
-			<%= f.label :title %>
+		<p> Add some tags to better describe your item, so people can find it easier:</p>
+
+			<section class="selected-multiple-choices" id="answer-types">
+                <section class="submit-input-container">
+
+                  <div class="tag-input-box">
+                    <input type="text" name="tag_box_1" id="tag-box-1" class="tag-box" placeholder="type here, ex. xbox">
+                    <input type="text" name="tag_box_2" id="tag-box-2" class="tag-box">
+                    <input type="text" name="tag_box_3" id="tag-box-3" class="tag-box">
+                    <input type="text" name="tag_box_4" id="tag-box-4" class="tag-box">
+                  </div>
+                </section>
+                <input type="button" value="Add another tag" id="add-tag-button"/>
+                <p>* Maximum of 6 tags, empty boxes will not be added.</p>
+              </section>
+		</div>
+		
+		<div class="new-item-form">
+			<p> Add a location:</p>
+			<%= f.label :postal_code %>
+			<%= f.text_field :postal_code %>
+		</div>
+
+		<div class="new-item-form">
+			<p> Description:</p>
+			<%= f.label :listing_title %>
 			<%= f.text_field :title %>
 		</div>
 		
 		<div class="new-item-form">
-			<%= f.label :description %>
-			<%= f.text_field :description %>
+			<%= f.label :summary %>
+			<%= f.text_area :description %>
 		</div>
 		
-		<div class="new-item-form">
-			<%= f.label :deposit %>
-			<%= f.text_field :deposit %>
-		</div>
-
-		<div class="new-item-form">
-			<%= f.label :postal_code %>
-			<%= f.text_field :postal_code %>
-		</div>
-		
-		<div class="new-item-form">
-			<%= f.label :tags %>
-			<%= f.text_field :tags %>
-		</div>
-
 		<div class="new-item-form">
 			<%= f.label :image  %>
 			<%= f.file_field :image  %>
+		</div>
+		
+		<div class="new-item-form">
+			<p> Deposit price:</p>
+			<%= f.label :deposit %>
+			<%= f.text_field :deposit %>
 		</div>
 
 		<%= f.fields_for :prices, @price do |p| %>
@@ -50,6 +91,7 @@
         </div>
 
         <div class="new-item-form">
+        	<p> Sale Price:</p>
             <%=p.label :amount %>
             <%=p.number_field :amount %>
         </div>
