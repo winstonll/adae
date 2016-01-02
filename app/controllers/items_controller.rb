@@ -33,12 +33,27 @@ class ItemsController < ApplicationController
   end
   
   def create
+     # For several tags, concatenate the tag boxes into
+    # one string, checking for empty boxes and removing them
+    7.times do |count|
+      counter = "tag_box_#{count}".to_sym
+      unless (params[counter].to_s.empty?)
+        @tagboxes = @tagboxes.to_s + params[counter].to_s.capitalize << ', ' 
+      end
+    end
+
+    # Strip the last comma from multiple choice questions
+    if @tagboxes
+      @tagboxes = @tagboxes[0...-1].chomp(",")
+    end
+
     @item = Item.new(item_params)
-    if @item.save
     @item.user_id = current_user.id
+    @item.tags = @tagboxes
+    if @item.save && @item.valid?
       redirect_to @item, notice: "Item Successfully Added!"
     else
-      flash[:message] = "Something did not validate"
+      flash[:message] = "This listing has already been posted or Something didn't validate"
       render 'new'
     end
   end
