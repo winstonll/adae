@@ -12,6 +12,7 @@ Rails.application.config.assets.version = '1.0'
 Rails.application.config.assets.precompile += %w( landing.css )
 Rails.application.config.assets.precompile += %w( landing.js )
 Rails.application.config.assets.precompile += %w( items.css )
+Rails.application.config.assets.precompile += %w( items.js )
 Rails.application.config.assets.precompile += %w( navbar.css )
 Rails.application.config.assets.precompile += %w( navbar.js )
 Rails.application.config.assets.precompile += %w( footer.css )
