@@ -14,7 +14,6 @@ Rails.application.routes.draw do
 
   get 'search' => "search#search"
 
-  get 'additem' => 'items#additem'
   get 'create' => 'registrations#create'
 
   # simple/static pages
