@@ -1,21 +1,7 @@
 class ItemsController < ApplicationController
   before_filter :ensure_logged_in, only: [:create, :new, :update, :edit, :destroy]
   def index
-    # @query = params[:search]
-
-    # if @query
-    #   @items = []
-    #   %w[title description tags].each do |field|
-    #     @items += Item.where("LOWER(#{field}) LIKE LOWER(?)", "%#{params[:search]}%") 
-    #   end
-    # else
       @items = Item.all 
-    # end
-
-    # respond_to do |format|
-    #   format.html
-    #   format.js
-    # end
   end
 
   def show
