@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151223132239) do
+ActiveRecord::Schema.define(version: 20160106181606) do
 
   create_table "items", force: :cascade do |t|
     t.string   "title"
@@ -19,10 +19,10 @@ ActiveRecord::Schema.define(version: 20151223132239) do
     t.string   "image"
     t.integer  "user_id"
     t.integer  "deposit"
-    t.string   "type"
+    t.string   "listing_type"
     t.string   "tags"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
     t.string   "postal_code"
   end
 
