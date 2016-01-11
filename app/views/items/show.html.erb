@@ -6,6 +6,7 @@
   	<p class="item-detail-title"><%= @item.title %></p> 
     <p class="item-detail-title">posted by <%= @item.user.full_name%></p>
   	<p class="item-detail-description"><%= @item.description %></p>
+    <p class="item-detail-description"><%= @item.listing_type %></p>
     <p class="item-detail-description"><%= @item.tags %></p>
   	<p class="item-detail-deposit">Deposit for this Item: $ <%= @item.deposit %></p>
     <p class="item-detail-deposit">Price is $ <%= @price.amount %> per <%= @price.timeframe %> </p>
