@@ -1,7 +1,7 @@
 class ItemsController < ApplicationController
   before_filter :ensure_logged_in, only: [:create, :new, :update, :edit, :destroy]
   def index
-      @items = Item.all 
+      @items = Item.all
   end
 
   def show
@@ -34,14 +34,14 @@ class ItemsController < ApplicationController
     @item = Item.new
     @price = Price.new
   end
-  
+
   def create
      # For several tags, concatenate the tag boxes into
     # one string, checking for empty boxes and removing them
     7.times do |count|
       counter = "tag_box_#{count}".to_sym
       unless (params[counter].to_s.empty?)
-        @tagboxes = @tagboxes.to_s + params[counter].to_s.capitalize << ', ' 
+        @tagboxes = @tagboxes.to_s + params[counter].to_s.capitalize << ', '
       end
     end
 
@@ -60,7 +60,7 @@ class ItemsController < ApplicationController
       render 'new'
     end
   end
-  
+
   def edit
     @item = Item.find(params[:id])
   end
@@ -72,7 +72,7 @@ class ItemsController < ApplicationController
     else
       render :edit
     end
-    
+
   end
 
   def destroy
