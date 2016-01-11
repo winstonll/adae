@@ -22,11 +22,8 @@
 
   <body>
     <%= render partial: "common/navbar" unless current_page?(root_path) %>
-    <div class="page-wrap">
     <%= yield %>
-    </div>
-    <footer class="site-footer">
     <%= render partial: "common/footer"%>
-    </footer>
   </body>
+
 </html>

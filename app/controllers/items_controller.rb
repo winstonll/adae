@@ -13,23 +13,6 @@ class ItemsController < ApplicationController
     end
   end
 
-  def rent
-    @item = Item.new
-    @price = Price.new
-  end
-  def sell
-    @item = Item.new
-    @price = Price.new
-  end
-  def lease
-    @item = Item.new
-    @price = Price.new
-  end
-  def timeoffer
-    @item = Item.new
-    @price = Price.new
-  end
-
   def new
     @item = Item.new
     @price = Price.new
@@ -83,7 +66,7 @@ class ItemsController < ApplicationController
 
   private
   def item_params
-    params.require(:item).permit(:title, :description, :image, :user_id, :listing_type, :deposit, :tags, :postal_code, prices_attributes: [:id, :timeframe, :amount])
+    params.require(:item).permit(:title, :description, :image, :user_id, :deposit, :tags, :postal_code, prices_attributes: [:id, :timeframe, :amount])
   end
 
 end

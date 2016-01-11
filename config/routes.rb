@@ -31,10 +31,5 @@ Rails.application.routes.draw do
 
   resources :users
 
-  resources :items,  :concerns => :reviewable
-  get 'sell'   => "items#sell",   as: :sell
-  get 'rent'   => "items#rent",   as: :rent
-  get 'lease'   => "items#lease",   as: :lease
-  get 'timeoffer'   => "items#timeoffer",   as: :timeoffer
-
+  resources :items,                                 :concerns => :reviewable
 end

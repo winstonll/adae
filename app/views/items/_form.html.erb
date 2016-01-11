@@ -28,16 +28,6 @@
 			<%= f.label :postal_code %>
 			<%= f.text_field :postal_code %>
 		</div>
-		
-		<% if current_page? rent_path %>
-			<%= f.hidden_field :listing_type, :value =>"rent" %>
-		<% elsif current_page? sell_path %>
-			<%= f.hidden_field :listing_type, :value =>"lease" %>
-		<% elsif current_page? lease_path %>
-			<%= f.hidden_field :listing_type, :value =>"sell" %>
-		<% else %>
-			<%= f.hidden_field :listing_type, :value =>"timeoffer" %>
-		<% end %>
 
 		<div class="new-item-form">
 			<p> Description:</p>
