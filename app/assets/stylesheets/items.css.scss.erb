@@ -111,6 +111,12 @@ item Show
 /*
 item new
 */
+.item-container {
+	background-color: #eaeaea;
+	width: 100%;
+	text-align: center;
+	margin: auto;
+}
 .list-title {
 	margin-bottom: 40px;
 
@@ -119,7 +125,7 @@ item new
 		font-weight: 600;
 	}
 	.listing-description {
-		font-size: 12px;
+		font-size: 16px;
 		font-weight: 500;
 		color: #646464;
 	}
@@ -128,79 +134,59 @@ item new
 .listing-selection {
 	background-color: #f2f2f2;
 	width: 100%;
-	text-align: center;
-	margin: auto;
 	height: 500px;
 
-
 }
 
-.item-container {
-	background-color: #eaeaea;
-	width: 95%;
-	text-align: center;
-	margin: auto;
-
-}
 /* Listing choices */
 .listing-choices{
 	padding-top: 5em;
 	display: inline-block;
-}
 
-.rent{
-	background-color: #fff;
-	font-size: 18px;
-	border: 1px solid #419BF9;
-	width:200px;
-	padding: 15px;
-	border-radius: 3px;
-	margin-bottom: 2em;
-
-	&:hover{
-		background-color: #419BF9;
-		color: #fff;
+	.lease{
+		width: 500px;
+		margin-bottom: 4em;
+		a{
+			padding: 10px 72px;
+		}
 	}
-}
 
-.lease{
-	background-color: #fff;
-	font-size: 18px;
-	border: 1px solid #419BF9;
-	width:200px;
-	padding: 15px;
-	border-radius: 3px;
-	margin-bottom: 2em;
-	&:hover{
-		background-color: #419BF9;
-		color: #fff;
+	.rent{
+		width: 500px;
+		margin-bottom: 4em;
+		a{
+			padding: 10px 78px;
+		}
 	}
-}
 
-.sell{
-	background-color: #fff;
-	font-size: 18px;
-	border: 1px solid #419BF9;
-	width:200px;
-	padding: 15px;
-	border-radius: 3px;
-	margin-bottom: 2em;
-	&:hover{
-		background-color: #419BF9;
-		color: #fff;
+	.sell{
+		width: 500px;
+		margin-bottom: 4em;
+		a{
+			padding: 10px 80px;
+		}
 	}
-}
 
-.timeoffer{
-	background-color: #fff;
-	font-size: 18px;
-	border: 1px solid #419BF9;
-	width:200px;
-	padding: 15px;
-	border-radius: 3px;
-	margin-bottom: 2em;
-	&:hover{
-		background-color: #419BF9;
-		color: #fff;
+	.timeoffer{
+		width: 500px;
+		margin-bottom: 4em;
+		a{
+			padding: 10px 40px;
+		}
+	}
+
+	.lease,.rent,.sell,.timeoffer{
+		.listing-button{
+			background-color: #fff;
+			font-size: 18px;
+			border: 1px solid #419BF9;
+			border-radius: 3px;
+
+			&:hover{
+				background-color: #419BF9;
+				color: #fff;
+			}
+		}
+
 	}
 }
