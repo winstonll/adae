@@ -11,6 +11,7 @@
 	<% end %>
 
 <div class="item-container">
+	<div class="form-content">
 	<div class="new-item-form">
 		<p> Add some tags to better describe your item, so people can find it easier:</p>
           <div class="tag-input-box">
@@ -22,13 +23,13 @@
         	<input type="button" value="Add another tag" id="add-tag-button"/>
         <p>* Maximum of 6 tags, empty boxes will not be added.</p>
 	</div>
-	
+
 	<div class="new-item-form">
 		<p> Add a location:</p>
 		<%= f.label :postal_code %>
 		<%= f.text_field :postal_code %>
 	</div>
-	
+
 	<% if current_page? rent_path %>
 		<%= f.hidden_field :listing_type, :value =>"rent" %>
 	<% elsif current_page? sell_path %>
@@ -44,17 +45,17 @@
 		<%= f.label :listing_title %>
 		<%= f.text_field :title %>
 	</div>
-	
+
 	<div class="new-item-form">
 		<%= f.label :summary %>
 		<%= f.text_area :description %>
 	</div>
-	
+
 	<div class="new-item-form">
 		<%= f.label :image  %>
 		<%= f.file_field :image  %>
 	</div>
-	
+
 	<div class="new-item-form">
 		<p> Deposit price:</p>
 		<%= f.label :deposit %>
@@ -76,4 +77,5 @@
 
 	<%= f.submit %>
 <%end%>
+</div>
 </div>
