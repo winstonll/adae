@@ -19,6 +19,13 @@ class SearchController < ApplicationController
           @query << item
         end
       end
+      Request.find_each do |request|
+        unless (r.match(request.title.downcase).to_s.empty?) &&
+        (r.match(request.description.downcase).to_s.empty?) &&
+        (r.match(request.tags.downcase).to_s.empty?)
+          @query << request
+        end
+      end
     end
 
     if(@query.empty?)
