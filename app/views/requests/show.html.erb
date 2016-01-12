@@ -1,0 +1,12 @@
+<%= stylesheet_link_tag "requests" %>
+
+<div class="request-info">
+  <div class="request-details">
+  	<p class="request-detail-title"><%= @request.title %></p> 
+    <p class="request-detail-title">posted by <%= @request.user.full_name%></p>
+  	<p class="request-detail-description"><%= @request.description %></p>
+    <p class="request-detail-description"><%= @request.tags %></p>
+  </div>
+</div> 
+
+
