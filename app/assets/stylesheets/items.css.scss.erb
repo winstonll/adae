@@ -138,11 +138,12 @@ item new
 	margin: auto;
 }
 .list-title {
-	margin-bottom: 40px;
-
+	margin-bottom: 50px;
+	margin-top: 50px;
 	.item-listing {
 		color: #419bf9;
 		font-weight: 600;
+
 	}
 	.listing-description {
 		font-size: 16px;
@@ -161,39 +162,60 @@ item new
 /* Listing choices */
 .listing-choices{
 	padding-top: 5em;
-	display: inline-block;
+	margin-left: 31%;
 
 	.lease{
-		width: 500px;
+		width: 100%;
 		margin-bottom: 4em;
+		white-space: nowrap;
 		a{
 			padding: 10px 72px;
 		}
 	}
 
 	.rent{
-		width: 500px;
+		width: 100%;
 		margin-bottom: 4em;
+		white-space: nowrap;
 		a{
 			padding: 10px 78px;
 		}
 	}
 
 	.sell{
-		width: 500px;
+		width: 100%;
 		margin-bottom: 4em;
+		white-space: nowrap;
 		a{
 			padding: 10px 80px;
 		}
 	}
 
 	.timeoffer{
-		width: 500px;
+		width: 100%;
 		margin-bottom: 4em;
+		white-space: nowrap;
 		a{
 			padding: 10px 40px;
 		}
 	}
+
+	.descriptor{
+		padding-left: .5em;
+	}
+
+	#lease-descriptor{
+		position: relative;
+		bottom: 10px;
+		padding-left: .5em;
+	}
+
+	#lease-descriptor-2{
+		position: relative;
+		top: 10px;
+		left: -358px;
+	}
+
 
 	.lease,.rent,.sell,.timeoffer{
 		.listing-button{
