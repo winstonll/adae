@@ -1,21 +1,7 @@
 class ItemsController < ApplicationController
-
+  before_filter :ensure_logged_in, only: [:create, :new, :update, :edit, :destroy]
   def index
-    # @query = params[:search]
-
-    # if @query
-    #   @items = []
-    #   %w[title description tags].each do |field|
-    #     @items += Item.where("LOWER(#{field}) LIKE LOWER(?)", "%#{params[:search]}%") 
-    #   end
-    # else
-      @items = Item.all 
-    # end
-
-    # respond_to do |format|
-    #   format.html
-    #   format.js
-    # end
+      @items = Item.all
   end
 
   def show
@@ -27,22 +13,54 @@ class ItemsController < ApplicationController
     end
   end
 
+  def rent
+    @item = Item.new
+    @price = Price.new
+  end
+  def sell
+    @item = Item.new
+    @price = Price.new
+  end
+  def lease
+    @item = Item.new
+    @price = Price.new
+  end
+  def timeoffer
+    @item = Item.new
+    @price = Price.new
+  end
+
   def new
     @item = Item.new
     @price = Price.new
   end
-  
+
   def create
+     # For several tags, concatenate the tag boxes into
+    # one string, checking for empty boxes and removing them
+    7.times do |count|
+      counter = "tag_box_#{count}".to_sym
+      unless (params[counter].to_s.empty?)
+        @tagboxes = @tagboxes.to_s + params[counter].to_s.capitalize << ', '
+      end
+    end
+
+    # Strip the last comma from multiple choice questions
+    if @tagboxes
+      @tagboxes = @tagboxes[0...-1].chomp(",")
+    end
+
     @item = Item.new(item_params)
-    if @item.save
     @item.user_id = current_user.id
+    @item.tags = @tagboxes
+    if @item.save && @item.valid?
       redirect_to @item, notice: "Item Successfully Added!"
     else
-      flash[:message] = "Something did not validate"
+      flash[:message] = "This listing has already been posted or Something didn't validate"
       render 'new'
     end
   end
-  
+
   def edit
     @item = Item.find(params[:id])
   end
@@ -54,7 +72,7 @@ class ItemsController < ApplicationController
     else
       render :edit
     end
-    
+
   end
 
   def destroy
@@ -65,7 +83,7 @@ class ItemsController < ApplicationController
 
   private
   def item_params
-    params.require(:item).permit(:title, :description, :image, :user_id, :deposit, :tags, :postal_code, prices_attributes: [:id, :timeframe, :amount])
+    params.require(:item).permit(:title, :description, :image, :user_id, :listing_type, :deposit, :tags, :postal_code, prices_attributes: [:id, :timeframe, :amount])
   end
 
 end

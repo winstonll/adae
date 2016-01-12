@@ -1,0 +1,50 @@
+<%= form_for @request, html: {multipart: true}  do |f| %>
+	<% if @request.errors.any? %>
+		<div id="error_explaination">
+			<h2><%= pluralize(@request.errors.count, "error") %> please correct the following before submitting</h2>
+			<ul>
+				<% @request.errors.full_messages.each do |msg| %>
+				<li><%= msg %> </li>
+				<% end %>
+			</ul>
+		</div>
+	<% end %>
+
+<div class="request-container">
+	<div class="new-request-form">
+		<p> Add some tags to better describe your request, so people can find it easier:</p>
+          <div class="hashtag-input-box">
+            <input type="text" name="hashtag_box_1" id="hashtag-box-1" class="hashtag-box" placeholder="type here, ex. xbox">
+            <input type="text" name="hashtag_box_2" id="hashtag-box-2" class="hashtag-box">
+            <input type="text" name="hashtag_box_3" id="hashtag-box-3" class="hashtag-box">
+            <input type="text" name="hashtag_box_4" id="hashtag-box-4" class="hashtag-box">
+          </div>
+        	<input type="button" value="Add another hashtag" id="add-hashtag-button"/>
+        <p>* Maximum of 6 tags, empty boxes will not be added.</p>
+	</div>
+	
+	<div class="new-request-form">
+		<p> Add a location:</p>
+		<%= f.label :postal_code %>
+		<%= f.text_field :postal_code %>
+	</div>
+	
+	<div class="new-request-form">
+		<p> Description:</p>
+		<%= f.label :listing_title %>
+		<%= f.text_field :title %>
+	</div>
+	
+	<div class="new-request-form">
+		<%= f.label :summary %>
+		<%= f.text_area :description %>
+	</div>
+
+    <div class="new-request-form">
+        <%= f.label :timeframe %>
+        <%= f.select(:timeframe, [["Hour"],["Day"],["Week"]], :prompt => 'Select') %>
+    </div>
+
+	<%= f.submit %>
+<%end%>
+</div>

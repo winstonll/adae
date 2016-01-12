@@ -14,7 +14,6 @@ Rails.application.routes.draw do
 
   get 'search' => "search#search"
 
-  get 'additem' => 'items#additem'
   get 'create' => 'registrations#create'
 
   # simple/static pages
@@ -32,5 +31,12 @@ Rails.application.routes.draw do
 
   resources :users
 
-  resources :items,                                 :concerns => :reviewable
+  resources :requests, :path => "shoutout"
+
+  resources :items,  :concerns => :reviewable
+  get 'sell'   => "items#sell",   as: :sell
+  get 'rent'   => "items#rent",   as: :rent
+  get 'lease'   => "items#lease",   as: :lease
+  get 'timeoffer'   => "items#timeoffer",   as: :timeoffer
+
 end

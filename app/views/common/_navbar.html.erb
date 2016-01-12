@@ -1,4 +1,5 @@
 <%= stylesheet_link_tag "navbar" %>
+<%= javascript_include_tag "navbar" %>
 
 <nav class="nav" role="navigation" id="home-navbar">
     <div class="adae-home">
@@ -13,18 +14,47 @@
         <input type="text" name="search_text" class="search-field-placeholder" id="search-form" placeholder="What are you looking for? ex. Texbooks, Video Games, Tutors...">
       </form>
     </div>
-    <% if current_page?(new_item_path) %>
-      <%= link_to "Listings", items_path, class: "share-item" %>
-    <% else %>
-      <%= link_to 'List an Item', new_item_path, class: "share-item" %>
-    <% end %>
+    <div class="itemnav">
+      <% if user_signed_in? %>
+      <span class="listings" onclick="$('.listingsdropdown').slideToggle();"> <%= "Listings" %> </span>
+      <div class="listingsdropdown">
+        <%= link_to 'Post a Listing', new_item_path, class: "newlisting" %>
+        <%= link_to "All Listings", items_path, class: "allistings" %>
+        <%= link_to "My Listings", user_path(current_user), class: "profilepath" %>
+      <% else %>
+        <%= link_to 'Post a Listing', new_item_path, class: "share-item" %>
+      <% end %>
+      </div>
+    </div>
+    <div class="requestnav">
+      <% if user_signed_in? %>
+      <span class="shoutouts" onclick="$('.shoutoutsdropdown').slideToggle();"> <%= "Shout Outs" %> </span>
+      <div class="shoutoutsdropdown">
+        <%= link_to 'Post a Shout Out', new_request_path, class: "newshoutout" %>
+        <%= link_to "All Shout Outs", requests_path, class: "allshoutouts" %>
+        <%= link_to "My Shout Outs", user_path(current_user), class: "profilepath" %>
+      <% else %>
+        <%= link_to 'Post a Shout Out', new_request_path, class: "share-request" %>
+      <% end %>
+      </div>
+    </div>
 
     <div class="user-info">
-      <% if current_user %>
-        Signed in as <%#= link_to current_user.full_name, user_path(current_user) %>. <%= link_to('Logout', destroy_user_session_path, :method => :delete, class: "logout") %>
+      <% if user_signed_in? %>
+      <span class="userpaths" onclick="$('.dropdown').slideToggle();">
+        <%= current_user.name %>
+      </span>
       <% else %>
         <%= link_to('Sign Up', new_user_registration_path, class: "signup")  %>
         <%= link_to('Login', new_user_session_path ,class: "login")  %>
       <% end %>
+      <div class="dropdown">
+        <% if user_signed_in? %>
+          <%= link_to "Edit Profile", edit_user_path(current_user), class: "profilepath" %>
+          <%= link_to "Account", user_path(current_user), class: "profilepath" %>
+          <%= link_to "Reviews", user_path(current_user), class: "profilepath" %>
+          <%= link_to('Logout', destroy_user_session_path, :method => :delete, class: "logout") %>
+        <% end %>
+      </div>
     </div>
 </nav>

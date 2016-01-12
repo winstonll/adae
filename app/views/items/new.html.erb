@@ -3,10 +3,27 @@
 <div class="list-title">
 	<h1 class="item-listing">Post a Listing</h1>
 		<p class="listing-description">Make some money by sharing your items, or your time!</p>
-		<p class="listing-description">(Make sure you indicate you are leasing this item if you want to sell it!)</p>
 </div>
 <br>
-	<%= render 'form' %>
+<div class="listing-selection">
+	<div class="listing-choices">
+		<div class="rent">
+			<%= link_to 'I want to Rent', rent_path, class: "listing-button" %>
+			<span style="display: inline;"> lalalalala </span>
+		</div>
+		<div class="lease">
+			<%= link_to 'I want to Lease', lease_path, class: "listing-button" %>
+			<span style="display: inline;"> lalalalala </span>
+		</div>
 
+		<div class="sell">
+			<%= link_to 'I want to Sell', sell_path, class: "listing-button" %>
+			<span style="display: inline;"> lalalalala </span>
+		</div>
 
-
+		<div class="timeoffer">
+			<%= link_to 'I want to offer my time', timeoffer_path, class: "listing-button" %>
+			<span style="display: inline;"> lalalalala </span>
+		</div>
+	</div>
+</div>
