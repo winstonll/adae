@@ -9,21 +9,22 @@
 	<div class="listing-choices">
 		<div class="rent">
 			<%= link_to 'I want to Rent', rent_path, class: "listing-button" %>
-			<span style="display: inline;"> lalalalala </span>
+			<span class="descriptor"> Choose this if you only want to rent out your item.</span>
 		</div>
 		<div class="lease">
 			<%= link_to 'I want to Lease', lease_path, class: "listing-button" %>
-			<span style="display: inline;"> lalalalala </span>
+			<span id="lease-descriptor"> Choose this if you want to rent out your item and </span>
+			<span id="lease-descriptor-2"> allow it to be bought after the rental period. </span>
 		</div>
 
 		<div class="sell">
 			<%= link_to 'I want to Sell', sell_path, class: "listing-button" %>
-			<span style="display: inline;"> lalalalala </span>
+			<span class="descriptor"> Choose this if you only want to sell your item. </span>
 		</div>
 
 		<div class="timeoffer">
 			<%= link_to 'I want to offer my time', timeoffer_path, class: "listing-button" %>
-			<span style="display: inline;"> lalalalala </span>
+			<span class="descriptor"> Choose this if you are offering a service. Ex.Tutoring. </span>
 		</div>
 	</div>
 </div>
