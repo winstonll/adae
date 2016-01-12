@@ -147,26 +147,6 @@ h4, .item-rating-qs {
 }
 
 /*
-itemS INDEX/SEARCH
-*/
-#items {
-	display: block;
-	width: 80%;
-	margin-left: 18%;
-	margin-right: 18%;
-}
-
-.item-index {
-	display: inline-block;
-	width: 70%;
-	padding: 1em;
-	background-color: #419bf9;
-	opacity: 0.75;
-	margin-bottom: 0.5em;
-	text-align: center;
-}
-
-/*
 USER ACCOUNT PAGE
 */
 
