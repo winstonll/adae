@@ -3,7 +3,7 @@
 
 <nav class="nav" role="navigation" id="home-navbar">
     <div class="adae-home">
-      <a href="<%= items_path %>" title="home">
+      <a href="<%= root_path %>" title="home">
         <div class="home-logo">
           <%= image_tag("adaelogoblue.png")%>
         </div>
@@ -46,7 +46,7 @@
       </span>
       <% else %>
         <%= link_to('Sign Up', new_user_registration_path, class: "signup")  %>
-        <%= link_to('Login', new_user_session_path, class: "login")  %>
+        <%= link_to('Login', new_user_session_path ,class: "login")  %>
       <% end %>
       <div class="dropdown">
         <% if user_signed_in? %>
