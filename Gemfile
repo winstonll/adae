@@ -44,6 +44,7 @@ gem 'pg'
 
 # Authentication library
 gem 'devise'
+gem 'spring'
 
 # Use Unicorn as the app server
 # gem 'unicorn'
