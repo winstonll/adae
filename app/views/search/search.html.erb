@@ -1,11 +1,5 @@
-<%= stylesheet_link_tag "items" %>
-<%= stylesheet_link_tag "requests" %>
-
 <body>
 	<div id="items">
 		<%= render partial: "/items/items", locals: {items: @query} %>
-	</div>
-	<div id="requests">
-		<%= render partial: "/requests/requests", locals: {requests: @query} %>
 	</div>
 </body>
