@@ -1,10 +1,20 @@
 <%= stylesheet_link_tag "landing" %>
-
 <%= javascript_include_tag "landing" %>
 
 <!-- Welcome section -->
 <title>adae - Share what you have, get what you want.</title>
+
 <div id="landing">
+  <div class="navlanding">  
+    <a class="faq" href="/faq">FAQ</a>
+    <%= link_to 'Post a Listing', new_item_path, class: "share-item" %>
+    <%= link_to 'Post a Shout Out', new_request_path, class: "share-request" %>
+    <% unless user_signed_in? %>
+      <%= link_to('Sign Up', new_user_registration_path, class: "signup") %>
+      <%= link_to('Login', new_user_session_path, class: "login") %>
+    <% end %>
+  </div>
+
 	<div id="landing-container">
 		<div class="logo-name-container">
 			<%= image_tag "logo-lg-white.png", id: "logo" %>
