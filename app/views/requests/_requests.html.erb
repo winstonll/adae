@@ -1,0 +1,10 @@
+<% requests.each do |request| %>
+	<%= link_to request_path(request.id) do %>
+		<h3 class="request-index">
+			<%= request.title %> 
+			| 
+			<%= request.description %> 
+			<%= request.tags  %>
+		</h3>
+	<% end %>
+<% end %>
