@@ -13,21 +13,21 @@
 <div class="item-container">
 	<div class="form-content">
 	<div class="new-item-form">
-		<p> Add some tags to better describe your item, so people can find it easier:</p>
+		<p> Add some tags to better describe your listing, so people can find it easier:</p>
           <div class="tag-input-box">
             <input type="text" name="tag_box_1" id="tag-box-1" class="tag-box" placeholder="type here, ex. xbox">
             <input type="text" name="tag_box_2" id="tag-box-2" class="tag-box">
             <input type="text" name="tag_box_3" id="tag-box-3" class="tag-box">
             <input type="text" name="tag_box_4" id="tag-box-4" class="tag-box">
           </div>
-        	<input type="button" value="Add another tag" id="add-tag-button"/>
-        <p>* Maximum of 6 tags, empty boxes will not be added.</p>
+        	<input type="button" value="Add More" id="add-tag-button"/>
+        <div id="tag-instruction">* Maximum of 6 tags, empty boxes will not be added.</div>
 	</div>
 
 	<div class="new-item-form">
-		<p> Add a location:</p>
-		<%= f.label :postal_code %>
-		<%= f.text_field :postal_code %>
+		<p> Add a Location:</p>
+		<p class="form-title">Postal Code</p>
+		<%= f.text_field :postal_code, :placeholder => "Type your postal code here so people nearby are more likely to discover your listing" %>
 	</div>
 
 	<% if current_page? rent_path %>
@@ -42,13 +42,13 @@
 
 	<div class="new-item-form">
 		<p> Description:</p>
-		<%= f.label :listing_title %>
-		<%= f.text_field :title %>
+		<p class="form-title">Listing Title</p>
+		<%= f.text_field :title, :placeholder => "Give your listing a concise and catchy headline!"  %>
 	</div>
 
 	<div class="new-item-form">
 		<%= f.label :summary %>
-		<%= f.text_area :description %>
+		<%= f.text_area :description, :placeholder => "Tell people about the qualities and highlights of your listing. You can include as many details as you'd like." %>
 	</div>
 
 	<div class="new-item-form">
@@ -58,7 +58,7 @@
 
 	<div class="new-item-form">
 		<p> Deposit price:</p>
-		<%= f.label :deposit %>
+		<div id="money-sign"> $ </div>
 		<%= f.text_field :deposit %>
 	</div>
 
