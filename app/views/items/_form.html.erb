@@ -58,7 +58,7 @@
 
 	<div class="new-item-form">
 		<p> Deposit price:</p>
-		<div id="money-sign"> $ </div>
+		<div class="rent-deposit-money-sign"> $ </div>
 		<%= f.text_field :deposit %>
 	</div>
 
@@ -70,7 +70,7 @@
 
     <div class="new-item-form">
     	<p> Sale Price:</p>
-        <%=p.label :amount %>
+			<div id="actual-price-money-sign"> $ </div>
         <%=p.number_field :amount %>
     </div>
 		<% end %>
