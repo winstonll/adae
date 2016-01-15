@@ -56,11 +56,7 @@
 		<%= f.file_field :image  %>
 	</div>
 
-	<div class="new-item-form">
-		<p> Deposit price:</p>
-		<div class="rent-deposit-money-sign"> $ </div>
-		<%= f.text_field :deposit %>
-	</div>
+
 
 	<%= f.fields_for :prices, @price do |p| %>
     <div class="new-item-form">
@@ -73,6 +69,12 @@
 			<div id="actual-price-money-sign"> $ </div>
         <%=p.number_field :amount %>
     </div>
+
+		<div class="new-item-form">
+			<p> Deposit price:</p>
+			<div class="rent-deposit-money-sign"> $ </div>
+			<%= f.text_field :deposit %>
+		</div>
 		<% end %>
 
 	<%= f.submit %>
