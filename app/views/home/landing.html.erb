@@ -2,10 +2,11 @@
 <%= javascript_include_tag "landing" %>
 
 <!-- Welcome section -->
+<%= link_to "Mailbox", conversations_path, class: "item" %>
 <title>adae - Share what you have, get what you want.</title>
 
 <div id="landing">
-  <div class="navlanding">  
+  <div class="navlanding">
     <a class="faq" href="/faq">FAQ</a>
     <%= link_to 'Post a Listing', new_item_path, class: "share-item" %>
     <%= link_to 'Post a Shout Out', new_request_path, class: "share-request" %>
