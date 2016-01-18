@@ -70,12 +70,15 @@
 		<% end %>
 
 		<div class="new-item-form">
-			<p> Deposit price:</p>
+			<p id="deposit-title"> Deposit price:</p>
 			<div class="rent-deposit-money-sign"> $ </div>
 			<%= f.text_field :deposit %>
 		</div>
 
-		<%= f.submit %>
+		<%= f.submit 'Submit', :class => 'submit-listing' %>
+		<div id="small-tip"> you can edit/update your listing at anytime after you submit.</div>
+
+
 <%end%>
 	</div>
 </div>
