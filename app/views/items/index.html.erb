@@ -1,6 +1,12 @@
 <%= stylesheet_link_tag "items" %>
-<body>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDELDDeZFCjRjY4yvz3o0ium-jSwRvnwFY"></script>
+
+<body>  
 	<div id="items">
+    	<div id="map-canvas"></div>
+    	<div id="item-collection">
 		<%= render partial: "/items/items", locals: {items: @items} %>
+    	</div>
 	</div>
 </body>
+

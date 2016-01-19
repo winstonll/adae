@@ -1,10 +1,10 @@
 <% items.each do |item| %>
 	<%= link_to item_path(item.id) do %>
-		<h3 class="item-index">
+		<div class="item-index">
 			<%= item.title %> 
 			| 
 			<%= item.description %> 
 			<%= item.tags  %>
-		</h3>
+		</div>
 	<% end %>
 <% end %>
