@@ -132,14 +132,183 @@ item Show
 item new
 */
 .item-container {
-	background-color: #eaeaea;
+	background-color: #f2f2f2;
 	width: 100%;
-	text-align: center;
-	margin: auto;
+	padding-top: 1em;
+
+	p{
+		text-align: left;
+		margin-top: 25px;
+	}
+
+	.form-content{
+		display: table;
+		margin: 0 auto;
+
+	.new-item-form{
+		font-weight: 500;
+		font-size: 16px;
+		color: #4a4a4a;
+
+		.tag-input-box{
+			.tag-box{
+				width: 130px;
+				height: 32px;
+				border-radius: 3px;
+				border: 1px solid #979797;
+				font-size: 13px;
+				padding-left: 10px;
+				}
+			}
+
+			#tag-instruction{
+				font-size: 12px;
+				margin-top: 7px;
+			}
+
+			#add-tag-button{
+				border: 1px solid #419BF9;
+				border-radius: 3px;
+				background-color: #f2f2f2;
+				width: 80px;
+				height: 32px;
+				color: #419BF9;
+				font-size: 13px;
+				margin-top: 8px;
+				cursor: pointer;
+
+				&:hover{
+					background-color: #419BF9;
+					color: #fff;
+				}
+			}
+
+			label{
+				font-size: 16px;
+				margin-top: -5px;
+				margin-bottom: 5px;
+			}
+
+			.form-title{
+				margin-top: 15px;
+				margin-bottom: 8px;
+				font-weight: 400;
+			}
+
+			#item_postal_code{
+				width: 575px;
+				height: 32px;
+				border-radius: 3px;
+				border: 1px solid #979797;
+				font-size: 13px;
+				padding-left: 10px;
+			}
+
+			#item_title{
+				width: 575px;
+				height: 32px;
+				border-radius: 3px;
+				border: 1px solid #979797;
+				font-size: 13px;
+				padding-left: 10px;
+				margin-bottom: 25px;
+			}
+
+			#item_description{
+				width: 565px;
+				height: 150px;
+				border-radius: 3px;
+				border: 1px solid #979797;
+				font-size: 13px;
+				padding: 10px 10px 10px 10px;
+				margin-bottom: 25px;
+			}
+
+			#item_image{
+				width:130px;
+				height: 130px;
+				background-color: #fff;
+			}
+
+			.rent-deposit-money-sign{ /*this is the color for the dollar sign for rent/lease/deposit price box*/
+				background-color: #419bf9;
+				text-align: center;
+				border: 1px solid #979797;
+				padding:6px 10px 3px 10px;
+				float: left;
+				font-size: 18px;
+				color: #fff;
+				font-weight: 600;
+				margin-top: -6px;
+				margin-right: -1px;
+			}
+
+			#actual-price-money-sign{
+				background-color: #7ED321;
+				text-align: center;
+				border: 1px solid #979797;
+				padding:6px 10px 3px 10px;
+				float: left;
+				font-size: 18px;
+				color: #fff;
+				font-weight: 600;
+				margin-top: -6px;
+				margin-right: -1px;
+			}
+
+			#item_deposit{
+				border: 1px solid #979797;
+				width: 90px;
+				height: 25px;
+				margin-bottom: 25px;
+				margin-top: -10px;
+				padding-left: 10px;
+				font-size: 13px;
+			}
+
+			#item_prices_attributes_0_amount{
+				border: 1px solid #979797;
+				width: 90px;
+				height: 25px;
+				margin-bottom: 25px;
+				margin-top: -10px;
+				padding-left: 10px;
+				font-size: 13px;
+			}
+
+			#deposit-title{
+				margin-top: 3px;
+			}
+
+		}
+		.submit-listing{
+			width: 120px;
+			border: 1px solid #419bf9;
+			background-color: #fff;
+			border-radius: 5px;
+			font-size: 16px;
+			font-weight: 600;
+			color: #4a4a4a;
+			padding: 10px;
+			margin-top: 1em;
+			margin-bottom:10px;
+			cursor: pointer;
+
+			&:hover{
+				background-color: #419BF9;
+				color: #fff;
+			}
+		}
+
+		#small-tip{
+			font-size: 12px;
+			padding-bottom: 5em;
+		}
+	}
 }
 .list-title {
-	margin-bottom: 50px;
-	margin-top: 50px;
+	margin-bottom: 40px;
+	margin-top: 40px;
 	.item-listing {
 		color: #419bf9;
 		font-weight: 600;
