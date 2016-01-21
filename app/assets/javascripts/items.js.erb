@@ -30,38 +30,45 @@ $(document).on('ready page:load', function() {
 // Item Index Map
   var geocoder;
   var map;
-    if (document.getElementById('map-canvas')){
-    geocoder = new google.maps.Geocoder();
-    // Coordinates to center the map
-    var latlng = new google.maps.LatLng(43.6617, -79.3950); 
-    // Other options for the map, pretty much selfexplanatory
-    var mapOptions = {
-        zoom: 4,
-        center: latlng,
-        mapTypeId: google.maps.MapTypeId.ROADMAP
-    };
-      // Attach a map to the DOM Element, with the defined settings
-    map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
-    }
+  function initialize() {
+      if (document.getElementById('map-canvas')){
+      geocoder = new google.maps.Geocoder();
+      // Coordinates to center the map
+      var latlng = new google.maps.LatLng(43.6617, -79.3950); 
+      // Other options for the map, pretty much selfexplanatory
+      var mapOptions = {
+          zoom: 13,
+          center: latlng,
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+      };
+        // Attach a map to the DOM Element, with the defined settings
+      map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
 
-      <% @item = Item.pluck(:postal_code) %>
-    
-        var address = <%= @item %>;
+        var address;
+        <% @items = Item.pluck(:postal_code, :id) %>
+        address = <%= @items %>;
 
-  address.forEach(function(postcode) {
-    geocoder.geocode( { 'address': postcode}, function(results, status) {
-      if (status == google.maps.GeocoderStatus.OK) {
-        map.setCenter(results[0].geometry.location);
-        var marker = new google.maps.Marker({
-            position: results[0].geometry.location,
-            map: map,
-            draggable:true
+      address.forEach(function(postcode) {
+        geocoder.geocode( { 'address': postcode[0]}, function(results, status) {
+          if (status == google.maps.GeocoderStatus.OK) {
+            map.setCenter(results[0].geometry.location);
+            var marker = new google.maps.Marker({
+                position: results[0].geometry.location,
+                map: map,
+                url: 'items/' + postcode[1]
+            });
+
+            google.maps.event.addListener(marker, 'click', function() {
+              window.location.href = marker.url;
+            });
+          } else {
+            alert("Geocode was not successful for the following reason: " + status);
+          }
         });
-      } else {
-        alert("Geocode was not successful for the following reason: " + status);
-      }
-    });
-  });
+      });
+    }
+  }
+google.maps.event.addDomListener(window, "load", initialize);
  
 
  });
