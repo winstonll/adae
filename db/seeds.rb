@@ -31,14 +31,12 @@ user.each do |user|
 	    description: Faker::Lorem.sentence,
 	    deposit: Faker::Commerce.price,
 	    tags: Faker::Commerce.department,
-	    postal_code: Faker::Address.postcode,
 	    user_id: user.id
     )
 	 Request.create!(
 	 	title: Faker::Commerce.product_name,
 	    description: Faker::Lorem.sentence,
 	   	tags: Faker::Commerce.department,
-	    postal_code: Faker::Address.postcode,
 	    timeframe: ["Hour", "Day", "Week"].sample,
 	    user_id: user.id
 	)
