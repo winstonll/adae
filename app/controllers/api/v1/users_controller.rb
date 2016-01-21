@@ -5,7 +5,7 @@ module Api::V1
 
     before_action :authenticate_user_token!, only: [:update, :destroy]
 
-    # curl -X GET --header "ApiToken: eP2QVqKP9n-QDDhgMBeT" --header "Authorization: Dc1xPGrFNFMGXHYTVFh5" http://localhost:3000/api/v1/users
+    # curl -X GET --header "ApiToken: YB4BJGf_sb3dEqbej6LM" --header "Authorization: TxFB-K-FPxnCk9dYMh3H" http://adae.co/api/v1/users
     def index
       users = User.all
       if name = params[:name]
