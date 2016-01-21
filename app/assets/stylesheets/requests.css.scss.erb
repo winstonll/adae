@@ -1,23 +1,29 @@
 /*
 requests INDEX/SEARCH
 */
+
 #requests {
-	display: block;
-	width: 80%;
-	margin-left: 18%;
-	margin-right: 18%;
-}
+	margin-left: 15px;
 
-.request-index {
-	display: inline-block;
-	width: 70%;
-	padding: 1em;
-	background-color: #f5a623;
-	opacity: 0.75;
-	margin-bottom: 0.5em;
-	text-align: center;
-}
+	#map-canvas2{
+		position: absolute;
+		height: 580px;
+		width: 50%;
+		right: 0;
+	}
+	#request-collection {
+		width: 48%;
+		-moz-column-count: 2;
+		-webkit-column-count: 2;
+		column-count: 2;
 
+		.request-index {
+			border: 1px solid #f5a623;
+			margin-bottom: 10px;
+			display: inline-block;
+		}
+	}
+}
 /*
 request new
 */
