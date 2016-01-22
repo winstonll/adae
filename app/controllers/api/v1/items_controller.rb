@@ -11,7 +11,7 @@ module Api::V1
     def show
       item = Item.find(params[:id])
       if !item.nil?
-        render json: user
+        render json: item
       else
         render json: {
           error: "No such item; check the item id",
