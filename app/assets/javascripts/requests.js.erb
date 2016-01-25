@@ -20,13 +20,6 @@ $(document).on('ready page:load', function() {
        }
      });
 
-	 $('#new_review').on('ajax:beforeSend', function(){
-	    $('input[type=submit]').val('Saving....').attr('disabled','disabled');
-	  });
-
-	  $('#new_review').on('ajax:complete', function(){
-	    $('input[type=submit]').val('Create Review').removeAttr('disabled');
-	  });
 
  });
 

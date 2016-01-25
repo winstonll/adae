@@ -33,7 +33,7 @@ gem 'cancancan'
 gem 'carrierwave'
 gem 'rmagick'
 gem 'honeypot-captcha'
-
+gem 'gmaps4rails'
 #gem 'thin'
 gem 'puma'
 gem 'rails-api'
@@ -44,7 +44,6 @@ gem 'pg'
 
 # Authentication library
 gem 'devise'
-gem 'spring'
 
 # Use Unicorn as the app server
 # gem 'unicorn'

@@ -1,6 +1,11 @@
 <%= stylesheet_link_tag "items" %>
-<body>
+
+<body>  
 	<div id="items">
+    	<div id="map-canvas"></div>
+    	<div id="item-collection">
 		<%= render partial: "/items/items", locals: {items: @items} %>
+    	</div>
 	</div>
 </body>
+
