@@ -1,7 +1,7 @@
 class Item < ActiveRecord::Base
 	validates :title, :description, :user_id, :deposit, :tags, :postal_code,  presence: true
 	validates :title, :description, :postal_code,  uniqueness: true
-	
+
 	belongs_to :user
 
 	has_many :prices, :dependent => :destroy
@@ -13,7 +13,7 @@ class Item < ActiveRecord::Base
 	accepts_nested_attributes_for :prices, reject_if: :all_blank, allow_destroy: true
 
 
-	mount_uploader :image, ImageUploader
+	#mount_uploader :image, ImageUploader
 
 	def ratings_by_user(user)
 		ratings.find_by(user: user).score
