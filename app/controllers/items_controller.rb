@@ -50,9 +50,18 @@ class ItemsController < ApplicationController
       @tagboxes = @tagboxes[0...-1].chomp(",")
     end
 
+    uploaded_io = params[:item][:image]
+
+    @file_name = "#{SecureRandom.hex[0,5]}.png"
+    File.open(Rails.root.join('public', 'system', 'uploads', @file_name), 'wb') do |file|
+      file.write(uploaded_io.read)
+    end
+
     @item = Item.new(item_params)
     @item.user_id = current_user.id
     @item.tags = @tagboxes
+    @item.image = "#{@file_name}"
+
     if @item.save && @item.valid?
       redirect_to @item, notice: "Item Successfully Added!"
     else

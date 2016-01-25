@@ -1,9 +1,9 @@
 <%= stylesheet_link_tag "items" %>
 
 <div class="item-info">
-  <%= image_tag @item.image_url(:avatar)  %>
+  <%= image_tag "/system/uploads/" + @item.image  %>
   <div class="item-details">
-  	<p class="item-detail-title"><%= @item.title %></p> 
+  	<p class="item-detail-title"><%= @item.title %></p>
     <p class="item-detail-title">posted by <%= @item.user.full_name%></p>
   	<p class="item-detail-description"><%= @item.description %></p>
     <p class="item-detail-description"><%= @item.listing_type %></p>
@@ -15,7 +15,7 @@
 
   <div class="rating-info">
     <div class = "overall-rating">
-      Rating Score: 
+      Rating Score:
       <% if @item.ratings.present? %>
         <%= @item.total_score %>%
       <% else %>
@@ -26,12 +26,12 @@
 
     <div class = "rating-by-user">
       <% if present_or_rated?(@item) %>
-      Your Rating: 
-        <%= @item.ratings_by_user(current_user) %> 
-        <%= link_to "Edit Rating", edit_item_rating_path(@item, @rating) %> 
+      Your Rating:
+        <%= @item.ratings_by_user(current_user) %>
+        <%= link_to "Edit Rating", edit_item_rating_path(@item, @rating) %>
       <% else %>
         <%= link_to "Add a Rating", new_item_rating_path(@item) %>
-      <% end %> 
+      <% end %>
     </div>
   </div>
 
@@ -61,6 +61,4 @@
   </div>
   <% end %>
 
-</div>    
-
-
+</div>
