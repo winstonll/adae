@@ -41,9 +41,12 @@
 
     <div class="inbox">
       <% if user_signed_in? %>
-      <span class="message-space">
-        <%= image_tag "msg_pic.png", id: "sms" %>
-        <%= link_to "Messages", conversations_path %> </span>
+      <a href="<%= conversations_path %>">
+        <span class="message-space">
+          <%= image_tag "msg_pic.png", id: "sms" %>
+          Messages
+        </span>
+      </a>
       <% end %>
       </div>
     </div>
