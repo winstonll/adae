@@ -11,40 +11,37 @@
 	<% end %>
 
 <div class="request-container">
+	<div class="form-content">
 	<div class="new-request-form">
-		<p> Add some tags to better describe your request, so people can find it easier:</p>
+		<p> First, add some tags to your Shout Out, so it shows up quicker when searched:</p>
           <div class="hashtag-input-box">
             <input type="text" name="hashtag_box_1" id="hashtag-box-1" class="hashtag-box" placeholder="type here, ex. xbox">
             <input type="text" name="hashtag_box_2" id="hashtag-box-2" class="hashtag-box">
             <input type="text" name="hashtag_box_3" id="hashtag-box-3" class="hashtag-box">
             <input type="text" name="hashtag_box_4" id="hashtag-box-4" class="hashtag-box">
           </div>
-        	<input type="button" value="Add another hashtag" id="add-hashtag-button"/>
-        <p>* Maximum of 6 tags, empty boxes will not be added.</p>
+        	<input type="button" value="Add More" id="add-hashtag-button"/>
+        <div id="tag-instruction">* Maximum of 6 tags, empty boxes will not be added.</div>
 	</div>
-	
+
 	<div class="new-request-form">
 		<p> Add a location:</p>
-		<%= f.label :postal_code %>
-		<%= f.text_field :postal_code %>
-	</div>
-	
-	<div class="new-request-form">
-		<p> Description:</p>
-		<%= f.label :listing_title %>
-		<%= f.text_field :title %>
-	</div>
-	
-	<div class="new-request-form">
-		<%= f.label :summary %>
-		<%= f.text_area :description %>
+		<p class="form-title">Postal Code</p>
+		<%= f.text_field :postal_code, :placeholder => "Type your postal code so people nearby are more likely to discover your Shout Out" %>
 	</div>
 
-    <div class="new-request-form">
-        <%= f.label :timeframe %>
-        <%= f.select(:timeframe, [["Hour"],["Day"],["Week"]], :prompt => 'Select') %>
-    </div>
+	<div class="new-request-form">
+		<p> Title:</p>
+		<%= f.text_field :title, :placeholder => "Give your Shout Out a concise and catchy headline!" %>
+	</div>
 
-	<%= f.submit %>
+	<div class="new-request-form">
+		<p> Summary </p>
+		<%= f.text_area :description, :placeholder => "Briefly describe what you are looking for, make sure to indicate if you want to rent, buy, lease, or looking for a service (ex. Tutoring). Mention when you would like to have the item/service." %>
+	</div>
+
+	<%= f.submit 'Submit', :class => 'submit-shoutout' %>
+	<div id="small-tip"> you can edit/update your listing at anytime after you submit.</div>
 <%end%>
+	</div>
 </div>

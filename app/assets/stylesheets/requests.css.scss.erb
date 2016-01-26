@@ -29,17 +29,140 @@ request new
 */
 .request-title {
 	margin-bottom: 40px;
-	
+	margin-top: 40px;
+
 	.request-listing {
 		color: #f5a623;
 		font-weight: 600;
 	}
+
+	.shoutout-description{
+		font-size: 16px;
+		font-weight: 400;
+		color: #4a4a4a;
+	}
 }
 
 .request-container {
-	background-color: #eaeaea;
-	width: 95%;
-	text-align: center;
-	margin: auto;
+	background-color: #f2f2f2;
+	width: 100%;
+	padding-top: 1em;
+	color: #4a4a4a;
 
+	p{
+		text-align: left;
+		margin-top: 25px;
+	}
+
+	.form-content{
+		display: table;
+		margin: 0 auto;
+
+	.new-request-form{
+		font-weight: 500;
+		font-size: 16px;
+		color: #4a4a4a;
+
+		.hashtag-input-box{
+			.hashtag-box{
+				width: 130px;
+				height: 32px;
+				border-radius: 3px;
+				border: 1px solid #979797;
+				font-size: 13px;
+				padding-left: 10px;
+				}
+			}
+
+			#tag-instruction{
+				font-size: 12px;
+				margin-top: 7px;
+			}
+
+			#add-hashtag-button{
+				border: 1px solid #419BF9;
+				border-radius: 3px;
+				background-color: #f2f2f2;
+				width: 80px;
+				height: 32px;
+				color: #419BF9;
+				font-size: 13px;
+				margin-top: 8px;
+				cursor: pointer;
+
+				&:hover{
+					background-color: #419BF9;
+					color: #fff;
+				}
+			}
+
+			label{
+				font-size: 16px;
+				margin-top: -5px;
+				margin-bottom: 5px;
+			}
+
+			.form-title{
+				margin-top: 15px;
+				margin-bottom: 8px;
+				font-weight: 400;
+			}
+
+			#request_postal_code{
+				width: 575px;
+				height: 32px;
+				border-radius: 3px;
+				border: 1px solid #979797;
+				font-size: 13px;
+				padding-left: 10px;
+			}
+
+			#request_title{
+				width: 575px;
+				height: 32px;
+				border-radius: 3px;
+				border: 1px solid #979797;
+				font-size: 13px;
+				padding-left: 10px;
+				margin-bottom: 5px;
+				margin-top: -5px;
+			}
+
+			#request_description{
+				width: 565px;
+				height: 150px;
+				border-radius: 3px;
+				border: 1px solid #979797;
+				font-size: 13px;
+				padding: 10px 10px 10px 10px;
+				margin-bottom: 25px;
+				margin-top: -5px;
+			}
+
+	}
+	.submit-shoutout{
+		width: 120px;
+		border: 1px solid #f5a623;
+		background-color: #fff;
+		border-radius: 5px;
+		font-size: 16px;
+		font-weight: 600;
+		color: #4a4a4a;
+		padding: 10px;
+		margin-top: 1em;
+		margin-bottom:10px;
+		cursor: pointer;
+
+		&:hover{
+			background-color: #f5a623;
+			color: #fff;
+		}
+	}
+
+	#small-tip{
+		font-size: 12px;
+		padding-bottom: 5em;
+	}
+
+	}
 }
