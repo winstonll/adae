@@ -10,9 +10,9 @@ module Api::V1
     # curl -X GET --header "ApiToken: eP2QVqKP9n-QDDhgMBeT"  http://localhost:3000/api/v1/users
 
     def index
-      users = User.all
+      users = User.all.page params[:page]
       if name = params[:name]
-        users = User.where(name: name)
+        users = User.where(name: name).page params[:page]
       end
       render json: users, status: :ok, :except => [:auth_token]
     end

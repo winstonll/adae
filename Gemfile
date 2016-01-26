@@ -38,6 +38,8 @@ gem 'gmaps4rails'
 gem 'puma'
 gem 'rails-api'
 
+gem 'kaminari'
+
 #gem 'devise_token_auth'
 gem 'omniauth'
 gem 'pg'

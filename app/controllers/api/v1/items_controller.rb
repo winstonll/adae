@@ -1,9 +1,9 @@
 module Api::V1
   class ItemsController < BaseController
     def index
-      item = Item.all
+      item = Item.all.page params[:page]
       if title = params[:title]
-        item = Item.where(title: title)
+        item = Item.where(title: title).page params[:page]
       end
       render json: item, status: :ok
     end
