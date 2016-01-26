@@ -27,17 +27,18 @@
 	<div class="new-request-form">
 		<p> Add a location:</p>
 		<p class="form-title">Postal Code</p>
-		<%= f.text_field :postal_code, :placeholder => "Type your postal code so people nearby are more likely to discover your Shout Out" %>
+		<%= f.text_field :postal_code, :maxlength=> "6", :placeholder => "ex. M5V3A6, This way people nearby are more likely to discover your Shout Out" %>
 	</div>
 
 	<div class="new-request-form">
 		<p> Title:</p>
-		<%= f.text_field :title, :placeholder => "Give your Shout Out a concise and catchy headline!" %>
+		<%= f.text_field :title, :maxlength=> "100", :placeholder => "Give your Shout Out a concise and catchy headline!" %>
 	</div>
 
 	<div class="new-request-form">
 		<p> Summary </p>
-		<%= f.text_area :description, :placeholder => "Briefly describe what you are looking for, make sure to indicate if you want to rent, buy, lease, or looking for a service (ex. Tutoring). Mention when you would like to have the item/service." %>
+		<%= f.text_area :description, :maxlength=> "350", :placeholder => "Briefly describe what you are looking for, make sure to indicate if you want to rent, buy, lease, or looking for a service (ex. Tutoring). Mention when you would like to have the item/service." %>
+		<div class="character-count"></div>
 	</div>
 
 	<%= f.submit 'Submit', :class => 'submit-shoutout' %>
