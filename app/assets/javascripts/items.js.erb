@@ -27,6 +27,19 @@ $(document).on('ready page:load', function() {
 	  $('#new_review').on('ajax:complete', function(){
 	    $('input[type=submit]').val('Create Review').removeAttr('disabled');
 	  });
+
+    function updateCountdown() {
+        // 140 is the max message length
+        var remaining = 350 - jQuery('#item_description').val().length;
+        jQuery('.countdown').text(remaining + ' characters remaining.');
+      }
+
+        jQuery(document).on('page:load', function() {
+        updateCountdown();
+        $('#item_description').change(updateCountdown);
+        $('#item_description').keyup(updateCountdown);
+      });
+
 // Item Index Map
   var geocoder;
   var map;
