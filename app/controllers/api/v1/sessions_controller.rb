@@ -15,6 +15,8 @@ module Api::V1
     end
 
     # curl -X POST -d 'sessions[email]=testing@hotmail.com&sessions[password]=1234567890' http://localhost:3000/api/v1/sessions
+    #curl -X POST --header "ApiToken: YB4BJGf_sb3dEqbej6LM" -d 'sessions[email]=winston@adae.co&sessions[password]=183NpQ6KoRo36' https://adae.co/api/v1/sessions
+    #TxFB-K-FPxnCk9dYMh3H
     def create
       user_password = params[:sessions][:password]
       user_email = params[:sessions][:email]
@@ -26,7 +28,7 @@ module Api::V1
         #sign_in user, bypass: true
         sign_in user, store: false
 
-        user.generate_authentication_token
+        #user.generate_authentication_token
         user.save
         render json: user, status: 200#, location: [:api, user]
       else
