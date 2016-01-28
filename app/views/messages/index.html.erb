@@ -1,25 +1,27 @@
+<%= stylesheet_link_tag "chat" %>
 <% if @over_ten %>
   <%= link_to 'Show Previous', '?m=all' %>
 <% end %>
-
-<div class="ui segment">
-  <% @messages.each do |message| %>
-    <% if message.body %>
-      <% user = User.find(message.user_id) %>
-    <div class="item">
-      <div class="content">
-        <div class="header"><strong><%= user.name %></strong>     <%= message.message_time %></div>
-        <div class="list">
-          <div class="item">
-            <i class="right triangle icon"></i>
-             <%= message.body %>
+<div class="username"> Conversation with "Username"</div> <!-- "Username" is only a placeholder, need to grab actual user's name -->
+<div class="content">
+  <div class="ui segment">
+    <% @messages.each do |message| %>
+      <% if message.body %>
+        <% user = User.find(message.user_id) %>
+      <div class="item">
+        <div class="content">
+          <div class="header"><strong><%= user.name %></strong>     <%= message.message_time %></div>
+          <div class="list">
+            <div class="item">
+              <i class="right triangle icon"></i>
+               <%= message.body %>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+      <% end %>
     <% end %>
-  <% end %>
-</div>
+  </div>
 
 <%= form_for [@conversation, @message], html: {class: "ui reply form"} do |f| %>
   <div class="field">
@@ -30,3 +32,4 @@
     <%= f.submit "Add Reply", class: "ui blue labeled submit icon button" %>
   </div>
 <% end %>
+</div>
