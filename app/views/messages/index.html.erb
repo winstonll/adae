@@ -9,12 +9,10 @@
       <% if message.body %>
         <% user = User.find(message.user_id) %>
       <div class="chat-bubble">
-        <div class="bubble-content">
             <div class="bubble-text">
               <i class="right triangle icon"></i>
                <%= message.body %>
-            </div>      
-        </div>
+            </div>
       </div>
       <div class="chat-time"><strong><%= user.name %></strong>     <%= message.message_time %></div>
       <% end %>
