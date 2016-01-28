@@ -9,21 +9,67 @@ body{
   color: #4a4a4a;
 }
 
-.content{
+.chat-content{
   display: table;
   margin: 0 auto;
   background-color: #fff;
   border: 1px solid #979797;
   border-radius: 5px;
+  width: 350px;
+  margin-bottom: 3em;
 
-  #message_body{
-    border-style: solid none none none;
-    border-top: 1px solid #979797;
-    border-radius: 4px;
-    width: 400px;
+  .chat-bubble{
+    background-color: #419BF9;
+    color: #fff;
     height: 50px;
-    font-size: 13px;
     padding: 15px;
+    margin-top: 10px;
+    font-size: 14px;
+    border-radius: 10px;
+
+    .chat-time{
+      font-size: 12px !important;
+    }
   }
 
+  .reply-field{
+    display: table;
+    margin: 0 auto;
+    background-color: #fff;
+    border-radius: 5px;
+    padding: 10px;
+
+    #message_body{
+      border-style: solid none none none;
+      border-top: 1px solid #eaeaea;
+      width: 350px;
+      height: 40px;
+      font-size: 13px;
+      padding: 15px;
+
+    }
+    input:focus, textarea {
+      outline: none !important;
+      resize: none;
+      }
+
+    .reply_btn{
+      border-radius: 2px;
+      cursor: pointer;
+      background-color: #419BF9;
+      border: none;
+      color: #fff;
+      padding: 5px;
+      width: 70px;
+      height: 30px;
+      font-size: 14px;
+      float: right;
+      margin: 10px 10px;
+      &:hover{
+        background-color: #fff;
+        color: #419BF9;
+        border: 1px solid #419BF9;
+      }
+    }
+  }
 }

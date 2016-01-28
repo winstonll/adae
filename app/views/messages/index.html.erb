@@ -3,18 +3,18 @@
   <%= link_to 'Show Previous', '?m=all' %>
 <% end %>
 <div class="username"> Conversation with "Username"</div> <!-- "Username" is only a placeholder, need to grab actual user's name -->
-<div class="content">
+<div class="chat-content">
   <div class="ui segment">
     <% @messages.each do |message| %>
       <% if message.body %>
         <% user = User.find(message.user_id) %>
-      <div class="item">
+      <div class="chat-bubble">
         <div class="content">
-          <div class="header"><strong><%= user.name %></strong>     <%= message.message_time %></div>
           <div class="list">
-            <div class="item">
+            <div class="bubble">
               <i class="right triangle icon"></i>
                <%= message.body %>
+               <div class="chat-time"><strong><%= user.name %></strong>     <%= message.message_time %></div>
             </div>
           </div>
         </div>
@@ -23,13 +23,13 @@
     <% end %>
   </div>
 
-<%= form_for [@conversation, @message], html: {class: "ui reply form"} do |f| %>
-  <div class="field">
-    <%= f.text_area :body, class: "form-control" %>
+  <%= form_for [@conversation, @message] do |f| %>
+  <div class="reply-field"
+    <div class="field">
+      <%= f.text_area :body, :placeholder => "Add a personal message here", class: "form-control" %>
+      <%= f.text_field :user_id, value: current_user.id, type: "hidden"%>
+      <%= f.submit "Send", class: "reply_btn" %>
+    </div>
+  <% end %>
   </div>
-  <%= f.text_field :user_id, value: current_user.id, type: "hidden" %>
-  <div>
-    <%= f.submit "Add Reply", class: "ui blue labeled submit icon button" %>
-  </div>
-<% end %>
 </div>
