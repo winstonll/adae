@@ -2,28 +2,88 @@ body{
   background-color: #f2f2f2;
 }
 .username{
-  margin-top: 1em;
-  margin-bottom: 2em;
+  margin-top: 1em !important;
+  margin-bottom: 1em !important;
   font-size: 18px;
   font-weight: 600;
   color: #4a4a4a;
+  display: table;
+  margin: 0 auto;
 }
 
-.content{
+.chat-content{
   display: table;
   margin: 0 auto;
   background-color: #fff;
-  border: 1px solid #979797;
-  border-radius: 5px;
+  border-radius: 5px 5px 0px 0px;
+  width: 400px;
+  height: 150px;
 
-  #message_body{
-    border-style: solid none none none;
-    border-top: 1px solid #979797;
-    border-radius: 4px;
-    width: 400px;
-    height: 50px;
-    font-size: 13px;
-    padding: 15px;
+  .chat-bubble{
+    background-color: #419BF9;
+    color: #fff;
+    margin-top: 10px;
+    font-size: 14px;
+    border-radius: 10px;
+    float:right;
+    clear:both;
+    margin-right: 5px;
+    margin-left: 25px;
+
+    .bubble-text{
+      padding: 10px;
+      text-align: left;
+      line-height: normal;
+    }
   }
-
+  .chat-time{
+    font-size: 10px !important;
+    color: #979797;
+    margin-top: 3px;
+    margin-right: 10px;
+    float:right;
+    clear: both;
+  }
 }
+  .reply-field{
+    display: table;
+    margin: 0 auto;
+    background-color: #fff;
+    border-radius: 0px 0px 5px 5px;
+    padding: 10px;
+    width: 350px;
+    margin-bottom: 3em;
+
+    #message_body{
+      border-style: solid none none none;
+      border-top: 1px solid #eaeaea;
+      width: 350px;
+      height: 40px;
+      font-size: 13px;
+      padding: 15px;
+
+    }
+    input:focus, textarea {
+      outline: none !important;
+      resize: none;
+      }
+
+    .reply_btn{
+      border-radius: 2px;
+      cursor: pointer;
+      background-color: #419BF9;
+      border: none;
+      color: #fff;
+      padding: 4px;
+      width: 70px;
+      height: 31px;
+      font-size: 14px;
+      float: right;
+      margin: 5px 10px;
+      &:hover{
+        background-color: #fff;
+        color: #419BF9;
+        border: 1px solid #419BF9;
+      }
+    }
+  }
