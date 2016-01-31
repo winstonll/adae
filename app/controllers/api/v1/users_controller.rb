@@ -5,7 +5,7 @@ module Api::V1
 
     before_action :authenticate_user_token!, only: [:update, :destroy]
 
-    # curl -X GET --header "ApiToken: YB4BJGf_sb3dEqbej6LM" https://adae.co/api/v1/users
+    # curl -X GET --header "ApiToken: H4LvhkAw3vooYosNS98S" https://adae.co/api/v1/users
 
     # curl -X GET --header "ApiToken: eP2QVqKP9n-QDDhgMBeT"  http://localhost:3000/api/v1/users
 
@@ -14,7 +14,7 @@ module Api::V1
       if name = params[:name]
         users = User.where(name: name).page params[:page]
       end
-      render json: users, status: :ok, :except => [:auth_token]
+      render json: users, status: :ok, :except => [:auth_token, :api_token]
     end
 
     # GET show specific user
@@ -22,7 +22,7 @@ module Api::V1
       user = User.find(params[:id])
 
       if !user.nil?
-        render json: user, status: :ok, :except => [:auth_token]
+        render json: user, status: :ok, :except => [:auth_token, :api_token]
       else
         render json: {
           error: "No such user; check the user id",
