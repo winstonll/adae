@@ -9,6 +9,7 @@ class Item < ActiveRecord::Base
 	has_many :ratings, :dependent => :destroy
 	has_many :users_that_reviewed_this, through: :reviews, source: :user
 	has_many :users_that_rated_this, through: :ratings, source: :user
+	has_many :transactions, :dependent => :destroy
 
 	accepts_nested_attributes_for :prices, reject_if: :all_blank, allow_destroy: true
 
