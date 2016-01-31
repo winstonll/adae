@@ -6,21 +6,28 @@ module Api::V1
         transaction = Transaction.where(item_id: item_id)
       end
 
-
       render json: transaction, status: :ok
     end
 
     def show
-      #transaction = Transaction.find(params[:id])
       transaction = Transaction.where("transactions.seller_id = #{params[:id]} OR transactions.buyer_id = #{params[:id]}")
 
       if !transaction.nil?
         item = []
+        user = []
+
         transaction.each do |t|
           item.push(Item.where(id: t.item_id).first)
+          if t.buyer_id == params[:id].to_i
+            puts("seller")
+            user.push(User.where(id: t.seller_id).first)
+          else
+            puts("buyer")
+            user.push(User.where(id: t.buyer_id).first)
+          end
         end
 
-        render :json => {:transaction => transaction, :item => item}
+        render :json => {:transaction => transaction, :item => item, :user => user}
       else
         render json: {
           error: "No such transaction; check the user_id",
