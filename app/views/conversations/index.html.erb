@@ -1,5 +1,5 @@
 <%= stylesheet_link_tag "conversations" %>
-<div class="ui segment">
+<!--<div class="ui segment">
   <h3>Mailbox</h3>
   <div class="ui list">
     <div class="item">
@@ -15,10 +15,9 @@
       <% end %>
     </div>
   </div>
-</div>
+</div>-->
 
-<div class="ui segment">
-  <h3>All Users</h3>
+<div class="message-list">
   <div class="ui list">
     <% @users.each do |user| %>
       <% if user.id != current_user.id %>
