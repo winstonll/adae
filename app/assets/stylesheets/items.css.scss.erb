@@ -13,6 +13,7 @@ itemS INDEX/SEARCH
 	}
 	#item-collection {
 		width: 48%;
+		margin-top: 10px;
 		-moz-column-count: 2;
 		-webkit-column-count: 2;
 		column-count: 2;
@@ -21,6 +22,7 @@ itemS INDEX/SEARCH
 			border: 1px solid #419bf9;
 			margin-bottom: 10px;
 			display: inline-block;
+			height: 190px;
 		}
 	}
 }
@@ -28,17 +30,20 @@ itemS INDEX/SEARCH
 /*
 item Show
 */
-
+body{
+	background-color: #f2f2f2;
+}
 .item-info {
 	width: 95%;
 	margin: auto;
 
 	img {
 		display: inline-block;
+		height: auto;
+		width: 400px;
 	}
 
 	.item-details {
-		display: inline-block;
 		width: 35%;
 		vertical-align: top;
 		margin-left: 3em ;
@@ -321,8 +326,8 @@ item new
 	}
 }
 .list-title {
-	margin-bottom: 40px;
-	margin-top: 40px;
+	padding: 2em;
+	background-color: #fff;
 	.item-listing {
 		color: #419bf9;
 		font-weight: 600;
