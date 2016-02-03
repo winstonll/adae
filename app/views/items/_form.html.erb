@@ -54,7 +54,8 @@
 
 		<div class="new-item-form">
 			<%= f.label :image  %>
-			<%= f.file_field :image  %>
+			<%#= f.file_field :image  %>
+			<%= f.file_field :images %>
 		</div>
 
 		<%= f.fields_for :prices, @price do |p| %>
