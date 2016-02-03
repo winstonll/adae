@@ -13,6 +13,7 @@ itemS INDEX/SEARCH
 	}
 	#item-collection {
 		width: 48%;
+		margin-top: 10px;
 		-moz-column-count: 2;
 		-webkit-column-count: 2;
 		column-count: 2;
@@ -21,6 +22,7 @@ itemS INDEX/SEARCH
 			border: 1px solid #419bf9;
 			margin-bottom: 10px;
 			display: inline-block;
+			height: 190px;
 		}
 	}
 }
@@ -28,17 +30,20 @@ itemS INDEX/SEARCH
 /*
 item Show
 */
-
+body{
+	background-color: #f2f2f2;
+}
 .item-info {
 	width: 95%;
 	margin: auto;
 
 	img {
 		display: inline-block;
+		height: auto;
+		width: 400px;
 	}
 
 	.item-details {
-		display: inline-block;
 		width: 35%;
 		vertical-align: top;
 		margin-left: 3em ;
@@ -91,18 +96,47 @@ item Show
 	margin-bottom: 0.75em;
 }
 
-#review-list {
-	display: block;
-	width: 50%;
+.review-list {
+	width: 100%;
+	background-color: #fff;
 	margin: 0 auto;
+	padding-bottom: 2em;
+
+
+	.item-reviews{
+		font-size: 18px;
+		font-weight: 500;
+		display: table;
+		margin: 0 auto;
+		color: #4a4a4a;
+		padding-top: 2em;
+		text-transform: none;
+	}
+
+	.divider{
+		border-top: 1px solid #DCDCDC;
+		width: 100%;
+		margin: 0 auto;
+		margin-top: 30px;
+	}
 
 	.review {
-		display: block;
-		padding: 1em;
-		background-color: #419bf9;
-		opacity: 0.75;
-		margin-bottom: 0.5em;
-		text-align: center;
+		display: table;
+		margin: 0 auto;
+		padding-top: 1em;
+		text-align: left;
+		width: 38%;
+		color: #4a4a4a;
+
+		p{
+			text-align: left;
+			line-height: normal;
+		}
+
+		.poster{
+			font-size: 16px;
+      color: #9B9B9B;
+		}
 	}
 }
 
@@ -321,8 +355,8 @@ item new
 	}
 }
 .list-title {
-	margin-bottom: 40px;
-	margin-top: 40px;
+	padding: 2em;
+	background-color: #fff;
 	.item-listing {
 		color: #419bf9;
 		font-weight: 600;

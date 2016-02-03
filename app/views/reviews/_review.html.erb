@@ -7,12 +7,13 @@
 
     <div class="poster">
       <% if review.user != nil %>
-        <em> Posted by <%= review.user.name %> Added on: <%= review.created_at %></em>
+         Posted by <span style="font-weight: 600;"><%= review.user.name %></span> on: <%= review.created_at %>
       <% else %>
-        <em> Posted by <%= review.name %> Added on: <%= review.created_at %> </em>
+        Posted by <span style="font-weight: 600;"><%= review.name %></span>on: <%= review.created_at %>
       <% end %>
     </div>
-    
+    <div class="divider"></div>
+
     <br>
 
   </div>

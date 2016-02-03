@@ -36,11 +36,12 @@
   </div>
 
 
-<h3 class="item-reviews">Reviews for <%= @item.title %> </h3>
 
-<div id="review-list">
+<div class="review-list">
+  <div class="item-reviews">Reviews for <%= @item.title %> </div>
   <%= render @item.reviews %>
 </div>
+
 
 <h3 class="create-review">Create a New Review</h3>
 <%= form_for([@item, @review],:remote => true) do |f| %>

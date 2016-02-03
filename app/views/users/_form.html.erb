@@ -10,19 +10,20 @@
 	    </div>
 	<% end %>
 
+<div class="field-content">
 	<div class = 'field'>
-		<%= f.label :name %>
+		<p> First Name </p>
 		<%= f.text_field :name %>
 	</div>
-	
+
 	<div class ='field'>
-		<%= f.label :surname %>
-		<%= f.text_field :surname %>
+    <p> Last Name </p>
+  <%= f.text_field :surname %>
 	</div>
 
 	<div class="field">
 		<%= f.label :phone_number %>
-		<%= f.telephone_field :phone_number, :size => 10, :maxlength => 10  %> 
+		<%= f.telephone_field :phone_number, :size => 10, :maxlength => 10  %>
 	</div>
 
 	<div class ='field'>
@@ -38,6 +39,7 @@
 		<%= f.password_field :password_confirmation %>
 	</div>
 	<div class ='field'>
-		<%= f.submit %>
+    <%= f.submit 'Update Profile', :class => 'update-button' %>
 	</div>
+</div>
 <% end %>
