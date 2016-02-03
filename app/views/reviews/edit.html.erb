@@ -1,4 +1,7 @@
-<h4 class= "edit-review-heading">Edit Your Review</h4>
+<%= stylesheet_link_tag "reviews" %>
+
+<h1 class= "edit-review-heading">Edit Your Review</h1>
+<div class="form-content">
 <%= form_for([@item, @review]) do |f| %>
     <% if @review.errors.any? %>
       <div id="error_explanation">
@@ -13,10 +16,11 @@
     <% end %>
 
     <div class="field">
-      <%= f.label :comment %><br />
+      <p> What you wrote:</p>
       <%= f.text_area :comment %>
     </div>
     <div class="actions">
-      <%= f.submit %>
+      <%= f.submit 'Update Review', :class => 'update-button' %>
     </div>
   <% end %>
+</div>
