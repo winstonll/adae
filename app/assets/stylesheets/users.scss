@@ -9,13 +9,24 @@ body{
   background-color: #fff;
   width: 100%;
   color: #4a4a4a;
-  padding-bottom: 2em;
+  padding-bottom: 3em;
+
+  .account-heading{
+    font-weight: 500;
+    color: #4a4a4a;
+    text-align: center;
+  }
 
   .user-review{
     width: 45%;
     display: table;
     margin: 0 auto;
     text-align: left;
+
+    .review-title{
+      font-weight: 500;
+      color: #419bf9;
+    }
 
     p{
       text-align: left;
@@ -27,5 +38,6 @@ body{
     border-top: 1px solid #DCDCDC;
     width: 650px;
     margin: 0 auto;
+    margin-bottom: 20px;
   }
 }

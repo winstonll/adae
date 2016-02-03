@@ -40,11 +40,11 @@
 </div>
 
 <div class= "user-reviews">
-	<h4 class= "account-heading"> Your reviews </h4>
+	<h4 class= "account-heading"> Your Reviews </h4>
 	<% @user.reviews.each do |review| %>
 	<li class="user-review">
-		<p>For <%=link_to(review.item.title, item_path(review.item)) %>
-			your review is:
+		<p class="review-title">Listing Name: <%=link_to(review.item.title, item_path(review.item)) %></p>
+		<p>
 			<%=review.comment %>
 			<p class="edit-review"><%= link_to 'Edit Review', edit_item_review_path(review.item, review) %></p>
 			<p class ="delete-review"><%= link_to 'Delete Review', item_review_path(review.item, review), method: :delete, data: {confirm: "Are you sure?"}  %></p>
