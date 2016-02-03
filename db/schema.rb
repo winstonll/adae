@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160203222009) do
+ActiveRecord::Schema.define(version: 20160128164222) do
 
   create_table "conversations", force: :cascade do |t|
     t.integer  "sender_id"
@@ -28,13 +28,9 @@ ActiveRecord::Schema.define(version: 20160203222009) do
     t.integer  "deposit"
     t.string   "listing_type"
     t.string   "tags"
-    t.datetime "created_at",          null: false
-    t.datetime "updated_at",          null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
     t.string   "postal_code"
-    t.string   "images_file_name"
-    t.string   "images_content_type"
-    t.integer  "images_file_size"
-    t.datetime "images_updated_at"
   end
 
   create_table "locations", force: :cascade do |t|
