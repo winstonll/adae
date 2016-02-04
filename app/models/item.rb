@@ -13,6 +13,12 @@ class Item < ActiveRecord::Base
 
 	accepts_nested_attributes_for :prices, reject_if: :all_blank, allow_destroy: true
 
+	validates :photo,
+    attachment_content_type: { content_type: /\Aimage\/.*\Z/ },
+    attachment_size: { less_than: 5.megabytes }
+
+	has_attached_file :photo, styles: { small: "64x64", med: "100x100", large: "200x200" }
+
 	#has_attached_file :images, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/images/:style/missing.png"
   #validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
 
@@ -25,11 +31,4 @@ class Item < ActiveRecord::Base
 	def total_score
 		(self.ratings.sum(:score) / (5 * ratings.count(:user_id).to_f) * 100).round(0)
 	end
-
-	private
-
-	def user_params
-  	params.require(:item).permit(:images)
-	end
-
 end
