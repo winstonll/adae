@@ -19,10 +19,8 @@ module Api::V1
         transaction.each do |t|
           item.push(Item.where(id: t.item_id).first)
           if t.buyer_id == params[:id].to_i
-            puts("seller")
             user.push(User.where(id: t.seller_id).first)
           else
-            puts("buyer")
             user.push(User.where(id: t.buyer_id).first)
           end
         end

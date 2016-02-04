@@ -48,7 +48,7 @@ module Api::V1
 
       def item_params
         params.require(:items).permit(:title, :description, :user_id, :deposit,
-        :type, :tags )
+        :type, :tags)
       end
   end
 end
