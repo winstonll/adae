@@ -41,30 +41,28 @@
   </div>
 
 
+  <%= form_for([@item, @review],:remote => true) do |f| %>
+
 
 <div class="review-list">
-  <div class="item-reviews">Reviews for <%= @item.title %> </div>
-  <%= render @item.reviews %>
-</div>
+    <div class="create_review-fields">
+      <div id='review-errors'>
+        <% if @review.errors.any? %>
+        <%= render partial: 'reviews/review_errors' %>
+        <% end %>
+      </div>
 
-
-<h3 class="create-review">Create a New Review</h3>
-<%= form_for([@item, @review],:remote => true) do |f| %>
-
-<div class="create_review-fields">
-  <div id='review-errors'>
-    <% if @review.errors.any? %>
-      <%= render partial: 'reviews/review_errors' %>
-    <% end %>
-  </div>
-
-  <div class="field">
-    <%= f.label :comment %><br />
-    <%= f.text_area :comment %>
-  </div>
-  <div class="review-submit">
-    <%= f.submit %>
-  </div>
-  <% end %>
-
+      <div class="field">
+        <%= f.label :name, 'Write a Review'%>
+        <%= f.text_area :comment, :placeholder => 'Say something about this listing'%>
+      </div>
+      <div class="review-submit">
+        <%= f.submit 'Create Review', :class => 'review-button' %>
+      </div>
+      <% end %>
+    </div>
+    <div class="review-content">
+      <div class="item-reviews">Reviews for <em><%= @item.title %> </em></div>
+      <%= render @item.reviews %>
+    </div>
 </div>
