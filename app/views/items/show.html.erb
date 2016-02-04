@@ -63,6 +63,6 @@
     </div>
     <div class="review-content">
       <div class="item-reviews">Reviews for <em><%= @item.title %> </em></div>
-      <%= render @item.reviews %>
+      <%= render @item.reviews.order("created_at DESC") %>
     </div>
 </div>
