@@ -99,18 +99,47 @@ body{
 	margin-bottom: 0.75em;
 }
 
-#review-list {
-	display: block;
-	width: 50%;
+.review-list {
+	width: 100%;
+	background-color: #fff;
 	margin: 0 auto;
+	padding-bottom: 2em;
+
+
+	.item-reviews{
+		font-size: 18px;
+		font-weight: 500;
+		display: table;
+		margin: 0 auto;
+		color: #4a4a4a;
+		padding-top: 2em;
+		text-transform: none;
+	}
+
+	.divider{
+		border-top: 1px solid #DCDCDC;
+		width: 100%;
+		margin: 0 auto;
+		margin-top: 30px;
+	}
 
 	.review {
-		display: block;
-		padding: 1em;
-		background-color: #419bf9;
-		opacity: 0.75;
-		margin-bottom: 0.5em;
-		text-align: center;
+		display: table;
+		margin: 0 auto;
+		padding-top: 1em;
+		text-align: left;
+		width: 38%;
+		color: #4a4a4a;
+
+		p{
+			text-align: left;
+			line-height: normal;
+		}
+
+		.poster{
+			font-size: 16px;
+      color: #9B9B9B;
+		}
 	}
 }
 

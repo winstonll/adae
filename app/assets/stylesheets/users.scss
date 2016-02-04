@@ -18,10 +18,13 @@ body{
   }
 
   .user-review{
-    width: 40%;
+    width: 38%;
     display: table;
     margin: 0 auto;
     text-align: left;
+
+
+
 
     .review-title{
       font-weight: 500;
@@ -35,9 +38,17 @@ body{
       line-height: normal;
     }
 
-    #edit-delete-buttons{
+    .poster{
+      font-size: 16px;
+      color: #9B9B9B;
+      margin-bottom: 5px;
+    }
+
+    .edit-delete-buttons{
       float:right;
       margin-bottom: 5px;
+      display: inline-block;
+
     .edit-review{
       border: 1px solid #419bf9;
       border-radius: 5px;
@@ -56,19 +67,19 @@ body{
       color: #FF6678;
       font-size: 14px;
       padding: 6px 7px 5px;
-      margin-left: -20px;
+      margin-left: -23px;
       &:hover{
         background-color: #FF6678;
         color: #fff;
       }
       }
     }
-  }
-  .divider{
-    border-top: 1px solid #DCDCDC;
-    width: 578px;
-    margin: 0 auto;
-    margin-bottom: 20px;
+
+    .divider{
+      border-top: 1px solid #DCDCDC;
+      width: 100%;
+      margin-top: 55px;
+    }
   }
 }
 /*User Review Section Ends here */

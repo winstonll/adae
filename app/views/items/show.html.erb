@@ -1,7 +1,7 @@
 <%= stylesheet_link_tag "items" %>
 
 <div class="item-info" id="itemInfo">
-  <%= image_tag "/system/uploads/" + @item.image  %>
+  <%= link_to image_tag(@item.photo.url(:med)), @item.photo.url %>
   <div class="item-details">
   	<h4 class="item-detail-title" id="title"><%= @item.title %></h4>
     <span><%= hidden_field_tag 'id', @item.id%></span>
@@ -41,11 +41,12 @@
   </div>
 
 
-<h3 class="item-reviews">Reviews for <%= @item.title %> </h3>
 
-<div id="review-list">
+<div class="review-list">
+  <div class="item-reviews">Reviews for <%= @item.title %> </div>
   <%= render @item.reviews %>
 </div>
+
 
 <h3 class="create-review">Create a New Review</h3>
 <%= form_for([@item, @review],:remote => true) do |f| %>
