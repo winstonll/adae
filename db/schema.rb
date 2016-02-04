@@ -11,9 +11,6 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema.define(version: 20160204035405) do
-=======
 ActiveRecord::Schema.define(version: 20160204000358) do
 
   create_table "carts", force: :cascade do |t|
@@ -24,7 +21,6 @@ ActiveRecord::Schema.define(version: 20160204000358) do
     t.datetime "created_at",                         null: false
     t.datetime "updated_at",                         null: false
   end
->>>>>>> origin/dev
 
   create_table "conversations", force: :cascade do |t|
     t.integer  "sender_id"
@@ -44,14 +40,11 @@ ActiveRecord::Schema.define(version: 20160204000358) do
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
     t.string   "postal_code"
-<<<<<<< HEAD
     t.string   "photo_file_name"
     t.string   "photo_content_type"
     t.integer  "photo_file_size"
     t.datetime "photo_updated_at"
     t.string   "photo_url"
-=======
->>>>>>> origin/dev
   end
 
   create_table "locations", force: :cascade do |t|
