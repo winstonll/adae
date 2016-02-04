@@ -1,7 +1,8 @@
 <%= stylesheet_link_tag "items" %>
 
 <div class="item-info">
-  <%= image_tag "/system/uploads/" + @item.image  %>
+  <%#= image_tag "/system/uploads/" + @item.image  %>
+  <%= link_to image_tag(@item.photo.url(:med)), @item.photo.url %>
   <div class="item-details">
   	<p class="item-detail-title"><%= @item.title %></p>
     <p class="item-detail-title">posted by <%= @item.user.full_name%></p>
