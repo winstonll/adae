@@ -22,6 +22,9 @@ gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.0'
 
+gem 'will_paginate'
+gem 'will_paginate-bootstrap'
+
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
 
@@ -29,6 +32,8 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # gem 'bcrypt', '~> 3.1.7'
 gem 'bcrypt-ruby'
 gem 'cancancan'
+gem 'bootstrap-sass'
+
 
 gem 'carrierwave'
 gem 'rmagick'

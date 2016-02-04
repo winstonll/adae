@@ -1,19 +1,29 @@
 <%= stylesheet_link_tag "items" %>
 
+<<<<<<< HEAD
 <div class="item-info">
   <%#= image_tag "/system/uploads/" + @item.image  %>
 
   <%= link_to image_tag(@item.photo.url(:large)), @item.photo.url %>
+=======
+<div class="item-info" id="itemInfo">
+  <%= link_to image_tag(@item.photo.url(:med)), @item.photo.url %>
+>>>>>>> origin/dev
   <div class="item-details">
-  	<p class="item-detail-title"><%= @item.title %></p>
+  	<h4 class="item-detail-title" id="title"><%= @item.title %></h4>
+    <span><%= hidden_field_tag 'id', @item.id%></span>
     <p class="item-detail-title">posted by <%= @item.user.full_name%></p>
   	<p class="item-detail-description"><%= @item.description %></p>
     <p class="item-detail-description"><%= @item.listing_type %></p>
     <p class="item-detail-description"><%= @item.tags %></p>
   	<p class="item-detail-deposit">Deposit for this Item: $ <%= @item.deposit %></p>
-    <p class="item-detail-deposit">Price is $ <%= @price.amount %> per <%= @price.timeframe %> </p>
+    <div class="price item-detail-deposit">Price is $ <span> <%= @price.amount %></span> per <%= @price.timeframe %> </div>
   </div>
 </div>
+
+  <div>
+    <%= render :partial => "layouts/additem", locals: {item: @item, page: "items_show"} %>
+  </div> 
 
   <div class="rating-info">
     <div class = "overall-rating">

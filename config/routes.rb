@@ -34,6 +34,10 @@ Rails.application.routes.draw do
   end
 
   resources :users
+  resources :carts
+
+  post 'carts/add/' => 'carts#add', :to => 'carts_add'
+
 
   resources :requests, :path => "shoutout"
 

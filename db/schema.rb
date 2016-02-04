@@ -11,7 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20160204035405) do
+=======
+ActiveRecord::Schema.define(version: 20160204000358) do
+
+  create_table "carts", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "item_id"
+    t.string   "name",                               null: false
+    t.decimal  "price",      precision: 5, scale: 2, null: false
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
+  end
+>>>>>>> origin/dev
 
   create_table "conversations", force: :cascade do |t|
     t.integer  "sender_id"
@@ -28,14 +41,17 @@ ActiveRecord::Schema.define(version: 20160204035405) do
     t.integer  "deposit"
     t.string   "listing_type"
     t.string   "tags"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
     t.string   "postal_code"
+<<<<<<< HEAD
     t.string   "photo_file_name"
     t.string   "photo_content_type"
     t.integer  "photo_file_size"
     t.datetime "photo_updated_at"
     t.string   "photo_url"
+=======
+>>>>>>> origin/dev
   end
 
   create_table "locations", force: :cascade do |t|
