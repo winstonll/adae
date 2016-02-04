@@ -1,14 +1,7 @@
 <%= stylesheet_link_tag "items" %>
 
-<<<<<<< HEAD
-<div class="item-info">
-  <%#= image_tag "/system/uploads/" + @item.image  %>
-
-  <%= link_to image_tag(@item.photo.url(:large)), @item.photo.url %>
-=======
 <div class="item-info" id="itemInfo">
   <%= link_to image_tag(@item.photo.url(:med)), @item.photo.url %>
->>>>>>> origin/dev
   <div class="item-details">
   	<h4 class="item-detail-title" id="title"><%= @item.title %></h4>
     <span><%= hidden_field_tag 'id', @item.id%></span>
@@ -23,7 +16,7 @@
 
   <div>
     <%= render :partial => "layouts/additem", locals: {item: @item, page: "items_show"} %>
-  </div> 
+  </div>
 
   <div class="rating-info">
     <div class = "overall-rating">
