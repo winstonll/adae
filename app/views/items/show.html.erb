@@ -18,11 +18,11 @@
     <%= render :partial => "layouts/additem", locals: {item: @item, page: "items_show"}%>
   </div>
 
-  <div class="rating-info">
+  <div class="rating-container">
     <div class = "overall-rating">
       Rating Score:
       <% if @item.ratings.present? %>
-        <%= @item.total_score %>%
+        <%= @item.total_score %>% Reliable
       <% else %>
         No Ratings Avaliable - be the first to leave a rating!
       <% end %>
@@ -31,14 +31,16 @@
 
     <div class = "rating-by-user">
       <% if present_or_rated?(@item) %>
-      Your Rating:
-        <%= @item.ratings_by_user(current_user) %>
-        <%= link_to "Edit Rating", edit_item_rating_path(@item, @rating) %>
+        <div class="rating-info"><p>My Rating</p> <p class="rating"><%= @item.ratings_by_user(current_user) %></p>
+        <%= link_to "Edit", edit_item_rating_path(@item, @rating) %>
+      </div>
       <% else %>
-        <%= link_to "Add a Rating", new_item_rating_path(@item) %>
+        <div class="add-a-rating"><%= link_to "Add a Rating", new_item_rating_path(@item) %></div>
       <% end %>
     </div>
   </div>
+
+
 
 
   <%= form_for([@item, @review],:remote => true) do |f| %>
