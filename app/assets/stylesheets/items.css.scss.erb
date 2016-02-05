@@ -37,8 +37,26 @@ body{
 	background-color: #f2f2f2;
 }
 .item-info {
-	width: 95%;
+	width: 100%;
 	margin: auto;
+
+	.item-title-and-user{
+		background-color: #fff;
+		.item-detail-title{
+			margin-top: 0px;
+			padding-top: 1em;
+			padding-bottom: 1em;
+			color: #4a4a4a;
+			font-size: 15px;
+			font-weight:600;
+			width: 60%;
+		}
+		.item-detail-username{
+			background-color: #fff;
+			padding-bottom: 2em;
+			border-bottom: 1px solid #C9C9C9;
+		}
+	}
 
 	img {
 		display: inline-block;
@@ -47,9 +65,7 @@ body{
 	}
 
 	.item-details {
-		width: 35%;
-		vertical-align: top;
-		margin-left: 3em ;
+
 	}
 
 }
@@ -305,10 +321,15 @@ item new
 				margin-bottom: 20px;
 			}
 
-			#item_image{
+			.upload-photo{
 				width:130px;
 				height: 130px;
 				background-color: #fff;
+				cursor: pointer;
+				-webkit-box-shadow: 6px 6px 6px -4px rgba(207,207,207,1);
+				-moz-box-shadow: 6px 6px 6px -4px rgba(207,207,207,1);
+				box-shadow: 6px 6px 6px -4px rgba(207,207,207,1);
+				margin-bottom: 25px;
 			}
 
 			.rent-deposit-money-sign{ /*this is the color for the dollar sign for rent/lease/deposit price box*/
