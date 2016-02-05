@@ -1,4 +1,6 @@
-<h1>Edit rating for <%= @item.title %>
+<%= stylesheet_link_tag "ratings" %>
+<div class="rating-title">
+<h1><em>Edit Rating</em> for <%= @item.title %>
  <%= @item.description %></h1>
-
+</div>
 <%= render 'ratings_form' %>

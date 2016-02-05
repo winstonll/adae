@@ -7,7 +7,7 @@ module Api::V1
 
     # curl -X GET --header "ApiToken: H4LvhkAw3vooYosNS98S" https://adae.co/api/v1/users
 
-    # curl -X GET --header "ApiToken: eP2QVqKP9n-QDDhgMBeT"  http://localhost:3000/api/v1/users
+    # curl -X GET --header "ApiToken: 1pLrb-KKLvsnNdVJQTsQ"  http://localhost:3000/api/v1/users
 
     def index
       users = User.all.page params[:page]

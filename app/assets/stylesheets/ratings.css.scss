@@ -1,3 +1,59 @@
 // Place all the styles related to the ratings controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+body{
+  background-color: #f2f2f2;
+}
+/*Rating Pages*/
+.rating-title{
+  width: 100%;
+  background-color: #fff;
+  padding: 3.5em;
+
+
+  h1{
+    background-color: #fff;
+    margin-top: 0px;
+    font-weight: 600;
+    font-size: 20px;
+    color: #419bf9;
+    width: 50%;
+    margin: 0 auto;
+    display: table;
+    text-align: left;
+    line-height: normal;
+  }
+}
+.question-area{
+  background-color: #f2f2f2;
+
+  h4{
+    text-align: center;
+    color: #4a4a4a;
+    font-weight: 500;
+    margin-top: 3em;
+  }
+
+  .radio-buttons{
+    display: table;
+    margin: 0 auto;
+    margin-bottom: 2em;
+  }
+}
+.rating-button{
+  width: 135px;
+  border: 1px solid #419bf9;
+  background-color: #fff;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #4a4a4a;
+  padding: 10px;
+  cursor: pointer;
+  margin: 0 auto;
+  display: table;
+  &:hover{
+    background-color: #419BF9;
+    color: #fff;
+  }
+}
