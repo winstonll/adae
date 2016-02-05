@@ -17,9 +17,13 @@ module Api::V1
         user = []
 
         transaction.each do |t|
-          i = Item.where(id: t.item_id).first
-          item.push(i)
-          user.push(User.where(id: i.user_id).first)
+          item.push(Item.where(id: t.item_id).first)
+
+          if t.buyer_id != params[:id].to_i
+            user.push(User.where(id: t.buyer_id).first)
+          else
+            user.push(User.where(id: t.seller_id).first)
+          end
         end
 
         render :json => {:transaction => transaction, :item => item, :user => user}
