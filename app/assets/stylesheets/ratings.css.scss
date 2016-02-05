@@ -4,16 +4,26 @@
 body{
   background-color: #f2f2f2;
 }
-/*New Rating Page*/
-h1{
+/*Rating Pages*/
+.rating-title{
+  width: 100%;
   background-color: #fff;
-  margin-top: 0px;
   padding: 3.5em;
-  font-weight: 600;
-  font-size: 20px;
-  color: #419bf9;
-}
 
+
+  h1{
+    background-color: #fff;
+    margin-top: 0px;
+    font-weight: 600;
+    font-size: 20px;
+    color: #419bf9;
+    width: 50%;
+    margin: 0 auto;
+    display: table;
+    text-align: left;
+    line-height: normal;
+  }
+}
 .question-area{
   background-color: #f2f2f2;
 
