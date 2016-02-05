@@ -3,9 +3,11 @@
 <div class="item-info" id="itemInfo">
   <%= link_to image_tag(@item.photo.url(:med)), @item.photo.url %>
   <div class="item-details">
-  	<h4 class="item-detail-title" id="title"><%= @item.title %></h4>
-    <span><%= hidden_field_tag 'id', @item.id%></span>
-    <p class="item-detail-title">posted by <%= @item.user.full_name%></p>
+    <div class="item-title-and-user">
+      <div class="item-detail-title" id="title"><%= @item.title %></div>
+      <span><%= hidden_field_tag 'id', @item.id%></span>
+      <div class="item-detail-username">posted by <%= @item.user.full_name%></div>
+    </div>
   	<p class="item-detail-description"><%= @item.description %></p>
     <p class="item-detail-description"><%= @item.listing_type %></p>
     <p class="item-detail-description"><%= @item.tags %></p>
