@@ -11,13 +11,14 @@
       </div>
     <% end %>
 
-<div class="question-area">  
-  <h4 class="item-rating-qs">Rate Item</h4>
-    <span class="field"> 
+<div class="question-area">
+  <h4 class="item-rating-qs">On a scale of 5, how did you feel about the listing?</h4>
+  <div class="radio-buttons">
+    <span class="field">
         <%= f.radio_button :score, 5 %>
         5
     </span>
-      
+
     <span class="field">
         <%= f.radio_button :score, 4 %>
         4
@@ -42,12 +43,7 @@
         <%= f.radio_button :score, 0 %>
         0
     </span>
+  </div>
 </div>
-
-<br>
-    <div class="item-submit">
-      <%= f.submit %>
-    </div>
+  <%= f.submit 'Create Rating', :class => 'rating-button' %>
   <% end %>
-<br>
-<div>
