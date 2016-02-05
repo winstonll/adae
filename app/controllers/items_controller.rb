@@ -52,7 +52,7 @@ class ItemsController < ApplicationController
 
     @item = Item.create(item_params)
 
-    @item.photo_url = "http://adae.co/public" + @item.photo.url(:small)
+    @item.photo_url = "https://adae.co/public" + @item.photo.url(:small)
 
     @item.user_id = current_user.id
     @item.tags = @tagboxes
