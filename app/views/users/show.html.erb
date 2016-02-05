@@ -14,19 +14,7 @@
 </div>
 
 
-<h4 class= "account-heading">Your Ratings</h4>
 
-<div class = "user-ratings">
-	<% @user.ratings.each do |rating| %>
-	<li class="user-rating">
-		For <%=link_to(rating.item.title, item_path(rating.item)) %>
-		your rating is:
-		<%=rating.score%>
-		<%= link_to 'Edit rating', edit_item_rating_path(rating.item, rating) %>
-	</li>
-	<% end %>
-	<br>
-</div>
 
 
 
@@ -34,7 +22,7 @@
 	<div class= "listing-heading">My Listings </div>
 	<% @items.each do |item| %>
 	<div class="listing-img">
-		<%=link_to image_tag(item.photo.url(:med)), item.photo.url%>
+		<%=link_to image_tag(item.photo.url(:med)), item_path(item)%>
 	</div>
 	<li class="listings">
 		<div class="item-title"> <%= link_to item.title, item_path(item) %> </div>
@@ -46,11 +34,24 @@
 	<% end %>
 </div>
 
+<div class = "user-ratings">
+	<h4 class= "account-heading">My Ratings</h4>
+	<% @user.ratings.each do |rating| %>
+	<li class="user-rating-content">
+		<div class="rating-title"><%=link_to(rating.item.title, item_path(rating.item)) %></div>
+		<div class="rating-info"> Rating:<p class="rating"><%=rating.score%></p>
+		<%= link_to 'Edit', edit_item_rating_path(rating.item, rating) %>
+	</div>
+	<div class="divider"></div>
+	</li>
+	<% end %>
+</div>
+
 <div class= "user-reviews">
 	<h4 class= "account-heading"> My Reviews </h4>
 	<% @user.reviews.each do |review| %>
 	<li class="user-review">
-		<p class="review-title">Listing: <%=link_to(review.item.title, item_path(review.item)) %></p>
+		<p class="review-title"> <%=link_to(review.item.title, item_path(review.item)) %></p>
 		<p>
 			<%=review.comment %>
 		</p>

@@ -17,7 +17,7 @@ class Item < ActiveRecord::Base
     attachment_content_type: { content_type: /\Aimage\/.*\Z/ },
     attachment_size: { less_than: 5.megabytes }
 
-	has_attached_file :photo, styles: { small: "64x64", med: "100x100", large: "200x200" }
+	has_attached_file :photo, styles: { small: "400x400", med: "800x800", large: "1200x1200" }
 
 	#has_attached_file :images, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/images/:style/missing.png"
   #validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
