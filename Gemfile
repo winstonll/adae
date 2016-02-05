@@ -34,6 +34,7 @@ gem 'bcrypt-ruby'
 gem 'cancancan'
 gem 'bootstrap-sass'
 
+gem 'spring'
 
 gem 'carrierwave'
 gem 'rmagick'
