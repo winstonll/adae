@@ -19,6 +19,7 @@ module Api::V1
         transaction.each do |t|
           i = Item.where(id: t.item_id).first
           i.photo_url = i.photo.url(:small)
+          i.save
           item.push(Item.where(id: t.item_id).first)
 
           if t.buyer_id != params[:id].to_i
