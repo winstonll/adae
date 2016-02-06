@@ -52,12 +52,13 @@ class ItemsController < ApplicationController
 
     @item = Item.create(item_params)
 
-    @item.photo_url = "https://adae.co/public" + @item.photo.url(:small)
-
     @item.user_id = current_user.id
     @item.tags = @tagboxes
 
     if @item.save && @item.valid?
+      @item.photo_url = @item.photo.url(:small)
+      @item.save
+
       redirect_to @item, notice: "Item Successfully Added!"
     else
       flash[:message] = "This listing has already been posted or Something didn't validate"
