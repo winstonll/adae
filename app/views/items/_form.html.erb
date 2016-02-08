@@ -61,7 +61,7 @@
 		<%= f.fields_for :prices, @price do |p| %>
 		    <div class="new-item-form">
 		        <%=	p.label :timeframe %>
-		        <%= p.select(:timeframe, [["Hour"],["Day"],["Week"]], :prompt => 'Select') %>
+		        <%= p.select(:timeframe, [["Hour"],["Day"],["Week"], ["Month"]], :prompt => 'Select') %>
 		    </div>
 
 		    <div class="new-item-form">

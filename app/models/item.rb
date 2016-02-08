@@ -29,6 +29,6 @@ class Item < ActiveRecord::Base
 	end
 
 	def total_score
-		(self.ratings.sum(:score) / (5 * ratings.count(:user_id).to_f) * 100).round(0)
+		(self.ratings.sum(:score) / (ratings.count(:user_id).to_f)).round(1)
 	end
 end

@@ -5,11 +5,50 @@
 body{
   background-color: #f2f2f2;
 }
+
+/*User Profile Info*/
+.user-content-container{
+  display: table;
+  margin: 0 auto;
+  margin-top: 3em;
+  width: 750px;
+
+.profile-info{
+  background-color: #fff;
+  width: 200px;
+  padding: 15px;
+  border-radius: 6px;
+  border: 1px solid #979797;
+  float: left;
+
+  h1{
+    color: #4a4a4a;
+    font-size: 20px;
+    font-weight: 500;
+  }
+
+  p{
+    color: #4a4a4a;
+    font-size: 15px;
+  }
+
+  .p-account-edit{
+    &:hover{
+      color:#419bf9;
+    }
+  }
+  .p-account-delete{
+    &:hover{
+      color:#FF6678;
+    }
+  }
+}
 /*My Listing Section*/
 .listing-container{
   display: table;
   margin: 0 auto;
   padding-bottom: 5em;
+  float: right;
 
   .listing-heading{
     font-size: 18px;
@@ -73,12 +112,12 @@ body{
         &:hover{
           background-color: #FF6678;
           color: #fff;
+          }
         }
       }
     }
   }
 }
-
 /*User-Rating Section*/
 .user-ratings{
   background-color: #fff;
