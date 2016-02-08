@@ -36,7 +36,7 @@
 	<% @user.ratings.each do |rating| %>
 	<li class="user-rating-content">
 		<div class="rating-title"><%=link_to(rating.item.title, item_path(rating.item)) %></div>
-		<div class="rating-info"> Rating:<p class="rating"><%=rating.score%></p>
+		<div class="rating-info"> Rating:<p class="rating"><%=rating.score%>/5</p>
 		<%= link_to 'Edit', edit_item_rating_path(rating.item, rating) %>
 	</div>
 	<div class="divider"></div>
