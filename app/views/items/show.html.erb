@@ -22,22 +22,24 @@
 
   <div class="rating-container">
     <div class = "overall-rating">
-      Rating Score:
+      <div class="rating-score">
+        <p>Rating Score:</p>
       <% if @item.ratings.present? %>
-        <%= @item.total_score %>
+        <p class="score"><%= @item.total_score %>/5</p>
       <% else %>
-        No Ratings Avaliable - be the first to leave a rating!
+    </div>
       <% end %>
 
     </div>
 
     <div class = "rating-by-user">
       <% if present_or_rated?(@item) %>
-        <div class="rating-info"><p>My Rating</p> <p class="rating"><%= @item.ratings_by_user(current_user) %></p>
+        <div class="rating-info"><p>My Rating</p> <p class="rating"><%= @item.ratings_by_user(current_user) %>/5</p>
         <%= link_to "Edit", edit_item_rating_path(@item, @rating) %>
       </div>
       <% else %>
-        <div class="add-a-rating"><%= link_to "Add a Rating", new_item_rating_path(@item) %></div>
+        <p class="prompt">No Ratings yet - be the first to leave a rating!</p>
+        <%= link_to "Add a Rating", new_item_rating_path(@item),class: "add-a-rating" %>
       <% end %>
     </div>
   </div>
