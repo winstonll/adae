@@ -42,6 +42,13 @@ body{
       color:#FF6678;
     }
   }
+
+  .api-button{
+    color: #9b9b9b;
+    &:hover{
+      color:#419bf9;
+    }
+  }
 }
 /*Account Balance Section*/
 .account-balance-section{
@@ -49,7 +56,6 @@ body{
   width: 240px;
   padding: 5px;
   height: 95px;
-
   border-radius: 6px;
   border: 1px solid #979797;
   display: inline-block;
@@ -64,6 +70,29 @@ body{
     font-weight: 600;
   }
 }
+
+/*Mail Cheque Section*/
+.mail-cheque-section{
+  background-color: #fff;
+  width: 240px;
+  padding: 5px;
+  height: 95px;
+  border-radius: 6px;
+  border: 1px solid #979797;
+  display: inline-block;
+  margin-top: 20px;
+
+  #title{
+    font-weight: 600;
+    color: #4a4a4a;
+  }
+
+  #description{
+    font-weight: 600;
+    color: #4a4a4a;
+  }
+}
+
 /*My Listing Section*/
 .listing-container{
   display: table;

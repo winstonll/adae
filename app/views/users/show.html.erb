@@ -11,6 +11,7 @@
 		<p> Last Name: <%= @user.surname %></p>-->
 		<p> Email: <%= @user.email %></p>
 		<p> Phone: <%= @user.phone_number %></p>
+		<p class="api-button"><%= link_to 'Request Public API Token'%></p>
 	</div>
 
 
@@ -35,10 +36,20 @@
 	<div class="account-balance-section">
 		<div id="account-balance">
 			<p>Account Balance</p>
-			<p id="balance"> $0 </p> 
+			<p id="balance"> $0 <!-- this is placeholder text--> </p>
 		</div>
 	</div>
+
+	<div class="mail-cheque-section">
+		<div id="form">
+			<p id="title">Mailed Cheque</p>
+			<p id="description">Enter your address below, and we will mail a cheque with the amount in your balance to you!</p>
+		</div>
+	</div>
+
 </div>
+
+
 
 <div class = "user-ratings">
 	<h4 class= "account-heading">My Ratings</h4>
