@@ -72,24 +72,38 @@ body{
 }
 
 /*Mail Cheque Section*/
+  h4{
+    font-size: 19px;
+    font-weight: 600;
+    color: #4a4a4a;
+  }
 .mail-cheque-section{
   background-color: #fff;
   width: 240px;
   padding: 5px;
-  height: 95px;
   border-radius: 6px;
   border: 1px solid #979797;
   display: inline-block;
-  margin-top: 20px;
+  margin-top: -15px;
+  margin-bottom: 5em;
 
   #title{
     font-weight: 600;
     color: #4a4a4a;
+    margin-bottom: -10px;
   }
 
   #description{
-    font-weight: 600;
+    font-weight: 500;
     color: #4a4a4a;
+    text-align: left;
+    line-height: 20px;
+    margin-left: 10px;
+  }
+
+  .test{
+    background-color: blue;
+    height: 50px;
   }
 }
 
