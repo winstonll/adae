@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160204000358) do
+ActiveRecord::Schema.define(version: 20160209192105) do
 
   create_table "carts", force: :cascade do |t|
     t.integer  "user_id"
@@ -37,8 +37,8 @@ ActiveRecord::Schema.define(version: 20160204000358) do
     t.integer  "deposit"
     t.string   "listing_type"
     t.string   "tags"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
     t.string   "postal_code"
     t.string   "photo_file_name"
     t.string   "photo_content_type"
@@ -102,16 +102,15 @@ ActiveRecord::Schema.define(version: 20160204000358) do
   end
 
   create_table "transactions", force: :cascade do |t|
-    t.datetime "start_date"
-    t.datetime "end_date"
-    t.datetime "return_date"
     t.integer  "item_id"
     t.integer  "buyer_id"
-    t.boolean  "out_scan"
-    t.boolean  "in_scan"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
     t.integer  "seller_id"
+    t.integer  "total_price"
+    t.string   "length"
+    t.datetime "in_scan_date"
+    t.datetime "out_scan_date"
   end
 
   create_table "users", force: :cascade do |t|
