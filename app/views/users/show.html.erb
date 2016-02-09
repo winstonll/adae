@@ -10,8 +10,10 @@
 		<!--<p> Name: <%= @user.name %></p>
 		<p> Last Name: <%= @user.surname %></p>-->
 		<p> Email: <%= @user.email %></p>
-		<p> Phone Number: <%= @user.phone_number %></p>
+		<p> Phone: <%= @user.phone_number %></p>
 	</div>
+
+
 
 
 	<div class="listing-container">
@@ -29,6 +31,13 @@
 		</li>
 		<% end %>
 	</div>
+
+	<div class="account-balance-section">
+		<div id="account-balance">
+			<p>Account Balance</p>
+			<p id="balance"> $0 </p> 
+		</div>
+	</div>
 </div>
 
 <div class = "user-ratings">
@@ -36,7 +45,7 @@
 	<% @user.ratings.each do |rating| %>
 	<li class="user-rating-content">
 		<div class="rating-title"><%=link_to(rating.item.title, item_path(rating.item)) %></div>
-		<div class="rating-info"> Rating:<p class="rating"><%=rating.score%>/5</p>
+		<div class="rating-info"> Rating:<p class="rating"><%=rating.score%></p>
 		<%= link_to 'Edit', edit_item_rating_path(rating.item, rating) %>
 	</div>
 	<div class="divider"></div>

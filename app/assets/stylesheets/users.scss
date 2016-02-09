@@ -11,11 +11,11 @@ body{
   display: table;
   margin: 0 auto;
   margin-top: 3em;
-  width: 750px;
+  width: 770px;
 
 .profile-info{
   background-color: #fff;
-  width: 200px;
+  width: 220px;
   padding: 15px;
   border-radius: 6px;
   border: 1px solid #979797;
@@ -29,7 +29,7 @@ body{
 
   p{
     color: #4a4a4a;
-    font-size: 15px;
+    font-size: 14px;
   }
 
   .p-account-edit{
@@ -41,6 +41,27 @@ body{
     &:hover{
       color:#FF6678;
     }
+  }
+}
+/*Account Balance Section*/
+.account-balance-section{
+  background-color: #fff;
+  width: 240px;
+  padding: 5px;
+  height: 95px;
+
+  border-radius: 6px;
+  border: 1px solid #979797;
+  display: inline-block;
+  margin-top: 20px;
+  p{
+    font-size: 16px;
+    margin-top: 10px;
+    color: #40C11B;
+  }
+  #balance{
+    font-size: 38px;
+    font-weight: 600;
   }
 }
 /*My Listing Section*/
