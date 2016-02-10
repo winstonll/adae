@@ -36,6 +36,8 @@ gem 'bootstrap-sass'
 
 gem 'spring'
 
+gem 'stripe'
+
 gem 'carrierwave'
 gem 'rmagick'
 gem 'honeypot-captcha'
