@@ -1,6 +1,8 @@
-// Place all the styles related to the users controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.bootstrap {
+  @import "bootstrap-sprockets";
+  @import "bootstrap";
+}
 
 body{
   background-color: #f2f2f2;
@@ -42,6 +44,13 @@ body{
       color:#FF6678;
     }
   }
+
+  .api-button{
+    color: #9b9b9b;
+    &:hover{
+      color:#419bf9;
+    }
+  }
 }
 /*Account Balance Section*/
 .account-balance-section{
@@ -49,7 +58,6 @@ body{
   width: 240px;
   padding: 5px;
   height: 95px;
-
   border-radius: 6px;
   border: 1px solid #979797;
   display: inline-block;
@@ -64,6 +72,172 @@ body{
     font-weight: 600;
   }
 }
+
+/*Mail Cheque Section*/
+  h4{
+    font-size: 19px;
+    font-weight: 600;
+    color: #4a4a4a;
+  }
+.mail-cheque-section{
+  background-color: #fff;
+  width: 240px;
+  padding: 5px;
+  border-radius: 6px;
+  border: 1px solid #979797;
+  display: inline-block;
+  margin-top: -15px;
+  margin-bottom: 3em;
+
+  #title{
+    font-weight: 600;
+    color: #4a4a4a;
+    margin-bottom: -10px;
+  }
+
+  #description{
+    font-weight: 500;
+    color: #4a4a4a;
+    text-align: left;
+    line-height: 20px;
+    margin-left: 10px;
+  }
+
+  .test{
+    background-color: blue;
+    height: 50px;
+  }
+}
+/*Requests Container*/
+.request-container{
+  display: table;
+  margin: 0 auto;
+  padding-bottom: 3em;
+  float: right;
+
+  .request-heading{
+    font-size: 18px;
+    font-weight: 600;
+    color: #4a4a4a;
+  }
+
+  .request-img{
+    width: 120px;
+    height: 120px;
+    overflow: hidden;
+    float: left;
+    margin-top: 10px;
+    border: 1px solid #eaeaea;
+
+    img{
+      height: 100%;
+    }
+  }
+  .requests{
+    border: 1px solid #979797;
+    list-style: none;
+    background-color: #fff;
+    margin-top: 10px;
+    margin-left: 132px;
+    height: 200px;
+    width: 350px;
+
+    .item-title{
+      text-align: left !important;
+      line-height: normal;
+      color: #4a4a4a;
+      padding: none;
+      margin-left: 10px;
+      margin-top: 20px;
+    }
+
+    .accept-decline-button{
+      float:right;
+      top: 9em;
+      position: relative;
+      margin-right: 10px;
+
+
+      .delete-item{
+        border: 1px solid #FF6678;
+        border-radius: 5px;
+        color: #FF6678;
+        font-size: 14px;
+        padding: 3px 7px 3px;
+        margin-left: 5px;
+        &:hover{
+          background-color: #FF6678;
+          color: #fff;
+          }
+        }
+      }
+    }
+  }
+/*My Transactions Section*/
+.transaction-container{
+  display: table;
+  margin: 0 auto;
+  padding-bottom: 3em;
+  float: right;
+
+  .transaction-heading{
+    font-size: 18px;
+    font-weight: 600;
+    color: #4a4a4a;
+  }
+
+  .transaction-img{
+    width: 120px;
+    height: 120px;
+    overflow: hidden;
+    float: left;
+    margin-top: 10px;
+    border: 1px solid #eaeaea;
+
+    img{
+      height: 100%;
+    }
+  }
+  .transactions{
+    border: 1px solid #979797;
+    list-style: none;
+    background-color: #fff;
+    margin-top: 10px;
+    margin-left: 132px;
+    height: 250px;
+    width: 350px;
+
+    .item-title{
+      text-align: left !important;
+      line-height: normal;
+      color: #4a4a4a;
+      padding: none;
+      margin-left: 10px;
+      margin-top: 20px;
+    }
+
+    .delete-button{
+      float:right;
+      top: 12em;
+      position: relative;
+      margin-right: 10px;
+
+
+      .delete-item{
+        border: 1px solid #FF6678;
+        border-radius: 5px;
+        color: #FF6678;
+        font-size: 14px;
+        padding: 3px 7px 3px;
+        margin-left: 5px;
+        &:hover{
+          background-color: #FF6678;
+          color: #fff;
+          }
+        }
+      }
+    }
+  }
 /*My Listing Section*/
 .listing-container{
   display: table;

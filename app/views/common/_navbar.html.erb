@@ -15,7 +15,7 @@
       </form>
     </div>
     <div class="itemnav">
-      <% if user_signed_in? %>
+      <% if signed_in? %>
       <span class="listings" onclick="$('.listingsdropdown').slideToggle();"> <%= "Listings" %> </span>
       <div class="listingsdropdown">
         <%= link_to 'Post a Listing', new_item_path, class: "newlisting" %>
@@ -27,7 +27,7 @@
       </div>
     </div>
     <div class="requestnav">
-      <% if user_signed_in? %>
+      <% if signed_in? %>
       <span class="shoutouts" onclick="$('.shoutoutsdropdown').slideToggle();"> <%= "Shout Outs" %> </span>
       <div class="shoutoutsdropdown">
         <%= link_to 'Post a Shout Out', new_request_path, class: "newshoutout" %>
@@ -40,7 +40,7 @@
     </div>
 
     <div class="inbox">
-      <% if user_signed_in? %>
+      <% if signed_in? %>
       <a href="<%= conversations_path %>">
         <span class="message-space">
           <%= image_tag "msg_pic.png", id: "sms" %>
@@ -52,7 +52,7 @@
     </div>
 
     <div class="user-info">
-      <% if user_signed_in? %>
+      <% if signed_in? %>
       <span class="userpaths" onclick="$('.dropdown').slideToggle();">
         <%= current_user.name %>
       </span>
@@ -61,8 +61,9 @@
         <%= link_to('Login', new_user_session_path, class: "login")  %>
       <% end %>
       <div class="dropdown">
-        <% if user_signed_in? %>
+        <% if signed_in? %>
           <%= link_to "Edit Profile", edit_user_path(current_user), class: "profilepath" %>
+          <%= link_to "Chosen Listings", carts_path(current_user), class: "profilepath" %>
           <%= link_to "Account", user_path(current_user), class: "profilepath" %>
           <%= link_to "Reviews", user_path(current_user), class: "profilepath" %>
           <%= link_to('Logout', destroy_user_session_path, :method => :delete, class: "logout") %>

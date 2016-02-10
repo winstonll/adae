@@ -1,9 +1,12 @@
 /*
 itemS INDEX/SEARCH
 */
-.bootstrap{@import "bootstrap-sprockets";
-@import "bootstrap";
+
+.bootstrap {
+	@import "bootstrap-sprockets";
+	@import "bootstrap";
 }
+
 #items {
 	margin-left: 15px;
 
@@ -349,19 +352,49 @@ item new
 			.countdown{
 				font-size: 12px;
 				font-weight: 400;
-				margin-bottom: 20px;
+				margin-bottom: 5px;
 			}
 
 			.upload-photo{
-				width:130px;
-				height: 130px;
+				width:170px;
+				height: 150px;
 				background-color: #fff;
-				cursor: pointer;
 				-webkit-box-shadow: 6px 6px 6px -4px rgba(207,207,207,1);
 				-moz-box-shadow: 6px 6px 6px -4px rgba(207,207,207,1);
 				box-shadow: 6px 6px 6px -4px rgba(207,207,207,1);
 				margin-bottom: 25px;
+
+				#photo-image{
+					height: auto;
+					width: 45px;
+					margin-left: 4em;
+					margin-top: 1em;
+				}
+
+				#pic-title{
+					text-align: center;
+					color: #419bf9;
+					margin-top: 10px;
+					font-size: 15px;
+				}
+
+				#descriptor{
+					font-size: 14px;
+					color: #9B9B9B;
+					text-align: center;
+					line-height: normal;
+					margin-top: -13px;
+				}
 			}
+
+				#item_photo{ /*this is to hide the default upload button*/
+					height: 170px;
+					border: 1px solid #979797;
+					width: 170px;
+					cursor: pointer;
+					opacity: 0;
+					margin-bottom: -170px;
+				}
 
 			.rent-deposit-money-sign{ /*this is the color for the dollar sign for rent/lease/deposit price box*/
 				background-color: #419bf9;

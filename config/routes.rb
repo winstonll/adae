@@ -33,15 +33,30 @@ Rails.application.routes.draw do
     resources :reviews, only: [:show, :edit, :update, :create, :destroy]
   end
 
-  resources :users
-  resources :carts
-
   post 'carts/add/' => 'carts#add', :to => 'carts_add'
+  
 
+  get 'users/stripe_settings/' => 'users#stripe_settings', :to => "users_stripe_settings"
+  post 'users/stripe_update_settings/' => 'users#stripe_update_settings', :to => "users_stripe_update_settings"
 
-  resources :requests, :path => "shoutout"
+  post 'transactions/stripe/' => 'transactions#stripe', :to =>"transactions_stripe"
+  get 'transactions/stripe_success/:id' => 'transactions#stripe_success', :to => "transactions_stripe_success"
+
+  # - Stripe routes
+  # - Create accounts
+  post '/connect/managed' => 'stripe#managed', as: 'stripe_managed'
+    # Stripe webhooks
+  post '/hooks/stripe' => 'hooks#stripe'
+  post 'transactions/hook' => 'transactions#hook', :to => "transactions_hook"
+
 
   resources :items,  :concerns => :reviewable
+  resources :requests, :path => "shoutout"
+  resources :users
+  resources :transactions
+  resources :carts
+
+
   get 'sell'   => "items#sell",   as: :sell
   get 'rent'   => "items#rent",   as: :rent
   get 'lease'   => "items#lease",   as: :lease

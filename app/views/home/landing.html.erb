@@ -10,7 +10,7 @@
     <a class="faq" href="/faq">FAQ</a>
     <%= link_to 'Post a Listing', new_item_path, class: "share-item" %>
     <%= link_to 'Post a Shout Out', new_request_path, class: "share-request" %>
-    <% unless user_signed_in? %>
+    <% unless signed_in? %>
       <%= link_to('Sign Up', new_user_registration_path, class: "signup") %>
       <%= link_to('Login', new_user_session_path, class: "login") %>
     <% end %>

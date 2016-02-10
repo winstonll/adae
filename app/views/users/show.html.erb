@@ -11,9 +11,33 @@
 		<p> Last Name: <%= @user.surname %></p>-->
 		<p> Email: <%= @user.email %></p>
 		<p> Phone: <%= @user.phone_number %></p>
+		<p class="api-button"><%= link_to 'Request Public API Token'%></p>
 	</div>
 
+	<div class="request-container">
+		<div class= "request-heading">Pending Requests</div>
+		<div class="request-img">
+		</div>
+		<li class="requests">
+			<div class="item-title">  </div>
+			<div class="accept-decline-button">
+			<%= link_to 'Accept'%>
+			<%= link_to 'Decline'%>
+			</div>
+		</li>
+	</div>
 
+	<div class="transaction-container">
+		<div class= "transaction-heading">My Transactions </div>
+		<div class="transaction-img">
+		</div>
+		<li class="transactions">
+			<div class="item-title">  </div>
+			<div class="delete-button">
+			<%= link_to 'Cancel Transaction'%>
+		</div>
+		</li>
+	</div>
 
 
 	<div class="listing-container">
@@ -32,13 +56,23 @@
 		<% end %>
 	</div>
 
+
 	<div class="account-balance-section">
 		<div id="account-balance">
 			<p>Account Balance</p>
-			<p id="balance"> $0 </p> 
+			<p id="balance"> $0 <!-- this is placeholder text--> </p>
 		</div>
 	</div>
+
+	<h4> Cash Out Options </h4>
+	<div class="mail-cheque-section">
+			<p id="title">Mailed Cheque</p>
+			<p id="description">Enter your address below, and we will mail a cheque with the amount on your balance to you! <span style="color: #419bf9">Min. $20 Required</span></p>
+	</div>
+
 </div>
+
+
 
 <div class = "user-ratings">
 	<h4 class= "account-heading">My Ratings</h4>
@@ -50,6 +84,15 @@
 	</div>
 	<div class="divider"></div>
 	</li>
+	<% end %>
+</div>
+
+<div>
+	<% if signed_in? %>
+	<span class="personal_purchases"><%#= link_to "Personal Purchase History", trx_orders_list_personal_purchases_path %></span>
+	<h4><%= link_to "Payment Settings", users_stripe_settings_path %></h4>
+    <span class="orders"><%#= link_to "Order Requests", items_orders_path %></span>
+    <span class="accepted_orders"><%#= link_to "Accepted Orders", items_accepted_orders_path %></span>
 	<% end %>
 </div>
 
