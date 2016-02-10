@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160209192105) do
+ActiveRecord::Schema.define(version: 20160210203409) do
 
   create_table "carts", force: :cascade do |t|
     t.integer  "user_id"
@@ -101,6 +101,19 @@ ActiveRecord::Schema.define(version: 20160209192105) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "stripe_transactions", force: :cascade do |t|
+    t.integer  "transaction_id"
+    t.string   "txn_type"
+    t.string   "currency"
+    t.decimal  "total_amount",        precision: 20, scale: 4
+    t.text     "notification_params"
+    t.string   "txn_id"
+    t.string   "status"
+    t.string   "description"
+    t.datetime "created_at",                                   null: false
+    t.datetime "updated_at",                                   null: false
+  end
+
   create_table "transactions", force: :cascade do |t|
     t.integer  "item_id"
     t.integer  "buyer_id"
@@ -130,6 +143,13 @@ ActiveRecord::Schema.define(version: 20160209192105) do
     t.string   "auth_token",             default: ""
     t.string   "name"
     t.string   "api_token"
+    t.string   "stripe_publishable_key"
+    t.string   "stripe_secret_key"
+    t.string   "stripe_user_id"
+    t.string   "stripe_currency"
+    t.string   "stripe_account_type"
+    t.text     "stripe_account_status"
+    t.decimal  "balance"
   end
 
   add_index "users", ["auth_token"], name: "index_users_on_auth_token", unique: true
