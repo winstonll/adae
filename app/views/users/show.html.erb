@@ -87,6 +87,15 @@
 	<% end %>
 </div>
 
+<div>
+	<% if signed_in? %>
+	<span class="personal_purchases"><%#= link_to "Personal Purchase History", trx_orders_list_personal_purchases_path %></span>
+	<h4><%= link_to "Payment Settings", users_stripe_settings_path %></h4>
+    <span class="orders"><%#= link_to "Order Requests", items_orders_path %></span>
+    <span class="accepted_orders"><%#= link_to "Accepted Orders", items_accepted_orders_path %></span>
+	<% end %>
+</div>
+
 <div class= "user-reviews">
 	<h4 class= "account-heading"> My Reviews </h4>
 	<% @user.reviews.each do |review| %>

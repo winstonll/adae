@@ -1,0 +1,10 @@
+# development:
+#    STRIPE_SECRET_KEY: sk_test_GK3z6BefaCAe52FTwG08cPuN
+#    STRIPE_PUBLISHABLE_KEY: pk_test_79IaQ6SIozuxCjOD2YOCUHpJ
+#    STRIPE_CLIENT_ID: ca_7pQgFUkwSRE2RV9xU8irxNsGYk4hL2gu
+# test:
+   
+# production:
+#    STRIPE_SECRET_KEY: sk_live_pIpiI6iwz8GmyoF26sTaWBHy
+#    STRIPE_PUBLISHABLE_KEY: pk_live_h3ib8Nys72o5jPqyNIIdxAaV
+#    STRIPE_CLIENT_ID: ca_7pQgljKILAdl23Stm8FxdQiHGf6gNjkt
