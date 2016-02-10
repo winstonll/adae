@@ -85,7 +85,7 @@ body{
   border: 1px solid #979797;
   display: inline-block;
   margin-top: -15px;
-  margin-bottom: 5em;
+  margin-bottom: 3em;
 
   #title{
     font-weight: 600;
@@ -106,7 +106,71 @@ body{
     height: 50px;
   }
 }
+/*My Transactions Section*/
+.transaction-container{
+  display: table;
+  margin: 0 auto;
+  padding-bottom: 3em;
+  float: right;
 
+  .transaction-heading{
+    font-size: 18px;
+    font-weight: 600;
+    color: #4a4a4a;
+  }
+
+  .transaction-img{
+    width: 120px;
+    height: 120px;
+    overflow: hidden;
+    float: left;
+    margin-top: 10px;
+    border: 1px solid #eaeaea;
+
+    img{
+      height: 100%;
+    }
+  }
+  .transactions{
+    border: 1px solid #979797;
+    list-style: none;
+    background-color: #fff;
+    margin-top: 10px;
+    margin-left: 132px;
+    height: 200px;
+    width: 350px;
+
+    .item-title{
+      text-align: left !important;
+      line-height: normal;
+      color: #4a4a4a;
+      padding: none;
+      margin-left: 10px;
+      margin-top: 20px;
+    }
+
+    .delete-button{
+      float:right;
+      top: 9em;
+      position: relative;
+      margin-right: 10px;
+
+
+      .delete-item{
+        border: 1px solid #FF6678;
+        border-radius: 5px;
+        color: #FF6678;
+        font-size: 14px;
+        padding: 3px 7px 3px;
+        margin-left: 5px;
+        &:hover{
+          background-color: #FF6678;
+          color: #fff;
+          }
+        }
+      }
+    }
+  }
 /*My Listing Section*/
 .listing-container{
   display: table;
