@@ -61,11 +61,12 @@ module Api::V1
     end
 
     def verify_scan
-      puts "asihiahighihaihioahgiohioshi"
-      puts !params[:transactions][:inscan].nil?
+
+      decoded = ""
+
       if !params[:transactions].nil? && !params[:transactions][:inscan].nil? && !params[:transactions][:balance].nil?
         decoded = decode(params[:transactions][:inscan].split(''))
-        puts "decoded::::::::::" + decoded
+
         decoded = decoded.split('-')
         transaction_validation = Transaction.where(id: decoded[0]).first
 
@@ -76,13 +77,13 @@ module Api::V1
             render nothing: true, status: 204
           else
             render json: {
-              error: "Could not verify the scan. Please Try again.",
+              error: "Could not verify the scan. Please Try again." + "1",
               status: 400
             }, status: 400
           end
         else
           render json: {
-            error: "Could not verify the scan. Please Try again.",
+            error: "Could not verify the scan. Please Try again."  + "2",
             status: 400
           }, status: 400
         end
@@ -100,20 +101,20 @@ module Api::V1
             render nothing: true, status: 204
           else
             render json: {
-              error: "Could not verify the scan. Please Try again.",
+              error: "Could not verify the scan. Please Try again." + "3",
               status: 400
             }, status: 400
           end
         else
           render json: {
-            error: "Could not verify the scan. Please Try again.",
+            error: "Could not verify the scan. Please Try again." + "4",
             status: 400
           }, status: 400
         end
 
       else
         render json: {
-          error: "Could not verify the scan. Please Try again.",
+          error: "Could not verify the scan. Please Try again." + "5",
           status: 400
         }, status: 400
       end
