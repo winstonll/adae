@@ -20,6 +20,8 @@ Rails.application.routes.draw do
 
   get 'create' => 'registrations#create'
 
+  get '/api/v1/verify_scan/' => 'api/v1/transactions#verify_scan'
+
   # simple/static pages
     get 'terms'   => "home#terms",   as: :terms
     get 'about'   => "home#about",   as: :about
@@ -34,7 +36,7 @@ Rails.application.routes.draw do
   end
 
   post 'carts/add/' => 'carts#add', :to => 'carts_add'
-  
+
 
   get 'users/stripe_settings/' => 'users#stripe_settings', :to => "users_stripe_settings"
   post 'users/stripe_update_settings/' => 'users#stripe_update_settings', :to => "users_stripe_update_settings"
