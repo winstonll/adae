@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-	has_one :location
+	has_one :location, :dependent => :destroy
 	has_many :reviews
 	has_many :ratings
 	has_many :items
@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
 	has_many :items_rated, through: :ratings, source: :items
 	serialize :stripe_account_status, JSON
 	validates :auth_token, uniqueness: true
+	accepts_nested_attributes_for :location
 
   # Include default devise modules.
   devise :database_authenticatable, :registerable,
