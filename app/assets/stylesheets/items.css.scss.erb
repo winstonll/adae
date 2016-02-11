@@ -118,12 +118,12 @@ body{
 
 		p{
 			font-size:15px;
-			margin-top: 10px;
+			margin-top: 14px;
 		}
 
 		.score{
 			color: #EADB1E;
-      font-size: 30px;
+      font-size: 32px;
       margin-bottom: 5px;
       margin-top: 2px;
 			font-weight: 600;
@@ -143,11 +143,10 @@ body{
 			height: 105px;
       border-radius: 5px;
       float: right;
-      padding: 15px;
-      margin-bottom: 10px;
+      padding: 5px;
       a{
         color: #419bf9;
-				margin-left: 22px;
+				margin-left: 38px;
         &:hover{
           text-decoration: underline;
         }
@@ -156,7 +155,7 @@ body{
       color: #EADB1E;
       font-size: 32px;
       margin-bottom: 8px;
-      margin-top: 2px;
+      margin-top: -3px;
 			font-weight: 600;
       }
     }
@@ -223,7 +222,7 @@ body{
 	}
 
 	#review_comment {
-		display: inline-block;
+		display: table;
 		margin: 0 auto;
 		width: 550px;
 		height: 90px;
@@ -231,7 +230,6 @@ body{
 		padding: 10px;
 		border-radius: 4px;
 		border: 1px solid #979797;
-		margin-right: -9.5em;
 	}
 
 	.review-submit {
@@ -352,19 +350,49 @@ item new
 			.countdown{
 				font-size: 12px;
 				font-weight: 400;
-				margin-bottom: 20px;
+				margin-bottom: 5px;
 			}
 
 			.upload-photo{
-				width:130px;
-				height: 130px;
+				width:170px;
+				height: 150px;
 				background-color: #fff;
-				cursor: pointer;
 				-webkit-box-shadow: 6px 6px 6px -4px rgba(207,207,207,1);
 				-moz-box-shadow: 6px 6px 6px -4px rgba(207,207,207,1);
 				box-shadow: 6px 6px 6px -4px rgba(207,207,207,1);
 				margin-bottom: 25px;
+
+				#photo-image{
+					height: auto;
+					width: 45px;
+					margin-left: 4em;
+					margin-top: 1em;
+				}
+
+				#pic-title{
+					text-align: center;
+					color: #419bf9;
+					margin-top: 10px;
+					font-size: 15px;
+				}
+
+				#descriptor{
+					font-size: 14px;
+					color: #9B9B9B;
+					text-align: center;
+					line-height: normal;
+					margin-top: -13px;
+				}
 			}
+
+				#item_photo{ /*this is to hide the default upload button*/
+					height: 170px;
+					border: 1px solid #979797;
+					width: 170px;
+					cursor: pointer;
+					opacity: 0;
+					margin-bottom: -170px;
+				}
 
 			.rent-deposit-money-sign{ /*this is the color for the dollar sign for rent/lease/deposit price box*/
 				background-color: #419bf9;

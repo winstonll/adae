@@ -17,7 +17,7 @@ module Api::V1
         user = []
 
         transaction.each do |t|
-          
+
           item.push(Item.where(id: t.item_id).first)
 
           if t.buyer_id != params[:id].to_i
@@ -60,11 +60,86 @@ module Api::V1
       end
     end
 
+    def verify_scan
+      if !params[:transactions].nil? && !params[:transactions][:inscan].nil? && !params[:transactions][:balance].nil?
+        decoded = decode(params[:transactions][:inscan].split(''))
+
+        decoded = decoded.split('-')
+        transaction_validation = Transaction.where(id: decoded[0]).first
+
+        if !transaction_validation.nil?
+          transaction_validation = (transaction_validation[:seller_id] == decoded[2]) && (transaction_validation[:buyer_id] == current_user[:id])
+
+          if transaction_validation
+            render nothing: true, status: 204
+          else
+            render json: {
+              error: "Could not verify the scan. Please Try again.",
+              status: 400
+            }, status: 400
+          end
+
+        end
+
+      elsif !params[:transactions] && !params[:transactions][:outscan].nil? && !params[:transactions][:balance].nil?
+        decoded = decode(params[:transactions][:outscan].split(''))
+
+        decoded = decoded.split('-')
+        transaction = Transaction.where(id: decoded[0]).first
+
+        if !transaction_validation.nil?
+          transaction_validation = (transaction_validation[:seller_id] == decoded[2]) && (transaction_validation[:buyer_id] == current_user[:id])
+
+          if transaction_validation
+            render nothing: true, status: 204
+          else
+            render json: {
+              error: "Could not verify the scan. Please Try again.",
+              status: 400
+            }, status: 400
+          end
+        end
+
+      else
+        render json: {
+          error: "Could not verify the scan. Please Try again.",
+          status: 400
+        }, status: 400
+      end
+    end
+
     private
 
       def transaction_params
         params.require(:transactions).permit(:start_date, :end_date,
-        :return_date, :item_id, :buyer_id, :out_scan, :in_scan)
+        :return_date, :item_id, :buyer_id, :out_scan, :in_scan, :balance)
+      end
+
+      def decode(scrambled)
+
+        encoder = ["a", "b", "c", "d", "e", "f", "g", "h",
+        "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u",
+        "v", "w", "x", "y", "z", "0", "1", "2", "3", "4", "5", "6", "7",
+        "8", "9"]
+
+        encoded_JSON = ""
+
+        scrambled.each do |char|
+            if char !=  "-"
+                position = encoder.index(char) - 8
+
+                if position < 0
+                    position = position + 36
+                end
+
+                encoded_JSON = encoded_JSON + encoder[position]
+            else
+                encoded_JSON = encoded_JSON + char
+            end
+        end
+
+        return encoded_JSON
+
       end
   end
 end

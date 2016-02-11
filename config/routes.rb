@@ -18,12 +18,15 @@ Rails.application.routes.draw do
 
   get 'search' => "search#search"
 
+  get '/api/v1/verify_scan/' => 'api/v1/transactions#verify_scan'
+
   # simple/static pages
     get 'terms'   => "home#terms",   as: :terms
     get 'about'   => "home#about",   as: :about
     get 'faq'     => "home#faq",     as: :faq
     get 'careers' => "home#careers", as: :careers
     get 'privacy' => "home#privacy", as: :privacy
+    get 'contact' => "home#contact", as: :contact
 
 
   concern :reviewable do
@@ -32,7 +35,7 @@ Rails.application.routes.draw do
   end
 
   post 'carts/add/' => 'carts#add', :to => 'carts_add'
-  
+
 
   get 'users/stripe_settings/' => 'users#stripe_settings', :to => "users_stripe_settings"
   post 'users/stripe_update_settings/' => 'users#stripe_update_settings', :to => "users_stripe_update_settings"

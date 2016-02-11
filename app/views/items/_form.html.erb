@@ -53,9 +53,13 @@
 		</div>
 
 		<div class="new-item-form">
-			<%= f.label :photo  %>
 			<%#= f.file_field :image  %>
 			<%= f.file_field :photo %>
+			<div class="upload-photo">
+				<%= image_tag "phone.png", id:"photo-image" %>
+				<p id="pic-title">  + Add Photo </p>
+				<p id="descriptor"> You can upload more than one file at a time </p>
+			</div>
 		</div>
 
 		<%= f.fields_for :prices, @price do |p| %>
