@@ -78,7 +78,11 @@ module Api::V1
               status: 400
             }, status: 400
           end
-
+        else
+          render json: {
+            error: "Could not verify the scan. Please Try again.",
+            status: 400
+          }, status: 400
         end
 
       elsif !params[:transactions] && !params[:transactions][:outscan].nil? && !params[:transactions][:balance].nil?
@@ -98,6 +102,11 @@ module Api::V1
               status: 400
             }, status: 400
           end
+        else
+          render json: {
+            error: "Could not verify the scan. Please Try again.",
+            status: 400
+          }, status: 400
         end
 
       else
