@@ -68,53 +68,61 @@ module Api::V1
         decoded = decode(params[:transactions][:inscan].split(''))
 
         decoded = decoded.split('-')
-        transaction_validation = Transaction.where(id: decoded[0]).first
+        current_transaction = Transaction.where(id: decoded[0]).first
 
-        if !transaction_validation.nil?
-          transaction_validation = (transaction_validation[:seller_id] == decoded[2].to_i) && (transaction_validation[:buyer_id] == current_user[:id])
+        if !current_transaction.nil?
+          transaction_validation = (current_transaction[:seller_id] == decoded[2].to_i) && (current_transaction[:buyer_id] == current_user[:id])
 
           if transaction_validation
+
+            current_transaction.in_scan_date = DateTime.current
+            current_transaction.save
+
             render nothing: true, status: 204
           else
             render json: {
-              error: "Could not verify the scan. Please Try again." + "1" + decoded[2],
+              error: "Sorry incorrect QR Code detected.",
               status: 400
             }, status: 400
           end
         else
           render json: {
-            error: "Could not verify the scan. Please Try again."  + "2",
+            error: "Transaction does not exist.",
             status: 400
           }, status: 400
         end
 
       elsif !params[:transactions] && !params[:transactions][:outscan].nil? && !params[:transactions][:balance].nil?
         decoded = decode(params[:transactions][:outscan].split(''))
-        puts "decoded::::::::::" + decoded
-        decoded = decoded.split('-')
-        transaction = Transaction.where(id: decoded[0]).first
 
-        if !transaction_validation.nil?
-          transaction_validation = (transaction_validation[:seller_id] == decoded[2].to_i) && (transaction_validation[:buyer_id] == current_user[:id])
+        decoded = decoded.split('-')
+        current_transaction = Transaction.where(id: decoded[0]).first
+
+        if !current_transaction.nil?
+          transaction_validation = (current_transaction[:seller_id] == decoded[2].to_i) && (current_transaction[:buyer_id] == current_user[:id])
 
           if transaction_validation
+
+            current_transaction.out_scan_date = DateTime.current
+            current_transaction.save
+
             render nothing: true, status: 204
           else
             render json: {
-              error: "Could not verify the scan. Please Try again." + "3",
+              error: "Sorry incorrect QR Code detected.",
               status: 400
             }, status: 400
           end
         else
           render json: {
-            error: "Could not verify the scan. Please Try again." + "4",
+            error: "Transaction does not exist.",
             status: 400
           }, status: 400
         end
 
       else
         render json: {
-          error: "Could not verify the scan. Please Try again." + "5",
+          error: "Sorry, invalid QR code.",
           status: 400
         }, status: 400
       end
