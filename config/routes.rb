@@ -28,6 +28,7 @@ Rails.application.routes.draw do
     get 'faq'     => "home#faq",     as: :faq
     get 'careers' => "home#careers", as: :careers
     get 'privacy' => "home#privacy", as: :privacy
+    get 'contact' => "home#contact", as: :contact
 
 
   concern :reviewable do
