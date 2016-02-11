@@ -61,6 +61,8 @@ module Api::V1
     end
 
     def verify_scan
+      puts "asihiahighihaihioahgiohioshi"
+      puts !params[:transactions][:inscan].nil?
       if !params[:transactions].nil? && !params[:transactions][:inscan].nil? && !params[:transactions][:balance].nil?
         decoded = decode(params[:transactions][:inscan].split(''))
         puts "decoded::::::::::" + decoded
