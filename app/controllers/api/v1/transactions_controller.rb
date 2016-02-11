@@ -71,13 +71,13 @@ module Api::V1
         transaction_validation = Transaction.where(id: decoded[0]).first
 
         if !transaction_validation.nil?
-          transaction_validation = (transaction_validation[:seller_id] == decoded[2]) && (transaction_validation[:buyer_id] == current_user[:id])
+          transaction_validation = (transaction_validation[:seller_id] == decoded[2].to_i) && (transaction_validation[:buyer_id] == current_user[:id])
 
           if transaction_validation
             render nothing: true, status: 204
           else
             render json: {
-              error: "Could not verify the scan. Please Try again." + "1",
+              error: "Could not verify the scan. Please Try again." + "1" + decoded[2],
               status: 400
             }, status: 400
           end
