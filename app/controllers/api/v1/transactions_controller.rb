@@ -77,13 +77,13 @@ module Api::V1
             render nothing: true, status: 204
           else
             render json: {
-              error: "Could not verify the scan. Please Try again." + "1" + decoded[2],
+              error: "Sorry incorrect QR Code detected.",
               status: 400
             }, status: 400
           end
         else
           render json: {
-            error: "Could not verify the scan. Please Try again."  + "2",
+            error: "Transaction does not exist.",
             status: 400
           }, status: 400
         end
@@ -101,20 +101,20 @@ module Api::V1
             render nothing: true, status: 204
           else
             render json: {
-              error: "Could not verify the scan. Please Try again." + "3",
+              error: "Sorry incorrect QR Code detected.",
               status: 400
             }, status: 400
           end
         else
           render json: {
-            error: "Could not verify the scan. Please Try again." + "4",
+            error: "Transaction does not exist.",
             status: 400
           }, status: 400
         end
 
       else
         render json: {
-          error: "Could not verify the scan. Please Try again." + "5",
+          error: "Sorry, invalid QR code.",
           status: 400
         }, status: 400
       end
