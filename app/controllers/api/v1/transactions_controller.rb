@@ -88,7 +88,7 @@ module Api::V1
         transaction = Transaction.where(id: decoded[0]).first
 
         if !transaction_validation.nil?
-          transaction_validation = (transaction_validation[:seller_id] == decoded[2]) && (transaction_validation[:buyer_id] == current_user[:id])
+          transaction_validation = (transaction_validation[:seller_id] == decoded[2].to_i) && (transaction_validation[:buyer_id] == current_user[:id])
 
           if transaction_validation
             render nothing: true, status: 204
