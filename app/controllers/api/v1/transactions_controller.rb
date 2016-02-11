@@ -63,7 +63,7 @@ module Api::V1
     def verify_scan
       if !params[:transactions].nil? && !params[:transactions][:inscan].nil? && !params[:transactions][:balance].nil?
         decoded = decode(params[:transactions][:inscan].split(''))
-
+        puts "decoded::::::::::" + decoded
         decoded = decoded.split('-')
         transaction_validation = Transaction.where(id: decoded[0]).first
 
@@ -87,7 +87,7 @@ module Api::V1
 
       elsif !params[:transactions] && !params[:transactions][:outscan].nil? && !params[:transactions][:balance].nil?
         decoded = decode(params[:transactions][:outscan].split(''))
-
+        puts "decoded::::::::::" + decoded
         decoded = decoded.split('-')
         transaction = Transaction.where(id: decoded[0]).first
 
