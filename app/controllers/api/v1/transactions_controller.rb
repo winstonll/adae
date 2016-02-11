@@ -98,6 +98,7 @@ module Api::V1
               status: 400
             }, status: 400
           end
+        end
 
       else
         render json: {
