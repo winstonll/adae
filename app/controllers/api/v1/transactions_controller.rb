@@ -69,6 +69,7 @@ module Api::V1
 
         decoded = decoded.split('-')
         current_transaction = Transaction.where(id: decoded[0]).first
+        seller = User.where(id: current_transaction[:seller_id]).first
 
         if !current_transaction.nil?
           transaction_validation = (current_transaction[:seller_id] == decoded[2].to_i) && (current_transaction[:buyer_id] == current_user[:id])
@@ -77,6 +78,9 @@ module Api::V1
 
             current_transaction.in_scan_date = DateTime.current
             current_transaction.save
+
+            seller.total_price = seller.total_price + params[:transactions][:balance].to_i
+            seller.save
 
             render nothing: true, status: 204
           else
