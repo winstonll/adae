@@ -1,5 +1,8 @@
 module Api::V1
   class TransactionsController < BaseController
+
+    before_action :authenticate_user_token!, only: [:verify_scan]
+
     def index
       transaction = Transaction.all
       if item_id = params[:item_id]
@@ -60,6 +63,8 @@ module Api::V1
       end
     end
 
+    # Verifying a requested In scan or Out scan and updating the respective
+    # users balance
     def verify_scan
 
       decoded = ""
@@ -163,7 +168,6 @@ module Api::V1
         end
 
         return encoded_JSON
-
       end
   end
 end
