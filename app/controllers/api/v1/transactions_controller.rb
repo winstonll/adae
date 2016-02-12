@@ -4,33 +4,20 @@ module Api::V1
     before_action :authenticate_user_token!, only: [:verify_scan]
 
     def index
-      transaction = Transaction.all
+      @transaction = Transaction.all
       if item_id = params[:item_id]
-        transaction = Transaction.where(item_id: item_id)
+        @transaction = Transaction.where(item_id: item_id)
       end
 
-      render json: transaction, status: :ok
+      render json: @transaction, status: :ok
     end
 
+    # I'm leaking sensitive user information, auth and api token
     def show
-      transaction = Transaction.where("transactions.seller_id = #{params[:id]} OR transactions.buyer_id = #{params[:id]}")
+      transaction = Transaction.where(id: params[:id]).first
 
       if !transaction.nil?
-        item = []
-        user = []
-
-        transaction.each do |t|
-
-          item.push(Item.where(id: t.item_id).first)
-
-          if t.buyer_id != params[:id].to_i
-            user.push(User.where(id: t.buyer_id).first)
-          else
-            user.push(User.where(id: t.seller_id).first)
-          end
-        end
-
-        render :json => {:transaction => transaction, :item => item, :user => user}
+        render json: transaction, status: :ok
       else
         render json: {
           error: "No such transaction; check the user_id",
@@ -58,6 +45,33 @@ module Api::V1
       else
         render json: {
           error: "No such transaction; check the transaction id",
+          status: 400
+        }, status: 400
+      end
+    end
+
+    def transaction_detail
+      @transaction = Transaction.where("transactions.seller_id = #{params[:id]} OR transactions.buyer_id = #{params[:id]}")
+
+      if !@transaction.nil?
+        @item = []
+        @user = []
+
+        @transaction.each do |t|
+
+          @item.push(Item.where(id: t.item_id).first)
+
+          if t.buyer_id != params[:id].to_i
+            @user.push(User.where(id: t.buyer_id).first)
+          else
+            @user.push(User.where(id: t.seller_id).first)
+          end
+        end
+
+        #render :json => {:transaction => transaction, :item => item, :user => user}
+      else
+        render json: {
+          error: "No such transaction; check the user_id",
           status: 400
         }, status: 400
       end
