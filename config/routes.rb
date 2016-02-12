@@ -21,6 +21,7 @@ Rails.application.routes.draw do
   get 'create' => 'registrations#create'
 
   get '/api/v1/verify_scan/' => 'api/v1/transactions#verify_scan'
+  get '/api/v1/transaction_detail/:id' => 'api/v1/transactions#transaction_detail'
 
   # simple/static pages
     get 'terms'   => "home#terms",   as: :terms
