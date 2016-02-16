@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+  before_action :configure_permitted_parameters, if: :devise_controller?
   #include DeviseTokenAuth::Concerns::SetUserByToken
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
@@ -19,6 +20,13 @@ class ApplicationController < ActionController::Base
      session[:previous_url] = request.fullpath
      redirect_to user_session_path
    end
+  end
+
+  protected
+
+  # To permit new custom attributes to be verified as attributes permitted by the form
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.for(:sign_up) { |u| u.permit( :email, :password, :password_confirmation)}
   end
 
 end
