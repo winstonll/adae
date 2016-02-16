@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  devise_for :users#, controllers: { sessions: 'sessions' }
+  devise_for :users, controllers: { registrations: "users/registrations" }
 
   #constraints subdomain: 'api' do
     namespace :api do
@@ -17,8 +17,6 @@ Rails.application.routes.draw do
   root 'home#landing'
 
   get 'search' => "search#search"
-
-  get 'create' => 'registrations#create'
 
   get '/api/v1/verify_scan/' => 'api/v1/transactions#verify_scan'
   get '/api/v1/transaction_detail/:id' => 'api/v1/transactions#transaction_detail'

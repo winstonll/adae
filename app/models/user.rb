@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-	has_one :location
+	has_one :location, :dependent => :destroy
 	has_many :reviews
 	has_many :ratings
 	has_many :items
@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
 	has_many :items_rated, through: :ratings, source: :items
 	serialize :stripe_account_status, JSON
 	validates :auth_token, uniqueness: true
+	accepts_nested_attributes_for :location
 
   # Include default devise modules.
   devise :database_authenticatable, :registerable,
@@ -15,6 +16,12 @@ class User < ActiveRecord::Base
 
 	before_create :ensure_authentication_token # :generate_authentication_token
 
+	validates :avatar,
+    attachment_content_type: { content_type: /\Aimage\/.*\Z/ },
+    attachment_size: { less_than: 5.megabytes }
+
+	has_attached_file :avatar, styles: { small: "25x25", med: "50x50", large: "100x100" }
+
   #include DeviseTokenAuth::Concerns::User
 
 	def ensure_authentication_token
@@ -22,11 +29,11 @@ class User < ActiveRecord::Base
 			self.auth_token = generate_authentication_token
 		end
 	end
-	
+
 	def full_name
 		"#{name} #{surname}"
 	end
-	
+
 	def rated?(item)
 		ratings.find_by(item: item)
 	end
@@ -53,7 +60,7 @@ class User < ActiveRecord::Base
 		# return true if standalone? && stripe_account_status['charges_enabled']
 		return false
 	end
-	
+
 	private
 
 	def generate_authentication_token
