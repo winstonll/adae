@@ -16,6 +16,12 @@ class User < ActiveRecord::Base
 
 	before_create :ensure_authentication_token # :generate_authentication_token
 
+	validates :photo,
+    attachment_content_type: { content_type: /\Aimage\/.*\Z/ },
+    attachment_size: { less_than: 5.megabytes }
+
+	has_attached_file :photo, styles: { small: "400x400", med: "800x800", large: "1200x1200" }
+
   #include DeviseTokenAuth::Concerns::User
 
 	def ensure_authentication_token
@@ -23,11 +29,11 @@ class User < ActiveRecord::Base
 			self.auth_token = generate_authentication_token
 		end
 	end
-	
+
 	def full_name
 		"#{name} #{surname}"
 	end
-	
+
 	def rated?(item)
 		ratings.find_by(item: item)
 	end
@@ -54,7 +60,7 @@ class User < ActiveRecord::Base
 		# return true if standalone? && stripe_account_status['charges_enabled']
 		return false
 	end
-	
+
 	private
 
 	def generate_authentication_token
