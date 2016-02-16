@@ -1,6 +1,11 @@
 body{
   background-color: #f2f2f2;
 }
+
+a{
+  display: table;
+  margin: 0 auto;
+}
 .username{
   margin-top: 1em !important;
   margin-bottom: 1em !important;
@@ -11,13 +16,21 @@ body{
   margin: 0 auto;
 }
 
+.ui-segment {
+  height: 500px;
+  overflow-y: scroll;
+}
+
 .chat-content{
   display: table;
   margin: 0 auto;
   background-color: #fff;
   border-radius: 5px 5px 0px 0px;
   width: 400px;
-  height: 150px;
+  height: 500px;
+  overflow: hidden;
+
+
 
   .chat-bubble, .opp-chat-bubble{
     margin-top: 10px;

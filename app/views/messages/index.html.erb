@@ -1,10 +1,10 @@
 <%= stylesheet_link_tag "chat" %>
-<% if @over_ten %>
-  <%= link_to 'Show Previous', '?m=all' %>
-<% end %>
+<!--<% if @over_ten %>
+  <%= link_to 'Show Previous Messages', '?m=all' %>
+<% end %>-->
 <div class="username"> Conversation with <%=User.where("id != ?", current_user).pluck(:name).first %></div>
 <div class="chat-content">
-  <div class="ui segment">
+  <div class="ui-segment">
     <% @messages.each do |message| %>
       <% if message.body %>
         <% user = User.find(message.user_id) %>
