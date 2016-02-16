@@ -47,7 +47,7 @@ class UsersController < ApplicationController
 
  	private
  	def user_params
- 	  params.require(:user).permit(:name, :surname, :email, :password, :password_confirmation,
+ 	  params.require(:user).permit(:name, :avatar, :surname, :email, :password, :password_confirmation,
  	  :phone_number)
  	end
 
@@ -66,7 +66,7 @@ class UsersController < ApplicationController
     # Checks to see if the current user is actually the user this page is suppose to show
 	# We don't want a person to type in the user of someone else in the link and edit their info
     def correct_user
-      @user = User.find_by_id(params[:id]) 
+      @user = User.find_by_id(params[:id])
       if !@user.nil? && (current_user.id == @user.id) #If user is found, go to edit page, else go to sign in
       else
         flash[:danger] = "The request cannot be fulfilled."
