@@ -16,11 +16,11 @@ class User < ActiveRecord::Base
 
 	before_create :ensure_authentication_token # :generate_authentication_token
 
-	validates :photo,
+	validates :avatar,
     attachment_content_type: { content_type: /\Aimage\/.*\Z/ },
     attachment_size: { less_than: 5.megabytes }
 
-	has_attached_file :photo, styles: { small: "400x400", med: "800x800", large: "1200x1200" }
+	has_attached_file :avatar, styles: { small: "400x400", med: "800x800", large: "1200x1200" }
 
   #include DeviseTokenAuth::Concerns::User
 
