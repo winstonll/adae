@@ -2,9 +2,15 @@
 <!--<% if @over_ten %>
   <%= link_to 'Show Previous Messages', '?m=all' %>
 <% end %>-->
+<script>
+$(document).on('ready page:load', function() {
+  var objDiv = document.getElementById("ui-segment");
+  objDiv.scrollTop = objDiv.scrollHeight;
+});
+</script>
 <div class="username"> Conversation with <%=User.where("id != ?", current_user).pluck(:name).first %></div>
 <div class="chat-content">
-  <div class="ui-segment">
+  <div id="ui-segment">
     <% @messages.each do |message| %>
       <% if message.body %>
         <% user = User.find(message.user_id) %>
