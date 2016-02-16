@@ -1,7 +1,15 @@
 Rails.application.routes.draw do
-
-  devise_for :users, controllers: { registrations: "users/registrations" }
-
+  devise_for :users, controllers: { 
+    registrations: "users/registrations",
+    sessions: "users/sessions",
+    passwords: "users/passwords",
+    confirmations: "users/confirmations" }
+  devise_scope :user do 
+    get 'signup',  to: 'users/registrations#new'
+    get 'signin',  to: 'users/sessions#new'
+    delete 'signout', to: 'users/sessions#destroy'
+  end
+  
   #constraints subdomain: 'api' do
     namespace :api do
       namespace :v1 do
@@ -36,7 +44,7 @@ Rails.application.routes.draw do
   end
 
   post 'carts/add/' => 'carts#add', :to => 'carts_add'
-
+  
 
   get 'users/stripe_settings/' => 'users#stripe_settings', :to => "users_stripe_settings"
   post 'users/stripe_update_settings/' => 'users#stripe_update_settings', :to => "users_stripe_update_settings"
@@ -50,7 +58,6 @@ Rails.application.routes.draw do
     # Stripe webhooks
   post '/hooks/stripe' => 'hooks#stripe'
   post 'transactions/hook' => 'transactions#hook', :to => "transactions_hook"
-
 
   resources :items,  :concerns => :reviewable
   resources :requests, :path => "shoutout"

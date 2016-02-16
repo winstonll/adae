@@ -9,10 +9,10 @@ class User < ActiveRecord::Base
 	validates :auth_token, uniqueness: true
 	accepts_nested_attributes_for :location
 
-  # Include default devise modules.
-  devise :database_authenticatable, :registerable,
-          :recoverable, :rememberable, :trackable, :validatable#,
-          #:confirmable, :omniauthable
+ 	# Include default devise modules. Others available are:
+ 	# , :lockable, :timeoutable and :omniauthable
+  	devise :database_authenticatable, :registerable, :confirmable,
+         :recoverable, :rememberable, :trackable, :validatable
 
 	before_create :ensure_authentication_token # :generate_authentication_token
 
