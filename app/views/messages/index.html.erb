@@ -8,13 +8,25 @@
     <% @messages.each do |message| %>
       <% if message.body %>
         <% user = User.find(message.user_id) %>
-      <div class="chat-bubble">
-            <div class="bubble-text">
-              <i class="right triangle icon"></i>
-               <%= message.body %>
-            </div>
-      </div>
-      <div class="chat-time"><strong><%= user.name %></strong>     <%= message.message_time %></div>
+        <% if user.id == current_user.id %>
+
+          <div class="chat-bubble">
+                <div class="bubble-text">
+                  <i class="right triangle icon"></i>
+                   <%= message.body %>
+                </div>
+          </div>
+          <div class="chat-time"><strong><%= user.name %></strong>     <%= message.message_time %></div>
+
+        <% else %>
+        <div class="chat-bubble" style="background-color: red !important; float: left !important;">
+              <div class="bubble-text">
+                <i class="right triangle icon"></i>
+                  <%= message.body %>
+              </div>
+        </div>
+        <div class="chat-time" style="float: left !important;"><strong><%= user.name %></strong>     <%= message.message_time %></div>
+        <% end %>
       <% end %>
     <% end %>
   </div>
