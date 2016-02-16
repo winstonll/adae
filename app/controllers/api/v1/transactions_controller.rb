@@ -98,7 +98,7 @@ module Api::V1
             current_transaction.in_scan_date = DateTime.current
             current_transaction.save
 
-            seller.total_price = seller.total_price + params[:transactions][:balance].to_i
+            seller.balance = seller.balance + params[:transactions][:total_price].to_i
             seller.save
 
             render nothing: true, status: 204
