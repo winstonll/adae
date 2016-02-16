@@ -20,7 +20,7 @@ class User < ActiveRecord::Base
     attachment_content_type: { content_type: /\Aimage\/.*\Z/ },
     attachment_size: { less_than: 5.megabytes }
 
-	has_attached_file :avatar, styles: { small: "400x400", med: "800x800", large: "1200x1200" }
+	has_attached_file :avatar, styles: { small: "25x25", med: "50x50", large: "100x100" }
 
   #include DeviseTokenAuth::Concerns::User
 
