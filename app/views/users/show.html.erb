@@ -64,18 +64,21 @@
 	</div>
 
 	<h4> Cash Out Options </h4>
-	<div class="mail-cheque-section">
-			<p id="title">Mailed Cheque</p>
-			<p id="description">Enter your address below, and we will mail a cheque with the amount on your balance to you! <span style="color: #419bf9">Min. $20 Required</span></p>
-	</div>
 
 	<div class="payment-settings">
 		<% if signed_in? %>
 		<span class="personal_purchases"><%#= link_to "Personal Purchase History", trx_orders_list_personal_purchases_path %></span>
-		<h4><%= link_to "Payment Settings", users_stripe_settings_path %></h4>
+		<p> Direct Deposit</p>
+		<p id="description"> Transfer money from your balance to your bank account.</p>
+		<%= link_to "Withdraw Money", users_stripe_settings_path, class: "cashout-btn"  %>
 		<span class="orders"><%#= link_to "Order Requests", items_orders_path %></span>
 		<span class="accepted_orders"><%#= link_to "Accepted Orders", items_accepted_orders_path %></span>
 		<% end %>
+	</div>
+
+	<div class="mail-cheque-section">
+			<p id="title">Mailed Cheque</p>
+			<p id="description">Enter your address below, and we will mail a cheque with the amount on your balance to you! <span style="color: #419bf9">Min. $20 Required</span></p>
 	</div>
 
 </div>
