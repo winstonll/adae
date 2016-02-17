@@ -103,6 +103,7 @@ class ItemsController < ApplicationController
   end
 
   private
+  
   def item_params
     params.require(:item).permit(:title, :photo, :description, :image, :user_id, :listing_type, :deposit, :tags, :postal_code, prices_attributes: [:id, :timeframe, :amount])
   end

@@ -16,12 +16,14 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   private
+  
     def user_params
       params.require(:user).permit(
         :name,
         :surname,
         :email,
         :password,
+        :avatar,
         location_attributes: [
           :city,
           :country
