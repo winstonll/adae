@@ -2,117 +2,145 @@ body{
   background-color: #f2f2f2;
 }
 
-a{
+.page-content{
   display: table;
   margin: 0 auto;
-}
-.username{
-  margin-top: 1em !important;
-  margin-bottom: 1em !important;
-  font-size: 18px;
-  font-weight: 600;
-  color: #4a4a4a;
-  display: table;
-  margin: 0 auto;
-}
+  width: 770px;
 
-#ui-segment {
-  height: 500px;
-  overflow-y: scroll;
-}
+  .username{
+    margin-top: 1em !important;
+    margin-bottom: 1em !important;
+    font-size: 18px;
+    font-weight: 600;
+    color: #4a4a4a;
+  }
 
-.chat-content{
-  display: table;
-  margin: 0 auto;
-  background-color: #fff;
-  border-radius: 5px 5px 0px 0px;
-  width: 400px;
-  height: 500px;
-  overflow: hidden;
+  .user-profile{
+    height: 150px;
+    width: 350px;
+    background-color: #fff;
+    float: left;
+    border-radius: 5px;
+    border: 1px solid #cdcdcd;
 
-
-
-  .chat-bubble, .opp-chat-bubble{
-    margin-top: 10px;
-    font-size: 14px;
-    border-radius: 10px;
-    clear:both;
-    margin-right: 5px;
-    margin-left: 25px;
-
-    .bubble-text{
-      padding: 10px;
-      text-align: left;
-      line-height: normal;
+    #user-name{
+      font-size: 20px;
+      font-weight: 600;
+      color: #4a4a4a;
     }
   }
-  .chat-bubble{
-    background-color: #419BF9;
-    float:right;
-    color: #fff;
-    margin-left: 6em !important;
+
+  .request-box{
+    height: 270px;
+    width: 350px;
+    background-color: #fff;
+    float: left;
+    border-radius: 5px;
+    border: 1px solid #cdcdcd;
+    margin-top: 15px;
   }
-  .opp-chat-bubble{
-    background-color: #e4e4e4;
-    float:left;
-    color: black;
-    margin-left: 5px !important;
-    margin-right: 6em;
+
+/*chat area*/
+  .chat-area{
+    float: right;
+
+  #ui-segment {
+    height: 500px;
+    overflow-y: scroll;
   }
-  .chat-time, .opp-chat-time{
-    font-size: 10px !important;
-    color: #979797;
-    margin-top: 3px;
-    clear: both;
-  }
-  .chat-time{
-    margin-right: 10px;
-    float:right;
-  }
-  .opp-chat-time{
-    float:left;
-    margin-left: 10px;
-  }
-}
-  .reply-field{
+
+  .chat-content{
     display: table;
     margin: 0 auto;
     background-color: #fff;
-    border-radius: 0px 0px 5px 5px;
-    padding: 10px;
-    width: 350px;
-    margin-bottom: 3em;
+    border-radius: 5px 5px 0px 0px;
+    width: 400px;
+    height: 500px;
+    overflow: hidden;
 
-    #message_body{
-      border-style: solid none none none;
-      border-top: 1px solid #eaeaea;
-      width: 350px;
-      height: 40px;
-      font-size: 13px;
-      padding: 15px;
-
-    }
-    input:focus, textarea {
-      outline: none !important;
-      resize: none;
-      }
-
-    .reply_btn{
-      border-radius: 2px;
-      cursor: pointer;
-      background-color: #419BF9;
-      border: none;
-      color: #fff;
-      padding: 4px;
-      width: 70px;
-      height: 31px;
+    .chat-bubble, .opp-chat-bubble{
+      margin-top: 10px;
       font-size: 14px;
-      float: right;
-      margin: 5px 10px;
-      &:hover{
-        background-color: #fff;
-        color: #419BF9;
-        border: 1px solid #419BF9;
+      border-radius: 10px;
+      clear:both;
+      margin-right: 5px;
+      margin-left: 25px;
+
+      .bubble-text{
+        padding: 10px;
+        text-align: left;
+        line-height: normal;
+      }
+    }
+    .chat-bubble{
+      background-color: #419BF9;
+      float:right;
+      color: #fff;
+      margin-left: 6em !important;
+    }
+    .opp-chat-bubble{
+      background-color: #e4e4e4;
+      float:left;
+      color: black;
+      margin-left: 5px !important;
+      margin-right: 6em;
+    }
+    .chat-time, .opp-chat-time{
+      font-size: 10px !important;
+      color: #979797;
+      margin-top: 3px;
+      clear: both;
+    }
+    .chat-time{
+      margin-right: 10px;
+      float:right;
+    }
+    .opp-chat-time{
+      float:left;
+      margin-left: 10px;
+    }
+  }
+    .reply-field{
+      display: table;
+      margin: 0 auto;
+      background-color: #fff;
+      border-radius: 0px 0px 5px 5px;
+      padding: 10px;
+      width: 350px;
+      margin-bottom: 3em;
+
+      #message_body{
+        border-style: solid none none none;
+        border-top: 1px solid #eaeaea;
+        width: 350px;
+        height: 40px;
+        font-size: 13px;
+        padding: 15px;
+
+      }
+      input:focus, textarea {
+        outline: none !important;
+        resize: none;
+        }
+
+      .reply_btn{
+        border-radius: 2px;
+        cursor: pointer;
+        background-color: #419BF9;
+        border: none;
+        color: #fff;
+        padding: 4px;
+        width: 70px;
+        height: 31px;
+        font-size: 14px;
+        float: right;
+        margin: 5px 10px;
+        &:hover{
+          background-color: #fff;
+          color: #419BF9;
+          border: 1px solid #419BF9;
+        }
       }
     }
   }
+}
