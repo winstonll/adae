@@ -13,7 +13,7 @@ body{
   display: table;
   margin: 0 auto;
   margin-top: 3em;
-  width: 770px;
+  width: 790px;
 
 .profile-info{
   background-color: #fff;
@@ -78,6 +78,7 @@ body{
     font-size: 19px;
     font-weight: 600;
     color: #4a4a4a;
+    margin-bottom: 10px;
   }
 .mail-cheque-section{
   background-color: #fff;
@@ -87,7 +88,6 @@ body{
   border: 1px solid #979797;
   display: inline-block;
   margin-top: -15px;
-  margin-bottom: 3em;
 
   #title{
     font-weight: 600;
@@ -96,16 +96,54 @@ body{
   }
 
   #description{
-    font-weight: 500;
+    font-weight: 400;
     color: #4a4a4a;
     text-align: left;
     line-height: 20px;
     margin-left: 10px;
   }
+}
 
-  .test{
-    background-color: blue;
-    height: 50px;
+/*Direct Deposit Section*/
+.payment-settings{
+  background-color: #fff;
+  width: 240px;
+  height: 150px;
+  border: 1px solid #979797;
+  border-radius: 5px;
+  padding: 5px;
+  margin-bottom: 25px;
+
+
+  p{
+    font-size: 17px;
+    font-weight: 600;
+    color: #4a4a4a;
+    margin-bottom: -10px;
+  }
+
+  #description{
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 20px;
+    text-align: left;
+    margin-left: 10px;
+    margin-bottom: 15px;
+  }
+
+  .cashout-btn{
+    background-color: #419bf9;
+    color: #fff;
+    padding: 10px 40px;
+    font-size: 16px;
+    font-weight: 500;
+    border-radius: 5px;
+    display: table;
+    margin: 0 auto;
+    cursor: pointer;
+    &:hover{
+      background-color: #0077F3;
+    }
   }
 }
 /*Requests Container*/
@@ -450,3 +488,41 @@ body{
   }
 }
 /*User Review Section Ends here */
+
+/*Stripe Settings Sections*/
+
+.heading{
+  background-color: #fff;
+  padding-top: .5em;
+  padding-bottom: 1.5em;
+
+  h1{
+    font-size: 28px !important;
+    color: #419bf9 !important;
+    margin-bottom: 20px !important;
+  }
+
+  a{
+    color: #419bf9;
+    font-weight: 500;
+  }
+}
+
+  .payment_settings{
+    display: table;
+    margin: 0 auto;
+    width: 70%;
+  }
+
+  #stripe-managed{
+    label{
+      font-size: 16px;
+      font-weight: 500;
+      margin-top: 5px;
+      margin-bottom: 10px;
+    }
+  }
+.needed{
+  display: table;
+  margin: 0 auto;
+}

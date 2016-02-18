@@ -1,46 +1,70 @@
 <%= stylesheet_link_tag "chat" %>
-<% if @over_ten %>
-  <%= link_to 'Show Previous', '?m=all' %>
-<% end %>
-<div class="username"> Conversation with <%=User.where("id != ?", current_user).pluck(:name).first %></div>
-<div class="chat-content">
-  <div class="ui segment">
-    <% @messages.each do |message| %>
-      <% if message.body %>
-        <% user = User.find(message.user_id) %>
-        <% if user.id == current_user.id %>
-          <div class="chat-bubble">
+<!--<% if @over_ten %>
+  <%= link_to 'Show Previous Messages', '?m=all' %>
+<% end %>-->
+<script>
+$(document).on('ready page:load', function() {
+  var objDiv = document.getElementById("ui-segment");
+  objDiv.scrollTop = objDiv.scrollHeight;
+});
+</script>
+
+
+<div class="page-content">
+  <div class="username"> Conversation with <%=User.where("id != ?", current_user).pluck(:name).first %></div>
+
+
+  <div class="user-profile">
+    <p id="user-name"><%=User.where("id != ?", current_user).pluck(:name).first %></p>
+  </div>
+
+
+
+  <div class="chat-area">
+    <div class="chat-content">
+      <div id="ui-segment">
+        <% @messages.each do |message| %>
+          <% if message.body %>
+            <% user = User.find(message.user_id) %>
+            <% if user.id == current_user.id %>
+              <div class="chat-bubble">
+                    <div class="bubble-text">
+                      <i class="right triangle icon"></i>
+                       <%= message.body %>
+                    </div>
+              </div>
+              <div class="chat-time">
+                <strong><%= user.name %></strong>
+                <%= message.message_time %>
+              </div>
+            <% else %>
+              <div class="opp-chat-bubble">
                 <div class="bubble-text">
                   <i class="right triangle icon"></i>
-                   <%= message.body %>
+                    <%= message.body %>
                 </div>
-          </div>
-          <div class="chat-time">
-            <strong><%= user.name %></strong>
-            <%= message.message_time %>
-          </div>
-        <% else %>
-          <div class="opp-chat-bubble">
-            <div class="bubble-text">
-              <i class="right triangle icon"></i>
-                <%= message.body %>
-            </div>
-          </div>
-          <div class="opp-chat-time">
-            <strong><%= user.name %></strong>
-            <%= message.message_time %>
-          </div>
+              </div>
+              <div class="opp-chat-time">
+                <strong><%= user.name %></strong>
+                <%= message.message_time %>
+              </div>
+            <% end %>
+          <% end %>
         <% end %>
+      </div>
+    </div>
+      <%= form_for [@conversation, @message] do |f| %>
+      <div class="reply-field"
+        <div class="field">
+          <%= f.text_area :body, :placeholder => "Add a personal message here", class: "form-control" %>
+          <%= f.text_field :user_id, value: current_user.id, type: "hidden"%>
+          <%= f.submit "Send", class: "reply_btn" %>
+        </div>
       <% end %>
-    <% end %>
+      </div>
+
+      <div class="request-box">
+        <!--<p id ="cancel"> Need to Cancel? <span style="text-decoration: underline; color: #FF2641"><a href="/contact">Click Here</span></p></a>-->
+      </div>
   </div>
 </div>
-  <%= form_for [@conversation, @message] do |f| %>
-  <div class="reply-field"
-    <div class="field">
-      <%= f.text_area :body, :placeholder => "Add a personal message here", class: "form-control" %>
-      <%= f.text_field :user_id, value: current_user.id, type: "hidden"%>
-      <%= f.submit "Send", class: "reply_btn" %>
-    </div>
-  <% end %>
-  </div>

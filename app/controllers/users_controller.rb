@@ -46,32 +46,33 @@ class UsersController < ApplicationController
 	end
 
  	private
- 	def user_params
- 	  params.require(:user).permit(:name, :avatar, :surname, :email, :password, :password_confirmation,
- 	  :phone_number)
- 	end
+	
+	 	def user_params
+	 	  params.require(:user).permit(:name, :avatar, :surname, :email, :password, :password_confirmation,
+	 	  :phone_number)
+	 	end
 
- 	def load_user
- 	  @user = User.find(params[:id])
- 	end
+	 	def load_user
+	 	  @user = User.find(params[:id])
+	 	end
 
-	# Before filters
-    def signed_in_user
-      unless signed_in?
-        store_location
-        redirect_to new_user_session_path, flash: {warning: "Please sign in."}
-      end
-    end
+		# Before filters
+	  def signed_in_user
+	    unless signed_in?
+	      store_location
+	      redirect_to new_user_session_path, flash: {warning: "Please sign in."}
+	    end
+	  end
 
-    # Checks to see if the current user is actually the user this page is suppose to show
-	# We don't want a person to type in the user of someone else in the link and edit their info
-    def correct_user
-      @user = User.find_by_id(params[:id])
-      if !@user.nil? && (current_user.id == @user.id) #If user is found, go to edit page, else go to sign in
-      else
-        flash[:danger] = "The request cannot be fulfilled."
-        redirect_to(new_user_session_path)
-      end
-    end
+	  # Checks to see if the current user is actually the user this page is suppose to show
+		# We don't want a person to type in the user of someone else in the link and edit their info
+	  def correct_user
+	    @user = User.find_by_id(params[:id])
+	    if !@user.nil? && (current_user.id == @user.id) #If user is found, go to edit page, else go to sign in
+	    else
+	      flash[:danger] = "The request cannot be fulfilled."
+	      redirect_to(new_user_session_path)
+	    end
+	  end
 
 end

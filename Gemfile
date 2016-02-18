@@ -34,9 +34,9 @@ gem 'bcrypt-ruby'
 gem 'cancancan'
 gem 'bootstrap-sass'
 
-gem 'spring'
-
 gem 'stripe'
+
+gem "jquery-fileupload-rails"
 
 gem 'carrierwave'
 gem 'rmagick'

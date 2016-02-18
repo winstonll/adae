@@ -1,4 +1,5 @@
 class Users::RegistrationsController < Devise::RegistrationsController
+  before_filter :configure_sign_up_params, only: [:create]
 
   def create
     @user = User.new(user_params)
@@ -15,15 +16,24 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   private
+  
     def user_params
       params.require(:user).permit(
         :name,
         :surname,
         :email,
         :password,
+        :avatar,
         location_attributes: [
           :city,
           :country
         ])
     end
+
+  protected
+
+  # If you have extra params to permit, append them to the sanitizer.
+  def configure_sign_up_params
+    devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:name, :email, :password, :password_confirmation)}
+  end
 end

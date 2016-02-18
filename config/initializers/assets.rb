@@ -30,3 +30,5 @@ Rails.application.config.assets.precompile += %w( users.js )
 Rails.application.config.assets.precompile += %w( reviews.css )
 Rails.application.config.assets.precompile += %w( ratings.css )
 Rails.application.config.assets.precompile += %w( contact-us.css )
+Rails.application.config.assets.precompile += %w( modals.css )
+

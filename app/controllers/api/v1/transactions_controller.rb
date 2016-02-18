@@ -68,6 +68,8 @@ module Api::V1
           end
         end
 
+        render 'api/v1/transactions/transaction_detail', :formats => [:json], :handlers => [:jbuilder], status: 201
+
         #render :json => {:transaction => transaction, :item => item, :user => user}
       else
         render json: {
