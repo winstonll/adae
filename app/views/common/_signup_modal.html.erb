@@ -13,6 +13,10 @@ $('#username-input').keyup(function(){
 $('.signup-cancel').click(function() {
   $('#shareSignupModal').modal('toggle');
 });
+$('#sign-up-text').click(function() {
+  $('#shareSignupModal').modal('hide');
+});
+
 
 </script>
 
@@ -51,7 +55,7 @@ $('.signup-cancel').click(function() {
             </div>
           </div>
           <div id="divider"></div>
-          <p id="log-in-text"> Already a member of Adae? <%= link_to 'Log In', {remote: true, controller: "home", action: "signin_modal"}%>.</p>
+          <p id="sign-up-text"> Already a member of Adae? <%= link_to 'Log In', {remote: true, controller: "home", action: "signin_modal"}%>.</p>
         <% end %>
       </div>
     </div>

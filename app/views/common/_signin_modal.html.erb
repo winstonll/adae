@@ -2,6 +2,9 @@
 $('.signin-cancel').click(function() {
   $('#shareSigninModal').modal('toggle');
 });
+$('#log-in-text').click(function() {
+  $('#shareSigninModal').modal('hide');
+});
 
 </script>
 <div class="modal fade" id="shareSigninModal" tabindex="-1" role="dialog" aria-labelledby="shareSigninModal" aria-hidden="true">
@@ -33,7 +36,7 @@ $('.signin-cancel').click(function() {
         </div>
 
         <div id="divider"></div>
-        <p id="sign-up-text"> Not a member of Adae? <%= link_to 'Sign Up', {remote: true, controller: "home", action: "signup_modal"} %></p>
+        <p id="log-in-text"> Not a member of Adae? <%= link_to 'Sign Up', {remote: true, controller: "home", action: "signup_modal"} %></p>
       <% end %>
       </div>
     </div>
