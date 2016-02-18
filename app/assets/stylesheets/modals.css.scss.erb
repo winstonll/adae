@@ -75,15 +75,51 @@
     margin-right: 30px;
 }
 
+.modal-backdrop {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 0;
+    background-color: #000;
+}
+.modal-backdrop.fade {
+    opacity: 0;
+    filter: alpha(opacity=0);
+}
+.modal-backdrop.in {
+    opacity: .5;
+    filter: alpha(opacity=50);
+}
+
 #shareSignupModal {
   position: fixed;
   top: 25%;
   z-index: 2;
+  opacity: 1;
   background-color: #F9F9F9;
   width: 16.3em;
   height: 30.3em;
   border-radius: 5px;
   border: 1px solid #419bf9;
+  .modal-backdrop {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1;
+    background-color: #000;
+}
+.modal-backdrop.fade {
+    opacity: 0;
+    filter: alpha(opacity=0);
+}
+.modal-backdrop.fade.in {
+    opacity: .5;
+    filter: alpha(opacity=50);
+}
 
   #username-output{
     font-weight: 400;
@@ -119,20 +155,6 @@
               padding-left: 0.75em;
               border: 1px solid #929292;
             }
-          }
-
-          #password::-webkit-input-placeholder {
-            background-image: url(image_path('lock.png'));
-            background-repeat: no-repeat;
-            background-size: 12px 15px;
-            background-position: 25% 25%;
-          }
-
-          #password::-moz-placeholder {
-            background-image: url(image_path('lock.png'));
-            background-repeat: no-repeat;
-            background-size: 12px 15px;
-            background-position: 25% 25%;
           }
         }
 
