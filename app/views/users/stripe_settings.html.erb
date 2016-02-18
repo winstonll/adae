@@ -1,13 +1,13 @@
 <%= stylesheet_link_tag "users" %>
-<div class="main bootstrap">
+<div class="heading main bootstrap">
   <center><h1>Payment Settings</h1></center>
   <div class="payment_settings">
   	<center>
-  		<p>We use Stripe to process payments. It is the most effective and efficient way for payments to be transferred to your bank account.</p>
+  		<p>We use <a target="_blank" href="https://stripe.com/gallery">Stripe</a> to process payments. It is the most effective and efficient way for payments to be transferred to your bank account.</p>
   		<p>Please fill out the form below, so we can create an account for you and pay you!</p>
   	</center>
   </div>
-  <hr>
+</div>
   <div class="settings_connect">
   	<% if current_user.connected? %>
   		<%= render :partial => 'layouts/stripeSettings' %>

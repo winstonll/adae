@@ -1,3 +1,5 @@
+
+<%= stylesheet_link_tag "users" %>
 <div class="">
 <% if current_user.managed?%>
 	<center>
@@ -14,7 +16,7 @@
 							<span class="label <%= yn ? 'label-primary' : 'label-danger'%>">
 								<span class="fa <%= yn ? 'fa-check' : 'fa-times'%>"></span>
 								<%= text %>
-							</span>	
+							</span>
 						</td>
 					</tr>
 				<% end %>
@@ -72,7 +74,7 @@
 											<%= text_field_tag 'legal_entity[first_name]', @manager.legal_entity.first_name, {:class => "form-control"}%>
 										</div>
 									</div>
-								<% end %> 
+								<% end %>
 
 								<% if @manager.needs?('legal_entity.last_name')%>
 									<div class="form-group">
@@ -112,7 +114,7 @@
 										<div class="col-xs-12 col-sm-9">
 											<%= text_field_tag 'legal_entity[ssn_last_4]', nil, {:class => "form-control"}%>
 										</div>
-									</div>	
+									</div>
 								<% end %>
 
 								<%# if @manager.needs?('legal_entity.address.line1')%>
@@ -121,7 +123,7 @@
 										<div class="col-xs-12 col-sm-9">
 											<%= text_field_tag 'legal_entity[address][line1]', @manager.legal_entity.address.line1, {:class => "form-control"}%>
 										</div>
-									</div>	
+									</div>
 								<%# end %>
 
 								<!-- <div class="form-group">
