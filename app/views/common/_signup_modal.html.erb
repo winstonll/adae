@@ -33,7 +33,10 @@ $('.signup-cancel').click(function() {
               <%= f.text_field :name, placeholder: "Type Your Name", class: "input-box", id: "username-input" %>
             </div>
             <div class="input-username">
-              <%= f.email_field :email, autofocus: true, placeholder: "Email", :class => "form-control" %>
+              <%= f.text_field :surname, placeholder: "Type Your Last Name (optional)", class: "input-box" %><br/>
+            </div>
+            <div class="input-username">
+              <%= f.email_field :email, autofocus: true, placeholder: "Email", class: "input-box" %>
             </div>
             <div class="input-password">
               <%= f.password_field :password, placeholder: "Password", class: "input-box", id: "password" %>
