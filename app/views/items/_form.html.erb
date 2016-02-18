@@ -53,8 +53,7 @@
 		</div>
 
 		<div class="new-item-form">
-			<%#= f.file_field :image  %>
-			<%= f.file_field :photo %>
+			<%= f.file_field :photo, :multiple => true %>
 			<div class="upload-photo">
 				<%= image_tag "phone.png", id:"photo-image" %>
 				<p id="pic-title">  + Add Photo </p>
@@ -75,11 +74,14 @@
 		    </div>
 		<% end %>
 
-		<div class="new-item-form">
-			<p id="deposit-title"> Deposit price:</p>
-			<div class="rent-deposit-money-sign"> $ </div>
-			<%= f.text_field :deposit %>
-		</div>
+		<% if current_page? rent_path %>
+		
+			<div class="new-item-form">
+				<p id="deposit-title"> Deposit price:</p>
+				<div class="rent-deposit-money-sign"> $ </div>
+				<%= f.text_field :deposit %>
+			</div>
+		<% end %>
 
 		<%= f.submit 'Submit', :class => 'submit-listing' %>
 		<div id="small-tip"> you can edit/update your listing at anytime after you submit.</div>

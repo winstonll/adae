@@ -36,6 +36,8 @@ gem 'bootstrap-sass'
 
 gem 'stripe'
 
+gem "jquery-fileupload-rails"
+
 gem 'carrierwave'
 gem 'rmagick'
 gem 'honeypot-captcha'
