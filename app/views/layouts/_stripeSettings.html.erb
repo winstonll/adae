@@ -1,4 +1,4 @@
-<div class="col-md-11">
+<div class="">
 <% if current_user.managed?%>
 	<center>
 		<h2>Stripe Account Management</h2>
@@ -22,7 +22,7 @@
 		</div>
 	</center>
 	<!-- If we need more information from this user to keep their account in good standing -->
-	<div class="col-md-7 col-md-offset-3">
+	<div class="">
 		<% if current_user.stripe_account_status['fields_needed'].any? %>
 			<hr>
 			<div class="needed">
