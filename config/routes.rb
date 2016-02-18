@@ -10,6 +10,11 @@ Rails.application.routes.draw do
     delete 'signout', to: 'users/sessions#destroy'
   end
   
+  get 'signup_modal' => 'home#signup_modal'
+  get 'signup_modal' => 'users/home#signup_modal'
+  get 'signin_modal' => 'home#signin_modal'
+  get 'signin_modal' => 'users/home#signin_modal'
+
   #constraints subdomain: 'api' do
     namespace :api do
       namespace :v1 do
