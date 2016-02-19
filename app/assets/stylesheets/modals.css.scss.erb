@@ -95,7 +95,7 @@
 
       #user_email, #password{
         height: 40px;
-        width: 230px;
+        width: 225px;
         margin: auto;
         font-size: 15px;
         font-weight: normal;
@@ -103,6 +103,7 @@
         border-radius: 3px;
         color: #4a4a4a;
         padding-left: 0.75em;
+        padding-right: .5em;
         border: 1px solid #929292;
         margin-bottom: .6em;
       }
@@ -141,6 +142,20 @@
         text-decoration: underline; }
       }
     }
+
+    #user_email::-webkit-input-placeholder {
+     background-image:url(<%= asset_path 'email.png' %>);
+     background-repeat: no-repeat;
+     background-size: 18px 18px;
+     background-position: right;
+   }
+
+   #password::-webkit-input-placeholder {
+    background-image:url(<%= asset_path 'lock_2.png' %>);
+    background-repeat: no-repeat;
+    background-size: 16px 18px;
+    background-position: right;
+  }
 }
 
 .modal-backdrop {
@@ -212,9 +227,10 @@
             display: inline-block;
             margin: .6em 0 0 0 ;
 
+
             .input-box {
               height: 40px;
-              width: 230px;
+              width: 225px;
               margin: auto;
               font-size: 15px;
               font-weight: normal;
@@ -222,9 +238,47 @@
               border-radius: 3px;
               color: #4a4a4a;
               padding-left: 0.75em;
+              padding-right: .5em;
               border: 1px solid #929292;
             }
           }
+
+          #password::-webkit-input-placeholder {
+           background-image:url(<%= asset_path 'lock_2.png' %>);
+           background-repeat: no-repeat;
+           background-size: 16px 18px;
+           background-position: right;
+         }
+
+         #user_password_confirmation::-webkit-input-placeholder {
+          background-image:url(<%= asset_path 'lock_2.png' %>);
+          background-repeat: no-repeat;
+          background-size: 16px 18px;
+          background-position: right;
+        }
+
+         #username-input::-webkit-input-placeholder {
+          background-image:url(<%= asset_path 'user_circle.png' %>);
+          background-repeat: no-repeat;
+          background-size: 18px 18px;
+          background-position: right;
+        }
+
+        #user_surname::-webkit-input-placeholder {
+         background-image:url(<%= asset_path 'user_circle.png' %>);
+         background-repeat: no-repeat;
+         background-size: 18px 18px;
+         background-position: right;
+       }
+
+       #user_email::-webkit-input-placeholder {
+        background-image:url(<%= asset_path 'email.png' %>);
+        background-repeat: no-repeat;
+        background-size: 18px 18px;
+        background-position: right;
+      }
+
+
         }
 
         .signup-links-bottom {
