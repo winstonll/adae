@@ -4,23 +4,22 @@ $('#username-input').keyup(function(){
   random_avatar = Math.floor((Math.random() * 50) + 1);
 
   $('.avatar-image').css("background-color", "white");
-
   // $('.avatar-image')[0].src = "/images/avatars/" + String(random_avatar) + ".png";
   $('#username-output')[0].innerHTML = $('#username-input')[0].value;
   $('#avatar')[0].value = random_avatar;
 });
 
-$('.signup-cancel').click(function() {
-  $('#shareSignupModal').modal('toggle');
-});
-$('#sign-up-text').click(function() {
-  $('#shareSignupModal').modal('hide');
-});
+$(document).click(function (e) {
+    var signup = $('#shareSignupModal');
+    var x = $('.signup-cancel');
 
+    //if the target of the click isn't the modal...
+    if (x.is(e.target)) { signup.modal('hide'); }
+    if (!signup.is(e.target)&& signup.has(e.target).length === 0) { signup.modal('hide'); }
+});
 
 </script>
 
-<!-- Share New Question Modal -->
 <div class="modal-backdrop" id="shareSignupModal" tabindex="-1" role="dialog" aria-labelledby="shareSignupModal" aria-hidden="true">
     <span type="button" class="signup-cancel">X</span>
 
@@ -55,7 +54,7 @@ $('#sign-up-text').click(function() {
             </div>
           </div>
           <div id="divider"></div>
-          <p id="sign-up-text"> Already a member of Adae? <%= link_to 'Log In', {remote: true, controller: "home", action: "signin_modal"}%>.</p>
+          <p id="sign-up-text" data-dismiss="modal"> Already a member of Adae? <%= link_to 'Log In', {remote: true, controller: "home", action: "signin_modal"}%>.</p>
         <% end %>
       </div>
     </div>

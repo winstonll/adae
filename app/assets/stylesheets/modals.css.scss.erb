@@ -25,8 +25,6 @@
   border: 1px solid #979797;
 }
 
-
-
 .upload_image{
   cursor: pointer;
   &:hover {
@@ -76,10 +74,12 @@
   }
 
 #shareSigninModal {
-  margin: 0 auto !important;
+  position: fixed;
+  margin: 0 auto;
   opacity: 1;
   z-index: 2;
   top: 22%;
+  right: 40%;
   width: 16.3em;
   height: 17em;
   margin-right: 30px;
@@ -157,6 +157,7 @@
     background-position: right;
   }
 }
+
 .modal-backdrop {
   position: fixed;
   top: 0;
@@ -166,20 +167,19 @@
   z-index: 0;
   background-color: #000;
 }
-.modal-backdrop.fade {
-  opacity: 0;
-  filter: alpha(opacity=0);
-}
 .modal-backdrop.in {
   opacity: .8;
   filter: alpha(opacity=80);
 }
 
-
 #shareSignupModal {
-  top: 20%;
+  position: fixed;
+  top: 25%;
+  bottom:25%;
+  right:25%;
+  left:25%;
   display: table;
-  margin: 0 auto;
+  margin: auto;
   z-index: 2;
   opacity: 1;
   background-color: #F9F9F9;
@@ -187,23 +187,7 @@
   height: 28.5em;
   border-radius: 5px;
   border: 1px solid #419bf9;
-  .modal-backdrop {
-    position: fixed;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    z-index: 1;
-    background-color: #000;
-}
-.modal-backdrop.fade {
-    opacity: 0;
-    filter: alpha(opacity=0);
-}
-.modal-backdrop.fade.in {
-    opacity: .5;
-    filter: alpha(opacity=50);
-}
+  
 
   #username-output{
     font-weight: 400;
