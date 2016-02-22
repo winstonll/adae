@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160216201617) do
+ActiveRecord::Schema.define(version: 20160222180513) do
 
   create_table "carts", force: :cascade do |t|
     t.integer  "user_id"
@@ -45,6 +45,7 @@ ActiveRecord::Schema.define(version: 20160216201617) do
     t.integer  "photo_file_size"
     t.datetime "photo_updated_at"
     t.string   "photo_url"
+    t.string   "status"
   end
 
   create_table "locations", force: :cascade do |t|
@@ -124,6 +125,7 @@ ActiveRecord::Schema.define(version: 20160216201617) do
     t.string   "length"
     t.datetime "in_scan_date"
     t.datetime "out_scan_date"
+    t.string   "status"
   end
 
   create_table "users", force: :cascade do |t|
