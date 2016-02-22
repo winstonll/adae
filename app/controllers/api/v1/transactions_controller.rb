@@ -94,10 +94,18 @@ module Api::V1
 
         if !current_transaction.nil?
           transaction_validation = (current_transaction[:seller_id] == decoded[2].to_i) && (current_transaction[:buyer_id] == current_user[:id])
+          product = Item.where(id: current_transaction.item_id).first
 
-          if transaction_validation
+          if transaction_validation && current_transaction.status != "In Process"
 
             current_transaction.in_scan_date = DateTime.current
+
+            if product.listing_type == "Rent" || product.listing_type == "Time" || product.listing_type == "Lease"
+              current_transaction.status = "In Process"
+            elsif product.listing_type == "Sell"
+              current_transaction.status = "Completed"
+            end
+
             current_transaction.save
 
             seller.balance = seller.balance + params[:transactions][:total_price].to_i
@@ -129,6 +137,7 @@ module Api::V1
           if transaction_validation
 
             current_transaction.out_scan_date = DateTime.current
+            current_transaction.status = "In Process"
             current_transaction.save
 
             render nothing: true, status: 204
