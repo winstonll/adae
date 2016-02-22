@@ -1,6 +1,6 @@
 
 <%= stylesheet_link_tag "users" %>
-<div class="">
+<div class="account-form">
 <% if current_user.managed?%>
 	<center>
 		<h2>Stripe Account Management</h2>
@@ -26,7 +26,6 @@
 	<!-- If we need more information from this user to keep their account in good standing -->
 	<div class="">
 		<% if current_user.stripe_account_status['fields_needed'].any? %>
-			<hr>
 			<div class="needed">
 				<%= form_for :user, url: users_stripe_update_settings_url, html: {:class => 'form-horizontal'} do |f| %>
 					<h3>Needed Information</h3>
