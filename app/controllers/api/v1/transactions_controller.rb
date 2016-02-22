@@ -100,9 +100,9 @@ module Api::V1
 
             current_transaction.in_scan_date = DateTime.current
 
-            if product.listing_type == "Rent" || product.listing_type == "Time" || product.listing_type == "Lease"
+            if product.listing_type == "rent" || product.listing_type == "timeoffer" || product.listing_type == "lease"
               current_transaction.status = "In Process"
-            elsif product.listing_type == "Sell"
+            elsif product.listing_type == "sell"
               current_transaction.status = "Completed"
             end
 
