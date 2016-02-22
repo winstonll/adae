@@ -96,7 +96,7 @@ module Api::V1
           transaction_validation = (current_transaction[:seller_id] == decoded[2].to_i) && (current_transaction[:buyer_id] == current_user[:id])
           product = Item.where(id: current_transaction.item_id).first
 
-          if transaction_validation && current_transaction.status != "In Process"
+          if transaction_validation && current_transaction.status != "In Process" && current_transaction.status != "Completed"
 
             current_transaction.in_scan_date = DateTime.current
 
@@ -108,7 +108,7 @@ module Api::V1
 
             current_transaction.save
 
-            seller.balance = seller.balance + params[:transactions][:total_price].to_i
+            seller.balance = seller.balance + BigDecimal.new(params[:transactions][:total_price])
             seller.save
 
             render nothing: true, status: 204
