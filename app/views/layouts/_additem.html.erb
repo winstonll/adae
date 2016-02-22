@@ -1,7 +1,7 @@
 <div class="input-group">
 	<span class="input-group-btn">
 		<% if @item.listing_type == "sell" %>
-    <button class="btn btn-success addedPopup" data-toggle="modal" data-target="#addedPopup-modal<%=item.id%>" type="submit" style="display: table; margin: auto;">
+    <button class="btn sell addedPopup" data-toggle="modal" data-target="#addedPopup-modal<%=item.id%>" type="submit" style="display: table; margin: auto;">
         Request to Buy
     <% elsif @item.listing_type == "timeoffer" %>
     <button class="btn btn-success addedPopup" data-toggle="modal" data-target="#addedPopup-modal<%=item.id%>" type="submit" style="display: table; margin: auto;">
@@ -27,7 +27,7 @@
         </div>
         <div class="modal-body">
           <p id="modal-message"></p>
-        </div>  
+        </div>
     </div>
   </div>
 </div>
