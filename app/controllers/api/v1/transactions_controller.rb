@@ -108,7 +108,7 @@ module Api::V1
 
             current_transaction.save
 
-            seller.balance = seller.balance + BigDecimal.new(params[:transactions][:total_price])
+            seller.balance = seller.balance + BigDecimal.new(params[:transactions][:balance])
             seller.save
 
             render nothing: true, status: 204
