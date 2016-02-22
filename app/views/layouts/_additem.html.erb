@@ -1,7 +1,13 @@
 <div class="input-group">
 	<span class="input-group-btn">
-		<button class="btn btn-success addedPopup" data-toggle="modal" data-target="#addedPopup-modal<%=item.id%>" type="submit" >
-			Add
+		<button class="btn btn-success addedPopup" data-toggle="modal" data-target="#addedPopup-modal<%=item.id%>" type="submit" style="display: table; margin: auto;">
+			<% if @item.listing_type == "sell" %>
+        Request to Buy
+      <% elsif @item.listing_type == "timeoffer" %>
+        Request Service
+      <% else %>
+        Request to Rent
+      <% end %>
 		</button>
 	</span>
 </div>
