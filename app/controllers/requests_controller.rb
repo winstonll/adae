@@ -1,5 +1,5 @@
 class RequestsController < ApplicationController
-  before_filter :ensure_logged_in, only: [:create, :new, :update, :edit, :destroy]
+  before_filter :ensure_logged_in, only: [:create, :update, :edit, :destroy]
   def index
       @requests = Request.all 
   end

@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  before_filter :ensure_logged_in, only: [:create, :new, :update, :edit, :destroy]
+  before_filter :ensure_logged_in, only: [:create, :update, :edit, :destroy]
   def index
       @items = Item.all
   end
