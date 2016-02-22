@@ -25,8 +25,6 @@
   border: 1px solid #979797;
 }
 
-
-
 .upload_image{
   cursor: pointer;
   &:hover {
@@ -65,25 +63,139 @@
     margin-bottom: 10px;
   }
 
+  .signin-cancel{
+    position: absolute;
+    right: 8px;
+    top: 10px;
+    font-size: 10px;
+    cursor: pointer;
+    color: #979797;
+    font-weight: bold;
+  }
 
 #shareSigninModal {
   position: fixed;
+  margin: 0 auto;
+  opacity: 1;
   z-index: 2;
-    top: 80px;
-    right: 0;
-    color: #419bf9;
-    margin-right: 30px;
+  top: 22%;
+  right: 40%;
+  width: 16.3em;
+  height: 17.5em;
+  margin-right: 30px;
+  background-color: #F9F9F9;
+  border-radius: 5px;
+  border: 1px solid #419bf9;
+
+    .signin-form{
+      text-align: left;
+      display: table;
+      margin: 0 auto;
+      padding-top: 20px;
+
+      #user_email, #password{
+        height: 40px;
+        width: 225px;
+        margin: auto;
+        font-size: 15px;
+        font-weight: normal;
+        background-color: #fff;
+        border-radius: 3px;
+        color: #4a4a4a;
+        padding-left: 0.75em;
+        padding-right: .5em;
+        border: 1px solid #929292;
+        margin-bottom: .6em;
+      }
+
+      .login-button{
+        padding: 13px 101px !important;
+        background-color: #419bf9;
+        color: #fff;
+        border-radius: 3px;
+        border: 0;
+        cursor: pointer;
+        font-size: 14px;
+        font-weight: 500;
+        text-align: center;
+        margin-top: 10px;
+        &:hover {
+          background-color: #0077F3;
+        }
+      }
+      .rmbr-me{
+        font-size: 13px !important;
+        display: inline;
+      }
+      #divider{
+        border-top: 1px solid #DADADA;
+        margin-top: 18px;
+        margin-bottom: 10px;
+      }
+
+      #log-in-text{
+        text-align: left;
+        font-size: 12px;
+        color: #4a4a4a;
+        margin: 5px 0 5px 0;
+        a { color: #419bf9 !important;
+        text-decoration: underline; }
+      }
+    }
+
+    #user_email::-webkit-input-placeholder {
+     background-image:url(<%= asset_path 'email.png' %>);
+     background-repeat: no-repeat;
+     background-size: 18px 18px;
+     background-position: right;
+   }
+
+   #password::-webkit-input-placeholder {
+    background-image:url(<%= asset_path 'lock_2.png' %>);
+    background-repeat: no-repeat;
+    background-size: 16px 18px;
+    background-position: right;
+  }
+}
+
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 0;
+  background-color: #000;
+}
+.modal-backdrop.in {
+  opacity: .8;
+  filter: alpha(opacity=80);
+}
+.shared {
+  text-align: left;
+  font-size: 12px;
+  margin: 0px;
+  color: #4a4a4a;
+  a { color: #419bf9 !important;
+  text-decoration: underline; }
 }
 
 #shareSignupModal {
   position: fixed;
   top: 25%;
+  bottom:25%;
+  right:25%;
+  left:25%;
+  display: table;
+  margin: auto;
   z-index: 2;
+  opacity: 1;
   background-color: #F9F9F9;
   width: 16.3em;
-  height: 30.3em;
+  height: 28.5em;
   border-radius: 5px;
   border: 1px solid #419bf9;
+  
 
   #username-output{
     font-weight: 400;
@@ -104,36 +216,60 @@
           .input-username,
           .input-password {
             display: inline-block;
-            margin: 1em 0 0 0 ;
+            margin: .6em 0 0 0 ;
+
 
             .input-box {
               height: 40px;
-              width: 230px;
+              width: 225px;
               margin: auto;
               font-size: 15px;
               font-weight: normal;
               background-color: #fff;
-              border: 0;
               border-radius: 3px;
               color: #4a4a4a;
               padding-left: 0.75em;
+              padding-right: .5em;
               border: 1px solid #929292;
             }
           }
 
           #password::-webkit-input-placeholder {
-            background-image: url(image_path('lock.png'));
-            background-repeat: no-repeat;
-            background-size: 12px 15px;
-            background-position: 25% 25%;
-          }
+           background-image:url(<%= asset_path 'lock_2.png' %>);
+           background-repeat: no-repeat;
+           background-size: 16px 18px;
+           background-position: right;
+         }
 
-          #password::-moz-placeholder {
-            background-image: url(image_path('lock.png'));
-            background-repeat: no-repeat;
-            background-size: 12px 15px;
-            background-position: 25% 25%;
-          }
+         #user_password_confirmation::-webkit-input-placeholder {
+          background-image:url(<%= asset_path 'lock_2.png' %>);
+          background-repeat: no-repeat;
+          background-size: 16px 18px;
+          background-position: right;
+        }
+
+         #username-input::-webkit-input-placeholder {
+          background-image:url(<%= asset_path 'user_circle.png' %>);
+          background-repeat: no-repeat;
+          background-size: 18px 18px;
+          background-position: right;
+        }
+
+        #user_surname::-webkit-input-placeholder {
+         background-image:url(<%= asset_path 'user_circle.png' %>);
+         background-repeat: no-repeat;
+         background-size: 18px 18px;
+         background-position: right;
+       }
+
+       #user_email::-webkit-input-placeholder {
+        background-image:url(<%= asset_path 'email.png' %>);
+        background-repeat: no-repeat;
+        background-size: 18px 18px;
+        background-position: right;
+      }
+
+
         }
 
         .signup-links-bottom {
@@ -172,14 +308,16 @@
           margin-top: 18px;
         }
 
-        #log-in-text{
+        #sign-up-text{
           text-align: left;
-          line-height: normal;
           font-weight: normal;
+          marign: 5px 0 5px 0;
           font-size: 12px;
+          color: #4a4a4a;
           a { color: #419bf9 !important;
           text-decoration: underline; }
         }
+
     }
   }
 }

@@ -1,37 +1,47 @@
 <script>
-$('.signin-cancel').click(function() {
-  $('#shareSigninModal').modal('toggle');
-});
+$(document).click(function (e) {
+    var signin = $('#shareSigninModal');
+    var x = $('.signin-cancel');
 
+    //if the target of the click isn't the modal...
+    if (x.is(e.target)) { signin.modal('hide'); }
+    if (!signin.is(e.target)&& signin.has(e.target).length === 0) { signin.modal('hide'); }
+});
 </script>
-<div class="modal fade" id="shareSigninModal" tabindex="-1" role="dialog" aria-labelledby="shareSigninModal" aria-hidden="true">
+
+<div class="modal-backdrop" id="shareSigninModal" tabindex="-1" role="dialog" aria-labelledby="shareSigninModal" aria-hidden="true">
     <span type="button" class="signin-cancel">X</span>
 
     <div class="share-modal-content-container">
       <%#= image_tag("anonprofile.png", size: "70x70", class: "avatar-image") %>
       <br/>
-      
+
       <div class="signin-form">
-      <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-        <div class="field">
-          <%= f.email_field :email, autofocus: true, placeholder: "Email", :class => "form-control" %>
-        </div>
-
-        <div class="field">
-          <%= f.password_field :password, placeholder: "Password", autocomplete: "off", class: "input-box", id: "password" %>
-        </div>
-
-        <% if devise_mapping.rememberable? -%>
+        <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
           <div class="field">
-            <%= f.check_box :remember_me %>
-            <%= f.label :remember_me %>
+            <%= f.email_field :email, autofocus: true, placeholder: "Email", :class => "form-control" %>
           </div>
-        <% end -%>
 
-        <div id="signin-start">
-          <%= f.submit "Log in" %>
-        </div>
-      <% end %>
+          <div class="field">
+            <%= f.password_field :password, placeholder: "Password", autocomplete: "off", class: "input-box", id: "password" %>
+          </div>
+
+          <% if devise_mapping.rememberable? -%>
+            <div class="field">
+              <%= f.check_box :remember_me %>
+              <%= f.label :remember_me, class: "rmbr-me"%>
+            </div>
+          <% end -%>
+
+          <div id="signin-start">
+            <%= f.submit "Log in", class: "login-button" %>
+          </div>
+
+          <div id="divider"></div>
+          <p id="log-in-text" data-dismiss="modal"> Not a member of Adae? <%= link_to 'Sign Up', {remote: true, controller: "home", action: "signup_modal"} %>
+          </p>
+          <p class="shared"><%= render "users/shared/links" %> </p>   
+        <% end %>
       </div>
     </div>
 </div><!-- /.modal -->
