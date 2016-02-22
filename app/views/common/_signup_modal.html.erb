@@ -1,14 +1,4 @@
 <script>
-var random_avatar;
-$('#username-input').keyup(function(){
-  random_avatar = Math.floor((Math.random() * 50) + 1);
-
-  $('.avatar-image').css("background-color", "white");
-  // $('.avatar-image')[0].src = "/images/avatars/" + String(random_avatar) + ".png";
-  $('#username-output')[0].innerHTML = $('#username-input')[0].value;
-  $('#avatar')[0].value = random_avatar;
-});
-
 $(document).click(function (e) {
     var signup = $('#shareSignupModal');
     var x = $('.signup-cancel');
@@ -17,7 +7,6 @@ $(document).click(function (e) {
     if (x.is(e.target)) { signup.modal('hide'); }
     if (!signup.is(e.target)&& signup.has(e.target).length === 0) { signup.modal('hide'); }
 });
-
 </script>
 
 <div class="modal-backdrop" id="shareSignupModal" tabindex="-1" role="dialog" aria-labelledby="shareSignupModal" aria-hidden="true">

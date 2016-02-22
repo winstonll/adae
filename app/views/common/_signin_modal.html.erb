@@ -7,8 +7,8 @@ $(document).click(function (e) {
     if (x.is(e.target)) { signin.modal('hide'); }
     if (!signin.is(e.target)&& signin.has(e.target).length === 0) { signin.modal('hide'); }
 });
-
 </script>
+
 <div class="modal-backdrop" id="shareSigninModal" tabindex="-1" role="dialog" aria-labelledby="shareSigninModal" aria-hidden="true">
     <span type="button" class="signin-cancel">X</span>
 
