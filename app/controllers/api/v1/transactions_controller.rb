@@ -85,8 +85,8 @@ module Api::V1
 
       decoded = ""
 
-      if !params[:transactions].nil? && !params[:transactions][:inscan].nil? && !params[:transactions][:balance].nil?
-        decoded = decode(params[:transactions][:inscan].split(''))
+      if !params[:transactions].nil? && !params[:transactions][:scan].nil? && !params[:transactions][:balance].nil?
+        decoded = decode(params[:transactions][:scan].split(''))
 
         decoded = decoded.split('-')
         current_transaction = Transaction.where(id: decoded[0]).first
@@ -125,8 +125,8 @@ module Api::V1
           }, status: 400
         end
 
-      elsif !params[:transactions] && !params[:transactions][:outscan].nil? && !params[:transactions][:balance].nil?
-        decoded = decode(params[:transactions][:outscan].split(''))
+      elsif !params[:transactions] && !params[:transactions][:scan].nil? && !params[:transactions][:balance].nil?
+        decoded = decode(params[:transactions][:scan].split(''))
 
         decoded = decoded.split('-')
         current_transaction = Transaction.where(id: decoded[0]).first
