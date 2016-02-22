@@ -94,53 +94,36 @@ module Api::V1
 
         if !current_transaction.nil?
           transaction_validation = (current_transaction[:seller_id] == decoded[2].to_i) && (current_transaction[:buyer_id] == current_user[:id])
+
           product = Item.where(id: current_transaction.item_id).first
-
-          if transaction_validation && current_transaction.status != "In Process" && current_transaction.status != "Completed"
-
-            current_transaction.in_scan_date = DateTime.current
-
-            if product.listing_type == "rent" || product.listing_type == "timeoffer" || product.listing_type == "lease"
-              current_transaction.status = "In Process"
-            elsif product.listing_type == "sell"
-              current_transaction.status = "Completed"
-            end
-
-            current_transaction.save
-
-            seller.balance = seller.balance + BigDecimal.new(params[:transactions][:balance])
-            seller.save
-
-            render nothing: true, status: 204
-          else
-            render json: {
-              error: "Sorry incorrect QR Code detected.",
-              status: 400
-            }, status: 400
-          end
-        else
-          render json: {
-            error: "Transaction does not exist.",
-            status: 400
-          }, status: 400
-        end
-
-      elsif !params[:transactions] && !params[:transactions][:scan].nil? && !params[:transactions][:balance].nil?
-        decoded = decode(params[:transactions][:scan].split(''))
-
-        decoded = decoded.split('-')
-        current_transaction = Transaction.where(id: decoded[0]).first
-
-        if !current_transaction.nil?
-          transaction_validation = (current_transaction[:seller_id] == decoded[2].to_i) && (current_transaction[:buyer_id] == current_user[:id])
 
           if transaction_validation
 
-            current_transaction.out_scan_date = DateTime.current
-            current_transaction.status = "In Process"
-            current_transaction.save
+            if decoded[3] == "inscan" && current_transaction.status != "In Process" && current_transaction.status != "Completed"
 
-            render nothing: true, status: 204
+              current_transaction.in_scan_date = DateTime.current
+
+              if product.listing_type == "rent" || product.listing_type == "timeoffer" || product.listing_type == "lease"
+                current_transaction.status = "In Process"
+              elsif product.listing_type == "sell"
+                current_transaction.status = "Completed"
+              end
+
+              current_transaction.save
+
+              seller.balance = seller.balance + BigDecimal.new(params[:transactions][:balance])
+              seller.save
+
+              render nothing: true, status: 204
+
+            elsif decoded[3] == 'outscan' && current_transaction.status != "Completed"
+
+              current_transaction.out_scan_date = DateTime.current
+              current_transaction.status = "Completed"
+              current_transaction.save
+
+              render nothing: true, status: 204
+            end
           else
             render json: {
               error: "Sorry incorrect QR Code detected.",
@@ -153,7 +136,6 @@ module Api::V1
             status: 400
           }, status: 400
         end
-
       else
         render json: {
           error: "Sorry, invalid QR code.",
@@ -166,7 +148,7 @@ module Api::V1
 
       def transaction_params
         params.require(:transactions).permit(:start_date, :end_date,
-        :return_date, :item_id, :buyer_id, :out_scan, :in_scan, :balance)
+        :return_date, :item_id, :buyer_id, :scan, :balance)
       end
 
       def decode(scrambled)
