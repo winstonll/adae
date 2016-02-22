@@ -21,7 +21,7 @@ $(document).click(function (e) {
 </script>
 
 <div class="modal-backdrop" id="shareSignupModal" tabindex="-1" role="dialog" aria-labelledby="shareSignupModal" aria-hidden="true">
-    <!--<span type="button" class="signup-cancel">X</span>-->
+    <span type="button" class="signup-cancel">X</span>
 
     <div class="share-modal-content-container">
       <%#= image_tag("anonprofile.png", size: "70x70", class: "avatar-image") %>
@@ -54,7 +54,8 @@ $(document).click(function (e) {
             </div>
           </div>
           <div id="divider"></div>
-          <p id="sign-up-text" data-dismiss="modal"> Already a member of Adae? <%= link_to 'Log In', {remote: true, controller: "home", action: "signin_modal"}%>.</p>
+          <p id="sign-up-text" data-dismiss="modal"> Already a member of Adae? <%= link_to 'Log In', {remote: true, controller: "home", action: "signin_modal"}%>.
+          </p>
         <% end %>
       </div>
     </div>
