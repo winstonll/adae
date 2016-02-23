@@ -1,79 +1,91 @@
 <%= stylesheet_link_tag "items" %>
 
 <div class="item-info" id="itemInfo">
-  
-  <% @pictures.each do |picture| %>
-    <%= link_to image_tag(picture.image.url(:med)), picture.image.url %>
-  <% end %>
-
-  <div class="item-details">
-    <div class="item-title-and-user">
-      <div class="item-detail-title" id="title"><%= @item.title %></div>
-      <span><%= hidden_field_tag 'id', @item.id%></span>
-      <div class="item-detail-username">posted by <%= @item.user.full_name%></div>
-    </div>
-  	<p class="item-detail-description"><%= @item.description %></p>
-    <p class="item-detail-description"><%= @item.listing_type %></p>
-    <p class="item-detail-description"><%= @item.tags %></p>
-  	<p class="item-detail-deposit">Deposit for this Item: $ <%= @item.deposit %></p>
-    <div class="price item-detail-deposit">Price is $ <span> <%= @price.amount %></span> per <%= @price.timeframe %> </div>
-  </div>
-</div>
-
-
-<div class="bootstrap quantity-box">
-  <%= render :partial => "layouts/additem", locals: {item: @item, page: "items_show"} %>
-</div>
-
-  <div class="rating-container">
-    <div class = "overall-rating">
-      <div class="rating-score">
-        <p>Rating Score:</p>
-      <% if @item.ratings.present? %>
-        <p class="score"><%= @item.total_score %>/5</p>
-      <% else %>
-    </div>
-      <% end %>
-
-    </div>
-
-    <div class = "rating-by-user">
-      <% if present_or_rated?(@item) %>
-        <div class="rating-info"><p>My Rating</p> <p class="rating"><%= @item.ratings_by_user(current_user) %>/5</p>
-        <%= link_to "Edit", edit_item_rating_path(@item, @rating) %>
+  <%= image_tag(@item.photo.url(:med)) %>
+  <%= image_tag(@item.photo.url(:med)) %>
+  <%= image_tag(@item.photo.url(:med)) %>
+      <%= hidden_field_tag 'id', @item.id%>
+      <%= hidden_field_tag 'listing_type', @item.listing_type %>
+    <div class="price-details">
+      <div class="item-detail-price">
+        <% if @item.listing_type == "sell" %>
+          <div class="sale-title">For Sale</div>
+          <p class="sale-price"> Price:
+            <span style="font-weight: 700; color:#000;">$<%= @price.amount %></span>
+          </p>
+        <% else %>
+          $ <span> <%= @price.amount %></span> per <%= @price.timeframe %>
+        <% end %>
+        <div class="bootstrap quantity-box">
+          <%= render :partial => "layouts/additem", locals: {item: @item, page: "items_show"} %>
+        </div>
       </div>
-      <% else %>
-        <p class="prompt">No Ratings yet - be the first to leave a rating!</p>
-        <%= link_to "Add a Rating", new_item_rating_path(@item),class: "add-a-rating" %>
+    </div>
+    <div class="item-title-and-user">
+      <div class="item-detail-title"><%= @item.title %></div>
+      <div class="item-detail-username"><%= @item.user.full_name%></div>
+    </div>
+    <div class="item-detail-deposit">
+      <% unless @item.deposit == 0 %>
+        <%# trust_fee = "This ensures that the item is treated with care, and is returned on time.This amount will be charged only if you fail to return the item, damate it, or lose it" %>
+        <%#= link_to image_tag("smiley.png", size: "1x1px"), "javascript:void(0)", title: trust_fee, rel: 'tooltip', relative: true %>
+        Trust Fee: $<%= @item.deposit %>
       <% end %>
     </div>
+    <div class="item-detail-description">
+      Description:</br><%= @item.description %>
+      <div class="divider"></div>
+    </div>
+</div>
+
+
+
+<div class="rating-container">
+  <div class="overall-rating">
+    <div class="rating-score">
+      <p>Rating Score:</p>
+    <% if @item.ratings.present? %>
+      <p class="score"><%= @item.total_score %>/5</p>
+    <% else %>
+    </div>
+    <% end %>
   </div>
 
-
-
+  <div class="rating-by-user">
+    <% if present_or_rated?(@item) %>
+    <div class="rating-info">
+      <p>My Rating</p>
+      <p class="rating"><%= @item.ratings_by_user(current_user) %>/5</p>
+      <%= link_to "Edit", edit_item_rating_path(@item, @rating) %>
+    </div>
+    <% else %>
+      <p class="prompt">No Ratings yet - be the first to leave a rating!</p>
+      <%= link_to "Add a Rating", new_item_rating_path(@item),class: "add-a-rating" %>
+    <% end %>
+  </div>
+</div>
 
   <%= form_for([@item, @review],:remote => true) do |f| %>
 
-
 <div class="review-list">
-    <div class="create_review-fields">
-      <div id='review-errors'>
-        <% if @review.errors.any? %>
-        <%= render partial: 'reviews/review_errors' %>
-        <% end %>
-      </div>
-
-      <div class="field">
-        <%= f.label :name, 'Write a Review'%>
-        <%= f.text_area :comment, :placeholder => 'Say something about this listing'%>
-      </div>
-      <div class="review-submit">
-        <%= f.submit 'Create Review', :class => 'review-button' %>
-      </div>
+  <div class="create_review-fields">
+    <div id='review-errors'>
+      <% if @review.errors.any? %>
+      <%= render partial: 'reviews/review_errors' %>
       <% end %>
     </div>
-    <div class="review-content">
-      <div class="item-reviews">Reviews for <em><%= @item.title %> </em></div>
-      <%= render @item.reviews.order("created_at DESC") %>
+
+    <div class="field">
+      <%= f.label :name, 'Write a Review'%>
+      <%= f.text_area :comment, :placeholder => 'Say something about this listing'%>
     </div>
+    <div class="review-submit">
+      <%= f.submit 'Create Review', :class => 'review-button' %>
+    </div>
+    <% end %>
+  </div>
+  <div class="review-content">
+    <div class="item-reviews">Reviews for <em><%= @item.title %> </em></div>
+    <%= render @item.reviews.order("created_at DESC") %>
+  </div>
 </div>
