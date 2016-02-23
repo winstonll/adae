@@ -21,4 +21,5 @@
 # Ignore Picture Uploads
 /public/system/items
 /public/images
+/public/system/images
 /public/system/users
