@@ -1,5 +1,4 @@
 <%= stylesheet_link_tag "items" %>
-
 <div class="item-info" id="itemInfo">
   <%= image_tag(@item.photo.url(:med)) %>
   <%= image_tag(@item.photo.url(:med)) %>
@@ -10,11 +9,11 @@
       <div class="item-detail-price">
         <% if @item.listing_type == "sell" %>
           <div class="sale-title">For Sale</div>
-          <p class="sale-price"> Price: 
+          <p class="sale-price"> Price:
             <span style="font-weight: 700; color:#000;">$<%= @price.amount %></span>
           </p>
         <% else %>
-          $ <span> <%= @price.amount %></span> per <%= @price.timeframe %> 
+          $ <span> <%= @price.amount %></span> per <%= @price.timeframe %>
         <% end %>
         <div class="bootstrap quantity-box">
           <%= render :partial => "layouts/additem", locals: {item: @item, page: "items_show"} %>
@@ -33,9 +32,9 @@
         Trust Fee: $<%= @item.deposit %>
       <% end %>
     </div>
-    <div class="item-detail-description"> 
-      Description:</br><%= @item.description %>
-      <div class="divider"></div>
+    <div class="item-detail-description">
+      <div class="item-description"><span style="font-weight: 500;">Description:</span></br><%= @item.description %>
+      <div class="divider"></div> </div>
     </div>
 </div>
 
@@ -55,7 +54,7 @@
   <div class="rating-by-user">
     <% if present_or_rated?(@item) %>
     <div class="rating-info">
-      <p>My Rating</p> 
+      <p>My Rating</p>
       <p class="rating"><%= @item.ratings_by_user(current_user) %>/5</p>
       <%= link_to "Edit", edit_item_rating_path(@item, @rating) %>
     </div>
