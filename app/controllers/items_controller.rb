@@ -85,7 +85,9 @@ class ItemsController < ApplicationController
         }
       end
 
-      @item.photo_url = @item.photo.url(:small)
+      @picture = Picture.where(item_id: @item.id).first
+
+      @item.photo_url = @picture.image.url(:small)
       @item.save
 
       redirect_to @item, notice: "Item Successfully Added!"
