@@ -1,6 +1,6 @@
 <% if flash[:signup_modal] %>
   <script>
-  $(document).ready(function(){ 
+  $(document).ready(function(){
   	$('#shareSignupModal').modal('show');
   });
   </script>
@@ -66,7 +66,8 @@
 		</div>
 
 		<div class="new-item-form">
-			<%= f.file_field :photo %>
+			<%#= f.file_field :photo %>
+      <%= file_field_tag "images[]", type: :file, multiple: true %>
 			<div class="upload-photo">
 				<%= image_tag "phone.png", id:"photo-image" %>
 				<p id="pic-title">  + Add Photo </p>

@@ -1,7 +1,11 @@
 <%= stylesheet_link_tag "items" %>
 
 <div class="item-info" id="itemInfo">
-  <%= link_to image_tag(@item.photo.url(:med)), @item.photo.url %>
+  
+  <% @pictures.each do |picture| %>
+    <%= link_to image_tag(picture.image.url(:med)), picture.image.url %>
+  <% end %>
+
   <div class="item-details">
     <div class="item-title-and-user">
       <div class="item-detail-title" id="title"><%= @item.title %></div>

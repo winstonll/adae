@@ -8,6 +8,8 @@ class ItemsController < ApplicationController
     @item = Item.find(params[:id])
     @review = @item.reviews.build
     @price = Price.where(item_id: @item.id).first
+    @pictures = Picture.where(item_id: @item.id)
+
       if current_user
        @rating = current_user.ratings.find_by(:item => @item)
        @cart = Cart.where(user_id: current_user.id, item_id: @item.id)
@@ -75,6 +77,14 @@ class ItemsController < ApplicationController
     @item.tags = @tagboxes
 
     if @item.save && @item.valid?
+
+
+      if params[:images]
+        params[:images].each { |image|
+          @item.pictures.create(image: image)
+        }
+      end
+
       @item.photo_url = @item.photo.url(:small)
       @item.save
 
