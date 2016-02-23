@@ -1,6 +1,6 @@
 <% if flash[:signup_modal] %>
   <script>
-  $(document).ready(function(){ 
+  $(document).ready(function(){
   	$('#shareSignupModal').modal('show');
   });
   </script>
@@ -66,7 +66,8 @@
 		</div>
 
 		<div class="new-item-form">
-			<%= f.file_field :photo %>
+			<%#= f.file_field :photo %>
+      <%= file_field_tag "images[]", type: :file, multiple: true %>
 			<div class="upload-photo">
 				<%= image_tag "phone.png", id:"photo-image" %>
 				<p id="pic-title">  + Add Photo </p>
@@ -82,6 +83,7 @@
 						<div class="rent-deposit-money-sign"> $ </div>
 			        <%=p.number_field :amount %> <span class="perhr">per Hour</span>
 			    </div>
+			    <%= f.hidden_field :deposit, :value => 0 %>
 			<% end %>
 		<% elsif current_page? sell_path %>
 			<%= f.fields_for :prices, @price do |p| %>
@@ -90,6 +92,7 @@
 						<div id="actual-price-money-sign"> $ </div>
 			        <%=p.number_field :amount %>
 			    </div>
+			    <%= f.hidden_field :deposit, :value => 0 %>
 			<% end %>
 		<% else %>
 			<%= f.fields_for :prices, @price do |p| %>
@@ -103,18 +106,13 @@
 						<div id="actual-price-money-sign"> $ </div>
 			        <%=p.number_field :amount %>
 			    </div>
+
+				<div class="new-item-form">
+					<p id="deposit-title"> Deposit price:</p>
+					<div class="rent-deposit-money-sign"> $ </div>
+					<%= f.text_field :deposit %>
+				</div>
 			<% end %>
-		<% end %>
-
-		<% if current_page? rent_path %>
-
-			<div class="new-item-form">
-				<p id="deposit-title"> Deposit price:</p>
-				<div class="rent-deposit-money-sign"> $ </div>
-				<%= f.text_field :deposit %>
-			</div>
-		<% else %>
-			<%= f.hidden_field :deposit, :value => 0 %>
 		<% end %>
 
 		<%= f.submit 'Submit', :class => 'submit-listing' %>

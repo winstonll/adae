@@ -12,16 +12,13 @@ class Item < ActiveRecord::Base
 
 	accepts_nested_attributes_for :prices, reject_if: :all_blank, allow_destroy: true
 
-	validates :photo,
-    attachment_content_type: { content_type: /\Aimage\/.*\Z/ },
-    attachment_size: { less_than: 5.megabytes }
+	has_many :pictures, :dependent => :destroy
 
-	has_attached_file :photo, styles: { small: "400x400", med: "800x800", large: "1200x1200" }
+	#validates :photo,
+  #  attachment_content_type: { content_type: /\Aimage\/.*\Z/ },
+  #  attachment_size: { less_than: 5.megabytes }
 
-	#has_attached_file :images, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/images/:style/missing.png"
-  #validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
-
-	#mount_uploader :image, ImageUploader
+	#has_attached_file :photo, styles: { small: "400x400", med: "800x800", large: "1200x1200" }
 
 	def ratings_by_user(user)
 		ratings.find_by(user: user).score
