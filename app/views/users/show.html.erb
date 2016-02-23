@@ -43,7 +43,7 @@
 		<div class= "listing-heading">My Listings </div>
 		<% @items.each do |item| %>
 		<div class="listing-img">
-			<%=link_to image_tag(item.photo.url(:med)), item_path(item)%>
+			<%=link_to image_tag(item.photo_url), item_path(item)%>
 		</div>
 		<li class="listings">
 			<div class="item-title"> <%= link_to item.title, item_path(item) %> </div>
