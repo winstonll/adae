@@ -1,8 +1,8 @@
 <%= stylesheet_link_tag "items" %>
 <div class="item-info" id="itemInfo">
-  <%= image_tag(@item.photo.url(:med)) %>
-  <%= image_tag(@item.photo.url(:med)) %>
-  <%= image_tag(@item.photo.url(:med)) %>
+  <% @pictures.each do |picture| %>
+    <%= link_to image_tag(picture.image.url(:med)), picture.image.url %>
+  <% end %>
       <%= hidden_field_tag 'id', @item.id%>
       <%= hidden_field_tag 'listing_type', @item.listing_type %>
     <div class="price-details">
