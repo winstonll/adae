@@ -14,12 +14,13 @@ class UsersController < ApplicationController
  	end
 
  	def update
+
  	  if @user.update_attributes(user_params)
 			sign_in(@user, :bypass => true)
-		flash[:success] = "Profile updated"
+			flash[:success] = "Profile updated"
  	  	redirect_to @user
  	  else
- 	  render :edit
+ 	  	render :edit
  	  end
  	end
 
@@ -46,10 +47,10 @@ class UsersController < ApplicationController
 	end
 
  	private
-	
+
 	 	def user_params
 	 	  params.require(:user).permit(:name, :avatar, :surname, :email, :password, :password_confirmation,
-	 	  :phone_number)
+	 	  :phone_number, :avatar)
 	 	end
 
 	 	def load_user
