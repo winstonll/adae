@@ -20,7 +20,6 @@
         </div>
       </div>
     </div>
-
     <div class="item-title-and-user">
       <div class="item-detail-title"><%= @item.title %></div>
       <div class="item-detail-username"><%= @item.user.full_name%></div>
@@ -33,8 +32,10 @@
       <% end %>
     </div>
     <div class="item-detail-description">
-      <div class="item-description"><span style="font-weight: 500;">Description:</span></br><%= @item.description %>
-      <div class="divider"></div> </div>
+
+    <div class="item-description"><span style="font-weight: 500;">Description:</span></br><%= @item.description %>
+    <div class="divider"></div> </div>
+
     </div>
 </div>
 

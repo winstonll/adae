@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160222180513) do
+ActiveRecord::Schema.define(version: 20160223182459) do
 
   create_table "carts", force: :cascade do |t|
     t.integer  "user_id"
@@ -37,15 +37,11 @@ ActiveRecord::Schema.define(version: 20160222180513) do
     t.integer  "deposit"
     t.string   "listing_type"
     t.string   "tags"
-    t.datetime "created_at",                            null: false
-    t.datetime "updated_at",                            null: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
     t.string   "postal_code"
-    t.string   "photo_file_name"
-    t.string   "photo_content_type"
-    t.integer  "photo_file_size"
-    t.datetime "photo_updated_at"
     t.string   "photo_url"
-    t.string   "status",             default: "Listed"
+    t.string   "status",       default: "Listed"
   end
 
   create_table "locations", force: :cascade do |t|
@@ -68,6 +64,16 @@ ActiveRecord::Schema.define(version: 20160222180513) do
 
   add_index "messages", ["conversation_id"], name: "index_messages_on_conversation_id"
   add_index "messages", ["user_id"], name: "index_messages_on_user_id"
+
+  create_table "pictures", force: :cascade do |t|
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+    t.integer  "item_id"
+  end
 
   create_table "prices", force: :cascade do |t|
     t.string   "timeframe"
@@ -139,11 +145,15 @@ ActiveRecord::Schema.define(version: 20160222180513) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
+    t.string   "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.string   "unconfirmed_email"
+    t.string   "name"
     t.string   "surname"
     t.string   "phone_number"
     t.boolean  "phone_verified"
     t.string   "auth_token",                                      default: ""
-    t.string   "name"
     t.string   "api_token"
     t.string   "stripe_publishable_key"
     t.string   "stripe_secret_key"
@@ -159,6 +169,7 @@ ActiveRecord::Schema.define(version: 20160222180513) do
   end
 
   add_index "users", ["auth_token"], name: "index_users_on_auth_token", unique: true
+  add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
   add_index "users", ["email"], name: "index_users_on_email", unique: true
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
 
