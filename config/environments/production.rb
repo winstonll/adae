@@ -33,6 +33,8 @@ Rails.application.configure do
 
   # Precompile js files
   config.assets.precompile += %w( map.js.erb )
+  config.assets.precompile += %w( item.js.erb )
+
 
   # Asset digests allow you to set far-future HTTP expiration dates on all assets,
   # yet still be able to expire them through the digest params.

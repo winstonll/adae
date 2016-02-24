@@ -1,3 +1,5 @@
+<%= javascript_include_tag "items" %>
+
 <% if flash[:signup_modal] %>
   <script>
   $(document).ready(function(){
@@ -62,7 +64,8 @@
 		<div class="new-item-form">
 			<%= f.label :summary %>
 			<%= f.text_area :description, :maxlength=> "350", :placeholder => "Tell people about the qualities and highlights of your listing. You can include as many details as you'd like." %>
-			<div class="countdown"></div>
+
+      <label class="countdown">0 characters remaining</label>
 		</div>
 
 		<div class="new-item-form">
