@@ -34,8 +34,6 @@ function updateCountdown() {
 
 function validate_user_form_and_submit(){
 
-  var validate = /^[A-Za-z]\d[A-Za-z]\s?\d[A-Za-z]\d$/.test($('#item_postal_code').val());
-
   if ( /^[A-Za-z]\d[A-Za-z]\s?\d[A-Za-z]\d$/.test($('#item_postal_code').val()) ) {
     return true;
   } else {
