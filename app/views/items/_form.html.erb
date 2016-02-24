@@ -88,7 +88,7 @@
 		<% elsif current_page? sell_path %>
 			<%= f.fields_for :prices, @price do |p| %>
 				<div class="new-item-form">
-			    	<p> Your Price:</p>
+			    	<p> Sale Price:</p>
 						<div id="actual-price-money-sign"> $ </div>
 			        <%=p.number_field :amount %>
 			    </div>
@@ -102,16 +102,29 @@
 			    </div>
 
 			    <div class="new-item-form">
-			    	<p> Your Price:</p>
+			    	<p> Rental Price:</p>
 						<div id="actual-price-money-sign"> $ </div>
 			        <%=p.number_field :amount %>
 			    </div>
 
 				<div class="new-item-form">
-					<p id="deposit-title"> Deposit price:</p>
+          <% if current_page? lease_path %>
+
+					<p id="deposit-title"> Deposit Price & Sale Price:</p>
 					<div class="rent-deposit-money-sign"> $ </div>
 					<%= f.text_field :deposit %>
-				</div>
+          <div class="deposit-tip"> This ensures that the item is treated with care, and is returned on time. </br>This amount will be charged only if the other party fails to return the item, damage it, or lose it.</br>
+          </br>After the rental period, your customer may request to buy this item.
+        </br>The Deposit Price will double as the Sale Price. </br> Their rental fees will be
+            credited towards the purchase.
+            </div>
+          <% else %>
+          <p id="deposit-title"> Deposit Price</p>
+          <div class="rent-deposit-money-sign"> $ </div>
+          <%= f.text_field :deposit %>
+          <div class="deposit-tip"> This ensures that the item is treated with care, and is returned on time. </br>This amount will be charged only if the other party fails to return the item, damage it, or lose it.</div>
+          <% end %>
+	       </div>
 			<% end %>
 		<% end %>
 
