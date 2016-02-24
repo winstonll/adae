@@ -32,6 +32,17 @@ function updateCountdown() {
   $('.countdown').text(remaining + ' characters remaining.');
 }
 
+function validate_user_form_and_submit(){
+
+  var validate = /^[A-Za-z]\d[A-Za-z]\s?\d[A-Za-z]\d$/.test($('#item_postal_code').val());
+
+  if ( /^[A-Za-z]\d[A-Za-z]\s?\d[A-Za-z]\d$/.test($('#item_postal_code').val()) ) {
+
+  } else {
+    event.preventDefault();
+  }
+}
+
 $(function(){ // this will be called when the DOM is ready
   $('#item_description').keyup(function(){
     console.log("bbl");
