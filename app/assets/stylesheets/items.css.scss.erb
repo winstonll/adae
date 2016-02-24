@@ -74,6 +74,8 @@ body{
 		  position: fixed;
 		  z-index:0;
 		  right: 0;
+			padding-right: 10%;
+
 		  .item-detail-price {
 		  	position: relative;
 		  	z-index:2;
@@ -99,6 +101,32 @@ body{
 		    }
 		  }
 		}
+
+		/*responsive width styling for the page content not to be too spread out*/
+		@media only screen and (min-width: 1280px) {
+			.price-details{
+				padding-right: 5%;
+			}
+		}
+
+		@media only screen and (min-width: 1440px) {
+			.price-details{
+				padding-right: 10%;
+			}
+		}
+
+		@media only screen and (min-width: 1680px) {
+			.price-details{
+				padding-right: 15%;
+			}
+		}
+
+		@media only screen and (min-width: 1920px) {
+			.price-details{
+				padding-right: 20%;
+			}
+		}
+   /*end section*/
 
 		.item-title-and-user {
 		  background-color: #fff;
