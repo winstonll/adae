@@ -79,6 +79,12 @@
 	<div class="mail-cheque-section">
 			<p id="title">Mailed Cheque</p>
 			<p id="description">Enter your address below, and we will mail a cheque with the amount on your balance to you! <span style="color: #419bf9">Min. $20 Required</span></p>
+		<div id="mail-form">
+			<%= text_field_tag :apt_number, "", class: 'mail-check-input', placeholder: "Apt number and/or building number" %>
+			<%= text_field_tag :street, "", class: 'mail-check-input', placeholder: "Street" %>
+			<%= text_field_tag :city, "", class: 'mail-check-input', placeholder: "City" %>
+			<%= text_field_tag :postal_code, "", class: 'mail-check-input', placeholder: "Postal Code" %>
+		</div>
 	</div>
 
 </div>
