@@ -21,6 +21,13 @@ class TransactionsController < ApplicationController
 		@subtotal = get_subtotal(@cart) # Calculate the total for it
 	end
 
+	def create
+		@transaction = Transaction.create(transaction_params)
+		@transaction.buyer_id = current_user
+		@transaction.total_price = 
+
+	end
+
 	def stripe
 		billing = {
 			name: params["stripeBillingName"],
@@ -154,6 +161,11 @@ class TransactionsController < ApplicationController
 	# end
 
 	private
+
+	def transaction_params
+	    params.require(:transaction).permit(:item_id, :buyer_id, :seller_id, :length, :status, :total_price)
+	end
+
 	# into transaction_items table with transaction_id
 	def item_sold(order)
 		@cart_item = Cart.where(user_id: current_user.id)  # Grab whatever is in the cart
