@@ -59,114 +59,145 @@ body{
   width: 100%;
   margin: auto;
 
-.photos{
+  .photos{
 	width: 330px;
 	height: 230px;
 	overflow: hidden;
 	display: inline-block;
-  .cover-photo{
+    .cover-photo{
 		height: 100%;
+    }
   }
-}
+  .price-details {
+	position: fixed;
+	z-index:0;
+	right: 0;
+	padding-right: 10%;
 
+	.item-detail-price {
+  	  position: relative;
+  	  z-index:2;
+  	  border: 1px solid #979797;
+  	  background-color: #fff;
+  	  height: 280px;
+  	  width: 270px;
+  	  bottom: 44px;
 
-		.price-details {
-		  position: fixed;
-		  z-index:0;
-		  right: 0;
-			padding-right: 10%;
+	  .price-title {
+		font-weight: 600;
+		color: white;
+		background-color:#7ed321;
+		text-align: center;
+		opacity: 0.9;
+		padding: 12px;
+	  }
+	  .price-title2 {
+		font-weight: 600;
+		color: white;
+		background-color:#419bf9;
+		opacity: 0.9;
+		padding: 12px;
+	  }
+	  .sale-price {
+		color: #7ed321;
+		font-weight: 500;
+		font-size: 20px;
+		padding-top: 55px;
+	  }
+	}
+  }
 
-		  .item-detail-price {
-		  	position: relative;
-		  	z-index:2;
-		  	border: 1px solid #979797;
-		  	background-color: #fff;
-		  	height: 280px;
-		  	width: 270px;
-		  	bottom: 44px;
-
-		    .sale-title {
-			  font-weight: 600;
-			  color: white;
-			  background-color:#7ed321;
-			  text-align: center;
-			  opacity: 0.9;
-			  padding: 12px;
-		    }
-		    .sale-price {
-			  color: #7ed321;
-			  font-weight: 500;
-			  font-size: 20px;
-			  padding-top: 55px;
-		    }
-		  }
+  /*responsive width styling for the page content not to be too spread out*/
+	@media only screen and (min-width: 1280px) {
+		.price-details{
+		  padding-right: 5%;
 		}
-
-		/*responsive width styling for the page content not to be too spread out*/
-		@media only screen and (min-width: 1280px) {
-			.price-details{
-				padding-right: 5%;
-			}
+	}
+	@media only screen and (min-width: 1440px) {
+		.price-details{
+		  padding-right: 10%;
 		}
+	}
 
-		@media only screen and (min-width: 1440px) {
-			.price-details{
-				padding-right: 10%;
-			}
+	@media only screen and (min-width: 1680px) {
+		.price-details{
+		  padding-right: 15%;
 		}
-
-		@media only screen and (min-width: 1680px) {
-			.price-details{
-				padding-right: 15%;
-			}
+	}
+	@media only screen and (min-width: 1920px) {
+		.price-details{
+		  padding-right: 20%;
 		}
+	}
+  /*end section*/
 
-		@media only screen and (min-width: 1920px) {
-			.price-details{
-				padding-right: 20%;
-			}
-		}
-   /*end section*/
+  .item-title-and-user {
+	background-color: #fff;
+	padding-top: 1em;
+	border-bottom: 1px solid #C9C9C9;
 
-		.item-title-and-user {
-		  background-color: #fff;
-			padding-top: 1em;
-			border-bottom: 1px solid #C9C9C9;
-		  .item-detail-title {
-			padding-top: 1em;
-			padding-bottom: 1em;
-			color: #4a4a4a;
-			font-size: 15px;
-			font-weight:600;
-			width: 750px;
-			display: table;
-			margin: 0 auto;
-		  }
-		  .item-detail-username{
-			padding-bottom: 3em;
-			width: 750px;
-			display: table;
-			margin: 0 auto;
-		  }
-		}
+	.item-detail-title {
+	  padding-top: 1em;
+	  padding-bottom: 1em;
+	  color: #4a4a4a;
+	  font-size: 15px;
+	  font-weight:600;
+	  width: 750px;
+	  margin: 0 auto;
+	}
+	.item-detail-username{
+	  padding-bottom: 3em;
+	  width: 750px;
+	  display: table;
+	  margin: 0 auto;
+	}
+  }
 
+  .item-detail-deposit {
+    ul{
+      columns: 2;
+	  -webkit-columns: 2;
+	  -moz-columns: 2;
+    }	
+  }
 
-	    .item-detail-deposit {
-
-	    }
-
-	    .item-detail-description {
-	      display: table;
-				margin: 0 auto;
-	      height: 200px;
-	      width: 750px;
-				margin-top: 2em;
-				.item-description{
-					line-height: normal;
-					color: #4a4a4a;
-					width: 600px;
-				}
-	    }
+  .item-lease-price {
+    position: relative;
+	z-index:2;
+	border: 1px solid #979797;
+	background-color: #fff;
+	height: 200px;
+	width: 250px;
+	bottom: 15px;
+	
+	.price-title {
+	  font-weight: 600;
+	  color: white;
+	  background-color:#7ed321;
+	  text-align: center;
+	  opacity: 0.6;
+	  padding: 10px;
+	}
+	.sale-price {
+	  color: #7ed321;
+	  font-weight: 500;
+	  font-size: 24px;
+	}
+  }
+  
+  .item-detail-description {
+    display: table;
+	margin: 0 auto;
+	height: 200px;
+	width: 750px;
+	margin-top: 2em;
+	
+	.item-description {
+	  line-height: normal;
+	  color: #4a4a4a;
+	  width: 600px;
+	}
+  }
 }
 
 .rating-container {
