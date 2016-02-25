@@ -26,7 +26,6 @@
 
 </script>
 
-
 <div class="item-info" id="itemInfo">
   <% @pictures.each do |picture| %>
     <div class="photos">
@@ -35,69 +34,65 @@
   <% end %>
     <%= hidden_field_tag 'id', @item.id%>
     <%= hidden_field_tag 'listing_type', @item.listing_type %>
+
     <div class="price-details">
-      <div class="item-detail-price">
-        <% if @item.listing_type == "sell" %>
+      <% if @item.listing_type == "sell" %>
+        <div class="item-detail-price">
           <div class="price-title">For Sale</div>
-          <%= form_for Transaction.new, html: {multipart: true}  do |f| %>
-                <span><%= f.hidden_field :length, :value => "sold" %></span>
-                <span><%= f.hidden_field :item_id, :value =>@item.id %></span>
-                <span><%= f.hidden_field :seller_id, :value =>@item.user.id %></span>
-                <%#= f.submit %>
-          <% end %>
           <p class="sale-price"> Price: 
             <span style="font-weight: 700; color:#000;">$<%= @price.amount %></span>
           </p>
-        <% elsif @item.listing_type == "lease" %>
+            <%= form_for Transaction.new, html: {multipart: true}  do |f| %>
+              <span><%= f.hidden_field :length, :value => "sold" %></span>
+              <span><%= f.hidden_field :item_id, :value =>@item.id %></span>
+              <span><%= f.hidden_field :seller_id, :value =>@item.user.id %></span>
+              <span><%= f.submit 'Request to Buy', class: "buy-button"%></span> 
+            <% end %>
+        </div>
+      <% elsif @item.listing_type == "lease" %>
+        <div class="item-detail-price">
           <div class="price-title2">$<span><%= @price.amount %></span> per <%= @price.timeframe %></div> 
           <p>How long would you like to rent this?</p>
             <%= form_for Transaction.new, html: {multipart: true}  do |f| %>
-              <input id="qty" name="quantity" min="1" max="30" type="number" onChange="updateQty()"/>
-              <span><%= f.select :length,[["Day"],["Week"],["Month"]], :onChange=>"updateLength();" %></span>
+              <input id="qty" name="quantity" min="1" max="30" type="number" onChange="updateQty()"></input>
+              <span><%= f.select :length,[["Day"],["Week"],["Month"]], :onChange=>"updateLength();"%></span>
               <span><%= f.hidden_field :item_id, :value =>@item.id %></span>
               <span><%= f.hidden_field :seller_id, :value =>@item.user.id %></span>
-              <%#= f.submit %>
+              <span><%= f.submit 'Request to Lease', class: "rent-button"%></span> 
             <% end %>
           <div class="divider"></div>
           <div class="item-detail-deposit">
-            <ul>
-              <li>
-                $<%= @price.amount %> x 
-                <input id="times" readonly="readonly" value="" style="border:0; width: 13px;"></input>
-                <input id="length" readonly="readonly" value="" style="border:0; width: 50px;"></input>
-              </li>
-              <li>
-                <input id="subtotal" readonly="readonly" value="" style="border:0; width: 20px;"></input>
-              </li>
+              $<%= @price.amount %> x 
+              <input id="times" readonly="readonly" value="" style="border:0; width: 13px;"></input>
+              <input id="length" readonly="readonly" value="" style="border:0; width: 50px;"></input>
+              <input id="subtotal" readonly="readonly" value="" style="border:0; width: 20px;"></input>
+              
               <% unless @item.deposit == 0 %>
-              <li>Trust Fee: $<%= @item.deposit %></li>
-                This ensures that the item is treated with care, and is returned on time.This amount will be charged only if you fail to return the item, damate it, or lose it
-              <li>$<%= @item.deposit %></li>
+              Trust Fee: $<%= @item.deposit %>
+                <!-- This ensures that the item is treated with care, and is returned on time.This amount will be charged only if you fail to return the item, damate it, or lose it -->
+              $<%= @item.deposit %>
               <% end %>
               <div class="divider"></div>
-              <li>Total</li>
-              <li>
-                <input id="total" readonly="readonly" value="" style="border:0; width: 20px;"></input>
-              </li>
-            </ul>
+              Total
+              <input id="total" readonly="readonly" value="" style="border:0; width: 20px;"></input>
           </div>
-      </div> <!--this is the ending of ITEM DETAIL PRICE -->
-      <div class="item-lease-price">
-        <div class="price-title">Available for Sale</div>
-        <p>Pay a rental fee to try the item, and if you like it you can buy the item for the Trust Fee price.</p>
-        <p>Your rental fees will count towards the final sale price.</p>
-        <p class="sale-price"> Sale Price: 
-          <span style="font-weight: 700; color:#000;">$<%= @item.deposit %></span>
-        </p>
-      </div>
-        <% else %>
+        </div>
+        <div class="item-lease-price">
+          <div class="price-title">Available for Sale</div>
+          <p>Pay a rental fee to try the item, and if you like it you can buy the item for the Trust Fee price.</p>
+          <p>Your rental fees will count towards the final sale price.</p>
+          <p class="sale-price"> Sale Price: 
+            <span style="font-weight: 700; color:#000;">$<%= @item.deposit %></span>
+          </p>
+        </div>
+      <% elsif @item.listing_type == "rent"%>
 
-        <% end %><!--this is the ending of Listing Type = Sell -->
+      <% end %>
+    </div>
         <!-- <div class="bootstrap quantity-box">
           <%#= render :partial => "layouts/additem", locals: {item: @item, page: "items_show"} %>
         </div> -->
-      </div>
-    </div>
+     
     <div class="item-title-and-user">
       <div class="item-detail-title"><%= @item.title %></div>
       <div class="item-detail-username"><%= @item.user.full_name%></div>
@@ -105,14 +100,11 @@
     <div class="item-detail-description">
       <div class="item-description">
         <span style="font-weight: 500;">Description:</span>
-        </br>
         <%= @item.description %>
-      <div class="divider"></div>
+        <div class="divider"></div>
       </div>
     </div>
 </div>
-
-
 
 <div class="rating-container">
   <div class="overall-rating">

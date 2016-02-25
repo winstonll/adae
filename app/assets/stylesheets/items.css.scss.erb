@@ -5,21 +5,6 @@ itemS INDEX/SEARCH
 .bootstrap {
   @import "bootstrap-sprockets";
   @import "bootstrap";
-
-	.sell{
-		background-color:#7ed321;
-		width: 220px;
-		margin-top: 3.5em !important;
-		color: #fff;
-		font-size: 16px;
-		font-weight: 600;
-		height: 40px;
-		border-radius: 2px !important;
-		&:hover{
-			background-color: #5AC902;
-			color: #fff;
-		}
-	}
 }
 
 #items {
@@ -104,7 +89,76 @@ body{
 		font-size: 20px;
 		padding-top: 55px;
 	  }
+	  .item-detail-deposit {
+	  	position:relative;
+	  	
+	  }
+	  .buy-button {
+	  	display: table;
+	  	margin: auto;
+		background-color:#7ed321;
+		width: 220px;
+		margin-top: 4em;
+		color: #fff;
+		font-size: 16px;
+		font-weight: 600;
+		height: 40px;
+		border-radius: 2px;
+		border:none;
+		box-shadow:none;
+		cursor: pointer;
+		&:hover{
+			background-color: #5AC902;
+			color: #fff;
+		}
+	  }
+	  .rent-button {
+	  	display: table;
+	  	position: absolute;
+	  	margin-left: auto;
+	  	margin-right: auto;
+	  	right: 0;
+	  	left: 0;
+		background-color:#419bf9;
+		width: 220px;
+		margin-top: 7em;
+		color: #fff;
+		font-size: 16px;
+		font-weight: 600;
+		height: 40px;
+		border-radius: 2px;
+		border:none;
+		box-shadow:none;
+		cursor: pointer;
+		&:hover{
+			background-color: #5AC902;
+			color: #fff;
+		}
+	  }
 	}
+	.item-lease-price {
+      position: relative;
+	  z-index:2;
+	  border: 1px solid #979797;
+	  background-color: #fff;
+  	  height: 230px;
+  	  width: 270px;
+	  bottom: 15px;
+	
+	  .price-title {
+	    font-weight: 600;
+	    color: white;
+	    background-color:#7ed321;
+	    text-align: center;
+	    opacity: 0.6;
+	    padding: 10px;
+	  }
+	  .sale-price {
+	    color: #7ed321;
+	    font-weight: 500;
+	    font-size: 24px;
+	  }
+    }
   }
 
   /*responsive width styling for the page content not to be too spread out*/
@@ -153,38 +207,6 @@ body{
 	}
   }
 
-  .item-detail-deposit {
-    ul{
-      columns: 2;
-	  -webkit-columns: 2;
-	  -moz-columns: 2;
-    }	
-  }
-
-  .item-lease-price {
-    position: relative;
-	z-index:2;
-	border: 1px solid #979797;
-	background-color: #fff;
-	height: 200px;
-	width: 250px;
-	bottom: 15px;
-	
-	.price-title {
-	  font-weight: 600;
-	  color: white;
-	  background-color:#7ed321;
-	  text-align: center;
-	  opacity: 0.6;
-	  padding: 10px;
-	}
-	.sale-price {
-	  color: #7ed321;
-	  font-weight: 500;
-	  font-size: 24px;
-	}
-  }
-  
   .item-detail-description {
     display: table;
 	margin: 0 auto;
