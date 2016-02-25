@@ -4,6 +4,7 @@ var map;
 
 function initialize() {
   if (document.getElementById('map-canvas')){
+
     geocoder = new google.maps.Geocoder();
 
     // Other options for the map, pretty much selfexplanatory
@@ -15,28 +16,22 @@ function initialize() {
 
     // Attach a map to the DOM Element, with the defined settings
     map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
-    
+
     var address = gon.map_items;
-
+    
     address.forEach(function(postcode) {
+        var latlng = new google.maps.LatLng(String(postcode[0]), String(postcode[1]) );
 
-      geocoder.geocode( { 'address': postcode[0]}, function(results, status) {
-        console.log(status == google.maps.GeocoderStatus.OK);
-        if (status == google.maps.GeocoderStatus.OK) {
-          map.setCenter(results[0].geometry.location);
-          var marker = new google.maps.Marker({
-              position: results[0].geometry.location,
-              map: map,
-              url: 'items/' + postcode[1]
-          });
+        var marker = new google.maps.Marker({
+            position: latlng,
+            center: latlng,
+            map: map,
+            url: 'items/' + postcode[2]
+        });
 
-          google.maps.event.addListener(marker, 'click', function() {
-            window.location.href = marker.url;
-          });
-        } else {
-          alert("Geocode was not successful for the following reason: " + status);
-        }
-      });
+        google.maps.event.addListener(marker, 'click', function() {
+          window.location.href = marker.url;
+        });
     });
   }
 }

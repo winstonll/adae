@@ -1,11 +1,14 @@
 <%= stylesheet_link_tag "items" %>
-<%= javascript_include_tag "map" %>
+<%#= javascript_include_tag "map" %>
 
 <body>
 	<div id="items">
-    	<div id="map-canvas"></div>
+    	<!--<div id="map-canvas"></div>-->
     	<div id="item-collection">
-			<%= render partial: "/items/items", locals: {items: @items} %>
+				<%= render partial: "/items/items", locals: {items: @items} %>
     	</div>
+			<div id="pagination-div">
+				<%= will_paginate @items %>
+			</div>
 	</div>
 </body>

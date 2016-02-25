@@ -10,6 +10,26 @@ itemS INDEX/SEARCH
 #items {
   margin-left: 15px;
 
+  #pagination-div {
+    .pagination {
+
+      .current {
+        margin-right: 5px;
+        padding: 1px;
+        border-style: solid;
+        border-width: 1px;
+        background: yellow
+      }
+
+      a {
+        margin-right: 5px;
+        padding: 1px;
+        border-style: solid;
+        border-width: 1px;
+      }
+    }
+  }
+
   #map-canvas{
     position: absolute;
     z-index: 0 !important;
@@ -18,19 +38,22 @@ itemS INDEX/SEARCH
     top: 60px;
     right: 0;
   }
-  #item-collection {
-	width: 48%;
-	margin-top: 10px;
-	-moz-column-count: 2;
-	-webkit-column-count: 2;
-	column-count: 2;
 
-	.item-index {
-	  border: 1px solid #419bf9;
-	  margin-bottom: 10px;
-	  display: inline-block;
-	  height: 190px;
-	}
+  #item-collection {
+    margin-right: 10px;
+  	width: 48%;
+  	margin-top: 10px;
+  	-moz-column-count: 2;
+  	-webkit-column-count: 2;
+  	column-count: 2;
+
+  	.item-index {
+  	  border: 1px solid #419bf9;
+  	  margin-bottom: 10px;
+  	  display: inline-block;
+      width: 300px;
+  	  height: 200px;
+  	}
   }
 }
 
@@ -115,7 +138,6 @@ body{
 	  }
 	  .item-detail-calc {
 	  	position:relative;
-
 	  	.amount{
 	  	  font-size: 16px;
 	  	  margin-left: 20px;
@@ -218,7 +240,7 @@ body{
   	  height: 270px;
   	  width: 270px;
 	  bottom: 15px;
-	
+
 	  .price-title {
 	    font-weight: 600;
 	    color: white;
@@ -304,7 +326,7 @@ body{
 	height: 200px;
 	width: 750px;
 	margin-top: 2em;
-	
+
 	.item-description {
 	  line-height: normal;
 	  color: #4a4a4a;
