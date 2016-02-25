@@ -18,9 +18,9 @@ itemS INDEX/SEARCH
     width: 50%;
     top: 60px;
     right: 0;
-    background-image: url('coming-soon-map.png');
+    background-image: asset-url('coming-soon-map.png');
     background-size: cover;
-    background-position: center; 
+    background-position: center;
   }
 
   #item-feed-container {
@@ -102,11 +102,20 @@ body{
   	  z-index:2;
   	  border: 1px solid #979797;
   	  background-color: #fff;
-  	  height: 290px;
+  	  height: 330px;
   	  width: 270px;
-  	  bottom: 300px;
+  	  bottom: 270px;
 			right: 0;
 			margin-right: 15%;
+			#how-long{
+				margin-top: 0px;
+				text-align: left;
+				color: #4a4a4a;
+				font-size: 13px;
+				background-color: #E8E8E8;
+				padding: 7px;
+				font-weight: 500;
+			}
   	  .division {
 		border-top: 1px solid #DCDCDC;
 		width: 100%;
@@ -129,21 +138,28 @@ body{
 	  }
 	  #qty{
 	  	border: 1px solid #419bf9;
-	  	margin: auto;
-	  	width: 32px;
-	  	height:25px;
+	  	margin-left: 4em;
+	  	width: 27px;
+	  	height:27px;
 	  	vertical-align: top;
 	  	-webkit-appearance: none;
+			border-radius: 4px;
+			color: #4a4a4a;
+			font-size: 15px;
+			padding-left: 10px;
 	  }
 	  #time-selection{
 	  	border: 1px solid #419bf9;
 	  	margin: auto;
 	  	border-radius: 0;
-	  	height:25px;
+	  	height:31px;
 	    width: 100px;
 	  	vertical-align: top;
-	  	font-size: 16px;
-	    border-radius: 0;
+	  	font-size: 15px;
+	    border-radius: 4px;
+			background-color: #fff;
+			padding: 4px 10px;
+			color: #4a4a4a;
 	    -webkit-appearance: none;
 	  }
 	  .sale-price {
@@ -155,12 +171,13 @@ body{
 	  .item-detail-calc {
 	  	position:relative;
 	  	.amount{
-	  	  font-size: 16px;
+	  	  font-size: 15px !important;
 	  	  margin-left: 20px;
 	  	  border:0;
 	  	  width: 55px;
 	  	  font-size: 16px;
 	  	  font-weight: 200;
+				color: #4a4a4a;
 	  	}
 	  	#times{
 	  	  border:0;
@@ -171,32 +188,46 @@ body{
 	  	#length{
 	  	  border:0;
 	  	  width: 60px;
-	  	  font-size: 16px;
+	  	  font-size: 15px !important;
 	  	  font-weight: 200;
+				color: #4a4a4a;
 	  	}
 	  	#subtotal{
 	  	  float: right;
 	  	  margin-right: 10px;
 	  	  border:0;
 	  	  width: 45px;
-	  	  font-size: 16px;
+	  	  font-size: 15px !important;
 	  	  font-weight: 200;
+				color: #4a4a4a;
 	  	}
 	  	.trust-fee{
-	  	  font-size: 16px;
+	  	  font-size: 15px !important;
 	  	  margin-left: 20px;
 	  	  border:0;
 	  	  width: 120px;
 	  	  font-size: 16px;
 	  	  font-weight: 200;
+				color: #7ed321;
 	  	}
+
+			#trust-fee-text{
+				background-color: #fff !important;
+				font-weight: 400;
+				font-size: 12px;
+				width: 240px;
+				color: #7ed321;
+				text-align: left;
+				margin-left: 20px;
+			}
 	  	.deposit{
 	  	  float: right;
 	  	  margin-right: 10px;
 	  	  border:0;
 	  	  width: 45px;
-	  	  font-size: 16px;
+	  	  font-size: 15px !important;
 	  	  font-weight: 200;
+				color: #4a4a4a;
 	  	}
 	  	.finalp{
 	  	  font-size: 16px;
@@ -253,23 +284,32 @@ body{
 	  z-index:2;
 	  border: 1px solid #979797;
 	  background-color: #fff;
-  	  height: 270px;
+  	  height: 240px;
   	  width: 270px;
 	  bottom: 15px;
 		right: 0;
 		margin-right: 15%;
+
+		p{
+			text-align: left;
+			color: #4a4a4a;
+			font-size: 14px;
+			width: 220px;
+			margin-left: 30px;
+		}
 	  .price-title {
 	    font-weight: 600;
 	    color: white;
 	    background-color:#7ed321;
 	    text-align: center;
-	    opacity: 0.6;
+	    opacity: 0.9;
 	    padding: 10px;
 	  }
 	  .sale-price {
 	    color: #7ed321;
 	    font-weight: 500;
-	    font-size: 24px;
+	    font-size: 18px;
+			text-align: center;
 	  }
 	  .buy-button {
 	  	display: table;
@@ -312,7 +352,7 @@ body{
 	@media only screen and (min-width: 1680px) {
 		.item-detail-price{
 		  margin-right: 15% !important;
-			bottom: 342px !important;
+			bottom: 322px !important;
 		}
 		.item-lease-price {
 			margin-right: 15% !important;
@@ -322,7 +362,7 @@ body{
 	@media only screen and (min-width: 1920px) {
 		.item-detail-price{
 		  margin-right: 20% !important;
-			bottom: 492px !important;
+			bottom: 472px !important;
 		}
 		.item-lease-price {
 			margin-right: 20% !important;
@@ -356,7 +396,7 @@ body{
   .item-detail-description {
     display: table;
 	margin: 0 auto;
-	height: 500px;
+	height: 200px;
 	width: 750px;
 	margin-top: 2em;
 
