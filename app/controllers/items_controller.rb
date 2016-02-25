@@ -78,8 +78,11 @@ class ItemsController < ApplicationController
 
     geocode = Geocoder.search(item_params[:postal_code]).first
 
-    @item.latitude = geocode.latitude
-    @item.longitude = geocode.longitude
+    if !geocode.nil?
+      @item.latitude = geocode.latitude
+      @item.longitude = geocode.longitude
+    end
+    
     @item.user_id = current_user.id
     @item.tags = @tagboxes
 
