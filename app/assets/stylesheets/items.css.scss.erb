@@ -91,20 +91,18 @@ body{
     }
   }
   .price-details {
-	position: fixed;
-	z-index:0;
-	right: 0;
-	padding-right: 10%;
+
 
 	.item-detail-price {
-  	  position: relative;
+  	  position: fixed;
   	  z-index:2;
   	  border: 1px solid #979797;
   	  background-color: #fff;
   	  height: 290px;
   	  width: 270px;
-  	  bottom: 44px;
-
+  	  bottom: 300px;
+			right: 0;
+			margin-right: 10%;
   	  .division {
 		border-top: 1px solid #DCDCDC;
 		width: 100%;
@@ -247,14 +245,15 @@ body{
 	  }
 	}
 	.item-lease-price {
-      position: relative;
+      position: fixed;
 	  z-index:2;
 	  border: 1px solid #979797;
 	  background-color: #fff;
   	  height: 270px;
   	  width: 270px;
 	  bottom: 15px;
-
+		right: 0;
+		margin-right: 10%;
 	  .price-title {
 	    font-weight: 600;
 	    color: white;
@@ -290,24 +289,40 @@ body{
 
   /*responsive width styling for the page content not to be too spread out*/
 	@media only screen and (min-width: 1280px) {
-		.price-details{
-		  padding-right: 5%;
+		.item-detail-price{
+		  margin-right: 5% !important;
+		}
+		.item-lease-price {
+			margin-right: 5% !important;
 		}
 	}
 	@media only screen and (min-width: 1440px) {
-		.price-details{
-		  padding-right: 10%;
+		.item-detail-price{
+		  margin-right: 10%;
+		}
+		.item-lease-price {
+			margin-right: 10%;
 		}
 	}
 
 	@media only screen and (min-width: 1680px) {
-		.price-details{
-		  padding-right: 15%;
+		.item-detail-price{
+		  margin-right: 15% !important;
+			bottom: 342px !important;
+		}
+		.item-lease-price {
+			margin-right: 15% !important;
+			bottom: 50px !important;
 		}
 	}
 	@media only screen and (min-width: 1920px) {
-		.price-details{
-		  padding-right: 20%;
+		.item-detail-price{
+		  margin-right: 20% !important;
+			bottom: 492px !important;
+		}
+		.item-lease-price {
+			margin-right: 20% !important;
+			bottom: 200px !important;
 		}
 	}
   /*end section*/
@@ -337,7 +352,7 @@ body{
   .item-detail-description {
     display: table;
 	margin: 0 auto;
-	height: 200px;
+	height: 500px;
 	width: 750px;
 	margin-top: 2em;
 
