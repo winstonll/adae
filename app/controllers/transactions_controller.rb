@@ -21,10 +21,16 @@ class TransactionsController < ApplicationController
 		@subtotal = get_subtotal(@cart) # Calculate the total for it
 	end
 
+	def new
+		@transaction = Transaction.new
+		@item = Item.find(params[:item_id])
+	    @price = Price.where(item_id: @item.id).first
+	    @pictures = Picture.where(item_id: @item.id)
+	end
+
 	def create
 		@transaction = Transaction.create(transaction_params)
-		@transaction.buyer_id = current_user
-		@transaction.total_price = 
+		@transaction.buyer_id = current_user 
 
 	end
 
