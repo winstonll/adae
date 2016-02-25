@@ -5,8 +5,6 @@ var map;
 function initialize() {
   if (document.getElementById('map-canvas')){
     geocoder = new google.maps.Geocoder();
-    // Coordinates to center the map
-    //var latlng = new google.maps.LatLng(43.6617, -79.3950);
 
     // Other options for the map, pretty much selfexplanatory
     var mapOptions = {
@@ -14,15 +12,14 @@ function initialize() {
         center: new google.maps.LatLng(43.6617, -79.3950),
         mapTypeId: google.maps.MapTypeId.ROADMAP
     };
-      // Attach a map to the DOM Element, with the defined settings
-    map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
 
+    // Attach a map to the DOM Element, with the defined settings
+    map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
 
     <% @items = Item.pluck(:postal_code, :id) %>
 
     var address = <%= @items %>;
 
-    console.log(address);
     address.forEach(function(postcode) {
       console.log(postcode);
       geocoder.geocode( { 'address': postcode[0]}, function(results, status) {
@@ -42,7 +39,6 @@ function initialize() {
           alert("Geocode was not successful for the following reason: " + status);
         }
       });
-
     });
   }
 }
