@@ -1,6 +1,6 @@
 <% items.each do |item| %>
 	<%= link_to item_path(item.id) do %>
-		<div class="item-index">
+		<div class="item-index" id= "item-<%= item.id%>">
 			<%= item.title %>
 			|
 			<%= item.description %>
