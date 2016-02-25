@@ -15,13 +15,11 @@ function initialize() {
 
     // Attach a map to the DOM Element, with the defined settings
     map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
-
-    <% @items = Item.pluck(:postal_code, :id) %>
-
-    var address = <%= @items %>;
+    
+    var address = gon.map_items;
 
     address.forEach(function(postcode) {
-      console.log(postcode);
+
       geocoder.geocode( { 'address': postcode[0]}, function(results, status) {
         console.log(status == google.maps.GeocoderStatus.OK);
         if (status == google.maps.GeocoderStatus.OK) {

@@ -2,6 +2,8 @@ class ItemsController < ApplicationController
   before_filter :ensure_logged_in, only: [:create, :update, :edit, :destroy]
   def index
       @items = Item.all
+
+      gon.map_items = Item.pluck(:postal_code, :id)
   end
 
   def show
