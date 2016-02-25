@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160223182459) do
+ActiveRecord::Schema.define(version: 20160225003517) do
 
   create_table "carts", force: :cascade do |t|
     t.integer  "user_id"
@@ -42,6 +42,8 @@ ActiveRecord::Schema.define(version: 20160223182459) do
     t.string   "postal_code"
     t.string   "photo_url"
     t.string   "status",       default: "Listed"
+    t.float    "latitude",     default: 43.6617
+    t.float    "longitude",    default: -79.395
   end
 
   create_table "locations", force: :cascade do |t|
