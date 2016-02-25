@@ -36,8 +36,8 @@
     <div id="search-field">
       <div class="search-bar">
     		<%= form_tag items_path, method: :get, authentication: false, id: 'search-form' do %>
-    			<%= text_field_tag :search, params[:search],{placeholder: 'Enter your e-mail here for the Beta Invite & get $5 credit when you sign up!', class: 'search-field-placeholder'}  %>
-    			<button class="search-bar-label">Submit</button>
+    			<%= text_field_tag :search, params[:search],{placeholder: 'What are you looking? ex. Xbox, Tutors, etc.', class: 'search-field-placeholder'}  %>
+    			<button class="search-bar-label">Go</button>
     		<% end %>
     	</div>
 	   </div>
@@ -159,8 +159,24 @@
   </div>
 
 <div class="explore-container">
-		<h4 class ="title"> Explore Your Neighbourhood </h4>
-  <div class="square-content">
+		<h4 class ="title"> Our Mobile Companion App uses <a target="_blank" href="https://stripe.com/checkout"><span id ="secure">secure cash-less transactions powered by Stripe</span></a>. We handle the exchange of money for you, so that you can have a peace of mind. </br></br> Here's how it works:</h4>
+    <div class="app-info">
+        <div class="app-preview">
+        <iframe style="transform: scale(0.7)" width="438" height="930" src="//invis.io/AG67B4LCV" frameborder="0" allowfullscreen></iframe>
+      </div>
+        <div class="app-descriptions">
+          <ul>
+          <li id="app-title"><span id="arrow">&#8592;</span>Try out the preview!</li>
+          <li><span class="star">&#9733;</span> When your transaction is accepted, you will be asked to download the Adae Companion App on the App Store or Google Play. </li>
+          <li><span class="star">&#9733;</span> Remember that when the transaction is accepted, the reserver's credit card will be charged.
+                This is our way to ensure that the reservers only send serious requests. As the owner, if you accept a request, you are obligated to meet with the reserver.</li>
+          <li><span class="star">&#9733;</span> When you meet, open the Companion App and select the appropriate transaction. The reserver will scan the owner's in-app QR code for confirmation. Once the QR code is scanned, we will send the money to the owner.</li>
+          <li><span class="star">&#9733;</span> If the item needs to be returned or if a service is being offered, you will need to scan again at the end of the transaction.</li>
+        </ul>
+      </div>
+    </div>
+    <a href="/items"><button>Explore</button></a>
+  <!--<div class="square-content">
   	<div class="square bg img1">
 
   	</div>
@@ -192,5 +208,5 @@
   	<div class="square bg img8">
 
   	</div>
-	</div>
+	</div>-->
 </div>

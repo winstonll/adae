@@ -25,6 +25,9 @@ gem 'jbuilder', '~> 2.0'
 gem 'will_paginate'
 gem 'will_paginate-bootstrap'
 
+gem 'geocoder'
+gem 'gon'
+
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
 

@@ -1,0 +1,44 @@
+// Item Index Map
+var geocoder;
+var map;
+
+/**function initialize() {
+  if (document.getElementById('map-canvas')){
+
+    geocoder = new google.maps.Geocoder();
+
+    // Other options for the map, pretty much selfexplanatory
+    var mapOptions = {
+        zoom: 13,
+        center: new google.maps.LatLng(43.6617, -79.3950),
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+    };
+
+    // Attach a map to the DOM Element, with the defined settings
+    map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
+
+    var address = gon.map_items;
+
+    address.forEach(function(postcode) {
+        var latlng = new google.maps.LatLng(String(postcode[0]), String(postcode[1]) );
+
+        var marker = new google.maps.Marker({
+            position: latlng,
+            center: latlng,
+            map: map,
+            url: 'items/' + postcode[2]
+        });
+
+        google.maps.event.addListener(marker, 'click', function() {
+          window.location.href = marker.url;
+        });
+    });
+  }
+}**/
+
+/**$('.pagination').click(function (){
+  console.log("hello");
+  google.maps.event.addDomListener(window, "load", initialize);
+});**/
+
+//google.maps.event.addDomListener(window, "load", initialize);

@@ -1,3 +1,5 @@
+<%= javascript_include_tag "items" %>
+
 <% if flash[:signup_modal] %>
   <script>
   $(document).ready(function(){
@@ -62,7 +64,8 @@
 		<div class="new-item-form">
 			<%= f.label :summary %>
 			<%= f.text_area :description, :maxlength=> "350", :placeholder => "Tell people about the qualities and highlights of your listing. You can include as many details as you'd like." %>
-			<div class="countdown"></div>
+
+      <label class="countdown">0 characters remaining</label>
 		</div>
 
 		<div class="new-item-form">
@@ -88,7 +91,7 @@
 		<% elsif current_page? sell_path %>
 			<%= f.fields_for :prices, @price do |p| %>
 				<div class="new-item-form">
-			    	<p> Your Price:</p>
+			    	<p> Sale Price:</p>
 						<div id="actual-price-money-sign"> $ </div>
 			        <%=p.number_field :amount %>
 			    </div>
@@ -98,24 +101,37 @@
 			<%= f.fields_for :prices, @price do |p| %>
 			    <div class="new-item-form">
 			        <%=	p.label :timeframe %>
-			        <%= p.select(:timeframe, [["Hour"],["Day"],["Week"], ["Month"]], :prompt => 'Select') %>
+			        <%= p.select(:timeframe, [["Day"],["Week"], ["Month"]], :prompt => 'Select') %>
 			    </div>
 
 			    <div class="new-item-form">
-			    	<p> Your Price:</p>
+			    	<p> Rental Price:</p>
 						<div id="actual-price-money-sign"> $ </div>
 			        <%=p.number_field :amount %>
 			    </div>
 
 				<div class="new-item-form">
-					<p id="deposit-title"> Deposit price:</p>
+          <% if current_page? lease_path %>
+
+					<p id="deposit-title"> Deposit Price & Sale Price:</p>
 					<div class="rent-deposit-money-sign"> $ </div>
 					<%= f.text_field :deposit %>
-				</div>
+          <div class="deposit-tip"> This ensures that the item is treated with care, and is returned on time. </br>This amount will be charged only if the other party fails to return the item, damage it, or lose it.</br>
+          </br>After the rental period, your customer may request to buy this item.
+        </br>The Deposit Price will double as the Sale Price. </br> Their rental fees will be
+            credited towards the purchase.
+            </div>
+          <% else %>
+          <p id="deposit-title"> Deposit Price</p>
+          <div class="rent-deposit-money-sign"> $ </div>
+          <%= f.text_field :deposit %>
+          <div class="deposit-tip"> This ensures that the item is treated with care, and is returned on time. </br>This amount will be charged only if the other party fails to return the item, damage it, or lose it.</div>
+          <% end %>
+	       </div>
 			<% end %>
 		<% end %>
 
-		<%= f.submit 'Submit', :class => 'submit-listing' %>
+		<%= f.submit 'Submit', :class => 'submit-listing', :onclick => 'validate_user_form_and_submit()' %>
 		<div id="small-tip"> you can edit/update your listing at anytime after you submit.</div>
 
 
