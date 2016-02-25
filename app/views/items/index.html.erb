@@ -5,7 +5,9 @@
 	<div id="items">
 			<div id="item-feed-container">
 	    	<div id="item-collection">
-					<%= render partial: "/items/items", locals: {items: @items} %>
+					<% @items.each do |item| %>
+						<%= render partial: "/items/items", :locals => {:item => item}  %>
+					<% end %>
 	    	</div>
 				<div id="pagination-div">
 					<%= will_paginate @items %>
