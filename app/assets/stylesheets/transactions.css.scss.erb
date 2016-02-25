@@ -1,0 +1,213 @@
+/*
+Transaction New
+*/
+body{
+  background-color: #f2f2f2;
+}
+.payment-info {
+  .price-details {
+	.item-detail-price {
+  	  border: 1px solid #979797;
+  	  background-color: #fff;
+  	  height: 290px;
+  	  width: 270px;
+
+  	  .division {
+		border-top: 1px solid #DCDCDC;
+		width: 100%;
+		margin: 10px auto;
+	  }
+	  .item-title {
+		font-weight: 600;
+		color: black;
+		text-align: center;
+		opacity: 0.9;
+		padding: 12px;
+	  }
+	  #qty{
+	  	border: 1px solid #419bf9;
+	  	margin: auto;
+	  	width: 32px;
+	  	height:25px;
+	  	vertical-align: top;
+	  	-webkit-appearance: none;
+	  }
+	  #time-selection{
+	  	border: 1px solid #419bf9;
+	  	margin: auto;
+	  	border-radius: 0;
+	  	height:25px;
+	    width: 100px;
+	  	vertical-align: top;
+	  	font-size: 16px;
+	    border-radius: 0;
+	    -webkit-appearance: none;
+	  }
+	  .sale-price {
+		color: #7ed321;
+		font-weight: 500;
+		font-size: 20px;
+		padding-top: 55px;
+	  }
+	  .item-detail-calc {
+	  	position:relative;
+	  	.amount{
+	  	  font-size: 16px;
+	  	  margin-left: 20px;
+	  	  border:0;
+	  	  width: 55px;
+	  	  font-size: 16px;
+	  	  font-weight: 200;
+	  	}
+	  	#times{
+	  	  border:0;
+	  	  width: 20px;
+	  	  font-size: 16px;
+	  	  font-weight: 200;
+	  	}
+	  	#length{
+	  	  border:0;
+	  	  width: 60px;
+	  	  font-size: 16px;
+	  	  font-weight: 200;
+	  	}
+	  	#subtotal{
+	  	  float: right;
+	  	  margin-right: 10px;
+	  	  border:0;
+	  	  width: 45px;
+	  	  font-size: 16px;
+	  	  font-weight: 200;
+	  	}
+	  	.trust-fee{
+	  	  font-size: 16px;
+	  	  margin-left: 20px;
+	  	  border:0;
+	  	  width: 120px;
+	  	  font-size: 16px;
+	  	  font-weight: 200;
+	  	}
+	  	.deposit{
+	  	  float: right;
+	  	  margin-right: 10px;
+	  	  border:0;
+	  	  width: 45px;
+	  	  font-size: 16px;
+	  	  font-weight: 200;
+	  	}
+	  	.finalp{
+	  	  font-size: 16px;
+	  	  margin-left: 20px;
+	  	}
+	  	#total{
+	  	  border:0;
+	  	  width: 45px;
+	  	  font-size: 16px;
+	  	  font-weight: 200;
+	  	  float: right;
+	  	  margin-right: 10px;
+	  	}
+	  }
+	  .buy-button {
+	  	display: table;
+	  	position: relative;
+	  	top: 5em;
+	  	text-align: center;
+	  	margin: auto;
+		background-color:#7ed321;
+		color: #fff;
+		font-size: 16px;
+		font-weight: 600;
+		border-radius: 2px;
+		cursor: pointer;
+		padding: 10px 50px 10px 50px;
+		&:hover{
+			background-color: #5AC902;
+			color: #fff;
+		}
+	  }
+	  .rent-button {
+	  	display: table;
+	  	position: relative;
+	    margin: auto;
+	  	text-align: center;
+		background-color:#419bf9;
+		margin-top: 1em;
+		color: #fff;
+		font-size: 16px;
+		font-weight: 600;
+		border-radius: 2px;
+		cursor: pointer;
+		padding: 10px 50px 10px 50px;
+		&:hover{
+			background-color: #0077f3;
+			color: #fff;
+		}
+	  }
+	}
+	.item-lease-price {
+      position: relative;
+	  z-index:2;
+	  border: 1px solid #979797;
+	  background-color: #fff;
+  	  height: 270px;
+  	  width: 270px;
+	  bottom: 15px;
+
+	  .price-title {
+	    font-weight: 600;
+	    color: white;
+	    background-color:#7ed321;
+	    text-align: center;
+	    opacity: 0.6;
+	    padding: 10px;
+	  }
+	  .sale-price {
+	    color: #7ed321;
+	    font-weight: 500;
+	    font-size: 24px;
+	  }
+	  .buy-button {
+	  	display: table;
+	  	position: relative;
+	  	text-align: center;
+	  	margin: auto;
+		background-color:#7ed321;
+		color: #fff;
+		font-size: 16px;
+		font-weight: 600;
+		border-radius: 2px;
+		cursor: pointer;
+		padding: 10px 50px 10px 50px;
+		&:hover{
+			background-color: #5AC902;
+			color: #fff;
+		}
+	  }
+    }
+  }
+}
+
+  /*responsive width styling for the page content not to be too spread out*/
+	@media only screen and (min-width: 1280px) {
+		.price-details{
+		  padding-right: 5%;
+		}
+	}
+	@media only screen and (min-width: 1440px) {
+		.price-details{
+		  padding-right: 10%;
+		}
+	}
+
+	@media only screen and (min-width: 1680px) {
+		.price-details{
+		  padding-right: 15%;
+		}
+	}
+	@media only screen and (min-width: 1920px) {
+		.price-details{
+		  padding-right: 20%;
+		}
+	}
+  /*end section*/

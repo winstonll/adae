@@ -25,7 +25,7 @@ Rails.application.config.assets.precompile += %w( ratings.css )
 Rails.application.config.assets.precompile += %w( contact-us.css )
 Rails.application.config.assets.precompile += %w( modals.css )
 Rails.application.config.assets.precompile += %w( users.css )
-
+Rails.application.config.assets.precompile += %w( transactions.css )
 Rails.application.config.assets.precompile += %w( landing.js )
 Rails.application.config.assets.precompile += %w( items.js.erb )
 Rails.application.config.assets.precompile += %w( carts.js.erb )
