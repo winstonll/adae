@@ -12,9 +12,11 @@
 
 <%= link_to item_path(item.id) do %>
 	<div class="item-index" id= "item-<%= item.id%>">
-		<%= item.title %>
-		|
-		<%= item.description %>
-		<%= item.tags  %>
+		<div class="item-wrap">
+			<p id="item-title"><%= item.title %></p>
+			<!--<div class="tag-container">
+			<p id="tags">	<%= item.tags  %></p>
+		</div>-->
+		</div>
 	</div>
 <% end %>
