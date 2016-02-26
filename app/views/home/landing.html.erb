@@ -33,6 +33,8 @@
     <div class="coming-soon">
       <%= image_tag "App Store_Play Store_COMING SOON.png", id: "coming-soon" %>
     </div>
+    <a href="/items"><button class="explore">Browse</button></a>
+
     <div id="search-field">
       <div class="search-bar">
     		<%= form_tag items_path, method: :get, authentication: false, id: 'search-form' do %>
