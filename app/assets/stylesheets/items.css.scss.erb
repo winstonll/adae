@@ -126,7 +126,7 @@ itemS INDEX/SEARCH
   	}
   }
 }
-/*media screen parameters for listing feed*/
+/*media screen parameters for listing feed and item page*/
 @media only screen and (min-width: 1440px) {
 	.item-index{
 		height: 210px !important;
@@ -152,6 +152,15 @@ itemS INDEX/SEARCH
 			margin-top: 195px !important;
 		}
 	}
+
+  .photos{
+	height: 400px !important;
+	display: inline-block;
+    .cover-photo{
+		height: 100%;
+		width: 100%;
+    }
+  }
 }
 /*end section*/
 
@@ -166,14 +175,16 @@ body{
   margin: auto;
 
   .photos{
-	width: 330px;
-	height: 230px;
-	overflow: hidden;
-	display: inline-block;
+  	height: 300px;
+    object-fit: cover;
+  	display: inline-block;
     .cover-photo{
 		height: 100%;
+		width: 100%;
     }
   }
+
+
   .price-details {
 
 	.item-detail-price {

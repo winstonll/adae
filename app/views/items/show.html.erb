@@ -24,14 +24,21 @@
     qtyLength();
   }
 
+  $(document).ready(function() {
+
+	  $(".photos").css("width", $(".photo-container").width() / "<%= @pictures.count + 0.017 %>");
+	});
+
 </script>
 
 <div class="item-info" id="itemInfo">
-  <% @pictures.each do |picture| %>
-    <div class="photos">
-      <%= image_tag(picture.image.url(:med), class:"cover-photo") %>
-    </div>
-  <% end %>
+  <div class="photo-container">
+    <% @pictures.each do |picture| %>
+      <div class="photos">
+        <%= link_to image_tag(picture.image.url(:med), class:"cover-photo") %>
+      </div>
+    <% end %>
+  </div>
     <%= hidden_field_tag 'id', @item.id%>
     <%= hidden_field_tag 'listing_type', @item.listing_type %>
 
