@@ -9,7 +9,7 @@
 					<% end %>
 	    	</div>
 				<div id="pagination-div">
-					<%= will_paginate @items %>
+					<%= will_paginate @items, :next_label => "Test", :previous_label => "Test" %>
 				</div>
 
 			</div>
