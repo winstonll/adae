@@ -1,16 +1,54 @@
-<div class="price-details">
+<%= stylesheet_link_tag "items" %>
+<script>
+  function qtyLength() {
+    var lngth = $('select[name="transaction[length]"] option:selected').val();
+    var qty = $('#qty').val();
+    $('#times').val(qty);
+
+    if (qty <= 1) {
+      $('#length').val(lngth);
+    }else if (qty > 1) {
+      $('#length').val(lngth + 's');
+    }else  {
+      $('#length').val(lngth - 's');
+    }
+  }
+  function updateQty() {
+    qtyLength();
+    var qty = $('#qty').val();
+    var total = <%= @price.amount %> * qty;
+    $('#subtotal').val('$' + total);
+    $('#transaction_total_price').val('$' + total);
+  }
+  function updateLength() {
+    qtyLength();
+  }
+
+</script>
+
+<div class="item-info" id="itemInfo">
+  <% @pictures.each do |picture| %>
+    <div class="photos">
+      <%= image_tag(picture.image.url(:med), class:"cover-photo") %>
+    </div>
+  <% end %>
+    <%= hidden_field_tag 'id', @item.id%>
+    <%= hidden_field_tag 'listing_type', @item.listing_type %>
+
+    <div class="price-details">
       <% if @item.listing_type == "sell" %>
         <div class="item-detail-price">
           <div class="price-title">For Sale</div>
           <p class="sale-price"> Price: 
             <span style="font-weight: 700; color:#000;">$<%= @price.amount %></span>
           </p>
-            <%= form_for Transaction.new, html: {multipart: true}  do |f| %>
+          <%= form_for Transaction.new, html: {multipart: true}  do |f| %>
               <span><%= f.hidden_field :length, :value => "sold" %></span>
               <span><%= f.hidden_field :item_id, :value =>@item.id %></span>
               <span><%= f.hidden_field :seller_id, :value =>@item.user.id %></span>
+              <span><%= f.hidden_field :total_price, :value => @price.amount %></span>
               <span><%= f.submit 'Request to Buy', class: "buy-button"%></span> 
-            <% end %>
+          <% end %>
         </div>
       <% elsif @item.listing_type == "lease" %>
         <div class="item-detail-price">
@@ -21,25 +59,24 @@
               <span><%= f.select :length,[["Day"],["Week"],["Month"]], :onChange=>"updateLength();"%></span>
               <span><%= f.hidden_field :item_id, :value =>@item.id %></span>
               <span><%= f.hidden_field :seller_id, :value =>@item.user.id %></span>
-          <div class="division"></div>
-          <div class="item-detail-calc">
-              <input class="amount" readonly="readonly" value="$<%= @price.amount %> x"></input>
-              <input id="times" readonly="readonly" value=""></input>
-              <input id="length" readonly="readonly" value=""></input>
-              <input id="subtotal" readonly="readonly" value=""></input>
-              
-              <% unless @item.deposit == 0 %>
-              <input class="trust-fee"readonly="readonly" value="Trust Fee: $<%= @item.deposit %>"></input>
-                <!-- This ensures that the item is treated with care, and is returned on time.This amount will be charged only if you fail to return the item, damate it, or lose it -->
-              <input class="deposit" readonly="readonly" value="$<%= @item.deposit %>"></input>
-              <% end %>
               <div class="division"></div>
-              <span class="finalp">Total</span>         
-              <%= f.text_field :total_price, :value => "",:readonly => true %>
-              <span><%= f.submit 'Request to Lease', class: "rent-button"%></span> 
+              <div class="item-detail-calc">
+                  <input class="amount" readonly="readonly" value="$<%= @price.amount %> x"></input>
+                  <input id="times" readonly="readonly" value=""></input>
+                  <input id="length" readonly="readonly" value=""></input>
+                  <input id="subtotal" readonly="readonly" value=""></input>
+                  
+                  <% unless @item.deposit == 0 %>
+                  <input class="trust-fee"readonly="readonly" value="Trust Fee: $<%= @item.deposit %>"></input>
+                    <!-- This ensures that the item is treated with care, and is returned on time.This amount will be charged only if you fail to return the item, damate it, or lose it -->
+                  <input class="deposit" readonly="readonly" value="$<%= @item.deposit %>"></input>
+                  <% end %>
+                  <div class="division"></div>
+                  <span class="finalp">Total</span>         
+                  <%= f.text_field :total_price, :value => "",:readonly => true %>
+                  <span><%= f.submit 'Request to Lease', class: "rent-button"%></span> 
+              </div>
             <% end %>
-              <!-- <input id="total" readonly="readonly" value=""></input> -->
-          </div>
         </div>
         <div class="item-lease-price">
           <div class="price-title">Available for Sale</div>
@@ -52,6 +89,7 @@
               <span><%= f.hidden_field :length, :value => "sold" %></span>
               <span><%= f.hidden_field :item_id, :value =>@item.id %></span>
               <span><%= f.hidden_field :seller_id, :value =>@item.user.id %></span>
+              <span><%= f.hidden_field :total_price, :value => @item.deposit %></span>
               <span><%= f.submit 'Request to Buy', class: "buy-button"%></span> 
             <% end %>
         </div>
@@ -59,51 +97,56 @@
         <div class="item-detail-price">
           <div class="price-title2">$<span><%= @price.amount %></span> per <%= @price.timeframe %></div> 
           <p>How long would you like to rent this?</p>
-            <%= form_for Transaction.new, html: {multipart: true}  do |f| %>
-              <input id="qty" name="quantity" min="1" max="30" type="number" onChange="updateQty()"></input>
-              <span><%= f.select :length,[["Day"],["Week"],["Month"]], :onChange=>"updateLength();"%></span>
-              <span><%= f.hidden_field :item_id, :value =>@item.id %></span>
-              <span><%= f.hidden_field :seller_id, :value =>@item.user.id %></span>
-              <span><%= f.submit 'Request to Lease', class: "rent-button"%></span> 
-            <% end %>
-          <div class="division"></div>
-          <div class="item-detail-calc">
-              <span class="amount">$<%= @price.amount %> x</span> 
+          <%= form_for Transaction.new, html: {multipart: true}  do |f| %>
+            <input id="qty" name="quantity" min="1" max="30" type="number" onChange="updateQty()"></input>
+            <span><%= f.select :length,[["Day"],["Week"],["Month"]], :onChange=>"updateLength();"%></span>
+            <span><%= f.hidden_field :item_id, :value =>@item.id %></span>
+            <span><%= f.hidden_field :seller_id, :value =>@item.user.id %></span>
+            <div class="division"></div>
+            <div class="item-detail-calc">
+              <input class="amount" readonly="readonly" value="$<%= @price.amount %> x"></input>
               <input id="times" readonly="readonly" value=""></input>
               <input id="length" readonly="readonly" value=""></input>
               <input id="subtotal" readonly="readonly" value=""></input>
-              
+                  
               <% unless @item.deposit == 0 %>
-              <span class="trust-fee">Trust Fee: $<%= @item.deposit %></span>
+                <input class="trust-fee"readonly="readonly" value="Trust Fee: $<%= @item.deposit %>"></input>
                 <!-- This ensures that the item is treated with care, and is returned on time.This amount will be charged only if you fail to return the item, damate it, or lose it -->
-              <span class="deposit">$<%= @item.deposit %></span>
+                <input class="deposit" readonly="readonly" value="$<%= @item.deposit %>"></input>
               <% end %>
               <div class="division"></div>
-              <span class="finalp">Total</span>
-              <input id="total" readonly="readonly" value=""></input>
-          </div>
+              <span class="finalp">Total</span>         
+              <%= f.text_field :total_price, :value => "",:readonly => true %>
+              <span><%= f.submit 'Request to Rent', class: "rent-button"%></span> 
+            </div>
+          <% end %>
         </div>
       <% else %>
-         <div class="item-detail-price">
+        <div class="item-detail-price">
           <div class="price-title2">$<span><%= @price.amount %></span> per <%= @price.timeframe %></div> 
           <p>How long would you like the service to last?</p>
-            <%= form_for Transaction.new, html: {multipart: true}  do |f| %>
-              <input id="qty" name="quantity" min="1" max="30" type="number" onChange="updateQty()"></input>
-              <span><%= f.select :length,[["Day"],["Week"],["Month"]], :onChange=>"updateLength();"%></span>
-              <span><%= f.hidden_field :item_id, :value =>@item.id %></span>
-              <span><%= f.hidden_field :seller_id, :value =>@item.user.id %></span>
-              <span><%= f.submit 'Request Service', class: "rent-button"%></span> 
-            <% end %>
-          <div class="division"></div>
-          <div class="item-detail-calc">
-              <span class="amount">$<%= @price.amount %> x</span> 
+          <%= form_for Transaction.new, html: {multipart: true}  do |f| %>
+            <input id="qty" name="quantity" min="1" max="30" type="number" onChange="updateQty()"></input>
+            <span><%= f.select :length,[["Day"],["Week"],["Month"]], :onChange=>"updateLength();"%></span>
+            <span><%= f.hidden_field :item_id, :value =>@item.id %></span>
+            <span><%= f.hidden_field :seller_id, :value =>@item.user.id %></span>
+            <div class="division"></div>
+            <div class="item-detail-calc">
+              <input class="amount" readonly="readonly" value="$<%= @price.amount %> x"></input>
               <input id="times" readonly="readonly" value=""></input>
               <input id="length" readonly="readonly" value=""></input>
               <input id="subtotal" readonly="readonly" value=""></input>
+                <% unless @item.deposit == 0 %>
+                  <input class="trust-fee"readonly="readonly" value="Trust Fee: $<%= @item.deposit %>"></input>
+                    <!-- This ensures that the item is treated with care, and is returned on time.This amount will be charged only if you fail to return the item, damate it, or lose it -->
+                  <input class="deposit" readonly="readonly" value="$<%= @item.deposit %>"></input>
+                <% end %>
               <div class="division"></div>
-              <span class="finalp">Total</span>
-              <input id="total" readonly="readonly" value=""></input>
-          </div>
+              <span class="finalp">Total</span>         
+              <%= f.text_field :total_price, :value => "",:readonly => true %>
+              <span><%= f.submit 'Request Service', class: "rent-button"%></span> 
+            </div>
+            <% end %>
         </div>
       <% end %>
     </div>
