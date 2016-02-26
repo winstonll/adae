@@ -5,6 +5,11 @@ class ItemsController < ApplicationController
       @items = Item.paginate(:page => params[:page], :per_page => 5)
 
       gon.map_items = Item.pluck(:latitude, :longitude, :id)
+
+      respond_to do |format|
+        format.html #{ render :template => '/products_home.html.erb' }
+        format.js { render :template => '/products_home.html.erb' } # Prodcuts home partial
+      end
   end
 
   def show
@@ -82,7 +87,7 @@ class ItemsController < ApplicationController
       @item.latitude = geocode.latitude
       @item.longitude = geocode.longitude
     end
-    
+
     @item.user_id = current_user.id
     @item.tags = @tagboxes
 
