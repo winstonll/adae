@@ -1,29 +1,28 @@
 <%= stylesheet_link_tag "items" %>
 <script>
-  function qtyLength() {
-    var lngth = $('#time-selection').val();
-    var qty = $('#qty').val();
-    $('#times').val(qty);
+  // function qtyLength() {
+  //   var lngth = $('#time-selection').val();
+  //   var qty = $('#qty').val();
+  //   $('#times').val(qty);
 
-    if (qty <= 1) {
-      $('#length').val(lngth);
-    }else if (qty > 1) {
-      $('#length').val(lngth + 's');
-    }else  {
-      $('#length').val(lngth - 's');
-    }
-  }
-  function updateQty() {
-    qtyLength();
-    var qty = $('#qty').val();
-    var total = <%= @price.amount %> * qty;
-    $('#subtotal').val('$' + total);
-    $('#total').val('$' + total);
-  }
-  function updateLength() {
-    qtyLength();
-  }
-
+  //   if (qty <= 1) {
+  //     $('#length').val(lngth);
+  //   }else if (qty > 1) {
+  //     $('#length').val(lngth + 's');
+  //   }else  {
+  //     $('#length').val(lngth - 's');
+  //   }
+  // }
+  // function updateQty() {
+  //   qtyLength();
+  //   var qty = $('#qty').val();
+  //   var total = <%= @price.amount %> * qty;
+  //   $('#subtotal').val('$' + total);
+  //   $('#total').val('$' + total);
+  // }
+  // function updateLength() {
+  //   qtyLength();
+  // }
 </script>
 
 <div class="item-info" id="itemInfo">
@@ -45,30 +44,30 @@
           <%= link_to 'Request to Buy', new_transaction_path(:item_id => @item.id), class: "buy-button"%>
         </div>
       <% elsif @item.listing_type == "lease" %>
-        <div class="item-detail-price" style="height:330px;">
-          <div class="price-title2">$<span><%= @price.amount %></span> per <%= @price.timeframe %></div>
-          <p class="how-long">How long would you like to lease this?</p>
-          <input id="qty" name="quantity" min="1" max="30" type="number" onChange="updateQty()"></input>
-          <select id="time-selection" onchange="updateLength()">
+        <div class="item-detail-price" style="height:300px;">
+          <div class="price-title2">Available for Lease</div>
+    <!-- <p class="how-long">How long would you like to lease this?</p> --> 
+    <!-- <input id="qty" name="quantity" min="1" max="30" type="number" onChange="updateQty()"></input> -->
+          <h3 align="center">$<%= @price.amount %> per <%= @price.timeframe %></h3>
+          <!-- <select id="time-selection" onchange="updateLength()">
             <option value="Day">Day
             <option value="Week">Week
             <option value="Month">Month
-          </select>
+          </select> -->
           <div class="division"></div>
           <div class="item-detail-calc">
-            <input class="amount" readonly="readonly" value="$<%= @price.amount %> x"></input>
-            <input id="times" readonly="readonly" value=""></input>
-            <input id="length" readonly="readonly" value=""></input>
-            <input id="subtotal" readonly="readonly" value=""></input>
+            <!-- <input class="amount" readonly="readonly" value="$<%#= @price.amount %> x"></input> -->
+            <!-- <input id="times" readonly="readonly" value=""></input> -->
+            <!-- <input id="length" readonly="readonly" value=""></input> -->
+            <!-- <input id="subtotal" readonly="readonly" value=""></input> -->
             <% unless @item.deposit == 0 %>
               <input class="trust-fee"readonly="readonly" value="Trust Fee: $<%= @item.deposit %>"></input>
-              <input class="deposit" readonly="readonly" value="$<%= @item.deposit %>"></input>
+             <!-- <input class="deposit" readonly="readonly" value="$<%#= @item.deposit %>"></input> -->
               <p class="trust-fee-text">This ensures that the item is treated with care, and is returned on time.This amount will be charged only if you fail to return the item, damage it, or lose it. </p>
-
             <% end %>
             <div class="division"></div>
-            <span class="finalp">Total</span>
-            <input id="total" readonly="readonly" value=""></input>
+            <!-- <span class="finalp">Total</span>
+            <input id="total" readonly="readonly" value=""></input> -->
             <%= link_to 'Request to Lease', new_transaction_path(:item_id => @item.id), class: "rent-button"%>
           </div>
         </div>
@@ -84,54 +83,54 @@
       <% elsif @item.listing_type == "rent"%>
         <div class="item-detail-price" style="height:330px";>
           <div class="price-title2">$<span><%= @price.amount %></span> per <%= @price.timeframe %></div>
-          <p class="how-long">How long would you like to rent this?</p>
-          <input id="qty" name="quantity" min="1" max="30" type="number" onChange="updateQty()"></input>
+          <!-- <p class="how-long">How long would you like to rent this?</p>
+       -->    <!-- <input id="qty" name="quantity" min="1" max="30" type="number" onChange="updateQty()"></input>
           <select id="time-selection" onchange="updateLength()">
             <option value="Day">Day
             <option value="Week">Week
             <option value="Month">Month
-          </select>
+          </select> -->
           <div class="division"></div>
           <div class="item-detail-calc">
-            <input class="amount" readonly="readonly" value="$<%= @price.amount %> x"></input>
+            <!-- <input class="amount" readonly="readonly" value="$<%#= @price.amount %> x"></input> -->
             <input id="times" readonly="readonly" value=""></input>
             <input id="length" readonly="readonly" value=""></input>
             <input id="subtotal" readonly="readonly" value=""></input>
             <% unless @item.deposit == 0 %>
               <input class="trust-fee"readonly="readonly" value="Trust Fee: $<%= @item.deposit %>"></input>
-              <input class="deposit" readonly="readonly" value="$<%= @item.deposit %>"></input>
+              <!-- <input class="deposit" readonly="readonly" value="$<%#= @item.deposit %>"></input> -->
               <p class="trust-fee-text">This ensures that the item is treated with care, and is returned on time.This amount will be charged only if you fail to return the item, damage it, or lose it. </p>
             <% end %>
             <div class="division"></div>
-            <span class="finalp">Total</span>
-            <input id="total" readonly="readonly" value=""></input>
+            <!-- <span class="finalp">Total</span>
+            <input id="total" readonly="readonly" value=""></input> -->
             <%= link_to 'Request to Rent', new_transaction_path(:item_id => @item.id), class: "rent-button"%>
           </div>
         </div>
       <% else %>
         <div class="item-detail-price" style="height:290px;">
           <div class="price-title2">$<span><%= @price.amount %></span> per <%= @price.timeframe %></div>
-          <p class="how-long">How long would you like the service to last?</p>
-          <input id="qty" name="quantity" min="1" max="30" type="number" onChange="updateQty()"></input>
+          <!-- <p class="how-long">How long would you like the service to last?</p> -->
+          <!-- <input id="qty" name="quantity" min="1" max="30" type="number" onChange="updateQty()"></input>
           <select id="time-selection" onchange="updateLength()">
             <option value="Day">Day
             <option value="Week">Week
             <option value="Month">Month
-          </select>
+          </select> -->
           <div class="division"></div>
           <div class="item-detail-calc">
-            <input class="amount" readonly="readonly" value="$<%= @price.amount %> x"></input>
+            <!-- <input class="amount" readonly="readonly" value="$<%#= @price.amount %> x"></input> -->
             <input id="times" readonly="readonly" value=""></input>
             <input id="length" readonly="readonly" value=""></input>
             <input id="subtotal" readonly="readonly" value=""></input>
             <% unless @item.deposit == 0 %>
               <input class="trust-fee"readonly="readonly" value="Trust Fee: $<%= @item.deposit %>"></input>
                 <!-- This ensures that the item is treated with care, and is returned on time.This amount will be charged only if you fail to return the item, damate it, or lose it -->
-              <input class="deposit" readonly="readonly" value="$<%= @item.deposit %>"></input>
-            <% end %>
-            <div class="division"></div>
-            <span class="finalp">Total</span>
-            <input id="total" readonly="readonly" value=""></input>
+<!--               <input class="deposit" readonly="readonly" value="$<%= @item.deposit %>"></input>
+ -->            <% end %>
+     #       <div class="division"></div>
+            <!-- <span class="finalp">Total</span>
+            <input id="total" readonly="readonly" value=""></input> -->
             <%= link_to 'Request Service', new_transaction_path(:item_id => @item.id), class: "rent-button"%>
           </div>
         </div>
@@ -150,6 +149,8 @@
       </div>
     </div>
 </div>
+
+
 
 <div class="rating-container">
   <div class="overall-rating">
