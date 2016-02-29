@@ -107,6 +107,7 @@ itemS INDEX/SEARCH
 			margin-left: 15px;
 			padding-top: 10px;
 			line-height: normal;
+      text-overflow: ellipsis;
 		  }
 		  .tag-container{
 			float: right;
@@ -213,16 +214,17 @@ body{
 
 
   .price-details {
-
+    margin-top: -2.75em;
+    float: right;
+    width: 400px;
 	.item-detail-price {
-  	  position: fixed;
+    float: right;
   	  z-index:2;
   	  border: 1px solid #979797;
   	  background-color: #fff;
   	  width: 270px;
   	  bottom: 270px;
-	  right: 0;
-	  margin-right: 15%;
+
 
 	  .how-long{
 		margin-top: 0px;
@@ -399,15 +401,14 @@ body{
 	  }
 	}
 	.item-lease-price {
-      position: fixed;
+    float:right;
 	  z-index:2;
 	  border: 1px solid #979797;
 	  background-color: #fff;
-  	  height: 240px;
-  	  width: 270px;
-	  bottom: 15px;
-	  right: 0;
-	  margin-right: 15%;
+  	height: 240px;
+  	width: 270px;
+	  margin-top: 15px;
+    margin-bottom: 35px;
 
 		p{
 		  text-align: left;
@@ -473,30 +474,30 @@ body{
 
 	@media only screen and (min-width: 1440px) {
 		.item-detail-price{
-		  margin-right: 8% !important;
+		  margin-right: 35% !important;
 		}
 		.item-lease-price {
-			margin-right: 8% !important;
+			margin-right: 35% !important;
 		}
 	}
 
 	@media only screen and (min-width: 1680px) {
 		.item-detail-price{
-		  margin-right: 15% !important;
+		  margin-right: 55% !important;
 			bottom: 322px !important;
 		}
 		.item-lease-price {
-			margin-right: 15% !important;
+			margin-right: 55% !important;
 			bottom: 50px !important;
 		}
 	}
 	@media only screen and (min-width: 1920px) {
 		.item-detail-price{
-		  margin-right: 20% !important;
+		  margin-right: 82% !important;
 			bottom: 472px !important;
 		}
 		.item-lease-price {
-			margin-right: 20% !important;
+			margin-right: 82% !important;
 			bottom: 200px !important;
 		}
 	}
@@ -506,19 +507,20 @@ body{
 	background-color: #fff;
 	padding-top: 1em;
 	border-bottom: 1px solid #C9C9C9;
+  width: 100%;
 
 	.item-detail-title {
 	  padding-top: 1em;
 	  padding-bottom: 1em;
 	  color: #4a4a4a;
-	  font-size: 18px;
+	  font-size: 17px;
 	  font-weight:600;
-	  width: 750px;
+	  width: 778px;
 	  margin: 0 auto;
 	}
 	.item-detail-username{
 	  padding-bottom: 3em;
-	  width: 750px;
+	  width: 380px;
 	  display: table;
 	  margin: 0 auto;
 	}
@@ -526,10 +528,11 @@ body{
 
   .item-detail-description {
     display: table;
-	margin: 0 auto;
-	height: 200px;
-	width: 750px;
-	margin-top: 2em;
+  	margin: 0 auto;
+  	height: 200px;
+  	width: 500px;
+  	margin-top: 2em;
+
 
 	.item-description {
 	  line-height: normal;
