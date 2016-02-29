@@ -37,11 +37,11 @@
 
     <div id="search-field">
       <div class="search-bar">
-    		<%= form_tag items_path, method: :get, authentication: false, id: 'search-form' do %>
-    			<%= text_field_tag :search, params[:search],{placeholder: 'What are you looking? ex. Xbox, Tutors, etc.', class: 'search-field-placeholder'}  %>
-    			<button class="search-bar-label">Go</button>
-    		<% end %>
-    	</div>
+        <form id="search-form" action="/search">
+          <input type="text" name="search" class="search-field-placeholder" id="search" placeholder="What are you looking for? ex. Texbooks, Video Games, Tutors...">
+          <button class="search-bar-label">Go</button>
+        </form>
+      </div>
 	   </div>
   </div>
 </div>
