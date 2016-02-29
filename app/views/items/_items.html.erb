@@ -9,12 +9,14 @@
 	});
 </script>
 
-
 <%= link_to item_path(item.id) do %>
 	<div class="item-index" id= "item-<%= item.id%>">
 		<div class="item-wrap">
-			<p id="item-title"><%= link_to image_tag(item.user.avatar.url(:med), class:"avatar") %>
-				<%= item.title %></p>
+			<div id="item-title">
+				<%= link_to image_tag(item.user.avatar.url(:med), class:"avatar"), user_path(item.user) %>
+				<%= link_to item.title, item_path(item.id) %>
+			</div>
+
 			<!--<div class="tag-container">
 			<p id="tags">	<%= item.tags  %></p>
 		</div>-->
