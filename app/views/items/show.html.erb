@@ -70,14 +70,14 @@ $(document).ready(function() {
              <!-- <input class="deposit" readonly="readonly" value="$<%#= @item.deposit %>"></input> -->
               <p class="trust-fee-text">This ensures that the item is treated with care, and is returned on time.This amount will be charged only if you fail to return the item, damage it, or lose it. </p>
             <% end %>
-            <div class="division"></div>
+            <div class="division-2"></div>
             <!-- <span class="finalp">Total</span>
             <input id="total" readonly="readonly" value=""></input> -->
             <%= link_to 'Request to Lease', new_transaction_path(:item_id => @item.id), class: "rent-button"%>
           </div>
         </div>
         <div class="item-lease-price" >
-          <div class="price-title">Available for Sale</div>
+          <div class="price-title">Also Available for Sale</div>
           <p>Pay a rental fee to try the item, and if you like it you can buy the item for the Trust Fee price.</p>
           <p>Your rental fees will count towards the final sale price.</p>
           <p class="sale-price"> Sale Price:
@@ -106,7 +106,7 @@ $(document).ready(function() {
               <!-- <input class="deposit" readonly="readonly" value="$<%#= @item.deposit %>"></input> -->
               <p class="trust-fee-text">This ensures that the item is treated with care, and is returned on time.This amount will be charged only if you fail to return the item, damage it, or lose it. </p>
             <% end %>
-            <div class="division"></div>
+            <div class="division-2"></div>
             <!-- <span class="finalp">Total</span>
             <input id="total" readonly="readonly" value=""></input> -->
             <%= link_to 'Request to Rent', new_transaction_path(:item_id => @item.id), class: "rent-button"%>
@@ -133,7 +133,7 @@ $(document).ready(function() {
                 <!-- This ensures that the item is treated with care, and is returned on time.This amount will be charged only if you fail to return the item, damate it, or lose it -->
 <!--               <input class="deposit" readonly="readonly" value="$<%= @item.deposit %>"></input>
  -->            <% end %>
-            <div class="division"></div>
+            <div class="division-2"></div>
             <!-- <span class="finalp">Total</span>
             <input id="total" readonly="readonly" value=""></input> -->
             <%= link_to 'Request Service', new_transaction_path(:item_id => @item.id), class: "rent-button"%>
