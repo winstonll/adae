@@ -13,6 +13,45 @@ body{
   	display: inline-block; 
   	width: 27%;
   	vertical-align: top;
+
+  	.reply-field{
+      display: table;
+      margin: 0 auto;
+      background-color: #fff;
+      border-radius: 0px 0px 5px 5px;
+      padding: 10px;
+      width: 250px;
+      margin-bottom: 3em;
+      border: 1px solid #979797;
+
+      .form-control {
+        resize: none;
+        -webkit-appearance: none;
+        border: none;
+       }
+
+      .reply_btn{
+        border-radius: 2px;
+        cursor: pointer;
+        background-color: #419BF9;
+        border: none;
+        color: #fff;
+        padding: 4px;
+        width: 70px;
+        height: 31px;
+        font-size: 14px;
+        float: right;
+        margin: 5px 10px;
+        &:hover{
+          background-color: #fff;
+          color: #419BF9;
+          border: 1px solid #419BF9;
+        }
+      }
+    }
+
+
+
 	.item-detail-price {
   	  border: 1px solid #979797;
   	  background-color: #fff;

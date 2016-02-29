@@ -178,7 +178,19 @@
             <% end %>
         </div>
       <% end %>
-      <%= form_tag transactions_stripe_path do%>
+      <div class="reply-field">
+        <%= form_for Conversation.new do |c| %>
+          <%= c.hidden_field :sender_id, :value =>current_user.id %>
+          <%= c.hidden_field :recipient_id, :value =>@item.user.id %>
+          <%= c.fields_for :messages do |m| %>
+            <%= m.text_area :body, :placeholder => "Add a greeting for the owner, mention the time and day you would like to get started", class: "form-control" %>
+            <%= m.text_field :user_id, value: current_user.id, type: "hidden"%>
+            <%= m.submit "Send", class: "reply_btn" %>
+          <% end %>
+        <% end %>
+      </div>
+      <center style="position: relative; left: 50%">
+        <%= form_tag transactions_stripe_path do%>
           <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
             data-key=<%= Rails.application.secrets.publishable_key %>
             data-email=<%= current_user.email %>
@@ -187,5 +199,7 @@
             data-billingAddress="true">
           </script>
        <% end %>
+      </center>
+      
     </div>
 </div>
