@@ -1,10 +1,25 @@
-<% items.each do |item| %>
-	<%= link_to item_path(item.id) do %>
-		<div class="item-index" id= "item-<%= item.id%>">
-			<%= item.title %>
-			|
-			<%= item.description %>
-			<%= item.tags  %>
+<script type="text/javascript">
+	$(document).ready(function() {
+
+	  $("#item-<%= item.id%>").css("background-image", "url(" + "<%= item.photo_url %>" + ")");
+	  $("#item-<%= item.id%>").css("background-repeat", "no-repeat");
+	  $("#item-<%= item.id%>").css("background-position", "center center");
+	  $("#item-<%= item.id%>").css("background-size", "100%");
+
+	});
+</script>
+
+<%= link_to item_path(item.id) do %>
+	<div class="item-index" id= "item-<%= item.id%>">
+		<div class="item-wrap">
+			<div id="item-title">
+				<%= link_to image_tag(item.user.avatar.url(:med), class:"avatar"), user_path(item.user) %>
+				<%= link_to item.title, item_path(item.id) %>
+			</div>
+
+			<!--<div class="tag-container">
+			<p id="tags">	<%= item.tags  %></p>
+		</div>-->
 		</div>
-	<% end %>
+	</div>
 <% end %>

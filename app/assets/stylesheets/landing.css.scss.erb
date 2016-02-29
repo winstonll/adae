@@ -8,30 +8,31 @@ Navbar/Landing
   margin-right: 50px;
 
   .share-item, .share-request, .signup {
-    background-color: rgba(0, 0, 0, 0.7);
+    background-color: rgba(0, 0, 0, 0.6);
     border: 1px solid #fff;
     border-radius: 5px;
-    font-size: 12px;
+    font-size: 13px;
     padding: 9px 14px 9px 14px;
     color: #fff;
     margin-left: 3px;
 
     &:hover{
-      background-color: black;
       color: #fff;
+      background-color: #000;
+      transition: all .4s ease-in-out;
     }
   }
 
   .faq {
     background-color: #7ED321;
     border-radius: 5px;
-    font-size: 12px;
+    font-size: 13px;
     padding: 9px 30px 9px 30px;
     color: #fff;
   }
 
   .login {
-    font-size: 12px;
+    font-size: 13px;
     padding: 9px 12px 9px 12px;
     color: #fff;
   }
@@ -77,7 +78,25 @@ Landing
   #coming-soon{
     height:45px;
     width:auto;
-    padding-bottom: 73px;
+    padding-bottom: 20px;
+  }
+
+  .explore{
+    width: 150px;
+    height: 38px;
+    border: 1px solid #fff;
+    border-radius: 4px;
+    cursor: pointer;
+    color: #fff;
+    background: rgba(000, 000, 000, 0.5);
+    font-size: 16px;
+    font-weight: 300;
+    margin-bottom: 20px;
+    &:hover{
+      color: #fff;
+      background-color: #419bf9;
+      transition: all .4s ease-in-out;
+    }
   }
 
   #search-field {
@@ -264,7 +283,7 @@ Landing
   button{
     display: table;
     margin: 0 auto;
-    margin-top: -5em;
+    margin-top: -2em;
     width: 250px;
     height: 50px;
     border: 1px solid #419bf9;
@@ -277,6 +296,7 @@ Landing
     &:hover{
       color: #fff;
       background-color: #419bf9;
+      transition: all .3s ease-in-out;
     }
   }
 

@@ -5,6 +5,11 @@ class ItemsController < ApplicationController
       @items = Item.paginate(:page => params[:page], :per_page => 5)
 
       gon.map_items = Item.pluck(:latitude, :longitude, :id)
+
+      respond_to do |format|
+        format.html #{ render :template => '/products_home.html.erb' }
+        format.js { render :template => '/products_home.html.erb' } # Prodcuts home partial
+      end
   end
 
   def show
@@ -60,7 +65,7 @@ class ItemsController < ApplicationController
   end
 
   def create
-     # For several tags, concatenate the tag boxes into
+    # For several tags, concatenate the tag boxes into
     # one string, checking for empty boxes and removing them
     7.times do |count|
       counter = "tag_box_#{count}".to_sym
@@ -82,7 +87,7 @@ class ItemsController < ApplicationController
       @item.latitude = geocode.latitude
       @item.longitude = geocode.longitude
     end
-    
+
     @item.user_id = current_user.id
     @item.tags = @tagboxes
 
@@ -102,8 +107,8 @@ class ItemsController < ApplicationController
 
       redirect_to @item, notice: "Item Successfully Added!"
     else
-      flash[:message] = "This listing has already been posted or Something didn't validate"
-      render 'new'
+      #flash[:message] = "This listing has already been posted or Something didn't validate"
+      redirect_to :back
     end
   end
 

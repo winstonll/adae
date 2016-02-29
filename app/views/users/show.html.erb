@@ -1,6 +1,7 @@
 <%= stylesheet_link_tag "users" %>
 <div class="user-content-container">
 	<div class="profile-info">
+		<%= link_to image_tag(@user.avatar.url(:med), class:"avatar") %>
 		<h1><%= @user.full_name %></h1>
 		<div class="account-links">
 			<p class="p-account-edit"><%= link_to "Edit Profile", edit_user_path(@user) %></p>

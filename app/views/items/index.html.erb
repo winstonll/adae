@@ -1,14 +1,15 @@
 <%= stylesheet_link_tag "items" %>
-<%#= javascript_include_tag "map" %>
 
 <body>
 	<div id="items">
 			<div id="item-feed-container">
 	    	<div id="item-collection">
-					<%= render partial: "/items/items", locals: {items: @items} %>
+					<% @items.each do |item| %>
+						<%= render partial: "/items/items", :locals => {:item => item}  %>
+					<% end %>
 	    	</div>
 				<div id="pagination-div">
-					<%= will_paginate @items %>
+					<%= will_paginate @items, :next_label => "&#10095;", :previous_label => "&#10094;" %>
 				</div>
 
 			</div>
@@ -16,3 +17,4 @@
 			<div id="map-canvas"></div>
 	</div>
 </body>
+<%= javascript_include_tag "map" %>
