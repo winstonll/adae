@@ -528,12 +528,21 @@ body{
 	  margin: 0 auto;
 	}
 	.item-detail-username{
-	  padding-bottom: 3em;
+	  padding-bottom: 1em;
 	  width: 380px;
 	  display: table;
 	  margin: 0 auto;
+
+    .avatar{
+      float: left;
+      margin-left: -6.5em;
+      margin-top: -3em;
+      border-radius: 50%;
+      height:auto;
+      width: 85px;
+    }
 	}
-  }
+}
 
   .item-detail-description {
     display: table;
@@ -938,7 +947,8 @@ item new
           color: #4a4a4a;
 			}
 
-			#item_prices_attributes_0_amount{
+			#item_prices_attributes_0_amount, #item_prices_attributes_1_amount,
+      #item_prices_attributes_2_amount{
 			  -webkit-appearance: none;
 			  font-size: 16px;
   			text-align: center;
