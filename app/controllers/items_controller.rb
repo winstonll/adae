@@ -65,7 +65,7 @@ class ItemsController < ApplicationController
   end
 
   def create
-     # For several tags, concatenate the tag boxes into
+    # For several tags, concatenate the tag boxes into
     # one string, checking for empty boxes and removing them
     7.times do |count|
       counter = "tag_box_#{count}".to_sym
@@ -107,8 +107,8 @@ class ItemsController < ApplicationController
 
       redirect_to @item, notice: "Item Successfully Added!"
     else
-      flash[:message] = "This listing has already been posted or Something didn't validate"
-      render 'new'
+      #flash[:message] = "This listing has already been posted or Something didn't validate"
+      redirect_to :back
     end
   end
 

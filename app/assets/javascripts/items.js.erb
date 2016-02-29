@@ -34,9 +34,15 @@ function updateCountdown() {
 
 function validate_user_form_and_submit(){
 
-  if ( /^[A-Za-z]\d[A-Za-z]\s?\d[A-Za-z]\d$/.test($('#item_postal_code').val()) ) {
+  var postal_code = /^[A-Za-z]\d[A-Za-z]\s?\d[A-Za-z]\d$/.test($('#item_postal_code').val());
+  var tags;
+  var title;
+  var summary;
+
+  if ( postal_code ) {
     return true;
   } else {
+    alert("Postal Code in the wrong format");
     event.preventDefault();
   }
 }
