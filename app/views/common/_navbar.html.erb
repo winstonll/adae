@@ -57,7 +57,7 @@
       <% if signed_in? %>
       <span class="userpaths" onclick="$('.dropdown').slideToggle();">
         <%= current_user.name %>
-        <span><%= image_tag(current_user.avatar.url(:med), class:"avatar") %></span>
+
       </span>
       <% else %>
         <%= link_to 'Sign Up', {remote: true, controller: "home", action: "signup_modal"}, id: "nav-signup-btn", class: "signup" %>
@@ -75,4 +75,5 @@
         <% end %>
       </div>
     </div>
+    <span><%= image_tag(current_user.avatar.url(:med), class:"avatar") %></span>
 </nav>
