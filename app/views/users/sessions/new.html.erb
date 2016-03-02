@@ -1,26 +1,29 @@
-<h2>Log in</h2>
-
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
+<%= stylesheet_link_tag "items" %>
+<div class="bootstrap" style="margin-top: 50px;">
+  <div class="col-md-4 col-md-push-4">
+    <% if (params[:signin_modal]) %>
+      <center>
+      <h1 style="color:#419bf9; position: fixed; margin: auto; right: 48%;">Log in</h1>
+      <%= render '/common/signin_modal' %>
+      </center>
+    <% else %>
+    <center><h1 style="color:#419bf9;">Log in</h1></center>
+      <%= form_for(resource, as: resource_name, url: user_session_path) do |f| %>
+        <%= f.email_field :email, autofocus: true, placeholder: "Email", :class => "form-control" %>
+        <%= f.password_field :password, autocomplete: "off", placeholder: "Password", :class => "form-control"  %>
+        <% if devise_mapping.rememberable? %>
+          <div class="signin_remember_me" style="margin: 10px 0 10px 0;">
+            Remember me: <%= f.check_box :remember_me %>
+          </div>
+        <% end %>
+          <div class="actions shared_links">
+            <input type="submit" name="submit" value="Log in" class="btn btn-large btn-primary" style="width: 150px;">
+            <span style="float: right;"><%= render "users/shared/links" %></span>
+          </div>
+      <% end %>
+    <% end %>
   </div>
+</div>
 
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "off" %>
-  </div>
 
-  <% if devise_mapping.rememberable? -%>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
-    </div>
-  <% end -%>
 
-  <div class="actions">
-    <%= f.submit "Log in" %>
-  </div>
-<% end %>
-
-<%= render "users/shared/links" %>
