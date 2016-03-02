@@ -18,3 +18,4 @@
 //= require_tree .
 //= require jquery-fileupload
 //= require jquery-fileupload/basic-plus
+//= require toastr

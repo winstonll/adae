@@ -51,7 +51,7 @@ module Api::V1
     end
 
     def transaction_detail
-      @transaction = Transaction.where("(transactions.seller_id = 1 OR transactions.buyer_id = 1) AND (transactions.status != 'Pending' AND transactions.status != 'Denied')")
+      @transaction = Transaction.where("(transactions.seller_id = #{params[:id]} OR transactions.buyer_id = #{params[:id]}) AND (transactions.status != 'Pending' AND transactions.status != 'Denied')")
 
       if !@transaction.nil?
         @item = []
