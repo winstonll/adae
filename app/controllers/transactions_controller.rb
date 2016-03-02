@@ -24,9 +24,9 @@ class TransactionsController < ApplicationController
 	def new
 		@transaction = Transaction.new
 		@item = Item.find(params[:item_id])
-	    @price = Price.where(item_id: @item.id).first
+	    @prices = @item.prices
 	    @pictures = Picture.where(item_id: @item.id)
-	    @fee = ((@price.amount * 0.029) + 0.30)
+	    @fee = ((@prices.first.amount * 0.029) + 0.30)
 	end
 
 	def create
