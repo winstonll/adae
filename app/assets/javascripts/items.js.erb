@@ -35,14 +35,51 @@ function updateCountdown() {
 function validate_user_form_and_submit(){
 
   var postal_code = /^[A-Za-z]\d[A-Za-z]\s?\d[A-Za-z]\d$/.test($('#item_postal_code').val());
-  var tags;
-  var title;
-  var summary;
-
-  if ( postal_code ) {
+  var tags = $('#tag-box-1')[0].value;
+  var title = $('#item_title')[0].value;
+  var summary = $('#item_description')[0].value;
+  console.log(postal_code == true)
+  if ( postal_code && tags && title && summary) {
     return true;
   } else {
-    alert("Postal Code in the wrong format");
+    var error_message = "";
+
+    if(!postal_code){
+      if (error_message){
+        error_message += ", Postal Code in the wrong format"
+      } else {
+        error_message += "Postal Code in the wrong format"
+      }
+    }
+
+    if (!tags){
+      if (error_message){
+        error_message += ", Tags are empty"
+      } else {
+        error_message += "Tags are empty"
+      }
+    }
+
+    if (!title){
+      if (error_message){
+        error_message += ", Title is empty"
+      } else {
+        error_message += "Title is empty"
+      }
+    }
+
+    if (!summary){
+      if (error_message){
+        error_message += ", Summary is empty"
+      } else {
+        error_message += "Summary is empty"
+      }
+    }
+
+    toastr.options.timeOut = 6000;
+    toastr.options.extendedTimeOut = 2000;
+    toastr.error(error_message);
+
     event.preventDefault();
   }
 }

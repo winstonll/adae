@@ -1,6 +1,27 @@
 <%= stylesheet_link_tag "navbar" %>
 <%= stylesheet_link_tag "modals" %>
 <%= javascript_include_tag "navbar" %>
+
+<script>
+  <% if flash[:notice] %>
+    toastr.options.timeOut = 3000;
+    toastr.options.extendedTimeOut = 2000;
+    toastr.success("<%= flash[:notice] %>");
+  <% end %>
+
+  <% if flash[:alert] %>
+    toastr.options.timeOut = 5000;
+    toastr.options.extendedTimeOut = 2000;
+    toastr.warning("<%= flash[:alert] %>");
+  <% end %>
+
+  <% if flash[:warning] %>
+    toastr.options.timeOut = 5000;
+    toastr.options.extendedTimeOut = 2000;
+    toastr.warning("<%= flash[:warning] %>");
+  <% end %>
+</script>
+
 <div class="signup-modal"></div>
 <div class="signin-modal"></div>
 <nav class="nav" role="navigation" id="home-navbar">
@@ -68,7 +89,6 @@
       <div class="dropdown">
         <% if signed_in? %>
           <%= link_to "Edit Profile", edit_user_path(current_user), class: "profilepath" %>
-          <%= link_to "Chosen Listings", carts_path(current_user), class: "profilepath" %>
           <%= link_to "Account", user_path(current_user), class: "profilepath" %>
           <%= link_to "Reviews", user_path(current_user), class: "profilepath" %>
           <%= link_to('Logout', destroy_user_session_path, :method => :delete, class: "logout") %>

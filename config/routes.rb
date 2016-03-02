@@ -46,10 +46,7 @@ Rails.application.routes.draw do
   concern :reviewable do
     resources :ratings, only: [:new, :create, :show, :edit, :update, :destroy]
     resources :reviews, only: [:show, :edit, :update, :create, :destroy]
-  end
-
-  post 'carts/add/' => 'carts#add', :to => 'carts_add'
-  
+  end  
 
   get 'users/stripe_settings/' => 'users#stripe_settings', :to => "users_stripe_settings"
   post 'users/stripe_update_settings/' => 'users#stripe_update_settings', :to => "users_stripe_update_settings"
@@ -68,8 +65,6 @@ Rails.application.routes.draw do
   resources :requests, :path => "shoutout"
   resources :users
   resources :transactions
-  resources :carts
-
 
   get 'sell'   => "items#sell",   as: :sell
   get 'rent'   => "items#rent",   as: :rent

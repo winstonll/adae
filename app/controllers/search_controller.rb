@@ -33,7 +33,7 @@ class SearchController < ApplicationController
     # end
 
     if(@query.empty?)
-      flash[:notice] = "Nothing matched your search."
+      flash[:warning] = "Nothing matched your search."
     end
 
   end

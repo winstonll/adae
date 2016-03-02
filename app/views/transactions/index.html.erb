@@ -1,56 +1,12 @@
-<%= stylesheet_link_tag "items" %>
-<div class="bootstrap">
-  <%= provide(:title, "Checkout") %>
-  <center><h1>Checkout</h1></center>
-</div>
 
-<div class="col-md-9 col-md-offset-2 main">
-<% if  @cart.nil? %>
-	<h3 class="col-md-9 col-md-offset-2 main">There are no items in your cart to checkout.</h3>
-<% else %>
-	<ul class="catalogue">
-		<li>
-			<div class="row">
-				<h4 class="col-md-3" id="prodInfo">
-		            Order Details
-		        </h4>
-		        <h4 class="col-md-3 col-md-push-1">
-		        	Total
-		        </h4>
-			</div>
-		</li>
-		<% @cart.each do |item| %>
-		<li>
-			<div class="row">
-				<div class="col-md-3" id="co_prodInfo">
-					<span>Item: <%= item["name"]%></span>
-					<span>Price: $<%= number_with_precision(item["price"], precision: 2)%></span>
-				</div>
-			</div>
-		</li>
-		<% end %>
-	</ul>
-	<div class="row">
-		<h5 class="col-md-4" id="subtotal">Subtotal</h5>
-		<span class="col-md-4 col-md-push-6">$<%= number_with_precision(@subtotal, precision: 2)%></span>
-	</div>
-	<div class="row">
-      <h5 class="col-md-4" id="subtotal">Adae Order Request Fee</h5>
-      <span class="col-md-4 col-md-push-6"><u>$<%= number_with_precision(@fee, precision: 2)%></u></span>
-    </div>
-    <div class="row">
-      <h4 class="col-md-4" id="subtotal">Total</h4>
-      <span class="col-md-4 col-md-push-6">$<%= number_with_precision(@subtotal+@fee, precision: 2)%></span>
-    </div>
     <div class="row buy col-md-4"> 
     	<%= form_tag transactions_stripe_path do%>
 	        <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
 	          data-key=<%= Rails.application.secrets.publishable_key %>
 	          data-email=<%= current_user.email %>
-	          data-description="Cart's total"
+	          data-description=""
 	          data-amount=<%=((@subtotal+@fee).round(2)*100).to_i%>
 	          data-billingAddress="true">
 	        </script>
 	     <% end %>
     </div>
-<% end %>

@@ -3,14 +3,18 @@
 
 <body>
 	<div id="items">
+		<div id="item-feed-container" style="width: auto !important;">
+			<div id="item-collection">
 		<% @query.each do |item| %>
 			<%= render partial: "/items/items", :locals => {:item => item}  %>
 		<% end %>
+			</div>
+		</div>
 		<div id="pagination-div">
 			<%#= will_paginate @query, :next_label => "&#10095;", :previous_label => "&#10094;" %>
 		</div>
 	</div>
 	<div id="requests">
-		<%= render partial: "/requests/requests", locals: {requests: @query} %>
+		<%#= render partial: "/requests/requests", locals: {requests: @query} %>
 	</div>
 </body>
