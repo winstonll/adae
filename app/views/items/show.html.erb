@@ -67,7 +67,7 @@ $(document).ready(function() {
           <p class="sale-price"> Sale Price:
             <span style="font-weight: 700; color:#000;">$<%= @item.deposit %></span>
           </p>
-          <%= link_to 'Request to Buy', new_transaction_path(:item_id => @item.id), class: "buy-button"%>
+          <%= link_to 'Request to Buy', new_transaction_path(:item_id => @item.id, :sell=> true), class: "buy-button"%>
         </div>
       <% elsif @item.listing_type == "rent"%>
         <div class="item-detail-price" style="height:310px";>
