@@ -3,22 +3,7 @@ class TransactionsController < ApplicationController
 	before_action :signed_in_user, only: [:index, :new, :create, :edit, :update, :delete, :stripe, :stripe_success, :purchase_order]
 
 	def index
-		@cart = Cart.where(user_id: current_user.id) #Grab whatever is in the cart
-		if @cart.empty? # If there is nothing attached to this user
-			@cart = session[:cart] # See if there's anything in the session.
-			session[:cart] = nil # Empty out the session
-			if !@cart.nil? # If the cart is not empty
-				@cart.each do |c| # Create each item in the session cart in the DB and attach to current user.
-					Cart.create(user_id: current_user.id,
-								item_id: c[1]["id"],
-								name: c[1]["title"],
-								price: c[1]["price"].to_f)
-				end 
-			end
-		end
-		@fee = total_adae_fee
-		@cart = Cart.where(user_id: current_user.id) # Just in case we removed anything during our sanitization period with stripe_vendor_charges
-		@subtotal = get_subtotal(@cart) # Calculate the total for it
+		
 	end
 
 	def new

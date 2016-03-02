@@ -89,7 +89,6 @@
       <div class="dropdown">
         <% if signed_in? %>
           <%= link_to "Edit Profile", edit_user_path(current_user), class: "profilepath" %>
-          <%= link_to "Chosen Listings", carts_path(current_user), class: "profilepath" %>
           <%= link_to "Account", user_path(current_user), class: "profilepath" %>
           <%= link_to "Reviews", user_path(current_user), class: "profilepath" %>
           <%= link_to('Logout', destroy_user_session_path, :method => :delete, class: "logout") %>

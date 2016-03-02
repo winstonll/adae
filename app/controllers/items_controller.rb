@@ -18,25 +18,9 @@ class ItemsController < ApplicationController
     @prices = @item.prices
     @pictures = Picture.where(item_id: @item.id)
 
-      if current_user
-       @rating = current_user.ratings.find_by(:item => @item)
-       @cart = Cart.where(user_id: current_user.id, item_id: @item.id)
-        if @cart.empty?
-          @cart ||= session[:cart][@item.id.to_s] # Check whether we saved a session variable for this item
-          if !@cart.empty? # There was a session variable for this item, attach it to this users cart
-            Cart.create(user_id: current_user.id,
-              item_id: @cart["id"],
-              name: @cart["title"],
-              price: @cart["price"].to_f)
-            session[:cart][@item.id.to_s] = nil # Clean out the session cart
-          end
-        end
-      else
-      @cart ||= session[:cart]
-        if @cart.nil? # This makes sure that @cart is a hash no matter what
-          @cart = Hash.new # The template needs a hash or it'll throw an error.
-        end
-      end
+    if current_user
+     @rating = current_user.ratings.find_by(:item => @item)
+    end
   end
 
   def rent
