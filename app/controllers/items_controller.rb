@@ -93,7 +93,6 @@ class ItemsController < ApplicationController
 
     if @item.save && @item.valid?
 
-
       if params[:images]
         params[:images].each { |image|
           @item.pictures.create(image: image)
@@ -101,13 +100,12 @@ class ItemsController < ApplicationController
       end
 
       @picture = Picture.where(item_id: @item.id).first
-
       @item.photo_url = @picture.image.url(:small)
       @item.save
 
       redirect_to @item, notice: "Item Successfully Added!"
     else
-      #flash[:message] = "This listing has already been posted or Something didn't validate"
+      flash[:alert] = "This listing has already been posted or Something didn't validate"
       redirect_to :back
     end
   end
