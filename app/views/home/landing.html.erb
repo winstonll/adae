@@ -4,8 +4,6 @@
 <div class="signup-modal"></div>
 <div class="signin-modal"></div>
 
-<!-- Welcome section -->
-
 <title>adae - Share what you have, get what you want.</title>
 
 <div id="landing">
@@ -15,18 +13,14 @@
     <!--<%= link_to 'Post a Shout Out', new_request_path, class: "share-request" %>-->
     <% unless signed_in? %>
       <%= link_to 'Sign Up', {remote: true, controller: "home", action: "signup_modal"}, id: "nav-signup-btn", class: "signup" %>
-      <%#= link_to('Sign Up', new_user_registration_path, class: "signup") %>
       <%= link_to 'Login', {remote: true, controller: "home", action: "signin_modal"}, id: "nav-signin-btn", class: "login" %>
-      <%#= link_to('Login', new_user_session_path, class: "login") %>
     <% end %>
   </div>
-
 	<div id="landing-container">
 		<div class="logo-name-container">
 			<%= image_tag "logo-lg-white.png", id: "logo" %>
 			<h1 id="welcome">adae</h1>
 		</div>
-
 		<div id="summary-container">
 			<p class="summary">Share what you have, get what you want. <br> Peer-to-Peer marketplace that is safe and secure.</p>
 		</div>
@@ -34,12 +28,13 @@
       <a target="_blank" href="https://itunes.apple.com/ca/app/adae/id1084039853?mt=8"><%= image_tag "App-Store.png", class: "coming-soon" %></a>
       <a target="_blank" href="https://play.google.com/store/apps/details?id=com.adae.justinelee.adaecompanion&hl=en"><%= image_tag "Play-Store.png", class: "coming-soon" %></a>
     </div>
+
     <a href="/items"><button class="explore">Browse</button></a>
 
     <div id="search-field">
       <div class="search-bar">
-        <form id="search-form" action="/search">
-          <input type="text" name="search" class="search-field-placeholder" id="search" placeholder="What are you looking for? ex. Texbooks, Video Games, Tutors...">
+        <form class="search-form" action="/search">
+          <input type="text" name="search_text" class="search-field-placeholder" id="search-form" placeholder="What are you looking for? ex. Texbooks, Video Games, Tutors...">
           <button class="search-bar-label">Go</button>
         </form>
       </div>
