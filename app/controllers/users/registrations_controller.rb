@@ -9,7 +9,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
     if @user.save
       session[:user_id] = @user.id
-      redirect_to user_path(@user), notice: "Signed up!"
+      redirect_to items_path, notice: "Signed up! Check your email address to confirm your account!"
     else
       redirect_to :back
     end
@@ -31,6 +31,14 @@ class Users::RegistrationsController < Devise::RegistrationsController
     end
 
   protected
+
+  def after_sign_up_path_for(resource)
+    signed_in_root_path(resource)
+  end
+
+  def after_update_path_for(resource)
+    signed_in_root_path(resource)
+  end
 
   # If you have extra params to permit, append them to the sanitizer.
   def configure_sign_up_params
