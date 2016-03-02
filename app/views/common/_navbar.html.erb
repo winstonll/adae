@@ -1,6 +1,24 @@
 <%= stylesheet_link_tag "navbar" %>
 <%= stylesheet_link_tag "modals" %>
 <%= javascript_include_tag "navbar" %>
+
+<script>
+  <% if flash[:notice] %>
+    toastr.options.timeOut = 5000;
+    toastr.success("<%= flash[:notice] %>");
+  <% end %>
+
+  <% if flash[:alert] %>
+    toastr.options.timeOut = 5000;
+    toastr.success("<%= flash[:alert] %>");
+  <% end %>
+
+  <% if flash[:warning] %>
+    toastr.options.timeOut = 5000;
+    toastr.success("<%= flash[:warning] %>");
+  <% end %>
+</script>
+
 <div class="signup-modal"></div>
 <div class="signin-modal"></div>
 <nav class="nav" role="navigation" id="home-navbar">

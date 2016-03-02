@@ -2,7 +2,7 @@
 <script>
 <% if flash[:error] %>
   toastr.options.timeOut = 3000;
-  toastr.error("This listing has already been posted or Something didn't validate");
+  toastr.error("There was an error in the validation, please review your submission.");
 <% end %>
 
 </script>
