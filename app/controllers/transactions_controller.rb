@@ -47,7 +47,7 @@ class TransactionsController < ApplicationController
 			charge = Stripe::Charge.create(
 				{  	:source 	=> token.id,
 					:amount 	=> (array['total']*100).to_i,
-					:description => 'Cart Purchase',
+					:description => 'Purchase',
 					:currency => "cad",
 					:application_fee => (array['fee']*100).to_i
 				}, {:stripe_account => array['stripe_id']}
@@ -99,10 +99,9 @@ class TransactionsController < ApplicationController
 	# Grabs all the necessary data and presents an invoice display page after purchases
 	def stripe_success
 		@order = Transaction.find(params[:id])
-		@adae_fee = TransactionFee.where(transaction_id: @order.id).first
 		# Only the purchaser can see this information
 		if current_user.id == @order.buyer_id
-			@purchase_items = @order.TransactionItem.all
+			@purchase_items = @order.Transaction.all
 			@notification_params_name = JSON.parse(@order.StripeTransaction.all[0][:notification_params])["source"]["name"]
 			@contact = current_user
 			invoice_details_hash = { order: @order,
@@ -113,7 +112,6 @@ class TransactionsController < ApplicationController
 				adae_fee: @adae_fee
 			}
 
-			Cart.destroy_all(user_id: current_user.id)
 			# InvoiceMailer.invoice_details(invoice_details_hash).deliver_now
 			# respond_to do |format|
 			# 	format.html
@@ -132,25 +130,24 @@ class TransactionsController < ApplicationController
 		@purchases = Transaction.where(buyer_id:current_user.id).to_a
 	end
 
-	# def purchase_order
-	# 	@order = Transaction.find_by(id:params[:id])
-	# 	@adae_fee = TransactionFee.find_by_id(@order.transaction_fee_id)
-	# 	# Only the purchaser can see this information
-	# 	if current_user.id == @order.buyer_id
-	# 		@purchase_items = TransactionItem.where(transaction_id: @order[:id])
-	# 		@notification_params_name = JSON.parse(@order.StripeTransaction.all[0][:notification_params])["source"]["name"]
-	# 		@contact = current_user
-	# 		# respond_to do |format|
-	# 		# 	format.html
-	# 		# 	format.pdf do
-	# 		# 		render pdf: "Invoice ##{@order.id}",
-	# 		# 			template: "transactions/purchase_order.pdf.erb"
-	# 		# 	end
-	# 		end
-	# 	else
-	# 		redirect_to root_path, flash: {warning: "You are not authorized to view this page."}
-	# 	end
-	# end
+	def purchase_order
+		@order = Transaction.find_by(id:params[:id])
+		# Only the purchaser can see this information
+		if current_user.id == @order.buyer_id
+			@purchase_items = Transaction.where(transaction_id: @order[:id])
+			@notification_params_name = JSON.parse(@order.StripeTransaction.all[0][:notification_params])["source"]["name"]
+			@contact = current_user
+			respond_to do |format|
+				format.html
+				format.pdf do
+					render pdf: "Invoice ##{@order.id}",
+						template: "transactions/purchase_order.pdf.erb"
+				end
+			end
+		else
+			redirect_to root_path, flash: {warning: "You are not authorized to view this page."}
+		end
+	end
 
 	private
 
@@ -160,11 +157,6 @@ class TransactionsController < ApplicationController
 
 	# into transaction_items table with transaction_id
 	def item_sold(order)
-		@cart_item = Cart.where(user_id: current_user.id)  # Grab whatever is in the cart
-		array = Array.new  # Make a new array for holding ids
-		@cart_items.each do |id| 
-			array << id[:item_id].to_i
-		end
 
 		@items = Item.where(id:array) # Find all the items with the id array
 		# For each item
@@ -181,43 +173,9 @@ class TransactionsController < ApplicationController
 				item_id: item.id,
 				transaction_id: order.id, 
 			}
-			item = TransactionItem.find_or_initialize_by(transaction_id: order.id, item_id: item.id) #Create the item
+			item = Transaction.find_or_initialize_by(transaction_id: order.id, item_id: item.id) #Create the item
 			item.update(order_item)
 		end
-	end
-
-	# Get subtotal, grabs the total of the cart and sanitizes the session variables
-	def get_subtotal(cart_array)
-		@cart = price_session_sanitization(cart_array)
-		@total = 0
-		if @cart.blank? # do nothing
-		else # Add the price of each item to the running total
-			@cart.each do |price| 
-	            @total = @total + (price["price"].to_f)
-	        end
-	    end
-	    return @total # return the subtotal
-	end
-
-	def price_session_sanitization(cart_array)
-		# Check if we have a cart_array passed in, if we do, use that, if not, then do a DB call
-		if cart_array.empty?
-			@cart = Cart.where(user_id: current_user.id) # Grab whatever is in the cart
-		else
-			@cart = cart_array
-		end
-		array = Array.new # Make a new array for sanitization
-		# Go through the cart and collect the ids of each item, so we can get the price from the DB
-		# to ensure that session variables like price were not manipualted
-		@cart.each do |id|
-			array << id[0].to_i
-		end
-		@items = Item.where(id:array) # Select the items from the ids
-		# Each item, grab the price from the db and assign to @cart variable
-		@items.each do |item|
-			@cart[item.id.to_s]["price"] = item["price"].to_s
-		end
-		return @cart
 	end
 
 	# Calcuales total adae fee for all items in a transaction
