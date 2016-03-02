@@ -6,7 +6,12 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   def after_sign_in_path_for(resource)
-    request.env['omniauth.origin'] || stored_location_for(resource) || items_path
+    sign_in_url = new_user_session_url
+    if request.referer == sign_in_url
+      super
+    else
+      stored_location_for(resource) || request.referer || items_path
+    end
   end
 
   def after_sign_out_path_for(resource_or_scope)
@@ -16,7 +21,7 @@ class ApplicationController < ActionController::Base
 
   def ensure_logged_in
    unless current_user
-     flash[:alert] = "Please Log in or Sign up!"
+     flash[:warning] = "Please Log in or Sign up!"
      session[:previous_url] = request.fullpath
       redirect_to request.referrer, flash: { signup_modal: true }
    end
