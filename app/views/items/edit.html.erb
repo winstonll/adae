@@ -80,7 +80,7 @@
 			    </div>
 			    <%= f.hidden_field :deposit, :value => 0 %>
 			<% end %>
-		<% elsif @item.listing_type == 'sell'%>
+		<% elsif @item.listing_type == 'sell' %>
 			<%= f.fields_for :prices, @price do |p| %>
 				<div class="new-item-form">
 			    	<p> Sale Price:</p>
@@ -90,38 +90,63 @@
 			    <%= f.hidden_field :deposit, :value => 0 %>
 			<% end %>
 		<% else %>
-			<%= f.fields_for :prices, @price do |p| %>
-			    <div class="new-item-form">
-			        <%=	p.label :timeframe %>
-			        <%= p.select(:timeframe, [["Hour"],["Day"],["Week"], ["Month"]], :prompt => 'Select') %>
-			    </div>
+			<%= f.fields_for :prices, Price.new do |day| %>
+        <%= f.fields_for :prices, Price.new do |week| %>
+          <%= f.fields_for :prices, Price.new do |month| %>
+    			  <div class="new-item-form">
+      				<p class="deposit-tip">
+      				  <b>Rental Price:</b></br>
+      				  Set how much you want to charge for any or all of the timeframes</br>
+      				  in the boxes below,leave the box blank if the timeframe is not</br>
+      				  applicable.</br>
+      				  Example: $10 per day, $60 per week and/or $200 per month.
+      				</p>
+      				<table>
+      				  <tr>
+      				  	<th>Timeframe:</th>
+      			      	<td><%= day.text_field :timeframe, :value => "Day", :readonly => "True", class: "timeframe" %></td>
+      			      	<td><%= week.text_field :timeframe, :value => "Week", :readonly => "True", class: "timeframe" %></td>
+      			      	<td><%= month.text_field :timeframe, :value => "Month", :readonly => "True", class: "timeframe" %></td>
+      				  </tr>
+    			      <tr>
+    			      	<th>Price:</th>
+    			      	<td><input class="money", readonly="true", value="$"></input><%=day.number_field :amount, max: 100%></td>
+    			      	<td><input class="money", readonly="true", value="$"></input><%=week.number_field :amount, max: 1000%></td>
+    			        <td><input class="money", readonly="true", value="$"></input><%=month.number_field :amount, max: 10000%></td>
+    			      </tr>
+      				</table>
+      				<br/>
+    			  </div>
 
-			    <div class="new-item-form">
-			    	<p> Rental Price:</p>
-						<div id="actual-price-money-sign"> $ </div>
-			        <%=p.number_field :amount %>
-			    </div>
+      			<div class="new-item-form">
+  	          <% if @item.listing_type == 'lease' %>
+        				<p id="deposit-title"> Deposit Price & Sale Price:</p>
+        				<div class="rent-deposit-money-sign"> $ </div>
+      				  <%= f.text_field :deposit %>
+  	          	<div class="deposit-tip">
+  		          	This ensures that the item is treated with care, and is returned on time. </br>
+  		          	This amount will be charged only if the other party fails to return the item, damage it, or lose it.</br></br>
+  		          	After the rental period, your customer may request to buy this item.</br>
+  		          	The Deposit Price will double as the Sale Price.</br>
+  		          	Their rental fees will be
+  		            credited towards the purchase.
+  	            </div>
+      	      <% else %>
+  	          	<p id="deposit-title"> Deposit Price</p>
+  	          	<div class="rent-deposit-money-sign"> $ </div>
+  	          	<%= f.text_field :deposit %>
+  	          	<div class="deposit-tip">
+  	          		This ensures that the item is treated with care, and is returned on time.</br>
+  	          		This amount will be charged only if the other party fails to return the item, damage it, or lose it.
+  	          	</div>
+      	      <% end %>
+    	      </div>
 
-				<div class="new-item-form">
-          <% if @item.listing_type == 'lease' %>
-
-					<p id="deposit-title"> Deposit Price & Sale Price:</p>
-					<div class="rent-deposit-money-sign"> $ </div>
-					<%= f.text_field :deposit %>
-          <div class="deposit-tip"> This ensures that the item is treated with care, and is returned on time. </br>This amount will be charged only if the other party fails to return the item, damage it, or lose it.</br>
-          </br>After the rental period, your customer may request to buy this item.
-        </br>The Deposit Price will double as the Sale Price. </br> Their rental fees will be
-            credited towards the purchase.
-            </div>
-          <% else %>
-          <p id="deposit-title"> Deposit Price</p>
-          <div class="rent-deposit-money-sign"> $ </div>
-          <%= f.text_field :deposit %>
-          <div class="deposit-tip"> This ensures that the item is treated with care, and is returned on time. </br>This amount will be charged only if the other party fails to return the item, damage it, or lose it.</div>
           <% end %>
-	       </div>
+        <% end %>
 			<% end %>
 		<% end %>
+
 
 		<%= f.submit 'Submit', :class => 'submit-listing' %>
 		<div id="small-tip"> you can edit/update your listing at anytime after you submit.</div>
