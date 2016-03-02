@@ -77,6 +77,7 @@ function validate_user_form_and_submit(){
     }
 
     toastr.options.timeOut = 6000;
+    toastr.options.extendedTimeOut = 2000;
     toastr.error(error_message);
 
     event.preventDefault();
