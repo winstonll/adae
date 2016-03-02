@@ -1,5 +1,6 @@
 class ItemsController < ApplicationController
   before_filter :ensure_logged_in, only: [:create, :update, :edit, :destroy]
+
   def index
       @items = Item.paginate(:page => params[:page], :per_page => 5)
 
@@ -104,8 +105,7 @@ class ItemsController < ApplicationController
 
       redirect_to @item, notice: "Item Successfully Added!"
     else
-      flash[:alert] = "This listing has already been posted or Something didn't validate"
-      redirect_to :back
+      redirect_to :back, flash: {error: true}
     end
   end
 

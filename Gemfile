@@ -27,6 +27,7 @@ gem 'will_paginate-bootstrap'
 
 gem 'geocoder'
 gem 'gon'
+gem 'toastr-rails'
 
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc

@@ -1,16 +1,14 @@
 <%= javascript_include_tag "items" %>
+<script>
+<% if flash[:error] %>
+  toastr.options.timeOut = 3000;
+  toastr.error("This listing has already been posted or Something didn't validate");
+<% end %>
+
+</script>
+
 
 <%= form_for @item, html: {multipart: true}  do |f| %>
-	<% if @item.errors.any? %>
-		<div id="error_explaination">
-			<h2><%= pluralize(@item.errors.count, "error") %> please correct the following before submitting</h2>
-			<ul>
-				<% @item.errors.full_messages.each do |msg| %>
-				<li><%= msg %> </li>
-				<% end %>
-			</ul>
-		</div>
-	<% end %>
 
 <div class="item-container">
 	<div class="form-content">
@@ -139,7 +137,7 @@
   	          	</div>
       	      <% end %>
     	      </div>
-            
+
           <% end %>
         <% end %>
 			<% end %>
