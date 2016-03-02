@@ -75,5 +75,7 @@
         <% end %>
       </div>
     </div>
-    <span><%= image_tag(current_user.avatar.url(:med), class:"avatar") %></span>
+    <% if signed_in? %>
+      <span><%= image_tag(current_user.avatar.url(:med), class:"avatar") %></span>
+    <% end %>
 </nav>
