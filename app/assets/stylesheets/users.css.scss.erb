@@ -180,6 +180,7 @@ body{
     cursor: pointer;
     &:hover{
       background-color: #0077F3;
+      transition: all .4s ease-in-out;
     }
   }
 }
@@ -565,10 +566,17 @@ body{
       margin-bottom: 10px;
     }
   }
-.needed{
-  display: table;
-  margin: 0 auto;
-}
+    .settings_connect{
+      display: table;
+      margin: 0 auto;
+      .btn{
+        margin: 0 auto;
+        display: table;
+        &:hover{
+          transition: all .4s ease-in-out;
+        }
+      }
+    }
 
 .account-form{
 
