@@ -15,7 +15,7 @@ class ItemsController < ApplicationController
   def show
     @item = Item.find(params[:id])
     @review = @item.reviews.build
-    @price = Price.where(item_id: @item.id).first
+    @prices = @item.prices
     @pictures = Picture.where(item_id: @item.id)
 
       if current_user
