@@ -10,13 +10,13 @@
   <% end %>
 
   <% if flash[:alert] %>
-    toastr.options.timeOut = 3000;
+    toastr.options.timeOut = 5000;
     toastr.options.extendedTimeOut = 2000;
     toastr.warning("<%= flash[:alert] %>");
   <% end %>
 
   <% if flash[:warning] %>
-    toastr.options.timeOut = 3000;
+    toastr.options.timeOut = 5000;
     toastr.options.extendedTimeOut = 2000;
     toastr.warning("<%= flash[:warning] %>");
   <% end %>
