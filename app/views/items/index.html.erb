@@ -1,20 +1,17 @@
 <%= stylesheet_link_tag "items" %>
-
 <body>
 	<div id="items">
-			<div id="item-feed-container">
+		<div id="item-feed-container">
 	    	<div id="item-collection">
-					<% @items.each do |item| %>
-						<%= render partial: "/items/items", :locals => {:item => item}  %>
-					<% end %>
+				<% @items.each do |item| %>
+					<%= render partial: "/items/items", :locals => {:item => item}  %>
+				<% end %>
 	    	</div>
-				<div id="pagination-div">
-					<%= will_paginate @items, :next_label => "&#10095;", :previous_label => "&#10094;" %>
-				</div>
-
+			<div id="pagination-div">
+				<%= will_paginate @items, :next_label => "&#10095;", :previous_label => "&#10094;" %>
 			</div>
-
-			<div id="map-canvas"></div>
+		</div>
+		<div id="map-canvas"></div>
 	</div>
 </body>
 <%= javascript_include_tag "map" %>
