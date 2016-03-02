@@ -59,6 +59,45 @@ html, body {
   height: 100px; 
 }
 
+#alert {
+	font-size: 20px;
+	font-weight: 600;
+	color: #f5a623;
+	position: absolute;
+	z-index: 3;
+	left:0;
+	right:250px;
+}
+
+#notice{
+	font-size: 20px;
+	font-weight: 600;
+	color: #419bf9;
+	position: absolute;
+	z-index: 3;
+	left: 200;
+	right:500px;
+}
+
+#warning{
+	font-size: 20px;
+	font-weight: 600;
+	color: crimson;
+	position: absolute;
+	z-index: 3;
+	left: 0;
+	right:0;
+}
+
+#error_explaination{
+	font-size: 20px;
+	font-weight: 600;
+	color: crimson;
+	position: absolute;
+	z-index: 3;
+	left: 0;
+	right:100px;
+}
 
 a {
 	font-family: 'Avenir Next', 'Avenir', sans-serif;
@@ -140,10 +179,6 @@ h4, .item-rating-qs {
 	font-weight: 700;
 	margin-left: 20%;
 	margin-bottom: 5em;
-}
-
-#error_explaination{
-	color: red;
 }
 
 /*

@@ -1,14 +1,5 @@
 <%= javascript_include_tag "items" %>
 
-<% if flash[:signup_modal] %>
-  <script>
-  $(document).ready(function(){
-  	$('#shareSignupModal').modal('show');
-  });
-  </script>
-	<%= render '/common/signup_modal' %>
-<% end %>
-
 <%= form_for @item, html: {multipart: true}  do |f| %>
 	<% if @item.errors.any? %>
 		<div id="error_explaination">

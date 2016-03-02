@@ -292,8 +292,7 @@ class TransactionsController < ApplicationController
 
 	def signed_in_user
     	unless signed_in?
-        	store_location
-        	redirect_to new_user_session_path, flash: {warning: "Please sign in before you checkout."}
+        	redirect_to request.referrer, flash: {warning: "Please sign in before you checkout.", signup_modal: true}
     	end
     end
 

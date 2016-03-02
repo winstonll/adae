@@ -27,8 +27,9 @@ body{
     margin: 0 auto;
     display: table;
     border-radius: 50%;
-    height: auto;
-    width: 70px;
+    height: 80px;
+    width: 80px;
+    object-fit: cover;
   }
 
   h1{
@@ -96,6 +97,7 @@ body{
   border: 1px solid #979797;
   display: inline-block;
   margin-top: -15px;
+  margin-bottom: 3em;
 
   #title{
     font-weight: 600;
@@ -195,15 +197,17 @@ body{
   }
 
   .request-img{
-    width: 120px;
-    height: 120px;
-    overflow: hidden;
     float: left;
     margin-top: 10px;
-    border: 1px solid #eaeaea;
+    width: 120px;
+    height: 120px;
+    border: 1px solid #dcdcdc;
 
     img{
-      height: 100%;
+      width: 120px;
+      height: 120px;
+      object-fit: cover;
+      object-position: center;
     }
   }
   .requests{
@@ -260,15 +264,17 @@ body{
   }
 
   .transaction-img{
-    width: 120px;
-    height: 120px;
-    overflow: hidden;
     float: left;
     margin-top: 10px;
-    border: 1px solid #eaeaea;
+    width: 120px;
+    height: 120px;
+    border: 1px solid #dcdcdc;
 
     img{
-      height: 100%;
+      width: 120px;
+      height: 120px;
+      object-fit: cover;
+      object-position: center;
     }
   }
   .transactions{
@@ -325,14 +331,16 @@ body{
   }
 
   .listing-img{
-    width: 120px;
-    height: 120px;
-    overflow: hidden;
     float: left;
     margin-top: 10px;
+    width: 120px;
+    height: 120px;
 
     img{
-      height: 100%;
+      width: 120px;
+      height: 120px;
+      object-fit: cover;
+      object-position: center;
     }
   }
   .listings{

@@ -114,11 +114,12 @@ itemS INDEX/SEARCH
             .avatar{
               border-radius: 50%;
               border: 1px solid #fff;
-              height: auto;
+              height: 30px;
               width: 30px;
               float: left;
               margin-right: 10px;
               margin-left: -5px;
+              object-fit: cover;
             }
           }
 
@@ -553,8 +554,9 @@ body{
         margin-left: -6.5em;
         margin-top: -3em;
         border-radius: 50%;
-        height:auto;
+        height:85px;
         width: 85px;
+        object-fit: cover;
       }
     }
   }
@@ -574,6 +576,23 @@ body{
     }
   }
 }
+
+/*.gallery-container{
+  width: 900px;
+  display: table;
+  margin: 0 auto;
+  margin-top: -5em;
+  margin-bottom: 3em;
+  .photo-grid{
+    display: inline-block;
+    .gallery-photo{
+      height: 200px !important;
+      margin-left: 5px;
+      object-fit: scale-down;
+      object-position: center;
+    }
+  }
+} commented out for now*/
 
 .rating-container {
   display: table;
@@ -733,6 +752,9 @@ body{
         float: left;
         margin-right: 20px;
         margin-top: -5px;
+        height: 55px;
+        width: 55px;
+        object-fit: cover;
       }
     }
 
