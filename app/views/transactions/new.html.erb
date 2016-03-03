@@ -176,18 +176,18 @@
             <% end %>
         </div>
       <% end %>
-      <div class="reply-field">
-        <%= form_for Conversation.new do |c| %>
-          <%= c.hidden_field :sender_id, :value =>current_user.id %>
-          <%= c.hidden_field :recipient_id, :value =>@item.user.id %>
-          <%= c.fields_for :messages do |m| %>
+      <!--<div class="reply-field">
+        <%#= form_for Conversation.new do |c| %>
+          <%#= c.hidden_field :sender_id, :value =>current_user.id %>
+          <%#= c.hidden_field :recipient_id, :value =>@item.user.id %>
+          <%#= c.fields_for :messages do |m| %>
 
-            <%= m.text_area :body, :placeholder => "Add a greeting for the owner, mention the time and day you would like to get started", class: "form-control" %>
-            <%= m.text_field :user_id, value: current_user.id, type: "hidden"%>
-            <%= m.submit "Send", class: "reply_btn" %>
-          <% end %>
-        <% end %>
-      </div>
+            <%#= m.text_area :body, :placeholder => "Add a greeting for the owner, mention the time and day you would like to get started", class: "form-control" %>
+            <%#= m.text_field :user_id, value: current_user.id, type: "hidden"%>
+            <%#= m.submit "Send", class: "reply_btn" %>
+          <%# end %>
+        <%# end %>
+      </div>-->
       <center style="position: relative; left: 50%; margin-bottom: 3em;">
         <% if current_user.stripe_customer_id.nil? %>
           <%= form_tag transactions_stripe_path do%>
@@ -208,7 +208,8 @@
             <%= hidden_field_tag 'item', @item.id %>
             <%= hidden_field_tag 'price' %>
             <%= hidden_field_tag 'duration' %>
-            <%= submit_tag 'Pay' %>
+
+            <%= submit_tag 'Proceed to Check', class: "request-button"%>
           <% end %>
         <%end%>
       </center>
