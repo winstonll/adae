@@ -178,58 +178,9 @@ class TransactionsController < ApplicationController
 		end
 	end
 
-	# Calcuales total adae fee for all items in a transaction
-	def total_adae_fee
-		session[:svc] = stripe_vendor_charges # Might as well set the session
-		fee = 0
-		session[:svc].each do |key, array|
-			fee = fee + array[:fee]
-		end
-		return fee
-	end
-
-	# This function breaks down our cart and tallies up the total according to vendor
-	# It returns an array [stripe_user_id, total]
-	def stripe_vendor_charges
-		@cart_items = Cart.where(user_id: current_user.id)  # Grab whatever is in the cart
-		array = Array.new  # Make a new array for holding ids
-		@cart_items.each do |id| # Throw all id's into the array
-			array << id[:item_id].to_i
-		end
-		@items = Item.where(id:array) # Find all the items with the id array
-
-		h = Hash.new  # Make a new hash for holding ids
-		@items.each do |item|
-			# We need to find the COO, to get his stripe_user_id
-			person = User.where.not(stripe_user_id: nil)
-			c = @cart_items.find{ |cart| cart.item_id == item.id } # This is to match the item to the cart item to get "c"
-
-			if !person.empty?
-				c = @cart_items.find{ |cart| cart.item_id == item.id } # This is to match the item to the cart item to get "c"
-				subtotal = c.price # calculate subtotal
-				fee = adae_fee(subtotal, item) #calculate the adae fee
-				if !h[person[0][:stripe_user_id]].blank? # If the stripe_user_id already existed (i.e. selling 2 different items by same vendor)
-					h[person[0][:stripe_user_id]] = {total: (h[person[0][:stripe_user_id]][:total] + (subtotal+fee)).round(2).to_f,
-													fee: (h[person[0][:stripe_user_id]][:fee] + fee).round(2).to_f,
-													stripe_id: person[0][:stripe_user_id]
-										}
-				else # first item being sold by vendor, add the vendor to the list
-					h[person[0][:stripe_user_id]] = { total: 0 + (subtotal).round(2).to_f, 
-													  fee: fee.round(2).to_f,
-													  stripe_id: person[0][:stripe_user_id]
-										}
-				end
-			else
-				Cart.destroy(c.id)
-				flash[:warning] = "One or more of the items checked out have been removed because orders are not being taken for those items at the moment."
-			end
-		end
-		return h
-	end
-
 	# Calculates adae fee for one kind of item in a transaction
-	def adae_fee(subtotal, item)
-			adae_fee = subtotal * 0.05
+	def adae_fee(subtotal)
+			adae_fee = ((subtotal * 0.029) + 0.30)
 		return adae_fee.round(2).to_f # return the fee
 	end
 
