@@ -190,7 +190,7 @@
             data-key=<%= Rails.application.secrets.publishable_key %>
             data-email=<%= current_user.email %>
             data-description="Pay <%= @item.user.name %>"
-            data-amount=<%#=((@subtotal+@fee).round(2)*100).to_i%>
+            data-amount=<%=((@fee).round(2)*100).to_i%>
             data-billingAddress="true">
           </script>
        <% end %>
