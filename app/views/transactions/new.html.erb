@@ -114,7 +114,7 @@
 
       <% elsif @item.listing_type == "rent"%>
         <div class="item-detail-price" style="height: 320px;">
-          div class="item-title"><%=@item.title %>, <%= @item.description %></div>
+          <div class="item-title"><%=@item.title %>, <%= @item.description %></div>
           <div class="division"></div>
           <p class="how-long">How long would you like to rent this?</p>
           <%= form_for Transaction.new, html: {multipart: true}  do |f| %>
