@@ -28,6 +28,16 @@ class TransactionsController < ApplicationController
 		item = Item.where(id: params[:item]).first
 		seller = User.where(id: item.user_id).first
 
+		order_transaction = Transaction.new(item_id: item.id, buyer_id: current_user.id,
+		seller_id: item.user_id, total_price: params[:price].to_f, length: params[:duration])
+
+		order_transaction.save
+
+		redirect_to action: "stripe_success", id: order_transaction.id
+	end
+
+	def transaction_accepted
+
 		description = "#{seller.name}(#{seller.id}), #{item.listing_type}s, to #{current_user.name}(#{current_user.id})"
 
 		# Charge the customer instead of the card
@@ -58,12 +68,6 @@ class TransactionsController < ApplicationController
 
 			@sT = StripeTransaction.create(stripeCharge) # make a record in the StripeTransactions table
 		end
-
-		order_transaction = Transaction.new(item_id: item.id, buyer_id: current_user.id,
-		seller_id: item.user_id, total_price: params[:price].to_f, length: params[:duration])
-		order_transaction.save
-
-		redirect_to action: "stripe_success", id: order_transaction.id
 	end
 
 	# Grabs all the necessary data and presents an invoice display page after purchases
