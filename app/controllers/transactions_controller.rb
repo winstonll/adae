@@ -34,10 +34,10 @@ class TransactionsController < ApplicationController
 
 		#token = Stripe::Token.create({:customer => @customer.id}, {:stripe_account => array['stripe_id']})
 
-		@item = Item.where(id: params[:item]).first
+		item = Item.where(id: params[:item]).first
 		seller = User.where(id: @item.user_id).first
 
-		description = "#{seller.name}(#{seller.id}), #{@item.listing_type}s, to #{current_user.name}(#{current_user.id})"
+		description = "#{seller.name}(#{seller.id}), #{item.listing_type}s, to #{current_user.name}(#{current_user.id})"
 
 		# Charge the customer instead of the card
 		begin
@@ -48,7 +48,7 @@ class TransactionsController < ApplicationController
 		    :description => description
 		  )
 
-			rescue Stripe::CardError => expiry_date
+			rescue Stripe::CardError => e
 				flash[:alert] = e.message
 				redirect_to new_transaction_path
 		end
