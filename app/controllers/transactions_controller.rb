@@ -1,6 +1,6 @@
 class TransactionsController < ApplicationController
 	protect_from_forgery except: [:hook]
-	before_action :signed_in_user, only: [:index, :new, :create, :edit, :update, :delete, :stripe, :stripe_success, :purchase_order]
+	before_action :signed_in_user, only: [:index, :new, :edit, :update, :delete, :stripe, :stripe_success, :purchase_order]
 
 	def index
 
@@ -12,12 +12,6 @@ class TransactionsController < ApplicationController
 	    @prices = @item.prices
 	    @pictures = Picture.where(item_id: @item.id)
 	    @fee = ((@prices.first.amount * 0.029) + 0.30)
-	end
-
-	def create
-		@transaction = Transaction.create(transaction_params)
-		@transaction.buyer_id = current_user
-
 	end
 
 	def stripe
