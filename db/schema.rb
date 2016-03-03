@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160302203614) do
+ActiveRecord::Schema.define(version: 20160303194647) do
 
   create_table "conversations", force: :cascade do |t|
     t.integer  "sender_id"
@@ -117,14 +117,14 @@ ActiveRecord::Schema.define(version: 20160302203614) do
   create_table "transactions", force: :cascade do |t|
     t.integer  "item_id"
     t.integer  "buyer_id"
-    t.datetime "created_at",                        null: false
-    t.datetime "updated_at",                        null: false
+    t.datetime "created_at",                                                 null: false
+    t.datetime "updated_at",                                                 null: false
     t.integer  "seller_id"
-    t.integer  "total_price"
+    t.decimal  "total_price",   precision: 10, scale: 2, default: 0.0
     t.string   "length"
     t.datetime "in_scan_date"
     t.datetime "out_scan_date"
-    t.string   "status",        default: "Pending"
+    t.string   "status",                                 default: "Pending"
   end
 
   create_table "users", force: :cascade do |t|
@@ -159,6 +159,7 @@ ActiveRecord::Schema.define(version: 20160302203614) do
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
+    t.string   "stripe_customer_id"
   end
 
   add_index "users", ["auth_token"], name: "index_users_on_auth_token", unique: true

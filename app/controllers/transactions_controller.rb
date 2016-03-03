@@ -11,40 +11,31 @@ class TransactionsController < ApplicationController
 	end
 
 	def stripe
-
-		billing = {
-			name: params["stripeBillingName"],
-			address: {
-				line1: params["stripeBillingAddressLine1"],
-				postal_code: params["stripeBillingAddressZip"],
-				city: params["stripeBillingAddressCity"],
-				region: params["stripeBillingAddressState"],
-				country: params["stripeBillingAddressCountryCode"],
-			}
-		}
-
 		Stripe.api_key = Rails.configuration.stripe[:secret_key]
 
-=begin
-		@customer = Stripe::Customer.create(
-			:email => params[:stripeEmail],
-			:source => params[:stripeToken]
-		)
-=end
+		if current_user.stripe_customer_id.nil?
+			@customer = Stripe::Customer.create(
+				:email => params[:stripeEmail],
+				:source => params[:stripeToken]
+			)
 
-		#token = Stripe::Token.create({:customer => @customer.id}, {:stripe_account => array['stripe_id']})
+			current_user.stripe_customer_id = @customer.id
+			current_user.save
+		else
+			@customer = Stripe::Customer.retrieve(current_user.stripe_customer_id)
+		end
 
 		item = Item.where(id: params[:item]).first
-		seller = User.where(id: @item.user_id).first
+		seller = User.where(id: item.user_id).first
 
 		description = "#{seller.name}(#{seller.id}), #{item.listing_type}s, to #{current_user.name}(#{current_user.id})"
 
 		# Charge the customer instead of the card
 		begin
 			charge = Stripe::Charge.create(
+				:customer => @customer.id,
 		    :amount => (params[:price].to_f * 100).ceil, # amount in cents, again
 		    :currency => "cad",
-		    :source => params[:stripeToken],
 		    :description => description
 		  )
 
@@ -53,9 +44,6 @@ class TransactionsController < ApplicationController
 				redirect_to new_transaction_path
 		end
 
-asd
-
-=begin
 		# If the charge succeeded, then record the data
 		if charge[:paid]
 			stripeCharge = {
@@ -67,43 +55,32 @@ asd
 				status: charge[:paid],
 				description: charge[:description]
 			}
-			amount_total = amount_total + (array['total']*100).to_i # Keep track of the total
+
 			@sT = StripeTransaction.create(stripeCharge) # make a record in the StripeTransactions table
-			stripeTransactions << @sT.id # push the id into the stripeTransactions array for later use
-		end
-=end
-
-=begin
-		if !stripeTransactions.empty? # If our stripeTransactions array is not empty, we made some transactions
-			@orderInfo = { # Gather the following information
-				buyer_id: current_user.id,
-				purchased_at: Time.now,
-				total_amount: amount_total,
-			}
-			@order = Transaction.create(@orderInfo)
-			StripeTransaction.where(id:stripeTransactions).update_all(transaction_id: @order.id) #Update all the records of stripeTransactions with transaction_id: @order.id
-			transaction_fee = {
-				fee_amount: total_adae_fee, #get the fees of all stripe_transcactions for this order
-				transaction_id: @order.id
-			}
-			@transaction_fee = TransactionFee.create(transaction_fee)
 		end
 
-			item_sold(@order)
-			session.delete(:svc) # Clean up sessions
-			redirect_to action: "stripe_success", id: @order.id
-=end
-		redirect_to action: "stripe_success", id: @order.id
+		order_transaction = Transaction.new(item_id: item.id, buyer_id: current_user.id,
+		seller_id: item.user_id, total_price: params[:price].to_f, length: params[:duration])
+		order_transaction.save
+
+		redirect_to action: "stripe_success", id: order_transaction.id
 	end
 
 	# Grabs all the necessary data and presents an invoice display page after purchases
 	def stripe_success
 		@order = Transaction.find(params[:id])
+		@item = Item.where(id: @order.id).first
+		@total_amount = ((@order.total_price - 0.3) / 1.029)
+		@adae_fee = @order.total_price - @total_amount
+		@length = @order.length.split('-')[1]
+		@length = @length[0..@length.length - 2]
+		@price = @item.prices.where(timeframe: @length).first
+
 		# Only the purchaser can see this information
 		if current_user.id == @order.buyer_id
-			@purchase_items = @order.Transaction.all
-			@notification_params_name = JSON.parse(@order.StripeTransaction.all[0][:notification_params])["source"]["name"]
+=begin
 			@contact = current_user
+
 			invoice_details_hash = { order: @order,
 				purchase_items: @purchase_items,
 				notification_params: @notification_params_name,
@@ -111,6 +88,7 @@ asd
 				billed_contact: @contact,
 				adae_fee: @adae_fee
 			}
+=end
 
 			# InvoiceMailer.invoice_details(invoice_details_hash).deliver_now
 			# respond_to do |format|
