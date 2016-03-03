@@ -3,7 +3,7 @@ class TransactionsController < ApplicationController
 	before_action :signed_in_user, only: [:index, :new, :create, :edit, :update, :delete, :stripe, :stripe_success, :purchase_order]
 
 	def index
-		
+
 	end
 
 	def new
@@ -16,11 +16,12 @@ class TransactionsController < ApplicationController
 
 	def create
 		@transaction = Transaction.create(transaction_params)
-		@transaction.buyer_id = current_user 
+		@transaction.buyer_id = current_user
 
 	end
 
 	def stripe
+
 		billing = {
 			name: params["stripeBillingName"],
 			address: {
@@ -29,49 +30,60 @@ class TransactionsController < ApplicationController
 				city: params["stripeBillingAddressCity"],
 				region: params["stripeBillingAddressState"],
 				country: params["stripeBillingAddressCountryCode"],
-			}	
+			}
 		}
 
 		Stripe.api_key = Rails.configuration.stripe[:secret_key]
 
+=begin
 		@customer = Stripe::Customer.create(
 			:email => params[:stripeEmail],
 			:source => params[:stripeToken]
 		)
-		stripeTransactions = Array.new # Array used so later we can update the StripeTransactions with their Transaction id
-		amount_total = 0 # Keep track of the total
-		session[:svc].each do |key, array|
-			token = Stripe::Token.create({:customer => @customer.id}, {:stripe_account => array['stripe_id']})
+=end
 
-			# Charge the customer instead of the card
+		#token = Stripe::Token.create({:customer => @customer.id}, {:stripe_account => array['stripe_id']})
+
+		@item = Item.where(id: params[:item]).first
+		seller = User.where(id: @item.user_id).first
+
+		description = "#{seller.name}(#{seller.id}), #{@item.listing_type}s, to #{current_user.name}(#{current_user.id})"
+
+		# Charge the customer instead of the card
+		begin
 			charge = Stripe::Charge.create(
-				{  	:source 	=> token.id,
-					:amount 	=> (array['total']*100).to_i,
-					:description => 'Purchase',
-					:currency => "cad",
-					:application_fee => (array['fee']*100).to_i
-				}, {:stripe_account => array['stripe_id']}
-			)
+		    :amount => (params[:price].to_f * 100).ceil, # amount in cents, again
+		    :currency => "cad",
+		    :source => params[:stripeToken],
+		    :description => description
+		  )
 
-			# If the charge succeeded, then record the data
-			if charge[:paid]
-				stripeCharge = {
-					txn_type: charge[:object],
-					currency: charge[:currency],
-					total_amount: charge[:amount],
-					notification_params: charge,
-					txn_id: charge[:id],
-					status: charge[:paid],
-					description: charge[:description] 
-				}
-				amount_total = amount_total + (array['total']*100).to_i # Keep track of the total
-				@sT = StripeTransaction.create(stripeCharge) # make a record in the StripeTransactions table
-				fasdfljksda
-				stripeTransactions << @sT.id # push the id into the stripeTransactions array for later use
-			end
+			rescue Stripe::CardError => expiry_date
+				flash[:alert] = e.message
+				redirect_to new_transaction_path
 		end
 
+asd
 
+=begin
+		# If the charge succeeded, then record the data
+		if charge[:paid]
+			stripeCharge = {
+				txn_type: charge[:object],
+				currency: charge[:currency],
+				total_amount: charge[:amount],
+				notification_params: charge,
+				txn_id: charge[:id],
+				status: charge[:paid],
+				description: charge[:description]
+			}
+			amount_total = amount_total + (array['total']*100).to_i # Keep track of the total
+			@sT = StripeTransaction.create(stripeCharge) # make a record in the StripeTransactions table
+			stripeTransactions << @sT.id # push the id into the stripeTransactions array for later use
+		end
+=end
+
+=begin
 		if !stripeTransactions.empty? # If our stripeTransactions array is not empty, we made some transactions
 			@orderInfo = { # Gather the following information
 				buyer_id: current_user.id,
@@ -90,10 +102,8 @@ class TransactionsController < ApplicationController
 			item_sold(@order)
 			session.delete(:svc) # Clean up sessions
 			redirect_to action: "stripe_success", id: @order.id
-		
-		rescue Stripe::CardError => expiry_date
-			flash[:error] = e.message
-			redirect_to transaction_path
+=end
+		redirect_to action: "stripe_success", id: @order.id
 	end
 
 	# Grabs all the necessary data and presents an invoice display page after purchases
@@ -115,7 +125,7 @@ class TransactionsController < ApplicationController
 			# InvoiceMailer.invoice_details(invoice_details_hash).deliver_now
 			# respond_to do |format|
 			# 	format.html
-			# 	format.pdf do 
+			# 	format.pdf do
 			# 		render pdf: "Invoice ##{@order.id}",
 			# 			template: "transactions/purchase_order.pdf.erb"
 			# 	end
@@ -153,35 +163,6 @@ class TransactionsController < ApplicationController
 
 	def transaction_params
 	    params.require(:transaction).permit(:item_id, :buyer_id, :seller_id, :length, :status, :total_price)
-	end
-
-	# into transaction_items table with transaction_id
-	def item_sold(order)
-
-		@items = Item.where(id:array) # Find all the items with the id array
-		# For each item
-		@items.each_with_index do |item, index|
-
-			q = @cart_items.find{ |cart| cart.item_id == item.id}
-			item.save
-			# Create the hash for insert into transaction_items
-			order_item = {
-				title: item.title,
-				description: item.description,
-				price: item.prices.collect(&:amount).flatten.uniq,
-				image: item.image,
-				item_id: item.id,
-				transaction_id: order.id, 
-			}
-			item = Transaction.find_or_initialize_by(transaction_id: order.id, item_id: item.id) #Create the item
-			item.update(order_item)
-		end
-	end
-
-	# Calculates adae fee for one kind of item in a transaction
-	def adae_fee(subtotal)
-			adae_fee = ((subtotal * 0.029) + 0.30)
-		return adae_fee.round(2).to_f # return the fee
 	end
 
 	def signed_in_user

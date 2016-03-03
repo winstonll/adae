@@ -20,6 +20,9 @@
     var fee = ((total * 0.029) + 0.30);
     $('#subtotal').val('$' + total);
     total = (total + fee).toFixed(2);
+
+    $('#price')[0].value = total;
+
     $('#transaction_total_price').val('$' + total);
   }
   function updateLength() {
@@ -29,7 +32,7 @@
 </script>
 
 <div class="payment-info">
-  
+
   <div style="display: table; margin:auto; ">
     <h1 style="font-weight: 600; text-align: left; ">Payment</h1>
     <span>The owner will not receive your money until the unique Transaciton </br> QR Code on his/her phone is scanned by you when you two meet.</span>
@@ -42,7 +45,7 @@
     <% unless @item.listing_type == "sell" %>
     <div style="width: 90%;">This ensures that the item is treated with care and is returned on time. <b>This amount will be charged only if you fail to return the item, damage it, or lose it.</b></div>
     <% end %>
-  </div> 
+  </div>
 
     <%= hidden_field_tag 'id', @item.id%>
     <%= hidden_field_tag 'listing_type', @item.listing_type %>
@@ -61,9 +64,9 @@
           <div class="division"></div>
           <span class="finalp">Total</span>
           <% unless params[:sell] == "true" %>
-            <input id="total" readonly="readonly" value="<%=@prices.first.amount + @fee %>"></input> 
+            <input id="total" readonly="readonly" value="<%=@prices.first.amount + @fee %>"></input>
           <% else %>
-            <input id="total" readonly="readonly" value="<%=@item.deposit + @fee %>"></input> 
+            <input id="total" readonly="readonly" value="<%=@item.deposit + @fee %>"></input>
           <% end %>
 
           <%= form_for Transaction.new, html: {multipart: true}  do |f| %>
@@ -75,7 +78,7 @@
               <% else %>
                 <span><%= f.hidden_field :total_price, :value => @item.deposit %></span>
               <% end %>
-              <span><%#= f.submit 'Request to Buy', class: "buy-button"%></span> 
+              <span><%#= f.submit 'Request to Buy', class: "buy-button"%></span>
           <% end %>
         </div>
       <% elsif @item.listing_type == "lease" %>
@@ -94,7 +97,7 @@
                   <input id="times" readonly="readonly" value=""></input>
                   <input id="length" readonly="readonly" value=""></input>
                   <input id="subtotal" readonly="readonly" value=""></input>
-                  
+
                   <% unless @item.deposit == 0 %>
                   <input class="trust-fee"readonly="readonly" value="Trust Fee: $<%= @item.deposit %>"></input>
                     <!-- This ensures that the item is treated with care, and is returned on time.This amount will be charged only if you fail to return the item, damate it, or lose it -->
@@ -105,9 +108,9 @@
                   <div style="font-size: 12px; margin:15px;">
                     Pay a rental fee to try the item, and if you like it you can buy the item for the Trust Fee price. Your rental fees will count towards the final sale price.
                   </div>
-                  <span class="finalp">Total</span>         
+                  <span class="finalp">Total</span>
                   <%= f.text_field :total_price, :value => "",:readonly => true %>
-                  <span><%#= f.submit 'Request to Lease', class: "rent-button"%></span> 
+                  <span><%#= f.submit 'Request to Lease', class: "rent-button"%></span>
               </div>
             <% end %>
         </div>
@@ -128,7 +131,7 @@
               <input id="times" readonly="readonly" value=""></input>
               <input id="length" readonly="readonly" value=""></input>
               <input id="subtotal" readonly="readonly" value=""></input>
-                  
+
               <% unless @item.deposit == 0 %>
                 <input class="trust-fee"readonly="readonly" value="Trust Fee: $<%= @item.deposit %>"></input>
                 <!-- This ensures that the item is treated with care, and is returned on time.This amount will be charged only if you fail to return the item, damate it, or lose it -->
@@ -136,9 +139,9 @@
               <% end %>
               <p style="font-size: 14px;">Credit Card Processing Fee: $<%= number_with_precision(@fee, :precision => 2)%></p>
               <div class="division"></div>
-              <span class="finalp">Total</span>         
+              <span class="finalp">Total</span>
               <%= f.text_field :total_price, :value => "",:readonly => true %>
-              <span><%#= f.submit 'Request to Rent', class: "rent-button"%></span> 
+              <span><%#= f.submit 'Request to Rent', class: "rent-button"%></span>
             </div>
           <% end %>
         </div>
@@ -165,9 +168,9 @@
                 <% end %>
                 <p style="font-size: 14px;">Credit Card Processing Fee: $<%= number_with_precision(@fee, :precision => 2)%></p>
               <div class="division"></div>
-              <span class="finalp">Total</span>         
+              <span class="finalp">Total</span>
               <%= f.text_field :total_price, :value => "",:readonly => true %>
-              <span><%#= f.submit 'Request Service', class: "rent-button"%></span> 
+              <span><%#= f.submit 'Request Service', class: "rent-button"%></span>
             </div>
             <% end %>
         </div>
@@ -193,8 +196,11 @@
             data-amount=<%=((@fee).round(2)*100).to_i%>
             data-billingAddress="true">
           </script>
+
+          <%= hidden_field_tag 'item', @item.id %>
+          <%= hidden_field_tag 'price' %>
        <% end %>
       </center>
-      
+
     </div>
 </div>

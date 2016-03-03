@@ -28,17 +28,13 @@ ActiveRecord::Schema.define(version: 20160302203614) do
     t.integer  "deposit"
     t.string   "listing_type"
     t.string   "tags"
-    t.datetime "created_at",                            null: false
-    t.datetime "updated_at",                            null: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
     t.string   "postal_code"
-    t.string   "photo_file_name"
-    t.string   "photo_content_type"
-    t.integer  "photo_file_size"
-    t.datetime "photo_updated_at"
     t.string   "photo_url"
-    t.string   "status",             default: "Listed"
-    t.float    "latitude",           default: 43.6617
-    t.float    "longitude",          default: -79.395
+    t.string   "status",       default: "Listed"
+    t.float    "latitude",     default: 43.6617
+    t.float    "longitude",    default: -79.395
   end
 
   create_table "locations", force: :cascade do |t|
