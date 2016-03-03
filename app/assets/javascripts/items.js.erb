@@ -28,7 +28,7 @@ $('#new_review').on('ajax:complete', function(){
 
 function updateCountdown() {
   // 140 is the max message length
-  var remaining = 350 - jQuery('#item_description').val().length;
+  var remaining = 500 - jQuery('#item_description').val().length;
   $('.countdown').text(remaining + ' characters remaining.');
 }
 
