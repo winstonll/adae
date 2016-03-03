@@ -1,10 +1,6 @@
 class TransactionsController < ApplicationController
 	protect_from_forgery except: [:hook]
-	before_action :signed_in_user, only: [:index, :new, :edit, :update, :delete, :stripe, :stripe_success, :purchase_order]
-
-	def index
-
-	end
+	before_action :signed_in_user, only: [:new, :edit, :update, :delete, :stripe, :stripe_success, :purchase_order]
 
 	def new
 		@transaction = Transaction.new
