@@ -33,7 +33,14 @@ class TransactionsController < ApplicationController
 
 		order_transaction.save
 
-		redirect_to action: "stripe_success", id: order_transaction.id
+		if Conversation.between(current_user.id, seller.id).present?
+      @conversation = Conversation.between(current_user.id,
+      seller.id).first
+    else
+      @conversation = Conversation.create!(sender_id: current_user.id, recipient_id: seller.id)
+    end
+
+    redirect_to conversation_messages_path(@conversation)
 	end
 
 	def transaction_accepted
