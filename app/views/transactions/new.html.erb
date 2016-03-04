@@ -133,13 +133,13 @@
         <div class="item-detail-price" syle="height: 280px;">
           <div class="item-title"><%=@item.title %>, <%= @item.description %></div>
           <div class="division"></div>
-          <p class="how-long">How long would you like this service to last?</p>
+          <p class="how-long" style="font-size: 12px;">How long would you like this service to last?</p>
           <%= form_for Transaction.new, html: {multipart: true}  do |f| %>
             <input id="qty" name="quantity" min="1" max="30" type="number" onChange="updateQty()"></input>
             <span><%= f.select :length,[["Hour"]], :onChange=>"updateLength();"%></span>
 
             <div class="division"></div>
-            <div class="item-detail-calc">
+            <div class="item-detail-calc" style="margin-bottom: 15px;">
               <input class="amount" readonly="readonly" value="$<%= @prices.first.amount %> x"></input>
               <input id="times" readonly="readonly" value=""></input>
               <input id="length" readonly="readonly" value=""></input>
@@ -150,7 +150,7 @@
                   <input class="deposit" readonly="readonly" value="$<%= @item.deposit %>"></input>
                 <% end %>
                 <p class ="credit-fee">Credit Card Processing Fee:$<%= number_with_precision(@fee, :precision => 2)%></p>
-              <div class="division"></div>
+              <div class="division" style="width: 85%;"></div>
               <span class="finalp">Total</span>
               <%= f.text_field :total_price, :value => "",:readonly => true %>
               <span><%#= f.submit 'Request Service', class: "rent-button"%></span>
