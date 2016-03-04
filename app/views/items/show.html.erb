@@ -8,16 +8,16 @@ $(document).ready(function() {
 
 <% if user_signed_in? %>
     toastr.options ={
-      'timeOut': "3000",
+      'timeOut': "11000",
       'extendedTimeOut': "2000",
       "positionClass": 'toast-bottom-right'
     };
 
-    var rent_text = "Why Adae? <br> \
-    - We ask for a credit card (securely via Stripe) before making a request; \
-    in return, no need to bring cash as NAME gets paid electronically <br> \
-    - Only when your request is accepted, your card will be charged <br>\
-    - We are always happy to help resolve disputes and issue refunds, whenever necessary.";
+    var rent_text = " <br><span style='font-weight: 600; font-size: 20px;'>Why Adae?</span> <br><br> \
+    <div style='line-height: normal;'> &#x2756; We ask for a credit card (securely via Stripe) before making a request; \
+    in return, no need to bring cash as NAME gets paid electronically. <br><br> \
+    &#x2756; Only when your request is accepted, will your card will be charged. <br><br>\
+    &#x2756; We are always happy to help resolve disputes and issue refunds, whenever necessary.</div> <br>";
 
     toastr.info(rent_text);
 <% end %>
