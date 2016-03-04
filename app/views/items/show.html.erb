@@ -3,7 +3,52 @@
 $(document).ready(function() {
 
   $(".photos").css("width", $(".photo-container").width() / "<%= @pictures.count + 0.017 %>");
+
 });
+
+<%# if user_signed_in? %>
+  <% if @item.listing_type == 'rent' %>
+    toastr.options ={
+      'timeOut': "3000",
+      'extendedTimeOut': "2000",
+      "positionClass": 'toast-bottom-right'
+    };
+
+    var rent_text = "Why Adae? <br> \
+    - This item is available for rent! If you want it, submit a request. <br> \
+    - We ask for a credit card (securely via Stripe) before making a request; in return, <br> \
+    NAME must meet with you if accepted & the item must be in good condition. <br> \
+    - Once accepted, you will be charged & can chat with NAME. <br> \
+    - Use the QR scanner in Adae Companion App when meeting. No need to bring cash as NAME gets paid upon scanning. <br> \
+    - Don't worry about the trust fee! It's charged only if you lose or fail to return the item. <br> \
+    - We are always happy to help resolve disputes and issue refunds, whenever necessary."
+
+    toastr.info(rent_text);
+  <% elsif @item.listing_type == 'lease' %>
+    toastr.options ={
+      'timeOut': "3000",
+      'extendedTimeOut': "2000",
+      "positionClass": 'toast-bottom-right'
+    };
+    toastr.info("<%= flash[:notice] %>");
+  <% elsif @item.listing_type == 'timeoffer' %>
+    toastr.options ={
+      'timeOut': "3000",
+      'extendedTimeOut': "2000",
+      "positionClass": 'toast-bottom-right'
+    };
+    toastr.info("<%= flash[:notice] %>");
+  <% elsif @item.listing_type == 'sell' %>
+    toastr.options ={
+      'timeOut': "3000",
+      'extendedTimeOut': "2000",
+      "positionClass": 'toast-bottom-right'
+    };
+    toastr.info("<%= flash[:notice] %>");
+  <% end %>
+<%# end %>
+
+
 </script>
 
 <div class="item-info" id="itemInfo">
