@@ -16,9 +16,8 @@ $(document).on('ready page:load', function() {
 
   <div class="user-profile">
     <p id="user-name"><%=User.where("id != ?", current_user).pluck(:name).first %></p>
+    <p><%= image_tag(current_user.avatar.url(:med), class:"avatar") %></p>
   </div>
-
-
 
   <div class="chat-area">
     <div class="chat-content">
@@ -62,8 +61,26 @@ $(document).on('ready page:load', function() {
         </div>
       <% end %>
       </div>
+      <% if @transaction %>
       <div class="request-box">
-        <!--<p id ="cancel"> Need to Cancel? <span style="text-decoration: underline; color: #FF2641"><a href="/contact">Click Here</span></p></a>-->
+        <p>You requested to <%= @item.listing_type %></p>
+        <p><%= @item.title %></p>
+        <p>Transaction Status: <%= @transaction.status %></p>
+        <p><%= @pictures.first %></p>
+        <p id ="cancel"> Need to Cancel? 
+          <span style="text-decoration: underline; color: #FF2641">
+            <a href="/cancel">Click Here</a>
+          </span>
+        </p>
+      <% else %>
+        <p><%= @transaction.user.name %></p>
+        <p><%= @item.title %></p>
+        <p><%= @pictures.first %></p>
+        <p><%= link_to 'accept', transactions_path(), method: 'get'%></p>
+        <p> <%= link_to 'decline', transactions_path(), method: 'get'%>
+        </p>
       </div>
+        <p></p>
+      <% end %>
   </div>
 </div>
