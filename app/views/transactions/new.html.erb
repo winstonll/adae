@@ -34,8 +34,8 @@
 
 <div class="payment-info">
 
-  <div style="display: table; margin:auto; ">
-    <h1 style="font-weight: 600; text-align: left; ">Payment</h1>
+  <div style="display: table; margin:auto; line-height: normal; color: #4a4a4a; margin-bottom: -20px;">
+    <h1 style="font-weight: 600; text-align: left; margin-bottom: 10px; margin-top: 1em;">Payment</h1>
     <span>The owner will not receive your money until the unique Transaciton </br> QR Code on his/her phone is scanned by you when you two meet.</span>
   </div>
   </br>
@@ -44,7 +44,6 @@
   <div style="display: inline-block; width: 48%; vertical-align: top;">
     <%= image_tag(@item.photo_url, size: "220x180") %>
     <% unless @item.listing_type == "sell" %>
-    <div style="width: 90%;">This ensures that the item is treated with care and is returned on time. <b>This amount will be charged only if you fail to return the item, damage it, or lose it.</b></div>
     <% end %>
   </div>
 
@@ -57,12 +56,12 @@
           <div class="item-title"><%=@item.title %>, <%= @item.description %></div>
           <div class="division"></div>
           <% unless params[:sell] == "true" %>
-            <p style="font-size: 30px; font-weight: 200">$<%= @prices.first.amount %></p>
+            <p style="font-size: 30px; font-weight: 500; color: #4a4a4a;">$<%= @prices.first.amount %></p>
           <% else %>
-            <p style="font-size: 30px; font-weight: 200">$<%= @item.deposit %></p>
+            <p style="font-size: 30px; font-weight: 500; color: #4a4a4a;">$<%= @item.deposit %></p>
           <% end %>
-          <p style="font-size: 14px;">Credit Card Processing Fee: $<%= number_with_precision(@fee, :precision => 2)%></p>
-          <div class="division"></div>
+          <p class ="credit-fee">Credit Card Processing Fee: $<%= number_with_precision(@fee, :precision => 2)%></p>
+          <div class="division" style=" width: 86%;"></div>
           <span class="finalp">Total</span>
           <% unless params[:sell] == "true" %>
             <input id="total" readonly="readonly" value="<%=@prices.first.amount + @fee %>"></input>
@@ -83,7 +82,7 @@
           <% end %>
         </div>
       <% elsif @item.listing_type == "lease" %>
-        <div class="item-detail-price" style="height: 360px;">
+        <div class="item-detail-price" style="height: 450px;">
           <div class="item-title"><%=@item.title %>, <%= @item.description %></div>
           <div class="division"></div>
           <p class="how-long">How long would you like to lease this?</p>
@@ -103,10 +102,11 @@
                   <input class="trust-fee"readonly="readonly" value="Trust Fee: $<%= @item.deposit %>"></input>
                     <!-- This ensures that the item is treated with care, and is returned on time.This amount will be charged only if you fail to return the item, damate it, or lose it -->
                   <input class="deposit" readonly="readonly" value="$<%= @item.deposit %>"></input>
+                  <div class="trust-fee-text"> This ensures that the item is treated with care and is returned on time. <b style="font-weight: 600;">This amount will be charged only if you fail to return the item, damage it, or lose it.</b></div>
                   <% end %>
-                  <p style="font-size: 14px;">Credit Card Processing Fee: $<%= number_with_precision(@fee, :precision => 2)%></p>
-                  <div class="division"></div>
-                  <div style="font-size: 12px; margin:15px;">
+                  <p class ="credit-fee">Credit Card Processing Fee: $<%= number_with_precision(@fee, :precision => 2)%></p>
+                  <div class="division" style=" width: 86%;"></div>
+                  <div style="font-size: 12px; margin:15px 10px 15px 21px; line-height: normal; color: #4a4a4a; width: 88%;">
                     Pay a rental fee to try the item, and if you like it you can buy the item for the Trust Fee price. Your rental fees will count towards the final sale price.
                   </div>
                   <span class="finalp">Total</span>
@@ -117,7 +117,7 @@
         </div>
 
       <% elsif @item.listing_type == "rent"%>
-        <div class="item-detail-price" style="height: 320px;">
+        <div class="item-detail-price" style="height: 350px;">
           <div class="item-title"><%=@item.title %>, <%= @item.description %></div>
           <div class="division"></div>
           <p class="how-long">How long would you like to rent this?</p>
@@ -137,9 +137,10 @@
                 <input class="trust-fee"readonly="readonly" value="Trust Fee: $<%= @item.deposit %>"></input>
                 <!-- This ensures that the item is treated with care, and is returned on time.This amount will be charged only if you fail to return the item, damate it, or lose it -->
                 <input class="deposit" readonly="readonly" value="$<%= @item.deposit %>"></input>
+                <div class="trust-fee-text"> This ensures that the item is treated with care and is returned on time. <b style="font-weight: 600;">This amount will be charged only if you fail to return the item, damage it, or lose it.</b></div>
               <% end %>
-              <p style="font-size: 14px;">Credit Card Processing Fee: $<%= number_with_precision(@fee, :precision => 2)%></p>
-              <div class="division"></div>
+              <p class ="credit-fee">Credit Card Processing Fee: $<%= number_with_precision(@fee, :precision => 2)%></p>
+              <div class="division" style=" width: 85%;"></div>
               <span class="finalp">Total</span>
               <%= f.text_field :total_price, :value => "",:readonly => true %>
               <span><%#= f.submit 'Request to Rent', class: "rent-button"%></span>
@@ -167,7 +168,7 @@
                     <!-- This ensures that the item is treated with care, and is returned on time.This amount will be charged only if you fail to return the item, damate it, or lose it -->
                   <input class="deposit" readonly="readonly" value="$<%= @item.deposit %>"></input>
                 <% end %>
-                <p style="font-size: 14px;">Credit Card Processing Fee: $<%= number_with_precision(@fee, :precision => 2)%></p>
+                <p class ="credit-fee">Credit Card Processing Fee:$<%= number_with_precision(@fee, :precision => 2)%></p>
               <div class="division"></div>
               <span class="finalp">Total</span>
               <%= f.text_field :total_price, :value => "",:readonly => true %>
