@@ -47,9 +47,6 @@
     <% end %>
   </div>
 
-    <%= hidden_field_tag 'id', @item.id%>
-    <%= hidden_field_tag 'listing_type', @item.listing_type %>
-
     <div class="price-details">
       <% if @item.listing_type == "sell" || params[:sell] == "true"%>
         <div class="item-detail-price" style="height: 250px;">
@@ -68,18 +65,6 @@
           <% else %>
             <input id="total" readonly="readonly" value="<%=@item.deposit + @fee %>"></input>
           <% end %>
-
-          <%= form_for Transaction.new, html: {multipart: true}  do |f| %>
-              <span><%= f.hidden_field :length, :value => "sold" %></span>
-              <span><%= f.hidden_field :item_id, :value =>@item.id %></span>
-              <span><%= f.hidden_field :seller_id, :value =>@item.user.id %></span>
-              <% unless params[:sell] == "true" %>
-                <span><%= f.hidden_field :total_price, :value => @item.price %></span>
-              <% else %>
-                <span><%= f.hidden_field :total_price, :value => @item.deposit %></span>
-              <% end %>
-              <span><%#= f.submit 'Request to Buy', class: "buy-button"%></span>
-          <% end %>
         </div>
       <% elsif @item.listing_type == "lease" %>
         <div class="item-detail-price" style="height: 450px;">
@@ -89,8 +74,7 @@
             <%= form_for Transaction.new, html: {multipart: true}  do |f| %>
               <input id="qty" name="quantity" min="1" max="30" type="number" onChange="updateQty()"></input>
               <span><%= f.select :length,[["Day"],["Week"],["Month"]], :onChange=>"updateLength();"%></span>
-              <span><%= f.hidden_field :item_id, :value =>@item.id %></span>
-              <span><%= f.hidden_field :seller_id, :value =>@item.user.id %></span>
+
               <div class="division"></div>
               <div class="item-detail-calc">
                   <input class="amount" readonly="readonly" value="$<%= @prices.first.amount %> x"></input>
@@ -115,7 +99,6 @@
               </div>
             <% end %>
         </div>
-
       <% elsif @item.listing_type == "rent"%>
         <div class="item-detail-price" style="height: 350px;">
           <div class="item-title"><%=@item.title %>, <%= @item.description %></div>
@@ -124,8 +107,7 @@
           <%= form_for Transaction.new, html: {multipart: true}  do |f| %>
             <input id="qty" name="quantity" min="1" max="30" type="number" onChange="updateQty()"></input>
             <span><%= f.select :length,[["Day"],["Week"],["Month"]], :onChange=>"updateLength();"%></span>
-            <span><%= f.hidden_field :item_id, :value =>@item.id %></span>
-            <span><%= f.hidden_field :seller_id, :value =>@item.user.id %></span>
+
             <div class="division"></div>
             <div class="item-detail-calc">
               <input class="amount" readonly="readonly" value="$<%= @prices.first.amount %> x"></input>
@@ -155,8 +137,7 @@
           <%= form_for Transaction.new, html: {multipart: true}  do |f| %>
             <input id="qty" name="quantity" min="1" max="30" type="number" onChange="updateQty()"></input>
             <span><%= f.select :length,[["Hour"]], :onChange=>"updateLength();"%></span>
-            <span><%= f.hidden_field :item_id, :value =>@item.id %></span>
-            <span><%= f.hidden_field :seller_id, :value =>@item.user.id %></span>
+
             <div class="division"></div>
             <div class="item-detail-calc">
               <input class="amount" readonly="readonly" value="$<%= @prices.first.amount %> x"></input>
@@ -207,7 +188,7 @@
         <% else %>
           <%= form_tag transactions_stripe_path do%>
             <%= hidden_field_tag 'item', @item.id %>
-            <%= hidden_field_tag 'price' %>
+            <%= hidden_field_tag 'price', @item.prices.first.amount %>
             <%= hidden_field_tag 'duration' %>
 
             <%= submit_tag 'Proceed to Check', class: "request-button"%>

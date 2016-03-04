@@ -13,34 +13,38 @@ class TransactionsController < ApplicationController
 	def stripe
 		Stripe.api_key = Rails.configuration.stripe[:secret_key]
 
-		if current_user.stripe_customer_id.nil?
-			@customer = Stripe::Customer.create(
-				:email => params[:stripeEmail],
-				:source => params[:stripeToken]
-			)
-
-			current_user.stripe_customer_id = @customer.id
-			current_user.save
-		else
-			@customer = Stripe::Customer.retrieve(current_user.stripe_customer_id)
-		end
-
 		item = Item.where(id: params[:item]).first
-		seller = User.where(id: item.user_id).first
 
-		order_transaction = Transaction.new(item_id: item.id, buyer_id: current_user.id,
-		seller_id: item.user_id, total_price: params[:price].to_f, length: params[:duration])
+		if item.listing_type != 'sell'
 
-		order_transaction.save
+			if current_user.stripe_customer_id.nil?
+				@customer = Stripe::Customer.create(
+					:email => params[:stripeEmail],
+					:source => params[:stripeToken]
+				)
+				current_user.stripe_customer_id = @customer.id
+				current_user.save
+			end
 
-		if Conversation.between(current_user.id, seller.id).present?
-      @conversation = Conversation.between(current_user.id,
-      seller.id).first
-    else
-      @conversation = Conversation.create!(sender_id: current_user.id, recipient_id: seller.id)
-    end
+			seller = User.where(id: item.user_id).first
 
-    redirect_to conversation_messages_path(@conversation)
+			order_transaction = Transaction.new(item_id: item.id, buyer_id: current_user.id,
+			seller_id: item.user_id, total_price: params[:price].to_f, length: params[:duration])
+
+			order_transaction.save
+
+			if Conversation.between(current_user.id, seller.id).present?
+	      @conversation = Conversation.between(current_user.id,
+	      seller.id).first
+	    else
+	      @conversation = Conversation.create!(sender_id: current_user.id, recipient_id: seller.id)
+	    end
+
+	    redirect_to conversation_messages_path(@conversation)
+		elsif item.listing_type == ''
+		else
+			redirect_to :back
+		end
 	end
 
 	def transaction_accepted
