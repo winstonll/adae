@@ -98,13 +98,46 @@ class ItemsController < ApplicationController
   end
 
   def update
+
     @item = Item.find(params[:id])
-    if @item.update_attributes(item_params)
-      redirect_to @item
-    else
-      render :edit
+
+    7.times do |count|
+      counter = "tag_box_#{count}".to_sym
+      unless (params[counter].to_s.empty?)
+        @tagboxes = @tagboxes.to_s + params[counter].to_s.capitalize << ', '
+      end
     end
 
+    # Strip the last comma from multiple choice questions
+    if @tagboxes
+      @tagboxes = @tagboxes[0...-1].chomp(",")
+
+      @item.tags = @tagboxes
+    end
+
+    geocode = Geocoder.search(item_params[:postal_code]).first
+
+    if !geocode.nil?
+      @item.latitude = geocode.latitude
+      @item.longitude = geocode.longitude
+    end
+
+    if @item.update_attributes(item_params) && @item.valid?
+=begin
+      if params[:images]
+        params[:images].each { |image|
+          @item.pictures.create(image: image)
+        }
+      end
+
+      @picture = Picture.where(item_id: @item.id).first
+      @item.photo_url = @picture.image.url(:small)
+      @item.save
+=end
+      redirect_to @item, notice: "Item Successfully Edited!"
+    else
+      redirect_to :back, flash: {error: true}
+    end
   end
 
   def destroy

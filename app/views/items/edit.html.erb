@@ -3,16 +3,6 @@
 <h1>Edit Listing</h1>
 
 <%= form_for @item, html: {multipart: true}  do |f| %>
-	<% if @item.errors.any? %>
-		<div id="error_explaination">
-			<h2><%= pluralize(@item.errors.count, "error") %> please correct the following before submitting</h2>
-			<ul>
-				<% @item.errors.full_messages.each do |msg| %>
-				<li><%= msg %> </li>
-				<% end %>
-			</ul>
-		</div>
-	<% end %>
 
 <div class="item-container">
 	<div class="form-content">
