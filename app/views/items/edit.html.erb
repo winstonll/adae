@@ -19,7 +19,7 @@
 	            <input type="text" name="tag_box_3" id="tag-box-3" class="tag-box">
 	            <input type="text" name="tag_box_4" id="tag-box-4" class="tag-box">
 	          </div>
-	        	<input type="button" value="Add More" id="add-tag-button"/>
+	        	<input type="button" value="Add More" id="add-tag-button-edit"/>
 	        <div id="tag-instruction">* Maximum of 6 tags, empty boxes will not be added.</div>
 		</div>
 
@@ -146,3 +146,39 @@
 <%end%>
 	</div>
 </div>
+
+<script>
+	<% counter = 1 %>
+	<% @tags.each do |tag| %>
+		<% if counter < 5 %>
+			$("#tag-box-<%= counter %>").val("<%= tag %>");
+		<% else %>
+			var newHtml = '<input type="text" name="tag_box_' + "<%= counter %>" +'" id="tag-box-' + "<%= counter %>" +'" class="tag-box" >';
+
+			$(".tag-input-box").append(newHtml);
+			$('#tag-box-<%= counter %>').val("<%= tag %>")
+		<% end %>
+
+		<% counter = counter + 1 %>
+	<% end %>
+
+	// Make sure the add answer button is showing
+	$("#add-tag-button").css("display", "inline-block");
+
+	var tagBoxCounter = <%= @tags.length %>;
+	var MAX_BOX_COUNT = 6;
+
+	$("#add-tag-button-edit").click(function() {
+	  // add another tag text box when clicked under existing text box.
+	  var newBoxNumber = tagBoxCounter + 1;
+
+	  if (newBoxNumber <= MAX_BOX_COUNT) {
+	    var newHtml = '<input type="text" name="tag_box_' + newBoxNumber +'" id="tag-box-' + newBoxNumber +'" class="tag-box" >';
+
+	    $(".tag-input-box").append(newHtml);
+	    tagBoxCounter++;
+	  } else {
+	    $("#add-tag-button").css("display", "none");
+	  }
+	});
+</script>
