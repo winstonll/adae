@@ -6,7 +6,7 @@ $(document).ready(function() {
 
 });
 
-<% if user_signed_in? %>
+<% if !user_signed_in? %>
     toastr.options ={
       'timeOut': "11000",
       'extendedTimeOut': "2000",
