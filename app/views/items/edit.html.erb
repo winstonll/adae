@@ -139,7 +139,7 @@
 		<% end %>
 
 
-		<%= f.submit 'Submit', :class => 'submit-listing' %>
+		<%= f.submit 'Submit', :class => 'submit-listing', :onclick => 'validate_user_form_and_submit()' %>
 		<div id="small-tip"> you can edit/update your listing at anytime after you submit.</div>
 
 
@@ -160,6 +160,16 @@
 		<% end %>
 
 		<% counter = counter + 1 %>
+	<% end %>
+
+	<% @prices.each do |price| %>
+		<% if price.timeframe == 'Day' %>
+			$('#item_prices_attributes_0_amount').val("<%= price.amount.to_digits %>");
+		<% elsif price.timeframe == 'Week' %>
+			$('#item_prices_attributes_1_amount').val("<%= price.amount.to_digits %>");
+		<% elsif price.timeframe == 'Month' %>
+			$('#item_prices_attributes_2_amount').val("<%= price.amount.to_digits %>");
+		<% end %>
 	<% end %>
 
 	// Make sure the add answer button is showing
