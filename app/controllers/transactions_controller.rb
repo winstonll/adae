@@ -15,7 +15,7 @@ class TransactionsController < ApplicationController
 
 		item = Item.where(id: params[:item]).first
 
-		if item.listing_type != 'sell'
+		if !item.nil?
 
 			if current_user.stripe_customer_id.nil?
 				@customer = Stripe::Customer.create(
@@ -29,19 +29,19 @@ class TransactionsController < ApplicationController
 			seller = User.where(id: item.user_id).first
 
 			order_transaction = Transaction.new(item_id: item.id, buyer_id: current_user.id,
-			seller_id: item.user_id, total_price: params[:price].to_f, length: params[:duration])
+			seller_id: item.user_id, total_price: params[:price].to_f, length: item.listing_type == 'sell' ? nil : params[:duration])
 
 			order_transaction.save
 
 			if Conversation.between(current_user.id, seller.id).present?
-	      @conversation = Conversation.between(current_user.id,
-	      seller.id).first
-	    else
-	      @conversation = Conversation.create!(sender_id: current_user.id, recipient_id: seller.id)
-	    end
+				@conversation = Conversation.between(current_user.id,
+				seller.id).first
+			else
+				@conversation = Conversation.create!(sender_id: current_user.id, recipient_id: seller.id)
+			end
 
-	    redirect_to conversation_messages_path(@conversation)
-		elsif item.listing_type == ''
+			redirect_to conversation_messages_path(@conversation)
+
 		else
 			redirect_to :back
 		end

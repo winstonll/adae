@@ -13,6 +13,7 @@
       $('#length').val(lngth - 's');
     }
   }
+
   function updateQty() {
     qtyLength();
     var qty = $('#qty').val();
@@ -26,9 +27,21 @@
 
     $('#transaction_total_price').val('$' + total);
   }
+
   function updateLength() {
     qtyLength();
   }
+
+  function validate_duration() {
+    <% if @item.listing_type != 'sell' %>
+      if (!$('#qty').val() ){
+        event.preventDefault();
+      }
+
+      return true;
+    <% end %>
+  }
+
 
 </script>
 
@@ -191,7 +204,7 @@
             <%= hidden_field_tag 'price', @item.prices.first.amount %>
             <%= hidden_field_tag 'duration' %>
 
-            <%= submit_tag 'Proceed to Check', class: "request-button"%>
+            <%= submit_tag 'Proceed to Check', class: "request-button", :onclick => "return validate_duration();"%>
           <% end %>
         <%end%>
       </center>
