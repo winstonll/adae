@@ -51,15 +51,14 @@
 			<div class="countdown"></div>
 		</div>
 
-		<div class="new-item-form">
-			<%#= f.file_field :photo %>
-      <%= file_field_tag "images[]", type: :file, multiple: true %>
+		<!--<div class="new-item-form">
+      <%#= file_field_tag "images[]", type: :file, multiple: true %>
 			<div class="upload-photo">
-				<%= image_tag "phone.png", id:"photo-image" %>
+				<%#= image_tag "phone.png", id:"photo-image" %>
 				<p id="pic-title">  + Add Photo </p>
 				<p id="descriptor"> You can upload more than one file at a time </p>
 			</div>
-		</div>
+		</div>-->
 
 		<% if @item.listing_type == 'timeoffer' %>
 			<%= f.fields_for :prices, @price do |p| %>
