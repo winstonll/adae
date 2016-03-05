@@ -95,8 +95,12 @@ class ItemsController < ApplicationController
 
   def edit
     @item = Item.find(params[:id])
-    @tags = @item.tags.split(',')
-    @prices = @item.prices
+    if user_signed_in? && current_user.id == @item.user_id
+      @tags = @item.tags.split(',')
+      @prices = @item.prices
+    else
+      redirect_to items_path
+    end
   end
 
   def update
