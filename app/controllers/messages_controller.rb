@@ -5,6 +5,10 @@ class MessagesController < ApplicationController
 
   def index
     @messages = @conversation.messages
+    @transaction = Transaction.where(buyer_id: current_user.id)
+    @item = Item.where(user_id: @transaction.buyer_id)
+    @pictures = Picture.where(item_id: @item.id)
+
 
     if @messages.length > 10
       @over_ten = true

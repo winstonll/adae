@@ -28,7 +28,7 @@ $('#new_review').on('ajax:complete', function(){
 
 function updateCountdown() {
   // 140 is the max message length
-  var remaining = 350 - jQuery('#item_description').val().length;
+  var remaining = 500 - jQuery('#item_description').val().length;
   $('.countdown').text(remaining + ' characters remaining.');
 }
 
@@ -38,8 +38,16 @@ function validate_user_form_and_submit(){
   var tags = $('#tag-box-1')[0].value;
   var title = $('#item_title')[0].value;
   var summary = $('#item_description')[0].value;
-  console.log(postal_code == true)
-  if ( postal_code && tags && title && summary) {
+  var day_hour = $('#item_prices_attributes_0_amount').length > 0
+  var week =  $('#item_prices_attributes_1_amount').length > 0
+  var month =  $('#item_prices_attributes_2_amount').length > 0
+  var price = false;
+
+  price = day_hour ? ( price || ( parseFloat($('#item_prices_attributes_0_amount').val()) > 0 && $('#item_prices_attributes_0_amount').val() ) ) : price;
+  price = week ? ( price || ( parseFloat($('#item_prices_attributes_1_amount').val()) > 0 && $('#item_prices_attributes_1_amount').val() ) ) : price;
+  price = month ? ( price || ( parseFloat($('#item_prices_attributes_2_amount').val()) > 0 && $('#item_prices_attributes_2_amount').val() ) ) : price;
+
+  if ( postal_code && tags && title && summary && price) {
     return true;
   } else {
     var error_message = "";
@@ -76,6 +84,14 @@ function validate_user_form_and_submit(){
       }
     }
 
+    if (!price){
+      if (error_message){
+        error_message += ", Price is empty"
+      } else {
+        error_message += "Price is empty"
+      }
+    }
+
     toastr.options.timeOut = 6000;
     toastr.options.extendedTimeOut = 2000;
     toastr.error(error_message);
@@ -86,7 +102,6 @@ function validate_user_form_and_submit(){
 
 $(function(){ // this will be called when the DOM is ready
   $('#item_description').keyup(function(){
-    console.log("bbl");
     $('.countdown').text( '1 characters remaining.');
     updateCountdown();
   });

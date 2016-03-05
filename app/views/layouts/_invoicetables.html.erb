@@ -1,30 +1,28 @@
 <table class="table table-bordered">
 
-	<% @purchase_items.each_with_index do |item, index|%>
-		<tr>
-			<td><%= item.Item.user_id.name%></td>
-			<td><%= item[:name]%></td>
-			<td>$<%= number_with_precision(item[:price].to_f, precision:2)%></td>
-			<br>
-		</tr>
-	<% end %>
+	<tr>
+		<td><%= @item.title %></td>
+		<td>$<%= @price %></td>
+		<br>
+	</tr>
+
 	<tr>
 		<td colspan="3">Adae Fee:</td>
-		<td>$<%= number_with_precision(@adae_fee.fee_amount, precision: 2)%></td>
+		<td>$<%= number_with_precision(@adae_fee, precision: 2)%></td>
 	</tr>
 	<tr>
 		<td colspan="3">Total Cost:</td>
-		<td>$<%= number_with_precision(@order.total_amount/100, precision:2)%></td>
+		<td>$<%= number_with_precision(@total_amount, precision:2)%></td>
 	</tr>
 </table>
 
 <div>
 	<i><u>Contact Details</u></i>
-	<span><b>Full name:</b> <%= @notification_params_name %></span> 
+	<span><b>Full name:</b> <%= @notification_params_name %></span>
 </div>
 
 <div>
 	<i><u>Payment Details</u></i>
-	<span><b>Payment status:</b> Complete</span> 
-	<span><b>Payment date:</b> <%= @order.purchased_at%></span> 
+	<span><b>Payment status:</b> Complete</span>
+	<span><b>Payment date:</b> <%= @order.created_at%></span>
 </div>

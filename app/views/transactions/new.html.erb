@@ -13,6 +13,7 @@
       $('#length').val(lngth - 's');
     }
   }
+
   function updateQty() {
     qtyLength();
     var qty = $('#qty').val();
@@ -20,18 +21,34 @@
     var fee = ((total * 0.029) + 0.30);
     $('#subtotal').val('$' + total);
     total = (total + fee).toFixed(2);
+
+    $('#price')[0].value = total;
+    $('#duration')[0].value = $('#qty').val() + "-" + $('#length').val();
+
     $('#transaction_total_price').val('$' + total);
   }
+
   function updateLength() {
     qtyLength();
   }
 
+  function validate_duration() {
+    <% if @item.listing_type != 'sell' %>
+      if (!$('#qty').val() ){
+        event.preventDefault();
+      }
+
+      return true;
+    <% end %>
+  }
+
+
 </script>
 
 <div class="payment-info">
-  
-  <div style="display: table; margin:auto; ">
-    <h1 style="font-weight: 600; text-align: left; ">Payment</h1>
+
+  <div style="display: table; margin:auto; line-height: normal; color: #4a4a4a; margin-bottom: -20px;">
+    <h1 style="font-weight: 600; text-align: left; margin-bottom: 10px; margin-top: 1em;">Payment</h1>
     <span>The owner will not receive your money until the unique Transaciton </br> QR Code on his/her phone is scanned by you when you two meet.</span>
   </div>
   </br>
@@ -40,12 +57,8 @@
   <div style="display: inline-block; width: 48%; vertical-align: top;">
     <%= image_tag(@item.photo_url, size: "220x180") %>
     <% unless @item.listing_type == "sell" %>
-    <div style="width: 90%;">This ensures that the item is treated with care and is returned on time. <b>This amount will be charged only if you fail to return the item, damage it, or lose it.</b></div>
     <% end %>
-  </div> 
-
-    <%= hidden_field_tag 'id', @item.id%>
-    <%= hidden_field_tag 'listing_type', @item.listing_type %>
+  </div>
 
     <div class="price-details">
       <% if @item.listing_type == "sell" || params[:sell] == "true"%>
@@ -53,92 +66,79 @@
           <div class="item-title"><%=@item.title %>, <%= @item.description %></div>
           <div class="division"></div>
           <% unless params[:sell] == "true" %>
-            <p style="font-size: 30px; font-weight: 200">$<%= @prices.first.amount %></p>
+            <p style="font-size: 30px; font-weight: 500; color: #4a4a4a;">$<%= @prices.first.amount %></p>
           <% else %>
-            <p style="font-size: 30px; font-weight: 200">$<%= @item.deposit %></p>
+            <p style="font-size: 30px; font-weight: 500; color: #4a4a4a;">$<%= @item.deposit %></p>
           <% end %>
-          <p style="font-size: 14px;">Credit Card Processing Fee: $<%= number_with_precision(@fee, :precision => 2)%></p>
-          <div class="division"></div>
+          <p class ="credit-fee">Credit Card Processing Fee: $<%= number_with_precision(@fee, :precision => 2)%></p>
+          <div class="division" style=" width: 86%;"></div>
           <span class="finalp">Total</span>
           <% unless params[:sell] == "true" %>
-            <input id="total" readonly="readonly" value="<%=@prices.first.amount + @fee %>"></input> 
+            <input id="total" readonly="readonly" value="<%=@prices.first.amount + @fee %>"></input>
           <% else %>
-            <input id="total" readonly="readonly" value="<%=@item.deposit + @fee %>"></input> 
-          <% end %>
-
-          <%= form_for Transaction.new, html: {multipart: true}  do |f| %>
-              <span><%= f.hidden_field :length, :value => "sold" %></span>
-              <span><%= f.hidden_field :item_id, :value =>@item.id %></span>
-              <span><%= f.hidden_field :seller_id, :value =>@item.user.id %></span>
-              <% unless params[:sell] == "true" %>
-                <span><%= f.hidden_field :total_price, :value => @item.price %></span>
-              <% else %>
-                <span><%= f.hidden_field :total_price, :value => @item.deposit %></span>
-              <% end %>
-              <span><%#= f.submit 'Request to Buy', class: "buy-button"%></span> 
+            <input id="total" readonly="readonly" value="<%=@item.deposit + @fee %>"></input>
           <% end %>
         </div>
       <% elsif @item.listing_type == "lease" %>
-        <div class="item-detail-price" style="height: 360px;">
+        <div class="item-detail-price" style="height: 450px;">
           <div class="item-title"><%=@item.title %>, <%= @item.description %></div>
           <div class="division"></div>
           <p class="how-long">How long would you like to lease this?</p>
             <%= form_for Transaction.new, html: {multipart: true}  do |f| %>
               <input id="qty" name="quantity" min="1" max="30" type="number" onChange="updateQty()"></input>
               <span><%= f.select :length,[["Day"],["Week"],["Month"]], :onChange=>"updateLength();"%></span>
-              <span><%= f.hidden_field :item_id, :value =>@item.id %></span>
-              <span><%= f.hidden_field :seller_id, :value =>@item.user.id %></span>
+
               <div class="division"></div>
               <div class="item-detail-calc">
                   <input class="amount" readonly="readonly" value="$<%= @prices.first.amount %> x"></input>
                   <input id="times" readonly="readonly" value=""></input>
                   <input id="length" readonly="readonly" value=""></input>
                   <input id="subtotal" readonly="readonly" value=""></input>
-                  
+
                   <% unless @item.deposit == 0 %>
                   <input class="trust-fee"readonly="readonly" value="Trust Fee: $<%= @item.deposit %>"></input>
                     <!-- This ensures that the item is treated with care, and is returned on time.This amount will be charged only if you fail to return the item, damate it, or lose it -->
                   <input class="deposit" readonly="readonly" value="$<%= @item.deposit %>"></input>
+                  <div class="trust-fee-text"> This ensures that the item is treated with care and is returned on time. <b style="font-weight: 600;">This amount will be charged only if you fail to return the item, damage it, or lose it.</b></div>
                   <% end %>
-                  <p style="font-size: 14px;">Credit Card Processing Fee: $<%= number_with_precision(@fee, :precision => 2)%></p>
-                  <div class="division"></div>
-                  <div style="font-size: 12px; margin:15px;">
+                  <p class ="credit-fee">Credit Card Processing Fee: $<%= number_with_precision(@fee, :precision => 2)%></p>
+                  <div class="division" style=" width: 86%;"></div>
+                  <div style="font-size: 12px; margin:15px 10px 15px 21px; line-height: normal; color: #4a4a4a; width: 88%;">
                     Pay a rental fee to try the item, and if you like it you can buy the item for the Trust Fee price. Your rental fees will count towards the final sale price.
                   </div>
-                  <span class="finalp">Total</span>         
+                  <span class="finalp">Total</span>
                   <%= f.text_field :total_price, :value => "",:readonly => true %>
-                  <span><%#= f.submit 'Request to Lease', class: "rent-button"%></span> 
+                  <span><%#= f.submit 'Request to Lease', class: "rent-button"%></span>
               </div>
             <% end %>
         </div>
-
       <% elsif @item.listing_type == "rent"%>
-        <div class="item-detail-price" style="height: 320px;">
-          div class="item-title"><%=@item.title %>, <%= @item.description %></div>
+        <div class="item-detail-price" style="height: 350px;">
+          <div class="item-title"><%=@item.title %>, <%= @item.description %></div>
           <div class="division"></div>
           <p class="how-long">How long would you like to rent this?</p>
           <%= form_for Transaction.new, html: {multipart: true}  do |f| %>
             <input id="qty" name="quantity" min="1" max="30" type="number" onChange="updateQty()"></input>
             <span><%= f.select :length,[["Day"],["Week"],["Month"]], :onChange=>"updateLength();"%></span>
-            <span><%= f.hidden_field :item_id, :value =>@item.id %></span>
-            <span><%= f.hidden_field :seller_id, :value =>@item.user.id %></span>
+
             <div class="division"></div>
             <div class="item-detail-calc">
               <input class="amount" readonly="readonly" value="$<%= @prices.first.amount %> x"></input>
               <input id="times" readonly="readonly" value=""></input>
               <input id="length" readonly="readonly" value=""></input>
               <input id="subtotal" readonly="readonly" value=""></input>
-                  
+
               <% unless @item.deposit == 0 %>
                 <input class="trust-fee"readonly="readonly" value="Trust Fee: $<%= @item.deposit %>"></input>
                 <!-- This ensures that the item is treated with care, and is returned on time.This amount will be charged only if you fail to return the item, damate it, or lose it -->
                 <input class="deposit" readonly="readonly" value="$<%= @item.deposit %>"></input>
+                <div class="trust-fee-text"> This ensures that the item is treated with care and is returned on time. <b style="font-weight: 600;">This amount will be charged only if you fail to return the item, damage it, or lose it.</b></div>
               <% end %>
-              <p style="font-size: 14px;">Credit Card Processing Fee: $<%= number_with_precision(@fee, :precision => 2)%></p>
-              <div class="division"></div>
-              <span class="finalp">Total</span>         
+              <p class ="credit-fee">Credit Card Processing Fee: $<%= number_with_precision(@fee, :precision => 2)%></p>
+              <div class="division" style=" width: 85%;"></div>
+              <span class="finalp">Total</span>
               <%= f.text_field :total_price, :value => "",:readonly => true %>
-              <span><%#= f.submit 'Request to Rent', class: "rent-button"%></span> 
+              <span><%#= f.submit 'Request to Rent', class: "rent-button"%></span>
             </div>
           <% end %>
         </div>
@@ -146,14 +146,13 @@
         <div class="item-detail-price" syle="height: 280px;">
           <div class="item-title"><%=@item.title %>, <%= @item.description %></div>
           <div class="division"></div>
-          <p class="how-long">How long would you like this service to last?</p>
+          <p class="how-long" style="font-size: 12px;">How long would you like this service to last?</p>
           <%= form_for Transaction.new, html: {multipart: true}  do |f| %>
             <input id="qty" name="quantity" min="1" max="30" type="number" onChange="updateQty()"></input>
             <span><%= f.select :length,[["Hour"]], :onChange=>"updateLength();"%></span>
-            <span><%= f.hidden_field :item_id, :value =>@item.id %></span>
-            <span><%= f.hidden_field :seller_id, :value =>@item.user.id %></span>
+
             <div class="division"></div>
-            <div class="item-detail-calc">
+            <div class="item-detail-calc" style="margin-bottom: 15px;">
               <input class="amount" readonly="readonly" value="$<%= @prices.first.amount %> x"></input>
               <input id="times" readonly="readonly" value=""></input>
               <input id="length" readonly="readonly" value=""></input>
@@ -163,38 +162,51 @@
                     <!-- This ensures that the item is treated with care, and is returned on time.This amount will be charged only if you fail to return the item, damate it, or lose it -->
                   <input class="deposit" readonly="readonly" value="$<%= @item.deposit %>"></input>
                 <% end %>
-                <p style="font-size: 14px;">Credit Card Processing Fee: $<%= number_with_precision(@fee, :precision => 2)%></p>
-              <div class="division"></div>
-              <span class="finalp">Total</span>         
+                <p class ="credit-fee">Credit Card Processing Fee:$<%= number_with_precision(@fee, :precision => 2)%></p>
+              <div class="division" style="width: 85%;"></div>
+              <span class="finalp">Total</span>
               <%= f.text_field :total_price, :value => "",:readonly => true %>
-              <span><%#= f.submit 'Request Service', class: "rent-button"%></span> 
+              <span><%#= f.submit 'Request Service', class: "rent-button"%></span>
             </div>
             <% end %>
         </div>
       <% end %>
-      <div class="reply-field">
-        <%= form_for Conversation.new do |c| %>
-          <%= c.hidden_field :sender_id, :value =>current_user.id %>
-          <%= c.hidden_field :recipient_id, :value =>@item.user.id %>
-          <%= c.fields_for :messages do |m| %>
+      <!--<div class="reply-field">
+        <%#= form_for Conversation.new do |c| %>
+          <%#= c.hidden_field :sender_id, :value =>current_user.id %>
+          <%#= c.hidden_field :recipient_id, :value =>@item.user.id %>
+          <%#= c.fields_for :messages do |m| %>
 
-            <%= m.text_area :body, :placeholder => "Add a greeting for the owner, mention the time and day you would like to get started", class: "form-control" %>
-            <%= m.text_field :user_id, value: current_user.id, type: "hidden"%>
-            <%= m.submit "Send", class: "reply_btn" %>
-          <% end %>
-        <% end %>
-      </div>
+            <%#= m.text_area :body, :placeholder => "Add a greeting for the owner, mention the time and day you would like to get started", class: "form-control" %>
+            <%#= m.text_field :user_id, value: current_user.id, type: "hidden"%>
+            <%#= m.submit "Send", class: "reply_btn" %>
+          <%# end %>
+        <%# end %>
+      </div>-->
       <center style="position: relative; left: 50%; margin-bottom: 3em;">
-        <%= form_tag transactions_stripe_path do%>
-          <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-            data-key=<%= Rails.application.secrets.publishable_key %>
-            data-email=<%= current_user.email %>
-            data-description="Pay <%= @item.user.name %>"
-            data-amount=<%#=((@subtotal+@fee).round(2)*100).to_i%>
-            data-billingAddress="true">
-          </script>
-       <% end %>
+        <% if current_user.stripe_customer_id.nil? %>
+          <%= form_tag transactions_stripe_path do%>
+            <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+              data-key=<%= Rails.application.secrets.publishable_key %>
+              data-email=<%= current_user.email %>
+              data-description="Pay <%= @item.user.name %>"
+              data-amount=<%=((@fee).round(2)*100).to_i%>
+              data-billingAddress="true">
+            </script>
+
+            <%= hidden_field_tag 'item', @item.id %>
+            <%= hidden_field_tag 'price' %>
+            <%= hidden_field_tag 'duration' %>
+         <% end %>
+        <% else %>
+          <%= form_tag transactions_stripe_path do%>
+            <%= hidden_field_tag 'item', @item.id %>
+            <%= hidden_field_tag 'price', @item.prices.first.amount %>
+            <%= hidden_field_tag 'duration' %>
+
+            <%= submit_tag 'Proceed to Check', class: "request-button", :onclick => "return validate_duration();"%>
+          <% end %>
+        <%end%>
       </center>
-      
     </div>
 </div>

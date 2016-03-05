@@ -3,7 +3,7 @@
 
 <body>
 	<div id="items">
-		<div id="item-feed-container" style="width: auto !important;">
+		<div id="item-feed-container" style="width: 900px !important; margin: 0 auto;">
 			<div id="item-collection">
 		<% @query.each do |item| %>
 			<%= render partial: "/items/items", :locals => {:item => item}  %>

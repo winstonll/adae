@@ -3,7 +3,26 @@
 $(document).ready(function() {
 
   $(".photos").css("width", $(".photo-container").width() / "<%= @pictures.count + 0.017 %>");
+
 });
+
+<% if !user_signed_in? %>
+    toastr.options ={
+      'timeOut': "11000",
+      'extendedTimeOut': "2000",
+      "positionClass": 'toast-bottom-right'
+    };
+
+    var rent_text = " <br><span style='font-weight: 600; font-size: 20px;'>Why Adae?</span> <br><br> \
+    <div style='line-height: normal;'> &#x2756; We ask for a credit card (securely via Stripe) before making a request; \
+    in return, no need to bring cash as NAME gets paid electronically. <br><br> \
+    &#x2756; Only when your request is accepted, will your card will be charged. <br><br>\
+    &#x2756; We are always happy to help resolve disputes and issue refunds, whenever necessary.</div> <br>";
+
+    toastr.info(rent_text);
+<% end %>
+
+
 </script>
 
 <div class="item-info" id="itemInfo">
@@ -52,7 +71,7 @@ $(document).ready(function() {
             <% unless @item.deposit == 0 %>
               <input class="trust-fee"readonly="readonly" value="Trust Fee: $<%= @item.deposit %>"></input>
              <!-- <input class="deposit" readonly="readonly" value="$<%#= @item.deposit %>"></input> -->
-              <p class="trust-fee-text">This ensures that the item is treated with care, and is returned on time. This amount will be charged only if you fail to return the item, damage it, or lose it. </p>
+              <p class="trust-fee-text">This ensures that the item is treated with care, and is returned on time. <b style="font-weight: 500">This amount will be charged only if you fail to return the item, damage it, or lose it.</b> </p>
             <% end %>
             <div class="division-2"></div>
             <!-- <span class="finalp">Total</span>
@@ -95,7 +114,7 @@ $(document).ready(function() {
             <% unless @item.deposit == 0 %>
               <input class="trust-fee"readonly="readonly" value="Trust Fee: $<%= @item.deposit %>"></input>
               <!-- <input class="deposit" readonly="readonly" value="$<%#= @item.deposit %>"></input> -->
-              <p class="trust-fee-text">This ensures that the item is treated with care, and is returned on time.This amount will be charged only if you fail to return the item, damage it, or lose it. </p>
+              <p class="trust-fee-text">This ensures that the item is treated with care, and is returned on time.<b style="font-weight: 500">This amount will be charged only if you fail to return the item, damage it, or lose it.</b> </p>
             <% end %>
             <div class="division-2"></div>
             <!-- <span class="finalp">Total</span>
@@ -104,8 +123,11 @@ $(document).ready(function() {
           </div>
         </div>
       <% else %>
-        <div class="item-detail-price" style="height:290px;">
-          <div class="price-title2">$<span><%= @prices.first.amount %></span> per <%= @prices.first.timeframe %></div>
+        <div class="item-detail-price" style="height:230px;">
+          <div class="price-title2">Service Available</div>
+            <div class="price-breakdown" style="margin-top: 60px; margin-bottom: 15px;">
+              <span style="font-weight: 700; font-size: 20px; color:#000;">$<%= @prices.first.amount %></span> per <%= @prices.first.timeframe %>
+            </div>
           <!-- <p class="how-long">How long would you like the service to last?</p> -->
           <!-- <input id="qty" name="quantity" min="1" max="30" type="number" onChange="updateQty()"></input>
           <select id="time-selection" onchange="updateLength()">
@@ -113,7 +135,6 @@ $(document).ready(function() {
             <option value="Week">Week
             <option value="Month">Month
           </select> -->
-          <div class="division"></div>
           <div class="item-detail-calc">
             <!-- <input class="amount" readonly="readonly" value="$<%#= @price.amount %> x"></input> -->
             <input id="times" readonly="readonly" value=""></input>
@@ -124,7 +145,6 @@ $(document).ready(function() {
                 <!-- This ensures that the item is treated with care, and is returned on time.This amount will be charged only if you fail to return the item, damate it, or lose it -->
 <!--               <input class="deposit" readonly="readonly" value="$<%= @item.deposit %>"></input>
  -->            <% end %>
-            <div class="division-2"></div>
             <!-- <span class="finalp">Total</span>
             <input id="total" readonly="readonly" value=""></input> -->
             <%= link_to 'Request Service', new_transaction_path(:item_id => @item.id), class: "rent-button"%>
