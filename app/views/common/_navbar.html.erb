@@ -4,20 +4,31 @@
 
 <script>
   <% if flash[:notice] %>
-    toastr.options.timeOut = 3000;
-    toastr.options.extendedTimeOut = 2000;
+    toastr.options ={
+      'timeOut': "3000",
+      'extendedTimeOut': "2000",
+      "positionClass": 'toast-top-left'
+    };
     toastr.success("<%= flash[:notice] %>");
   <% end %>
 
   <% if flash[:alert] %>
-    toastr.options.timeOut = 5000;
-    toastr.options.extendedTimeOut = 2000;
+    toastr.options ={
+      'timeOut': "5000",
+      'extendedTimeOut': "2000",
+      "positionClass": 'toast-top-left'
+    };
+
     toastr.warning("<%= flash[:alert] %>");
   <% end %>
 
   <% if flash[:warning] %>
-    toastr.options.timeOut = 5000;
-    toastr.options.extendedTimeOut = 2000;
+    toastr.options ={
+      'timeOut': "5000",
+      'extendedTimeOut': "2000",
+      "positionClass": 'toast-top-left'
+    };
+
     toastr.warning("<%= flash[:warning] %>");
   <% end %>
 </script>

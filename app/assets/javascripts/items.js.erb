@@ -92,8 +92,12 @@ function validate_user_form_and_submit(){
       }
     }
 
-    toastr.options.timeOut = 6000;
-    toastr.options.extendedTimeOut = 2000;
+    toastr.options ={
+      'timeOut': "6000",
+      'extendedTimeOut': "2000",
+      "positionClass": 'toast-top-left'
+    };
+
     toastr.error(error_message);
 
     event.preventDefault();
