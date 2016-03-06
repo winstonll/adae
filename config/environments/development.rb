@@ -40,7 +40,23 @@ Rails.application.configure do
   # config.action_view.raise_on_missing_translations = true
 
   # Devise mailer
-  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+  config.action_mailer.default_options = {from: 'no-reply@adae.co'}
+  config.action_mailer.default_url_options = { host: 'localhost:3000'}
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.smtp_settings = {
+    address: 'smtp.gmail.com',
+    port: 587, 
+    domain: 'localhost:3000',
+    user_name: '{ruavilaa@gmail.com}',
+    password: '{Toronto2009$}',
+    authentication: 'plain',
+    enable_starttls_auto: true
+  }
+
+
+
 
   # Paperclip
   Paperclip.options[:command_path] = "/usr/local/bin/"
