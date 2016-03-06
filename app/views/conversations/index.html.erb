@@ -13,7 +13,7 @@
 
     		<li class="listings">
           <div class="user-avatar-container"> <%= link_to image_tag(user.avatar(:med), class: "user-avatar"), user_path(user) %> </div>
-    			<label class="item-detail" id="item-title"> NAME Would Like To Try: </label>
+    			<label class="item-detail" id="item-title"> <%= user.name %> Would Like To Try: </label>
           <label class="item-detail" id="item_description"><%= item.description %></label>
     			<div class="item-accept-deny-buttons">
             <%= link_to 'Reply', conversations_path(sender_id: transaction.buyer_id,
