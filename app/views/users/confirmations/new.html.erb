@@ -1,16 +1,18 @@
-<h2>Resend confirmation instructions</h2>
+<%= stylesheet_link_tag "items" %>
+<div class="bootstrap" style="margin-top: 50px;">
+	<center><h2 style="color:#419bf9;">Resend confirmation instructions</h2></center>
+	<div class="col-md-4 col-md-push-4">
+		<%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f| %>
+		  <span><%= devise_error_messages! %></span>
 
-<%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f| %>
-  <%= devise_error_messages! %>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email) %> 
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Resend confirmation instructions" %>
-  </div>
-<% end %>
-
-<%= render "users/shared/links" %>
+		  <div> 
+		  	<%= f.email_field :email, autofocus: true,value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email), placeholder: "Email", :class => "form-control" %>
+		  </div>
+		  </br>
+		  <p class="actions shared_links">
+		    <%= f.submit "Resend confirmation instructions", class: "btn btn-large btn-primary" %>
+		  </p>
+		<% end %>
+        <span><%= render "users/shared/links" %></span>
+ 	</div>
+</div>
