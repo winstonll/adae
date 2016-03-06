@@ -5,8 +5,8 @@ class MessagesController < ApplicationController
 
   def index
     @messages = @conversation.messages
-    @transaction = Transaction.where(buyer_id: current_user.id)
-    @item = Item.where(user_id: @transaction.buyer_id)
+    @transaction = Transaction.where(buyer_id: current_user.id).first
+    @item = Item.where(user_id: @transaction.buyer_id).first
     @pictures = Picture.where(item_id: @item.id)
 
 
