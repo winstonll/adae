@@ -40,7 +40,7 @@
 	</div>
 
 	<div class="listing-container">
-		<div class= "listing-heading">My Listings </div>
+		<div id= "listing-heading">My Listings </div>
 		<% @items.each do |item| %>
 		<div class="listing-img">
 			<%=link_to image_tag(item.photo_url), item_path(item) %>
@@ -103,7 +103,7 @@
 	<% end %>
 </div>
 
-<div class= "user-reviews">
+<div id= "user-reviews">
 	<h4 class= "account-heading"> My Reviews </h4>
 	<% @user.reviews.each do |review| %>
 	<li class="user-review">
