@@ -66,8 +66,8 @@ $(document).on('ready page:load', function() {
         <p>You requested to <%= @item.listing_type %></p>
         <p><%= @item.title %></p>
         <p>Transaction Status: <%= @transaction.status %></p>
-        <p><%= @pictures.first %></p>
-        <p id ="cancel"> Need to Cancel? 
+        <p><%= image_tag @picture.image, class: "item-image" %></p>
+        <p id ="cancel"> Need to Cancel?
           <span style="text-decoration: underline; color: #FF2641">
             <a href="/cancel">Click Here</a>
           </span>
@@ -75,7 +75,7 @@ $(document).on('ready page:load', function() {
       <% else %>
         <p><%= @transaction.user.name %></p>
         <p><%= @item.title %></p>
-        <p><%= @pictures.first %></p>
+        <p><%= image_tag @picture.image %></p>
         <p><%= link_to 'accept', transactions_path(), method: 'get'%></p>
         <p> <%= link_to 'decline', transactions_path(), method: 'get'%>
         </p>

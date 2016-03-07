@@ -7,7 +7,7 @@ class MessagesController < ApplicationController
     @messages = @conversation.messages
     @transaction = Transaction.where(buyer_id: current_user.id).first
     @item = Item.where(user_id: @transaction.buyer_id).first
-    @pictures = Picture.where(item_id: @item.id)
+    @picture = Picture.where(item_id: @item.id).first
 
 
     if @messages.length > 10
