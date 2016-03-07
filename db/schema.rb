@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160303194647) do
+ActiveRecord::Schema.define(version: 20160307171139) do
 
   create_table "conversations", force: :cascade do |t|
     t.integer  "sender_id"
@@ -28,13 +28,17 @@ ActiveRecord::Schema.define(version: 20160303194647) do
     t.integer  "deposit"
     t.string   "listing_type"
     t.string   "tags"
-    t.datetime "created_at",                      null: false
-    t.datetime "updated_at",                      null: false
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
     t.string   "postal_code"
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+    t.datetime "photo_updated_at"
     t.string   "photo_url"
-    t.string   "status",       default: "Listed"
-    t.float    "latitude",     default: 43.6617
-    t.float    "longitude",    default: -79.395
+    t.string   "status",             default: "Listed"
+    t.float    "latitude",           default: 43.6617
+    t.float    "longitude",          default: -79.395
   end
 
   create_table "locations", force: :cascade do |t|
@@ -80,6 +84,21 @@ ActiveRecord::Schema.define(version: 20160303194647) do
     t.integer  "score"
     t.integer  "user_id"
     t.integer  "item_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "referrals", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "code"
+    t.decimal  "amount",     precision: 10, scale: 2, default: 0.0
+    t.datetime "created_at",                                        null: false
+    t.datetime "updated_at",                                        null: false
+  end
+
+  create_table "referreds", force: :cascade do |t|
+    t.integer  "provider"
+    t.integer  "redeemer"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

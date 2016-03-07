@@ -17,45 +17,66 @@
 
 	<div class="request-container">
 		<div class= "request-heading">Requests</div>
-		<div class="request-img">
-		</div>
-		<li class="requests">
-			<div class="item-title">  </div>
-			<div class="accept-decline-button">
-			<%= link_to 'View Request'%>
+		<% if @requests.present? %>
+			<div class="request-img">
 			</div>
-		</li>
+			<li class="requests">
+				<div class="item-title">  </div>
+				<div class="accept-decline-button">
+				<%= link_to 'View Request'%>
+				</div>
+			</li>
+		<% else %>
+			<div style="border: 1px solid #979797;list-style: none;background-color: #fff;
+			margin-top: 10px;margin-left: 132px;height: 100px;width: 350px;">
+				<p>You have no Requests</p>
+				<p><b> <%= link_to 'Create a request now!', items_path, style:"color: #419bf9"%></b></p>
+			</div>
+		<% end %>
 	</div>
 
 	<div class="transaction-container">
 		<div class= "transaction-heading">My Transactions </div>
-		<div class="transaction-img">
-		</div>
-		<li class="transactions">
-			<div class="item-title">  </div>
-			<div class="delete-button">
-			<%= link_to 'Cancel Transaction'%>
-		</div>
-		</li>
-	</div>
-
-
-	<div class="listing-container">
-		<div class= "listing-heading">My Listings </div>
-		<% @items.each do |item| %>
-		<div class="listing-img">
-			<%=link_to image_tag(item.photo_url), item_path(item) %>
-		</div>
-		<li class="listings">
-			<div class="item-title"> <%= link_to item.title, item_path(item)%> </div>
-			<div class="item-edit-delete-buttons">
-			<%= link_to 'Edit', edit_item_path(item),class: "edit-item" %>
-			<%= link_to 'Delete', item, method: :delete, class: "delete-item", data: {confirm: "Are you sure you want to delete this Item?"}  %>
-		</div>
-		</li>
+		<% if @transactions.present? %>
+			<div class="transaction-img">
+			</div>
+			<li class="transactions">
+				<div class="item-title">  </div>
+				<div class="delete-button">
+				<%= link_to 'Cancel Transaction'%>
+			</div>
+			</li>
+		<% else %>
+			<div style="border: 1px solid #979797;list-style: none;background-color: #fff;
+			margin-top: 10px;margin-left: 132px;height: 100px;width: 350px;">
+				<p>You have no Transactions</p>
+			</div>
 		<% end %>
 	</div>
 
+	<div class="listing-container">
+		<div class= "listing-heading">My Listings </div>
+		<% if @items.present? %>
+			<% @items.each do |item| %>
+			<div class="listing-img">
+				<%=link_to image_tag(item.photo_url), item_path(item) %>
+			</div>
+			<li class="listings">
+				<div class="item-title"> <%= link_to item.title, item_path(item)%> </div>
+				<div class="item-edit-delete-buttons">
+					<%= link_to 'Edit', edit_item_path(item),class: "edit-item" %>
+					<%= link_to 'Delete', item, method: :delete, class: "delete-item", data: {confirm: "Are you sure you want to delete this Item?"}  %>
+				</div>
+			</li>
+			<% end %>
+		<% else %>
+			<div style="border: 1px solid #979797;list-style: none;background-color: #fff;
+			margin-top: 10px;margin-left: 132px;height: 100px;width: 350px;">
+				<p>You have no Listings</p>
+				<p><b> <%= link_to 'Create a listing now!', new_item_path, style:"color: #419bf9"%></b></p>
+			</div>
+		<% end %>
+	</div>
 
 	<div class="account-balance-section">
 		<div id="account-balance">
@@ -65,17 +86,6 @@
 	</div>
 
 	<h4> Cash Out Options </h4>
-
-	<div class="payment-settings">
-		<% if signed_in? %>
-		<span class="personal_purchases"><%#= link_to "Personal Purchase History", trx_orders_list_personal_purchases_path %></span>
-		<p> Direct Deposit</p>
-		<p id="description"> Transfer money from your balance to your bank account.</p>
-		<%= link_to "Withdraw Money", users_stripe_settings_path, class: "cashout-btn"  %>
-		<span class="orders"><%#= link_to "Order Requests", items_orders_path %></span>
-		<span class="accepted_orders"><%#= link_to "Accepted Orders", items_accepted_orders_path %></span>
-		<% end %>
-	</div>
 
 	<div class="mail-cheque-section">
 			<p id="title">Mailed Cheque</p>
@@ -90,10 +100,18 @@
 	    </div>
 		</div>
 	</div>
-
+	<div class="payment-settings">
+		<% if signed_in? %>
+		<span class="personal_purchases"><%#= link_to "Personal Purchase History", trx_orders_list_personal_purchases_path %></span>
+		<p> Direct Deposit</p>
+		<p id="description"> Transfer money from your balance to your bank account.</p>
+		<%#= link_to "Withdraw Money", users_stripe_settings_path, class: "cashout-btn"  %>
+		<div class="cashout-btn"> Coming Soon</div>
+		<span class="orders"><%#= link_to "Order Requests", items_orders_path %></span>
+		<span class="accepted_orders"><%#= link_to "Accepted Orders", items_accepted_orders_path %></span>
+		<% end %>
+	</div>
 </div>
-
-
 
 <div class = "user-ratings">
 	<h4 class= "account-heading">My Ratings</h4>
@@ -108,7 +126,7 @@
 	<% end %>
 </div>
 
-<div class= "user-reviews">
+<div id= "user-reviews">
 	<h4 class= "account-heading"> My Reviews </h4>
 	<% @user.reviews.each do |review| %>
 	<li class="user-review">

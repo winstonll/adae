@@ -22,9 +22,10 @@ gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.0'
 
+gem 'recaptcha', :require => 'recaptcha/rails'
 gem 'will_paginate'
 gem 'will_paginate-bootstrap'
-
+gem 'active_attr'
 gem 'geocoder'
 gem 'gon'
 gem 'toastr-rails'

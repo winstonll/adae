@@ -61,26 +61,32 @@ $(document).on('ready page:load', function() {
         </div>
       <% end %>
       </div>
-      <% if @transaction %>
+
       <div class="request-box">
-        <p>You requested to <%= @item.listing_type %></p>
-        <p><%= @item.title %></p>
-        <p>Transaction Status: <%= @transaction.status %></p>
-        <p><%= @pictures.first %></p>
-        <p id ="cancel"> Need to Cancel? 
-          <span style="text-decoration: underline; color: #FF2641">
-            <a href="/cancel">Click Here</a>
-          </span>
-        </p>
-      <% else %>
-        <p><%= @transaction.user.name %></p>
-        <p><%= @item.title %></p>
-        <p><%= @pictures.first %></p>
-        <p><%= link_to 'accept', transactions_path(), method: 'get'%></p>
-        <p> <%= link_to 'decline', transactions_path(), method: 'get'%>
-        </p>
+        <p id="heading">You requested to <%= @item.listing_type %></p>
+        <p id="item-title"><%= @item.title %></p>
+        <p><%= image_tag @picture.image, class: "item-image" %></p>
+        <p id="status">Transaction Status: <%= @transaction.status %></p>
+
+        <% if @transaction.seller_id == current_user.id %>
+          <li class="listings">
+      			<div class="item-edit-delete-buttons">
+      				<%= link_to 'Accept', accept_path(item: @item.id, transaction: @transaction.id),class: "edit-item" %>
+      				<%= link_to 'Decline', @transaction, method: :delete, class: "delete-item", data: {confirm: "Are you sure you want to delete this Item?"}  %>
+      			</div>
+      		</li>
+        <% else %>
+          <p id ="cancel"> Need to Cancel?
+            <span style="text-decoration: underline; color: #FF2641">
+              <%= link_to 'Click Here', cancel_path(id: @transaction.id), class: "delete-item", data: {confirm: "Are you sure you want to delete this Item?"}  %>
+            </span>
+          </p>
+        <% end %>
       </div>
-        <p></p>
-      <% end %>
+
+      <div class="request-box">
+        <p><b>If you would like to buy the item during your rental period click below.</b></p>
+          <%#= link_to 'Request to Purchase', edit_transaction_path(item: @item.id, transaction: @transaction.id),class: "edit-item" %>
+      </div>
   </div>
 </div>

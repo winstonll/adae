@@ -1,6 +1,6 @@
 class CustomFailure < Devise::FailureApp
   def redirect_url
-    items_path, flash = { signin_modal: true }
+    items_path
   end
 
   def respond

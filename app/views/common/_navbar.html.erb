@@ -3,23 +3,10 @@
 <%= javascript_include_tag "navbar" %>
 
 <script>
-  <% if flash[:notice] %>
-    toastr.options.timeOut = 3000;
-    toastr.options.extendedTimeOut = 2000;
-    toastr.success("<%= flash[:notice] %>");
-  <% end %>
-
-  <% if flash[:alert] %>
-    toastr.options.timeOut = 5000;
-    toastr.options.extendedTimeOut = 2000;
-    toastr.warning("<%= flash[:alert] %>");
-  <% end %>
-
-  <% if flash[:warning] %>
-    toastr.options.timeOut = 5000;
-    toastr.options.extendedTimeOut = 2000;
-    toastr.warning("<%= flash[:warning] %>");
-  <% end %>
+  $('#items').click(function(){
+    $('.listingsdropdown').slideUp();
+    $('.dropdown').slideUp();
+  });
 </script>
 
 <div class="signup-modal"></div>
@@ -41,26 +28,24 @@
       <% if signed_in? %>
       <span class="listings" onclick="$('.listingsdropdown').slideToggle();"> <%= "Listings" %> </span>
       <div class="listingsdropdown">
-        <%= link_to 'Post a Listing', new_item_path, class: "newlisting" %>
         <%= link_to "All Listings", items_path, class: "allistings" %>
-        <%= link_to "My Listings", user_path(current_user), class: "profilepath" %>
-      <% else %>
-        <%= link_to 'Post a Listing', new_item_path, class: "share-item" %>
+        <%= link_to 'Post a Listing', new_item_path, class: "newlisting" %>
+        <%#= link_to "My Listings", user_path(current_user, :anchor => "listing-heading"), class: "profilepath" %>
       <% end %>
       </div>
     </div>
-    <div class="requestnav">
-      <% if signed_in? %>
-      <span class="shoutouts" onclick="$('.shoutoutsdropdown').slideToggle();"> <%= "Shout Outs" %> </span>
+    <!--<div class="requestnav">
+      <%# if signed_in? %>
+      <span class="shoutouts" onclick="$('.shoutoutsdropdown').slideToggle();"> <%#= "Shout Outs" %> </span>
       <div class="shoutoutsdropdown">
-        <%= link_to 'Post a Shout Out', new_request_path, class: "newshoutout" %>
-        <%= link_to "All Shout Outs", requests_path, class: "allshoutouts" %>
-        <%= link_to "My Shout Outs", user_path(current_user), class: "profilepath" %>
-      <% else %>
-        <%= link_to 'Post a Shout Out', new_request_path, class: "share-request" %>
-      <% end %>
+        <%#= link_to 'Post a Shout Out', new_request_path, class: "newshoutout" %>
+        <%#= link_to "All Shout Outs", requests_path, class: "allshoutouts" %>
+        <%#= link_to "My Shout Outs", user_path(current_user), class: "profilepath" %>
+      <%# else %>
+        <%#= link_to 'Post a Shout Out', new_request_path, class: "share-request" %>
+      <%# end %>
       </div>
-    </div>
+    </div>-->
 
     <div class="inbox">
       <% if signed_in? %>
@@ -88,9 +73,9 @@
       <% end %>
       <div class="dropdown">
         <% if signed_in? %>
-          <%= link_to "Edit Profile", edit_user_path(current_user), class: "profilepath" %>
           <%= link_to "Account", user_path(current_user), class: "profilepath" %>
-          <%= link_to "Reviews", user_path(current_user), class: "profilepath" %>
+          <%= link_to "Edit Profile", edit_user_path(current_user), class: "profilepath" %>
+          <%#= link_to "Reviews", user_path(current_user, :anchor => "user-reviews"), class: "profilepath" %>
           <%= link_to('Logout', destroy_user_session_path, :method => :delete, class: "logout") %>
         <% end %>
       </div>

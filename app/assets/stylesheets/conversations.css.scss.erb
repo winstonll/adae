@@ -11,7 +11,68 @@ body{
     margin: 0 auto;
     width: 650px;
     height: 70px;
-    padding: 10px;
     margin-bottom: 10px;
+  }
+  .inbox-img {
+    float: left;
+    margin-top: 10px;
+    width: 120px;
+    height: 120px;
+
+    img {
+      width: 120px;
+      height: 120px;
+      object-fit: cover;
+      object-position: center;
+    }
+  }
+
+  .listings{
+    list-style: none;
+
+    .user-avatar-container {
+      display: inline-block;
+      float: left;
+
+      .user-avatar{
+        height: 60px;
+        width: 60px;
+        border-radius: 50%;
+      }
+    }
+
+    .item-detail{
+      text-align: left !important;
+      line-height: normal;
+      color: #4a4a4a;
+      padding-left: 30%;
+      font-size: 15px;
+    }
+
+    #item-title {
+      margin-top: 20px;
+    }
+
+    #item_description {
+      margin-top: 10px;
+    }
+
+    .item-accept-deny-buttons{
+      float:right;
+      margin-right: 10px;
+      margin-top: 25px;
+
+      .reply-transaction{
+        border: 1px solid #419bf9;
+        border-radius: 5px;
+        color: #419bf9;
+        font-size: 14px;
+        padding: 3px 15px 3px;
+        &:hover{
+          background-color: #419bf9;
+          color: #fff;
+        }
+      }
+    }
   }
 }

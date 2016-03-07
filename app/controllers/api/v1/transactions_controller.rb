@@ -51,7 +51,7 @@ module Api::V1
     end
 
     def transaction_detail
-      @transaction = Transaction.where("(transactions.seller_id = #{params[:id]} OR transactions.buyer_id = #{params[:id]}) AND (transactions.status != 'Pending' AND transactions.status != 'Denied')")
+      @transaction = Transaction.where("(transactions.seller_id = #{params[:id]} OR transactions.buyer_id = #{params[:id]}) AND (transactions.status != 'Pending' AND transactions.status != 'Denied' AND transactions.status != 'Cancelled')")
 
       if !@transaction.nil?
         @item = []
@@ -99,12 +99,12 @@ module Api::V1
 
           if transaction_validation
 
-            if decoded[3] == "inscan" && current_transaction.status != "In Process" && current_transaction.status != "Completed"
+            if decoded[3] == "inscan" && current_transaction.status != "In Progress" && current_transaction.status != "Completed"
 
               current_transaction.in_scan_date = DateTime.current
 
               if product.listing_type == "rent" || product.listing_type == "timeoffer" || product.listing_type == "lease"
-                current_transaction.status = "In Process"
+                current_transaction.status = "In Progress"
               elsif product.listing_type == "sell"
                 current_transaction.status = "Completed"
               end

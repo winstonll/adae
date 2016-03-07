@@ -63,7 +63,7 @@
     <div class="price-details">
       <% if @item.listing_type == "sell" || params[:sell] == "true"%>
         <div class="item-detail-price" style="height: 250px;">
-          <div class="item-title"><%=@item.title %>, <%= @item.description %></div>
+          <div class="item-title"><%=@item.title %></div>
           <div class="division"></div>
           <% unless params[:sell] == "true" %>
             <p style="font-size: 30px; font-weight: 500; color: #4a4a4a;">$<%= @prices.first.amount %></p>
@@ -81,7 +81,7 @@
         </div>
       <% elsif @item.listing_type == "lease" %>
         <div class="item-detail-price" style="height: 450px;">
-          <div class="item-title"><%=@item.title %>, <%= @item.description %></div>
+          <div class="item-title"><%=@item.title %></div>
           <div class="division"></div>
           <p class="how-long">How long would you like to lease this?</p>
             <%= form_for Transaction.new, html: {multipart: true}  do |f| %>
@@ -114,7 +114,7 @@
         </div>
       <% elsif @item.listing_type == "rent"%>
         <div class="item-detail-price" style="height: 350px;">
-          <div class="item-title"><%=@item.title %>, <%= @item.description %></div>
+          <div class="item-title"><%=@item.title %></div>
           <div class="division"></div>
           <p class="how-long">How long would you like to rent this?</p>
           <%= form_for Transaction.new, html: {multipart: true}  do |f| %>
@@ -143,8 +143,8 @@
           <% end %>
         </div>
       <% else %>
-        <div class="item-detail-price" syle="height: 280px;">
-          <div class="item-title"><%=@item.title %>, <%= @item.description %></div>
+        <div class="item-detail-price" style="height: 280px;">
+          <div class="item-title"><%=@item.title %></div>
           <div class="division"></div>
           <p class="how-long" style="font-size: 12px;">How long would you like this service to last?</p>
           <%= form_for Transaction.new, html: {multipart: true}  do |f| %>
