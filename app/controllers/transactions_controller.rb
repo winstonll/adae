@@ -47,6 +47,13 @@ class TransactionsController < ApplicationController
 		end
 	end
 
+	def destroy
+		@transaction = Transaction.find(params[:id])
+		@transaction.destroy
+
+		redirect_to conversations_path
+	end
+
 	def transaction_accepted
 
 		description = "#{seller.name}(#{seller.id}), #{item.listing_type}s, to #{current_user.name}(#{current_user.id})"
