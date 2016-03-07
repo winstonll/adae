@@ -61,7 +61,7 @@ $(document).on('ready page:load', function() {
         </div>
       <% end %>
       </div>
-      <% if @transaction %>
+
       <div class="request-box">
         <p>You requested to <%= @item.listing_type %></p>
         <p><%= @item.title %></p>
@@ -72,21 +72,14 @@ $(document).on('ready page:load', function() {
             <a href="/cancel">Click Here</a>
           </span>
         </p>
-        <li class="listings">
-    			<div class="item-edit-delete-buttons">
-    				<%= link_to 'Accept', edit_item_path(@item),class: "edit-item" %>
-    				<%= link_to 'Deny', @transaction, method: :delete, class: "delete-item", data: {confirm: "Are you sure you want to delete this Item?"}  %>
-    			</div>
-    		</li>
-      <% else %>
-        <p><%= @transaction.user.name %></p>
-        <p><%= @item.title %></p>
-        <p><%= image_tag @picture.image %></p>
-        <p><%= link_to 'accept', transactions_path(), method: 'get'%></p>
-        <p> <%= link_to 'decline', transactions_path(), method: 'get'%>
-        </p>
+        <% if @transaction.seller_id == current_user.id %>
+          <li class="listings">
+      			<div class="item-edit-delete-buttons">
+      				<%= link_to 'Accept', edit_item_path(@item),class: "edit-item" %>
+      				<%= link_to 'Deny', @transaction, method: :delete, class: "delete-item", data: {confirm: "Are you sure you want to delete this Item?"}  %>
+      			</div>
+      		</li>
+        <% end %>
       </div>
-        <p></p>
-      <% end %>
   </div>
 </div>
