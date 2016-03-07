@@ -5,24 +5,21 @@ class MessagesController < ApplicationController
 
   def index
     @messages = @conversation.messages
-    @transaction = Transaction.where(buyer_id: current_user.id).first
+
+    @transaction = Transaction.where("( (transactions.seller_id = #{@conversation.recipient_id} AND transactions.buyer_id = #{@conversation.sender_id}) \
+    OR (transactions.seller_id = #{@conversation.sender_id} AND transactions.buyer_id = #{@conversation.recipient_id}) ) \
+    AND (transactions.status != 'Completed' AND transactions.status != 'Denied')")
     @item = Item.where(user_id: @transaction.buyer_id).first
     @picture = Picture.where(item_id: @item.id).first
-
 
     if @messages.length > 10
       @over_ten = true
       @messages = @messages[-10..-1]
     end
 
-    if params[:m]
-      @over_ten = false
-      @messages = @conversation.messages
-    end
-
     if @messages.last
       if @messages.last.user_id != current_user.id
-      @messages.last.read = true;
+        @messages.last.read = true;
       end
     end
 
