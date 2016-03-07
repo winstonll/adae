@@ -4,6 +4,18 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def create
     @user = User.new(user_params)
     @user.save
+
+    @referral = Referral.new()
+
+    loop do
+			@code = SecureRandom.base64(5)
+			break @referral.code = @code unless Referral.where(code: @code).first
+		end
+    
+    @referral.amount = 5.00
+    @referral.user_id = @user.id
+    @referral.save
+
     @location = Location.new(user_id: @user.id, country: "CA", city: "Toronto")
     @location.save
 
@@ -16,7 +28,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   private
-  
+
     def user_params
       params.require(:user).permit(
         :name,

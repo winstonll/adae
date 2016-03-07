@@ -5,6 +5,9 @@ class User < ActiveRecord::Base
 	has_many :items
 	has_many :items_reviewed, through: :reviews, source: :items
 	has_many :items_rated, through: :ratings, source: :items
+	has_many :referrals
+	has_many :referreds
+
 	serialize :stripe_account_status, JSON
 	validates :auth_token, uniqueness: true
 	accepts_nested_attributes_for :location
@@ -69,9 +72,6 @@ class User < ActiveRecord::Base
 			token = Devise.friendly_token
 			break token unless User.where(auth_token: token).first
 		end
-		#begin
-		#	self.auth_token = Devise.friendly_token
-		#end while self.class.exists?(auth_token: self.auth_token)
 	end
 
 end
