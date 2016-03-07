@@ -23,6 +23,13 @@ body{
     border-radius: 5px;
     border: 1px solid #cdcdcd;
 
+    .avatar{
+      border-radius: 50%;
+      height: 75px;
+      width: 75px;
+      object-fit: cover;
+    }
+
     #user-name{
       font-size: 20px;
       font-weight: 600;
@@ -41,6 +48,28 @@ body{
 
     .item-image {
       width: 100px;
+      height: 100px;
+      object-fit: cover;
+      object-position: center;
+    }
+
+    #heading{
+      text-align: center;
+      font-weight: 600;
+      color: #4a4a4a;
+      margin-bottom: 5px;
+    }
+
+    #item-title{
+      text-align: left;
+      color: #4a4a4a;
+      margin: 0 auto;
+      display: table;
+    }
+
+    #status{
+      color: #4a4a4a;
+      font-weight: 500;
     }
 
     .listings {
@@ -52,11 +81,12 @@ body{
           border: 1px solid #419bf9;
           border-radius: 5px;
           color: #419bf9;
-          font-size: 14px;
-          padding: 3px 15px 3px;
+          font-size: 15px;
+          padding: 5px 50px 5px;
           &:hover{
             background-color: #419bf9;
             color: #fff;
+            transition: all .3s ease-in-out;
           }
         }
 
@@ -64,12 +94,13 @@ body{
           border: 1px solid #FF6678;
           border-radius: 5px;
           color: #FF6678;
-          font-size: 14px;
-          padding: 3px 7px 3px;
+          font-size: 15px;
+          padding: 5px 52px 5px;
           margin-left: 5px;
           &:hover{
             background-color: #FF6678;
             color: #fff;
+            transition: all .3s ease-in-out;
           }
         }
       }

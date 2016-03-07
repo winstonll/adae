@@ -30,7 +30,7 @@
       <div class="listingsdropdown">
         <%= link_to 'Post a Listing', new_item_path, class: "newlisting" %>
         <%= link_to "All Listings", items_path, class: "allistings" %>
-        <%= link_to "My Listings", user_path(current_user), class: "profilepath" %>
+        <%= link_to "My Listings", user_path(current_user, :anchor => "listing-heading"), class: "profilepath" %>
       <% else %>
         <%= link_to 'Post a Listing', new_item_path, class: "share-item" %>
       <% end %>
@@ -77,7 +77,7 @@
         <% if signed_in? %>
           <%= link_to "Edit Profile", edit_user_path(current_user), class: "profilepath" %>
           <%= link_to "Account", user_path(current_user), class: "profilepath" %>
-          <%= link_to "Reviews", user_path(current_user), class: "profilepath" %>
+          <%= link_to "Reviews", user_path(current_user, :anchor => "user-reviews"), class: "profilepath" %>
           <%= link_to('Logout', destroy_user_session_path, :method => :delete, class: "logout") %>
         <% end %>
       </div>
