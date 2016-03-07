@@ -9,7 +9,7 @@
 
 <div class="content-container">
 
-  <%= form_for @contact do |f| %>
+  <%= form_for @contact, :url => url_for(:controller => 'contacts', :action => 'new') do |f| %>
     <div class="issue-section">
       <h4> Reason for Contacting </h4>
       <%= f.select :subject, [["Refund"],["Cancel Transaction"],["Resolving a Dispute"],["Suggestions"],["General Inquiries"]]%>

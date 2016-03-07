@@ -40,9 +40,8 @@ Rails.application.routes.draw do
     get 'faq'     => "home#faq",     as: :faq
     get 'careers' => "home#careers", as: :careers
     get 'privacy' => "home#privacy", as: :privacy
-    resources :contacts
-    # match 'contact' => 'contact#new', :as => 'contact', :via => :get
-    # match 'contact' => 'contact#create', :via => :post
+    match '/contact' => 'contacts#new', :via => :get
+    match '/contact' => 'contacts#create', :via => :post
 
 
   concern :reviewable do
