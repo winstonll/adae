@@ -82,7 +82,8 @@
 		<span class="personal_purchases"><%#= link_to "Personal Purchase History", trx_orders_list_personal_purchases_path %></span>
 		<p> Direct Deposit</p>
 		<p id="description"> Transfer money from your balance to your bank account.</p>
-		<%= link_to "Withdraw Money", users_stripe_settings_path, class: "cashout-btn"  %>
+		<%#= link_to "Withdraw Money", users_stripe_settings_path, class: "cashout-btn"  %>
+		<div class="cashout-btn"> Coming Soon</div>
 		<span class="orders"><%#= link_to "Order Requests", items_orders_path %></span>
 		<span class="accepted_orders"><%#= link_to "Accepted Orders", items_accepted_orders_path %></span>
 		<% end %>
