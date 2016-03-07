@@ -2,7 +2,7 @@
   <div class= 'review'>
 
     <div id="comment">
-      <%= link_to image_tag(@item.user.avatar.url(:med), class:"avatar"), user_path(@item.user) %>
+      <%= link_to image_tag(review.user.avatar.url(:med), class:"avatar"), user_path(review.user) %>
       <p><%= review.comment %></p>
     </div>
 
