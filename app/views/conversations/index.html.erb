@@ -4,7 +4,20 @@
   <div class="ui list">
     <% @transactions.each do |transaction| %>
       <% user = User.find(transaction.seller_id) %>
+      <% other = User.find(transaction.buyer_id) %>
       <% item = Item.find(transaction.item_id) %>
+      <% if item.listing_type == 'sell' %>
+        <% type = 'Purchase' %>
+      <% elsif item.listing_type == 'timeoffer' %>
+        <% type = 'Service' %>
+      <% elsif item.listing_type == 'lease' %>
+        <% type = 'Lease' %>
+      <% else item.listing_type == 'rent' %>
+        <% type = 'Rental' %>
+      <% end %>
+
+
+
 
       <div class="message">
         <div class="inbox-img">
@@ -12,8 +25,12 @@
     		</div>
 
     		<li class="listings">
-          <div class="user-avatar-container"> <%= link_to image_tag(user.avatar(:med), class: "user-avatar"), user_path(user) %> </div>
-    			<label class="item-detail" id="item-title"> <%= user.name %> Would Like To Try: </label>
+          <div class="user-avatar-container"> <%= link_to image_tag(other.avatar(:med), class: "user-avatar"), user_path(user) %> </div>
+          <% if user == current_user %>
+          <label class="item-detail" id="item-title"> <%= type %> Request from: <%= other.name %> </label>
+          <% else %>
+          <label class="item-detail" id="item-title"> <%= type %> Request to: <%= user.name %> </label>
+          <% end %>
           <label class="item-detail" id="item_description"><%= item.description %></label>
     			<div class="item-accept-deny-buttons">
             <%= link_to 'Reply', conversations_path(sender_id: transaction.buyer_id,

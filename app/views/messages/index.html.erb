@@ -11,12 +11,20 @@ $(document).on('ready page:load', function() {
 
 
 <div class="page-content">
-  <div class="username"> Conversation with <%=User.where("id != ?", current_user).pluck(:name).first %></div>
-
+  <% if @transaction.seller_id == current_user.id %>
+  <div class="username"> Conversation with <%=User.find_by(id: @transaction.buyer_id).name %></div>
+  <% elsif %>
+  <div class="username"> Conversation with <%=User.find_by(id: @transaction.seller_id).name %></div>
+  <% end %>
 
   <div class="user-profile">
-    <p id="user-name"><%=User.where("id != ?", current_user).pluck(:name).first %></p>
-    <p><%= image_tag(current_user.avatar.url(:med), class:"avatar") %></p>
+    <% if @transaction.seller_id == current_user.id %>
+    <p id="user-name"><%=User.find_by(id: @transaction.buyer_id).name %></p>
+    <p><%= image_tag(User.find_by(id: @transaction.buyer_id).avatar.url(:med), class:"avatar") %></p>
+    <% elsif %>
+    <p id="user-name"><%=User.find_by(id: @transaction.seller_id).name %></p>
+    <p><%= image_tag(User.find_by(id: @transaction.seller_id).avatar.url(:med), class:"avatar") %></p>
+    <% end %>
   </div>
 
   <div class="chat-area">
@@ -63,7 +71,23 @@ $(document).on('ready page:load', function() {
       </div>
 
       <div class="request-box">
-        <p id="heading">You requested to <%= @item.listing_type %></p>
+        <% if @transaction.seller_id == current_user.id %> <!--condition to see if current user is also the seller-->
+          <% if @item.listing_type == "sell" %> <!--condition to set the opposite listing value-->
+            <p id="heading"><%= User.find_by(id: @transaction.buyer_id).name %> requested to buy</p>
+          <% elsif @item.listing_type == "timeoffer" %>
+            <p id="heading"><%= User.find_by(id: @transaction.buyer_id).name %> requested service</p>
+          <% else %>
+            <p id="heading"><%= User.find_by(id: @transaction.buyer_id).name %> requested to <%= @item.listing_type %></p>
+          <% end %>
+        <% else %>
+          <% if @item.listing_type == "sell" %>
+            <p id="heading">You requested to buy</p>
+          <% elsif @item.listing_type == "timeoffer" %>
+            <p id="heading">You requested the following service</p>
+          <% else %>
+            <p id="heading">You requested to <%= @item.listing_type %></p>
+          <% end %>
+        <% end %> <!--condition to see if current user is also the seller-->
         <p id="item-title"><%= @item.title %></p>
         <p><%= image_tag @picture.image, class: "item-image" %></p>
         <p id="status">Transaction Status: <%= @transaction.status %></p>
@@ -83,10 +107,25 @@ $(document).on('ready page:load', function() {
           </p>
         <% end %>
       </div>
+      <% if @item.listing_type == "lease" %>
+        <div class="request-box" style="margin-bottom: -5px; height: 140px;">
+          <p><b>If you would like to buy the item during your rental period click below.</b></p>
+            <%#= link_to 'Request to Purchase', edit_transaction_path(item: @item.id, transaction: @transaction.id),class: "edit-item" %>
+        </div>
+      <% end %>
 
-      <div class="request-box">
-        <p><b>If you would like to buy the item during your rental period click below.</b></p>
-          <%#= link_to 'Request to Purchase', edit_transaction_path(item: @item.id, transaction: @transaction.id),class: "edit-item" %>
-      </div>
+      <% if @transaction.seller_id == current_user.id %>
+        <div class="helpful-tip">
+          <p id="seller">Make sure you both agree on a time and place to meet before accepting this request.
+              Your account will NOT be credited until you both meet and your In-App QR code is scanned.</p>
+        </div>
+      <% else %>
+        <div class="helpful-tip">
+          <p id="seller">Your Credit Card will be charged once your
+                request has been accepted.
+                Don’t worry, your money will NOT be sent to
+                the other party until you both meet up and scan the in-app QR code.</p>
+        </div>
+      <% end %>
   </div>
 </div>
