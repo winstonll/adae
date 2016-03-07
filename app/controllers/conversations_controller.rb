@@ -4,7 +4,7 @@ class ConversationsController < ApplicationController
   def index
 
     @transactions = Transaction.where("(transactions.seller_id = #{current_user.id} OR transactions.buyer_id = #{current_user.id}) \
-    AND (transactions.status != 'Completed' AND transactions.status != 'Denied')")
+    AND (transactions.status != 'Completed' AND transactions.status != 'Denied' AND transactions.status != 'Cancelled')")
 
   end
 

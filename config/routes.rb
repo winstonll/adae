@@ -1,15 +1,15 @@
 Rails.application.routes.draw do
-  devise_for :users, controllers: { 
+  devise_for :users, controllers: {
     registrations: "users/registrations",
     sessions: "users/sessions",
     passwords: "users/passwords",
     confirmations: "users/confirmations" }
-  devise_scope :user do 
+  devise_scope :user do
     get 'signup',  to: 'users/registrations#new'
     get 'signin',  to: 'users/sessions#new'
     delete 'signout', to: 'users/sessions#destroy'
   end
-  
+
   get 'signup_modal' => 'home#signup_modal'
   get 'signup_modal' => 'users/home#signup_modal'
   get 'signin_modal' => 'home#signin_modal'
@@ -30,6 +30,8 @@ Rails.application.routes.draw do
   root 'home#landing'
 
   get 'search' => "search#search"
+  get 'cancel' => 'transactions#cancel'
+  get 'accept' => 'transactions#accept'
 
   get '/api/v1/verify_scan/' => 'api/v1/transactions#verify_scan'
   get '/api/v1/transaction_detail/:id' => 'api/v1/transactions#transaction_detail'
@@ -47,7 +49,7 @@ Rails.application.routes.draw do
   concern :reviewable do
     resources :ratings, only: [:new, :create, :show, :edit, :update, :destroy]
     resources :reviews, only: [:show, :edit, :update, :create, :destroy]
-  end  
+  end
 
   get 'users/stripe_settings/' => 'users#stripe_settings', :to => "users_stripe_settings"
   post 'users/stripe_update_settings/' => 'users#stripe_update_settings', :to => "users_stripe_update_settings"
@@ -71,7 +73,5 @@ Rails.application.routes.draw do
   get 'rent'   => "items#rent",   as: :rent
   get 'lease'   => "items#lease",   as: :lease
   get 'timeoffer'   => "items#timeoffer",   as: :timeoffer
-
-  
 
 end

@@ -49,31 +49,46 @@ class TransactionsController < ApplicationController
 
 	def destroy
 		@transaction = Transaction.find(params[:id])
-		@transaction.destroy
+
+		@transaction.status = "Denied"
+		@transaction.save
 
 		redirect_to conversations_path
 	end
 
-	def transaction_accepted
+	def cancel
+		redirect_to conversations_path
+	end
+
+	def accept
+		transaction = Transaction.find(params[:transaction])
+		item = Item.find(params[:item])
+		seller = User.find(transaction.seller_id)
+		buyer = User.find(transaction.buyer_id)
 
 		description = "#{seller.name}(#{seller.id}), #{item.listing_type}s, to #{current_user.name}(#{current_user.id})"
+
+		@customer = Stripe::Customer.retrieve(buyer.stripe_customer_id)
 
 		# Charge the customer instead of the card
 		begin
 			charge = Stripe::Charge.create(
 				:customer => @customer.id,
-		    :amount => (params[:price].to_f * 100).ceil, # amount in cents, again
+		    :amount => (transaction.total_price.to_f * 100).ceil, # amount in cents, again
 		    :currency => "cad",
 		    :description => description
 		  )
 
 			rescue Stripe::CardError => e
 				flash[:alert] = e.message
-				redirect_to new_transaction_path
+				redirect_to conversations_path
 		end
 
 		# If the charge succeeded, then record the data
 		if charge[:paid]
+			transaction.status = "Accepeted"
+			transaction.save
+			
 			stripeCharge = {
 				txn_type: charge[:object],
 				currency: charge[:currency],

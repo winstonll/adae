@@ -8,7 +8,7 @@ class MessagesController < ApplicationController
 
     @transaction = Transaction.where("( (transactions.seller_id = #{@conversation.recipient_id} AND transactions.buyer_id = #{@conversation.sender_id}) \
     OR (transactions.seller_id = #{@conversation.sender_id} AND transactions.buyer_id = #{@conversation.recipient_id}) ) \
-    AND (transactions.status != 'Completed' AND transactions.status != 'Denied')").first
+    AND (transactions.status != 'Completed' AND transactions.status != 'Denied' AND transactions.status != 'Cancelled')").first
     @item = Item.where(id: @transaction.item_id).first
     @picture = Picture.where(item_id: @item.id).first
 
