@@ -12,12 +12,10 @@ class User < ActiveRecord::Base
 	validates :auth_token, uniqueness: true
 	accepts_nested_attributes_for :location
 
- 	# Include default devise modules. Others available are:
- 	# , :lockable, :timeoutable and :omniauthable
-  	devise :database_authenticatable, :registerable, #:confirmable,
-         :recoverable, :rememberable, :trackable, :validatable
+	devise :database_authenticatable, :registerable, :confirmable,
+       :recoverable, :rememberable, :trackable, :validatable
 
-	before_create :ensure_authentication_token # :generate_authentication_token
+	before_create :ensure_authentication_token
 
 	validates :avatar,
     attachment_content_type: { content_type: /\Aimage\/.*\Z/ },
@@ -25,8 +23,6 @@ class User < ActiveRecord::Base
 
 	has_attached_file :avatar, styles: { small: "40x40", med: "120x120", large: "200x200" },
 			:default_url => "/paperclip/default/default_avatar_:style.png"
-
-  #include DeviseTokenAuth::Concerns::User
 
 	def ensure_authentication_token
 		if auth_token.blank?
@@ -51,11 +47,11 @@ class User < ActiveRecord::Base
   	# def oauth?; stripe_account_type == 'oauth'; end
 
   	def manager
-		case stripe_account_type
-		when 'managed' then StripeManaged.new(self)
-		# when 'standalone' then StripeStandalone.new(self)
-		# when 'oauth' then StripeOauth.new(self)
-		end
+			case stripe_account_type
+			when 'managed' then StripeManaged.new(self)
+			# when 'standalone' then StripeStandalone.new(self)
+			# when 'oauth' then StripeOauth.new(self)
+			end
   	end
 
 	def can_accept_charges
