@@ -26,9 +26,8 @@
     <div>
         <label for="msg">Message:</label>
         <%= f.text_area :content, :as => :text, :input_html => {:rows => 10}, id:"msg" %>
-       <!--  <textarea id="msg" name="user_message"></textarea> -->
     </div>
-
+    <%= recaptcha_tags%>
     <div class="button">
         <button type="submit">Send</button>
     </div>
