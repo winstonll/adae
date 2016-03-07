@@ -28,11 +28,9 @@
       <% if signed_in? %>
       <span class="listings" onclick="$('.listingsdropdown').slideToggle();"> <%= "Listings" %> </span>
       <div class="listingsdropdown">
-        <%= link_to 'Post a Listing', new_item_path, class: "newlisting" %>
         <%= link_to "All Listings", items_path, class: "allistings" %>
-        <%= link_to "My Listings", user_path(current_user, :anchor => "listing-heading"), class: "profilepath" %>
-      <% else %>
-        <%= link_to 'Post a Listing', new_item_path, class: "share-item" %>
+        <%= link_to 'Post a Listing', new_item_path, class: "newlisting" %>
+        <%#= link_to "My Listings", user_path(current_user, :anchor => "listing-heading"), class: "profilepath" %>
       <% end %>
       </div>
     </div>
