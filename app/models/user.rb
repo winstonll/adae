@@ -21,7 +21,7 @@ class User < ActiveRecord::Base
     attachment_size: { less_than: 5.megabytes }
 
 	has_attached_file :avatar, styles: { small: "40x40", med: "120x120", large: "200x200" },
-			:default_url => "/system/images/default/default_avatar_:style.png"
+			:default_url => "/paperclip/default/default_avatar_:style.png"
 
   #include DeviseTokenAuth::Concerns::User
 
