@@ -24,7 +24,7 @@ gem 'jbuilder', '~> 2.0'
 
 gem 'will_paginate'
 gem 'will_paginate-bootstrap'
-
+gem 'active_attr'
 gem 'geocoder'
 gem 'gon'
 gem 'toastr-rails'

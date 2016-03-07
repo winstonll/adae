@@ -40,7 +40,9 @@ Rails.application.routes.draw do
     get 'faq'     => "home#faq",     as: :faq
     get 'careers' => "home#careers", as: :careers
     get 'privacy' => "home#privacy", as: :privacy
-    get 'contact' => "home#contact", as: :contact
+    resources :contacts
+    # match 'contact' => 'contact#new', :as => 'contact', :via => :get
+    # match 'contact' => 'contact#create', :via => :post
 
 
   concern :reviewable do
@@ -70,5 +72,7 @@ Rails.application.routes.draw do
   get 'rent'   => "items#rent",   as: :rent
   get 'lease'   => "items#lease",   as: :lease
   get 'timeoffer'   => "items#timeoffer",   as: :timeoffer
+
+  
 
 end
