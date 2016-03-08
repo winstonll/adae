@@ -17,6 +17,8 @@ class ItemsController < ApplicationController
     @review = @item.reviews.build
     @prices = @item.prices
     @pictures = Picture.where(item_id: @item.id)
+    @transaction_dne = Transaction.where("transactions.buyer_id = #{current_user.id}  \
+    AND (transactions.status != 'Completed')").nil?
 
     @reviewable = !Transaction.where("(transactions.seller_id = #{current_user.id} OR transactions.buyer_id = #{current_user.id}) \
     AND (transactions.status != 'Denied')").nil?
