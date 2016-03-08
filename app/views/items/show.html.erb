@@ -2,7 +2,7 @@
 <script>
   $(document).ready(function() {
     $(".photos").css("width", $(".photo-container").width() / "<%= @pictures.count + 0.017 %>");
-
+        <%#asd%>
     <% if !user_signed_in? || (!@transaction_dne || (@item.user_id == current_user.id)) %>
       $('.request-button').bind('click', false);
       $('.request-button').css("background-color", "#D5D5D5");
