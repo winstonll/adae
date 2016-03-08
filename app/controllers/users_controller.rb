@@ -7,6 +7,7 @@ class UsersController < ApplicationController
  	def show
  	  @items = current_user.items
  	  @user = current_user
+ 	  @location = Location.find_by(user_id: @user)
  	end
 
  	def edit
