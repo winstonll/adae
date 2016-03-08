@@ -100,6 +100,8 @@ class TransactionsController < ApplicationController
 			}
 
 			@sT = StripeTransaction.create(stripeCharge) # make a record in the StripeTransactions table
+
+			redirect_to :back
 		end
 	end
 
