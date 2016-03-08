@@ -19,10 +19,10 @@ class ItemsController < ApplicationController
     @pictures = Picture.where(item_id: @item.id)
     if user_signed_in?
       @transaction_dne = Transaction.where("transactions.buyer_id = #{current_user.id}  \
-      AND (transactions.status != 'Completed')").nil?
+      AND (transactions.status != 'Completed')").empty?
 
       @reviewable = !Transaction.where("(transactions.seller_id = #{current_user.id} OR transactions.buyer_id = #{current_user.id}) \
-      AND (transactions.status != 'Denied')").nil?
+      AND (transactions.status != 'Denied')").empty?
     else
       @transaction_dne = false
       @reviewable = false

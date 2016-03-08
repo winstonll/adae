@@ -16,7 +16,7 @@ module Api::V1
     def show
       transaction = Transaction.where(id: params[:id]).first
 
-      if !transaction.nil?
+      if !transaction.empty?
         render json: transaction, status: :ok
       else
         render json: {
