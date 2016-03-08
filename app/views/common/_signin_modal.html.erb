@@ -1,16 +1,13 @@
 <script>
 $(document).click(function (e) {
     var signin = $('#shareSigninModal');
-    var x = $('.signin-cancel');
 
     //if the target of the click isn't the modal...
-    if (x.is(e.target)) { signin.modal('hide'); }
     if (!signin.is(e.target)&& signin.has(e.target).length === 0) { signin.modal('hide'); }
 });
 </script>
 
 <div class="modal-backdrop" id="shareSigninModal" tabindex="-1" role="dialog" aria-labelledby="shareSigninModal" aria-hidden="true">
-    <span type="button" class="signin-cancel">X</span>
 
     <div class="share-modal-content-container">
       <%#= image_tag("anonprofile.png", size: "70x70", class: "avatar-image") %>
@@ -40,7 +37,7 @@ $(document).click(function (e) {
           <div id="divider"></div>
           <p id="log-in-text" data-dismiss="modal"> Not a member of Adae? <%= link_to 'Sign Up', {remote: true, controller: "home", action: "signup_modal"} %>
           </p>
-          <p class="shared"><%= render "users/shared/links" %> </p>   
+          <p class="shared"><%= render "users/shared/links" %> </p>
         <% end %>
       </div>
     </div>
