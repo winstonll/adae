@@ -55,7 +55,7 @@
   </br>
   </br>
   <div style="display: inline-block; width: 48%; vertical-align: top;">
-    <%= image_tag(@item.photo_url, size: "220x180") %>
+    <%= image_tag(@item.photo_url, class:'item-pic') %>
     <% unless @item.listing_type == "sell" %>
     <% end %>
   </div>
