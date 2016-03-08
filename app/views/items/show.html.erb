@@ -4,7 +4,7 @@
     $(".photos").css("width", $(".photo-container").width() / "<%= @pictures.count + 0.017 %>");
 
 
-    <% if user_signed_in? && ((@item.user_id == current_user.id) || !@transaction_dne) %>
+    <% if !user_signed_in? && (!@transaction_dne || (@item.user_id == current_user.id)) %>
       $('.request-button').bind('click', false);
       $('.request-button').css("background-color", "#D5D5D5");
       $('.request-button').css("cursor", "default");

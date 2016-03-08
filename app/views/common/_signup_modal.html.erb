@@ -6,7 +6,26 @@ $(document).click(function (e) {
     if (!signup.is(e.target)&& signup.has(e.target).length === 0) { signup.modal('hide'); }
 
     function validate_signup_form_and_submit(){
-      
+      var name = $('#username-input')[0].value;
+      var surname = $('#user_surname')[0].value;
+      var email = $('#user_email')[0].value;
+      var password = $('#password')[0].length > 7
+      var confirmation = $('#user_password_confirmation').length > 0
+
+      if ( name && surname && email && password && confirmation) {
+        return true;
+      } else {
+
+        toastr.options ={
+          'timeOut': "6000",
+          'extendedTimeOut': "2000",
+          "positionClass": 'toast-top-left'
+        };
+
+        toastr.error(error_message);
+
+        event.preventDefault();
+      }
     }
 });
 </script>
@@ -40,7 +59,7 @@ $(document).click(function (e) {
           <div class="signup-links-bottom">
             <p class="terms"> By signing up, I agree to Adae's <a target="_blank" href="https://adae.co/privacy">Privacy Policy</a> and <a target="_blank" href="https://adae.co/terms">Terms of Service</a>.</p>
             <div id="signup-start">
-              <%= f.submit "Sign Up", class: "signup-button" %>
+              <%= f.submit "Sign Up", class: "signup-button", :onclick => 'validate_signup_form_and_submit()' %>
             </div>
           </div>
           <div id="divider"></div>
