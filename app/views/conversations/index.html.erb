@@ -33,7 +33,7 @@
           <% end %>
           <label class="item-detail" id="item_description"><%= item.description %></label>
     			<div class="item-accept-deny-buttons">
-            <%= link_to 'Reply', conversations_path(sender_id: transaction.buyer_id,
+            <%= link_to 'View', conversations_path(sender_id: transaction.buyer_id,
             recipient_id: transaction.seller_id), method: 'post', class: "reply-transaction"%>
     		  </div>
     		</li>
