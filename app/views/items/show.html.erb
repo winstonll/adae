@@ -1,28 +1,32 @@
 <%= stylesheet_link_tag "items" %>
 <script>
-$(document).ready(function() {
+  $(document).ready(function() {
+    $(".photos").css("width", $(".photo-container").width() / "<%= @pictures.count + 0.017 %>");
 
-  $(".photos").css("width", $(".photo-container").width() / "<%= @pictures.count + 0.017 %>");
-
-});
-
-<% if !user_signed_in? %>
-    toastr.options ={
-      'timeOut': "11000",
-      'extendedTimeOut': "2000",
-      "positionClass": 'toast-bottom-right'
-    };
-
-    var rent_text = " <br><span style='font-weight: 600; font-size: 20px;'>Why Adae?</span> <br><br> \
-    <div style='line-height: normal;'> &#x2756; We ask for a credit card (securely via Stripe) before making a request; \
-    in return, no need to bring cash as NAME gets paid electronically. <br><br> \
-    &#x2756; Only when your request is accepted, will your card will be charged. <br><br>\
-    &#x2756; We are always happy to help resolve disputes and issue refunds, whenever necessary.</div> <br>";
-
-    toastr.info(rent_text);
-<% end %>
+    <% if (@item.user_id != current_user.id) || !@transaction_dne %>
+      $('.request-button').bind('click', false);
+      $('.request-button').css("background-color", "grey");
+      $('.request-button')[0].innerHTML = "Unavailable";
+    <% end %>
 
 
+  });
+
+  <% if !user_signed_in? %>
+      toastr.options ={
+        'timeOut': "11000",
+        'extendedTimeOut': "2000",
+        "positionClass": 'toast-bottom-right'
+      };
+
+      var rent_text = " <br><span style='font-weight: 600; font-size: 20px;'>Why Adae?</span> <br><br> \
+      <div style='line-height: normal;'> &#x2756; We ask for a credit card (securely via Stripe) before making a request; \
+      in return, no need to bring cash as NAME gets paid electronically. <br><br> \
+      &#x2756; Only when your request is accepted, will your card will be charged. <br><br>\
+      &#x2756; We are always happy to help resolve disputes and issue refunds, whenever necessary.</div> <br>";
+
+      toastr.info(rent_text);
+  <% end %>
 </script>
 
 <div class="item-info" id="itemInfo">
@@ -43,7 +47,7 @@ $(document).ready(function() {
           <p class="sale-price"> Price:
             <span style="font-weight: 700; color:#000;">$<%= @prices.first.amount %></span>
           </p>
-          <%= link_to 'Request to Buy', new_transaction_path(:item_id => @item.id), class: "buy-button"%>
+            <%= link_to 'Request to Buy', new_transaction_path(:item_id => @item.id), class: "request-button", id: "buy-button"%>
         </div>
       <% elsif @item.listing_type == "lease" %>
         <div class="item-detail-price" style="height:310px;">
@@ -62,7 +66,7 @@ $(document).ready(function() {
               <p class="trust-fee-text">This ensures that the item is treated with care, and is returned on time. <b style="font-weight: 500">This amount will be charged only if you fail to return the item, damage it, or lose it.</b> </p>
             <% end %>
             <div class="division-2"></div>
-            <%= link_to 'Request to Lease', new_transaction_path(:item_id => @item.id), class: "rent-button"%>
+            <%= link_to 'Request to Lease', new_transaction_path(:item_id => @item.id), class: "request-button", id: "rent-button"%>
           </div>
         </div>
         <div class="item-lease-price" >
@@ -72,7 +76,7 @@ $(document).ready(function() {
           <p class="sale-price"> Sale Price:
             <span style="font-weight: 700; color:#000;">$<%= @item.deposit %></span>
           </p>
-          <%= link_to 'Request to Buy', new_transaction_path(:item_id => @item.id, :sell=> true), class: "buy-button"%>
+          <%= link_to 'Request to Buy', new_transaction_path(:item_id => @item.id, :sell=> true), class: "request-button", id: "buy-button"%>
         </div>
       <% elsif @item.listing_type == "rent"%>
         <div class="item-detail-price" style="height:310px";>
@@ -91,7 +95,7 @@ $(document).ready(function() {
               <p class="trust-fee-text">This ensures that the item is treated with care, and is returned on time.<b style="font-weight: 500">This amount will be charged only if you fail to return the item, damage it, or lose it.</b> </p>
             <% end %>
             <div class="division-2"></div>
-            <%= link_to 'Request to Rent', new_transaction_path(:item_id => @item.id), class: "rent-button"%>
+            <%= link_to 'Request to Rent', new_transaction_path(:item_id => @item.id), class: "request-button", id: "rent-button"%>
           </div>
         </div>
       <% else %>
@@ -107,7 +111,7 @@ $(document).ready(function() {
             <% unless @item.deposit == 0 %>
               <input class="trust-fee"readonly="readonly" value="Trust Fee: $<%= @item.deposit %>"></input>
             <% end %>
-            <%= link_to 'Request Service', new_transaction_path(:item_id => @item.id), class: "rent-button"%>
+            <%= link_to 'Request Service', new_transaction_path(:item_id => @item.id), class: "request-button", id: "rent-button"%>
           </div>
         </div>
       <% end %>
