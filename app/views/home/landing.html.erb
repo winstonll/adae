@@ -13,7 +13,7 @@
     <!--<%= link_to 'Post a Shout Out', new_request_path, class: "share-request" %>-->
     <% unless signed_in? %>
       <%= link_to 'Sign Up', {remote: true, controller: "home", action: "signup_modal"}, id: "nav-signup-btn", class: "signup" %>
-      <%= link_to 'Login', {remote: true, controller: "home", action: "signin_modal"}, id: "nav-signin-btn", class: "login" %>
+      <%= link_to 'Log In', {remote: true, controller: "home", action: "signin_modal"}, id: "nav-signin-btn", class: "login" %>
     <% end %>
   </div>
 	<div id="landing-container">
