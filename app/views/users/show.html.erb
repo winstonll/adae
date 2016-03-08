@@ -8,8 +8,6 @@
 			<p class="p-account-delete"><%= link_to "Delete Account", @user, method: :delete, data: {confirm: "Are you sure you want to delete this user?"}  %></p>
 		</div>
 
-		<!--<p> Name: <%= @user.name %></p>
-		<p> Last Name: <%= @user.surname %></p>-->
 		<p> Email: <%= @user.email %></p>
 		<p> Phone: <%= @user.phone_number %></p>
 		<p class="api-button"><%= link_to 'Request Public API Token'%></p>
@@ -93,7 +91,7 @@
 		<div id="mail-form">
 			<%= text_field_tag :apt_number, "", class: 'mail-check-input', placeholder: "Apt number and/or building number" %>
 			<%= text_field_tag :street, "", class: 'mail-check-input', placeholder: "Street" %>
-			<%= text_field_tag :city, "", class: 'mail-check-input', placeholder: "City" %>
+			<%= text_field_tag :city, @location.city, class: 'mail-check-input', placeholder: "City" %>
 			<%= text_field_tag :postal_code, "", class: 'mail-check-input', placeholder: "Postal Code" %>
 			<div class="button">
 	        <button type="submit">Submit</button>
