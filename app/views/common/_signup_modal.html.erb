@@ -1,16 +1,13 @@
 <script>
 $(document).click(function (e) {
     var signup = $('#shareSignupModal');
-    var x = $('.signup-cancel');
 
     //if the target of the click isn't the modal...
-    if (x.is(e.target)) { signup.modal('hide'); }
     if (!signup.is(e.target)&& signup.has(e.target).length === 0) { signup.modal('hide'); }
 });
 </script>
 
 <div class="modal-backdrop" id="shareSignupModal" tabindex="-1" role="dialog" aria-labelledby="shareSignupModal" aria-hidden="true">
-    <span type="button" class="signup-cancel">X</span>
 
     <div class="share-modal-content-container">
       <%#= image_tag("anonprofile.png", size: "70x70", class: "avatar-image") %>

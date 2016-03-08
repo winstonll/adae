@@ -88,7 +88,7 @@ class TransactionsController < ApplicationController
 		if charge[:paid]
 			transaction.status = "Accepeted"
 			transaction.save
-			
+
 			stripeCharge = {
 				txn_type: charge[:object],
 				currency: charge[:currency],
@@ -100,6 +100,8 @@ class TransactionsController < ApplicationController
 			}
 
 			@sT = StripeTransaction.create(stripeCharge) # make a record in the StripeTransactions table
+
+			redirect_to :back
 		end
 	end
 

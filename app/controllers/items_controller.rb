@@ -8,7 +8,7 @@ class ItemsController < ApplicationController
 
       respond_to do |format|
         format.html #{ render :template => '/products_home.html.erb' }
-        format.js { render :template => '/products_home.html.erb' } # Prodcuts home partial
+        format.js  # Prodcuts home partial
       end
   end
 
@@ -17,6 +17,9 @@ class ItemsController < ApplicationController
     @review = @item.reviews.build
     @prices = @item.prices
     @pictures = Picture.where(item_id: @item.id)
+
+    @reviewable = !Transaction.where("(transactions.seller_id = #{current_user.id} OR transactions.buyer_id = #{current_user.id}) \
+    AND (transactions.status != 'Denied')").nil?
 
     if current_user
      @rating = current_user.ratings.find_by(:item => @item)

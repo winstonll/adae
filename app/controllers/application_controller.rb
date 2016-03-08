@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
+=begin
   def after_sign_in_path_for(resource)
     sign_in_url = new_user_session_url
     if request.referer == sign_in_url
@@ -13,10 +14,12 @@ class ApplicationController < ActionController::Base
       stored_location_for(resource) || request.referer || items_path
     end
   end
+=end
 
   def after_sign_out_path_for(resource_or_scope)
    items_path
   end
+  
   private
 
   def ensure_logged_in
