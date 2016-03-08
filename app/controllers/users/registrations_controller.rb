@@ -23,7 +23,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
       session[:user_id] = @user.id
       redirect_to items_path, notice: "Signed up! Check your email address to confirm your account!"
     else
-      redirect_to :back
+      redirect_to :back, notice: "This account is already taken"
     end
   end
 
