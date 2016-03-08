@@ -86,7 +86,7 @@ class TransactionsController < ApplicationController
 
 		# If the charge succeeded, then record the data
 		if charge[:paid]
-			transaction.status = "Accepeted"
+			transaction.status = "Accepted"
 			transaction.save
 
 			stripeCharge = {
