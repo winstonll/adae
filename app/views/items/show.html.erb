@@ -6,7 +6,6 @@
     <% if (@item.user_id != current_user.id) || !@transaction_dne %>
       $('.request-button').bind('click', false);
       $('.request-button').css("background-color", "grey");
-      $('.request-button')[0].innerHTML = "Unavailable";
     <% end %>
 
 
