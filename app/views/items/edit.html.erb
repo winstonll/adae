@@ -157,7 +157,7 @@
 		<% counter = counter + 1 %>
 	<% end %>
 
-	<% @prices.where("amount is NOT NULL and amount != '' ").each do |price| %>
+	<% @prices.each do |price| %>
 		<% if price.timeframe == 'Day' %>
 			$('#item_prices_attributes_0_amount').val("<%= price.amount.to_digits %>");
 		<% elsif price.timeframe == 'Week' %>

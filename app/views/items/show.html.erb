@@ -54,7 +54,7 @@
       <% elsif @item.listing_type == "lease" %>
         <div class="item-detail-price" style="height:310px;">
           <div class="price-title2">Available for Lease</div>
-            <% @prices.where("amount is NOT NULL and amount != ''").each do |price| %>
+            <% @prices.each do |price| %>
               <div class="price-breakdown">
                   <div class="price-list">
                     <span style="font-weight:500;">$<%= price.amount %></span> per <%= price.timeframe %>
@@ -83,7 +83,7 @@
       <% elsif @item.listing_type == "rent"%>
         <div class="item-detail-price" style="height:310px";>
           <div class="price-title2">Available for Rent</div>
-            <% @prices.where("amount is NOT NULL and amount != ''").each do |price| %>
+            <% @prices.each do |price| %>
               <div class="price-breakdown">
                   <div class="price-list">
                     <span style="font-weight:500;">$<%= price.amount %></span> per <%= price.timeframe %>
