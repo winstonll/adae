@@ -1,33 +1,67 @@
 <script>
-$(document).click(function (e) {
-    var signup = $('#shareSignupModal');
+  $(document).click(function (e) {
+      var signup = $('#shareSignupModal');
 
-    //if the target of the click isn't the modal...
-    if (!signup.is(e.target)&& signup.has(e.target).length === 0) { signup.modal('hide'); }
+      //if the target of the click isn't the modal...
+      if (!signup.is(e.target)&& signup.has(e.target).length === 0) { signup.modal('hide'); }
 
-    function validate_signup_form_and_submit(){
-      var name = $('#username-input')[0].value;
-      var surname = $('#user_surname')[0].value;
-      var email = $('#user_email')[0].value;
-      var password = $('#password')[0].length > 7
-      var confirmation = $('#user_password_confirmation').length > 0
+  });
 
-      if ( name && surname && email && password && confirmation) {
-        return true;
-      } else {
+  function validate_signup_form_and_submit(){
+    var name = $('#username-input').val();
+    var email = $('#user_email').val();
+    var password = $('#password').val().length > 7;
+    var confirmation = $('#user_password_confirmation').val() == $('#password').val();
 
-        toastr.options ={
-          'timeOut': "6000",
-          'extendedTimeOut': "2000",
-          "positionClass": 'toast-top-left'
-        };
+    if ( name && email && password && confirmation) {
+      return true;
+    } else {
 
-        toastr.error(error_message);
+      var error_message = "";
 
-        event.preventDefault();
+      if(!name){
+        if (error_message){
+          error_message += ", Name is empty"
+        } else {
+          error_message += "Name is empty"
+        }
       }
+
+      if(!email){
+        if (error_message){
+          error_message += ", Email is empty"
+        } else {
+          error_message += "Email is empty"
+        }
+      }
+
+      if(!password){
+        if (error_message){
+          error_message += ", Password requires minimum 8 characters"
+        } else {
+          error_message += "Password requires minimum 8 characters"
+        }
+      }
+
+      if(!confirmation){
+        if (error_message){
+          error_message += ", Password does not match"
+        } else {
+          error_message += "Password does not match"
+        }
+      }
+
+      toastr.options ={
+        'timeOut': "6000",
+        'extendedTimeOut': "2000",
+        "positionClass": 'toast-top-left'
+      };
+
+      toastr.error(error_message);
+
+      event.preventDefault();
     }
-});
+  }
 </script>
 
 <div id="shareSignupModal" tabindex="-1" role="dialog" aria-labelledby="shareSignupModal" aria-hidden="true">
