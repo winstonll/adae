@@ -20,12 +20,13 @@ class ItemsController < ApplicationController
     if user_signed_in?
       @transaction_dne = Transaction.where("transactions.buyer_id = #{current_user.id}  \
       AND (transactions.status != 'Completed')").nil?
+
+      @reviewable = !Transaction.where("(transactions.seller_id = #{current_user.id} OR transactions.buyer_id = #{current_user.id}) \
+      AND (transactions.status != 'Denied')").nil?
     else
       @transaction_dne = false
+      @reviewable = false
     end
-
-    @reviewable = !Transaction.where("(transactions.seller_id = #{current_user.id} OR transactions.buyer_id = #{current_user.id}) \
-    AND (transactions.status != 'Denied')").nil?
 
     if current_user
      @rating = current_user.ratings.find_by(:item => @item)
