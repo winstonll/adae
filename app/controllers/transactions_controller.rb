@@ -88,7 +88,7 @@ class TransactionsController < ApplicationController
 		if charge[:paid]
 			transaction.status = "Accepeted"
 			transaction.save
-			
+
 			stripeCharge = {
 				txn_type: charge[:object],
 				currency: charge[:currency],
