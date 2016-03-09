@@ -32,9 +32,15 @@ class MessagesController < ApplicationController
 
   def create
     @message = @conversation.messages.new(message_params)
-
+    @user = User.find_by(id: @conversation.recipient)
     if @message.save
-    redirect_to conversation_messages_path(@conversation)
+      if @user == current_user
+        @user = User.find_by(id: @conversation.sender)
+      else
+        @user = User.find_by(id: @conversation.recipient)
+      end
+      ContactMailer.new_message(@user, @message).deliver_now
+      redirect_to conversation_messages_path(@conversation)
     end
   end
 

@@ -13,7 +13,7 @@ class ContactsController < ApplicationController
     
     @contact = Contact.new(contact_params)
     if @contact.valid?
-      ContactMailer.new_message(@contact).deliver_now
+      ContactMailer.contact_message(@contact).deliver_now
       flash[:notice] = "Message was successfully sent."
       redirect_to root_path
     else

@@ -16,7 +16,7 @@ module Api::V1
     def show
       transaction = Transaction.where(id: params[:id]).first
 
-      if !transaction.nil?
+      if !transaction.empty?
         render json: transaction, status: :ok
       else
         render json: {
@@ -111,7 +111,7 @@ module Api::V1
 
               current_transaction.save
 
-              seller.balance = seller.balance + BigDecimal.new(params[:transactions][:balance])
+              seller.balance = seller.balance + (BigDecimal.new(params[:transactions][:balance] - 0.3) / 1.029)
               seller.save
 
               render nothing: true, status: 204

@@ -25,15 +25,16 @@
     		</div>
 
     		<li class="listings">
-          <div class="user-avatar-container"> <%= link_to image_tag(other.avatar(:med), class: "user-avatar"), user_path(user) %> </div>
           <% if user == current_user %>
+          <div class="user-avatar-container"> <%= link_to image_tag(other.avatar(:med), class: "user-avatar"), user_path(user) %> </div>
           <label class="item-detail" id="item-title"> <%= type %> Request from: <%= other.name %> </label>
           <% else %>
+          <div class="user-avatar-container"> <%= link_to image_tag(user.avatar(:med), class: "user-avatar"), user_path(user) %> </div>
           <label class="item-detail" id="item-title"> <%= type %> Request to: <%= user.name %> </label>
           <% end %>
           <label class="item-detail" id="item_description"><%= item.description %></label>
     			<div class="item-accept-deny-buttons">
-            <%= link_to 'Reply', conversations_path(sender_id: transaction.buyer_id,
+            <%= link_to 'View', conversations_path(sender_id: transaction.buyer_id,
             recipient_id: transaction.seller_id), method: 'post', class: "reply-transaction"%>
     		  </div>
     		</li>

@@ -17,11 +17,16 @@ class ItemsController < ApplicationController
     @review = @item.reviews.build
     @prices = @item.prices
     @pictures = Picture.where(item_id: @item.id)
-    @transaction_dne = Transaction.where("transactions.buyer_id = #{current_user.id}  \
-    AND (transactions.status != 'Completed')").nil?
+    if user_signed_in?
+      @transaction_dne = Transaction.where("transactions.buyer_id = #{current_user.id}  \
+      AND (transactions.status != 'Completed') AND (transactions.item_id = #{@item.id})").empty?
 
-    @reviewable = !Transaction.where("(transactions.seller_id = #{current_user.id} OR transactions.buyer_id = #{current_user.id}) \
-    AND (transactions.status != 'Denied')").nil?
+      @reviewable = !Transaction.where("(transactions.buyer_id = #{current_user.id}) \
+      AND (transactions.status != 'Denied') AND (transactions.item_id = #{@item.id})").empty?
+    else
+      @transaction_dne = false
+      @reviewable = false
+    end
 
     if current_user
      @rating = current_user.ratings.find_by(:item => @item)

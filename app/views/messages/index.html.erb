@@ -61,14 +61,13 @@ $(document).on('ready page:load', function() {
       </div>
     </div>
       <%= form_for [@conversation, @message] do |f| %>
-      <div class="reply-field"
-        <div class="field">
-          <%= f.text_area :body, :placeholder => "Type your message here. Refresh your browser to check for new messages.", class: "form-control" %>
-          <%= f.text_field :user_id, value: current_user.id, type: "hidden"%>
-          <%= f.submit "Send", class: "reply_btn" %>
+        <div class="reply-field">
+            <%= f.text_area :body, :placeholder => "Type your message here. Refresh your browser to check for new messages.", class: "form-control" %>
+            <%= f.text_field :user_id, value: current_user.id, type: "hidden"%>
+            <%= f.submit "Send", class: "reply_btn", data: {disable_with: "Sending..."} %>
         </div>
       <% end %>
-      </div>
+  </div>
 
       <div class="request-box">
         <% if @transaction.seller_id == current_user.id %> <!--condition to see if current user is also the seller-->
@@ -102,7 +101,7 @@ $(document).on('ready page:load', function() {
         <% elsif @transaction.buyer_id == current_user.id %>
           <p id ="cancel"> Need to Cancel?
             <span style="text-decoration: underline; color: #FF2641">
-              <%= link_to 'Click Here', cancel_path(id: @transaction.id), class: "delete-item", data: {confirm: "Are you sure you want to delete this Item?"}  %>
+              <%= link_to 'Click Here', contact_path %>
             </span>
           </p>
         <% end %>

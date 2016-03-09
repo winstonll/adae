@@ -154,12 +154,26 @@
      background-position: right;
    }
 
+   #user_email::-moz-placeholder {
+    background-image:url(<%= asset_path 'email.png' %>);
+    background-repeat: no-repeat;
+    background-size: 18px 18px;
+    background-position: 220px 12px;
+  }
+
    #password::-webkit-input-placeholder {
     background-image:url(<%= asset_path 'lock_2.png' %>);
     background-repeat: no-repeat;
     background-size: 16px 18px;
     background-position: right;
   }
+
+  #password::-moz-placeholder {
+   background-image:url(<%= asset_path 'lock_2.png' %>);
+   background-repeat: no-repeat;
+   background-size: 16px 18px;
+   background-position: 220px 12px;
+ }
 }
 
 .modal-backdrop {
@@ -168,7 +182,6 @@
   right: 0;
   bottom: 0;
   left: 0;
-  z-index: 0;
   background-color: #000;
 }
 .modal-backdrop.in {
@@ -217,13 +230,14 @@
       margin-top: 1em;
         .signup-input {
 
+          .input-referral,
           .input-username,
           .input-password {
             display: inline-block;
             margin: .6em 0 0 0 ;
 
 
-            .input-box {
+            .input-box{
               height: 40px;
               width: 225px;
               margin: auto;
@@ -236,14 +250,27 @@
               padding-right: .5em;
               border: 1px solid #929292;
             }
+
+            #promo{
+              border: 1px solid #7ED321;
+              color: #5AC902;
+            }
           }
 
-          #password::-webkit-input-placeholder {
+          #password::-webkit-input-placeholder{
            background-image:url(<%= asset_path 'lock_2.png' %>);
            background-repeat: no-repeat;
            background-size: 16px 18px;
            background-position: right;
          }
+
+         #password::-moz-placeholder{
+          background-image:url(<%= asset_path 'lock_2.png' %>);
+          background-repeat: no-repeat;
+          background-size: 16px 18px;
+          background-position: 220px 12px;
+
+        }
 
          #user_password_confirmation::-webkit-input-placeholder {
           background-image:url(<%= asset_path 'lock_2.png' %>);
@@ -252,12 +279,26 @@
           background-position: right;
         }
 
+        #user_password_confirmation::-moz-placeholder {
+         background-image:url(<%= asset_path 'lock_2.png' %>);
+         background-repeat: no-repeat;
+         background-size: 16px 18px;
+         background-position: 220px 12px;
+       }
+
          #username-input::-webkit-input-placeholder {
           background-image:url(<%= asset_path 'user_circle.png' %>);
           background-repeat: no-repeat;
           background-size: 18px 18px;
           background-position: right;
         }
+
+        #username-input::-moz-placeholder {
+         background-image:url(<%= asset_path 'user_circle.png' %>);
+         background-repeat: no-repeat;
+         background-size: 18px 18px;
+         background-position: 220px 12px;
+       }
 
         #user_surname::-webkit-input-placeholder {
          background-image:url(<%= asset_path 'user_circle.png' %>);
@@ -266,12 +307,28 @@
          background-position: right;
        }
 
-       #user_email::-webkit-input-placeholder {
+       #user_surname::-moz-placeholder {
+        background-image:url(<%= asset_path 'user_circle.png' %>);
+        background-repeat: no-repeat;
+        background-size: 18px 18px;
+        background-position: 220px 12px;
+      }
+
+       #user_email::-webkit-input-placeholder{
         background-image:url(<%= asset_path 'email.png' %>);
         background-repeat: no-repeat;
         background-size: 18px 18px;
         background-position: right;
       }
+
+      #user_email::-moz-placeholder{
+       background-image:url(<%= asset_path 'email.png' %>);
+       background-repeat: no-repeat;
+       background-size: 18px 18px;
+       background-position: 220px 12px;
+     }
+
+
 
 
         }
@@ -315,7 +372,7 @@
         #sign-up-text{
           text-align: left;
           font-weight: normal;
-          margin: 5px 0 5px 0;
+          margin: 8px 0 8px 0;
           font-size: 12px;
           color: #4a4a4a;
           a { color: #419bf9 !important;

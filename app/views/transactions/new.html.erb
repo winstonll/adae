@@ -49,13 +49,13 @@
 
   <div style="display: table; margin:auto; line-height: normal; color: #4a4a4a; margin-bottom: -20px;">
     <h1 style="font-weight: 600; text-align: left; margin-bottom: 10px; margin-top: 1em;">Payment</h1>
-    <span>The owner will not receive your money until the unique Transaciton </br> QR Code on his/her phone is scanned by you when you two meet.</span>
+    <span>The owner will not receive your money until the unique Transaction </br> QR Code on his/her phone is scanned by you when you two meet.</span>
   </div>
   </br>
   </br>
   </br>
   <div style="display: inline-block; width: 48%; vertical-align: top;">
-    <%= image_tag(@item.photo_url, size: "220x180") %>
+    <%= image_tag(@item.photo_url, class:'item-pic') %>
     <% unless @item.listing_type == "sell" %>
     <% end %>
   </div>
@@ -171,18 +171,7 @@
             <% end %>
         </div>
       <% end %>
-      <!--<div class="reply-field">
-        <%#= form_for Conversation.new do |c| %>
-          <%#= c.hidden_field :sender_id, :value =>current_user.id %>
-          <%#= c.hidden_field :recipient_id, :value =>@item.user.id %>
-          <%#= c.fields_for :messages do |m| %>
-
-            <%#= m.text_area :body, :placeholder => "Add a greeting for the owner, mention the time and day you would like to get started", class: "form-control" %>
-            <%#= m.text_field :user_id, value: current_user.id, type: "hidden"%>
-            <%#= m.submit "Send", class: "reply_btn" %>
-          <%# end %>
-        <%# end %>
-      </div>-->
+      
       <center style="position: relative; left: 50%; margin-bottom: 3em;">
         <% if current_user.stripe_customer_id.nil? %>
           <%= form_tag transactions_stripe_path do%>
@@ -190,7 +179,6 @@
               data-key=<%= Rails.application.secrets.publishable_key %>
               data-email=<%= current_user.email %>
               data-description="Pay <%= @item.user.name %>"
-              data-amount=<%=((@fee).round(2)*100).to_i%>
               data-billingAddress="true">
             </script>
 
@@ -204,7 +192,7 @@
             <%= hidden_field_tag 'price', ((@item.prices.first.amount * 1.029) + 0.30) %>
             <%= hidden_field_tag 'duration' %>
 
-            <%= submit_tag 'Proceed to Check', class: "request-button", :onclick => "return validate_duration();"%>
+            <%= submit_tag 'Proceed to Check Out', class: "request-button", :onclick => "return validate_duration();"%>
           <% end %>
         <%end%>
       </center>
