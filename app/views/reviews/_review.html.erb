@@ -8,9 +8,9 @@
 
     <div class="poster">
       <% if review.user != nil %>
-         Posted by <span style="font-weight: 600;"><%= review.user.name %></span> on: <%= review.created_at %>
+         Posted by <span style="font-weight: 600;"><%= review.user.name %></span> on: <%= review.created_at.strftime('%d %b %Y') %>
       <% else %>
-        Posted by <span style="font-weight: 600;"><%= review.name %></span>on: <%= review.created_at %>
+        Posted by <span style="font-weight: 600;"><%= review.name %></span>on: <%= review.created_at.strftime('%d %b %Y') %>
       <% end %>
     </div>
     <div class="divider"></div>

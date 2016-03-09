@@ -106,6 +106,7 @@ module Api::V1
               if product.listing_type == "rent" || product.listing_type == "timeoffer" || product.listing_type == "lease"
                 current_transaction.status = "In Progress"
               elsif product.listing_type == "sell"
+                product.status = "Sold"
                 current_transaction.status = "Completed"
               end
 
