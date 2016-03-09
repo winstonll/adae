@@ -83,9 +83,9 @@ html, body {
 }
 
 .toast-top-center {
-	top: 12px; 
-    left: 50%; 
-    margin-left: -150px; 
+	top: 42px; 
+    left: 50%;
+    margin-left: -150px;
 }
 
 #warning{
