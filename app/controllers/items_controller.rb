@@ -161,7 +161,8 @@ class ItemsController < ApplicationController
 
   def destroy
     @item = Item.find(params[:id])
-    @item.destroy
+    @item.status = "Deleted"
+    @item.save
     redirect_to user_path(current_user)
   end
 
