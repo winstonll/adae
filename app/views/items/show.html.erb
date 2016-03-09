@@ -125,6 +125,7 @@
       <div class="item-detail-username"><%= @item.user.full_name%>
         <%= link_to image_tag(@item.user.avatar.url(:med), class:"avatar"), user_path(@item.user) %>
       </div>
+      <div class="date">Listed On: <%= @item.created_at.strftime('%d %b %Y') %></div>
     </div>
     <div class="item-detail-description">
       <div class="item-description">
