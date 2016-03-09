@@ -1,11 +1,17 @@
 class ContactMailer < ActionMailer::Base
 
   default :from => "mail@adae.co"
-  default :to => "winston@adae.co"
 
-  def new_message(contact)
+  def contact_message(contact)
     @contact = contact
-    mail(:subject => "Adae.co #{contact.subject}")
+    mail(to: "winston@adae.co", :subject => "Adae.co #{contact.subject}")
+  end
+
+  def new_message(user, message)
+    @user = user
+    @message = message
+    @other = User.find_by(id: @message.user_id)
+    mail(to: @user.email, subject: 'You have a new message in your inbox!')
   end
 
 end
