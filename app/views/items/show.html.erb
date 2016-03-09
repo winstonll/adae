@@ -2,15 +2,12 @@
 <script>
   $(document).ready(function() {
     $(".photos").css("width", $(".photo-container").width() / "<%= @pictures.count + 0.017 %>");
-        <%#asd%>
+
     <% if user_signed_in? && @item.user_id == current_user.id %>
       $('.request-button').bind('click', false);
       $('.request-button').css("background-color", "#D5D5D5");
       $('.request-button').css("cursor", "default");
-
-    <% end %>
-    
-    <% if !@transaction_dne && user_signed_in?  %>
+    <% elsif !@transaction_dne && user_signed_in? %>
       $('.request-button')[0].innerHTML = "Unavailable";
       $('.request-button').bind('click', false);
       $('.request-button').css("background-color", "#D5D5D5");
