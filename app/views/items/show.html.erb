@@ -107,14 +107,6 @@
             <div class="price-breakdown" style="margin-top: 65px;">
               <span style="font-weight: 700; font-size: 20px; color:#000;">$<%= @prices.first.amount %></span> per <%= @prices.first.timeframe %>
             </div>
-          <!--<div class="item-detail-calc">
-            <input id="times" readonly="readonly" value=""></input>
-            <input id="length" readonly="readonly" value=""></input>
-            <input id="subtotal" readonly="readonly" value=""></input>
-            <% unless @item.deposit == 0 %>
-              <input class="trust-fee"readonly="readonly" value="Trust Fee: $<%= @item.deposit %>"></input>
-            <% end %>
-          </div>-->
           <%= link_to 'Request Service', new_transaction_path(:item_id => @item.id), class: "request-button", id: "service-button"%>
         </div>
       <% end %>
@@ -135,61 +127,52 @@
       </div>
     </div>
 </div>
-
-<!--commented out for now <div class="gallery-container">
-  <% @pictures.each do |picture| %>
-    <div class="photo-grid">
-      <%= link_to image_tag(picture.image.url(:med), class:"gallery-photo"), picture.image.url%>
-    </div>
-  <% end %>
-</div>-->
-
-
-
-<div class="rating-container">
-  <div class="overall-rating">
-    <div class="rating-score">
-      <p>Rating Score:</p>
-    <% if @item.ratings.present? %>
-      <p class="score"><%= @item.total_score %>/5</p>
-    <% else %>
-    </div>
-    <% end %>
-  </div>
-
-  <div class="rating-by-user">
-    <% if present_or_rated?(@item) %>
-    <div class="rating-info">
-      <p>My Rating</p>
-      <p class="rating"><%= @item.ratings_by_user(current_user) %>/5</p>
-      <%= link_to "Edit", edit_item_rating_path(@item, @rating) %>
-    </div>
-    <% else %>
-      <p class="prompt">No Ratings yet - be the first to leave a rating!</p>
-      <%= link_to "Add a Rating", new_item_rating_path(@item),class: "add-a-rating" %>
-    <% end %>
-  </div>
-</div>
-
-  <%= form_for([@item, @review],:remote => true) do |f| %>
-
-<div class="review-list">
-  <div class="create_review-fields">
-    <div id='review-errors'>
-      <% if @review.errors.any? %>
-      <%= render partial: 'reviews/review_errors' %>
+  <div class="rating-container">
+    <div class="overall-rating">
+      <div class="rating-score">
+        <p>Rating Score:</p>
+      <% if @item.ratings.present? %>
+        <p class="score"><%= @item.total_score %>/5</p>
+      <% else %>
+      </div>
       <% end %>
     </div>
 
-    <div class="field">
-      <%= f.label :name, 'Write a Review'%>
-      <%= f.text_area :comment, :placeholder => 'Say something about this listing'%>
+    <div class="rating-by-user">
+      <% if present_or_rated?(@item) %>
+      <div class="rating-info">
+        <p>My Rating</p>
+        <p class="rating"><%= @item.ratings_by_user(current_user) %>/5</p>
+        <%= link_to "Edit", edit_item_rating_path(@item, @rating) %>
+      </div>
+      <% elsif signed_in? %>
+        <p class="prompt">No Ratings yet - be the first to leave a rating!</p>
+        <%= link_to "Add a Rating", new_item_rating_path(@item),class: "add-a-rating" %>
+      <% else %>
+      <% end %>
     </div>
-    <div class="review-submit">
-      <%= f.submit 'Create Review', :class => 'review-button' %>
-    </div>
-    <% end %>
   </div>
+<% if signed_in? %>
+  <%= form_for([@item, @review],:remote => true) do |f| %>
+    <div class="review-area">
+      <div class="create_review-fields">
+        <div id='review-errors'>
+          <% if @review.errors.any? %>
+          <%= render partial: 'reviews/review_errors' %>
+          <% end %>
+        </div>
+        <div class="field">
+          <%= f.label :name, 'Write a Review'%>
+          <%= f.text_area :comment, :placeholder => 'Say something about this listing'%>
+        </div>
+        <div class="review-submit">
+          <%= f.submit 'Create Review', :class => 'review-button' %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+<% end %>
+<div class="review-list">
   <div class="review-content">
     <div class="item-reviews">Reviews for <em><%= @item.title %> </em></div>
     <%= render @item.reviews.order("created_at DESC") %>
