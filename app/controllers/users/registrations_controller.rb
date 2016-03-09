@@ -8,10 +8,13 @@ class Users::RegistrationsController < Devise::RegistrationsController
     @referral = Referral.new()
 
     loop do
-			@code = SecureRandom.base64(5)
+      @code=SecureRandom.hex(8).upcase
+      [4,9,14].each do |f|
+        r.insert(f, "-")
+      end
 			break @referral.code = @code unless Referral.where(code: @code).first
 		end
-    
+
     @referral.amount = 5.00
     @referral.user_id = @user.id
     @referral.save
