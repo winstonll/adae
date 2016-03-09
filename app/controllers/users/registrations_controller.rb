@@ -3,16 +3,17 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   def create
 
+    @user = User.new(user_params)
+
     if !params[:referral].empty?
       if referral_check = Referral.where(code: params[:referral]).first
         @referred = Referred.new(provider: referral_check.user_id)
+        @user.balance = referral_check.amount
       else
         redirect_to :back, alert: "Referral Code is incorrect"
         return false
       end
     end
-
-    @user = User.new(user_params)
 
     if @user.save
 
