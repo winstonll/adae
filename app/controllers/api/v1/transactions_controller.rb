@@ -124,6 +124,11 @@ module Api::V1
               current_transaction.save
 
               render nothing: true, status: 204
+            else
+              render json: {
+                error: "Sorry invalid QR code.",
+                status: 400
+              }, status: 400
             end
           else
             render json: {
