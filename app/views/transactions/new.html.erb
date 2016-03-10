@@ -97,7 +97,6 @@
 
                   <% unless @item.deposit == 0 %>
                   <input class="trust-fee"readonly="readonly" value="Trust Fee: $<%= @item.deposit %>"></input>
-                    <!-- This ensures that the item is treated with care, and is returned on time.This amount will be charged only if you fail to return the item, damate it, or lose it -->
                   <input class="deposit" readonly="readonly" value="$<%= @item.deposit %>"></input>
                   <div class="trust-fee-text"> This ensures that the item is treated with care and is returned on time. <b style="font-weight: 600;">This amount will be charged only if you fail to return the item, damage it, or lose it.</b></div>
                   <% end %>
@@ -129,8 +128,7 @@
               <input id="subtotal" readonly="readonly" value=""></input>
 
               <% unless @item.deposit == 0 %>
-                <input class="trust-fee"readonly="readonly" value="Trust Fee: $<%= @item.deposit %>"></input>
-                <!-- This ensures that the item is treated with care, and is returned on time.This amount will be charged only if you fail to return the item, damate it, or lose it -->
+                <input class="trust-fee"readonly="readonly" value="Trust Fee: $<%= @item.deposit %>"></inp
                 <input class="deposit" readonly="readonly" value="$<%= @item.deposit %>"></input>
                 <div class="trust-fee-text"> This ensures that the item is treated with care and is returned on time. <b style="font-weight: 600;">This amount will be charged only if you fail to return the item, damage it, or lose it.</b></div>
               <% end %>
@@ -159,7 +157,6 @@
               <input id="subtotal" readonly="readonly" value=""></input>
                 <% unless @item.deposit == 0 %>
                   <input class="trust-fee"readonly="readonly" value="Trust Fee: $<%= @item.deposit %>"></input>
-                    <!-- This ensures that the item is treated with care, and is returned on time.This amount will be charged only if you fail to return the item, damate it, or lose it -->
                   <input class="deposit" readonly="readonly" value="$<%= @item.deposit %>"></input>
                 <% end %>
                 <p class ="credit-fee">Credit Card Processing Fee:$<%= number_with_precision(@fee, :precision => 2)%></p>
