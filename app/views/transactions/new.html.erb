@@ -168,7 +168,7 @@
             <% end %>
         </div>
       <% end %>
-      
+
       <center style="position: relative; left: 50%; margin-bottom: 3em;">
         <% if current_user.stripe_customer_id.nil? %>
           <%= form_tag transactions_stripe_path do%>
@@ -189,7 +189,7 @@
             <%= hidden_field_tag 'price', ((@item.prices.first.amount * 1.029) + 0.30) %>
             <%= hidden_field_tag 'duration' %>
 
-            <%= submit_tag 'Proceed to Check Out', class: "request-button", :onclick => "return validate_duration();"%>
+            <%= submit_tag 'Send Payment', class: "request-button", :onclick => "return validate_duration();"%>
           <% end %>
         <%end%>
       </center>

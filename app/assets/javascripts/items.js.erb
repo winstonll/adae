@@ -41,13 +41,18 @@ function validate_user_form_and_submit(){
   var day_hour = $('#item_prices_attributes_0_amount').length > 0
   var week =  $('#item_prices_attributes_1_amount').length > 0
   var month =  $('#item_prices_attributes_2_amount').length > 0
+  var images = $('#images_').val();
   var price = false;
+
+  if ($('#images_').length == 0) {
+    images = true;
+  }
 
   price = day_hour ? ( price || ( parseFloat($('#item_prices_attributes_0_amount').val()) > 0 && $('#item_prices_attributes_0_amount').val() ) ) : price;
   price = week ? ( price || ( parseFloat($('#item_prices_attributes_1_amount').val()) > 0 && $('#item_prices_attributes_1_amount').val() ) ) : price;
   price = month ? ( price || ( parseFloat($('#item_prices_attributes_2_amount').val()) > 0 && $('#item_prices_attributes_2_amount').val() ) ) : price;
 
-  if ( postal_code && tags && title && summary && price) {
+  if ( postal_code && tags && title && summary && price && images) {
     return true;
   } else {
     var error_message = "";
@@ -89,6 +94,14 @@ function validate_user_form_and_submit(){
         error_message += ", Price is empty"
       } else {
         error_message += "Price is empty"
+      }
+    }
+
+    if (!images){
+      if (error_message){
+        error_message += ", Please select an Image"
+      } else {
+        error_message += "Please select an Image"
       }
     }
 
