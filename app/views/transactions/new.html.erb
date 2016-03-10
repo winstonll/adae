@@ -1,5 +1,11 @@
 <%= stylesheet_link_tag "transactions" %>
 <script>
+  var hash = {};
+
+    <% @prices.each do |price| %>
+        hash['<%= price.timeframe%>'] = <%= price.amount%>;
+    <% end %>
+
   function qtyLength() {
     var lngth = $('select[name="transaction[length]"] option:selected').val();
     var qty = $('#qty').val();
@@ -16,8 +22,11 @@
 
   function updateQty() {
     qtyLength();
+    var length = $('#transaction_length').val();
+    var amt = hash[length];
+    $('#amt').val('$ ' + amt + ' x');
     var qty = $('#qty').val();
-    var total = (<%= @prices.first.amount %> * qty);
+    var total = (amt * qty);
     var fee = ((total * 0.029) + 0.30);
     $('#subtotal').val('$' + total);
     total = (total + fee).toFixed(2);
@@ -30,6 +39,9 @@
 
   function updateLength() {
     qtyLength();
+    var length = $('#transaction_length').val();
+    var amt = hash[length];
+    $('#amt').val('$ ' + amt + ' x');
   }
 
   function validate_duration() {
@@ -86,11 +98,11 @@
           <p class="how-long">How long would you like to lease this?</p>
             <%= form_for Transaction.new, html: {multipart: true}  do |f| %>
               <input id="qty" name="quantity" min="1" max="30" type="number" onChange="updateQty()"></input>
-              <span><%= f.select :length,[["Day"],["Week"],["Month"]], :onChange=>"updateLength();"%></span>
+              <span><%= f.select :length, @type_dropdown, :onChange=>"updateLength();"%></span>
 
               <div class="division"></div>
               <div class="item-detail-calc">
-                  <input class="amount" readonly="readonly" value="$<%= @prices.first.amount %> x"></input>
+                  <input id="amt" class="amount" readonly="readonly" value=""></input>
                   <input id="times" readonly="readonly" value=""></input>
                   <input id="length" readonly="readonly" value=""></input>
                   <input id="subtotal" readonly="readonly" value=""></input>
@@ -117,11 +129,11 @@
           <p class="how-long">How long would you like to rent this?</p>
           <%= form_for Transaction.new, html: {multipart: true}  do |f| %>
             <input id="qty" name="quantity" min="1" max="30" type="number" onChange="updateQty()"></input>
-            <span><%= f.select :length,[["Day"],["Week"],["Month"]], :onChange=>"updateLength();"%></span>
+            <span><%= f.select :length, @type_dropdown, :onChange=>"updateLength();"%></span>
 
             <div class="division"></div>
             <div class="item-detail-calc">
-              <input class="amount" readonly="readonly" value="$<%= @prices.first.amount %> x"></input>
+              <input id="amt" class="amount" readonly="readonly" value=""></input>
               <input id="times" readonly="readonly" value=""></input>
               <input id="length" readonly="readonly" value=""></input>
               <input id="subtotal" readonly="readonly" value=""></input>
@@ -150,7 +162,7 @@
 
             <div class="division"></div>
             <div class="item-detail-calc" style="margin-bottom: 15px;">
-              <input class="amount" readonly="readonly" value="$<%= @prices.first.amount %> x"></input>
+              <input id="amt" class="amount" readonly="readonly" value=""></input>
               <input id="times" readonly="readonly" value=""></input>
               <input id="length" readonly="readonly" value=""></input>
               <input id="subtotal" readonly="readonly" value=""></input>
