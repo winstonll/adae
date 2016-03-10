@@ -1,123 +1,126 @@
+$(document).ready(function() {
 // Make sure the add answer button is showing
-$("#add-tag-button").css("display", "inline-block");
+  $("#add-tag-button").css("display", "inline-block");
 
-var tagBoxCounter = 4;
-var MAX_BOX_COUNT = 6;
+  var tagBoxCounter = 4;
+  var MAX_BOX_COUNT = 6;
 
-$("#add-tag-button").click(function() {
-  // add another tag text box when clicked under existing text box.
-  var newBoxNumber = tagBoxCounter + 1;
+  $("#add-tag-button").click(function() {
+    // add another tag text box when clicked under existing text box.
+    var newBoxNumber = tagBoxCounter + 1;
 
-  if (newBoxNumber <= MAX_BOX_COUNT) {
-    var newHtml = '<input type="text" name="tag_box_' + newBoxNumber +'" id="tag-box-' + newBoxNumber +'" class="tag-box" >';
+    if (newBoxNumber <= MAX_BOX_COUNT) {
+      var newHtml = '<input type="text" name="tag_box_' + newBoxNumber +'" id="tag-box-' + newBoxNumber +'" class="tag-box" >';
 
-    $(".tag-input-box").append(newHtml);
-    tagBoxCounter++;
-  } else {
-    $("#add-tag-button").css("display", "none");
-  }
-});
+      $(".tag-input-box").append(newHtml);
+      tagBoxCounter++;
+    } else {
+      $("#add-tag-button").css("display", "none");
+    }
+  });
 
-$('#new_review').on('ajax:beforeSend', function(){
-   $('input[type=submit]').val('Saving....').attr('disabled','disabled');
-});
+  $('#new_review').on('ajax:beforeSend', function(){
+     $('input[type=submit]').val('Saving....').attr('disabled','disabled');
+  });
 
-$('#new_review').on('ajax:complete', function(){
-   $('input[type=submit]').val('Create Review').removeAttr('disabled');
-});
+  $('#new_review').on('ajax:complete', function(){
+     $('input[type=submit]').val('Create Review').removeAttr('disabled');
+  });
 
-function updateCountdown() {
-  // 140 is the max message length
-  var remaining = 500 - jQuery('#item_description').val().length;
-  $('.countdown').text(remaining + ' characters remaining.');
-}
-
-function validate_user_form_and_submit(){
-
-  var postal_code = /^[A-Za-z]\d[A-Za-z]\s?\d[A-Za-z]\d$/.test($('#item_postal_code').val());
-  var tags = $('#tag-box-1')[0].value;
-  var title = $('#item_title')[0].value;
-  var summary = $('#item_description')[0].value;
-  var day_hour = $('#item_prices_attributes_0_amount').length > 0
-  var week =  $('#item_prices_attributes_1_amount').length > 0
-  var month =  $('#item_prices_attributes_2_amount').length > 0
-  var images = $('#images_').val();
-  var price = false;
-
-  if ($('#images_').length == 0) {
-    images = true;
+  function updateCountdown() {
+    // 140 is the max message length
+    var remaining = 500 - jQuery('#item_description').val().length;
+    $('.countdown').text(remaining + ' characters remaining.');
   }
 
-  price = day_hour ? ( price || ( parseFloat($('#item_prices_attributes_0_amount').val()) > 0 && $('#item_prices_attributes_0_amount').val() ) ) : price;
-  price = week ? ( price || ( parseFloat($('#item_prices_attributes_1_amount').val()) > 0 && $('#item_prices_attributes_1_amount').val() ) ) : price;
-  price = month ? ( price || ( parseFloat($('#item_prices_attributes_2_amount').val()) > 0 && $('#item_prices_attributes_2_amount').val() ) ) : price;
+  function validate_user_form_and_submit(event){
+    var postal_code = /^[A-Za-z]\d[A-Za-z]\s?\d[A-Za-z]\d$/.test($('#item_postal_code').val());
+    var tags = $('#tag-box-1')[0].value;
+    var title = $('#item_title')[0].value;
+    var summary = $('#item_description')[0].value;
+    var day_hour = $('#item_prices_attributes_0_amount').length > 0
+    var week =  $('#item_prices_attributes_1_amount').length > 0
+    var month =  $('#item_prices_attributes_2_amount').length > 0
+    var images = $('#images_').val();
+    var price = false;
 
-  if ( postal_code && tags && title && summary && price && images) {
-    return true;
-  } else {
-    var error_message = "";
-
-    if(!postal_code){
-      if (error_message){
-        error_message += ", Postal Code in the wrong format"
-      } else {
-        error_message += "Postal Code in the wrong format"
-      }
+    if ($('#images_').length == 0) {
+      images = true;
     }
 
-    if (!tags){
-      if (error_message){
-        error_message += ", Tags are empty"
-      } else {
-        error_message += "Tags are empty"
+    price = day_hour ? ( price || ( parseFloat($('#item_prices_attributes_0_amount').val()) > 0 && $('#item_prices_attributes_0_amount').val() ) ) : price;
+    price = week ? ( price || ( parseFloat($('#item_prices_attributes_1_amount').val()) > 0 && $('#item_prices_attributes_1_amount').val() ) ) : price;
+    price = month ? ( price || ( parseFloat($('#item_prices_attributes_2_amount').val()) > 0 && $('#item_prices_attributes_2_amount').val() ) ) : price;
+
+    if ( postal_code && tags && title && summary && price && images) {
+      return true;
+    } else {
+      var error_message = "";
+
+      if(!postal_code){
+        if (error_message){
+          error_message += ", Postal Code in the wrong format"
+        } else {
+          error_message += "Postal Code in the wrong format"
+        }
       }
-    }
 
-    if (!title){
-      if (error_message){
-        error_message += ", Title is empty"
-      } else {
-        error_message += "Title is empty"
+      if (!tags){
+        if (error_message){
+          error_message += ", Tags are empty"
+        } else {
+          error_message += "Tags are empty"
+        }
       }
-    }
 
-    if (!summary){
-      if (error_message){
-        error_message += ", Summary is empty"
-      } else {
-        error_message += "Summary is empty"
+      if (!title){
+        if (error_message){
+          error_message += ", Title is empty"
+        } else {
+          error_message += "Title is empty"
+        }
       }
-    }
 
-    if (!price){
-      if (error_message){
-        error_message += ", Price is empty"
-      } else {
-        error_message += "Price is empty"
+      if (!summary){
+        if (error_message){
+          error_message += ", Summary is empty"
+        } else {
+          error_message += "Summary is empty"
+        }
       }
-    }
 
-    if (!images){
-      if (error_message){
-        error_message += ", Please select an Image"
-      } else {
-        error_message += "Please select an Image"
+      if (!price){
+        if (error_message){
+          error_message += ", Price is empty"
+        } else {
+          error_message += "Price is empty"
+        }
       }
+
+      if (!images){
+        if (error_message){
+          error_message += ", Please select an Image"
+        } else {
+          error_message += "Please select an Image"
+        }
+      }
+
+      toastr.options ={
+        'timeOut': "6000",
+        'extendedTimeOut': "2000",
+        "positionClass": 'toast-top-left'
+      };
+
+      toastr.error(error_message);
+
+      event.preventDefault();
     }
-
-    toastr.options ={
-      'timeOut': "6000",
-      'extendedTimeOut': "2000",
-      "positionClass": 'toast-top-left'
-    };
-
-    toastr.error(error_message);
-
-    event.preventDefault();
   }
-}
 
-$(function(){ // this will be called when the DOM is ready
+  $('.submit-listing').click(function(event){
+    validate_user_form_and_submit(event);
+  });
+
   $('#item_description').keyup(function(){
     $('.countdown').text( '1 characters remaining.');
     updateCountdown();
@@ -126,4 +129,5 @@ $(function(){ // this will be called when the DOM is ready
   $('#item_description').change(function(){
     updateCountdown();
   });
+
 });
