@@ -52,7 +52,7 @@
 
 		<div class="new-item-form">
 			<%= f.label :summary %>
-			<%= f.text_area :description, :maxlength=> "500", :placeholder => "Tell people about the qualities and highlights of your listing. You can include as many details as you'd like." %>
+			<%= f.text_area :description, :maxlength=> "500", :placeholder => "Include as much detail as possible, because potential customers can only contact you when they send a request with a valid Credit Card." %>
 
       <label class="countdown">500 characters remaining</label>
 		</div>
@@ -93,7 +93,7 @@
       				<p class="deposit-tip">
       				  <b>Rental Price:</b></br>
       				  Set how much you want to charge for any or all of the timeframes</br>
-      				  in the boxes below,leave the box blank if the timeframe is not</br>
+      				  in the boxes below, leave the box blank if the timeframe is not</br>
       				  applicable.</br>
       				  Example: $10 per day, $60 per week and/or $200 per month.
       				</p>
@@ -122,10 +122,10 @@
   	          	<div class="deposit-tip">
   		          	This ensures that the item is treated with care, and is returned on time. </br>
   		          	This amount will be charged only if the other party fails to return the item, damage it, or lose it.</br></br>
-  		          	After the rental period, your customer may request to buy this item.</br>
-  		          	The Deposit Price will double as the Sale Price.</br>
+  		          	During the rental period, your customer may request to buy this item.</br>
+  		          	The Deposit Price will become the Sale Price.</br>
   		          	Their rental fees will be
-  		            credited towards the purchase.
+  		            deducted from the Sale Price.
   	            </div>
       	      <% else %>
   	          	<p id="deposit-title"> Deposit Price</p>
