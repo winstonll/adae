@@ -70,7 +70,7 @@
           <% else %>
             <p style="font-size: 30px; font-weight: 500; color: #4a4a4a;">$<%= @item.deposit %></p>
           <% end %>
-          <p class ="credit-fee">Credit Card Processing Fee: $<%= number_with_precision(@fee, :precision => 2)%></p>
+          <p class ="credit-fee"><a target="_blank" href="https://stripe.com/ca/pricing" style=" color: #419bf9; margin-right: 40px; text-decoration: underline;">Stripe Processing Fee:</a>$<%= number_with_precision(@fee, :precision => 2)%></p>
           <div class="division" style=" width: 86%;"></div>
           <span class="finalp">Total</span>
           <% unless params[:sell] == "true" %>
@@ -97,10 +97,9 @@
 
                   <% unless @item.deposit == 0 %>
                   <input class="trust-fee"readonly="readonly" value="Trust Fee: $<%= @item.deposit %>"></input>
-                  <input class="deposit" readonly="readonly" value="$<%= @item.deposit %>"></input>
                   <div class="trust-fee-text"> This ensures that the item is treated with care and is returned on time. <b style="font-weight: 600;">This amount will be charged only if you fail to return the item, damage it, or lose it.</b></div>
                   <% end %>
-                  <p class ="credit-fee">Credit Card Processing Fee: $<%= number_with_precision(@fee, :precision => 2)%></p>
+                  <p class ="credit-fee"><a target="_blank" href="https://stripe.com/ca/pricing">Stripe Processing Fee:</a>$<%= number_with_precision(@fee, :precision => 2)%></p>
                   <div class="division" style=" width: 86%;"></div>
                   <div style="font-size: 12px; margin:15px 10px 15px 21px; line-height: normal; color: #4a4a4a; width: 88%;">
                     Pay a rental fee to try the item, and if you like it you can buy the item for the Trust Fee price. Your rental fees will count towards the final sale price.
@@ -132,7 +131,7 @@
                 <input class="deposit" readonly="readonly" value="$<%= @item.deposit %>"></input>
                 <div class="trust-fee-text"> This ensures that the item is treated with care and is returned on time. <b style="font-weight: 600;">This amount will be charged only if you fail to return the item, damage it, or lose it.</b></div>
               <% end %>
-              <p class ="credit-fee">Credit Card Processing Fee: $<%= number_with_precision(@fee, :precision => 2)%></p>
+              <p class ="credit-fee"><a target="_blank" href="https://stripe.com/ca/pricing">Stripe Processing Fee:</a>$<%= number_with_precision(@fee, :precision => 2)%></p>
               <div class="division" style=" width: 85%;"></div>
               <span class="finalp">Total</span>
               <%= f.text_field :total_price, :value => "",:readonly => true %>
@@ -159,7 +158,7 @@
                   <input class="trust-fee"readonly="readonly" value="Trust Fee: $<%= @item.deposit %>"></input>
                   <input class="deposit" readonly="readonly" value="$<%= @item.deposit %>"></input>
                 <% end %>
-                <p class ="credit-fee">Credit Card Processing Fee:$<%= number_with_precision(@fee, :precision => 2)%></p>
+                <p class ="credit-fee"><a target="_blank" href="https://stripe.com/ca/pricing">Stripe Processing Fee:</a>$<%= number_with_precision(@fee, :precision => 2)%></p>
               <div class="division" style="width: 85%;"></div>
               <span class="finalp">Total</span>
               <%= f.text_field :total_price, :value => "",:readonly => true %>

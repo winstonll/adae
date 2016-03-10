@@ -17,7 +17,9 @@ class ItemsController < ApplicationController
     @review = @item.reviews.build
     @prices = []
 
-    if @item.listing_type != 'sell'
+    if ['sell', 'timeoffer'].include? @item.listing_type
+      @prices = @item.prices
+    else
       if price = @item.prices.where(timeframe: "Day").first
         @prices.push(price)
       end
@@ -29,8 +31,6 @@ class ItemsController < ApplicationController
       if price = @item.prices.where(timeframe: "Month").first
         @prices.push(price)
       end
-    else
-      @prices = @item.prices
     end
 
     @pictures = Picture.where(item_id: @item.id)
