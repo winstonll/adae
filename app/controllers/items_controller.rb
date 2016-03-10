@@ -15,7 +15,20 @@ class ItemsController < ApplicationController
   def show
     @item = Item.find(params[:id])
     @review = @item.reviews.build
-    @prices = @item.prices
+    @prices = []
+
+    if price = @item.prices.where(timeframe: "Day").first
+      @prices.push(price)
+    end
+
+    if price = @item.prices.where(timeframe: "Week").first
+      @prices.push(price)
+    end
+
+    if price = @item.prices.where(timeframe: "Month").first
+      @prices.push(price)
+    end
+
     @pictures = Picture.where(item_id: @item.id)
     if user_signed_in?
       @transaction_dne = Transaction.where(" (transactions.status != 'Completed') \
