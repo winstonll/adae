@@ -4,7 +4,7 @@ class Picture < ActiveRecord::Base
 
   validates :image,
     attachment_content_type: { content_type: /\Aimage\/.*\Z/ },
-    attachment_size: { less_than: 5.megabytes }
+    attachment_size: { less_than: 15.megabytes }
 
   has_attached_file :image,
     :path => ":rails_root/public/system/images/:id/:filename",
