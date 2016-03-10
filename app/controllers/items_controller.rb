@@ -17,7 +17,7 @@ class ItemsController < ApplicationController
     @review = @item.reviews.build
     @prices = []
 
-    if ['sell', 'timeoffer'].include? @item.listing_type
+    if ['sell', 'timeoffer'].include?(@item.listing_type)
       @prices = @item.prices
     else
       if price = @item.prices.where(timeframe: "Day").first
