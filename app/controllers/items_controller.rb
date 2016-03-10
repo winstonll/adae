@@ -17,16 +17,20 @@ class ItemsController < ApplicationController
     @review = @item.reviews.build
     @prices = []
 
-    if price = @item.prices.where(timeframe: "Day").first
-      @prices.push(price)
-    end
+    if @item.listing_type != 'sell'
+      if price = @item.prices.where(timeframe: "Day").first
+        @prices.push(price)
+      end
 
-    if price = @item.prices.where(timeframe: "Week").first
-      @prices.push(price)
-    end
+      if price = @item.prices.where(timeframe: "Week").first
+        @prices.push(price)
+      end
 
-    if price = @item.prices.where(timeframe: "Month").first
-      @prices.push(price)
+      if price = @item.prices.where(timeframe: "Month").first
+        @prices.push(price)
+      end
+    else
+      @prices = @item.prices
     end
 
     @pictures = Picture.where(item_id: @item.id)
