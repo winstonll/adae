@@ -8,6 +8,11 @@ class TransactionsController < ApplicationController
 	    @prices = @item.prices
 	    @pictures = Picture.where(item_id: @item.id)
 	    @fee = ((@prices.first.amount * 0.029) + 0.30)
+	    @type_dropdown = []
+
+	    @prices.each do |price|
+	    	@type_dropdown.push([price.timeframe])
+	    end
 	end
 
 	def stripe
