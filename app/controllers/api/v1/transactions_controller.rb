@@ -112,7 +112,7 @@ module Api::V1
 
               current_transaction.save
 
-              owner_amount = (((BigDecimal.new(params[:transactions][:balance]) - 0.3) / 1.029) * 0.9
+              owner_amount = ((BigDecimal.new(params[:transactions][:balance]) - 0.3) / 1.029) * 0.9
 
               seller.balance = seller.balance +  owner_amount
               seller.save
