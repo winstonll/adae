@@ -5,7 +5,7 @@ class UsersController < ApplicationController
   	before_action :correct_user,   only: [:edit, :update]
 
  	def show
- 	  @items = current_user.items
+ 	  @items = current_user.items.where(status: "Listed")
  	  @user = current_user
  	  @location = Location.find_by(user_id: @user)
  	end
