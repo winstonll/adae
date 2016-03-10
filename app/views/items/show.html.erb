@@ -17,15 +17,15 @@
 
   <% if !user_signed_in? %>
       toastr.options ={
-        'timeOut': "11000",
+        'timeOut': "30000",
         'extendedTimeOut': "2000",
-        "positionClass": 'toast-bottom-right'
+        "positionClass": 'toast-top-right'
       };
 
       var rent_text = " <br><span style='font-weight: 600; font-size: 20px;'>Why Adae?</span> <br><br> \
       <div style='line-height: normal;'> &#x2756; We ask for a credit card (securely via Stripe) before making a request; \
-      in return, no need to bring cash as NAME gets paid electronically. <br><br> \
-      &#x2756; Only when your request is accepted, will your card will be charged. <br><br>\
+      in return, no need to bring cash as NAME gets paid electronically. Security really matters to us. <br><br> \
+      &#x2756; Only when your request is accepted, will your card will be charged. NAME won't receive your money until you meet. <br><br>\
       &#x2756; We are always happy to help resolve disputes and issue refunds, whenever necessary.</div> <br>";
 
       toastr.info(rent_text);
