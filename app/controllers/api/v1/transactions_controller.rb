@@ -107,6 +107,7 @@ module Api::V1
                 current_transaction.status = "In Progress"
               elsif product.listing_type == "sell"
                 product.status = "Sold"
+                product.save
                 current_transaction.status = "Completed"
               end
 
