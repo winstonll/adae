@@ -51,9 +51,11 @@ class MessagesController < ApplicationController
   private
 
     def validate_access!
-      if !user_signed_in? || @conversation.sender_id != current_user.id || @conversation.recipient_id != current_user.id
+      @conversation = Conversation.find(params[:conversation_id])
+      
+      if !user_signed_in? || (@conversation.sender_id != current_user.id && @conversation.recipient_id != current_user.id)
         redirect_to items_path
-      end 
+      end
     end
 
     def message_params
