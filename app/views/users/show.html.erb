@@ -31,7 +31,9 @@
 				<div><%= request.total_price %></div>
 			  </div>
 			  <div class="request-link">
-			    <%= link_to 'Request Page', conversations_path(request), class: "request-path" %>
+			  	<% if request.status == "In Progress" || "Accepted" || "Pending" %>
+			    	<%= link_to 'Request Page', conversations_path(request), class: "request-path" %>
+			  	<% end %>
 			  </div>
 			</li>
 		  <% end %>
