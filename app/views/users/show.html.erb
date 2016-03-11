@@ -77,12 +77,11 @@
 		<div id= "listing-heading">My Listings </div>
 		<% if @items.present? %>
 			<% @items.each do |item| %>
-				<% itemout = Transaction.find_by(item_id: item.id) %>
-				OR
-				<% itemout = Transaction.where("(transactions.item_id = #{item.id})\ AND transactions.status = 'Completed' OR transactions.status = 'Denied' OR transactions.status = 'Cancelled'") %>
+				<% itemout = Transaction.where("(transactions.item_id = #{item.id}) \
+				 AND (transactions.status = 'Completed' OR transactions.status = 'Denied' OR transactions.status = 'Cancelled')") %>
 
 			<div class="listing-img">
-				<%=link_to imagde_tag(item.photo_url), item_path(item) %>
+				<%=link_to image_tag(item.photo_url), item_path(item) %>
 			</div>
 			<li class="listings">
 				<div class="item-title"> <%= link_to item.title, item_path(item)%> </div>
