@@ -33,7 +33,7 @@ class RatingsController < ApplicationController
   end
 
   def update
-      if @rating.update(rating_params)
+      if @rating.update_attributes(rating_params)
         redirect_to @item
       else
         render :edit
