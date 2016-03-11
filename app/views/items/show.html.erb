@@ -66,7 +66,7 @@
           <div class="item-detail-calc">
             <% unless @item.deposit == 0 %>
               <input class="trust-fee"readonly="readonly" value="Trust Fee: $<%= @item.deposit %>"></input>
-              <p class="trust-fee-text">This ensures that the item is treated with care, and is returned on time. <b style="font-weight: 500">This amount will be charged only if you fail to return the item, damage it, or lose it.</b> </p>
+              <p class="trust-fee-text">This ensures that the item is treated with care, and is returned on time. <b style="font-weight: 500"> This amount will be charged only if you fail to return the item, damage it, or lose it.</b> </p>
             <% end %>
             <div class="division-2"></div>
             <%= link_to 'Request to Lease', new_transaction_path(:item_id => @item.id), class: "request-button", id: "lease-button"%>
@@ -95,7 +95,7 @@
           <div class="item-detail-calc">
             <% unless @item.deposit == 0 %>
               <input class="trust-fee"readonly="readonly" value="Trust Fee: $<%= @item.deposit %>"></input>
-              <p class="trust-fee-text">This ensures that the item is treated with care, and is returned on time.<b style="font-weight: 500">This amount will be charged only if you fail to return the item, damage it, or lose it.</b> </p>
+              <p class="trust-fee-text">This ensures that the item is treated with care, and is returned on time.<b style="font-weight: 500"> This amount will be charged only if you fail to return the item, damage it, or lose it.</b> </p>
             <% end %>
             <div class="division-2"></div>
             <%= link_to 'Request to Rent', new_transaction_path(:item_id => @item.id), class: "request-button", id: "rent-button"%>

@@ -95,7 +95,7 @@ $(document).on('ready page:load', function() {
         <% if @transaction.seller_id == current_user.id && @transaction.status == 'Pending' %>
           <li class="listings">
       			<div class="item-edit-delete-buttons">
-      				<%= link_to 'Accept', accept_path(item: @item.id, transaction: @transaction.id),class: "edit-item" %>
+      				<%= link_to 'Accept', accept_path(item_id: @item.id, transaction: @transaction.id),class: "edit-item" %>
       				<%= link_to 'Decline', @transaction, method: :delete, class: "delete-item", data: {confirm: "Are you sure you want to decline this request?"}  %>
       			</div>
       		</li>

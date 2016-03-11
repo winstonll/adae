@@ -202,13 +202,13 @@
               data-billingAddress="true">
             </script>
 
-            <%= hidden_field_tag 'item', @item.id %>
+            <%= hidden_field_tag 'item_id', @item.id %>
             <%= hidden_field_tag 'price' %>
             <%= hidden_field_tag 'duration' %>
          <% end %>
         <% else %>
           <%= form_tag transactions_stripe_path do%>
-            <%= hidden_field_tag 'item', @item.id %>
+            <%= hidden_field_tag 'item_id', @item.id %>
             <%= hidden_field_tag 'price', ((@item.prices.first.amount * 1.029) + 0.30) %>
             <%= hidden_field_tag 'duration' %>
 

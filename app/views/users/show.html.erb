@@ -59,8 +59,8 @@
 			<li class="transactions">
 			  <div class="item-title">
 				<%= link_to item.title, item_path(transaction)%>
-				<div class="status"><%= transaction.status %></div>
-				<div class="price"><%= transaction.length %></div>
+				<div class="status">Status: <%= transaction.status %></div>
+				<div class="price">Price: $<%= transaction.length %></div>
 				<div class="length"><%= transaction.total_price %></div>
 			  </div>
 			</li>

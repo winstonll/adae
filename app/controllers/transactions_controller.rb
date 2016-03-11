@@ -1,6 +1,7 @@
 class TransactionsController < ApplicationController
 	protect_from_forgery except: [:hook]
 	before_action :signed_in_user, only: [:new, :edit, :update, :delete, :stripe, :stripe_success, :purchase_order]
+	before_action :transaction_exists?, only: [:new]
 
 	def new
 		@transaction = Transaction.new
@@ -18,7 +19,7 @@ class TransactionsController < ApplicationController
 	def stripe
 		Stripe.api_key = Rails.configuration.stripe[:secret_key]
 
-		item = Item.where(id: params[:item]).first
+		item = Item.where(id: params[:item_id]).first
 
 		if !item.nil?
 
@@ -67,7 +68,7 @@ class TransactionsController < ApplicationController
 
 	def accept
 		transaction = Transaction.find(params[:transaction])
-		item = Item.find(params[:item])
+		item = Item.find(params[:item_id])
 		seller = User.find(transaction.seller_id)
 		buyer = User.find(transaction.buyer_id)
 
@@ -173,14 +174,27 @@ class TransactionsController < ApplicationController
 
 	private
 
-	def transaction_params
-	    params.require(:transaction).permit(:item_id, :buyer_id, :seller_id, :length, :status, :total_price)
-	end
+		def transaction_exists?
+			@item = Item.find(params[:item_id])
+			@item_validate = @item.user_id == current_user.id
 
-	def signed_in_user
-    	unless signed_in?
-        	redirect_to request.referrer, flash: {warning: "Please sign in before you checkout.", signup_modal: true}
-    	end
-    end
+			@transaction_validate = Transaction.where("((transactions.buyer_id = #{current_user.id} OR transactions.seller_id = #{current_user.id}) \
+			AND transactions.item_id = #{params[:item_id]} AND \
+			(transactions.status = 'Pending' OR transactions.status = 'Accepted' OR transactions.status = 'In Progress'))").empty?
+
+			if !@transaction || @item_validate
+				redirect_to items_path
+			end
+		end
+
+		def transaction_params
+		  params.require(:transaction).permit(:item_id, :buyer_id, :seller_id, :length, :status, :total_price)
+		end
+
+		def signed_in_user
+	  	unless signed_in?
+	      redirect_to request.referrer, flash: {warning: "Please sign in before you checkout.", signup_modal: true}
+	  	end
+	  end
 
 end
