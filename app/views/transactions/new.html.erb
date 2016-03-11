@@ -42,6 +42,17 @@
     var length = $('#transaction_length').val();
     var amt = hash[length];
     $('#amt').val('$ ' + amt + ' x');
+
+    var qty = $('#qty').val();
+    var total = (amt * qty);
+    var fee = ((total * 0.029) + 0.30);
+    $('#subtotal').val('$' + total);
+    total = (total + fee).toFixed(2);
+
+    $('#price')[0].value = total;
+    $('#duration')[0].value = $('#qty').val() + "-" + $('#length').val();
+
+    $('#transaction_total_price').val('$' + total);
   }
 
   function validate_duration() {
@@ -98,7 +109,7 @@
           <p class="how-long">How long would you like to lease this?</p>
             <%= form_for Transaction.new, html: {multipart: true}  do |f| %>
               <input id="qty" name="quantity" min="1" max="30" type="number" onChange="updateQty()"></input>
-              <span><%= f.select :length, @type_dropdown, :onChange=>"updateLength();"%></span>
+              <span><%= f.select :length, @type_dropdown, {}, :onchange => "updateLength()"%></span>
 
               <div class="division"></div>
               <div class="item-detail-calc">
@@ -129,7 +140,7 @@
           <p class="how-long">How long would you like to rent this?</p>
           <%= form_for Transaction.new, html: {multipart: true}  do |f| %>
             <input id="qty" name="quantity" min="1" max="30" type="number" onChange="updateQty()"></input>
-            <span><%= f.select :length, @type_dropdown, :onChange=>"updateLength();"%></span>
+            <span><%= f.select :length, @type_dropdown, {}, :onchange => "updateLength()"%></span>
 
             <div class="division"></div>
             <div class="item-detail-calc">
@@ -158,7 +169,7 @@
           <p class="how-long" style="font-size: 12px;">How long would you like this service to last?</p>
           <%= form_for Transaction.new, html: {multipart: true}  do |f| %>
             <input id="qty" name="quantity" min="1" max="30" type="number" onChange="updateQty()"></input>
-            <span><%= f.select :length,[["Hour"]], :onChange=>"updateLength();"%></span>
+            <span><%= f.select :length,[["Hour"]], {}, :onchange => "updateLength()"%></span>
 
             <div class="division"></div>
             <div class="item-detail-calc" style="margin-bottom: 15px;">

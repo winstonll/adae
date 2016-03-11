@@ -68,6 +68,7 @@ Rails.application.routes.draw do
   resources :items,  :concerns => :reviewable
   resources :requests, :path => "shoutout"
   resources :users
+  resources :locations
   resources :transactions
 
   get 'sell'   => "items#sell",   as: :sell

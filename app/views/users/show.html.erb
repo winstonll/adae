@@ -24,15 +24,15 @@
 				<%=link_to image_tag(item.photo_url), item_path(item) %>
 			</div>
 			<li class="requests">
-			  <div class="item-title"> 
+			  <div class="item-title">
 				<%= link_to item.title, item_path(request)%>
-				<div><%= request.status %></div>
-				<div><%= request.length %></div>
-				<div><%= request.total_price %></div>
+				<div class="status">Status: <%= request.status %></div>
+				<div class="price">Price: $<%= request.total_price %></div>
+				<div class="length"><%= request.length %></div>
 			  </div>
 			  <div class="request-link">
 			  	<% unless request.status == "Completed" || request.status == "Denied" || request.status == "Cancelled" %>
-			    	<%= link_to 'Request Page', conversations_path(request), class: "request-path" %>
+			    	<%= link_to 'See Request Page', conversations_path(request), class: "request-path" %>
 			  	<% end %>
 			  </div>
 			</li>
@@ -57,11 +57,11 @@
 				<%=link_to image_tag(item.photo_url), item_path(item) %>
 			</div>
 			<li class="transactions">
-			  <div class="item-title"> 
+			  <div class="item-title">
 				<%= link_to item.title, item_path(transaction)%>
-				<div><%= transaction.status %></div>
-				<div><%= transaction.length %></div>
-				<div><%= transaction.total_price %></div>
+				<div class="status"><%= transaction.status %></div>
+				<div class="price"><%= transaction.length %></div>
+				<div class="length"><%= transaction.total_price %></div>
 			  </div>
 			</li>
 		  <% end %>
@@ -110,13 +110,14 @@
 			<p id="title">Mailed Cheque</p>
 			<p id="description">Enter your address below, and we will mail a cheque with the amount on your balance to you! <span style="color: #419bf9">Min. $20 Required</span></p>
 		<div id="mail-form">
-			<%= text_field_tag :apt_number, "", class: 'mail-check-input', placeholder: "Apt number and/or building number" %>
-			<%= text_field_tag :street, "", class: 'mail-check-input', placeholder: "Street" %>
-			<%= text_field_tag :city, @location.city, class: 'mail-check-input', placeholder: "City" %>
-			<%= text_field_tag :postal_code, "", class: 'mail-check-input', placeholder: "Postal Code" %>
-			<div class="button">
-	        <button type="submit">Submit</button>
-	    </div>
+			<%= form_for @location, :method => :PUT do |f| %>
+				<%= f.text_field :address, class: 'mail-check-input', placeholder: "Street and/or Unit Number" %>
+				<%= f.text_field :city, value: @location.city, readonly: 'true', class: 'mail-check-input', placeholder: "City" %>
+			    <%= f.text_field :postal_code, class: 'mail-check-input', placeholder: "Postal Code" %>
+				<div class="button">
+			      <button type="submit">Submit</button>
+			    </div>
+		    <% end %>
 		</div>
 	</div>
 	<div class="payment-settings">
