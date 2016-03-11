@@ -3,10 +3,18 @@
 <%= javascript_include_tag "navbar" %>
 
 <script>
-  $('#items').click(function(){
-    $('.listingsdropdown').slideUp();
-    $('.dropdown').slideUp();
+$(document).ready(function() {
+  $('#nav-signup-btn').click(function(){
+    $('.signin-modal').hide();
+    $('.signup-modal').show();
+    $('.modal-backdrop').fadeOut();
   });
+  $('#nav-signin-btn').click(function(){
+    $('.signup-modal').hide();
+    $('.signin-modal').show();
+    $('.modal-backdrop').fadeOut();
+  });
+ });
 </script>
 
 <div class="signup-modal"></div>
