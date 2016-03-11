@@ -24,15 +24,15 @@
 				<%=link_to image_tag(item.photo_url), item_path(item) %>
 			</div>
 			<li class="requests">
-			  <div class="item-title"> 
+			  <div class="item-title">
 				<%= link_to item.title, item_path(request)%>
-				<div><%= request.status %></div>
-				<div><%= request.length %></div>
-				<div><%= request.total_price %></div>
+				<div class="status">Status: <%= request.status %></div>
+				<div class="price">Price: $<%= request.total_price %></div>
+				<div class="length"><%= request.length %></div>
 			  </div>
 			  <div class="request-link">
 			  	<% unless request.status == "Completed" || request.status == "Denied" || request.status == "Cancelled" %>
-			    	<%= link_to 'Request Page', conversations_path(request), class: "request-path" %>
+			    	<%= link_to 'See Request Page', conversations_path(request), class: "request-path" %>
 			  	<% end %>
 			  </div>
 			</li>
@@ -57,11 +57,11 @@
 				<%=link_to image_tag(item.photo_url), item_path(item) %>
 			</div>
 			<li class="transactions">
-			  <div class="item-title"> 
+			  <div class="item-title">
 				<%= link_to item.title, item_path(transaction)%>
-				<div><%= transaction.status %></div>
-				<div><%= transaction.length %></div>
-				<div><%= transaction.total_price %></div>
+				<div class="status"><%= transaction.status %></div>
+				<div class="price"><%= transaction.length %></div>
+				<div class="length"><%= transaction.total_price %></div>
 			  </div>
 			</li>
 		  <% end %>
