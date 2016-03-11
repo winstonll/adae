@@ -9,9 +9,9 @@ class StripeController < ApplicationController
     	)
 
     	if account
-      		flash[:success] = "Managed Stripe account created!"
+      		flash[:notice] = "Managed Stripe account created!"
     	else
-      		flash[:danger] = "Unable to create Stripe account!"
+      		flash[:warning] = "Unable to create Stripe account!"
     	end
     	redirect_to users_stripe_settings_path 
   	end
