@@ -16,9 +16,6 @@
         <% type = 'Rental' %>
       <% end %>
 
-
-
-
       <div class="message">
         <div class="inbox-img">
     			<%=link_to image_tag(item.photo_url), item_path(item) %>
@@ -35,7 +32,7 @@
           <label class="item-detail" id="item_description"><%= item.description %></label>
     			<div class="item-accept-deny-buttons">
             <%= link_to 'View', conversations_path(sender_id: transaction.buyer_id,
-            recipient_id: transaction.seller_id), method: 'post', class: "reply-transaction"%>
+            recipient_id: transaction.seller_id, item_id: transaction.item_id), method: 'post', class: "reply-transaction"%>
     		  </div>
     		</li>
       </div>

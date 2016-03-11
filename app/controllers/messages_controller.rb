@@ -8,8 +8,10 @@ class MessagesController < ApplicationController
 
     @transaction = Transaction.where("( (transactions.seller_id = #{@conversation.recipient_id} AND transactions.buyer_id = #{@conversation.sender_id}) \
     OR (transactions.seller_id = #{@conversation.sender_id} AND transactions.buyer_id = #{@conversation.recipient_id}) ) \
-    AND (transactions.status != 'Completed' AND transactions.status != 'Denied' AND transactions.status != 'Cancelled')").first
-    @item = Item.where(id: @transaction.item_id).first
+    AND (transactions.status != 'Completed' AND transactions.status != 'Denied' AND transactions.status != 'Cancelled') \
+    AND (transactions.item_id == #{params[:item_id].to_i})").first
+
+    @item = Item.find(params[:item_id])
     @picture = Picture.where(item_id: @item.id).first
 
     if @messages.length > 10
