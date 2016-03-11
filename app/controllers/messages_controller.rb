@@ -4,6 +4,7 @@ class MessagesController < ApplicationController
   end
 
   def index
+
     @messages = @conversation.messages
 
     @transaction = Transaction.where("( (transactions.seller_id = #{@conversation.recipient_id} AND transactions.buyer_id = #{@conversation.sender_id}) \
@@ -42,7 +43,7 @@ class MessagesController < ApplicationController
         @user = User.find_by(id: @conversation.recipient)
       end
       ContactMailer.new_message(@user, @message).deliver_now
-      redirect_to conversation_messages_path(@conversation)
+      redirect_to conversation_messages_path(@conversation, item_id: params[:message][:item_id])
     end
   end
 
