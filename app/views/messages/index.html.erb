@@ -64,6 +64,7 @@ $(document).on('ready page:load', function() {
         <div class="reply-field">
             <%= f.text_area :body, :placeholder => "Type your message here. Refresh your browser to check for new messages.", class: "form-control" %>
             <%= f.text_field :user_id, value: current_user.id, type: "hidden"%>
+            <%= f.hidden_field :item_id, :value => "#{@item.id}" %>
             <%= f.submit "Send", class: "reply_btn", data: {disable_with: "Sending..."} %>
         </div>
       <% end %>
