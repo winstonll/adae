@@ -1,6 +1,10 @@
 class MessagesController < ApplicationController
   before_action do
     @conversation = Conversation.find(params[:conversation_id])
+
+    if !user_signed_in? || @conversation.sender_id != current_user.id || @conversation.recipient_id != current_user.id
+      redirect_to items_path
+    end
   end
 
   def index
