@@ -17,10 +17,9 @@ class UsersController < ApplicationController
  	end
 
  	def update
-
  	  if @user.update_attributes(user_params)
 			sign_in(@user, :bypass => true)
-			flash[:success] = "Profile updated"
+			flash[:notice] = "Profile updated"
  	  	redirect_to @user
  	  else
  	  	render :edit
