@@ -178,11 +178,12 @@ class TransactionsController < ApplicationController
 			@item = Item.find(params[:item_id])
 			@item_validate = @item.user_id == current_user.id
 
-			@transaction_validate = Transaction.where("((transactions.buyer_id = #{current_user.id} OR transactions.seller_id = #{current_user.id}) \
+			@transaction_validate = Transaction.where("((transactions.buyer_id = #{current_user.id}) \
 			AND transactions.item_id = #{params[:item_id]} AND \
-			(transactions.status = 'Pending' OR transactions.status = 'Accepted' OR transactions.status = 'In Progress'))").empty?
+			(transactions.status = 'Pending' OR transactions.status = 'Accepted' OR \
+			 transactions.status = 'In Progress'))").empty?
 
-			if !@transaction || @item_validate
+			if !@transaction_validate || @item_validate
 				redirect_to items_path
 			end
 		end
