@@ -45,7 +45,7 @@ class TransactionsController < ApplicationController
 				@conversation = Conversation.create!(sender_id: current_user.id, recipient_id: seller.id)
 			end
 
-			redirect_to conversation_messages_path(@conversation)
+			redirect_to conversation_messages_path(@conversation, item_id: item.id)
 
 		else
 			redirect_to :back
