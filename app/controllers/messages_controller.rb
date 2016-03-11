@@ -1,14 +1,9 @@
 class MessagesController < ApplicationController
-  before_action do
-    @conversation = Conversation.find(params[:conversation_id])
-
-    if !user_signed_in? || @conversation.sender_id != current_user.id || @conversation.recipient_id != current_user.id
-      redirect_to items_path
-    end
-  end
+  before_action :authenticate_user!
+  before_action :validate_access!
 
   def index
-
+    @conversation = Conversation.find(params[:conversation_id])
     @messages = @conversation.messages
 
     @transaction = Transaction.where("( (transactions.seller_id = #{@conversation.recipient_id} AND transactions.buyer_id = #{@conversation.sender_id}) \
@@ -34,10 +29,12 @@ class MessagesController < ApplicationController
   end
 
   def new
+    @conversation = Conversation.find(params[:conversation_id])
     @message = @conversation.messages.new
   end
 
   def create
+    @conversation = Conversation.find(params[:conversation_id])
     @message = @conversation.messages.new(message_params)
     @user = User.find_by(id: @conversation.recipient)
     if @message.save
@@ -52,6 +49,12 @@ class MessagesController < ApplicationController
   end
 
   private
+
+    def validate_access!
+      if !user_signed_in? || @conversation.sender_id != current_user.id || @conversation.recipient_id != current_user.id
+        redirect_to items_path
+      end 
+    end
 
     def message_params
     params.require(:message).permit(:body, :user_id)
