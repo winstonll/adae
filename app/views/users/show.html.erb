@@ -14,7 +14,7 @@
 	</div>
 
 	<div class="request-container">
-		<div class= "request-heading">Requests</div>
+		<div class= "request-heading">My Requests</div>
 		<% if @requests.present? %>
 			<% @requests.each do |request| %>
 		  	<% user = User.find(request.seller_id) %>
@@ -30,8 +30,8 @@
 				<div><%= request.length %></div>
 				<div><%= request.total_price %></div>
 			  </div>
-			  <div class="accept-decline-button">
-      			<%= link_to 'Decline', request, method: :delete, class: "delete-item", data: {confirm: "Are you sure you want to delete this Item?"}  %>  
+			  <div class="request-link">
+			    <%= link_to 'Request Page', conversations_path(request), class: "request-path" %>
 			  </div>
 			</li>
 		  <% end %>
@@ -60,9 +60,6 @@
 				<div><%= transaction.status %></div>
 				<div><%= transaction.length %></div>
 				<div><%= transaction.total_price %></div>
-			  </div>
-			  <div class="delete-button">
-			    <%= link_to 'Cancel Transaction', contact_path, class: "delete-item", data: {confirm: "We will transfer you to our contact page Are you sure you want to cancel ?"}  %>
 			  </div>
 			</li>
 		  <% end %>

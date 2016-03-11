@@ -9,391 +9,367 @@ body{
 }
 
 /*User Profile Info*/
-.user-content-container{
+.user-content-container { 
   display: table;
   margin: 0 auto;
   margin-top: 3em;
   width: 790px;
 
-.profile-info{
-  background-color: #fff;
-  width: 220px;
-  padding: 15px;
-  border-radius: 6px;
-  border: 1px solid #979797;
-  float: left;
+  .profile-info{
+    background-color: #fff;
+    width: 220px;
+    padding: 15px;
+    border-radius: 6px;
+    border: 1px solid #979797;
+    float: left;
 
-  .avatar{
-    margin: 0 auto;
-    display: table;
-    border-radius: 50%;
-    height: 80px;
-    width: 80px;
-    object-fit: cover;
-  }
-
-  h1{
-    color: #4a4a4a;
-    font-size: 20px;
-    font-weight: 500;
-  }
-
-  p{
-    color: #4a4a4a;
-    font-size: 14px;
-  }
-
-  .p-account-edit{
-    &:hover{
-      color:#419bf9;
-    }
-  }
-  .p-account-delete{
-    &:hover{
-      color:#FF6678;
-    }
-  }
-
-  .api-button{
-    color: #9b9b9b;
-    &:hover{
-      color:#419bf9;
-    }
-  }
-}
-/*Account Balance Section*/
-.account-balance-section{
-  background-color: #fff;
-  width: 240px;
-  padding: 5px;
-  height: 95px;
-  border-radius: 6px;
-  border: 1px solid #979797;
-  display: inline-block;
-  margin-top: 20px;
-  p{
-    font-size: 16px;
-    margin-top: 10px;
-    color: #40C11B;
-  }
-  #balance{
-    font-size: 38px;
-    font-weight: 600;
-  }
-}
-
-/*Mail Cheque Section*/
-  h4{
-    font-size: 19px;
-    font-weight: 600;
-    color: #4a4a4a;
-    margin-bottom: 10px;
-  }
-.mail-cheque-section{
-  background-color: #fff;
-  width: 240px;
-  padding: 5px;
-  border-radius: 6px;
-  border: 1px solid #979797;
-  display: inline-block;
-  margin-bottom: 1em;
-
-  #title{
-    font-weight: 600;
-    color: #4a4a4a;
-    margin-bottom: -10px;
-  }
-
-  #description{
-    font-weight: 400;
-    color: #4a4a4a;
-    text-align: left;
-    line-height: 20px;
-    margin-left: 10px;
-  }
-
-  #mail-form{
-    margin-left: 1px;
-
-    .mail-check-input{
-      border: 1px solid #979797;
-      border-radius: 3px;
-      margin-bottom: 5px;
-      padding: 6px;
-      width: 225px;
-      font-size: 13px;
-    }
-
-    button{
+    .avatar{
+      margin: 0 auto;
       display: table;
-      margin: auto;
-      border-radius: 3px;
-      border: none;
-      color: #fff;
-      background-color: #419bf9;
-      font-size: 15px;
-      padding: 6px 20px;
-      cursor: pointer;
-      margin-top: 5px;
-      margin-bottom: 8px;
+      border-radius: 50%;
+      height: 80px;
+      width: 80px;
+      object-fit: cover;
+    }
+
+    h1{
+      color: #4a4a4a;
+      font-size: 20px;
+      font-weight: 500;
+    }
+
+    p{
+      color: #4a4a4a;
+      font-size: 14px;
+    }
+
+    .p-account-edit{
+      &:hover{
+        color:#419bf9;
+      }
+    }
+    .p-account-delete{
+      &:hover{
+        color:#FF6678;
+      }
+    }
+
+    .api-button{
+      color: #9b9b9b;
+      &:hover{
+        color:#419bf9;
+      }
     }
   }
-}
-
-/*Direct Deposit Section*/
-.payment-settings{
-  background-color: #fff;
-  width: 240px;
-  height: 150px;
-  border: 1px solid #979797;
-  border-radius: 5px;
-  padding: 5px;
-  margin-bottom: 25px;
-
-
-  p{
-    font-size: 17px;
-    font-weight: 600;
-    color: #4a4a4a;
-    margin-bottom: -10px;
+  /*Account Balance Section*/
+  .account-balance-section{
+    background-color: #fff;
+    width: 240px;
+    padding: 5px;
+    height: 95px;
+    border-radius: 6px;
+    border: 1px solid #979797;
+    display: inline-block;
+    margin-top: 20px;
+    p{
+      font-size: 16px;
+      margin-top: 10px;
+      color: #40C11B;
+    }
+    #balance{
+      font-size: 38px;
+      font-weight: 600;
+    }
   }
 
-  #description{
-    font-size: 16px;
-    font-weight: 400;
-    line-height: 20px;
-    text-align: left;
-    margin-left: 10px;
-    margin-bottom: 15px;
+  /*Mail Cheque Section*/
+    h4{
+      font-size: 19px;
+      font-weight: 600;
+      color: #4a4a4a;
+      margin-bottom: 10px;
+    }
+  .mail-cheque-section{
+    background-color: #fff;
+    width: 240px;
+    padding: 5px;
+    border-radius: 6px;
+    border: 1px solid #979797;
+    display: inline-block;
+    margin-bottom: 1em;
+
+    #title{
+      font-weight: 600;
+      color: #4a4a4a;
+      margin-bottom: -10px;
+    }
+
+    #description{
+      font-weight: 400;
+      color: #4a4a4a;
+      text-align: left;
+      line-height: 20px;
+      margin-left: 10px;
+    }
+
+    #mail-form{
+      margin-left: 1px;
+
+      .mail-check-input{
+        border: 1px solid #979797;
+        border-radius: 3px;
+        margin-bottom: 5px;
+        padding: 6px;
+        width: 225px;
+        font-size: 13px;
+      }
+
+      button{
+        display: table;
+        margin: auto;
+        border-radius: 3px;
+        border: none;
+        color: #fff;
+        background-color: #419bf9;
+        font-size: 15px;
+        padding: 6px 20px;
+        cursor: pointer;
+        margin-top: 5px;
+        margin-bottom: 8px;
+      }
+    }
   }
 
-  .cashout-btn{
-    background-color: #419bf9;
-    color: #fff;
-    padding: 10px 40px;
-    font-size: 16px;
-    font-weight: 500;
+  /*Direct Deposit Section*/
+  .payment-settings{
+    background-color: #fff;
+    width: 240px;
+    height: 150px;
+    border: 1px solid #979797;
     border-radius: 5px;
+    padding: 5px;
+    margin-bottom: 25px;
+
+
+    p{
+      font-size: 17px;
+      font-weight: 600;
+      color: #4a4a4a;
+      margin-bottom: -10px;
+    }
+
+    #description{
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 20px;
+      text-align: left;
+      margin-left: 10px;
+      margin-bottom: 15px;
+    }
+
+    .cashout-btn{
+      background-color: #419bf9;
+      color: #fff;
+      padding: 10px 40px;
+      font-size: 16px;
+      font-weight: 500;
+      border-radius: 5px;
+      display: table;
+      margin: 0 auto;
+      cursor: pointer;
+      &:hover{
+        background-color: #0077F3;
+        transition: all .4s ease-in-out;
+      }
+    }
+  }
+  /*Requests Container*/
+  .request-container{
     display: table;
     margin: 0 auto;
-    cursor: pointer;
-    &:hover{
-      background-color: #0077F3;
-      transition: all .4s ease-in-out;
+    padding-bottom: 3em;
+    float: right;
+
+    .request-heading{
+      font-size: 18px;
+      font-weight: 600;
+      color: #4a4a4a;
     }
-  }
-}
-/*Requests Container*/
-.request-container{
-  display: table;
-  margin: 0 auto;
-  padding-bottom: 3em;
-  float: right;
 
-  .request-heading{
-    font-size: 18px;
-    font-weight: 600;
-    color: #4a4a4a;
-  }
-
-  .request-img{
-    float: left;
-    margin-top: 10px;
-    width: 120px;
-    height: 120px;
-    border: 1px solid #dcdcdc;
-
-    img{
+    .request-img{
+      float: left;
+      margin-top: 10px;
       width: 120px;
       height: 120px;
-      object-fit: cover;
-      object-position: center;
+      border: 1px solid #dcdcdc;
+
+      img{
+        width: 120px;
+        height: 120px;
+        object-fit: cover;
+        object-position: center;
+      }
+    }
+    .requests{
+      border: 1px solid #979797;
+      list-style: none;
+      background-color: #fff;
+      margin-top: 10px;
+      margin-left: 132px;
+      height: 150px;
+      width: 350px;
+
+      .item-title{
+        text-align: left !important;
+        line-height: normal;
+        color: #4a4a4a;
+        padding: none;
+        margin-left: 10px;
+        margin-top: 20px;
+      }
+
+      .request-link{
+        margin-top: 1em;
+        .request-path{
+          border: 1px solid #419bf9;
+          border-radius: 5px;
+          color: #419bf9;
+          font-size: 14px;
+          padding: 6px 12px 6px 12px;
+          margin-left: 5px;
+          &:hover{
+            background-color: #419bf9;
+            color: #fff;
+          }
+        } 
+      }
     }
   }
-  .requests{
-    border: 1px solid #979797;
-    list-style: none;
-    background-color: #fff;
-    margin-top: 10px;
-    margin-left: 132px;
-    height: 200px;
-    width: 350px;
 
-    .item-title{
-      text-align: left !important;
-      line-height: normal;
+  /*My Transactions Section*/
+  .transaction-container{
+    display: table;
+    margin: 0 auto;
+    padding-bottom: 3em;
+    float: right;
+
+    .transaction-heading{
+      font-size: 18px;
+      font-weight: 600;
       color: #4a4a4a;
-      padding: none;
-      margin-left: 10px;
-      margin-top: 20px;
     }
 
-    .accept-decline-button{
-      float:right;
-      top: 5em;
-      position: relative;
-      margin-right: 10px;
+    .transaction-img{
+      float: left;
+      margin-top: 10px;
+      width: 120px;
+      height: 120px;
+      border: 1px solid #dcdcdc;
 
+      img{
+        width: 120px;
+        height: 120px;
+        object-fit: cover;
+        object-position: center;
+      }
+    }
+    .transactions{
+      border: 1px solid #979797;
+      list-style: none;
+      background-color: #fff;
+      margin-top: 10px;
+      margin-left: 132px;
+      height: 150px;
+      width: 350px;
 
-      .delete-item{
-        border: 1px solid #FF6678;
-        border-radius: 5px;
-        color: #FF6678;
-        font-size: 14px;
-        padding: 3px 7px 3px;
-        margin-left: 5px;
-        &:hover{
-          background-color: #FF6678;
-          color: #fff;
+      .item-title{
+        text-align: left !important;
+        line-height: normal;
+        color: #4a4a4a;
+        padding: none;
+        margin-left: 10px;
+        margin-top: 20px;
+      }
+    }
+  }
+
+  /*My Listing Section*/
+  .listing-container{
+    display: table;
+    margin: 0 auto;
+    padding-bottom: 5em;
+    float: right;
+
+    #listing-heading{
+      font-size: 18px;
+      font-weight: 600;
+      color: #4a4a4a;
+      padding-top: 10px;
+    }
+
+    .listing-img{
+      float: left;
+      margin-top: 10px;
+      width: 120px;
+      height: 120px;
+
+      img{
+        width: 120px;
+        height: 120px;
+        object-fit: cover;
+        object-position: center;
+      }
+    }
+    .listings{
+      border: 1px solid #979797;
+      list-style: none;
+      background-color: #fff;
+      margin-top: 10px;
+      margin-left: 132px;
+      height: 120px;
+      width: 350px;
+
+      .item-title{
+        text-align: left !important;
+        line-height: normal;
+        color: #4a4a4a;
+        padding: none;
+        margin-left: 10px;
+        margin-top: 20px;
+        font-size: 15px;
+      }
+
+      .item-edit-delete-buttons{
+        float:right;
+        margin-right: 10px;
+        margin-top: 25px;
+
+        .edit-item{
+          border: 1px solid #419bf9;
+          border-radius: 5px;
+          color: #419bf9;
+          font-size: 14px;
+          padding: 3px 15px 3px;
+          &:hover{
+            background-color: #419bf9;
+            color: #fff;
+          }
+        }
+
+        .delete-item{
+          border: 1px solid #FF6678;
+          border-radius: 5px;
+          color: #FF6678;
+          font-size: 14px;
+          padding: 3px 7px 3px;
+          margin-left: 5px;
+          &:hover{
+            background-color: #FF6678;
+            color: #fff;
           }
         }
       }
     }
-  }
-/*My Transactions Section*/
-.transaction-container{
-  display: table;
-  margin: 0 auto;
-  padding-bottom: 3em;
-  float: right;
-
-  .transaction-heading{
-    font-size: 18px;
-    font-weight: 600;
-    color: #4a4a4a;
-  }
-
-  .transaction-img{
-    float: left;
-    margin-top: 10px;
-    width: 120px;
-    height: 120px;
-    border: 1px solid #dcdcdc;
-
-    img{
-      width: 120px;
-      height: 120px;
-      object-fit: cover;
-      object-position: center;
-    }
-  }
-  .transactions{
-    border: 1px solid #979797;
-    list-style: none;
-    background-color: #fff;
-    margin-top: 10px;
-    margin-left: 132px;
-    height: 200px;
-    width: 350px;
-
-    .item-title{
-      text-align: left !important;
-      line-height: normal;
-      color: #4a4a4a;
-      padding: none;
-      margin-left: 10px;
-      margin-top: 20px;
-    }
-
-    .delete-button{
-      float:right;
-      top: 5em;
-      position: relative;
-      margin-right: 10px;
-
-
-      .delete-item{
-        border: 1px solid #FF6678;
-        border-radius: 5px;
-        color: #FF6678;
-        font-size: 14px;
-        padding: 3px 7px 3px;
-        margin-left: 5px;
-        &:hover{
-          background-color: #FF6678;
-          color: #fff;
-          }
-        }
-      }
-    }
-  }
-/*My Listing Section*/
-.listing-container{
-  display: table;
-  margin: 0 auto;
-  padding-bottom: 5em;
-  float: right;
-
-  #listing-heading{
-    font-size: 18px;
-    font-weight: 600;
-    color: #4a4a4a;
-    padding-top: 10px;
-  }
-
-  .listing-img{
-    float: left;
-    margin-top: 10px;
-    width: 120px;
-    height: 120px;
-
-    img{
-      width: 120px;
-      height: 120px;
-      object-fit: cover;
-      object-position: center;
-    }
-  }
-  .listings{
-    border: 1px solid #979797;
-    list-style: none;
-    background-color: #fff;
-    margin-top: 10px;
-    margin-left: 132px;
-    height: 120px;
-    width: 350px;
-
-    .item-title{
-      text-align: left !important;
-      line-height: normal;
-      color: #4a4a4a;
-      padding: none;
-      margin-left: 10px;
-      margin-top: 20px;
-      font-size: 15px;
-    }
-
-    .item-edit-delete-buttons{
-      float:right;
-      margin-right: 10px;
-      margin-top: 25px;
-
-      .edit-item{
-        border: 1px solid #419bf9;
-        border-radius: 5px;
-        color: #419bf9;
-        font-size: 14px;
-        padding: 3px 15px 3px;
-        &:hover{
-          background-color: #419bf9;
-          color: #fff;
-        }
-      }
-
-      .delete-item{
-        border: 1px solid #FF6678;
-        border-radius: 5px;
-        color: #FF6678;
-        font-size: 14px;
-        padding: 3px 7px 3px;
-        margin-left: 5px;
-        &:hover{
-          background-color: #FF6678;
-          color: #fff;
-        }
-      }
-    }
-  }
   }
 }
 /*User-Rating Section*/
