@@ -14,4 +14,10 @@ class ContactMailer < ActionMailer::Base
     mail(to: @user.email, subject: 'You have a new message in your inbox!')
   end
 
+  def cash_out(user, location)
+  	@user = user
+  	@location = location
+  	mail(to: "winston@adae.co", :subject => "Adae Cash out Request for #{@user}")
+  end
+
 end
