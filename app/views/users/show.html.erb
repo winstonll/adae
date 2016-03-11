@@ -78,7 +78,7 @@
 		<% if @items.present? %>
 			<% @items.each do |item| %>
 				<% itemout = Transaction.where("(transactions.item_id = #{item.id}) \
-				 AND (transactions.status = 'Completed' OR transactions.status = 'Denied' OR transactions.status = 'Cancelled')") %>
+				 AND (transactions.status = 'Completed' OR transactions.status = 'Denied' OR transactions.status = 'Cancelled')").empty? %>
 
 			<div class="listing-img">
 				<%=link_to image_tag(item.photo_url), item_path(item) %>
@@ -86,7 +86,7 @@
 			<li class="listings">
 				<div class="item-title"> <%= link_to item.title, item_path(item)%> </div>
 				<div class="item-edit-delete-buttons">
-					<% if itemout %>
+					<% if !itemout %>
 						<p style="font-size: 12px;">This listing cannot be edited while it is part of a current transaction.</p>
 			  		<% else %>
 			    		<%= link_to 'Edit', edit_item_path(item),class: "edit-item" %>
