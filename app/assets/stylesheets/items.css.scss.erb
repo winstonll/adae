@@ -7,6 +7,31 @@ itemS INDEX/SEARCH
   @import "bootstrap";
 }
 
+#why_adae {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  background-color: #A100C2;
+  color: #fff;
+  padding: 15px 25px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+}
+#why_adae:after {
+  content:'';
+  position: absolute;
+  margin-left: 15px;
+  top: 100%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-top: solid 10px #A100C2;
+  border-left: solid 10px transparent;
+  border-right: solid 10px transparent;
+
+}
+
 /*sessions new styling*/
 #user_email{
   margin-bottom: 5px;
@@ -131,6 +156,10 @@ itemS INDEX/SEARCH
               margin-right: 10px;
               margin-left: -5px;
               object-fit: cover;
+            }
+
+            &:hover{
+              text-decoration: underline;
             }
           }
 
@@ -1074,7 +1103,7 @@ item new
     }
 
     .submit-listing{
-      width: 120px;
+      width: 140px;
       border: 1px solid #419bf9;
       background-color: #fff;
       border-radius: 5px;
@@ -1089,6 +1118,7 @@ item new
       &:hover{
         background-color: #419BF9;
         color: #fff;
+        transition: all .3s ease-in-out;
       }
     }
 

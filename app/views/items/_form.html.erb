@@ -143,8 +143,8 @@
 			<% end %>
 		<% end %>
 
-		<%= f.submit 'Submit', :class => 'submit-listing' %>
-		<div id="small-tip"> you can edit/update your listing at anytime after you submit.</div>
+		<%= f.submit 'Submit', :class => 'submit-listing', data: {disable_with: "Submitting..."} %>
+		<div id="small-tip"> you can edit/update your listing after you submit.</div>
 
 
 <%end%>

@@ -15,21 +15,26 @@
     <% end %>
   });
 
-  <% if !user_signed_in? %>
-      toastr.options ={
-        'timeOut': "30000",
-        'extendedTimeOut': "2000",
-        "positionClass": 'toast-top-right'
-      };
+  $('#why_adae').click(function(){
 
-      var rent_text = " <br><span style='font-weight: 600; font-size: 20px;'>Why Adae?</span> <br><br> \
-      <div style='line-height: normal;'> &#x2756; We ask for a credit card (securely via Stripe) before making a request; \
-      in return, no need to bring cash as NAME gets paid electronically. Security really matters to us. <br><br> \
-      &#x2756; Only when your request is accepted, will your card will be charged. NAME won't receive your money until you meet. <br><br>\
-      &#x2756; We are always happy to help resolve disputes and issue refunds, whenever necessary.</div> <br>";
+    $('.toast').remove();
 
-      toastr.info(rent_text);
-  <% end %>
+    toastr.options ={
+      'timeOut': "30000",
+      'extendedTimeOut': "2000",
+    "positionClass": 'toast-bottom-right',
+      "preventDuplicates": true
+    };
+
+    var rent_text = " <br><span style='font-weight: 600; font-size: 20px;'>Why Adae?</span> <br><br> \
+    <div style='line-height: normal;'> &#x2756; We ask for a credit card (securely via Stripe) before making a request; \
+    in return, no need to bring cash as NAME gets paid electronically. Security really matters to us. <br><br> \
+    &#x2756; Only when your request is accepted, will your card will be charged. NAME won't receive your money until you meet. <br><br>\
+    &#x2756; We are always happy to help resolve disputes and issue refunds, whenever necessary.</div> <br>";
+
+    toastr.info(rent_text);
+  });
+
 </script>
 
 <div class="item-info" id="itemInfo">
@@ -172,6 +177,13 @@
     </div>
   <% end %>
 <% end %>
+
+<% if !user_signed_in? %>
+<div id="why_adae">
+  Why Adae?
+</div>
+<% end %>
+
 <div class="review-list">
   <div class="review-content">
     <div class="item-reviews">Reviews for <em><%= @item.title %> </em></div>
