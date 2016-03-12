@@ -21,7 +21,10 @@ class TransactionsController < ApplicationController
 
 		item = Item.where(id: params[:item_id]).first
 
-		if !item.nil?
+		if !item.nil? && Transaction.where("(transactions.item_id = #{item.id} AND \
+			transactions.buyer_id = #{current_user.id} AND \
+			(transactions.status = 'Pending' OR transactions.status = 'Accepted' OR \
+			transactions.status = 'In Progress'))").empty?
 
 			if current_user.stripe_customer_id.nil?
 				@customer = Stripe::Customer.create(
@@ -49,7 +52,7 @@ class TransactionsController < ApplicationController
 			redirect_to conversation_messages_path(@conversation, item_id: item.id)
 
 		else
-			redirect_to :back
+			redirect_to item_path(item.id)
 		end
 	end
 
