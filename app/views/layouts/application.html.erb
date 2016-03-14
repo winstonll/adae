@@ -15,15 +15,21 @@
 
 </head>
   <header>
-    <% if flash[:signup_modal] %>
-      <script>
-      $(document).ready(function(){
-        $('#shareSignupModal').modal('show');
-      });
-      </script>
-      <%= render '/common/signup_modal' %>
-    <% end %>
     <script>
+      <% if flash[:signup_modal] %>
+        $(document).ready(function(){
+          $('#shareSignupModal').modal('show');
+        });
+        <%= render '/common/signup_modal' %>
+      <% end %>
+
+      <% if flash[:companion_modal] %>
+        $(document).ready(function(){ 
+          $('#shareCompanionModal').modal('show');
+        });
+        <%= render '/common/companion_modal' %>
+      <% end %>
+
       <% if flash[:notice] %>
         toastr.options ={
           'timeOut': "7000",
