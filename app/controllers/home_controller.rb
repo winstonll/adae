@@ -10,4 +10,9 @@ class HomeController < ApplicationController
     	  format.js
     	end
     end
+    def companion_modal
+      respond_to do ||format
+        format.js
+      end
+    end
 end
