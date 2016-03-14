@@ -78,7 +78,7 @@
 		<% if @items.present? %>
 			<% @items.each do |item| %>
 				<% itemout = Transaction.where("(transactions.item_id = #{item.id}) \
-				 AND (transactions.status = 'Completed' OR transactions.status = 'Denied' OR transactions.status = 'Cancelled' OR transactions.status = '')").empty? %>
+				 AND (transactions.status = 'Completed' OR transactions.status = 'Denied' OR transactions.status = 'Cancelled')").empty? %>
 
 			<div class="listing-img">
 				<%=link_to image_tag(item.photo_url), item_path(item) %>
