@@ -114,6 +114,10 @@ class TransactionsController < ApplicationController
 		end
 	end
 
+	def lease_purchase
+		
+	end
+
 	# Grabs all the necessary data and presents an invoice display page after purchases
 	def stripe_success
 		@order = Transaction.find(params[:id])
