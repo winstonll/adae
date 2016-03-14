@@ -110,7 +110,7 @@ $(document).on('ready page:load', function() {
       <% if @item.listing_type == "lease" %>
         <div class="request-box" style="margin-bottom: -5px; height: 140px;">
           <p style="font-weight: 500px; color: #4a4a4a; line-height: normal;">If you would like to buy the item during your rental period, click below.</p>
-            <%= link_to 'Request to Purchase', purchase_path(item: @item.id, transaction: @transaction.id), class: "edit-item" %>
+            <%= link_to 'Request to Purchase', purchase_path(item: @item.id, transaction: @transaction.id), class: "lease-buy-item" %>
         </div>
       <% end %>
 
