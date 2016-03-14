@@ -4,7 +4,7 @@ Rails.application.routes.draw do
     sessions: "users/sessions",
     passwords: "users/passwords",
     confirmations: "users/confirmations" }
-    
+
   devise_scope :user do
     get 'signup',  to: 'users/registrations#new'
     get 'signin',  to: 'users/sessions#new'
@@ -33,6 +33,7 @@ Rails.application.routes.draw do
   get 'search' => "search#search"
   get 'cancel' => 'transactions#cancel'
   get 'accept' => 'transactions#accept'
+  get 'purchase' => 'transactions#purchase_lease'
 
   get '/api/v1/verify_scan/' => 'api/v1/transactions#verify_scan'
   get '/api/v1/transaction_detail/:id' => 'api/v1/transactions#transaction_detail'
