@@ -79,6 +79,7 @@
 			<% @items.each do |item| %>
 				<% itemout = Transaction.where("(transactions.item_id = #{item.id}) \
 				 AND (transactions.status = 'Completed' OR transactions.status = 'Denied' OR transactions.status = 'Cancelled')").empty? %>
+				<% notrx = Transaction.find_by(item_id: item.id) %>
 
 			<div class="listing-img">
 				<%=link_to image_tag(item.photo_url), item_path(item) %>
@@ -86,8 +87,8 @@
 			<li class="listings">
 				<div class="item-title"> <%= link_to item.title, item_path(item)%> </div>
 				<div class="item-edit-delete-buttons">
-					<% if itemout %>
-						<p style="font-size: 12px;">This listing cannot be edited while it is part of a current transaction.</p>
+					<% if itemout && notrx %>
+						<p style="font-size: 11px; color: gray; ">This listing cannot be edited while it's part of a current transaction.</p>
 			  		<% else %>
 			    		<%= link_to 'Edit', edit_item_path(item),class: "edit-item" %>
 						<%= link_to 'Delete', item, method: :delete, class: "delete-item", data: {confirm: "Are you sure you want to delete this Item?"}  %>

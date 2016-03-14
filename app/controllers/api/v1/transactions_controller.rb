@@ -90,9 +90,9 @@ module Api::V1
 
         decoded = decoded.split('-')
         current_transaction = Transaction.where(id: decoded[0]).first
-        seller = User.where(id: current_transaction[:seller_id]).first
 
         if !current_transaction.nil?
+          seller = User.where(id: current_transaction[:seller_id]).first
           transaction_validation = (current_transaction[:seller_id] == decoded[2].to_i) && (current_transaction[:buyer_id] == current_user[:id])
 
           product = Item.where(id: current_transaction.item_id).first
