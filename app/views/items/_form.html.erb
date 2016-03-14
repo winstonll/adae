@@ -14,7 +14,7 @@
 	<div class="form-content">
 		<div class="new-item-form">
 			<% if current_page? timeoffer_path %>
-				<p> First, add some tags to better describe your service, so it shows up quicker when searched:</p>
+				<p> First, add some tags to describe your service, so it shows up quicker when searched:</p>
 			<% else %>
 				<p> First, add some tags to your listing, so it shows up quicker when searched:</p>
 			<% end %>
@@ -74,6 +74,11 @@
 						<div class="rent-deposit-money-sign"> $ </div>
 			        <%=p.number_field :amount %> <span class="perhr">per Hour</span>
 			    </div>
+
+          <div class="deposit-tip" style="color: #419bf9; margin-top: 10px; font-weight: 500;">
+            &#x2756; Adae will charge a 4% to 10% service fee on top of your service price to pay for</br> expenses and keep it ad-free. Don't worry, you will still
+            get paid the amount you ask for.
+          </div>
 			    <%= f.hidden_field :deposit, :value => 0 %>
 			<% end %>
 		<% elsif current_page? sell_path %>
@@ -83,6 +88,10 @@
 						<div id="actual-price-money-sign"> $ </div>
 			        <%=p.number_field :amount %>
 			    </div>
+          <div class="deposit-tip" style="color: #419bf9; margin-top: 10px; font-weight: 500;">
+            &#x2756; Adae will charge a 4% to 10% service fee on top of the sale price to pay for</br> expenses and keep it ad-free. Don't worry, you will still
+            get paid the amount you ask for.
+          </div>
 			    <%= f.hidden_field :deposit, :value => 0 %>
 			<% end %>
 		<% else %>
@@ -94,8 +103,7 @@
       				  <b>Rental Price:</b></br>
       				  Set how much you want to charge for any or all of the timeframes</br>
       				  in the boxes below, leave the box blank if the timeframe is not</br>
-      				  applicable.</br>
-      				  Example: $10 per day, $60 per week and/or $200 per month.
+      				  applicable.
       				</p>
       				<table>
       				  <tr>
@@ -127,6 +135,10 @@
   		          	Their rental fees will be
   		            deducted from the Sale Price.
   	            </div>
+                <div class="deposit-tip" style="color: #419bf9;">
+  	          		&#x2756; Adae will charge a 4% to 10% service fee on top of the rental & deposit price to pay for</br> expenses and keep it ad-free. Don't worry, you will still
+                  get paid the amount you ask for.
+  	          	</div>
       	      <% else %>
   	          	<p id="deposit-title"> Deposit Price</p>
   	          	<div class="rent-deposit-money-sign"> $ </div>
@@ -134,6 +146,10 @@
   	          	<div class="deposit-tip">
   	          		This ensures that the item is treated with care, and is returned on time.</br>
   	          		This amount will be charged only if the other party fails to return the item, damage it, or lose it.
+  	          	</div>
+                <div class="deposit-tip" style="color: #419bf9;">
+  	          		&#x2756; Adae will charge a 4% to 10% service fee on top of the rental & deposit price to pay for</br> expenses and keep it ad-free. Don't worry, you will still
+                  get paid the amount you ask for.
   	          	</div>
       	      <% end %>
     	      </div>
