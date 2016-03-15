@@ -2,16 +2,13 @@
 <%= stylesheet_link_tag "requests" %>
 
 <body>
-	<div id="items">
-		<div id="item-feed-container" style="width: 900px !important; margin: 0 auto;">
+	<div id="items" style="margin: 15px !important;">
+		<div id="item-feed-container" style="width: 900px; margin: 0 auto;">
 			<div id="item-collection">
-		<% @query.each do |item| %>
-			<%= render partial: "/items/items", :locals => {:item => item}  %>
-		<% end %>
+				<% @query.each do |item| %>
+					<%= render partial: "/items/items", :locals => {:item => item}  %>
+				<% end %>
 			</div>
-		</div>
-		<div id="pagination-div">
-			<%#= will_paginate @query, :next_label => "&#10095;", :previous_label => "&#10094;" %>
 		</div>
 	</div>
 	<div id="requests">
