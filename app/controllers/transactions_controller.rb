@@ -5,7 +5,7 @@ class TransactionsController < ApplicationController
 
 	def new
 		@transaction = Transaction.new
-		@item = Item.find(params[:item_id]) 
+		@item = Item.find(params[:item_id])
 
     @prices = @item.prices
     @pictures = Picture.where(item_id: @item.id)
@@ -39,7 +39,7 @@ class TransactionsController < ApplicationController
 			seller = User.where(id: item.user_id).first
 
 			order_transaction = Transaction.new(item_id: item.id, buyer_id: current_user.id,
-			seller_id: item.user_id, total_price: params[:price].to_f, length: item.listing_type == 'sell' ? nil : params[:duration])
+			seller_id: item.user_id, total_price: params[:price][1..params[:price].length - 1].to_f, length: item.listing_type == 'sell' ? nil : params[:duration])
 
 			order_transaction.save
 
