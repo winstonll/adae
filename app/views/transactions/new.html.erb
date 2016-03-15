@@ -1,10 +1,15 @@
 <%= stylesheet_link_tag "transactions" %>
 <script>
+  $(document).ready(function() {
+    $('.stripe-button-el').prop('disabled', true);
+    $('.request-button').prop('disabled', true);
+  });
+
   var hash = {};
 
-    <% @prices.each do |price| %>
-        hash['<%= price.timeframe%>'] = <%= price.amount%>;
-    <% end %>
+  <% @prices.each do |price| %>
+      hash['<%= price.timeframe%>'] = <%= price.amount%>;
+  <% end %>
 
   function qtyLength() {
     var lngth = $('select[name="transaction[length]"] option:selected').val();
@@ -36,6 +41,13 @@
     $('#duration')[0].value = $('#qty').val() + "-" + $('#length').val();
 
     $('#transaction_total_price').val('$' + total);
+    if (qty > 0){
+      $('.stripe-button-el').prop('disabled', false);
+      $('.request-button').prop('disabled', false);
+    }else {
+      $('.stripe-button-el').prop('disabled', true);
+      $('.request-button').prop('disabled', true);
+    }
   }
 
   function updateLength() {
