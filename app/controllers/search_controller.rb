@@ -28,10 +28,6 @@ class SearchController < ApplicationController
       end
     end
 
-    # @query.each do |item|
-    #    item.paginate(:page => params[:page], :per_page => 5)
-    # end
-
     if(@query.empty?)
       flash[:warning] = "Nothing matched your search."
     end

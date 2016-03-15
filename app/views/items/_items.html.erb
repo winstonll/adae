@@ -10,16 +10,19 @@
 </script>
 
 <%= link_to item_path(item.id) do %>
-	<div class="item-index" id= "item-<%= item.id%>">
-		<div class="item-wrap">
-			<div id="item-title">
-				<%= link_to image_tag(item.user.avatar.url(:med), class:"avatar"), user_path(item.user) %>
-				<%= link_to item.title, item_path(item.id) %>
-			</div>
+<div class="item-index" id= "item-<%= item.id%>">
+	<div class="item-wrap">
+		<div id="item-title">
+			<%= link_to image_tag(item.user.avatar.url(:med), class:"avatar"), user_path(item.user) %>
+			<%= link_to item.title, item_path(item.id) %>
+		</div>
 
-			<!--<div class="tag-container">
-			<p id="tags">	<%= item.tags  %></p>
-		</div>-->
+		<div class="tag-container">
+			<% tagz = item.tags.split(', ') %>
+			<% tagz.each do |tag| %>
+		    	<span class="tags">#<%= link_to tag, { controller: "search", action: "search", search_text: tag}, class: "tags" %></span>
+		    <% end %>
 		</div>
 	</div>
+</div>
 <% end %>
