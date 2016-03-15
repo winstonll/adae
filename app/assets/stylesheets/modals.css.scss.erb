@@ -310,33 +310,41 @@
 }
 
 /* Companion Modal */
-
 #shareCompanionModal {
   position: fixed;
-  background-color: #F9F9F9;
-  height: 550px;
+  background-color: #7ABCFF;
+  height: 600px;
+  width: 900px;
   z-index: 2;
-  top: 15%;
-  right: 10%;
-  left:10%;
-  border-radius: 5px;
-  border: 1px solid #419bf9;
+  top: 16%;
+  right: 15%;
+  left:15%;
+  bottom: 15%;
+  display: table;
+  margin: auto;
+  border-radius: 10px;
+  border: 3px solid #fff;
 
   .explore-container{
-    margin-top: 10px;
+    margin-top: 50px;
     #title{
-      font-weight: 400;
-      margin: 0;
-      font-size: 18px;
-      text-align: center;
+      font-weight: 500;
+      margin: 0 auto;
+      display: table;
+      width: 530px;
+      font-size: 20px;
       line-height: normal;
+      margin-left: 17em;
+      color: #fff;
+      font-family: 'Avenir Next','Arial Rounded MT Bold';
 
       #secure{
-        color: #419bf9;
+        color: #0373E6;
         font-weight: 500;
+        font-family: 'Avenir Next','Arial Rounded MT Bold';
 
         &:hover{
-          color: #1E86F2;
+          text-decoration: underline;
         }
       }
     }
@@ -344,29 +352,51 @@
     .app-info{
       .app-preview{
         position: fixed;
-        margin-left: -90PX;
-        margin-top: -260PX;
+        margin-left: -50PX;
+        margin-top: -320PX;
         height: 600px;
       }
       .app-descriptions{
         float: right;
-        width: 700px;
+        width: 550px;
         line-height: normal;
-        margin-right: 20px;
+        margin-right: 3em;
         font-size: 16px;
+        text-indent: -17px;
+        font-weight: 500;
+        color: #1E1E1E;
 
         li{
           text-align: left;
           margin-bottom: 15px;
           .star{
-            color: #419bf9;
+            color: #fff;
           }
         }
 
         #app-title{
-          color: #419bf9;
+          color: #fff;
+        }
+
+        #follow{
+          color: #fff;
+          margin-left: 3.2em;
+          font-size: 18px;
+          margin-bottom: 10px;
+          font-weight: 500;
+        }
+
+        .modal_app_store{
+          height: auto;
+          width: 140px;
+          margin-left: 2.5em;
+        }
+
+        .modal_play_store{
+          height: auto;
+          width: 140px;
         }
       }
     }
-  } 
+  }
 }

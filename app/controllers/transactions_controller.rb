@@ -23,7 +23,7 @@ class TransactionsController < ApplicationController
 
 		if !item.nil? && Transaction.where("(transactions.item_id = #{item.id} AND \
 			transactions.buyer_id = #{current_user.id} AND \
-			(transactions.status = 'Pending' OR transactions.status = 'Accepted' OR \
+			(transactions.status = ' Request Pending' OR transactions.status = 'Accepted' OR \
 			transactions.status = 'In Progress'))").empty?
 
 			if current_user.stripe_customer_id.nil?
@@ -235,7 +235,7 @@ class TransactionsController < ApplicationController
 
 			@transaction_validate = Transaction.where("((transactions.buyer_id = #{current_user.id}) \
 			AND transactions.item_id = #{params[:item_id]} AND \
-			(transactions.status = 'Pending' OR transactions.status = 'Accepted' OR \
+			(transactions.status = 'Request Pending' OR transactions.status = 'Accepted' OR \
 			 transactions.status = 'In Progress'))").empty?
 
 			if !@transaction_validate || @item_validate

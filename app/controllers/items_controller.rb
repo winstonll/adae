@@ -2,7 +2,7 @@ class ItemsController < ApplicationController
   before_filter :ensure_logged_in, only: [:create, :update, :edit, :destroy]
 
   def index
-      @items = Item.where(status: "Listed").paginate(:page => params[:page], :per_page => 6).order('created_at DESC')
+      @items = Item.where(status: "Listed").paginate(:page => params[:page], :per_page => 8).order('created_at DESC')
 
       gon.map_items = Item.pluck(:latitude, :longitude, :id)
 
@@ -155,7 +155,7 @@ class ItemsController < ApplicationController
       @item.longitude = geocode.longitude
     end
 
-    if @item.update_attributes(item_edit_params)
+    if ["rent", "lease"].include?(@item.listing_type) && @item.update_attributes(item_edit_params)
       update_prices
 
 =begin
@@ -170,6 +170,8 @@ class ItemsController < ApplicationController
       @item.save
 =end
 
+      redirect_to @item, notice: "Item Successfully Edited!"
+    elsif ["sell", "timeoffer"].include?(@item.listing_type) && @item.update_attributes(item_params)
       redirect_to @item, notice: "Item Successfully Edited!"
     else
       redirect_to :back, flash: {error: true}

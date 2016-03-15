@@ -25,7 +25,7 @@
 			</div>
 			<li class="requests">
 			  <div class="item-title">
-				<%= link_to item.title, item_path(request)%>
+				<%= link_to item.title, item_path(item)%>
 				<div class="status">Status: <%= request.status %></div>
 				<div class="price">Price: $<%= request.total_price %></div>
 				<div class="length"><%= request.length %></div>
@@ -58,10 +58,15 @@
 			</div>
 			<li class="transactions">
 			  <div class="item-title">
-				<%= link_to item.title, item_path(transaction)%>
+				<%= link_to item.title, item_path(item)%>
 				<div class="status">Status: <%= transaction.status %></div>
-				<div class="price">Price: $<%= transaction.length %></div>
-				<div class="length"><%= transaction.total_price %></div>
+				<div class="price">Price: $<%= transaction.total_price %></div>
+				<div class="length"><%= transaction.length %></div>
+			  </div>
+			  <div class="transaction-link">
+			  	<% unless transaction.status == "Completed" || transaction.status == "Denied" || transaction.status == "Cancelled" %>
+			    	<%= link_to 'See current transaction', conversations_path(transaction), class: "request-path" %>
+			  	<% end %>
 			  </div>
 			</li>
 		  <% end %>

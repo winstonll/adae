@@ -113,9 +113,20 @@ module Api::V1
 
               current_transaction.save
 
-              owner_amount = ((BigDecimal.new(params[:transactions][:balance]) - 0.3) / 1.029) * 0.9
+              if product.listing_type != "sell"
+                length = current_transaction.length.split("-")
+                qty = length[0]
+                length = length[1]
+                price = Price.where(item_id: current_transaction.item_id, timeframe: length).first
 
-              seller.balance = seller.balance +  owner_amount
+                sub_total = price.amount * qty.to_i
+              else
+                price = Price.where(item_id: current_transaction.item_id).first
+
+                sub_total = price.amount
+              end
+
+              seller.balance = seller.balance +  sub_total
               seller.save
 
               render nothing: true, status: 204
