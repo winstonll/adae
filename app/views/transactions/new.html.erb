@@ -1,10 +1,15 @@
 <%= stylesheet_link_tag "transactions" %>
 <script>
+  $(document).ready(function() {
+    $('.stripe-button-el').prop('disabled', true);
+    $('.request-button').prop('disabled', true);
+  });
+
   var hash = {};
 
-    <% @prices.each do |price| %>
-        hash['<%= price.timeframe%>'] = <%= price.amount%>;
-    <% end %>
+  <% @prices.each do |price| %>
+      hash['<%= price.timeframe%>'] = <%= price.amount%>;
+  <% end %>
 
   function qtyLength() {
     var lngth = $('select[name="transaction[length]"] option:selected').val();
@@ -23,8 +28,34 @@
   function updateQty() {
     qtyLength();
     var length = $('#transaction_length').val();
-    var amt = hash[length];
+    var amt = markup_price(hash[length]);
     $('#amt').val('$ ' + amt + ' x');
+
+    var qty = $('#qty').val();
+    var total = (amt * qty);
+    var fee = ((total * 0.029) + 0.30);
+    $('#subtotal').val('$' + total);
+    total = (total + fee).toFixed(2);
+
+    $('#price')[0].value = total;
+    $('#duration')[0].value = $('#qty').val() + "-" + $('#length').val();
+
+    $('#transaction_total_price').val('$' + total);
+    if (qty > 0){
+      $('.stripe-button-el').prop('disabled', false);
+      $('.request-button').prop('disabled', false);
+    }else {
+      $('.stripe-button-el').prop('disabled', true);
+      $('.request-button').prop('disabled', true);
+    }
+  }
+
+  function updateLength() {
+    qtyLength();
+    var length = $('#transaction_length').val();
+    var amt = markup_price(hash[length]);
+    $('#amt').val('$ ' + amt + ' x');
+
     var qty = $('#qty').val();
     var total = (amt * qty);
     var fee = ((total * 0.029) + 0.30);
@@ -37,22 +68,27 @@
     $('#transaction_total_price').val('$' + total);
   }
 
-  function updateLength() {
-    qtyLength();
-    var length = $('#transaction_length').val();
-    var amt = hash[length];
-    $('#amt').val('$ ' + amt + ' x');
+  function markup_price(price) {
+    var l1 = 1.1;
+    var l2 = 1.08;
+    var l3 = 1.06;
+    var l4 = 1.04;
+    var l5 = 1.02;
+    var displayPrice = 0;
 
-    var qty = $('#qty').val();
-    var total = (amt * qty);
-    var fee = ((total * 0.029) + 0.30);
-    $('#subtotal').val('$' + total);
-    total = (total + fee).toFixed(2);
+    if(price < 100) {
+        displayPrice = Math.round(price*l1, 0);
+    }else if(price >= 100 & price < 200) {
+        displayPrice = Math.round(100*l1 + (price-100)*l2, -1);
+    }else if(price >= 200 & price < 500) {
+        displayPrice = Math.round(100*l1 + 100*l2 + (price-200)*l3, -1);
+    }else if(price >= 500 & price < 1000) {
+        displayPrice = Math.round(100*l1 + 100*l2 + 300*l3 + (price-500)*l4, -1);
+    }else if(price >= 1000) {
+        displayPrice = Math.round(100*l1 + 100*l2 + 300*l3 + 500*l4 + (price-1000)*l5, -1);
+    }
 
-    $('#price')[0].value = total;
-    $('#duration')[0].value = $('#qty').val() + "-" + $('#length').val();
-
-    $('#transaction_total_price').val('$' + total);
+    return displayPrice;
   }
 
   function validate_duration() {
@@ -119,6 +155,7 @@
                   <input id="subtotal" readonly="readonly" value=""></input>
 
                   <% unless @item.deposit == 0 %>
+                  <label id="markup-price">Markup:</label>
                   <input class="trust-fee"readonly="readonly" value="Trust Fee: $<%= @item.deposit %>"></input>
                   <div class="trust-fee-text"> This ensures that the item is treated with care and is returned on time. <b style="font-weight: 600;">This amount will be charged only if you fail to return the item, damage it, or lose it.</b></div>
                   <% end %>
@@ -150,6 +187,7 @@
               <input id="subtotal" readonly="readonly" value=""></input>
 
               <% unless @item.deposit == 0 %>
+                <label id="markup-price">Markup:</label>
                 <input class="trust-fee"readonly="readonly" value="Trust Fee: $<%= @item.deposit %>"></inp
                 <input class="deposit" readonly="readonly" value="$<%= @item.deposit %>"></input>
                 <div class="trust-fee-text"> This ensures that the item is treated with care and is returned on time. <b style="font-weight: 600;">This amount will be charged only if you fail to return the item, damage it, or lose it.</b></div>
@@ -178,6 +216,7 @@
               <input id="length" readonly="readonly" value=""></input>
               <input id="subtotal" readonly="readonly" value=""></input>
                 <% unless @item.deposit == 0 %>
+                  <label id="markup-price">Markup:</label>
                   <input class="trust-fee"readonly="readonly" value="Trust Fee: $<%= @item.deposit %>"></input>
                   <input class="deposit" readonly="readonly" value="$<%= @item.deposit %>"></input>
                 <% end %>
