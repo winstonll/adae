@@ -79,11 +79,32 @@ class TransactionsController < ApplicationController
 
 		@customer = Stripe::Customer.retrieve(buyer.stripe_customer_id)
 
+		charge_price = (transaction.total_price.to_f * 100).ceil
+
+		if params[:lease]
+			sub_total = (markup_calculation(item.deposit) - transaction.total_price).to_f
+			if buyer.balance > 0
+
+
+				if buyer.balance > sub_total
+					sub_total = 0
+					buyer.balance = buyer.balance - subtotal
+					buyer.save
+				else
+					sub_total = sub_total - buyer.balance
+					buyer.balance = 0
+					buyer.save
+				end
+			end
+
+			charge_price = (sub_total * 100).ceil
+		end
+
 		# Charge the customer instead of the card
 		begin
 			charge = Stripe::Charge.create(
 				:customer => @customer.id,
-		    :amount => (transaction.total_price.to_f * 100).ceil, # amount in cents, again
+		    :amount => charge_price, # amount in cents, again
 		    :currency => "cad",
 		    :description => description
 		  )
@@ -95,9 +116,6 @@ class TransactionsController < ApplicationController
 
 		# If the charge succeeded, then record the data
 		if charge[:paid]
-			transaction.status = "Accepted"
-			transaction.save
-
 			stripeCharge = {
 				txn_type: charge[:object],
 				currency: charge[:currency],
@@ -110,12 +128,18 @@ class TransactionsController < ApplicationController
 
 			@sT = StripeTransaction.create(stripeCharge) # make a record in the StripeTransactions table
 
-			redirect_to :back
+			if params[:lease]
+				item.status = "Sold"
+				item.save
+				transaction.status = "Completed"
+				transaction.save
+				redirect_to conversations_path
+			else
+				transaction.status = "Accepted"
+				transaction.save
+				redirect_to :back
+			end
 		end
-	end
-
-	def lease_purchase
-		
 	end
 
 	# Grabs all the necessary data and presents an invoice display page after purchases
@@ -180,6 +204,30 @@ class TransactionsController < ApplicationController
 	end
 
 	private
+
+		def markup_calculation(price)
+			l1 = 1.1
+			l2 = 1.08
+			l3 = 1.06
+			l4 = 1.04
+			l5 = 1.02
+
+			displayPrice = 0
+
+	    if(price < 100)
+	      displayPrice = (price * l1).round
+	    elsif(price >= 100 && price < 200)
+	      displayPrice = ((100 * l1) + (price - 100) * l2).round
+	    elsif(price >= 200 && price < 500)
+	      displayPrice = ((100 * l1) + (100 * l2) + ((price - 200) * l3)).round
+	    elsif(price >= 500 && price < 1000)
+	      displayPrice = ((100 * l1) + (100 * l2) + (300 * l3) + ((price - 500) * l4)).round
+	    elsif(price >= 1000)
+	      displayPrice = ((100 * l1) + (100 * l2) + (300 * l3) + (500 * l4) + ((price - 1000) * l5)).round
+			end
+
+			return displayPrice
+		end
 
 		def transaction_exists?
 			@item = Item.find(params[:item_id])
