@@ -40,7 +40,7 @@
     total = (total + fee).toFixed(2);
 
     $('#price')[0].value = total;
-    $('#duration')[0].value = $('#qty').val() + "-" + $('#length').val();
+    $('#duration')[0].value = $('#qty').val() + "-" + $('#transaction_length').val();
 
     $('#transaction_total_price').val('$' + total);
     if (qty > 0){
@@ -65,7 +65,7 @@
     total = (total + fee).toFixed(2);
 
     $('#price')[0].value = total;
-    $('#duration')[0].value = $('#qty').val() + "-" + $('#length').val();
+    $('#duration')[0].value = $('#qty').val() + "-" + $('#transaction_length').val();
 
     $('#transaction_total_price').val('$' + total);
   }
