@@ -24,7 +24,7 @@
       <% end %>
 
       <% if flash[:companion_modal] %>
-        $(document).ready(function(){ 
+        $(document).ready(function(){
           $('#shareCompanionModal').modal('show');
         });
         <%= render '/common/companion_modal' %>
