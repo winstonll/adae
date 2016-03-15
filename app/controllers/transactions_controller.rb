@@ -5,15 +5,16 @@ class TransactionsController < ApplicationController
 
 	def new
 		@transaction = Transaction.new
-		@item = Item.find(params[:item_id])
-	    @prices = @item.prices
-	    @pictures = Picture.where(item_id: @item.id)
-	    @fee = ((@prices.first.amount * 0.029) + 0.30)
-	    @type_dropdown = []
+		@item = Item.find(params[:item_id]) 
 
-	    @prices.each do |price|
-	    	@type_dropdown.push([price.timeframe])
-	    end
+    @prices = @item.prices
+    @pictures = Picture.where(item_id: @item.id)
+
+    @type_dropdown = []
+
+    @prices.each do |price|
+    	@type_dropdown.push([price.timeframe])
+    end
 	end
 
 	def stripe

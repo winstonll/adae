@@ -4,6 +4,17 @@
     <% if @item.listing_type != "sell" %>
       $('.stripe-button-el').prop('disabled', true);
       $('.request-button').prop('disabled', true);
+      <% if params[:sell] == "true" %>
+        $('#display-price')[0].innerHTML = "$" + markup_price(<%= @item.deposit %>);
+        $('#total').val("$" + ((markup_price(<%= @item.deposit %>) * 1.029) + 0.30).toFixed(2));
+        $('#stripe-fee')[0].innerHTML = ( (markup_price(<%= @item.deposit %>) * 0.029) + 0.30).toFixed(2);
+        $('#price').val($('#total').val());
+      <% end %>
+    <% elsif @item.listing_type == "sell" %>
+      $('#display-price')[0].innerHTML = "$" + markup_price(<%= @prices.first.amount %>);
+      $('#total').val("$" + ((markup_price(<%= @prices.first.amount %>) * 1.029) + 0.30).toFixed(2));
+      $('#stripe-fee')[0].innerHTML = ( (markup_price(<%= @prices.first.amount %>) * 0.029) + 0.30).toFixed(2);
+      $('#price').val($('#total').val());
     <% end %>
   });
 
@@ -93,7 +104,7 @@
     return displayPrice;
   }
 
-  function validate_duration() {
+  function validate_duration() { 
     <% if @item.listing_type != 'sell' %>
       if (!$('#qty').val() ){
         event.preventDefault();
@@ -122,24 +133,32 @@
   </div>
 
     <div class="price-details">
+      <!-- If listing type sell OR request  to buy a lease item -->
       <% if @item.listing_type == "sell" || params[:sell] == "true"%>
+
         <div class="item-detail-price" style="height: 250px;">
           <div class="item-title"><%=@item.title %></div>
           <div class="division"></div>
           <% unless params[:sell] == "true" %>
-            <p style="font-size: 30px; font-weight: 500; color: #4a4a4a;">$<%= @prices.first.amount %></p>
+            <p id="display-price" style="font-size: 30px; font-weight: 500; color: #4a4a4a;"></p>
           <% else %>
-            <p style="font-size: 30px; font-weight: 500; color: #4a4a4a;">$<%= @item.deposit %></p>
+            <p id="display-price" style="font-size: 30px; font-weight: 500; color: #4a4a4a;"></p>
           <% end %>
-          <p class ="credit-fee"><a target="_blank" href="https://stripe.com/ca/pricing" style=" color: #419bf9; margin-right: 40px; text-decoration: underline;">Stripe Processing Fee:</a>$<%= number_with_precision(@fee, :precision => 2)%></p>
+
+          <p class="credit-fee">
+            <a target="_blank" href="https://stripe.com/ca/pricing" style=" color: #419bf9; margin-right: 40px; text-decoration: underline;">Stripe Processing Fee:</a>
+            <label id="stripe-fee"></label>
+          </p>
+
           <div class="division" style=" width: 86%;"></div>
           <span class="finalp">Total</span>
           <% unless params[:sell] == "true" %>
-            <input id="total" readonly="readonly" value="<%=@prices.first.amount + @fee %>"></input>
+            <input id="total" readonly="readonly" value=""></input>
           <% else %>
-            <input id="total" readonly="readonly" value="<%=@item.deposit + @fee %>"></input>
+            <input id="total" readonly="readonly" value=""></input>
           <% end %>
         </div>
+      <!-- If listing type lease -->
       <% elsif @item.listing_type == "lease" %>
         <div class="item-detail-price" style="height: 450px;">
           <div class="item-title"><%=@item.title %></div>
@@ -172,6 +191,7 @@
               </div>
             <% end %>
         </div>
+      <!-- If listing type rent -->
       <% elsif @item.listing_type == "rent"%>
         <div class="item-detail-price" style="height: 350px;">
           <div class="item-title"><%=@item.title %></div>
@@ -202,6 +222,7 @@
             </div>
           <% end %>
         </div>
+      <!-- If listing type timeoffer -->
       <% else %>
         <div class="item-detail-price" style="height: 280px;">
           <div class="item-title"><%=@item.title %></div>
@@ -232,6 +253,7 @@
         </div>
       <% end %>
 
+      <!-- Stripe transaction form OR transaction request submission -->
       <center style="position: relative; left: 50%; margin-bottom: 3em;">
         <% if current_user.stripe_customer_id.nil? %>
           <%= form_tag transactions_stripe_path do%>
@@ -250,7 +272,7 @@
         <% else %>
           <%= form_tag transactions_stripe_path do%>
             <%= hidden_field_tag 'item_id', @item.id %>
-            <%= hidden_field_tag 'price', ((@item.prices.first.amount * 1.029) + 0.30) %>
+            <%= hidden_field_tag 'price' %>
             <%= hidden_field_tag 'duration' %>
 
             <%= submit_tag 'Send Payment', class: "request-button", :onclick => "return validate_duration();"%>
