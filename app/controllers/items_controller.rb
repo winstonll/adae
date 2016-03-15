@@ -2,7 +2,7 @@ class ItemsController < ApplicationController
   before_filter :ensure_logged_in, only: [:create, :update, :edit, :destroy]
 
   def index
-      @items = Item.where(status: "Listed").paginate(:page => params[:page], :per_page => 8).order('created_at DESC')
+      @items = Item.where(status: "Listed").paginate(:page => params[:page], :per_page => 6).order('created_at DESC')
 
       gon.map_items = Item.pluck(:latitude, :longitude, :id)
 
