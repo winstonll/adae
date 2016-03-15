@@ -5,16 +5,9 @@ $(document).click(function (e) {
     //if the target of the click isn't the modal...
     if (!signin.is(e.target)&& signin.has(e.target).length === 0) { signin.modal('hide'); }
 });
-
-
 </script>
 
 <div id="shareSigninModal" tabindex="-1" role="dialog" aria-labelledby="shareSigninModal" aria-hidden="true">
-
-    <div class="share-modal-content-container">
-      <%#= image_tag("anonprofile.png", size: "70x70", class: "avatar-image") %>
-      <br/>
-
       <div class="signin-form">
         <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
           <div class="field">
@@ -42,5 +35,4 @@ $(document).click(function (e) {
           <p class="shared"><%= render "users/shared/links" %> </p>
         <% end %>
       </div>
-    </div>
-</div><!-- /.modal -->
+</div>

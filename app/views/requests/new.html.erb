@@ -1,13 +1,4 @@
 <%= stylesheet_link_tag "requests" %>
-<% if flash[:signup_modal] %>
-  <script>
-  $(document).ready(function(){ 
-  	$('#shareSignupModal').modal('show');
-  });
-  </script>
-	<%= render '/common/signup_modal' %>
-<% end %>
-
 
 <div class="request-title">
 	<h1 class="request-listing">Post a Shout Out</h1>
