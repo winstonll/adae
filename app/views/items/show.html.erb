@@ -118,7 +118,7 @@
           <p>Pay a rental fee to try the item, and if you like it you can buy the item for the Trust Fee price.</p>
           <p>Your rental fees will count towards the final sale price.</p>
           <p class="sale-price"> Sale Price:
-            <span style="font-weight: 700; color:#000;">$<%= @item.deposit %></span>
+            <span class="markup" style="font-weight: 700; color:#000;">$<%= @item.deposit %></span>
           </p>
           <%= link_to 'Request to Buy', new_transaction_path(:item_id => @item.id, :sell=> true), class: "request-button", id: "buy-button"%>
         </div>
