@@ -89,12 +89,12 @@ class TransactionsController < ApplicationController
 
 		if buyer.balance > 0
 			if buyer.balance > sub_total
-				sub_total = 0
-				buyer.balance = buyer.balance - sub_total
-				buyer.save
-			else
 				sub_total = sub_total - buyer.balance
 				buyer.balance = 0
+				buyer.save
+			else
+				sub_total = 0
+				buyer.balance = buyer.balance - sub_total
 				buyer.save
 			end
 		end
@@ -143,7 +143,7 @@ class TransactionsController < ApplicationController
 
 			@sT = StripeTransaction.create(stripeCharge) # make a record in the StripeTransactions table
 		end
- 
+
 		if params[:lease]
 			item.status = "Sold"
 			item.save
