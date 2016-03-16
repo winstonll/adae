@@ -101,45 +101,49 @@ class TransactionsController < ApplicationController
 
 		charge_price = (sub_total * 100).ceil
 
-		# Charge the customer instead of the card
-		begin
-			charge = Stripe::Charge.create(
-				:customer => @customer.id,
-		    :amount => charge_price, # amount in cents, again
-		    :currency => "cad",
-		    :description => description
-		  )
+		if charge_price > 0
+			# Charge the customer instead of the card
+			begin
+				charge = Stripe::Charge.create(
+					:customer => @customer.id,
+			    :amount => charge_price, # amount in cents, again
+			    :currency => "cad",
+			    :description => description
+			  )
 
-			rescue Stripe::CardError => e
-				flash[:alert] = e.message
-				redirect_to conversations_path
-		end
-
-		# If the charge succeeded, then record the data
-		if charge[:paid]
-			stripeCharge = {
-				txn_type: charge[:object],
-				currency: charge[:currency],
-				total_amount: charge[:amount],
-				notification_params: charge,
-				txn_id: charge[:id],
-				status: charge[:paid],
-				description: charge[:description]
-			}
-
-			@sT = StripeTransaction.create(stripeCharge) # make a record in the StripeTransactions table
-
-			if params[:lease]
-				item.status = "Sold"
-				item.save
-				transaction.status = "Completed"
-				transaction.save
-				redirect_to conversations_path
-			else
-				transaction.status = "Accepted"
-				transaction.save
-				redirect_to :back
+				rescue Stripe::CardError => e
+					flash[:alert] = e.message
+					redirect_to conversations_path
 			end
+
+			# If the charge succeeded, then record the data
+			if charge[:paid] 
+				stripeCharge = {
+					txn_type: charge[:object],
+					currency: charge[:currency],
+					total_amount: charge[:amount],
+					notification_params: charge,
+					txn_id: charge[:id],
+					status: charge[:paid],
+					description: charge[:description]
+				}
+
+				@sT = StripeTransaction.create(stripeCharge) # make a record in the StripeTransactions table
+
+				if params[:lease]
+					item.status = "Sold"
+					item.save
+					transaction.status = "Completed"
+					transaction.save
+					redirect_to conversations_path
+				else
+					transaction.status = "Accepted"
+					transaction.save
+					redirect_to :back
+				end
+			end
+		else
+			redirect_to :back
 		end
 	end
 
