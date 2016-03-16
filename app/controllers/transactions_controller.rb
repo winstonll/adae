@@ -1,7 +1,8 @@
 class TransactionsController < ApplicationController
 	protect_from_forgery except: [:hook]
-	before_action :signed_in_user, only: [:new, :edit, :update, :delete, :stripe, :stripe_success, :purchase_order]
+	before_action :signed_in_user #, only: [:new, :edit, :update, :delete, :stripe, :stripe_success, :accept, :purchase_order]
 	before_action :transaction_exists?, only: [:new]
+	before_action :transaction_owner?, only: [:accept]
 
 	def new
 		@transaction = Transaction.new
@@ -39,7 +40,7 @@ class TransactionsController < ApplicationController
 			seller = User.where(id: item.user_id).first
 
 			order_transaction = Transaction.new(item_id: item.id, buyer_id: current_user.id,
-			seller_id: item.user_id, total_price: params[:price][1..params[:price].length - 1].to_f, length: item.listing_type == 'sell' ? nil : params[:duration])
+			seller_id: item.user_id, total_price: params[:price], length: item.listing_type == 'sell' ? nil : params[:duration])
 
 			order_transaction.save
 
@@ -80,26 +81,25 @@ class TransactionsController < ApplicationController
 
 		@customer = Stripe::Customer.retrieve(buyer.stripe_customer_id)
 
-		charge_price = (transaction.total_price.to_f * 100).ceil
-
 		if params[:lease]
 			sub_total = (markup_calculation(item.deposit) - transaction.total_price).to_f
-			if buyer.balance > 0
-
-
-				if buyer.balance > sub_total
-					sub_total = 0
-					buyer.balance = buyer.balance - subtotal
-					buyer.save
-				else
-					sub_total = sub_total - buyer.balance
-					buyer.balance = 0
-					buyer.save
-				end
-			end
-
-			charge_price = (sub_total * 100).ceil
+		else
+			sub_total = transaction.total_price.to_f
 		end
+
+		if buyer.balance > 0
+			if buyer.balance > sub_total
+				sub_total = 0
+				buyer.balance = buyer.balance - subtotal
+				buyer.save
+			else
+				sub_total = sub_total - buyer.balance
+				buyer.balance = 0
+				buyer.save
+			end
+		end
+
+		charge_price = (sub_total * 100).ceil
 
 		# Charge the customer instead of the card
 		begin
@@ -230,6 +230,7 @@ class TransactionsController < ApplicationController
 			return displayPrice
 		end
 
+		#if transaction exists redirect
 		def transaction_exists?
 			@item = Item.find(params[:item_id])
 			@item_validate = @item.user_id == current_user.id
@@ -242,6 +243,10 @@ class TransactionsController < ApplicationController
 			if !@transaction_validate || @item_validate
 				redirect_to items_path
 			end
+		end
+
+		def transaction_owner?
+
 		end
 
 		def transaction_params
