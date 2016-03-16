@@ -53,7 +53,7 @@
 				</div>
 			<% elsif item.listing_type == "lease" %>
 				<div class="lease">
-					<span class="markup"><%= item.prices.first.amount %>/</span>
+					<span class="markup"><%= item.prices.first.amount %></span>/
 					<%= item.prices.first.timeframe %>
 				</div>
 				<div class="deposit">
@@ -62,12 +62,12 @@
 				</div>
 			<% elsif item.listing_type == "rent"%>
 				<div class="rent">
-					<span class="markup"><%= item.prices.first.amount %>/</span>
+					<span class="markup"><%= item.prices.first.amount %></span>/
 					<%= item.prices.first.timeframe %>
 				</div>
 			<% else %>
 				<div class="timeoffer">
-					<span class="markup"><%= item.prices.first.amount %>/</span>
+					<span class="markup"><%= item.prices.first.amount %></span>/
 					<%= item.prices.first.timeframe %>
 				</div>
 			<% end %>
