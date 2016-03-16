@@ -81,25 +81,29 @@ class TransactionsController < ApplicationController
 
 		@customer = Stripe::Customer.retrieve(buyer.stripe_customer_id)
 
-		sub_total = transaction.total_price.to_f
+		charge_price = transaction.total_price.to_f
 
 		if params[:lease]
-			sub_total = (markup_calculation(item.deposit) - transaction.total_price).to_f
+			charge_price = (markup_calculation(item.deposit) - transaction.total_price).to_f
 		end
 
 		if buyer.balance > 0
-			if buyer.balance > sub_total
-				buyer.balance = buyer.balance - sub_total
-				sub_total = 0
+			if buyer.balance > charge_price
+				balance_used = charge_price
+				buyer.balance = buyer.balance - charge_price
+				charge_price = 0
 				buyer.save
 			else
-				sub_total = sub_total - buyer.balance
+				balance_used = buyer.balance - charge_price
+				charge_price = charge_price - buyer.balance
 				buyer.balance = 0
 				buyer.save
 			end
 		end
 
-		charge_price = (((sub_total * 1.029) + 0.30) * 100).ceil
+		unless charge_price <= 0
+			charge_price = (((charge_price * 1.029) + 0.30) * 100).ceil
+		end
 
 		if charge_price > 0
 			# Charge the customer instead of the card
@@ -138,7 +142,7 @@ class TransactionsController < ApplicationController
 				notification_params: nil,
 				txn_id: nil,
 				status: nil,
-				description: "Balance was greater than the total price. No Stripe charges necessary."
+				description: "$#{balance_used} was taken from your balance. No Stripe charges were necessary."
 			}
 
 			@sT = StripeTransaction.create(stripeCharge) # make a record in the StripeTransactions table
