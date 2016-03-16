@@ -7,9 +7,8 @@
     var l5 = 1.02;
     var x = price.innerHTML;
     var amount = parseInt(x);
-    console.log(amount);
     var displayPrice = 0;
-    
+
     if(amount < 100) {
         displayPrice = Math.round(amount*l1, 0);
         price.innerHTML = '$' + displayPrice;
@@ -24,7 +23,7 @@
         price.innerHTML = '$' + displayPrice;
     }else if(amount >= 1000) {
         displayPrice = Math.round(100*l1 + 100*l2 + 300*l3 + 500*l4 + (amount-1000)*l5, -1);
-        price.innerHTML = '$' + displayPrice + '/'; 
+        price.innerHTML = '$' + displayPrice;
     }
   }
 	$(document).ready(function() {
@@ -46,7 +45,7 @@
   <a href="/items/<%=item.id %>">
 	<div class="price-wrap">
 		<div class="item-prices">
-				
+
 			<% if item.listing_type == "sell" %>
 				<div class="sell">
 					<span class="markup"><%= item.prices.first.amount %></span>
@@ -54,28 +53,28 @@
 				</div>
 			<% elsif item.listing_type == "lease" %>
 				<div class="lease">
-					<span class="markup"><%= item.prices.first.amount %>/</span>
+					<span class="markup"><%= item.prices.first.amount %></span> /
 					<%= item.prices.first.timeframe %>
 				</div>
 				<div class="deposit">
-					<span class="markup"><%= item.deposit %></span> 
+					<span class="markup"><%= item.deposit %></span>
 					<span style="font-size: 11px;">to buy</span>
 				</div>
 			<% elsif item.listing_type == "rent"%>
 				<div class="rent">
-					<span class="markup"><%= item.prices.first.amount %>/</span>
+					<span class="markup"><%= item.prices.first.amount %></span> /
 					<%= item.prices.first.timeframe %>
 				</div>
 			<% else %>
 				<div class="timeoffer">
-					<span class="markup"><%= item.prices.first.amount %>/</span>
+					<span class="markup"><%= item.prices.first.amount %></span> /
 					<%= item.prices.first.timeframe %>
 				</div>
 			<% end %>
 		</div>
 	</div>
   </a>
-		
+
 	<div class="item-wrap">
 		<%= link_to item_path(item.id) do %>
 		<div id="item-title">
