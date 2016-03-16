@@ -58,16 +58,25 @@
 
     //decide wether to disable submit button or not depending on qty
     $('#transaction_total_price').val('$' + total);
-    if (qty > 0){
+
+    if (qty > 0 && (parseFloat(qty) === parseInt(qty, 10))){
       $('.stripe-button-el').prop('disabled', false);
       $('.request-button').prop('disabled', false);
     }else {
+      toastr.options ={
+        'timeOut': "5000",
+        'extendedTimeOut': "2000",
+        "positionClass": 'toast-top-center'
+      };
+
+      toastr.warning("Quantity must be in whole numbers");
+
       $('.stripe-button-el').prop('disabled', true);
       $('.request-button').prop('disabled', true);
     }
   }
 
-  function updateLength() {  
+  function updateLength() {
     qtyLength();
     var length = $('#transaction_length').val();
     var amt = markup_price(hash[length]);
