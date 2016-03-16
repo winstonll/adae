@@ -89,16 +89,16 @@ class TransactionsController < ApplicationController
 
 		if buyer.balance > 0
 			if buyer.balance > sub_total
+				buyer.balance = buyer.balance - sub_total
+				sub_total = 0
+				buyer.save
+			else
 				sub_total = sub_total - buyer.balance
 				buyer.balance = 0
 				buyer.save
-			else
-				sub_total = 0
-				buyer.balance = buyer.balance - sub_total
-				buyer.save
 			end
 		end
-
+asd
 		charge_price = (sub_total * 100).ceil
 
 		if charge_price > 0
@@ -114,7 +114,7 @@ class TransactionsController < ApplicationController
 				rescue Stripe::CardError => e
 					flash[:alert] = e.message
 					redirect_to conversations_path
-					return false
+					#return false
 			end
 
 			if charge[:paid]
