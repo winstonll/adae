@@ -246,7 +246,11 @@ class TransactionsController < ApplicationController
 		end
 
 		def transaction_owner?
+			transaction = Transaction.find(params[:transaction])
 
+			unless transaction.seller_id == current_user.id
+				redirect_to items_path, flash: {alert: "You do not have access to this command."}
+			end
 		end
 
 		def transaction_params
@@ -255,7 +259,7 @@ class TransactionsController < ApplicationController
 
 		def signed_in_user
 	  	unless signed_in?
-	      redirect_to request.referrer, flash: {warning: "Please sign in before you checkout.", signup_modal: true}
+	      redirect_to items_path, flash: {warning: "Please sign in before you checkout."}
 	  	end
 	  end
 
