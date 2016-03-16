@@ -1,8 +1,8 @@
 class TransactionsController < ApplicationController
 	protect_from_forgery except: [:hook]
-	before_action :signed_in_user, only: [:new, :edit, :update, :delete, :stripe, :stripe_success, :accept, :purchase_order]
+	before_action :signed_in_user #, only: [:new, :edit, :update, :delete, :stripe, :stripe_success, :accept, :purchase_order]
 	before_action :transaction_exists?, only: [:new]
-	before_action :transaction_owner?, only: [:stripe, :accept]
+	before_action :transaction_owner?, only: [:accept]
 
 	def new
 		@transaction = Transaction.new
@@ -40,7 +40,7 @@ class TransactionsController < ApplicationController
 			seller = User.where(id: item.user_id).first
 
 			order_transaction = Transaction.new(item_id: item.id, buyer_id: current_user.id,
-			seller_id: item.user_id, total_price: params[:price][1..params[:price].length - 1].to_f, length: item.listing_type == 'sell' ? nil : params[:duration])
+			seller_id: item.user_id, total_price: params[:price], length: item.listing_type == 'sell' ? nil : params[:duration])
 
 			order_transaction.save
 
@@ -230,6 +230,7 @@ class TransactionsController < ApplicationController
 			return displayPrice
 		end
 
+		#if transaction exists redirect
 		def transaction_exists?
 			@item = Item.find(params[:item_id])
 			@item_validate = @item.user_id == current_user.id

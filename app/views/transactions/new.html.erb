@@ -8,13 +8,13 @@
         $('#display-price')[0].innerHTML = "$" + markup_price(<%= @item.deposit %>);
         $('#total').val("$" + ((markup_price(<%= @item.deposit %>) * 1.029) + 0.30).toFixed(2));
         $('#stripe-fee')[0].innerHTML = ( (markup_price(<%= @item.deposit %>) * 0.029) + 0.30).toFixed(2);
-        $('#price').val($('#total').val());
+        $('#price').val($('#total').val().substring(1, $('#total').val().length));
       <% end %>
     <% elsif @item.listing_type == "sell" %>
       $('#display-price')[0].innerHTML = "$" + markup_price(<%= @prices.first.amount %>);
       $('#total').val("$" + ((markup_price(<%= @prices.first.amount %>) * 1.029) + 0.30).toFixed(2));
       $('#stripe-fee')[0].innerHTML = ( (markup_price(<%= @prices.first.amount %>) * 0.029) + 0.30).toFixed(2);
-      $('#price').val($('#total').val());
+      $('#price').val($('#total').val().substring(1, $('#total').val().length));
     <% end %>
   });
 
@@ -104,7 +104,7 @@
     return displayPrice;
   }
 
-  function validate_duration() { 
+  function validate_duration() {
     <% if @item.listing_type != 'sell' %>
       if (!$('#qty').val() ){
         event.preventDefault();
