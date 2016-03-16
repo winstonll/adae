@@ -82,7 +82,7 @@ class TransactionsController < ApplicationController
 		@customer = Stripe::Customer.retrieve(buyer.stripe_customer_id)
 
 		sub_total = transaction.total_price.to_f
-		
+
 		if params[:lease]
 			sub_total = (markup_calculation(item.deposit) - transaction.total_price).to_f
 		end
@@ -90,7 +90,7 @@ class TransactionsController < ApplicationController
 		if buyer.balance > 0
 			if buyer.balance > sub_total
 				sub_total = 0
-				buyer.balance = buyer.balance - subtotal
+				buyer.balance = buyer.balance - sub_total
 				buyer.save
 			else
 				sub_total = sub_total - buyer.balance
