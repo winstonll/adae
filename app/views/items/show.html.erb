@@ -1,4 +1,6 @@
 <%= stylesheet_link_tag "items" %>
+<%= include_gon %>
+
 <script>
   function markup(price) {
     var l1 = 1.1;
@@ -48,26 +50,6 @@
       $('.request-button').css("background-color", "#D5D5D5");
       $('.request-button').css("cursor", "default");
     <% end %>    
-  });
-
-  $('#why_adae').click(function(){
-
-    $('.toast').remove();
-
-    toastr.options ={
-      'timeOut': "30000",
-      'extendedTimeOut': "2000",
-    "positionClass": 'toast-bottom-right',
-      "preventDuplicates": true
-    };
-
-    var rent_text = " <br><span style='font-weight: 600; font-size: 20px;'>Why Adae?</span> <br><br> \
-    <div style='line-height: normal;'> &#x2756; We ask for a credit card (securely via Stripe) before making a request; \
-    in return, no need to bring cash as NAME gets paid electronically. Security really matters to us. <br><br> \
-    &#x2756; Only when your request is accepted, will your card will be charged. NAME won't receive your money until you meet. <br><br>\
-    &#x2756; We are always happy to help resolve disputes and issue refunds, whenever necessary.</div> <br>";
-
-    toastr.info(rent_text);
   });
 
 </script>
@@ -165,6 +147,8 @@
         <%= @item.description %>
         <div class="divider"></div>
       </div>
+      <div id="item-map"></div>
+      <%= javascript_include_tag "navbar" %>
     </div>
 </div>
   <div class="rating-container">
