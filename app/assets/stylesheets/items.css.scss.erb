@@ -257,8 +257,6 @@ $green: #7ed321;
 @media only screen and (min-width: 1280px) {
   .item-index{
     height: 210px !important;
-    .item-wrap{
-    }
   }
 
   .photos{
@@ -273,8 +271,6 @@ $green: #7ed321;
 @media only screen and (min-width: 1440px) {
   .item-index{
     height: 210px !important;
-    .item-wrap{
-    }
   }
 
   .photos{
@@ -334,6 +330,7 @@ body{
 
   .photo-container {
     white-space: nowrap;
+    width: 102%;
     .photos{
       display: inline-block;
       .cover-photo{
@@ -626,7 +623,7 @@ body{
   }
 
   /*responsive width styling for the page content not to be too spread out*/
-  @media only screen and (min-width: 1280px) {
+  @media only screen and (max-width: 1280px) {
     .item-detail-price{
       margin-right: 5% !important;
     }
@@ -725,11 +722,17 @@ body{
     width: 500px;
     margin-top: 2em;
 
-
     .item-description {
       line-height: normal;
       color: #4a4a4a;
       width: 600px;
+    }
+
+    #item-map{
+      position: fixed;
+      height: 300px;
+      width: 100%;
+      margin: 15px 0 25px 0;
     }
   }
 }
