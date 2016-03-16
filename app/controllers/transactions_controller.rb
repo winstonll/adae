@@ -88,12 +88,14 @@ class TransactionsController < ApplicationController
 		end
 
 		if buyer.balance > 0
+			sub_total = ((sub_total - 0.3) / 1.029)
 			if buyer.balance > sub_total
 				buyer.balance = buyer.balance - sub_total
 				sub_total = 0
 				buyer.save
 			else
 				sub_total = sub_total - buyer.balance
+				sub_total = ((sub_total * 1.029) + 0.3)
 				buyer.balance = 0
 				buyer.save
 			end
