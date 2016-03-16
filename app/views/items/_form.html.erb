@@ -28,45 +28,7 @@
 	        <div id="tag-instruction">* Maximum of 6 tags, empty boxes will not be added.</div>
 		</div>
 
-		<div class="new-item-form">
-			<p> Add a Location:</p>
-			<p class="form-title">Postal Code</p>
-			<%= f.text_field :postal_code, :maxlength=> "6", :placeholder => "ex. M5V3A6, This way people nearby are more likely to discover your listing" %>
-		</div>
-
-		<% if current_page? rent_path %>
-			<%= f.hidden_field :listing_type, :value =>"rent" %>
-		<% elsif current_page? sell_path %>
-			<%= f.hidden_field :listing_type, :value =>"sell" %>
-		<% elsif current_page? lease_path %>
-			<%= f.hidden_field :listing_type, :value =>"lease" %>
-		<% else %>
-			<%= f.hidden_field :listing_type, :value =>"timeoffer" %>
-		<% end %>
-
-		<div class="new-item-form">
-			<p> Description:</p>
-			<p class="form-title">Listing Title</p>
-			<%= f.text_field :title, :maxlength=> "90", :placeholder => "Give your listing a concise and catchy headline!"  %>
-		</div>
-
-		<div class="new-item-form">
-			<%= f.label :summary %>
-			<%= f.text_area :description, :maxlength=> "500", :placeholder => "Include as much detail as possible, because potential customers can only contact you when they send a request with a valid Credit Card." %>
-
-      <label class="countdown">500 characters remaining</label>
-		</div>
-
-		<div class="new-item-form">
-			<div class="upload-photo">
-				<%= image_tag "phone.png", id:"photo-image" %>
-      			<%= file_field_tag "images[]", type: :file, multiple: true %>
-				<p id="pic-title">  + Add Photo </p>
-				<p id="descriptor"> You can upload more than one file at a time </p>
-			</div>
-		</div>
-
-		<% if current_page? timeoffer_path %>
+    <% if current_page? timeoffer_path %>
 			<%= f.fields_for :prices, @price do |p| %>
 			    <%= p.hidden_field :timeframe, :value => "Hour" %>
 			    <div class="new-item-form">
@@ -158,6 +120,46 @@
         <% end %>
 			<% end %>
 		<% end %>
+
+
+		<div class="new-item-form">
+			<p> Add a Location:</p>
+			<p class="form-title">Postal Code</p>
+			<%= f.text_field :postal_code, :maxlength=> "6", :placeholder => "ex. M5V3A6, This way people nearby are more likely to discover your listing" %>
+		</div>
+
+		<% if current_page? rent_path %>
+			<%= f.hidden_field :listing_type, :value =>"rent" %>
+		<% elsif current_page? sell_path %>
+			<%= f.hidden_field :listing_type, :value =>"sell" %>
+		<% elsif current_page? lease_path %>
+			<%= f.hidden_field :listing_type, :value =>"lease" %>
+		<% else %>
+			<%= f.hidden_field :listing_type, :value =>"timeoffer" %>
+		<% end %>
+
+		<div class="new-item-form">
+			<p> Description:</p>
+			<p class="form-title">Listing Title</p>
+			<%= f.text_field :title, :maxlength=> "90", :placeholder => "Give your listing a concise and catchy headline!"  %>
+		</div>
+
+		<div class="new-item-form">
+			<%= f.label :summary %>
+			<%= f.text_area :description, :maxlength=> "500", :placeholder => "Include as much detail as possible, because potential customers can only contact you when they send a request with a valid Credit Card." %>
+
+      <label class="countdown">500 characters remaining</label>
+		</div>
+
+		<div class="new-item-form">
+			<div class="upload-photo">
+				<%= image_tag "phone.png", id:"photo-image" %>
+      			<%= file_field_tag "images[]", type: :file, multiple: true %>
+				<p id="pic-title">  + Add Photo </p>
+				<p id="descriptor"> You can upload more than one file at a time </p>
+			</div>
+		</div>
+
 
 		<%= f.submit 'Submit', :class => 'submit-listing', data: {disable_with: "Submitting..."} %>
 		<div id="small-tip"> you can edit/update your listing after you submit.</div>
