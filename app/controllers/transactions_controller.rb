@@ -98,7 +98,7 @@ class TransactionsController < ApplicationController
 				buyer.save
 			end
 		end
-asd
+
 		charge_price = (sub_total * 100).ceil
 
 		if charge_price > 0
