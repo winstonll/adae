@@ -1,20 +1,23 @@
 <%= stylesheet_link_tag "transactions" %>
 <script>
   $(document).ready(function() {
+    var total_price;
     <% if @item.listing_type != "sell" %>
       $('.stripe-button-el').prop('disabled', true);
       $('.request-button').prop('disabled', true);
       <% if params[:sell] == "true" %>
         $('#display-price')[0].innerHTML = "$" + markup_price(<%= @item.deposit %>);
-        $('#total').val("$" + ((markup_price(<%= @item.deposit %>) * 1.029) + 0.30).toFixed(2));
+        total_price = (markup_price(<%= @item.deposit %>));
+        $('#total').val("$" + ((total_price * 1.029) + 0.30).toFixed(2));
         $('#stripe-fee')[0].innerHTML = ( (markup_price(<%= @item.deposit %>) * 0.029) + 0.30).toFixed(2);
-        $('#price').val($('#total').val().substring(1, $('#total').val().length));
+        $('#price').val(total_price);
       <% end %>
     <% elsif @item.listing_type == "sell" %>
       $('#display-price')[0].innerHTML = "$" + markup_price(<%= @prices.first.amount %>);
-      $('#total').val("$" + ((markup_price(<%= @prices.first.amount %>) * 1.029) + 0.30).toFixed(2));
+      total_price = (markup_price(<%= @prices.first.amount %>));
+      $('#total').val("$" + ((total_price * 1.029) + 0.30).toFixed(2));
       $('#stripe-fee')[0].innerHTML = ( (markup_price(<%= @prices.first.amount %>) * 0.029) + 0.30).toFixed(2);
-      $('#price').val($('#total').val().substring(1, $('#total').val().length));
+      $('#price').val(total_price);
     <% end %>
   });
 
@@ -48,11 +51,12 @@
     var total = (amt * qty);
     var fee = ((total * 0.029) + 0.30);
     $('#subtotal').val('$' + total);
-    total = (total + fee).toFixed(2);
+    $('#price').val(total);
+    total= (total + fee).toFixed(2);
 
-    $('#price')[0].value = total;
     $('#duration')[0].value = $('#qty').val() + "-" + $('#transaction_length').val();
 
+    //decide wether to disable submit button or not depending on qty
     $('#transaction_total_price').val('$' + total);
     if (qty > 0){
       $('.stripe-button-el').prop('disabled', false);
@@ -63,7 +67,7 @@
     }
   }
 
-  function updateLength() {
+  function updateLength() {  
     qtyLength();
     var length = $('#transaction_length').val();
     var amt = markup_price(hash[length]);
@@ -72,10 +76,10 @@
     var qty = $('#qty').val();
     var total = (amt * qty);
     var fee = ((total * 0.029) + 0.30);
+    $('#price').val(total);
     $('#subtotal').val('$' + total);
     total = (total + fee).toFixed(2);
 
-    $('#price')[0].value = total;
     $('#duration')[0].value = $('#qty').val() + "-" + $('#transaction_length').val();
 
     $('#transaction_total_price').val('$' + total);
