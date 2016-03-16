@@ -113,20 +113,7 @@ module Api::V1
 
               current_transaction.save
 
-              if product.listing_type != "sell"
-                length = current_transaction.length.split("-")
-                qty = length[0]
-                length = length[1]
-                price = Price.where(item_id: current_transaction.item_id, timeframe: length).first
-
-                sub_total = price.amount * qty.to_i
-              else
-                price = Price.where(item_id: current_transaction.item_id).first
-
-                sub_total = price.amount
-              end
-
-              seller.balance = seller.balance +  sub_total
+              seller.balance = seller.balance +  current_transaction.total_price
               seller.save
 
               render nothing: true, status: 204
