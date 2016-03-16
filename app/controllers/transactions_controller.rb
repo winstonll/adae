@@ -114,35 +114,46 @@ class TransactionsController < ApplicationController
 				rescue Stripe::CardError => e
 					flash[:alert] = e.message
 					redirect_to conversations_path
+					return false
 			end
+		end
 
-			# If the charge succeeded, then record the data
-			if charge[:paid] 
-				stripeCharge = {
-					txn_type: charge[:object],
-					currency: charge[:currency],
-					total_amount: charge[:amount],
-					notification_params: charge,
-					txn_id: charge[:id],
-					status: charge[:paid],
-					description: charge[:description]
-				}
+		# If the charge succeeded, then record the data
+		if charge[:paid]
+			stripeCharge = {
+				txn_type: charge[:object],
+				currency: charge[:currency],
+				total_amount: charge[:amount],
+				notification_params: charge,
+				txn_id: charge[:id],
+				status: charge[:paid],
+				description: charge[:description]
+			}
 
-				@sT = StripeTransaction.create(stripeCharge) # make a record in the StripeTransactions table
-
-				if params[:lease]
-					item.status = "Sold"
-					item.save
-					transaction.status = "Completed"
-					transaction.save
-					redirect_to conversations_path
-				else
-					transaction.status = "Accepted"
-					transaction.save
-					redirect_to :back
-				end
-			end
+			@sT = StripeTransaction.create(stripeCharge) # make a record in the StripeTransactions table
 		else
+			stripeCharge = {
+				txn_type: nil,
+				currency: nil,
+				total_amount: 0,
+				notification_params: nil,
+				txn_id: nil,
+				status: nil,
+				description: "Balance was greater than the total price. No Stripe charges necessary."
+			}
+
+			@sT = StripeTransaction.create(stripeCharge) # make a record in the StripeTransactions table
+		end
+
+		if params[:lease]
+			item.status = "Sold"
+			item.save
+			transaction.status = "Completed"
+			transaction.save
+			redirect_to conversations_path
+		else
+			transaction.status = "Accepted"
+			transaction.save
 			redirect_to :back
 		end
 	end
