@@ -185,6 +185,17 @@ $green: #7ed321;
           height: 90px;
           margin-top: 20px;
 
+          .avatar{
+            border-radius: 50%;
+            border: 1px solid #fff;
+            height: 30px;
+            width: 30px;
+            float: left;
+            margin-right: 10px;
+            object-fit: cover;
+          }
+
+
           #item-title {
             text-align: left;
             color: #fff;
@@ -192,20 +203,10 @@ $green: #7ed321;
             font-weight: 500;
             margin-left: 15px;
             line-height: normal;
-            text-overflow: ellipsis;
             padding-top: 10px;
-
-            .avatar{
-              border-radius: 50%;
-              border: 1px solid #fff;
-              height: 30px;
-              width: 30px;
-              float: left;
-              margin-right: 10px;
-              margin-left: -5px;
-              object-fit: cover;
-            }
-
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
             &:hover{
               text-decoration: underline;
             }
@@ -213,7 +214,7 @@ $green: #7ed321;
 
           .tag-container{
             float: right;
-            margin-top: 10px;
+            margin-top: 25px;
             margin-right: 5px;
             .tags{
               color: #fff;
