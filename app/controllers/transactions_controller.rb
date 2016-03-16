@@ -77,7 +77,7 @@ class TransactionsController < ApplicationController
 		seller = User.find(transaction.seller_id)
 		buyer = User.find(transaction.buyer_id)
 
-		description = "#{seller.name}(#{seller.id}), #{item.listing_type}s, to #{current_user.name}(#{current_user.id})"
+		description = "#{seller.name}(#{seller.id}), #{item.listing_type}s, to #{buyer.name}(#{buyer.id})" 
 
 		@customer = Stripe::Customer.retrieve(buyer.stripe_customer_id)
 
