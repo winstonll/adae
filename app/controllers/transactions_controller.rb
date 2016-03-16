@@ -116,21 +116,20 @@ class TransactionsController < ApplicationController
 					redirect_to conversations_path
 					return false
 			end
-		end
 
-		# If the charge succeeded, then record the data
-		if charge[:paid]
-			stripeCharge = {
-				txn_type: charge[:object],
-				currency: charge[:currency],
-				total_amount: charge[:amount],
-				notification_params: charge,
-				txn_id: charge[:id],
-				status: charge[:paid],
-				description: charge[:description]
-			}
+			if charge[:paid]
+				stripeCharge = {
+					txn_type: charge[:object],
+					currency: charge[:currency],
+					total_amount: charge[:amount],
+					notification_params: charge,
+					txn_id: charge[:id],
+					status: charge[:paid],
+					description: charge[:description]
+				}
 
-			@sT = StripeTransaction.create(stripeCharge) # make a record in the StripeTransactions table
+				@sT = StripeTransaction.create(stripeCharge) # make a record in the StripeTransactions table
+			end
 		else
 			stripeCharge = {
 				txn_type: nil,
@@ -144,7 +143,7 @@ class TransactionsController < ApplicationController
 
 			@sT = StripeTransaction.create(stripeCharge) # make a record in the StripeTransactions table
 		end
-
+ 
 		if params[:lease]
 			item.status = "Sold"
 			item.save
