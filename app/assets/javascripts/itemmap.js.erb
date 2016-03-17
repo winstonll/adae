@@ -3,7 +3,6 @@ var mapOptions;
 
 function initialize() {
     // Other options for the map, pretty much selfexplanatory
-    if (document.getElementById("map-canvas") != null){
       mapOptions = {
           zoom: 12,
           scrollwheel: false,
@@ -30,6 +29,7 @@ function initialize() {
             window.location.href = marker.url;
           });
       });
-    }
+    
 }
-//initialize();
+
+initialize();
