@@ -50,13 +50,14 @@
 
     var qty = $('#qty').val();
     var total = (amt * qty);
+
     var fee = ((total * 0.029) + 0.30).toFixed(2);
     var pre_markup = total -  (qty * hash[length]);
 
     $('#subtotal').val('$' + total);
     $('#price').val(total);
 
-    total = (total + fee);
+    total = (parseFloat(total) + parseFloat(fee));
 
     $('#markup-price')[0].innerHTML = "$" + pre_markup;
     $('#stripe-fee')[0].innerHTML = fee;
@@ -96,7 +97,7 @@
       var fee = ((total * 0.029) + 0.30).toFixed(2);
       $('#price').val(total);
       $('#subtotal').val('$' + total);
-      total = (total + fee);
+      total = (parseFloat(total) + parseFloat(fee));
 
       $('#markup-price')[0].innerHTML = "$" + pre_markup;
       $('#stripe-fee')[0].innerHTML = fee;
