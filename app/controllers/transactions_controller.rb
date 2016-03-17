@@ -60,9 +60,20 @@ class TransactionsController < ApplicationController
 
 	def destroy
 		@transaction = Transaction.find(params[:id])
-
 		@transaction.status = "Denied"
 		@transaction.save
+		@conversation = Conversation.between(transaction.seller_id,transaction.buyer_id).first
+		@buyer = User.find(transaction.buyer_id)
+		@seller = User.find(transaction.seller_id)
+		@message = @conversation.messages.new(user_id: @buyer.id)
+		@message2 = @conversation.messages.new(user_id: @seller.id)
+		@message.body = "AdaeBot: Your request has been denied"
+		@message2.body = "AdaeBot: You have denied this transaction"
+		@message.save
+		@message2.save
+		ContactMailer.new_message(@buyer, @message).deliver_now
+		ContactMailer.new_message(@seller, @message2).deliver_now
+		redirect_to :back
 
 		redirect_to conversations_path
 	end
@@ -155,10 +166,27 @@ class TransactionsController < ApplicationController
 			transaction.save
 			seller.balance = seller.balance + transaction.total_price
 			seller.save
+			@conversation = Conversation.between(transaction.seller_id,transaction.buyer_id).first
+    		@user = User.find(transaction.seller_id)
+			@message = @conversation.messages.new(user_id: @user.id)
+			@message.body = "AdaeBot: Your item has been sold"
+			@message.save
+			ContactMailer.new_message(@user, @message).deliver_now
 			redirect_to conversations_path
 		else
 			transaction.status = "Accepted"
 			transaction.save
+			@conversation = Conversation.between(transaction.seller_id,transaction.buyer_id).first
+    		@buyer = User.find(transaction.buyer_id)
+    		@seller = User.find(transaction.seller_id)
+			@message = @conversation.messages.new(user_id: @buyer.id)
+			@message2 = @conversation.messages.new(user_id: @seller.id)
+			@message.body = "AdaeBot: Your request has been accepted"
+			@message2.body = "AdaeBot: You have accepted this transaction"
+			@message.save
+			@message2.save
+			ContactMailer.new_message(@buyer, @message).deliver_now
+			ContactMailer.new_message(@seller, @message2).deliver_now
 			redirect_to :back
 		end
 	end
