@@ -1,4 +1,5 @@
 <%= stylesheet_link_tag "items" %>
+<%= javascript_include_tag "map_description" %>
 <%= include_gon %>
 
 <script>
@@ -12,7 +13,7 @@
     var y = x.replace('$','');
     var amount = parseInt(y);
     var displayPrice = 0;
-    
+
     if(amount < 100) {
         displayPrice = Math.round(amount*l1, 0);
         price.innerHTML = '$' + displayPrice;
@@ -27,7 +28,7 @@
         price.innerHTML = '$' + displayPrice;
     }else if(amount >= 1000) {
         displayPrice = Math.round(100*l1 + 100*l2 + 300*l3 + 500*l4 + (amount-1000)*l5, -1);
-        price.innerHTML = '$' + displayPrice; 
+        price.innerHTML = '$' + displayPrice;
     }
   }
 
@@ -49,7 +50,7 @@
       $('.request-button').bind('click', false);
       $('.request-button').css("background-color", "#D5D5D5");
       $('.request-button').css("cursor", "default");
-    <% end %>    
+    <% end %>
   });
 
 </script>
@@ -148,7 +149,6 @@
         <div class="divider"></div>
       </div>
       <div id="item-map"></div>
-      <%= javascript_include_tag "itemmap" %>
     </div>
 </div>
   <div class="rating-container">
