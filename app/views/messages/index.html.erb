@@ -107,7 +107,7 @@ $(document).on('ready page:load', function() {
           </p>
         <% end %>
       </div>
-      <% if @item.listing_type == "lease" && @item.status != "Sold" && current_user.id != @item.user_id %>
+      <% if @item.listing_type == "lease" && @item.status != "Sold" && current_user.id != @item.user_id && (["Accepted", "In Progress"].include?(@transaction.status)) %>
         <div class="request-box" style="margin-bottom: -5px; height: 140px;">
           <p style="font-weight: 500px; color: #4a4a4a; line-height: normal;">If you would like to buy the item during your rental period, click below.</p>
             <%= link_to 'Request to Purchase', accept_path(item_id: @item.id, transaction: @transaction.id, lease: "true"), class: "lease-buy-item" %>
