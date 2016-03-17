@@ -203,7 +203,13 @@
 
                   <% unless @item.deposit == 0 %>
                   <section id="markup-container">
-                    <label id="markup-label">Adae Fee:</label>
+                    <label id="markup-label">Adae Fee:
+                    <span>
+                      <span class="wrapper">
+                        ?
+                        <div class="tooltip">We charge a 4% to 10% fee to cover the cost of running Adae, and to always keep it ad-free.</div>
+                      </span>
+                    </span></label>
                     <label id="markup-price"></label>
                   </section>
                   <input class="trust-fee"readonly="readonly" value="Trust Fee: $<%= @item.deposit %>"></input>
@@ -241,9 +247,18 @@
               <input id="subtotal" readonly="readonly" value=""></input>
 
               <% unless @item.deposit == 0 %>
-                <label id="markup-label">Adae Fee:</label>
+                <label id="markup-label">Adae Fee:
+
+                <span>
+                  <span class="wrapper">
+                    ?
+                    <div class="tooltip">We charge a 4% to 10% fee to cover the cost of running Adae, and to always keep it ad-free.</div>
+                  </span>
+                </span>
+
+                </label>
                 <label id="markup-price"></label>
-                <input class="trust-fee"readonly="readonly" value="Trust Fee: $<%= @item.deposit %>"></inp
+                <input class="trust-fee"readonly="readonly" value="Trust Fee: $<%= @item.deposit %>"></input>
                 <input class="deposit" readonly="readonly" value="$<%= @item.deposit %>"></input>
                 <div class="trust-fee-text"> This ensures that the item is treated with care and is returned on time. <b style="font-weight: 600;">This amount will be charged only if you fail to return the item, damage it, or lose it.</b></div>
               <% end %>
@@ -275,7 +290,13 @@
               <input id="length" readonly="readonly" value=""></input>
               <input id="subtotal" readonly="readonly" value=""></input>
                 <% unless @item.deposit == 0 %>
-                  <label id="markup-label">Adae Fee:</label>
+                  <label id="markup-label">Adae Fee:
+                  <span>
+                    <span class="wrapper">
+                      ?
+                      <div class="tooltip">We charge a 4% to 10% fee to cover the cost of running Adae, and to always keep it ad-free.</div>
+                    </span>
+                  </span></label>
                   <label id="markup-price"></label>
                   <input class="trust-fee"readonly="readonly" value="Trust Fee: $<%= @item.deposit %>"></input>
                   <input class="deposit" readonly="readonly" value="$<%= @item.deposit %>"></input>
