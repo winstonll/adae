@@ -186,7 +186,7 @@
         </div>
       <!-- If listing type lease -->
       <% elsif @item.listing_type == "lease" %>
-        <div class="item-detail-price" style="height: 450px;">
+        <div class="item-detail-price" style="height: 410px;">
           <div class="item-title"><%=@item.title %></div>
           <div class="division"></div>
           <p class="how-long">How long would you like to lease this?</p>
@@ -213,7 +213,12 @@
                     <label id="markup-price"></label>
                   </section>
                   <input class="trust-fee"readonly="readonly" value="Trust Fee: $<%= @item.deposit %>"></input>
-                  <div class="trust-fee-text"> This ensures that the item is treated with care and is returned on time. <b style="font-weight: 600;">This amount will be charged only if you fail to return the item, damage it, or lose it.</b></div>
+                  <span>
+                    <span class="wrapper">
+                      ?
+                      <div class="tooltip">This ensures that the item is treated with care and is returned on time. <b style="font-weight: 600;">This amount will be charged only if you fail to return the item, damage it, or lose it.</b></div>
+                    </span>
+                  </span>
                   <% end %>
                   <div class="credit-fee">
                     <a target="_blank" href="https://stripe.com/ca/pricing">Stripe Processing Fee:</a>
@@ -259,8 +264,15 @@
                 </label>
                 <label id="markup-price"></label>
                 <input class="trust-fee"readonly="readonly" value="Trust Fee: $<%= @item.deposit %>"></input>
-                <input class="deposit" readonly="readonly" value="$<%= @item.deposit %>"></input>
-                <div class="trust-fee-text"> This ensures that the item is treated with care and is returned on time. <b style="font-weight: 600;">This amount will be charged only if you fail to return the item, damage it, or lose it.</b></div>
+                <input class="deposit" readonly="readonly" value="$<%= @item.deposit %>">
+                <span>
+                  <span class="wrapper">
+                    ?
+                    <div class="tooltip">This ensures that the item is treated with care, and is returned on time. This amount will be charged only if you fail to return the item, damage it, or lose it.</div>
+                  </span>
+                </span>
+
+                </input>
               <% end %>
               <div class="credit-fee">
                 <a target="_blank" href="https://stripe.com/ca/pricing">Stripe Processing Fee:</a>
@@ -298,7 +310,9 @@
                     </span>
                   </span></label>
                   <label id="markup-price"></label>
-                  <input class="trust-fee"readonly="readonly" value="Trust Fee: $<%= @item.deposit %>"></input>
+                  <input class="trust-fee"readonly="readonly" value="Trust Fee: $<%= @item.deposit %>">
+
+                  </input>
                   <input class="deposit" readonly="readonly" value="$<%= @item.deposit %>"></input>
                 <% end %>
                 <div class="credit-fee">
