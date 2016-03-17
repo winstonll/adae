@@ -1,5 +1,5 @@
 <%= stylesheet_link_tag "conversations" %>
-
+<% if @transactions.present?  %>
 <div class="message-list">
   <div class="ui list">
     <% @transactions.each do |transaction| %>
@@ -39,3 +39,6 @@
     <% end %>
   </div>
 </div>
+<% else %>
+  <p><h1>You have no conversations. Request an item or service or start one.</h1></p>
+<% end %>

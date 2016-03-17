@@ -153,6 +153,8 @@ class TransactionsController < ApplicationController
 			item.save
 			transaction.status = "Completed"
 			transaction.save
+			seller.balance = seller.balance + transaction.total_price
+			seller.save
 			redirect_to conversations_path
 		else
 			transaction.status = "Accepted"

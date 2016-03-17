@@ -33,6 +33,7 @@ Rails.application.configure do
 
   # Precompile js files
   config.assets.precompile += %w( map.js.erb )
+  config.assets.precompile += %w( map_description.js.erb )
   config.assets.precompile += %w( item.js.erb )
 
 
