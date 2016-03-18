@@ -1,7 +1,7 @@
 class TransactionsController < ApplicationController
 	protect_from_forgery except: [:hook]
 	before_action :signed_in_user #, only: [:new, :edit, :update, :delete, :stripe, :stripe_success, :accept, :purchase_order]
-	before_action :transaction_exists?, only: [:new]
+	before_action :transaction_exists?, only: [:new, :stripe]
 	before_action :transaction_owner?, only: [:accept]
 
 	def new
