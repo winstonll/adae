@@ -1,14 +1,14 @@
 <%= stylesheet_link_tag "transactions" %>
+
 <script>
   $(document).ready(function() {
     var total_price;
     <% if @item.listing_type != "sell" %>
-      $(".stripe-button-el, .request-button").click(preventZero);
       <% if params[:sell] == "true" %>
         $('#display-price')[0].innerHTML = "$" + markup_price(<%= @item.deposit %>);
         total_price = (markup_price(<%= @item.deposit %>));
         $('#total').val("$" + ((total_price * 1.029) + 0.30).toFixed(2));
-        $('#stripe-fee')[0].innerHTML = ( (markup_price(<%= @item.deposit %>) * 0.029) + 0.30).toFixed(2);
+        $('#stripe-fee')[0].innerHTML = "$" + ( (markup_price(<%= @item.deposit %>) * 0.029) + 0.30).toFixed(2);
         $('#price').val(total_price);
       <% end %>
     <% elsif @item.listing_type == "sell" %>
@@ -17,6 +17,21 @@
       $('#total').val("$" + ((total_price * 1.029) + 0.30).toFixed(2));
       $('#stripe-fee')[0].innerHTML = "$" + ( (markup_price(<%= @prices.first.amount %>) * 0.029) + 0.30).toFixed(2);
       $('#price').val(total_price);
+    <% end %>
+
+    <% if current_user.stripe_customer_id.nil? %>
+      $('.stripe-button-el').click(function(){
+
+        if (!validateInteger($('#qty').val())){
+          event.preventDefault();
+        }
+      });
+    <% else %>
+      $('.request-button').click(function(){
+        if (!validateInteger($('#qty').val())){
+          event.preventDefault();
+        }
+      });
     <% end %>
   });
 
@@ -41,6 +56,35 @@
   }
 
   function updateQty() {
+    update();
+  }
+
+  function validateInteger(quantity){
+    if (quantity > 0 && (parseFloat(quantity) === parseInt(quantity, 10))){
+      return true;
+    }else {
+      $('.toast').remove();
+
+      toastr.options ={
+        'timeOut': "5000",
+        'extendedTimeOut': "2000",
+        "positionClass": 'toast-top-center'
+      };
+
+      toastr.warning("Quantity must be in whole numbers");
+
+      return false;
+    }
+  }
+
+  function updateLength() {
+    if ($('#qty').val() > 0){
+      update();
+    }
+  }
+
+  //helper function for calculating adae fee, stripe fee, and grand total
+  function update(){
     qtyLength();
     var length = $('#transaction_length').val();
 
@@ -50,60 +94,20 @@
     var qty = $('#qty').val();
     var total = (amt * qty);
 
-    var fee = ((total * 0.029) + 0.30).toFixed(2);
-    var pre_markup = total -  (qty * hash[length]);
-
-    $('#subtotal').val('$' + total);
-    $('#price').val(total);
-
-    total = (parseFloat(total) + parseFloat(fee));
-
-    $('#markup-price')[0].innerHTML = "$" + pre_markup;
-    $('#stripe-fee')[0].innerHTML = "$" + fee;
-    $('#duration')[0].value = $('#qty').val() + "-" + $('#transaction_length').val();
-
-    //decide wether to disable submit button or not depending on qty
-    $('#transaction_total_price').val('$' + total);
-  }
-
-  function preventZero(){
-      if (qty > 0 && (parseFloat(qty) === parseInt(qty, 10))){
-        $('.stripe-button-el').prop('disabled', false);
-        $('.request-button').prop('disabled', false);
-      }else {
-        toastr.options ={
-          'timeOut': "5000",
-          'extendedTimeOut': "2000",
-          "positionClass": 'toast-top-center'
-        };
-
-        toastr.warning("Quantity must be in whole numbers");
-
-        $('.stripe-button-el').prop('disabled', true);
-        $('.request-button').prop('disabled', true);
-      }
-  }
-
-  function updateLength() {
-    if ($('#qty').val() > 0){
-      qtyLength();
-      var length = $('#transaction_length').val();
-      var amt = markup_price(hash[length]);
-      $('#amt').val('$ ' + amt + ' x');
-
-      var qty = $('#qty').val();
-
-      var total = (amt * qty);
-      var pre_markup = total -  (qty * hash[length]);
+    if (validateInteger(qty)){
       var fee = ((total * 0.029) + 0.30).toFixed(2);
-      $('#price').val(total);
+      var pre_markup = total -  (qty * hash[length]);
+
       $('#subtotal').val('$' + total);
+      $('#price').val(total);
+
       total = (parseFloat(total) + parseFloat(fee));
 
       $('#markup-price')[0].innerHTML = "$" + pre_markup;
       $('#stripe-fee')[0].innerHTML = "$" + fee;
       $('#duration')[0].value = $('#qty').val() + "-" + $('#transaction_length').val();
 
+      //decide wether to disable submit button or not depending on qty
       $('#transaction_total_price').val('$' + total);
     }
   }
@@ -130,18 +134,6 @@
 
     return displayPrice;
   }
-
-  function validate_duration() {
-    <% if @item.listing_type != 'sell' %>
-      if (!$('#qty').val() ){
-        event.preventDefault();
-      }
-
-      return true;
-    <% end %>
-  }
-
-
 </script>
 
 <div class="payment-info">
@@ -163,7 +155,7 @@
       <!-- If listing type sell OR request  to buy a lease item -->
       <% if @item.listing_type == "sell" || params[:sell] == "true"%>
 
-        <div class="item-detail-price" style="height: 250px;">
+        <div class="item-detail-price" style="height: 260px;">
           <div class="item-title"><%=@item.title %></div>
           <div class="division"></div>
           <% unless params[:sell] == "true" %>
@@ -171,16 +163,28 @@
           <% else %>
             <p id="display-price" style="font-size: 30px; font-weight: 500; color: #4a4a4a;"></p>
           <% end %>
-
-          <div class="credit-fee">
-            <a target="_blank" href="https://stripe.com/ca/pricing">Stripe Processing Fee:</a>
+          <div class="item-detail-calc">
+            <section id="markup-container">
+              <label style="margin-bottom: 10px;" id="markup-label">Adae Fee:
+              <span>
+                <span class="wrapper">
+                  ?
+                  <div class="tooltip">We charge a 4% to 10% fee to cover the cost of running Adae, and to always keep it ad-free.</div>
+                </span>
+              </span>
+              </label>
+              <label id="markup-price"></label>
+            </section>
+          </div>
+          <div style="margin-left: 0px;" class="credit-fee">
+            <a style="margin-left: 20px" target="_blank" href="https://stripe.com/ca/pricing">Stripe Processing Fee:</a>
             <span>
               <span class="wrapper">
                 ?
                 <div class="tooltip">Stripe charges a flat fee of 2.9% + ¢30 to use their payment services. </br> Have a balance on Adae? We will pay with your balance first & reduce the Stripe fee proportionally. </div>
               </span>
             </span>
-            <label id="stripe-fee"></label>
+            <label style="margin-left: 30px" id="stripe-fee"></label>
           </div>
 
           <div class="division" style=" width: 86%;"></div>
@@ -278,7 +282,6 @@
                 </label>
                 <label id="markup-price"></label>
                 <input class="trust-fee"readonly="readonly" value="Trust Fee: $<%= @item.deposit %>"></input>
-                <!--<input class="deposit" readonly="readonly" value="$<%= @item.deposit %>">-->
                 <span>
                   <span style="bottom: 2px;"class="wrapper">
                     ?
@@ -321,29 +324,27 @@
               <input id="times" readonly="readonly" value=""></input>
               <input id="length" readonly="readonly" value=""></input>
               <input id="subtotal" readonly="readonly" value=""></input>
-                <% unless @item.deposit == 0 %>
-                  <label id="markup-label">Adae Fee:
+                  <label style="margin-bottom: 10px;"id="markup-label">Adae Fee:
                   <span>
                     <span class="wrapper">
                       ?
                       <div class="tooltip">We charge a 4% to 10% fee to cover the cost of running Adae, and to always keep it ad-free.</div>
                     </span>
-                  </span></label>
+                  </span>
+                </label>
                   <label id="markup-price"></label>
-                  <input class="trust-fee"readonly="readonly" value="Trust Fee: $<%= @item.deposit %>">
-
-                  </input>
+                <% unless @item.deposit == 0 %>
                   <input class="deposit" readonly="readonly" value="$<%= @item.deposit %>"></input>
                 <% end %>
-                <div class="credit-fee">
-                  <a target="_blank" href="https://stripe.com/ca/pricing">Stripe Processing Fee:</a>
+                <div style="margin-left: 0px;"class="credit-fee">
+                  <a style="margin-left:20px;" target="_blank" href="https://stripe.com/ca/pricing">Stripe Processing Fee:</a>
                   <span>
                     <span style="padding: 1px 3px 0px 4px;"class="wrapper">
                       ?
                       <div class="tooltip">Stripe charges a flat fee of 2.9% + ¢30 to use their payment services. </br> Have a balance on Adae? We will pay with your balance first & reduce the Stripe fee proportionally.</div>
                     </span>
                   </span>
-                  <label id="stripe-fee"></label>
+                  <label style="margin-left: 34px" id="stripe-fee"></label>
                 </div>
                 <div class="division" style="width: 85%;"></div>
               <span class="finalp">Total</span>
