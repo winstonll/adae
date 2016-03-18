@@ -74,7 +74,6 @@ class TransactionsController < ApplicationController
 		@message2.save
 		ContactMailer.adaebot_message(@buyer, @message).deliver_now
 		ContactMailer.adaebot_message(@seller, @message2).deliver_now
-		redirect_to :back
 
 		redirect_to conversations_path
 	end
