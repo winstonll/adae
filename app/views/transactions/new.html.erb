@@ -163,7 +163,7 @@
       <!-- If listing type sell OR request  to buy a lease item -->
       <% if @item.listing_type == "sell" || params[:sell] == "true"%>
 
-        <div class="item-detail-price" style="height: 250px;">
+        <div class="item-detail-price" style="height: 260px;">
           <div class="item-title"><%=@item.title %></div>
           <div class="division"></div>
           <% unless params[:sell] == "true" %>
@@ -173,7 +173,7 @@
           <% end %>
           <div class="item-detail-calc">
             <section id="markup-container">
-              <label id="markup-label">Adae Fee:
+              <label style="margin-bottom: 10px;" id="markup-label">Adae Fee:
               <span>
                 <span class="wrapper">
                   ?
@@ -184,15 +184,15 @@
               <label id="markup-price"></label>
             </section>
           </div>
-          <div class="credit-fee">
-            <a target="_blank" href="https://stripe.com/ca/pricing">Stripe Processing Fee:</a>
+          <div style="margin-left: 0px;" class="credit-fee">
+            <a style="margin-left: 20px" target="_blank" href="https://stripe.com/ca/pricing">Stripe Processing Fee:</a>
             <span>
               <span class="wrapper">
                 ?
                 <div class="tooltip">Stripe charges a flat fee of 2.9% + ¢30 to use their payment services. </br> Have a balance on Adae? We will pay with your balance first & reduce the Stripe fee proportionally. </div>
               </span>
             </span>
-            <label id="stripe-fee"></label>
+            <label style="margin-left: 30px" id="stripe-fee"></label>
           </div>
 
           <div class="division" style=" width: 86%;"></div>
@@ -332,29 +332,27 @@
               <input id="times" readonly="readonly" value=""></input>
               <input id="length" readonly="readonly" value=""></input>
               <input id="subtotal" readonly="readonly" value=""></input>
-                  <label id="markup-label">Adae Fee:
+                  <label style="margin-bottom: 10px;"id="markup-label">Adae Fee:
                   <span>
                     <span class="wrapper">
                       ?
                       <div class="tooltip">We charge a 4% to 10% fee to cover the cost of running Adae, and to always keep it ad-free.</div>
                     </span>
-                  </span></label>
+                  </span>
+                </label>
                   <label id="markup-price"></label>
                 <% unless @item.deposit == 0 %>
-                  <input class="trust-fee"readonly="readonly" value="Trust Fee: $<%= @item.deposit %>">
-
-                  </input>
                   <input class="deposit" readonly="readonly" value="$<%= @item.deposit %>"></input>
                 <% end %>
-                <div class="credit-fee">
-                  <a target="_blank" href="https://stripe.com/ca/pricing">Stripe Processing Fee:</a>
+                <div style="margin-left: 0px;"class="credit-fee">
+                  <a style="margin-left:20px;" target="_blank" href="https://stripe.com/ca/pricing">Stripe Processing Fee:</a>
                   <span>
                     <span style="padding: 1px 3px 0px 4px;"class="wrapper">
                       ?
                       <div class="tooltip">Stripe charges a flat fee of 2.9% + ¢30 to use their payment services. </br> Have a balance on Adae? We will pay with your balance first & reduce the Stripe fee proportionally.</div>
                     </span>
                   </span>
-                  <label id="stripe-fee"></label>
+                  <label style="margin-left: 34px" id="stripe-fee"></label>
                 </div>
                 <div class="division" style="width: 85%;"></div>
               <span class="finalp">Total</span>
