@@ -89,9 +89,13 @@
         				<p id="deposit-title"> Deposit Price & Sale Price:</p>
         				<div class="rent-deposit-money-sign"> $ </div>
       				  <%= f.text_field :deposit %>
+                <span>
+                  <span style="bottom: 1px;"class="wrapper">
+                    ?
+                    <div class="tooltip">This ensures that the item is treated with care, and is returned on time. This amount will be charged only if the other party fails to return the item, damage it, or lose it.</div>
+                  </span>
+                </span>
   	          	<div class="deposit-tip">
-  		          	This ensures that the item is treated with care, and is returned on time. </br>
-  		          	This amount will be charged only if the other party fails to return the item, damage it, or lose it.</br></br>
   		          	During the rental period, your customer may request to buy this item.</br>
   		          	The Deposit Price will become the Sale Price.</br>
   		          	Their rental fees will be
@@ -105,10 +109,12 @@
   	          	<p id="deposit-title"> Deposit Price</p>
   	          	<div class="rent-deposit-money-sign"> $ </div>
   	          	<%= f.text_field :deposit %>
-  	          	<div class="deposit-tip">
-  	          		This ensures that the item is treated with care, and is returned on time.</br>
-  	          		This amount will be charged only if the other party fails to return the item, damage it, or lose it.
-  	          	</div>
+                <span>
+                  <span style="bottom: 1px;"class="wrapper">
+                    ?
+                    <div class="tooltip">This ensures that the item is treated with care, and is returned on time. This amount will be charged only if the other party fails to return the item, damage it, or lose it.</div>
+                  </span>
+                </span>
                 <div class="deposit-tip" style="color: #419bf9;">
   	          		&#x2756; Adae will charge a 4% to 10% service fee on top of the rental & deposit price to pay for</br> expenses and keep it ad-free. Don't worry, you will still
                   get paid the amount you ask for.
