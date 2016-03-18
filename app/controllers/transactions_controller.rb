@@ -91,9 +91,19 @@ class TransactionsController < ApplicationController
 		transaction.status = "Accepted"
 		transaction.save
 
+		cancel_transactions = Transaction.where("(transactions.status = 'Pending') AND \
+		(transactions.item_id = #{transaction.item_id}) AND \
+		(transactions.buyer_id != #{transaction.buyer_id})")
+
+		cancel_transactions.each do |t|
+			t.status = "Denied"
+			t.save
+		end
+
 		@conversation = Conversation.between(transaction.seller_id,transaction.buyer_id).first
-			@buyer = User.find(transaction.buyer_id)
-			@seller = User.find(transaction.seller_id)
+		@buyer = User.find(transaction.buyer_id)
+		@seller = User.find(transaction.seller_id)
+
 		@message = @conversation.messages.new(user_id: @buyer.id)
 		@message2 = @conversation.messages.new(user_id: @seller.id)
 		@message.body = "AdaeBot: Your request has been accepted."
