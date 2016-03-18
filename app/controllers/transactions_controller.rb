@@ -271,7 +271,7 @@ class TransactionsController < ApplicationController
 
 				@sT = StripeTransaction.create(stripeCharge) # make a record in the StripeTransactions table
 			end
-asd
+
 			hash = {"transaction" => transaction, "seller" => seller, "item" => item}
 			return hash
 		end
