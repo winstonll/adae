@@ -15,7 +15,7 @@
       $('#display-price')[0].innerHTML = "$" + markup_price(<%= @prices.first.amount %>);
       total_price = (markup_price(<%= @prices.first.amount %>));
       $('#total').val("$" + ((total_price * 1.029) + 0.30).toFixed(2));
-      $('#stripe-fee')[0].innerHTML = ( (markup_price(<%= @prices.first.amount %>) * 0.029) + 0.30).toFixed(2);
+      $('#stripe-fee')[0].innerHTML = "$" + ( (markup_price(<%= @prices.first.amount %>) * 0.029) + 0.30).toFixed(2);
       $('#price').val(total_price);
     <% end %>
   });
@@ -59,7 +59,7 @@
     total = (parseFloat(total) + parseFloat(fee));
 
     $('#markup-price')[0].innerHTML = "$" + pre_markup;
-    $('#stripe-fee')[0].innerHTML = fee;
+    $('#stripe-fee')[0].innerHTML = "$" + fee;
     $('#duration')[0].value = $('#qty').val() + "-" + $('#transaction_length').val();
 
     //decide wether to disable submit button or not depending on qty
@@ -101,7 +101,7 @@
       total = (parseFloat(total) + parseFloat(fee));
 
       $('#markup-price')[0].innerHTML = "$" + pre_markup;
-      $('#stripe-fee')[0].innerHTML = fee;
+      $('#stripe-fee')[0].innerHTML = "$" + fee;
       $('#duration')[0].value = $('#qty').val() + "-" + $('#transaction_length').val();
 
       $('#transaction_total_price').val('$' + total);
