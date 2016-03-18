@@ -1,5 +1,4 @@
 <%= stylesheet_link_tag "items" %>
-<%= javascript_include_tag "map_description" %>
 <%= include_gon %>
 
 <script>
@@ -47,6 +46,11 @@
       $('.request-button').css("cursor", "default");
     <% elsif !@transaction_dne && user_signed_in? %>
       $('.request-button')[0].innerHTML = "Unavailable";
+      $('.request-button').bind('click', false);
+      $('.request-button').css("background-color", "#D5D5D5");
+      $('.request-button').css("cursor", "default");
+    <% elsif @item.status == "Sold" %>
+      $('.request-button')[0].innerHTML = "Sold";
       $('.request-button').bind('click', false);
       $('.request-button').css("background-color", "#D5D5D5");
       $('.request-button').css("cursor", "default");
@@ -159,6 +163,7 @@
         <div class="divider"></div>
       </div>
       <div id="item-map"></div>
+      <%= javascript_include_tag "map_description" %>
     </div>
 </div>
   <div class="rating-container">

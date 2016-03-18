@@ -3,8 +3,7 @@
   $(document).ready(function() {
     var total_price;
     <% if @item.listing_type != "sell" %>
-      $('.stripe-button-el').prop('disabled', true);
-      $('.request-button').prop('disabled', true);
+      $(".stripe-button-el, .request-button").click(preventZero);
       <% if params[:sell] == "true" %>
         $('#display-price')[0].innerHTML = "$" + markup_price(<%= @item.deposit %>);
         total_price = (markup_price(<%= @item.deposit %>));
@@ -16,7 +15,7 @@
       $('#display-price')[0].innerHTML = "$" + markup_price(<%= @prices.first.amount %>);
       total_price = (markup_price(<%= @prices.first.amount %>));
       $('#total').val("$" + ((total_price * 1.029) + 0.30).toFixed(2));
-      $('#stripe-fee')[0].innerHTML = ( (markup_price(<%= @prices.first.amount %>) * 0.029) + 0.30).toFixed(2);
+      $('#stripe-fee')[0].innerHTML = "$" + ( (markup_price(<%= @prices.first.amount %>) * 0.029) + 0.30).toFixed(2);
       $('#price').val(total_price);
     <% end %>
   });
@@ -60,27 +59,29 @@
     total = (parseFloat(total) + parseFloat(fee));
 
     $('#markup-price')[0].innerHTML = "$" + pre_markup;
-    $('#stripe-fee')[0].innerHTML = fee;
+    $('#stripe-fee')[0].innerHTML = "$" + fee;
     $('#duration')[0].value = $('#qty').val() + "-" + $('#transaction_length').val();
 
     //decide wether to disable submit button or not depending on qty
     $('#transaction_total_price').val('$' + total);
+  }
 
-    if (qty > 0 && (parseFloat(qty) === parseInt(qty, 10))){
-      $('.stripe-button-el').prop('disabled', false);
-      $('.request-button').prop('disabled', false);
-    }else {
-      toastr.options ={
-        'timeOut': "5000",
-        'extendedTimeOut': "2000",
-        "positionClass": 'toast-top-center'
-      };
+  function preventZero(){
+      if (qty > 0 && (parseFloat(qty) === parseInt(qty, 10))){
+        $('.stripe-button-el').prop('disabled', false);
+        $('.request-button').prop('disabled', false);
+      }else {
+        toastr.options ={
+          'timeOut': "5000",
+          'extendedTimeOut': "2000",
+          "positionClass": 'toast-top-center'
+        };
 
-      toastr.warning("Quantity must be in whole numbers");
+        toastr.warning("Quantity must be in whole numbers");
 
-      $('.stripe-button-el').prop('disabled', true);
-      $('.request-button').prop('disabled', true);
-    }
+        $('.stripe-button-el').prop('disabled', true);
+        $('.request-button').prop('disabled', true);
+      }
   }
 
   function updateLength() {
@@ -100,7 +101,7 @@
       total = (parseFloat(total) + parseFloat(fee));
 
       $('#markup-price')[0].innerHTML = "$" + pre_markup;
-      $('#stripe-fee')[0].innerHTML = fee;
+      $('#stripe-fee')[0].innerHTML = "$" + fee;
       $('#duration')[0].value = $('#qty').val() + "-" + $('#transaction_length').val();
 
       $('#transaction_total_price').val('$' + total);
@@ -186,7 +187,7 @@
         </div>
       <!-- If listing type lease -->
       <% elsif @item.listing_type == "lease" %>
-        <div class="item-detail-price" style="height: 450px;">
+        <div class="item-detail-price" style="height: 410px;">
           <div class="item-title"><%=@item.title %></div>
           <div class="division"></div>
           <p class="how-long">How long would you like to lease this?</p>
@@ -203,11 +204,22 @@
 
                   <% unless @item.deposit == 0 %>
                   <section id="markup-container">
-                    <label id="markup-label">Adae Fee:</label>
+                    <label id="markup-label">Adae Fee:
+                    <span>
+                      <span class="wrapper">
+                        ?
+                        <div class="tooltip">We charge a 4% to 10% fee to cover the cost of running Adae, and to always keep it ad-free.</div>
+                      </span>
+                    </span></label>
                     <label id="markup-price"></label>
                   </section>
                   <input class="trust-fee"readonly="readonly" value="Trust Fee: $<%= @item.deposit %>"></input>
-                  <div class="trust-fee-text"> This ensures that the item is treated with care and is returned on time. <b style="font-weight: 600;">This amount will be charged only if you fail to return the item, damage it, or lose it.</b></div>
+                  <span>
+                    <span style="bottom: 1px;"class="wrapper">
+                      ?
+                      <div class="tooltip">This ensures that the item is treated with care and is returned on time. <b style="font-weight: 600;">This amount will be charged only if you fail to return the item, damage it, or lose it.</b></div>
+                    </span>
+                  </span>
                   <% end %>
                   <div class="credit-fee">
                     <a target="_blank" href="https://stripe.com/ca/pricing">Stripe Processing Fee:</a>
@@ -225,7 +237,7 @@
         </div>
       <!-- If listing type rent -->
       <% elsif @item.listing_type == "rent"%>
-        <div class="item-detail-price" style="height: 350px;">
+        <div class="item-detail-price" style="height: 300px;">
           <div class="item-title"><%=@item.title %></div>
           <div class="division"></div>
           <p class="how-long">How long would you like to rent this?</p>
@@ -241,11 +253,27 @@
               <input id="subtotal" readonly="readonly" value=""></input>
 
               <% unless @item.deposit == 0 %>
-                <label id="markup-label">Adae Fee:</label>
+                <label id="markup-label">Adae Fee:
+
+                <span>
+                  <span class="wrapper">
+                    ?
+                    <div class="tooltip">We charge a 4% to 10% fee to cover the cost of running Adae, and to always keep it ad-free.</div>
+                  </span>
+                </span>
+
+                </label>
                 <label id="markup-price"></label>
-                <input class="trust-fee"readonly="readonly" value="Trust Fee: $<%= @item.deposit %>"></inp
-                <input class="deposit" readonly="readonly" value="$<%= @item.deposit %>"></input>
-                <div class="trust-fee-text"> This ensures that the item is treated with care and is returned on time. <b style="font-weight: 600;">This amount will be charged only if you fail to return the item, damage it, or lose it.</b></div>
+                <input class="trust-fee"readonly="readonly" value="Trust Fee: $<%= @item.deposit %>"></input>
+                <!--<input class="deposit" readonly="readonly" value="$<%= @item.deposit %>">-->
+                <span>
+                  <span style="bottom: 1px;"class="wrapper">
+                    ?
+                    <div class="tooltip">This ensures that the item is treated with care, and is returned on time. This amount will be charged only if you fail to return the item, damage it, or lose it.</div>
+                  </span>
+                </span>
+
+                </input>
               <% end %>
               <div class="credit-fee">
                 <a target="_blank" href="https://stripe.com/ca/pricing">Stripe Processing Fee:</a>
@@ -275,9 +303,17 @@
               <input id="length" readonly="readonly" value=""></input>
               <input id="subtotal" readonly="readonly" value=""></input>
                 <% unless @item.deposit == 0 %>
-                  <label id="markup-label">Adae Fee:</label>
+                  <label id="markup-label">Adae Fee:
+                  <span>
+                    <span class="wrapper">
+                      ?
+                      <div class="tooltip">We charge a 4% to 10% fee to cover the cost of running Adae, and to always keep it ad-free.</div>
+                    </span>
+                  </span></label>
                   <label id="markup-price"></label>
-                  <input class="trust-fee"readonly="readonly" value="Trust Fee: $<%= @item.deposit %>"></input>
+                  <input class="trust-fee"readonly="readonly" value="Trust Fee: $<%= @item.deposit %>">
+
+                  </input>
                   <input class="deposit" readonly="readonly" value="$<%= @item.deposit %>"></input>
                 <% end %>
                 <div class="credit-fee">
@@ -315,7 +351,7 @@
             <%= hidden_field_tag 'price' %>
             <%= hidden_field_tag 'duration' %>
 
-            <%= submit_tag 'Send Payment', class: "request-button", :onclick => "return validate_duration();"%>
+            <%= submit_tag 'Send Payment', class: "request-button"%>
           <% end %>
         <%end%>
       </center>

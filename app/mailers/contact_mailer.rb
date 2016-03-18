@@ -20,4 +20,10 @@ class ContactMailer < ActionMailer::Base
   	mail(to: "winston@adae.co", :subject => "Adae Cash out Request for #{@user}")
   end
 
+  def adaebot_message(user, message)
+    @user = user
+    @message = message
+    mail(to: @user.email, subject: 'Hello! We have an update on your transaction.')
+  end
+
 end
