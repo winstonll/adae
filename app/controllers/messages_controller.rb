@@ -1,16 +1,9 @@
 class MessagesController < ApplicationController
   before_action :authenticate_user!
   before_action :validate_access!
+  before_action :transaction_completed?, only: [:index]
 
   def index
-    @conversation = Conversation.find(params[:conversation_id])
-    @messages = @conversation.messages
-
-    @transaction = Transaction.where("( (transactions.seller_id = #{@conversation.recipient_id} AND transactions.buyer_id = #{@conversation.sender_id}) \
-    OR (transactions.seller_id = #{@conversation.sender_id} AND transactions.buyer_id = #{@conversation.recipient_id}) ) \
-    AND (transactions.status != 'Completed' AND transactions.status != 'Denied' AND transactions.status != 'Cancelled') \
-    AND (transactions.item_id = #{params[:item_id].to_i})").first
-
     @item = Item.find(params[:item_id])
     @picture = Picture.where(item_id: @item.id).first
 
@@ -52,9 +45,23 @@ class MessagesController < ApplicationController
 
     def validate_access!
       @conversation = Conversation.find(params[:conversation_id])
-      
+
       if !user_signed_in? || (@conversation.sender_id != current_user.id && @conversation.recipient_id != current_user.id)
         redirect_to items_path
+      end
+    end
+
+    def transaction_completed?
+      @conversation = Conversation.find(params[:conversation_id])
+      @messages = @conversation.messages
+
+      @transaction = Transaction.where("( (transactions.seller_id = #{@conversation.recipient_id} AND transactions.buyer_id = #{@conversation.sender_id}) \
+      OR (transactions.seller_id = #{@conversation.sender_id} AND transactions.buyer_id = #{@conversation.recipient_id}) ) \
+      AND (transactions.status != 'Completed' AND transactions.status != 'Denied' AND transactions.status != 'Cancelled') \
+      AND (transactions.item_id = #{params[:item_id].to_i})").first
+
+      if @transaction.nil?
+        redirect_to conversations_path, flash: {notice: "Transaction has been completed"}
       end
     end
 
