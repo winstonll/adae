@@ -62,9 +62,10 @@ class TransactionsController < ApplicationController
 		@transaction = Transaction.find(params[:id])
 		@transaction.status = "Denied"
 		@transaction.save
-		@conversation = Conversation.between(transaction.seller_id,transaction.buyer_id).first
-		@buyer = User.find(transaction.buyer_id)
-		@seller = User.find(transaction.seller_id)
+
+		@conversation = Conversation.between(@transaction.seller_id, @transaction.buyer_id).first
+		@buyer = User.find(@transaction.buyer_id)
+		@seller = User.find(@transaction.seller_id)
 		@message = @conversation.messages.new(user_id: @buyer.id)
 		@message2 = @conversation.messages.new(user_id: @seller.id)
 		@message.body = "AdaeBot: Your request has been denied, but don't worry you can keep browsing!"
@@ -211,7 +212,7 @@ class TransactionsController < ApplicationController
 			end
 
 			#If the Buyer has a balance, subtract the balance from the total before charge.
-			if buyer.balance > 0 
+			if buyer.balance > 0
 				if buyer.balance > charge_price
 					balance_used = charge_price
 					buyer.balance = buyer.balance - charge_price
