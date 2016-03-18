@@ -20,120 +20,120 @@
     <% end %>
 
     <% if current_user.stripe_customer_id.nil? %>
-      $('.stripe-button-el').click(function(){
+      $('.stripe-button-el').click(function(event){
 
         if (!validateInteger($('#qty').val())){
           event.preventDefault();
         }
       });
     <% else %>
-      $('.request-button').click(function(){
+      $('.request-button').click(function(event){
         if (!validateInteger($('#qty').val())){
           event.preventDefault();
         }
       });
     <% end %>
-  });
 
-  var hash = {};
+    var hash = {};
 
-  <% @prices.each do |price| %>
-      hash['<%= price.timeframe%>'] = <%= price.amount%>;
-  <% end %>
+    <% @prices.each do |price| %>
+        hash['<%= price.timeframe%>'] = <%= price.amount%>;
+    <% end %>
 
-  function qtyLength() {
-    var lngth = $('select[name="transaction[length]"] option:selected').val();
-    var qty = $('#qty').val();
-    $('#times').val(qty);
+    function qtyLength() {
+      var lngth = $('select[name="transaction[length]"] option:selected').val();
+      var qty = $('#qty').val();
+      $('#times').val(qty);
 
-    if (qty <= 1) {
-      $('#length').val(lngth);
-    }else if (qty > 1) {
-      $('#length').val(lngth + 's');
-    }else  {
-      $('#length').val(lngth - 's');
+      if (qty <= 1) {
+        $('#length').val(lngth);
+      }else if (qty > 1) {
+        $('#length').val(lngth + 's');
+      }else  {
+        $('#length').val(lngth - 's');
+      }
     }
-  }
 
-  function updateQty() {
-    update();
-  }
-
-  function validateInteger(quantity){
-    if (quantity > 0 && (parseFloat(quantity) === parseInt(quantity, 10))){
-      return true;
-    }else {
-      $('.toast').remove();
-
-      toastr.options ={
-        'timeOut': "5000",
-        'extendedTimeOut': "2000",
-        "positionClass": 'toast-top-center'
-      };
-
-      toastr.warning("Quantity must be in whole numbers");
-
-      return false;
-    }
-  }
-
-  function updateLength() {
-    if ($('#qty').val() > 0){
+    function updateQty() {
       update();
     }
-  }
 
-  //helper function for calculating adae fee, stripe fee, and grand total
-  function update(){
-    qtyLength();
-    var length = $('#transaction_length').val();
+    function validateInteger(quantity){
+      if (quantity > 0 && (parseFloat(quantity) === parseInt(quantity, 10))){
+        return true;
+      }else {
+        $('.toast').remove();
 
-    var amt = markup_price(hash[length]);
-    $('#amt').val('$ ' + amt + ' x');
+        toastr.options ={
+          'timeOut': "5000",
+          'extendedTimeOut': "2000",
+          "positionClass": 'toast-top-center'
+        };
 
-    var qty = $('#qty').val();
-    var total = (amt * qty);
+        toastr.warning("Quantity must be in whole numbers");
 
-    if (validateInteger(qty)){
-      var fee = ((total * 0.029) + 0.30).toFixed(2);
-      var pre_markup = total -  (qty * hash[length]);
-
-      $('#subtotal').val('$' + total);
-      $('#price').val(total);
-
-      total = (parseFloat(total) + parseFloat(fee));
-
-      $('#markup-price')[0].innerHTML = "$" + pre_markup;
-      $('#stripe-fee')[0].innerHTML = "$" + fee;
-      $('#duration')[0].value = $('#qty').val() + "-" + $('#transaction_length').val();
-
-      //decide wether to disable submit button or not depending on qty
-      $('#transaction_total_price').val('$' + total);
-    }
-  }
-
-  function markup_price(price) {
-    var l1 = 1.1;
-    var l2 = 1.08;
-    var l3 = 1.06;
-    var l4 = 1.04;
-    var l5 = 1.02;
-    var displayPrice = 0;
-
-    if(price < 100) {
-        displayPrice = Math.round(price*l1, 0);
-    }else if(price >= 100 & price < 200) {
-        displayPrice = Math.round(100*l1 + (price-100)*l2, -1);
-    }else if(price >= 200 & price < 500) {
-        displayPrice = Math.round(100*l1 + 100*l2 + (price-200)*l3, -1);
-    }else if(price >= 500 & price < 1000) {
-        displayPrice = Math.round(100*l1 + 100*l2 + 300*l3 + (price-500)*l4, -1);
-    }else if(price >= 1000) {
-        displayPrice = Math.round(100*l1 + 100*l2 + 300*l3 + 500*l4 + (price-1000)*l5, -1);
+        return false;
+      }
     }
 
-    return displayPrice;
-  }
+    function updateLength() {
+      if ($('#qty').val() > 0){
+        update();
+      }
+    }
+
+    //helper function for calculating adae fee, stripe fee, and grand total
+    function update(){
+      qtyLength();
+      var length = $('#transaction_length').val();
+
+      var amt = markup_price(hash[length]);
+      $('#amt').val('$ ' + amt + ' x');
+
+      var qty = $('#qty').val();
+      var total = (amt * qty);
+
+      if (validateInteger(qty)){
+        var fee = ((total * 0.029) + 0.30).toFixed(2);
+        var pre_markup = total -  (qty * hash[length]);
+
+        $('#subtotal').val('$' + total);
+        $('#price').val(total);
+
+        total = (parseFloat(total) + parseFloat(fee));
+
+        $('#markup-price')[0].innerHTML = "$" + pre_markup;
+        $('#stripe-fee')[0].innerHTML = "$" + fee;
+        $('#duration')[0].value = $('#qty').val() + "-" + $('#transaction_length').val();
+
+        //decide wether to disable submit button or not depending on qty
+        $('#transaction_total_price').val('$' + total);
+      }
+    }
+
+    function markup_price(price) {
+      var l1 = 1.1;
+      var l2 = 1.08;
+      var l3 = 1.06;
+      var l4 = 1.04;
+      var l5 = 1.02;
+      var displayPrice = 0;
+
+      if(price < 100) {
+          displayPrice = Math.round(price*l1, 0);
+      }else if(price >= 100 & price < 200) {
+          displayPrice = Math.round(100*l1 + (price-100)*l2, -1);
+      }else if(price >= 200 & price < 500) {
+          displayPrice = Math.round(100*l1 + 100*l2 + (price-200)*l3, -1);
+      }else if(price >= 500 & price < 1000) {
+          displayPrice = Math.round(100*l1 + 100*l2 + 300*l3 + (price-500)*l4, -1);
+      }else if(price >= 1000) {
+          displayPrice = Math.round(100*l1 + 100*l2 + 300*l3 + 500*l4 + (price-1000)*l5, -1);
+      }
+
+      return displayPrice;
+    }
+  });
 </script>
 
 <div class="payment-info">
