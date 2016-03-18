@@ -58,7 +58,7 @@
 
     total = (parseFloat(total) + parseFloat(fee));
 
-    $('#markup-price')[0].innerHTML = "$" + pre_markup;
+    //$('#markup-price')[0].innerHTML = "$" + pre_markup;
     $('#stripe-fee')[0].innerHTML = "$" + fee;
     $('#duration')[0].value = $('#qty').val() + "-" + $('#transaction_length').val();
 
@@ -100,7 +100,7 @@
       $('#subtotal').val('$' + total);
       total = (parseFloat(total) + parseFloat(fee));
 
-      $('#markup-price')[0].innerHTML = "$" + pre_markup;
+      //$('#markup-price')[0].innerHTML = "$" + pre_markup;
       $('#stripe-fee')[0].innerHTML = "$" + fee;
       $('#duration')[0].value = $('#qty').val() + "-" + $('#transaction_length').val();
 
@@ -172,7 +172,7 @@
             <p id="display-price" style="font-size: 30px; font-weight: 500; color: #4a4a4a;"></p>
           <% end %>
           <div class="item-detail-calc">
-            <section id="markup-container">
+            <!--<section id="markup-container">
               <label style="margin-bottom: 10px;" id="markup-label">Adae Fee:
               <span>
                 <span class="wrapper">
@@ -182,7 +182,7 @@
               </span>
               </label>
               <label id="markup-price"></label>
-            </section>
+            </section>-->
           </div>
           <div style="margin-left: 0px;" class="credit-fee">
             <a style="margin-left: 20px" target="_blank" href="https://stripe.com/ca/pricing">Stripe Processing Fee:</a>
@@ -221,7 +221,7 @@
                   <input id="subtotal" readonly="readonly" value=""></input>
 
                   <% unless @item.deposit == 0 %>
-                  <section id="markup-container">
+                  <!--<section id="markup-container">
                     <label id="markup-label">Adae Fee:
                     <span>
                       <span class="wrapper">
@@ -231,7 +231,7 @@
                     </span>
                   </label>
                     <label id="markup-price"></label>
-                  </section>
+                  </section>-->
                   <input class="trust-fee"readonly="readonly" value="Trust Fee: $<%= @item.deposit %>"></input>
                   <span>
                     <span style="bottom: 2px;"class="wrapper">
@@ -278,7 +278,7 @@
               <input id="subtotal" readonly="readonly" value=""></input>
 
               <% unless @item.deposit == 0 %>
-                <label id="markup-label">Adae Fee:
+              <!--  <label id="markup-label">Adae Fee:
 
                 <span>
                   <span class="wrapper">
@@ -288,7 +288,7 @@
                 </span>
 
                 </label>
-                <label id="markup-price"></label>
+                <label id="markup-price"></label>-->
                 <input class="trust-fee"readonly="readonly" value="Trust Fee: $<%= @item.deposit %>"></input>
                 <span>
                   <span style="bottom: 2px;"class="wrapper">
@@ -332,7 +332,7 @@
               <input id="times" readonly="readonly" value=""></input>
               <input id="length" readonly="readonly" value=""></input>
               <input id="subtotal" readonly="readonly" value=""></input>
-                  <label style="margin-bottom: 10px;"id="markup-label">Adae Fee:
+                  <!--<label style="margin-bottom: 10px;"id="markup-label">Adae Fee:
                   <span>
                     <span class="wrapper">
                       ?
@@ -340,7 +340,7 @@
                     </span>
                   </span>
                 </label>
-                  <label id="markup-price"></label>
+                  <label id="markup-price"></label>-->
                 <% unless @item.deposit == 0 %>
                   <input class="deposit" readonly="readonly" value="$<%= @item.deposit %>"></input>
                 <% end %>
