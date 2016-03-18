@@ -49,6 +49,11 @@
       $('.request-button').bind('click', false);
       $('.request-button').css("background-color", "#D5D5D5");
       $('.request-button').css("cursor", "default");
+    <% elsif @item.status == "Sold" %>
+      $('.request-button')[0].innerHTML = "Sold";
+      $('.request-button').bind('click', false);
+      $('.request-button').css("background-color", "#D5D5D5");
+      $('.request-button').css("cursor", "default");
     <% end %>
   });
 
