@@ -47,7 +47,6 @@ $(document).on('ready page:load', function() {
                     </div>
               </div>
               <div class="chat-time">
-                <strong><%= user.name %></strong>
                 <%= message.message_time %>
               </div>
             <% else %>
@@ -58,7 +57,6 @@ $(document).on('ready page:load', function() {
                 </div>
               </div>
               <div class="opp-chat-time">
-                <strong><%= user.name %></strong>
                 <%= message.message_time %>
               </div>
             <% end %>
