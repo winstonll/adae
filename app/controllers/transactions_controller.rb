@@ -60,9 +60,20 @@ class TransactionsController < ApplicationController
 
 	def destroy
 		@transaction = Transaction.find(params[:id])
-
 		@transaction.status = "Denied"
 		@transaction.save
+		@conversation = Conversation.between(transaction.seller_id,transaction.buyer_id).first
+		@buyer = User.find(transaction.buyer_id)
+		@seller = User.find(transaction.seller_id)
+		@message = @conversation.messages.new(user_id: @buyer.id)
+		@message2 = @conversation.messages.new(user_id: @seller.id)
+		@message.body = "AdaeBot: Your request has been denied, but don't worry you can keep browsing!"
+		@message2.body = "AdaeBot: You have denied this transaction. Feel free to keep browsing!"
+		@message.save
+		@message2.save
+		ContactMailer.adaebot_message(@buyer, @message).deliver_now
+		ContactMailer.adaebot_message(@seller, @message2).deliver_now
+		redirect_to :back
 
 		redirect_to conversations_path
 	end
@@ -72,95 +83,52 @@ class TransactionsController < ApplicationController
 	end
 
 	def accept
-		transaction = Transaction.find(params[:transaction])
-		item = Item.find(params[:item_id])
-		seller = User.find(transaction.seller_id)
-		buyer = User.find(transaction.buyer_id)
 
-		description = "#{seller.name}(#{seller.id}), #{item.listing_type}s, to #{buyer.name}(#{buyer.id})"
+		transaction_hash = charge_stripe
 
-		@customer = Stripe::Customer.retrieve(buyer.stripe_customer_id)
+		transaction = transaction_hash["transaction"]
 
-		charge_price = transaction.total_price.to_f
+		transaction.status = "Accepted"
+		transaction.save
 
-		if params[:lease]
-			charge_price = (markup_calculation(item.deposit) - transaction.total_price).to_f
-		end
+		@conversation = Conversation.between(transaction.seller_id,transaction.buyer_id).first
+			@buyer = User.find(transaction.buyer_id)
+			@seller = User.find(transaction.seller_id)
+		@message = @conversation.messages.new(user_id: @buyer.id)
+		@message2 = @conversation.messages.new(user_id: @seller.id)
+		@message.body = "AdaeBot: Your request has been accepted."
+		@message2.body = "AdaeBot: You have accepted this transaction."
+		@message.save
+		@message2.save
+		ContactMailer.adaebot_message(@buyer, @message).deliver_now
+		ContactMailer.adaebot_message(@seller, @message2).deliver_now
+		redirect_to :back
+	end
 
-		if buyer.balance > 0
-			if buyer.balance > charge_price
-				balance_used = charge_price
-				buyer.balance = buyer.balance - charge_price
-				charge_price = 0
-				buyer.save
-			else
-				balance_used = buyer.balance - charge_price
-				charge_price = charge_price - buyer.balance
-				buyer.balance = 0
-				buyer.save
-			end
-		end
+	def purchase_lease
 
-		unless charge_price <= 0
-			charge_price = (((charge_price * 1.029) + 0.30) * 100).ceil
-		end
+		transaction_hash = charge_stripe
 
-		if charge_price > 0
-			# Charge the customer instead of the card
-			begin
-				charge = Stripe::Charge.create(
-					:customer => @customer.id,
-			    :amount => charge_price, # amount in cents, again
-			    :currency => "cad",
-			    :description => description
-			  )
+		item = transaction_hash["item"]
+		transaction = transaction_hash["transaction"]
+		seller = transaction_hash["seller"]
 
-				rescue Stripe::CardError => e
-					flash[:alert] = e.message
-					redirect_to conversations_path
-					#return false
-			end
 
-			if charge[:paid]
-				stripeCharge = {
-					txn_type: charge[:object],
-					currency: charge[:currency],
-					total_amount: charge[:amount],
-					notification_params: charge,
-					txn_id: charge[:id],
-					status: charge[:paid],
-					description: charge[:description]
-				}
+		item.status = "Sold"
+		item.save
+		transaction.status = "Completed"
+		transaction.save
+		seller.balance = seller.balance + transaction.total_price
+		seller.save
 
-				@sT = StripeTransaction.create(stripeCharge) # make a record in the StripeTransactions table
-			end
-		else
-			stripeCharge = {
-				txn_type: nil,
-				currency: nil,
-				total_amount: 0,
-				notification_params: nil,
-				txn_id: nil,
-				status: nil,
-				description: "$#{balance_used} was taken from your balance. No Stripe charges were necessary."
-			}
+		@conversation = Conversation.between(transaction.seller_id,transaction.buyer_id).first
+  		@user = User.find(transaction.seller_id)
+		@message = @conversation.messages.new(user_id: @user.id)
+		@message.body = "AdaeBot: Your item has been sold."
+		@message.save
+		ContactMailer.adaebot_message(@user, @message).deliver_now
+		redirect_to conversations_path
 
-			@sT = StripeTransaction.create(stripeCharge) # make a record in the StripeTransactions table
-		end
-
-		if params[:lease]
-			item.status = "Sold"
-			item.save
-			transaction.status = "Completed"
-			transaction.save
-			seller.balance = seller.balance + transaction.total_price
-			seller.save
-			redirect_to conversations_path
-		else
-			transaction.status = "Accepted"
-			transaction.save
-			redirect_to :back
-		end
 	end
 
 	# Grabs all the necessary data and presents an invoice display page after purchases
@@ -226,6 +194,88 @@ class TransactionsController < ApplicationController
 
 	private
 
+		def charge_stripe
+			transaction = Transaction.find(params[:transaction])
+			item = Item.find(params[:item_id])
+			seller = User.find(transaction.seller_id)
+			buyer = User.find(transaction.buyer_id)
+
+			description = "#{seller.name}(#{seller.id}), #{item.listing_type}s, to #{buyer.name}(#{buyer.id})"
+
+			@customer = Stripe::Customer.retrieve(buyer.stripe_customer_id)
+
+			charge_price = transaction.total_price.to_f
+
+			if params[:lease]
+				charge_price = (markup_calculation(item.deposit) - transaction.total_price).to_f
+			end
+
+			unless charge_price <= 0
+				charge_price = (((charge_price * 1.029) + 0.30) * 100).ceil
+			end
+
+			#If the Buyer has a balance, subtract the balance from the total before charge.
+			if buyer.balance > 0
+				if buyer.balance > charge_price
+					balance_used = charge_price
+					buyer.balance = buyer.balance - charge_price
+					charge_price = 0
+					buyer.save
+				else
+					balance_used = buyer.balance - charge_price
+					charge_price = charge_price - buyer.balance
+					buyer.balance = 0
+					buyer.save
+				end
+			end
+
+			if charge_price > 0
+				# Charge the customer instead of the card
+				begin
+					charge = Stripe::Charge.create(
+						:customer => @customer.id,
+				    :amount => charge_price.to_i, # amount in cents, again
+				    :currency => "cad",
+				    :description => description
+				  )
+
+					rescue Stripe::CardError => e
+						flash[:alert] = e.message
+						redirect_to conversations_path
+						#return false
+				end
+
+				if charge[:paid]
+					stripeCharge = {
+						txn_type: charge[:object],
+						currency: charge[:currency],
+						total_amount: charge[:amount],
+						notification_params: charge,
+						txn_id: charge[:id],
+						status: charge[:paid],
+						description: charge[:description]
+					}
+
+					@sT = StripeTransaction.create(stripeCharge) # make a record in the StripeTransactions table
+				end
+			else
+				stripeCharge = {
+					txn_type: nil,
+					currency: nil,
+					total_amount: 0,
+					notification_params: nil,
+					txn_id: nil,
+					status: nil,
+					description: "$#{balance_used} was taken from your balance. No Stripe charges were necessary."
+				}
+
+				@sT = StripeTransaction.create(stripeCharge) # make a record in the StripeTransactions table
+			end
+asd
+			hash = {"transaction" => transaction, "seller" => seller, "item" => item}
+			return hash
+		end
+
 		def markup_calculation(price)
 			l1 = 1.1
 			l2 = 1.08
@@ -280,7 +330,7 @@ class TransactionsController < ApplicationController
 
 		def signed_in_user
 	  	unless signed_in?
-	      redirect_to items_path, flash: {warning: "Please sign in before you checkout."}
+	      redirect_to :back, flash: {warning: "Please sign in before you checkout."}
 	  	end
 	  end
 

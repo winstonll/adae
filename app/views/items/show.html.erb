@@ -1,5 +1,4 @@
 <%= stylesheet_link_tag "items" %>
-<%= javascript_include_tag "map_description" %>
 <%= include_gon %>
 
 <script>
@@ -50,7 +49,18 @@
       $('.request-button').bind('click', false);
       $('.request-button').css("background-color", "#D5D5D5");
       $('.request-button').css("cursor", "default");
+    <% elsif @item.status == "Sold" %>
+      $('.request-button')[0].innerHTML = "Sold";
+      $('.request-button').bind('click', false);
+      $('.request-button').css("background-color", "#D5D5D5");
+      $('.request-button').css("cursor", "default");
     <% end %>
+
+    $('#buy-button').click(function(){
+      $('.signup-modal').show();
+      //$('.modal-backdrop').fadeOut();
+      console.log("bere");
+    });
   });
 
 </script>
@@ -73,7 +83,11 @@
           <p class="sale-price"> Price:
             <span class="markup" style="font-weight: 700; color:#000;">$<%= @prices.first.amount %></span>
           </p>
+          <% if user_signed_in? %>
             <%= link_to 'Request to Buy', new_transaction_path(:item_id => @item.id), class: "request-button", id: "buy-button"%>
+          <% else %>
+            <%= link_to 'Request to Buy', {remote: true, controller: "home", action: "signup_modal"}, id: "buy-button", class: "guest-buy" %>
+          <% end %>
         </div>
       <% elsif @item.listing_type == "lease" %>
         <div class="item-detail-price" style="height:310px;">
@@ -149,6 +163,7 @@
         <div class="divider"></div>
       </div>
       <div id="item-map"></div>
+      <%= javascript_include_tag "map_description" %>
     </div>
 </div>
   <div class="rating-container">

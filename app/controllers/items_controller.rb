@@ -1,5 +1,6 @@
 class ItemsController < ApplicationController
-  before_filter :ensure_logged_in, only: [:create, :update, :edit, :destroy]
+  before_action :ensure_logged_in, only: [:create, :update, :edit, :destroy]
+  before_action :item_deleted?, only: [:show]
 
   def index
       @items = Item.where(status: "Listed").paginate(:page => params[:page], :per_page => 8).order('created_at DESC')
@@ -188,66 +189,82 @@ class ItemsController < ApplicationController
 
   private
 
-  def update_prices
-    params[:item][:prices_attributes].each do |price|
-      item_price = @item.prices.where(timeframe: price[1][:timeframe]).first
-      if !item_price.nil?
-        if price[1][:timeframe] == "Day" || price[1][:timeframe] == "Hour"
-          if params[:item][:prices_attributes]["0"][:amount].to_f == 0
-            item_price.delete
-          else
-            item_price.amount = params[:item][:prices_attributes]["0"][:amount].to_f
-            item_price.save
+    def ensure_logged_in
+     unless current_user
+       flash[:warning] = "Please Log in or Sign up!"
+       session[:previous_url] = request.fullpath
+        redirect_to request.referrer, flash: { signup_modal: true }
+     end
+    end
+
+    def item_deleted?
+      item = Item.find(params[:id])
+
+      unless ["Listed", "Sold"].include?(item.status)
+        redirect_to items_path
+      end
+    end
+
+    def update_prices
+      params[:item][:prices_attributes].each do |price|
+        item_price = @item.prices.where(timeframe: price[1][:timeframe]).first
+        if !item_price.nil?
+          if price[1][:timeframe] == "Day" || price[1][:timeframe] == "Hour"
+            if params[:item][:prices_attributes]["0"][:amount].to_f == 0
+              item_price.delete
+            else
+              item_price.amount = params[:item][:prices_attributes]["0"][:amount].to_f
+              item_price.save
+            end
+          elsif price[1][:timeframe] == "Week"
+            if params[:item][:prices_attributes]["1"][:amount].to_f == 0
+              item_price.delete
+            else
+              item_price.amount = params[:item][:prices_attributes]["1"][:amount].to_f
+              item_price.save
+            end
+          elsif price[1][:timeframe] == "Month"
+            if params[:item][:prices_attributes]["2"][:amount].to_f == 0
+              item_price.delete
+            else
+              item_price.amount = params[:item][:prices_attributes]["2"][:amount].to_f
+              item_price.save
+            end
           end
-        elsif price[1][:timeframe] == "Week"
-          if params[:item][:prices_attributes]["1"][:amount].to_f == 0
-            item_price.delete
-          else
-            item_price.amount = params[:item][:prices_attributes]["1"][:amount].to_f
-            item_price.save
-          end
-        elsif price[1][:timeframe] == "Month"
-          if params[:item][:prices_attributes]["2"][:amount].to_f == 0
-            item_price.delete
-          else
-            item_price.amount = params[:item][:prices_attributes]["2"][:amount].to_f
-            item_price.save
-          end
-        end
-      else
-        item_price = Price.new
-        if price[1][:timeframe] == "Day" || price[1][:timeframe] == "Hour"
-          if params[:item][:prices_attributes]["0"][:amount].to_f != 0
-            item_price.timeframe = price[1][:timeframe]
-            item_price.item_id = @item.id
-            item_price.amount = params[:item][:prices_attributes]["0"][:amount].to_f
-            item_price.save
-          end
-        elsif price[1][:timeframe] == "Week"
-          if params[:item][:prices_attributes]["1"][:amount].to_f != 0
-            item_price.timeframe = price[1][:timeframe]
-            item_price.item_id = @item.id
-            item_price.amount = params[:item][:prices_attributes]["1"][:amount].to_f
-            item_price.save
-          end
-        elsif price[1][:timeframe] == "Month"
-          if params[:item][:prices_attributes]["2"][:amount].to_f != 0
-            item_price.timeframe = price[1][:timeframe]
-            item_price.item_id = @item.id
-            item_price.amount = params[:item][:prices_attributes]["2"][:amount].to_f
-            item_price.save
+        else
+          item_price = Price.new
+          if price[1][:timeframe] == "Day" || price[1][:timeframe] == "Hour"
+            if params[:item][:prices_attributes]["0"][:amount].to_f != 0
+              item_price.timeframe = price[1][:timeframe]
+              item_price.item_id = @item.id
+              item_price.amount = params[:item][:prices_attributes]["0"][:amount].to_f
+              item_price.save
+            end
+          elsif price[1][:timeframe] == "Week"
+            if params[:item][:prices_attributes]["1"][:amount].to_f != 0
+              item_price.timeframe = price[1][:timeframe]
+              item_price.item_id = @item.id
+              item_price.amount = params[:item][:prices_attributes]["1"][:amount].to_f
+              item_price.save
+            end
+          elsif price[1][:timeframe] == "Month"
+            if params[:item][:prices_attributes]["2"][:amount].to_f != 0
+              item_price.timeframe = price[1][:timeframe]
+              item_price.item_id = @item.id
+              item_price.amount = params[:item][:prices_attributes]["2"][:amount].to_f
+              item_price.save
+            end
           end
         end
       end
     end
-  end
 
-  def item_params
-    params.require(:item).permit(:title, :photo, :description, :image, :user_id, :listing_type, :deposit, :tags, :postal_code, prices_attributes: [:id, :timeframe, :amount])
-  end
+    def item_params
+      params.require(:item).permit(:title, :photo, :description, :image, :user_id, :listing_type, :deposit, :tags, :postal_code, prices_attributes: [:id, :timeframe, :amount])
+    end
 
-  def item_edit_params
-    params.require(:item).permit(:title, :photo, :description, :image, :user_id, :listing_type, :deposit, :postal_code)
-  end
+    def item_edit_params
+      params.require(:item).permit(:title, :photo, :description, :image, :user_id, :listing_type, :deposit, :postal_code)
+    end
 
 end

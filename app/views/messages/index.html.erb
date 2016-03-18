@@ -6,9 +6,15 @@
 $(document).on('ready page:load', function() {
   var objDiv = document.getElementById("ui-segment");
   objDiv.scrollTop = objDiv.scrollHeight;
+  <% if @transaction.status == "Accepted" %>
+    setTimeout(function() {
+     $('.companion-modal').html('<%= escape_javascript(render partial: 'common/companion_modal') %>')
+     $('#shareCompanionModal').modal('show');
+    }, 1000);
+  <% end %>
 });
 </script>
-
+<div class="companion-modal"></div>
 
 <div class="page-content">
   <% if @transaction.seller_id == current_user.id %>
@@ -41,7 +47,6 @@ $(document).on('ready page:load', function() {
                     </div>
               </div>
               <div class="chat-time">
-                <strong><%= user.name %></strong>
                 <%= message.message_time %>
               </div>
             <% else %>
@@ -52,7 +57,6 @@ $(document).on('ready page:load', function() {
                 </div>
               </div>
               <div class="opp-chat-time">
-                <strong><%= user.name %></strong>
                 <%= message.message_time %>
               </div>
             <% end %>
@@ -110,7 +114,7 @@ $(document).on('ready page:load', function() {
       <% if @item.listing_type == "lease" && @item.status != "Sold" && current_user.id != @item.user_id && (["Accepted", "In Progress"].include?(@transaction.status)) %>
         <div class="request-box" style="margin-bottom: -5px; height: 140px;">
           <p style="font-weight: 500px; color: #4a4a4a; line-height: normal;">If you would like to buy the item during your rental period, click below.</p>
-            <%= link_to 'Request to Purchase', accept_path(item_id: @item.id, transaction: @transaction.id, lease: "true"), class: "lease-buy-item" %>
+            <%= link_to 'Request to Purchase', purchase_lease_path(item_id: @item.id, transaction: @transaction.id, lease: "true"), class: "lease-buy-item" %>
         </div>
       <% end %>
 

@@ -13,16 +13,6 @@ class ApplicationController < ActionController::Base
    items_path
   end
   
-  private
-
-  def ensure_logged_in
-   unless current_user
-     flash[:warning] = "Please Log in or Sign up!"
-     session[:previous_url] = request.fullpath
-      redirect_to request.referrer, flash: { signup_modal: true }
-   end
-  end
-
   protected
 
   # To permit new custom attributes to be verified as attributes permitted by the form

@@ -15,6 +15,8 @@ Rails.application.routes.draw do
   get 'signup_modal' => 'users/home#signup_modal'
   get 'signin_modal' => 'home#signin_modal'
   get 'signin_modal' => 'users/home#signin_modal'
+  get 'companion_modal' => 'home#companion_modal'
+  get 'purchase_lease' => 'transaction#purchase_lease'
 
   #constraints subdomain: 'api' do
     namespace :api do
