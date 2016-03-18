@@ -1,17 +1,17 @@
 <%= stylesheet_link_tag "modals" %>
 <script>
+  function exitModal() {
+      $('#shareCompanionModal').modal('hide');
+  }
   $(document).click(function (e) {
     var companion = $('#shareCompanionModal');
     //if the target of the click isn't the modal...
     if (!companion.is(e.target)&& companion.has(e.target).length === 0) { companion.modal('hide'); }
-    $('.companion-cancel').click(function() {
-      $('#shareCompanionModal').modal('toggle');
-    });
   });
 </script>
 
 <div id="shareCompanionModal" tabindex="-1" role="dialog" aria-labelledby="shareCompanionModal" aria-hidden="true">
-<span type="button" class="companion-cancel">X</span>
+  <span type="button" onclick="exitModal()" class="companion-cancel">X</span>
   <div class="explore-container">
     <h4 class ="title">
       Now download the Mobile Companion App to pay and get paid via <a target="_blank" href="https://stripe.com/gallery">
