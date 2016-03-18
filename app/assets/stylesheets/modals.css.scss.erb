@@ -327,7 +327,7 @@
 
   .companion-cancel {
     float: right;
-    margin: 20px;
+    margin: 10px;
     color: #fff;
     cursor: pointer;
   }
@@ -341,7 +341,7 @@
       font-size: 20px;
       line-height: normal;
       margin-left: 17em;
-      margin-top: 20px;
+      margin-top: 30px;
       color: #fff;
       font-family: 'Avenir Next','Arial Rounded MT Bold', sans-serif;
 
@@ -360,7 +360,7 @@
       .app-preview{
         position: fixed;
         margin-left: -50PX;
-        margin-top: -313PX;
+        margin-top: -323PX;
         height: 600px;
       }
       .app-descriptions{
@@ -402,6 +402,106 @@
         .modal_play_store{
           height: auto;
           width: 140px;
+        }
+      }
+    }
+  }
+}
+
+@-moz-document url-prefix() { /*this targets FireFox only, need the code below so companion modal looks right on FireFox*/
+  #shareCompanionModal {
+    position: fixed;
+    background-color: #7ABCFF;
+    height: 520px;
+    width: 900px;
+    z-index: 2;
+    top: 12%;
+    right: 15%;
+    left:15%;
+    bottom: 15%;
+    display: table;
+    margin: auto;
+    border-radius: 10px;
+    border: 3px solid #fff;
+
+    .companion-cancel {
+      float: right;
+      margin: 10px;
+      color: #fff;
+      cursor: pointer;
+    }
+
+    .explore-container{
+      .title{
+        font-weight: 500;
+        margin: 0 auto;
+        display: table;
+        width: 530px;
+        font-size: 20px;
+        line-height: normal;
+        margin-left: 17em;
+        margin-top: 20px;
+        color: #fff;
+        font-family: 'Avenir Next','Arial Rounded MT Bold', sans-serif;
+
+        #secure{
+          color: #0373E6;
+          font-weight: 500;
+          font-family: 'Avenir Next','Arial Rounded MT Bold', sans-serif;
+
+          &:hover{
+            text-decoration: underline;
+          }
+        }
+      }
+
+      .app-info{
+        .app-preview{
+          position: fixed;
+          margin-left: -50PX;
+          margin-top: -330PX;
+          height: 600px;
+        }
+        .app-descriptions{
+          float: right;
+          width: 550px;
+          line-height: normal;
+          margin-right: 3em;
+          font-size: 16px;
+          text-indent: -17px;
+          font-weight: 500;
+          color: #1E1E1E;
+
+          li{
+            text-align: left;
+            margin-bottom: 15px;
+            .star{
+              color: #fff;
+            }
+          }
+
+          #app-title{
+            color: #fff;
+          }
+
+          #follow{
+            color: #fff;
+            margin-left: 3.2em;
+            font-size: 18px;
+            margin-bottom: 10px;
+            font-weight: 500;
+          }
+
+          .modal_app_store{
+            height: auto;
+            width: 140px;
+            margin-left: 2.5em;
+          }
+
+          .modal_play_store{
+            height: auto;
+            width: 140px;
+          }
         }
       }
     }
