@@ -83,16 +83,18 @@ Rails.application.configure do
   # NOTE: on GMail accounts, if it doesn't work but auth is correct try this:
   # https://accounts.google.com/DisplayUnlockCaptcha
   config.action_mailer.default_url_options = { :host => 'adae.co' }
+  config.action_mailer.default_options = {from: 'mail@adae.co'}
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.smtp_settings = {
-    :address              => 'smtp.mandrillapp.com',
-    :port                 => 2525,
-    :user_name            => 'error@adae.co',
-    :password             => 'QieuCukCxNQZ7qNtUQ0rVw',
-    :enable_starttls_auto => true,
-    :authentication       => 'plain'
+    address: 'smtp.zoho.com',
+    port: 465,
+    user_name: 'mail@adae.co',
+    password: 'Ar1m4!@#',
+    authentication: :login,
+    enable_starttls_auto: true,
+    tls:                  true
   }
 
   # Do not dump schema after migrations.
