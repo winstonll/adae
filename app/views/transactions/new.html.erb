@@ -214,7 +214,7 @@
                   </section>
                   <input class="trust-fee"readonly="readonly" value="Trust Fee: $<%= @item.deposit %>"></input>
                   <span>
-                    <span class="wrapper">
+                    <span style="bottom: 1px;"class="wrapper">
                       ?
                       <div class="tooltip">This ensures that the item is treated with care and is returned on time. <b style="font-weight: 600;">This amount will be charged only if you fail to return the item, damage it, or lose it.</b></div>
                     </span>
@@ -236,7 +236,7 @@
         </div>
       <!-- If listing type rent -->
       <% elsif @item.listing_type == "rent"%>
-        <div class="item-detail-price" style="height: 350px;">
+        <div class="item-detail-price" style="height: 300px;">
           <div class="item-title"><%=@item.title %></div>
           <div class="division"></div>
           <p class="how-long">How long would you like to rent this?</p>
@@ -264,9 +264,9 @@
                 </label>
                 <label id="markup-price"></label>
                 <input class="trust-fee"readonly="readonly" value="Trust Fee: $<%= @item.deposit %>"></input>
-                <input class="deposit" readonly="readonly" value="$<%= @item.deposit %>">
+                <!--<input class="deposit" readonly="readonly" value="$<%= @item.deposit %>">-->
                 <span>
-                  <span class="wrapper">
+                  <span style="bottom: 1px;"class="wrapper">
                     ?
                     <div class="tooltip">This ensures that the item is treated with care, and is returned on time. This amount will be charged only if you fail to return the item, damage it, or lose it.</div>
                   </span>
