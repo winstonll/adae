@@ -8,7 +8,7 @@
         $('#display-price')[0].innerHTML = "$" + markup_price(<%= @item.deposit %>);
         total_price = (markup_price(<%= @item.deposit %>));
         $('#total').val("$" + ((total_price * 1.029) + 0.30).toFixed(2));
-        $('#stripe-fee')[0].innerHTML = ( (markup_price(<%= @item.deposit %>) * 0.029) + 0.30).toFixed(2);
+        $('#stripe-fee')[0].innerHTML = "$" + ( (markup_price(<%= @item.deposit %>) * 0.029) + 0.30).toFixed(2);
         $('#price').val(total_price);
       <% end %>
     <% elsif @item.listing_type == "sell" %>
