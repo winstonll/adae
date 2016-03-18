@@ -3,8 +3,7 @@
   $(document).ready(function() {
     var total_price;
     <% if @item.listing_type != "sell" %>
-      $('.stripe-button-el').prop('disabled', true);
-      $('.request-button').prop('disabled', true);
+      $(".stripe-button-el, .request-button").click(preventZero);
       <% if params[:sell] == "true" %>
         $('#display-price')[0].innerHTML = "$" + markup_price(<%= @item.deposit %>);
         total_price = (markup_price(<%= @item.deposit %>));
@@ -65,22 +64,24 @@
 
     //decide wether to disable submit button or not depending on qty
     $('#transaction_total_price').val('$' + total);
+  }
 
-    if (qty > 0 && (parseFloat(qty) === parseInt(qty, 10))){
-      $('.stripe-button-el').prop('disabled', false);
-      $('.request-button').prop('disabled', false);
-    }else {
-      toastr.options ={
-        'timeOut': "5000",
-        'extendedTimeOut': "2000",
-        "positionClass": 'toast-top-center'
-      };
+  function preventZero(){
+      if (qty > 0 && (parseFloat(qty) === parseInt(qty, 10))){
+        $('.stripe-button-el').prop('disabled', false);
+        $('.request-button').prop('disabled', false);
+      }else {
+        toastr.options ={
+          'timeOut': "5000",
+          'extendedTimeOut': "2000",
+          "positionClass": 'toast-top-center'
+        };
 
-      toastr.warning("Quantity must be in whole numbers");
+        toastr.warning("Quantity must be in whole numbers");
 
-      $('.stripe-button-el').prop('disabled', true);
-      $('.request-button').prop('disabled', true);
-    }
+        $('.stripe-button-el').prop('disabled', true);
+        $('.request-button').prop('disabled', true);
+      }
   }
 
   function updateLength() {
@@ -350,7 +351,7 @@
             <%= hidden_field_tag 'price' %>
             <%= hidden_field_tag 'duration' %>
 
-            <%= submit_tag 'Send Payment', class: "request-button", :onclick => "return validate_duration();"%>
+            <%= submit_tag 'Send Payment', class: "request-button"%>
           <% end %>
         <%end%>
       </center>
