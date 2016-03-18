@@ -210,12 +210,8 @@ class TransactionsController < ApplicationController
 				charge_price = (markup_calculation(item.deposit) - transaction.total_price).to_f
 			end
 
-			unless charge_price <= 0
-				charge_price = (((charge_price * 1.029) + 0.30) * 100).ceil
-			end
-
 			#If the Buyer has a balance, subtract the balance from the total before charge.
-			if buyer.balance > 0
+			if buyer.balance > 0 
 				if buyer.balance > charge_price
 					balance_used = charge_price
 					buyer.balance = buyer.balance - charge_price
@@ -227,6 +223,10 @@ class TransactionsController < ApplicationController
 					buyer.balance = 0
 					buyer.save
 				end
+			end
+
+			unless charge_price <= 0
+				charge_price = (((charge_price * 1.029) + 0.30) * 100).ceil
 			end
 
 			if charge_price > 0
