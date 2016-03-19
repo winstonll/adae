@@ -123,7 +123,7 @@
         <div class="request-box" style="margin-bottom: -5px; height: 140px;">
           <p style="font-weight: 500px; color: #4a4a4a; line-height: normal;">If you would like to buy the item during your rental period, click below.</p>
             <%= link_to 'Request to Purchase', purchase_lease_path(item_id: @item.id, transaction: @transaction.id, lease: "true"), class: "lease-buy-item",
-            data: {confirm: "Are you sure you want to purchase this item?" %>
+            data: {confirm: "Are you sure you want to purchase this item?"} %>
         </div>
       <% end %>
 
