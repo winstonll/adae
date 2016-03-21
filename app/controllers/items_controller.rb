@@ -40,8 +40,8 @@ class ItemsController < ApplicationController
       @transaction_dne = Transaction.where(" (transactions.status != 'Completed' AND transactions.status != 'Denied'\
       AND transactions.status != 'Pending') AND (transactions.item_id = #{@item.id})").empty?
 
-      @reviewable = !Transaction.where("(transactions.buyer_id = #{current_user.id}) \
-      AND (transactions.status != 'Denied') AND (transactions.item_id = #{@item.id})").empty?
+      @reviewable = Transaction.where("(transactions.buyer_id = #{current_user.id}) \
+      AND (transactions.status = 'Completed') AND (transactions.item_id = #{@item.id})").empty?
     else
       @transaction_dne = false
       @reviewable = false
@@ -188,14 +188,6 @@ class ItemsController < ApplicationController
   end
 
   private
-
-    def ensure_logged_in
-     unless current_user
-       flash[:warning] = "Please Log in or Sign up!"
-       session[:previous_url] = request.fullpath
-        redirect_to request.referrer, flash: { signup_modal: true }
-     end
-    end
 
     def item_deleted?
       item = Item.find(params[:id])
