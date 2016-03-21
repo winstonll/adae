@@ -66,10 +66,11 @@ class TransactionsController < ApplicationController
 		@conversation = Conversation.between(@transaction.seller_id, @transaction.buyer_id).first
 		@buyer = User.find(@transaction.buyer_id)
 		@seller = User.find(@transaction.seller_id)
+		@item = Item.find_by(id: @transaction.item_id)
 		@message = @conversation.messages.new(user_id: @buyer.id)
 		@message2 = @conversation.messages.new(user_id: @seller.id)
-		@message.body = "AdaeBot: Your request has been denied, but don't worry you can keep browsing!"
-		@message2.body = "AdaeBot: You have denied this transaction. Feel free to keep browsing!"
+		@message.body = "AdaeBot: #{@buyer.name}, your request for #{@item.title} has been denied, but don't worry you can keep browsing!"
+		@message2.body = "AdaeBot: #{@seller.name}, you have denied the request for #{@item.title}. Feel free to keep browsing!"
 		@message.save
 		@message2.save
 		ContactMailer.adaebot_message(@buyer, @message).deliver_now
@@ -83,7 +84,6 @@ class TransactionsController < ApplicationController
 	end
 
 	def accept
-
 		transaction_hash = charge_stripe
 
 		transaction = transaction_hash["transaction"]
@@ -105,11 +105,11 @@ class TransactionsController < ApplicationController
 		@conversation = Conversation.between(transaction.seller_id,transaction.buyer_id).first
 		@buyer = User.find(transaction.buyer_id)
 		@seller = User.find(transaction.seller_id)
-
+		@item = Item.find_by(id: transaction.item_id)
 		@message = @conversation.messages.new(user_id: @buyer.id)
 		@message2 = @conversation.messages.new(user_id: @seller.id)
-		@message.body = "AdaeBot: Your request has been accepted."
-		@message2.body = "AdaeBot: You have accepted this transaction."
+		@message.body = "AdaeBot: #{@buyer.name}, your request for #{@item.title} has been accepted by #{@seller.name}."
+		@message2.body = "AdaeBot: #{@seller.name}, you have accepted a request from #{@buyer.name} for #{@item.title}."
 		@message.save
 		@message2.save
 		ContactMailer.adaebot_message(@buyer, @message).deliver_now
