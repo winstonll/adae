@@ -321,7 +321,7 @@ class TransactionsController < ApplicationController
 			 transactions.status = 'In Progress'))").empty?
 
 			if !@transaction_validate || @item_validate
-				redirect_to items_path
+				redirect_to conversations_path
 			end
 		end
 
