@@ -152,8 +152,9 @@
 	<li class="user-rating-content">
 		<div class="rating-title"><%=link_to(rating.item.title, item_path(rating.item)) %></div>
 		<div class="rating-info"> Rating:<p class="rating"><%=rating.score%></p>
-		<%= link_to 'Edit', edit_item_rating_path(rating.item, rating) %>
-	</div>
+			<%= link_to 'Edit', edit_item_rating_path(rating.item, rating) %> |
+			<%= link_to 'Delete', item_rating_path(rating.item, rating), method: :delete, data: {confirm: "Are you sure you want to delete this rating? This action cannot be undone."}  %>
+		</div>
 	<div class="divider"></div>
 	</li>
 	<% end %>
