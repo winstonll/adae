@@ -12,6 +12,10 @@
        $('#shareCompanionModal').modal('show');
       }, 1000);
     <% end %>
+
+    var adaebot= $( "span:contains('AdaeBot:')" ).parent().parent().addClass('reding');
+    adaebot.css({'background':'#7ed321', 'color':'#fff',});
+  
   });
 
   function clickAndDisable(link) {
@@ -50,8 +54,7 @@
             <% if user.id == current_user.id %>
               <div class="chat-bubble">
                     <div class="bubble-text">
-                      <i class="right triangle icon"></i>
-                       <%= message.body %>
+                      <span class="msg"><%= message.body %></span>
                     </div>
               </div>
               <div class="chat-time">
@@ -60,8 +63,7 @@
             <% else %>
               <div class="opp-chat-bubble">
                 <div class="bubble-text">
-                  <i class="right triangle icon"></i>
-                    <%= message.body %>
+                  <span class="msg"><%= message.body %></span>
                 </div>
               </div>
               <div class="opp-chat-time">
