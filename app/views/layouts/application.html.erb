@@ -9,15 +9,10 @@
   	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDELDDeZFCjRjY4yvz3o0ium-jSwRvnwFY">
   </script>
 
-  <%= content_for?(:head) ? yield(:head) : '<meta property="og:url" content="https://adae.co" />
-	<meta property="og:type"          content="product" />
-	<meta property="og:title"         content="Adae" />
-	<meta property="og:description"   content="P2P market" />
-	<meta property="og:image"         content="" />' %>
-
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+  <%= content_for?(:head) ? yield(:head) : '' %>
 
 </head>
   <header>
