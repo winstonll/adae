@@ -24,11 +24,7 @@ class RatingsController < ApplicationController
     end
   end
 
-  def destroy
-    @rating.destroy
-  end
-
-   def edit
+  def edit
     @rating = Rating.find(params[:id])
   end
 
@@ -38,6 +34,11 @@ class RatingsController < ApplicationController
       else
         render :edit
     end
+  end
+
+  def destroy
+    @rating.destroy
+    redirect_to user_path(current_user)
   end
 
   private
