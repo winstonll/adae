@@ -91,13 +91,15 @@ class TransactionsController < ApplicationController
 		transaction.status = "Accepted"
 		transaction.save
 
-		cancel_transactions = Transaction.where("(transactions.status = 'Pending') AND \
-		(transactions.item_id = #{transaction.item_id}) AND \
-		(transactions.buyer_id != #{transaction.buyer_id})")
+		if(Item.find(transaction.item_id).listing_type == "sell")
+			cancel_transactions = Transaction.where("(transactions.status = 'Pending') AND \
+			(transactions.item_id = #{transaction.item_id}) AND \
+			(transactions.buyer_id != #{transaction.buyer_id})")
 
-		cancel_transactions.each do |t|
-			t.status = "Denied"
-			t.save
+			cancel_transactions.each do |t|
+				t.status = "Denied"
+				t.save
+			end
 		end
 
 		@conversation = Conversation.between(transaction.seller_id,transaction.buyer_id).first
@@ -321,7 +323,7 @@ class TransactionsController < ApplicationController
 			 transactions.status = 'In Progress'))").empty?
 
 			if !@transaction_validate || @item_validate
-				redirect_to items_path
+				redirect_to conversations_path
 			end
 		end
 
