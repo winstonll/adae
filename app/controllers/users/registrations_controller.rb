@@ -16,7 +16,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
     end
 
     if @user.save
-      ContactMailer.signup_message(@user).deliver_now
 
       if @referred
         @referred.redeemer = @user.id
