@@ -15,8 +15,7 @@ class SearchController < ApplicationController
       Item.find_each do |item|
         unless (r.match(item.title.downcase).to_s.empty?) &&
         (r.match(item.description.downcase).to_s.empty?) &&
-        (r.match(item.tags.downcase).to_s.empty?) &&
-        (r.match(item.postal_code.downcase).to_s.empty?)
+        (r.match(item.tags.downcase).to_s.empty?)
           @query << item
         end
       end
