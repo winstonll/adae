@@ -26,4 +26,9 @@ class ContactMailer < ActionMailer::Base
     mail(to: @user.email, subject: 'Hello! We have an update on your transaction.')
   end
 
+  def signup_message(user)
+    @user = user
+    mail(to: "winston@adae.co", :subject => "Adae.co New Signup")
+  end
+
 end
