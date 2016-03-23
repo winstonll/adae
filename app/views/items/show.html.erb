@@ -211,6 +211,8 @@
       <%= javascript_include_tag "map_description" %>
     </div>
 </div>
+
+<% unless @item.listing_type == "sell" %>
   <div class="rating-container">
     <div class="overall-rating">
       <div class="rating-score">
@@ -283,3 +285,4 @@
     <% end %>
   </div>
 </div>
+<% end %>
