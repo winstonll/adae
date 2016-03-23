@@ -80,12 +80,16 @@ html, body {
 	z-index: 3;
 	left: 200;
 	right:500px;
+	line-height: normal;
 }
 
 .toast-top-center {
-	top: 42px; 
-    left: 50%;
-    margin-left: -150px;
+	top: 42px;
+  left: 50%;
+  margin-left: -150px;
+	line-height: normal;
+	font-size: 20px;
+
 }
 
 #warning{
