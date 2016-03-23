@@ -10,7 +10,6 @@
 	<meta property="og:image"         content="<%= "https://adae.co#{@pictures.first.image.url(:med)}"  %>" />
 <% end %>
 
-
 <%= stylesheet_link_tag "items" %>
 <%= include_gon %>
 
@@ -59,7 +58,7 @@
       $('.request-button').bind('click', false);
       $('.request-button').css("background-color", "#D5D5D5");
       $('.request-button').css("cursor", "default");
-    <% elsif !@transaction_dne && user_signed_in? %>
+    <% elsif !@listing_avail && user_signed_in? %>
       $('.request-button')[0].innerHTML = "Unavailable";
       $('.request-button').bind('click', false);
       $('.request-button').css("background-color", "#D5D5D5");
@@ -78,8 +77,6 @@
   });
 
 </script>
-
-
 
 <div class="item-info" id="itemInfo">
   <div class="photo-container">
