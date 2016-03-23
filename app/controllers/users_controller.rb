@@ -10,6 +10,7 @@ class UsersController < ApplicationController
  	  @location = Location.find_by(user_id: @user)
  	  @transactions = Transaction.where("(transactions.seller_id = #{current_user.id})")
  	  @requests = Transaction.where("(transactions.buyer_id = #{current_user.id})")
+ 	  @referral = Referral.find_by(user_id: current_user.id)
  	end
 
  	def edit

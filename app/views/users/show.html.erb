@@ -7,11 +7,10 @@
 			<p class="p-account-edit"><%= link_to "Edit Profile", edit_user_path(@user) %></p>
 			<p class="p-account-delete"><%= link_to "Delete Account", @user, method: :delete, data: {confirm: "Are you sure you want to delete this user?"}  %></p>
 		</div>
-
 		<p> Email: <%= @user.email %></p>
 		<p> Phone: <%= @user.phone_number %></p>
-		<p class="api-button"><%= link_to 'Request Public API Token'%></p>
 	</div>
+	
 
 	<div class="request-container">
 		<div class= "request-heading">My Requests</div>
@@ -110,6 +109,7 @@
 		<% end %>
 	</div>
 
+	<div class="api-token" ><p>Public API Token:</p><p class="api-button"><%= @referral.code %></p></div>
 	<div class="account-balance-section">
 		<div id="account-balance">
 			<p>Account Balance</p>
