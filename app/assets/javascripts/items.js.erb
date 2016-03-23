@@ -59,9 +59,9 @@ $(document).ready(function() {
 
       if(!postal_code){
         if (error_message){
-          error_message += ", Postal Code in the wrong format"
+          error_message += ", Postal Code is in the wrong format"
         } else {
-          error_message += "Postal Code in the wrong format"
+          error_message += "Postal Code is in the wrong format"
         }
       }
 
@@ -99,9 +99,9 @@ $(document).ready(function() {
 
       if (!images){
         if (error_message){
-          error_message += ", Please select an Image"
+          error_message += ", Please upload an Image"
         } else {
-          error_message += "Please select an Image"
+          error_message += "Please upload an Image"
         }
       }
       $('.toast').remove();
@@ -109,7 +109,7 @@ $(document).ready(function() {
       toastr.options ={
         'timeOut': "6000",
         'extendedTimeOut': "2000",
-        "positionClass": 'toast-top-left'
+        "positionClass": 'toast-top-right'
       };
 
       toastr.error(error_message);

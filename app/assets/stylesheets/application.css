@@ -93,6 +93,11 @@ html, body {
 
 }
 
+.toast-top-right {
+	line-height: normal;
+
+}
+
 #warning{
 	font-size: 20px;
 	font-weight: 600;
