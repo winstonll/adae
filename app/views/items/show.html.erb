@@ -223,7 +223,6 @@
       </div>
       <% end %>
     </div>
-
     <div class="rating-by-user">
       <% if present_or_rated?(@item) %>
       <div class="rating-info">
@@ -239,30 +238,41 @@
       <% end %>
     </div>
   </div>
-<% if signed_in? && !@reviewable %>
-  <%= form_for([@item, @review],:remote => true) do |f| %>
-    <div class="review-area">
 
-      <div class="create_review-fields">
-        <div id='review-errors'>
-          <% if @review.errors.any? %>
-          <%= render partial: 'reviews/review_errors' %>
-          <% end %>
-        </div>
-        <div class="field">
-          <%= f.label :name, 'Write a Review'%>
-          <%= f.text_area :comment, :placeholder => 'Say something about this listing'%>
-        </div>
-        <div class="review-submit">
-          <%= f.submit 'Create Review', :class => 'review-button' %>
+  <% if signed_in? && !@reviewable %>
+    <%= form_for([@item, @review],:remote => true) do |f| %>
+      <div class="review-area">
+        <div class="create_review-fields">
+          <div id='review-errors'>
+            <% if @review.errors.any? %>
+            <%= render partial: 'reviews/review_errors' %>
+            <% end %>
+          </div>
+          <div class="field">
+            <%= f.label :name, 'Write a Review'%>
+            <%= f.text_area :comment, :placeholder => 'Say something about this listing'%>
+          </div>
+          <div class="review-submit">
+            <%= f.submit 'Create Review', :class => 'review-button' %>
+          </div>
         </div>
       </div>
-    </div>
+    <% end %>
   <% end %>
+
+  <div class="review-list">
+    <div class="review-content">
+      <div class="item-reviews">Reviews for: <em><%= @item.title %></em></div>
+      <% if @item.reviews.exists? %>
+        <%= render @item.reviews.order("created_at DESC") %>
+      <% else %>
+        <blockquote><i>No reviews yet.</i></blockquote>
+      <% end %>
+    </div>
+  </div>
 <% end %>
 
 <% unless signed_in? %>
-<div>
   <div class="why-cc">
     Why shop on Adae?
     <div class="tooltip">
@@ -271,18 +281,6 @@
         <li>&#x2756; Only when your request is accepted, will your card will be charged. The owner won't receive your money until you meet.</br><br></li>
         <li>&#x2756; We are always happy to help and try to resolve disputes and issue refunds, whenever necessary.</br><br></li>
       </ul>
+    </div>
   </div>
-</div>
-<% end %>
-
-<div class="review-list">
-  <div class="review-content">
-    <div class="item-reviews">Reviews for: <em><%= @item.title %></em></div>
-    <% if @item.reviews.exists? %>
-      <%= render @item.reviews.order("created_at DESC") %>
-    <% else %>
-      <blockquote><i>No reviews yet.</i></blockquote>
-    <% end %>
-  </div>
-</div>
 <% end %>
