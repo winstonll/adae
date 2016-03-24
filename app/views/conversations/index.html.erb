@@ -1,41 +1,66 @@
 <%= stylesheet_link_tag "conversations" %>
-<% if @transactions.present?  %>
+<% if @transactions.present? %>
+
 <div class="message-list">
   <div class="ui list">
-    <% @transactions.each do |transaction| %>
-      <% user = User.find(transaction.seller_id) %>
-      <% other = User.find(transaction.buyer_id) %>
-      <% item = Item.find(transaction.item_id) %>
-      <% if item.listing_type == 'sell' %>
-        <% type = 'Purchase' %>
-      <% elsif item.listing_type == 'timeoffer' %>
-        <% type = 'Service' %>
-      <% elsif item.listing_type == 'lease' %>
-        <% type = 'Lease' %>
-      <% else item.listing_type == 'rent' %>
-        <% type = 'Rental' %>
+    <% for i in 0..@conversations.length-1 %>
+
+      <% if @transactions[i] %>
+        <% user = User.find(@transactions[i].seller_id) %>
+        <% other = User.find(@transactions[i].buyer_id) %>
+        <% item = Item.find(@transactions[i].item_id) %>
+
+        <% if item.listing_type == 'sell' %>
+          <% type = 'Purchase' %>
+        <% elsif item.listing_type == 'timeoffer' %>
+          <% type = 'Service' %>
+        <% elsif item.listing_type == 'lease' %>
+          <% type = 'Lease' %>
+        <% else item.listing_type == 'rent' %>
+          <% type = 'Rental' %>
+        <% end %>
+
+        <div class="message">
+          <div class="inbox-img">
+      			<%=link_to image_tag(item.photo_url), item_path(item) %>
+      		</div>
+
+      		<li class="listings">
+            <% if user == current_user %>
+            <div class="user-avatar-container"> <%= link_to image_tag(other.avatar(:med), class: "user-avatar"), user_path(user) %> </div>
+            <label class="item-detail" id="item-title"> <%= type %> Request from: <%= other.name %> </label>
+            <% else %>
+            <div class="user-avatar-container"> <%= link_to image_tag(user.avatar(:med), class: "user-avatar"), user_path(user) %> </div>
+            <label class="item-detail" id="item-title"> <%= type %> Request to: <%= user.name %> </label>
+            <% end %>
+            <label class="item-detail" id="item_description"><%= item.description %></label>
+      			<div class="item-accept-deny-buttons">
+              <%= link_to 'View', conversations_path(sender_id: @transactions[i].buyer_id,
+              recipient_id: @transactions[i].seller_id, item_id: @transactions[i].item_id), method: 'post', class: "reply-transaction"%>
+      		  </div>
+      		</li>
+        </div>
+      <% else %>
+
+        <% @conversations[i].sender_id == current_user.id ? user = User.find(@conversations[i].recipient_id) : user = User.find(@conversations[i].sender_id) %>
+
+        <div class="message">
+          <div class="inbox-img">
+            <%= link_to image_tag(user.avatar(:med), class: "user-avatar"), user_path(user) %>
+          </div>
+
+          <li class="listings">
+            <label class="item-detail" id="item-title"> Conversation with: <%= user.name %> </label>
+
+            <label class="item-detail" id="item_description"><%= if @conversations[i].messages.last then @conversations[i].messages.last.body end %></label> 
+
+            <div class="item-accept-deny-buttons">
+              <%= link_to 'View', conversations_path(sender_id: @conversations[i].sender_id,
+              recipient_id: @conversations[i].recipient_id), method: 'post', class: "reply-transaction"%>
+            </div>
+          </li>
+        </div>
       <% end %>
-
-      <div class="message">
-        <div class="inbox-img">
-    			<%=link_to image_tag(item.photo_url), item_path(item) %>
-    		</div>
-
-    		<li class="listings">
-          <% if user == current_user %>
-          <div class="user-avatar-container"> <%= link_to image_tag(other.avatar(:med), class: "user-avatar"), user_path(user) %> </div>
-          <label class="item-detail" id="item-title"> <%= type %> Request from: <%= other.name %> </label>
-          <% else %>
-          <div class="user-avatar-container"> <%= link_to image_tag(user.avatar(:med), class: "user-avatar"), user_path(user) %> </div>
-          <label class="item-detail" id="item-title"> <%= type %> Request to: <%= user.name %> </label>
-          <% end %>
-          <label class="item-detail" id="item_description"><%= item.description %></label>
-    			<div class="item-accept-deny-buttons">
-            <%= link_to 'View', conversations_path(sender_id: transaction.buyer_id,
-            recipient_id: transaction.seller_id, item_id: transaction.item_id), method: 'post', class: "reply-transaction"%>
-    		  </div>
-    		</li>
-      </div>
     <% end %>
   </div>
 </div>
