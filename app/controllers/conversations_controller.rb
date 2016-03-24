@@ -15,7 +15,12 @@ class ConversationsController < ApplicationController
     else
       @conversation = Conversation.create!(conversation_params)
     end
-    redirect_to conversation_messages_path(@conversation, item_id: params[:item_id])
+
+    if params[:item_id]
+      redirect_to conversation_messages_path(@conversation, item_id: params[:item_id])
+    else
+      redirect_to conversation_messages_path(@conversation)
+    end
   end
 
   private

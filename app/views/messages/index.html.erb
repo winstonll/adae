@@ -6,7 +6,8 @@
   $(document).on('ready page:load', function() {
     var objDiv = document.getElementById("ui-segment");
     objDiv.scrollTop = objDiv.scrollHeight;
-    <% if @transaction.status == "Accepted" %>
+
+    <% if @transaction && @transaction.status == "Accepted" %>
       setTimeout(function() {
        $('.companion-modal').html('<%= escape_javascript(render partial: 'common/companion_modal') %>')
        $('#shareCompanionModal').modal('show');
@@ -17,7 +18,7 @@
     adaebot.css({'background':'#7ed321','color':'#fff','margin-left':'4em','margin-right':'4em'});
     var datetime = adaebot.next();
     datetime.css({'margin-left':'6em','margin-right':'6em'});
-  
+
   });
 
   function clickAndDisable(link) {
@@ -31,19 +32,21 @@
 <div class="companion-modal"></div>
 
 <div class="page-content">
-  <% if @transaction.seller_id == current_user.id %>
-  <div class="username"> Conversation with <%=User.find_by(id: @transaction.buyer_id).name %></div>
-  <% elsif %>
-  <div class="username"> Conversation with <%=User.find_by(id: @transaction.seller_id).name %></div>
+  
+  <!-- Chat area pre-transaction request -->
+  <% if @conversation.sender_id == current_user.id %>
+    <div class="username"> Conversation with <%=User.find_by(id: @conversation.recipient_id).name %></div>
+  <% else %>
+    <div class="username"> Conversation with <%=User.find_by(id: @conversation.sender_id).name %></div>
   <% end %>
 
   <div class="user-profile">
-    <% if @transaction.seller_id == current_user.id %>
-    <p id="user-name"><%=User.find_by(id: @transaction.buyer_id).name %></p>
-    <p><%= image_tag(User.find_by(id: @transaction.buyer_id).avatar.url(:med), class:"avatar") %></p>
-    <% elsif %>
-    <p id="user-name"><%=User.find_by(id: @transaction.seller_id).name %></p>
-    <p><%= image_tag(User.find_by(id: @transaction.seller_id).avatar.url(:med), class:"avatar") %></p>
+    <% if @conversation.sender_id == current_user.id %>
+    <p id="user-name"><%=User.find_by(id: @conversation.recipient_id).name %></p>
+    <p><%= image_tag(User.find_by(id: @conversation.recipient_id).avatar.url(:med), class:"avatar") %></p>
+    <% else %>
+      <p id="user-name"><%=User.find_by(id: @conversation.sender_id).name %></p>
+      <p><%= image_tag(User.find_by(id: @conversation.sender_id).avatar.url(:med), class:"avatar") %></p>
     <% end %>
   </div>
 
@@ -57,7 +60,7 @@
               <div class="chat-bubble">
                 <div class="bubble-text">
                   <span class="msg"><%= message.body %></span>
-                </div>  
+                </div>
               </div>
               <div class="chat-time">
                 <%= message.message_time %>
@@ -80,12 +83,18 @@
         <div class="reply-field">
             <%= f.text_area :body, :placeholder => "Type your message here. Refresh your browser to check for new messages.", class: "form-control" %>
             <%= f.text_field :user_id, value: current_user.id, type: "hidden"%>
-            <%= f.hidden_field :item_id, :value => "#{@item.id}" %>
+
+            <% if @transaction %>
+              <%= f.hidden_field :item_id, :value => "#{@item.id}" %>
+            <% end %>
+
             <%= f.submit "Send", class: "reply_btn", data: {disable_with: "Sending..."} %>
         </div>
       <% end %>
   </div>
 
+    <!-- This segment is for chat rooms with a transaction START-->
+    <% if @transaction %>
       <div class="request-box">
         <% if @transaction.seller_id == current_user.id %> <!--condition to see if current user is also the seller-->
           <% if @item.listing_type == "sell" %> <!--condition to set the opposite listing value-->
@@ -144,5 +153,7 @@
                 the other party until you both meet up and scan the in-app QR code.</p>
         </div>
       <% end %>
-  </div>
+    </div>
+  <% end %>
+  <!-- chat room with trasaction END -->
 </div>

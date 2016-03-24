@@ -98,8 +98,10 @@
           </p>
           <% if user_signed_in? %>
             <%= link_to 'Request to Buy', new_transaction_path(:item_id => @item.id), class: "request-button", id: "buy-button"%>
+						<%= link_to 'Send Message', conversations_path(:sender_id => current_user.id, :recipient_id => @item.user_id), :method=> :post, id: "buy-button", class: "send-message signed-in-message" %>
           <% else %>
             <%= link_to 'Request to Buy', {remote: true, controller: "home", action: "signup_modal"}, id: "buy-button", class: "guest-buy" %>
+						<%= link_to 'Send Message', {remote: true, controller: "home", action: "signup_modal"}, id: "buy-button", class: "send-message guest-message" %>
           <% end %>
         </div>
       <% elsif @item.listing_type == "lease" %>
@@ -119,7 +121,14 @@
               <p class="trust-fee-text">This ensures that the item is treated with care, and is returned on time. <b style="font-weight: 500"> This amount will be charged only if you fail to return the item, damage it, or lose it.</b> </p>
             <% end %>
             <div class="division-2"></div>
-            <%= link_to 'Request to Lease', new_transaction_path(:item_id => @item.id), class: "request-button", id: "lease-button"%>
+
+						<% if user_signed_in? %>
+	            <%= link_to 'Request to Lease', new_transaction_path(:item_id => @item.id), class: "request-button", id: "lease-button"%>
+							<%= link_to 'Send Message', create_conversation_path(), id: "buy-button", class: "send-message signed-in-message" %>
+	          <% else %>
+	            <%= link_to 'Request to Lease', {remote: true, controller: "home", action: "signup_modal"}, id: "buy-button", class: "guest-buy" %>
+							<%= link_to 'Send Message', {remote: true, controller: "home", action: "signup_modal"}, id: "buy-button", class: "send-message guest-message" %>
+	          <% end %>
           </div>
         </div>
         <div class="item-lease-price" >
@@ -132,7 +141,7 @@
           <%= link_to 'Request to Buy', new_transaction_path(:item_id => @item.id, :sell=> true), class: "request-button", id: "buy-button"%>
         </div>
       <% elsif @item.listing_type == "rent"%>
-        <div class="item-detail-price" style="height:310px";>
+        <div class="item-detail-price" style="height:310px;">
           <div class="price-title2">Available for Rent</div>
             <% @prices.each do |price| %>
               <div class="price-breakdown">
@@ -148,6 +157,7 @@
               <p class="trust-fee-text">This ensures that the item is treated with care, and is returned on time.<b style="font-weight: 500"> This amount will be charged only if you fail to return the item, damage it, or lose it.</b> </p>
             <% end %>
             <div class="division-2"></div>
+
             <%= link_to 'Request to Rent', new_transaction_path(:item_id => @item.id), class: "request-button", id: "rent-button"%>
           </div>
         </div>
