@@ -10,10 +10,10 @@
     </div>
   </div>
   <div class="settings_connect">
-  	<% if current_user.connected? %>
+    <% if current_user.connected? %>
   		<%= render :partial => 'layouts/stripeSettings' %>
-	<% else %>
-		<%= render :partial => 'layouts/stripeConnect'%>
-	<% end %>
+    <% else %>
+		  <%= render :partial => 'layouts/stripeConnect'%>
+    <% end %>
   </div>
- </div>
+</div>
