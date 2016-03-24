@@ -25,12 +25,12 @@ function initialize() {
             url: 'items/' + postcode[2]
         });
 
-          var content = postcode[3]+'<br><img src="'+postcode[4]+'" style="width:150px;">';
+          var content = '<img src="'+postcode[4]+'" style="margin: 15px 0px 0px 18px; border-radius: 2px; width:195px; height: 130px; object-fit: cover; object-position: center;">' + '<br><input value="'+postcode[3]+'" style=" font-size: 12px; width: 185px; margin-left: 16px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; border:none;"></input>';
           var infowindow = new google.maps.InfoWindow({
             content: content,
             position: latlng
           });
-        
+
         google.maps.event.addListener(marker, 'click', function() {
           window.location.href = marker.url;
         });
@@ -39,6 +39,7 @@ function initialize() {
 
         item.mouseover(function(){
             infowindow.open(map, marker);
+            $(".gm-style-iw").next("div").hide();
         });
         item.mouseout(function(){
             infowindow.close();
@@ -46,6 +47,7 @@ function initialize() {
 
         marker.addListener('mouseover', function() {
             infowindow.open(map, this);
+            $(".gm-style-iw").next("div").hide();
         });
 
         marker.addListener('mouseout', function() {
