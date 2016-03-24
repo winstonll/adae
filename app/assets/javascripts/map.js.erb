@@ -2,34 +2,57 @@
 var mapOptions;
 
 function initialize() {
-    // Other options for the map, pretty much selfexplanatory
-    if (document.getElementById("map-canvas") != null){
-      mapOptions = {
-          zoom: 13,
-          center: new google.maps.LatLng(43.6617, -79.3950),
-          mapTypeId: google.maps.MapTypeId.ROADMAP
-      };
+  // Other options for the map, pretty much selfexplanatory
+  if (document.getElementById("map-canvas") != null){
+    mapOptions = {
+        zoom: 13,
+        center: new google.maps.LatLng(43.6617, -79.3950),
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+    };
 
-      // Attach a map to the DOM Element, with the defined settings
-      var map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
+    // Attach a map to the DOM Element, with the defined settings
+    var map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
 
-      var address = gon.map_items;
+    var address = gon.map_items;
 
-      address.forEach(function(postcode) {
-          var latlng = new google.maps.LatLng(String(postcode[0]), String(postcode[1]) );
+    address.forEach(function(postcode) {
+        var latlng = new google.maps.LatLng(String(postcode[0]), String(postcode[1]) );
 
-          var marker = new google.maps.Marker({
-              position: latlng,
-              center: latlng,
-              map: map,
-              url: 'items/' + postcode[2]
+        var marker = new google.maps.Marker({
+            position: latlng,
+            center: latlng,
+            map: map,
+            url: 'items/' + postcode[2]
+        });
+
+          var content = postcode[3]+'<br><img src="'+postcode[4]+'" style="width:150px;">';
+          var infowindow = new google.maps.InfoWindow({
+            content: content,
+            position: latlng
           });
+        
+        google.maps.event.addListener(marker, 'click', function() {
+          window.location.href = marker.url;
+        });
 
-          google.maps.event.addListener(marker, 'click', function() {
-            window.location.href = marker.url;
-          });
-      });
-    }
+        item = $('#item-'+ postcode[2]);
+
+        item.mouseover(function(){
+            infowindow.open(map, marker);
+        });
+        item.mouseout(function(){
+            infowindow.close();
+        });
+
+        marker.addListener('mouseover', function() {
+            infowindow.open(map, this);
+        });
+
+        marker.addListener('mouseout', function() {
+            infowindow.close();
+        });
+    });
+  }
 }
 
 initialize();
