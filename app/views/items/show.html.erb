@@ -10,7 +10,6 @@
 	<meta property="og:image"         content="<%= "https://adae.co#{@pictures.first.image.url(:med)}"  %>" />
 <% end %>
 
-
 <%= stylesheet_link_tag "items" %>
 <%= include_gon %>
 
@@ -59,7 +58,7 @@
       $('.request-button').bind('click', false);
       $('.request-button').css("background-color", "#D5D5D5");
       $('.request-button').css("cursor", "default");
-    <% elsif !@transaction_dne && user_signed_in? %>
+    <% elsif !@listing_avail && user_signed_in? %>
       $('.request-button')[0].innerHTML = "Unavailable";
       $('.request-button').bind('click', false);
       $('.request-button').css("background-color", "#D5D5D5");
@@ -78,8 +77,6 @@
   });
 
 </script>
-
-
 
 <div class="item-info" id="itemInfo">
   <div class="photo-container">
@@ -101,8 +98,10 @@
           </p>
           <% if user_signed_in? %>
             <%= link_to 'Request to Buy', new_transaction_path(:item_id => @item.id), class: "request-button", id: "buy-button"%>
+						<%= link_to 'Send Message', conversations_path(:sender_id => current_user.id, :recipient_id => @item.user_id), :method=> :post, id: "buy-button", class: "send-message signed-in-message" %>
           <% else %>
             <%= link_to 'Request to Buy', {remote: true, controller: "home", action: "signup_modal"}, id: "buy-button", class: "guest-buy" %>
+						<%= link_to 'Send Message', {remote: true, controller: "home", action: "signup_modal"}, id: "buy-button", class: "send-message guest-message" %>
           <% end %>
         </div>
       <% elsif @item.listing_type == "lease" %>
@@ -122,7 +121,14 @@
               <p class="trust-fee-text">This ensures that the item is treated with care, and is returned on time. <b style="font-weight: 500"> This amount will be charged only if you fail to return the item, damage it, or lose it.</b> </p>
             <% end %>
             <div class="division-2"></div>
-            <%= link_to 'Request to Lease', new_transaction_path(:item_id => @item.id), class: "request-button", id: "lease-button"%>
+
+						<% if user_signed_in? %>
+	            <%= link_to 'Request to Lease', new_transaction_path(:item_id => @item.id), class: "request-button", id: "lease-button"%>
+							<%= link_to 'Send Message', create_conversation_path(:sender_id => current_user.id, :recipient_id => @item.user_id), :method=> :post, id: "buy-button", class: "send-message signed-in-message" %>
+	          <% else %>
+	            <%= link_to 'Request to Lease', {remote: true, controller: "home", action: "signup_modal"}, id: "buy-button", class: "guest-buy" %>
+							<%= link_to 'Send Message', {remote: true, controller: "home", action: "signup_modal"}, id: "buy-button", class: "send-message guest-message" %>
+	          <% end %>
           </div>
         </div>
         <div class="item-lease-price" >
@@ -135,7 +141,7 @@
           <%= link_to 'Request to Buy', new_transaction_path(:item_id => @item.id, :sell=> true), class: "request-button", id: "buy-button"%>
         </div>
       <% elsif @item.listing_type == "rent"%>
-        <div class="item-detail-price" style="height:310px";>
+        <div class="item-detail-price" style="height:310px;">
           <div class="price-title2">Available for Rent</div>
             <% @prices.each do |price| %>
               <div class="price-breakdown">
@@ -151,16 +157,28 @@
               <p class="trust-fee-text">This ensures that the item is treated with care, and is returned on time.<b style="font-weight: 500"> This amount will be charged only if you fail to return the item, damage it, or lose it.</b> </p>
             <% end %>
             <div class="division-2"></div>
-            <%= link_to 'Request to Rent', new_transaction_path(:item_id => @item.id), class: "request-button", id: "rent-button"%>
+						<% if user_signed_in? %>
+	            <%= link_to 'Request to Rent', new_transaction_path(:item_id => @item.id), class: "request-button", id: "rent-button"%>
+							<%= link_to 'Send Message', create_conversation_path(:sender_id => current_user.id, :recipient_id => @item.user_id), :method=> :post, id: "buy-button", class: "send-message signed-in-message" %>
+	          <% else %>
+	            <%= link_to 'Request to Rent', {remote: true, controller: "home", action: "signup_modal"}, id: "buy-button", class: "guest-buy" %>
+							<%= link_to 'Send Message', {remote: true, controller: "home", action: "signup_modal"}, id: "buy-button", class: "send-message guest-message" %>
+	          <% end %>
           </div>
         </div>
       <% else %>
         <div class="item-detail-price" style="height:240px;">
           <div class="price-title2">Service Available</div>
-            <div class="price-breakdown" style="margin-top: 65px;">
-              <span class="markup" style="font-weight: 700; font-size: 20px; color:#000;">$<%= @prices.first.amount %></span> per <%= @prices.first.timeframe %>
-            </div>
-          <%= link_to 'Request Service', new_transaction_path(:item_id => @item.id), class: "request-button", id: "service-button"%>
+          <div class="price-breakdown" style="margin-top: 65px;">
+            <span class="markup" style="font-weight: 700; font-size: 20px; color:#000;">$<%= @prices.first.amount %></span> per <%= @prices.first.timeframe %>
+          </div>
+					<% if user_signed_in? %>
+            <%= link_to 'Request Service', new_transaction_path(:item_id => @item.id), class: "request-button", id: "service-button"%>
+						<%= link_to 'Send Message', create_conversation_path(:sender_id => current_user.id, :recipient_id => @item.user_id), :method=> :post, id: "buy-button", class: "send-message signed-in-message" %>
+          <% else %>
+            <%= link_to 'Request to Rent', {remote: true, controller: "home", action: "signup_modal"}, id: "buy-button", class: "guest-buy" %>
+						<%= link_to 'Send Message', {remote: true, controller: "home", action: "signup_modal"}, id: "buy-button", class: "send-message guest-message" %>
+          <% end %>
         </div>
       <% end %>
     </div>
@@ -234,7 +252,7 @@
         <p class="prompt">No Ratings yet - be the first to leave a rating!</p>
         <%= link_to "Add a Rating", new_item_rating_path(@item),class: "add-a-rating" %>
       <% else %>
-        <p class="prompt" style="margin-right: 1em;">No Ratings yet</p>
+        <p class="prompt" style="margin-right: 11px; margin-top: -6px;">No Ratings yet</p>
       <% end %>
     </div>
   </div>

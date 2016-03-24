@@ -41,6 +41,19 @@ $(document).ready(function() {
       <% end %>
       </div>
     </div>
+
+    <div class="balance-display">
+      <% if signed_in? %>
+      <span class="balance" onclick="$('.balancedropdown').slideToggle();"> <%= "Balance" %> </span>
+      <div class="balancedropdown">
+        <p id="user_balance"> $ <%= current_user.balance %> </p>
+        <div class="wrapper">
+    			What's This?
+    			<div class="tooltip">This is the amount you have in your Adae balance. Use it as credit in your payments!</div>
+    		</div>
+      <% end %>
+      </div>
+    </div>
     <!--<div class="requestnav">
       <%# if signed_in? %>
       <span class="shoutouts" onclick="$('.shoutoutsdropdown').slideToggle();"> <%#= "Shout Outs" %> </span>
@@ -63,7 +76,6 @@ $(document).ready(function() {
         </span>
       </a>
       <% end %>
-      </div>
     </div>
 
     <div class="user-info">

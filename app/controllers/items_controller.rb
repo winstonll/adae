@@ -40,6 +40,8 @@ class ItemsController < ApplicationController
       @transaction_dne = Transaction.where(" (transactions.status != 'Completed' AND transactions.status != 'Denied'\
       AND transactions.status != 'Pending') AND (transactions.item_id = #{@item.id})").empty?
 
+      @listing_avail = @transaction_dne || !@item.listing_type == "sell" || @item.listing_type == "timeoffer" || @item.listing_type == "lease" || @item.listing_type == "rent"
+
       @reviewable = Transaction.where("(transactions.buyer_id = #{current_user.id}) \
       AND (transactions.status = 'Completed') AND (transactions.item_id = #{@item.id})").empty?
     else

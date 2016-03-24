@@ -1,12 +1,12 @@
 <%= form_for @user, :html => { :honeypot => true }  do |f| %>
-  	
+
   	<% if @user.errors.any? %>
 	    <div class="error_messages">
 	      <ul>
 	        <% for message in @user.errors.full_messages %>
 	          <li>
 	        <script>
-	          toastr.error('Form is invalid: <%= message %>');
+	          toastr.error('<%= message %>');
 	        </script>
 	          </li>
 	        <% end %>

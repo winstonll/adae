@@ -10,7 +10,7 @@
 		<p> Email: <%= @user.email %></p>
 		<p> Phone: <%= @user.phone_number %></p>
 	</div>
-	
+
 
 	<div class="request-container">
 		<div class= "request-heading">My Requests</div>
@@ -109,7 +109,16 @@
 		<% end %>
 	</div>
 
-	<div class="api-token" ><p>Public API Token:</p><p class="api-button"><%= @referral.code %></p></div>
+	<div class="ref-code">
+			<p>Referral Code</p>
+		<p class="code"><%= @referral.code %></p>
+		<div class="wrapper">
+			What's This?
+			<div class="tooltip">Invite a friend to sign up with this code, and both of you will get $5 credit! </div>
+		</div>
+
+	</div>
+
 	<div class="account-balance-section">
 		<div id="account-balance">
 			<p>Account Balance</p>

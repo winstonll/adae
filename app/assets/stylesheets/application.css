@@ -70,6 +70,7 @@ html, body {
 	z-index: 3;
 	left:0;
 	right:250px;
+	line-height: normal;
 }
 
 #notice{
@@ -92,6 +93,11 @@ html, body {
 
 }
 
+.toast-top-right {
+	line-height: normal;
+
+}
+
 #warning{
 	font-size: 20px;
 	font-weight: 600;
@@ -100,6 +106,7 @@ html, body {
 	z-index: 3;
 	left: 0;
 	right:0;
+	line-height: normal;
 }
 
 #error_explaination{
@@ -110,6 +117,7 @@ html, body {
 	z-index: 3;
 	left: 0;
 	right:100px;
+	line-height: normal;
 }
 
 a {

@@ -15,12 +15,21 @@ class Users::RegistrationsController < Devise::RegistrationsController
       end
     end
 
+
     if @user.save
+      if !@user.confirmation_token.empty?
+        @user.balance = @user.balance + 5
+      end
+      
       ContactMailer.signup_message(@user).deliver_now
 
       if @referred
         @referred.redeemer = @user.id
         @referred.save
+
+        @refferer = User.find(referral_check.user_id)
+        @referrer.balance = @refferer.balance + 5
+        @referrer.save
       end
 
       @referral = Referral.new()
