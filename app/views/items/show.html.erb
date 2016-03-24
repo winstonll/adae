@@ -124,7 +124,7 @@
 
 						<% if user_signed_in? %>
 	            <%= link_to 'Request to Lease', new_transaction_path(:item_id => @item.id), class: "request-button", id: "lease-button"%>
-							<%= link_to 'Send Message', create_conversation_path(:sender_id => current_user.id, :recipient_id => @item.user_id), :method=> :post, id: "buy-button", class: "send-message signed-in-message" %>
+							<%= link_to 'Send Message', conversations_path(:sender_id => current_user.id, :recipient_id => @item.user_id), :method=> :post, id: "buy-button", class: "send-message signed-in-message" %>
 	          <% else %>
 	            <%= link_to 'Request to Lease', {remote: true, controller: "home", action: "signup_modal"}, id: "buy-button", class: "guest-buy" %>
 							<%= link_to 'Send Message', {remote: true, controller: "home", action: "signup_modal"}, id: "buy-button", class: "send-message guest-message" %>
@@ -159,7 +159,7 @@
             <div class="division-2"></div>
 						<% if user_signed_in? %>
 	            <%= link_to 'Request to Rent', new_transaction_path(:item_id => @item.id), class: "request-button", id: "rent-button"%>
-							<%= link_to 'Send Message', create_conversation_path(:sender_id => current_user.id, :recipient_id => @item.user_id), :method=> :post, id: "buy-button", class: "send-message signed-in-message" %>
+							<%= link_to 'Send Message', conversations_path(:sender_id => current_user.id, :recipient_id => @item.user_id), :method=> :post, id: "buy-button", class: "send-message signed-in-message" %>
 	          <% else %>
 	            <%= link_to 'Request to Rent', {remote: true, controller: "home", action: "signup_modal"}, id: "buy-button", class: "guest-buy" %>
 							<%= link_to 'Send Message', {remote: true, controller: "home", action: "signup_modal"}, id: "buy-button", class: "send-message guest-message" %>
@@ -174,7 +174,7 @@
           </div>
 					<% if user_signed_in? %>
             <%= link_to 'Request Service', new_transaction_path(:item_id => @item.id), class: "request-button", id: "service-button"%>
-						<%= link_to 'Send Message', create_conversation_path(:sender_id => current_user.id, :recipient_id => @item.user_id), :method=> :post, id: "buy-button", class: "send-message signed-in-message" %>
+						<%= link_to 'Send Message', conversations_path(:sender_id => current_user.id, :recipient_id => @item.user_id), :method=> :post, id: "buy-button", class: "send-message signed-in-message" %>
           <% else %>
             <%= link_to 'Request to Rent', {remote: true, controller: "home", action: "signup_modal"}, id: "buy-button", class: "guest-buy" %>
 						<%= link_to 'Send Message', {remote: true, controller: "home", action: "signup_modal"}, id: "buy-button", class: "send-message guest-message" %>
