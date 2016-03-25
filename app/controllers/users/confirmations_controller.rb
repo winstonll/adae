@@ -23,6 +23,12 @@ class Users::ConfirmationsController < Devise::ConfirmationsController
 
   # The path used after confirmation.
   def after_confirmation_path_for(resource_name, resource)
+    @referred = Referred.where(redeemer: resource.id).first
+
+    @referrer = User.find(@referred.provider)
+    @referrer.balance = @referrer.balance + 5
+    @referrer.save
+
     signin_path
   end
 end
