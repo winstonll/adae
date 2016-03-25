@@ -27,7 +27,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
         @referred.redeemer = @user.id
         @referred.save
 
-        @referer = User.find(referral_check.user_id)
+        @referrer = User.find(referral_check.user_id)
         @referrer.balance = @refferer.balance + 5
         @referrer.save
       end
