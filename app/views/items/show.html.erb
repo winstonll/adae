@@ -46,6 +46,22 @@
 
   $(document).ready(function() {
 
+		window.fbAsyncInit = function() {
+			FB.init({
+				appId      : '896455457041729',
+				xfbml      : true,
+				version    : 'v2.5'
+			});
+		};
+
+		(function(d, s, id){
+			 var js, fjs = d.getElementsByTagName(s)[0];
+			 if (d.getElementById(id)) {return;}
+			 js = d.createElement(s); js.id = id;
+			 js.src = "//connect.facebook.net/en_US/sdk.js";
+			 fjs.parentNode.insertBefore(js, fjs);
+		 }(document, 'script', 'facebook-jssdk'));
+
     var ogprice = document.querySelectorAll('.markup');
     var p
     for (p = 0; p < ogprice.length; p++) {
@@ -192,33 +208,9 @@
     </div>
     <div class="item-detail-description">
 
-      <script>
-        window.fbAsyncInit = function() {
-          FB.init({
-            appId      : '896455457041729',
-            xfbml      : true,
-            version    : 'v2.5'
-          });
-        };
-
-        (function(d, s, id){
-           var js, fjs = d.getElementsByTagName(s)[0];
-           if (d.getElementById(id)) {return;}
-           js = d.createElement(s); js.id = id;
-           js.src = "//connect.facebook.net/en_US/sdk.js";
-           fjs.parentNode.insertBefore(js, fjs);
-         }(document, 'script', 'facebook-jssdk'));
-      </script>
-
-      <div id="fb-root"></div>
+			<div id="fb-root"></div>
 
       <div class="fb-share-button" style="margin-bottom: 20px;" data-href="<%= request.original_url %>" data-layout="button_count"></div>
-
-      <!--<div class="fb-like" style="width: 200; height: 200;"
-        data-share="true"
-        data-width="450"
-        data-show-faces="true">
-      </div>-->
 
       <div class="item-description">
         <span style="font-weight: 500;">Description:</span>
