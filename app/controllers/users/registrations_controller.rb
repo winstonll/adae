@@ -26,10 +26,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
       if @referred
         @referred.redeemer = @user.id
         @referred.save
-
-        @referrer = User.find(referral_check.user_id)
-        @referrer.balance = @refferer.balance + 5
-        @referrer.save
       end
 
       @referral = Referral.new()
