@@ -7,7 +7,7 @@ class UsersController < ApplicationController
  	def show
  	  @items = current_user.items.where(status: "Listed")
  	  @user = current_user
- 	  @location = Location.find_by(user_id: @user)
+ 	  @location = Location.find_by(user_id: @user) ? Location.find_by(user_id: @user) : Location.new()
  	  @transactions = Transaction.where("(transactions.seller_id = #{current_user.id})")
  	  @requests = Transaction.where("(transactions.buyer_id = #{current_user.id})")
  	  @referral = Referral.find_by(user_id: current_user.id)
