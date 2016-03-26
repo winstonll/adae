@@ -15,11 +15,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
       end
     end
 
+    @user.balance = @user.balance + 5
 
     if @user.save
-      if !@user.confirmation_token.empty?
-        @user.balance = @user.balance + 5
-      end
 
       ContactMailer.signup_message(@user).deliver_now
 
