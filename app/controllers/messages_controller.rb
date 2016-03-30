@@ -56,7 +56,7 @@ class MessagesController < ApplicationController
 
     def transaction_exists?
       @conversation = Conversation.find(params[:conversation_id])
-      @messages = @conversation.messages
+      @messages = @conversation.messages.order(:created_at)
 
       if params[:item_id]
 

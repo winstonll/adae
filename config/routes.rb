@@ -21,7 +21,7 @@ Rails.application.routes.draw do
   #constraints subdomain: 'api' do
     namespace :api do
       namespace :v1 do
-        resources :users, :items, :locations, :prices, :ratings, :reviews, :transactions, :sessions
+        resources :users, :items, :locations, :prices, :ratings, :reviews, :transactions, :sessions, :conversations, :messages
       end
     end
   #end
@@ -67,7 +67,7 @@ Rails.application.routes.draw do
   post '/hooks/stripe' => 'hooks#stripe'
   post 'transactions/hook' => 'transactions#hook', :to => "transactions_hook"
 
-  resources :items,  :concerns => :reviewable
+  resources :items,  :concerns => :reviewable, :path => "listings"
   resources :requests, :path => "shoutout"
   resources :users
   resources :locations

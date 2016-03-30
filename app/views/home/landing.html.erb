@@ -29,7 +29,7 @@
       <a target="_blank" href="https://play.google.com/store/apps/details?id=com.adae.justinelee.adaecompanion&hl=en"><%= image_tag "Play-Store.png", class: "coming-soon" %></a>
     </div>
 
-    <a href="/items"><button class="explore">Browse</button></a>
+    <a href="<%= items_path %>"><button class="explore">Browse</button></a>
 
     <div id="search-field">
       <div class="search-bar">
@@ -47,8 +47,7 @@
 			<%= image_tag("discover.png", size: "45x45", class: "discover-logo") %>
 			<h4 class="key-points-header">Discover</h4>
 			<p class="key-points-summary">
-        		Find people who have what you need around you. Discover and try great things by
-        		<strong> renting, leasing, or buying.</strong>
+        		Find people who have what you need around you. Discover and try great things!
         	</p>
 		</div>
 		<div class="key-points-section">
@@ -81,14 +80,13 @@
   		<div class="key-points-section">
   			<%= image_tag("money_transfer.png", size: "55x55", class: "key-points-logo") %>
   			<p class="how-it-works-summary">
-          <strong>2.</strong> Pay with a credit-card <a target="_blank" href="https://stripe.com/gallery">via Stripe</a>, no need to carry cash.
-
+          <strong>2.</strong> Pay with a credit-card securely <a target="_blank" href="https://stripe.com/gallery">via Stripe</a>, no need to carry cash.
   				</p>
   		</div>
   		<div class="key-points-section">
   			<%= image_tag("contact.png", size: "55", class: "key-points-logo")%>
   			<p class="how-it-works-summary">
-          		<strong>3.</strong> Reserve item and contact the owner.
+          		<strong>3.</strong> Contact the owner and send him/her a request.
           	</p>
   		</div>
   </div>
@@ -98,7 +96,7 @@
   			<%= image_tag("meetingscan_stock.png", size: "100x50", class: "discover-logo") %>
   			<p class="how-it-works-summary">
           <strong>4.</strong> Scan the unique in-app transaction QR code on
-            the owner’s phone for exchange confirmation.
+            the owner’s phone for exchange confirmation. This is when we send your money to the owner.
   				</p>
   		</div>
   		<div class="key-points-section">
@@ -114,22 +112,21 @@
     		<div class="key-points-section">
     			<%= image_tag("list.png", size: "110x50", class: "discover-logo") %>
     			<p class="how-it-works-summary">
-            <strong>1.</strong> List your item, set a price.
-              You can also list your time for others.
+            <strong>1.</strong> Post a listing, set a price.
   					</p>
     		</div>
     		<div class="key-points-section">
     			<%= image_tag("service_bell.png", size: "65x50", class: "key-points-logo") %>
     			<p class="how-it-works-summary">
             <strong>2.</strong> Check your account regularly for requests.
-              Choose whom to share your item with.
+              Choose whom to share your service/item with.
   					</p>
     		</div>
     		<div class="key-points-section">
     			<%= image_tag("meetingscan_stock.png", size: "100x50", class: "key-points-logo")%>
     			<p class="how-it-works-summary">
             		<strong>3.</strong> Have the in-app QR code on your phone scanned
-                  by your customer to confirm the exchange.
+                  by your customer to confirm the exchange. This is when we will send money to you.
             	</p>
     		</div>
     </div>
@@ -163,7 +160,7 @@
           <li><span class="star">&#9733;</span> When you meet, open the Scanner App and select the appropriate transaction. The reserver will scan the owner's in-app QR code for confirmation. Once the QR code is scanned, we will send the money to the owner.</li>
           <li><span class="star">&#9733;</span> If the item needs to be returned or if a service is being offered, you will need to scan again at the end of the transaction.</li>
         </ul>
-        <a href="/items"><button>Explore</button></a>
+        <a href="<%= items_path %>"><button>Explore</button></a>
       </div>
     </div>
   <!--<div class="square-content">
