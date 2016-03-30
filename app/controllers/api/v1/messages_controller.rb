@@ -47,8 +47,8 @@ module Api::V1
         end
       end
 
-      def conversation_params
-        params.require(:conversations).permit(:sender_id, :recipient_id)
+      def message_params
+        params.require(:messages).permit(:body, :conversation_id, :user_id, :read)
       end
 
   end
