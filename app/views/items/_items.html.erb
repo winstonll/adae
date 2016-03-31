@@ -42,7 +42,7 @@
 </script>
 
 <div class="item-index" id="item-<%= item.id%>">
-  <a href="<%= items_path %>/<%=item.id %>">
+  <a href="<%= items_path %>/<%=item.title.gsub(' ','-')%>">
 	<div class="price-wrap">
 		<div class="item-prices">
 
@@ -79,7 +79,7 @@
 		<%= link_to item_path(item.id) do %>
 		<div id="item-title">
 			<%= link_to image_tag(item.user.avatar.url(:med), class:"avatar"), user_path(item.user) %>
-			<%= link_to item.title, item_path(item.id) %>
+			<%= link_to item.title, item_path(item.title.gsub(' ','-')) %>
 		</div>
 		<% end %>
 

@@ -14,7 +14,7 @@ class ItemsController < ApplicationController
   end
 
   def show
-    @item = Item.find(params[:id])
+    @item = Item.find_by(params[:title])
     gon.map_item = Item.where(id: @item.id).pluck(:latitude, :longitude, :id)
     @review = @item.reviews.build
     @prices = []
@@ -125,7 +125,7 @@ class ItemsController < ApplicationController
   end
 
   def edit
-    @item = Item.find(params[:id])
+    @item = Item.find_by(params[:title])
     if user_signed_in? && current_user.id == @item.user_id
       @tags = @item.tags.split(',')
       @prices = @item.prices
@@ -136,7 +136,7 @@ class ItemsController < ApplicationController
 
   def update
 
-    @item = Item.find(params[:id])
+    @item = Item.find_by(params[:title])
 
     7.times do |count|
       counter = "tag_box_#{count}".to_sym
@@ -183,7 +183,7 @@ class ItemsController < ApplicationController
   end
 
   def destroy
-    @item = Item.find(params[:id])
+    @item = Item.find_by(params[:title])
     @item.status = "Deleted"
     @item.save
     redirect_to user_path(current_user)
@@ -192,7 +192,7 @@ class ItemsController < ApplicationController
   private
 
     def item_deleted?
-      item = Item.find(params[:id])
+      item = Item.find_by(params[:title])
 
       unless ["Listed", "Sold"].include?(item.status)
         redirect_to items_path

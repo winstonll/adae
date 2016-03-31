@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160311164528) do
+ActiveRecord::Schema.define(version: 20160331150344) do
 
   create_table "conversations", force: :cascade do |t|
     t.integer  "sender_id"
@@ -35,7 +35,10 @@ ActiveRecord::Schema.define(version: 20160311164528) do
     t.string   "status",       default: "Listed"
     t.float    "latitude",     default: 43.6617
     t.float    "longitude",    default: -79.395
+    t.string   "slug"
   end
+
+  add_index "items", ["slug"], name: "index_items_on_slug", unique: true
 
   create_table "locations", force: :cascade do |t|
     t.string   "city"
