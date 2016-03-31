@@ -61,8 +61,6 @@ $(document).ready(function() {
         <%= link_to 'Post a Shout Out', new_request_path, class: "newshoutout" %>
         <%= link_to "All Shout Outs", requests_path, class: "allshoutouts" %>
         <%= link_to "My Shout Outs", user_path(current_user), class: "profilepath" %>
-      <% else %>
-        <%= link_to 'Post a Shout Out', new_request_path, class: "share-request" %>
       <% end %>
       </div>
     </div>
