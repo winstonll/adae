@@ -41,7 +41,7 @@ gem 'bootstrap-sass'
 
 gem 'stripe'
 
-gem "jquery-fileupload-rails"
+gem 'jquery-fileupload-rails'
 
 gem 'carrierwave'
 gem 'rmagick'
@@ -51,7 +51,9 @@ gem 'gmaps4rails'
 gem 'puma'
 gem 'rails-api'
 
-gem "paperclip"
+gem 'paperclip'
+
+gem 'friendly_id'
 
 gem 'kaminari'
 
@@ -66,12 +68,12 @@ gem 'devise'
 # gem 'unicorn'
 
 group :development do
-  gem "better_errors"
-  gem "binding_of_caller"
-  gem "pry-rails"
-  gem "quiet_assets"
-  gem "awesome_print"
-  gem "faker"
+  gem 'better_errors'
+  gem 'binding_of_caller'
+  gem 'pry-rails'
+  gem 'quiet_assets'
+  gem 'awesome_print'
+  gem 'faker'
 
   gem 'capistrano'
   gem 'capistrano-rbenv', github: 'capistrano/rbenv'
