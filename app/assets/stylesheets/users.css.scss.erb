@@ -520,7 +520,78 @@ body{
       }
     }
   }
+  /*My Listing Section Ends here */
+
+  /*My Shoutouts Section*/
+  .shoutout-container{
+    display: table;
+    margin: 0 auto;
+    padding-bottom: 5em;
+    float: right;
+
+    #shoutout-heading{
+      font-size: 18px;
+      font-weight: 600;
+      color: #4a4a4a;
+      padding-top: 10px;
+    }
+    .shoutouts{
+      border: 1px solid #979797;
+      list-style: none;
+      background-color: #fff;
+      margin-top: 10px;
+      margin-left: 132px;
+      height: 120px;
+      width: 350px;
+
+      .shoutout-title{
+        text-align: left !important;
+        line-height: normal;
+        color: #4a4a4a;
+        padding: none;
+        margin-left: 10px;
+        margin-top: 20px;
+        font-size: 15px;
+      }
+
+      .shoutout-edit-delete-buttons{
+        float:right;
+        margin-right: 10px;
+        margin-top: 10px;
+
+        .edit-shoutout{
+          border: 1px solid #419bf9;
+          border-radius: 5px;
+          color: #419bf9;
+          font-size: 14px;
+          padding: 3px 15px 3px;
+          &:hover{
+            background-color: #419bf9;
+            color: #fff;
+          }
+        }
+
+        .delete-shoutout{
+          border: 1px solid #FF6678;
+          border-radius: 5px;
+          color: #FF6678;
+          font-size: 14px;
+          padding: 3px 7px 3px;
+          margin-left: 5px;
+          &:hover{
+            background-color: #FF6678;
+            color: #fff;
+          }
+        }
+      }
+    }
+  }
+  /*User shoutout Section Ends here */
 }
+/*User Profile ends here*/
+
+
+
 /*User-Rating Section*/
 .user-ratings{
   background-color: #fff;
@@ -659,87 +730,6 @@ body{
   }
 }
 /*User Review Section Ends here */
-
-/*User shoutouts Section*/
-.user-shoutouts{
-  background-color: #fff;
-  width: 100%;
-  color: #4a4a4a;
-  padding-bottom: 3em;
-  padding-top: 1px;
-
-  .account-heading{
-    font-weight: 500;
-    color: #4a4a4a;
-    text-align: center;
-  }
-
-  .user-shoutout{
-    width: 38%;
-    display: table;
-    margin: 0 auto;
-    text-align: left;
-
-    .shoutout-title{
-      font-weight: 500;
-      color: #419bf9;
-      margin-bottom: -10px;
-      &:hover{
-        text-decoration: underline;
-      }
-    }
-
-    p{
-      text-align: left;
-      color: #4a4a4a;
-      line-height: normal;
-    }
-
-    .poster{
-      font-size: 16px;
-      color: #9B9B9B;
-      margin-bottom: 5px;
-    }
-
-    .edit-delete-buttons{
-      float:right;
-      margin-bottom: 5px;
-      display: inline-block;
-
-    .edit-shoutout{
-      border: 1px solid #419bf9;
-      border-radius: 5px;
-      color: #419bf9;
-      font-size: 14px;
-      padding: 6px 15px 5px;
-      &:hover{
-        background-color: #419bf9;
-        color: #fff;
-      }
-    }
-
-    .delete-shoutout{
-      border: 1px solid #FF6678;
-      border-radius: 5px;
-      color: #FF6678;
-      font-size: 14px;
-      padding: 6px 7px 5px;
-      margin-left: -23px;
-      &:hover{
-        background-color: #FF6678;
-        color: #fff;
-      }
-      }
-    }
-
-    .divider{
-      border-top: 1px solid #DCDCDC;
-      width: 100%;
-      margin-top: 55px;
-    }
-  }
-}
-/*User shoutout Section Ends here */
 
 /*Stripe Settings Sections*/
 
