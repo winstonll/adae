@@ -6,6 +6,7 @@
     <p class="request-detail-title">posted by <%= @request.user.full_name%></p>
   	<p class="request-detail-description"><%= @request.description %></p>
     <p class="request-detail-description"><%= @request.tags %></p>
+    <p class="request-detail-description"><%= @request.timeframe.strftime("%m/%d/%y at %l:%M %p") %></p>
   </div>
 </div> 
 

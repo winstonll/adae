@@ -1,12 +1,9 @@
 <%= form_for @request, html: {multipart: true}  do |f| %>
 	<% if @request.errors.any? %>
 		<div id="error_explaination">
-			<h2><%= pluralize(@request.errors.count, "error") %> please correct the following before submitting</h2>
-			<ul>
-				<% @request.errors.full_messages.each do |msg| %>
-				<li><%= msg %> </li>
-				<% end %>
-			</ul>
+			<% @request.errors.full_messages.each do |msg| %>
+			<script> toastr.error('<%= msg %>') </script>
+			<% end %>
 		</div>
 	<% end %>
 
@@ -22,6 +19,11 @@
           </div>
         	<input type="button" value="Add More" id="add-hashtag-button"/>
         <div id="tag-instruction">* Maximum of 6 tags, empty boxes will not be added.</div>
+	</div>
+
+	<div class="new-request-form">
+		<p>My shoutout should expire by:</p>
+		<%= f.datetime_select :timeframe, :order => [:day, :month, :year], ampm: true %>
 	</div>
 
 	<div class="new-request-form">

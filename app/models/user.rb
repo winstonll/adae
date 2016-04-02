@@ -3,6 +3,7 @@ class User < ActiveRecord::Base
 	has_many :reviews
 	has_many :ratings
 	has_many :items
+	has_many :requests
 	has_many :items_reviewed, through: :reviews, source: :items
 	has_many :items_rated, through: :ratings, source: :items
 	has_many :referrals

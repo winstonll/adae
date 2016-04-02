@@ -7,7 +7,10 @@
 	<meta property="og:type"          content="product" />
 	<meta property="og:title"         content="<%= @item.title %>" />
 	<meta property="og:description"   content="<%= @item.description %>" />
-	<meta property="og:image"         content="<%= "https://adae.co#{@pictures.first.image.url(:med)}"  %>" />
+
+	<% if @pictures %>
+		<meta property="og:image"         content="<%= "https://adae.co#{@pictures.first.image.url(:med)}"  %>" />
+	<% end %>
 <% end %>
 
 <%= stylesheet_link_tag "items" %>
@@ -68,7 +71,9 @@
       markup(ogprice[p]);
     }
 
-    $(".photos").css("width", $(".photo-container").width() / "<%= @pictures.count + 0.017 %>");
+		<% if @pictures %>
+    	$(".photos").css("width", $(".photo-container").width() / "<%= @pictures.count + 0.017 %>");
+		<% end %>
 
     <% if user_signed_in? && @item.user_id == current_user.id %>
       $('.request-button').bind('click', false);
