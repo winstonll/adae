@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160404062149) do
+ActiveRecord::Schema.define(version: 20160404185927) do
 
   create_table "conversations", force: :cascade do |t|
     t.integer  "sender_id"
@@ -107,6 +107,10 @@ ActiveRecord::Schema.define(version: 20160404062149) do
     t.string   "tags"
     t.string   "postal_code"
     t.datetime "timeframe"
+    t.float    "latitude",    default: 43.6617
+    t.float    "longitude",   default: -79.395
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "reviews", force: :cascade do |t|
