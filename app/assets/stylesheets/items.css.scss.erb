@@ -322,6 +322,29 @@ body{
     }
   }
 
+  .share-button{
+    height: 27px;
+    width: 70px;
+    border: none;
+    background-color: #3D54A8;
+    color:#fff;
+    cursor: pointer;
+    border-radius: 3px;
+    font-size: 13px;
+    font-family: 'arial', sans-serif;
+    background-image: url('<%= asset_path 'fb-share-icon.png'%>');
+    background-repeat: no-repeat;
+    background-position: 6px 5px;
+    background-size: 16px;
+    margin: -10px 0px 12px 0px;
+    padding: 1px 0px 0px 19px;
+
+    &:hover{
+      background-color: #364C9B;
+      transition: all .3s ease-in-out;
+    }
+  }
+
   .price-details {
     margin-top: -2.75em;
     float: right;
