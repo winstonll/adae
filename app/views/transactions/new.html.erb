@@ -364,8 +364,9 @@
             <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
               data-key=<%= Rails.application.secrets.publishable_key %>
               data-email=<%= current_user.email %>
-              data-description="Pay <%= @item.user.name %>"
+              data-description="Send Request to <%= @item.user.name %>"
               data-image= "<%= asset_path 'adae_logo.png'%>"
+              data-label="Add My Card"
               data-billingAddress="true">
             </script>
 
