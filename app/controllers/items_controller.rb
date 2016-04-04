@@ -80,7 +80,13 @@ class ItemsController < ApplicationController
   end
 
   def discount
-    
+    if user_signed_in? && Share.where(user_id: current_user.id, item_id: params[:item_id]).empty?
+      share = Share.new()
+      share.user_id = current_user.id
+      share.item_id = params[:item_id].to_i
+
+      share.save
+    end
 
     render :nothing => true
   end
