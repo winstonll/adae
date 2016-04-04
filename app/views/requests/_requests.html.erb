@@ -1,10 +1,8 @@
-<% requests.each do |request| %>
-	<%= link_to request_path(request.id) do %>
-		<div class="request-index">
-			<%= request.title %> 
-			| 
-			<%= request.description %> 
-			<%= request.tags  %>
-		</div>
-	<% end %>
-<% end %>
+<div class="request-index">
+	<%= request.title %> 
+	posted by <%= request.user.full_name%>
+	| 
+	<%= request.description %> 
+	<%= request.tags  %>
+	<%= request.timeframe.strftime("%m/%d/%y at %l:%M %p") %>
+</div>
