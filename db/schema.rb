@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160311164528) do
+ActiveRecord::Schema.define(version: 20160404062149) do
 
   create_table "conversations", force: :cascade do |t|
     t.integer  "sender_id"
@@ -101,12 +101,12 @@ ActiveRecord::Schema.define(version: 20160311164528) do
   end
 
   create_table "requests", force: :cascade do |t|
-    t.string  "title"
-    t.string  "description"
-    t.integer "user_id"
-    t.string  "tags"
-    t.string  "timeframe"
-    t.string  "postal_code"
+    t.string   "title"
+    t.string   "description"
+    t.integer  "user_id"
+    t.string   "tags"
+    t.datetime "timeframe"
+    t.string   "postal_code"
   end
 
   create_table "reviews", force: :cascade do |t|
@@ -115,6 +115,14 @@ ActiveRecord::Schema.define(version: 20160311164528) do
     t.integer  "item_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "shares", force: :cascade do |t|
+    t.integer  "user_id"
+    t.boolean  "discount_used"
+    t.integer  "item_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
   end
 
   create_table "stripe_transactions", force: :cascade do |t|

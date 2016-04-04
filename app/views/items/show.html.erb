@@ -9,7 +9,7 @@
 	<meta property="og:description"   content="<%= @item.description %>" />
 
 	<% if @pictures %>
-		<meta property="og:image"         content="<%= "https://adae.co#{@pictures.first.image.url(:med)}"  %>" />
+		<meta property="og:image" content="<%= "https://adae.co#{@pictures.first.image.url(:med)}"  %>" />
 	<% end %>
 <% end %>
 
@@ -210,37 +210,35 @@
 					}, function(response){});**/
 				};
 
-
-
 				(function(d, s, id){
-					 var js, fjs = d.getElementsByTagName(s)[0];
-					 if (d.getElementById(id)) {return;}
-					 js = d.createElement(s); js.id = id;
-					 js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5&appId=896455457041729";
-					 fjs.parentNode.insertBefore(js, fjs);
-				 }(document, 'script', 'facebook-jssdk'));
+					var js, fjs = d.getElementsByTagName(s)[0];
+					if (d.getElementById(id)) {return;}
+					js = d.createElement(s); js.id = id;
+					js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5&appId=896455457041729";
+					fjs.parentNode.insertBefore(js, fjs);
+				}(document, 'script', 'facebook-jssdk'));
 
-				 function share_prompt()
-{
-    FB.ui( 
-       {
-         method: 'feed',
-         name: 'Facebook Dialogs',
-         link: 'https://adae.co',
-         picture: 'http://fbrell.com/f8.jpg',
-         caption: 'Reference Documentation',
-         description: 'Dialogs provide a simple, consistent interface for applications to interface with users.',
-         message: 'Facebook Dialogs are easy!'
-       },
-       function(response) {
-         if (response && response.post_id) {
-           alert('Post was published.');
-         } else {
-           alert('Post was not published.');
-         }
-       }
-     );
- }
+				function share_prompt(){
+			  	FB.ui(
+			      {
+			        method: 'feed',
+			        name: 'Facebook Dialogs',
+			        link: "<%= request.original_url %>",
+			        picture: "<%= "https://adae.co#{@pictures.first.image.url(:med)}"  %>",
+			        caption: 'Reference Documentation',
+			        description: "<%= @item.description %>",
+			        message: 'Facebook Dialogs are easy!'
+			      },
+			      function(response) {
+			        if (response && response.post_id) {
+			          alert('Post was published.');
+								$.ajax({url: "/discount", type: "POST", data: {item_id: "<%= @item.id %>"},});
+			        } else {
+			          alert('Post was not published.');
+			        }
+			      }
+			    );
+ 		 		}
 			</script>
 
 			<input type="button" onclick="share_prompt()" value="Share" />
