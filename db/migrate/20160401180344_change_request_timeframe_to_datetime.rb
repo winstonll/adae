@@ -1,5 +1,14 @@
 class ChangeRequestTimeframeToDatetime < ActiveRecord::Migration
-  def change
-  	change_column :requests, :timeframe, :datetime
+  def up
+    remove_column :requests, :timeframe
+    add_column :requests, :timeframe, :datetime
+  end
+
+  def down
+    remove_column :requests, :timeframe
+    add_column :requests, :timeframe, :time
   end
 end
+
+
+  

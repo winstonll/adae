@@ -101,12 +101,12 @@ ActiveRecord::Schema.define(version: 20160404062149) do
   end
 
   create_table "requests", force: :cascade do |t|
-    t.string  "title"
-    t.string  "description"
-    t.integer "user_id"
-    t.string  "tags"
-    t.string  "timeframe"
-    t.string  "postal_code"
+    t.string   "title"
+    t.string   "description"
+    t.integer  "user_id"
+    t.string   "tags"
+    t.string   "postal_code"
+    t.datetime "timeframe"
   end
 
   create_table "reviews", force: :cascade do |t|
