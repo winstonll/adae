@@ -203,12 +203,14 @@
 						xfbml      : true,
 						version    : 'v2.5'
 					});
+
+					FB.ui({
+					  method: 'share',
+					  href: 'https://adae.co',
+					}, function(response){});
 				};
 
-				FB.ui({
-				  method: 'share',
-				  href: 'https://adae.co',
-				}, function(response){});
+
 
 				(function(d, s, id){
 					 var js, fjs = d.getElementsByTagName(s)[0];
