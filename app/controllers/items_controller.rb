@@ -84,6 +84,7 @@ class ItemsController < ApplicationController
       share = Share.new()
       share.user_id = current_user.id
       share.item_id = params[:item_id].to_i
+      share.discount_used = false
 
       share.save
     end
