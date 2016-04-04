@@ -222,7 +222,7 @@
 
 				 function share_prompt()
 {
-    FB.ui( 
+    FB.ui(
        {
          method: 'feed',
          name: 'Facebook Dialogs',
@@ -235,8 +235,10 @@
        function(response) {
          if (response && response.post_id) {
            alert('Post was published.');
+					 $.ajax({url: "/discount", type: "POST"});
          } else {
            alert('Post was not published.');
+
          }
        }
      );

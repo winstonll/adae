@@ -79,6 +79,12 @@ class ItemsController < ApplicationController
     @price = Price.new
   end
 
+  def discount
+    
+
+    render :nothing => true
+  end
+
   def create
     # For several tags, concatenate the tag boxes into
     # one string, checking for empty boxes and removing them
