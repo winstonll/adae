@@ -105,8 +105,8 @@ ActiveRecord::Schema.define(version: 20160404062149) do
     t.string   "description"
     t.integer  "user_id"
     t.string   "tags"
-    t.datetime "timeframe"
     t.string   "postal_code"
+    t.datetime "timeframe"
   end
 
   create_table "reviews", force: :cascade do |t|
