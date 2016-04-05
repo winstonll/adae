@@ -4,7 +4,7 @@ class ItemsController < ApplicationController
 
   def index
       @items = Item.where(status: "Listed").paginate(:page => params[:page], :per_page => 8).order('created_at DESC')
-
+      @rentals = Item.where("(items.listing_type = 'Rent') AND (items.status = 'Listed')")
       gon.map_items = @items.pluck(:latitude, :longitude, :id, :title, :photo_url)
 
       respond_to do |format|

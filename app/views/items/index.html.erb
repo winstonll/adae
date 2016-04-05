@@ -1,3 +1,10 @@
+<script>
+  function rentals() {
+      $('#item-collection')[0].style.display='none';
+      $('#rental-collection')[0].style.display='inline-block';
+  }
+</script>
+
 <%= include_gon %>
 <%= stylesheet_link_tag "items" %>
 <body>
@@ -5,10 +12,16 @@
 		<div class="switch">
 	    	<%= link_to "All Listings", items_path, class: "share-item" %>
 	    	<%= link_to "All Shout Outs", requests_path, class: "share-request" %>
+	    	<button onclick="rentals()">Rentals</button>
 		</div>
 		<div id="item-feed-container">
 	    	<div id="item-collection">
 				<% @items.each do |item| %>
+					<%= render partial: "/items/items", :locals => {:item => item}  %>
+				<% end %>
+	    	</div>
+	    	<div id="rental-collection" style="display: none;">
+				<% @rentals.each do |item| %>
 					<%= render partial: "/items/items", :locals => {:item => item}  %>
 				<% end %>
 	    	</div>
