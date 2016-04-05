@@ -1,16 +1,12 @@
 /*
 requests INDEX/SEARCH
 */
-body{
-background: #f2f2f2;
 
-}
 #requests {
-	margin-left: 15px;
 	margin-bottom: 0px;
 
 	.switch {
-		margin-top: 20px;
+		margin: 30px;
 		.share-item {
 	        background-color: #fff;
 	        border: 2px solid #419bf9;
@@ -57,13 +53,14 @@ background: #f2f2f2;
 	    //background-position: center;
   }
 	#request-feed-container {
-		height: 90vh;
+			height: 90vh;
 	    overflow-y: scroll;
 	    position: relative;
 	    margin-right: 10px;
-	    margin-top: 25px;
-	    margin-bottom: 10px;
+	    padding-top: 10px;
+			padding-left:  15px;
 	    width: 48%;
+			background: #f2f2f2;
 
 	    #pagination-shout {
 	      margin-top: 15px;
@@ -122,51 +119,83 @@ background: #f2f2f2;
 				margin-bottom: 10px;
 				display: inline-block;
 		    width: 100%;
+				height: 150px;
 
 		        .request-wrap {
 		          width: 100%;
 		          height: 120px;
 
 		          .request-expiry {
-		          	font-size: 14px;
+		          	font-size: 12px;
 		          	float: right;
 		            font-weight: 500;
 		          	margin-right: 15px;
 		          	margin-top: 5px;
 		            line-height: normal;
 		            display: inline;
+								color: #979797;
 		          }
 		          .request-user {
-		          	font-size: 14px;
-		          	float: left;
+		          	font-size: 15px;
 		            font-weight: 500;
 		            margin-left: 15px;
-		        	margin-top: 5px;
+		        		margin-top: 15px;
 		            line-height: normal;
-		            display: inline;
+								width: 20px;
 
-			        .avatar{
-			          border-radius: 50%;
-			          border: 1px solid #fff;
-			          height: 30px;
-			          width: 30px;
-			          float: left;
-			          margin-right: 10px;
-			          object-fit: cover;
-			        }
+
+				        .avatar{
+				          border-radius: 50%;
+				          border: 1px solid #fff;
+				          height: 50px;
+				          width: 50px;
+				          margin-right: 10px;
+				          object-fit: cover;
+				        }
 		          }
 		          #request-title {
-				    display: block;
-				    float: left;
 		            font-size: 16px;
-		            font-weight: 500;
 		            line-height: normal;
-		            white-space: nowrap;
-		            overflow: hidden;
-		            text-overflow: ellipsis;
+								margin-left: 6em;
+								margin-top: -3.3em;
+								color: #4a4a4a;
+								#main-title{
+									font-weight: 600;
+									margin-bottom: 10px;
+								}
+
+								#description{
+									margin-bottom: 20px;
+								}
+
+								.send{
+									background-color: #41B6F9;
+									padding: 5px 6px;
+									color: #fff;
+									border-radius: 4px;
+									font-size: 14px;
+									&:hover{
+					          background-color: #419bf9 !important;
+					          color: #fff;
+					          transition: all .3s ease-in-out;
+					        }
+								}
+								.post{
+									background-color: #416BF9;
+									padding: 5px 10px;
+									color: #fff;
+									border-radius: 4px;
+									font-size: 14px;
+									&:hover{
+										background-color: #0A6FD8 !important;
+										color: #fff;
+										transition: all .3s ease-in-out;
+									}
+								}
+
 		          }
 
-		        }
+		      }
 			}
 		}
 	}
