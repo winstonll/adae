@@ -3,6 +3,10 @@
 
 <body>
 	<div id="requests">
+		<div class="switch">
+	    	<%= link_to "All Listings", items_path, class: "share-item" %>
+	    	<%= link_to "All Shout Outs", requests_path, class: "share-request" %>
+		</div>
 		<div id="request-feed-container">
 	    	<div id="request-collection">
 	    		<% @requests.each do |request| %>
