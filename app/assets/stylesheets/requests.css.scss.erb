@@ -74,15 +74,58 @@ requests INDEX/SEARCH
 	      }
 	    }
 		#request-collection {
-			width: 48%;
-			-moz-column-count: 2;
-			-webkit-column-count: 2;
-			column-count: 2;
+		    width: 99%;
 
 			.request-index {
 				border: 1px solid #f5a623;
 				margin-bottom: 10px;
 				display: inline-block;
+		        width: 100%;
+
+		        .request-wrap {
+		          width: 100%;
+		          height: 120px;
+
+		          .request-expiry {
+		          	font-size: 14px;
+		          	float: right;
+		            font-weight: 500;
+		          	margin-right: 15px;
+		          	margin-top: 5px;
+		            line-height: normal;
+		            display: inline;
+		          }
+		          .request-user {
+		          	font-size: 14px;
+		          	float: left;
+		            font-weight: 500;
+		            margin-left: 15px;
+		        	margin-top: 5px;
+		            line-height: normal;
+		            display: inline;
+			          
+			        .avatar{
+			          border-radius: 50%;
+			          border: 1px solid #fff;
+			          height: 30px;
+			          width: 30px;
+			          float: left;
+			          margin-right: 10px;
+			          object-fit: cover;
+			        }
+		          }
+		          #request-title {
+				    display: block;
+				    float: left;    
+		            font-size: 16px;
+		            font-weight: 500;
+		            line-height: normal;
+		            white-space: nowrap;
+		            overflow: hidden;
+		            text-overflow: ellipsis;
+		          }
+
+		        }
 			}
 		}
 	}

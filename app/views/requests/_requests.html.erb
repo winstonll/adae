@@ -1,8 +1,19 @@
 <div class="request-index">
-	<%= request.title %> 
-	posted by <%= request.user.full_name%>
-	| 
-	<%= request.description %> 
-	<%= request.tags  %>
-	<%= request.timeframe.strftime("%m/%d/%y at %l:%M %p") %>
+	<div class="request-wrap">
+		<div class="request-expiry">
+			This Shoutout expires by: <%= request.timeframe.strftime("%m/%d/%y at %l:%M %p") %>
+		</div>
+		<div class="request-user">
+			posted by <%= request.user.full_name%>
+			<%= link_to image_tag(request.user.avatar.url(:med), class:"avatar"), user_path(request.user) %>
+			<%= hidden_field_tag 'user_id', request.user_id%>
+		</div>
+		<div id="request-title">
+			<div><%= request.title %></div>
+			<div><%= request.description %></div>
+			<%#= request.tags  %>
+		<%= link_to 'Send Message', conversations_path(:sender_id => current_user.id, :recipient_id => request.user_id), :method=> :post %>
+		<%= link_to 'Post a Listing', new_item_path %>
+		</div>
+	</div>
 </div>
