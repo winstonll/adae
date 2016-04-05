@@ -283,7 +283,7 @@
         <p class="prompt">No Ratings yet - be the first to leave a rating!</p>
         <%= link_to "Add a Rating", new_item_rating_path(@item),class: "add-a-rating" %>
       <% else %>
-        <p class="prompt" style="margin-right: 11px; margin-top: -6px;">No Ratings yet</p>
+        <!--<p class="prompt" style="margin-right: 11px; margin-top: -6px;">No Ratings yet</p>-->
       <% end %>
     </div>
   </div>
@@ -311,7 +311,7 @@
 
   <div class="review-list">
     <div class="review-content">
-      <div class="item-reviews">Reviews for: <em><%= @item.title %></em></div>
+      <div class="item-reviews">Reviews for: <%= @item.title %></div>
       <% if @item.reviews.exists? %>
         <%= render @item.reviews.order("created_at DESC") %>
       <% else %>
