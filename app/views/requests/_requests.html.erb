@@ -12,8 +12,10 @@
 			<div id="main-title"><%= request.title %></div>
 			<div id="description"><%= request.description %></div>
 			<%#= request.tags  %>
-		<%= link_to 'Send Message', conversations_path(:sender_id => current_user.id, :recipient_id => request.user_id), :method=> :post, class:'send' %>
-		<%= link_to 'Post a Listing', new_item_path, class: 'post' %>
+		<% if signed_in? %>
+			<%= link_to 'Send Message', conversations_path(:sender_id => current_user.id, :recipient_id => request.user_id), :method=> :post, class:'send' %>
+		<% end %>
+		<%= link_to 'Post this listing', new_item_path, class: 'post' %>
 		</div>
 	</div>
 </div>
