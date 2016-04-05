@@ -24,8 +24,44 @@ $green: #7ed321;
 }
 
 #items {
-  margin-left: 15px;
   margin-bottom: 0px;
+
+  .switch {
+    margin: 20px;
+    margin-left: 12px;
+    .share-item {
+          background-color: #fff;
+          border: 1px solid #419bf9;
+          border-radius: 5px;
+          font-size: 15px;
+          font-weight: 500;
+          padding: 7px 25px 7px 25px;
+          color: #419bf9;
+          margin-right: 5px;
+
+          &:hover {
+            background-color: #419bf9;
+            color: #fff;
+            transition: all .3s ease-in-out;
+          }
+      }
+      .share-request {
+          background-color: #fff;
+          border: 1px solid #f5a623;
+          border-radius: 5px;
+          font-size: 15px;
+          font-weight: 500;
+          padding: 7px 14px 7px 14px;
+          color: #f5a623;
+          margin-right: 28px;
+
+          &:hover {
+            background-color: #f5a623;
+            color: #fff;
+            transition: all .3s ease-in-out;
+          }
+      }
+  }
 
   #map-canvas{
     position: absolute;
@@ -43,10 +79,11 @@ $green: #7ed321;
     height: 90vh;
     overflow-y: scroll;
     position: relative;
-    margin-right: 10px;
-    margin-top: 10px;
-    margin-bottom: 10px;
+    padding-right: 10px;
+    padding-top: 10px;
+    padding-left: 10px;
     width: 48%;
+    background: #f2f2f2;
 
     #pagination-div {
       margin-top: 15px;
@@ -301,12 +338,11 @@ $green: #7ed321;
 /*
 item Show
 */
-body{
-  background-color: #f2f2f2;
-}
+
 .item-info {
   width: 100%;
   margin: auto;
+  background: #f2f2f2;
 
   .photo-container {
     white-space: nowrap;
@@ -320,6 +356,121 @@ body{
         object-position: center;
       }
     }
+  }
+
+  .share-button{
+    height: 27px;
+    width: 70px;
+    border: none;
+    background-color: #3D54A8;
+    color:#fff;
+    cursor: pointer;
+    border-radius: 3px;
+    font-size: 13px;
+    font-family: 'arial', sans-serif;
+    background-image: url('<%= asset_path 'fb-share-icon.png'%>');
+    background-repeat: no-repeat;
+    background-position: 6px 5px;
+    background-size: 16px;
+    margin: -10px 0px 12px 0px;
+    padding: 1px 0px 0px 19px;
+
+    &:hover{
+      background-color: #364C9B;
+      transition: all .3s ease-in-out;
+    }
+  }
+
+  /* fb share button helping tip*/
+  .wrapper {
+    font-weight: 500;
+    cursor: default;
+    line-height: normal;
+    position: relative;
+    text-align: center;
+    -webkit-transform: translateZ(0); /* webkit flicker fix */
+    -webkit-font-smoothing: antialiased; /* webkit text rendering fix */
+    width: 5px;
+    top: 2px;
+    border-radius: 50%;
+  }
+
+   .tooltip {
+    font-family: 'Avenir Next','Arial', sans-serif;
+    background: #419bf9;
+    bottom: 100%;
+    color: #fff;
+    display: block;
+    left: -25px;
+    margin-bottom: 15px;
+    margin-left: -52px;
+    opacity: 0;
+    padding: 20px;
+    pointer-events: none;
+    position: absolute;
+    width: 240px;
+    border-radius: 5px;
+    font-size: 15px;
+    text-align: left;
+    -webkit-transform: translateY(10px);
+       -moz-transform: translateY(10px);
+        -ms-transform: translateY(10px);
+         -o-transform: translateY(10px);
+            transform: translateY(10px);
+    -webkit-transition: all .25s ease-out;
+       -moz-transition: all .25s ease-out;
+        -ms-transition: all .25s ease-out;
+         -o-transition: all .25s ease-out;
+            transition: all .25s ease-out;
+    -webkit-box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.28);
+       -moz-box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.28);
+        -ms-box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.28);
+         -o-box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.28);
+            box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.28);
+  }
+
+  /* This bridges the gap so you can mouse into the tooltip without it disappearing */
+  .wrapper .tooltip:before {
+    bottom: -20px;
+    content: " ";
+    display: block;
+    height: 20px;
+    left: 0;
+    position: absolute;
+    width: 100%;
+  }
+
+  /* CSS Triangles - see Trevor's post */
+  .wrapper .tooltip:after {
+    border-left: solid transparent 10px;
+    border-right: solid transparent 10px;
+    border-top: solid #419bf9 10px;
+    bottom: -10px;
+    content: " ";
+    height: 0;
+    left: 50%;
+    margin-left: -65px;
+    position: absolute;
+    width: 0;
+  }
+
+  .wrapper:hover .tooltip {
+    opacity: 1;
+    pointer-events: auto;
+    -webkit-transform: translateY(0px);
+       -moz-transform: translateY(0px);
+        -ms-transform: translateY(0px);
+         -o-transform: translateY(0px);
+            transform: translateY(0px);
+  }
+
+  /* IE can just show/hide with no transition */
+  .lte8 .wrapper .tooltip {
+    display: none;
+  }
+
+  .lte8 .wrapper:hover .tooltip {
+    display: block;
   }
 
   .price-details {
@@ -925,12 +1076,26 @@ body{
     width: 570px;
     color: #4a4a4a;
 
+    #no-review-yet{
+      background-color: #F2F2F2;
+      border-radius: 5px;
+      text-align: center;
+      margin-left: 1px;
+      padding: 13px 0px 13px 0px;
+    }
+
+
     #comment{
+      #review-comment{
+        line-height: normal;
+        margin-left: 80px;
+      }
+
       .avatar{
         border-radius: 50%;
         float: left;
         margin-right: 20px;
-        margin-top: -5px;
+        margin-top: 3px;
         height: 55px;
         width: 55px;
         object-fit: cover;
@@ -941,6 +1106,7 @@ body{
     }
     .poster{
       color: #979797;
+      margin-left: 80px;
     }
     .item-reviews{
       font-size: 18px;

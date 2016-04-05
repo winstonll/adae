@@ -69,7 +69,7 @@ Rails.application.routes.draw do
   post 'transactions/hook' => 'transactions#hook', :to => "transactions_hook"
 
   resources :items,  :concerns => :reviewable, :path => "listings"
-  resources :requests, :path => "shoutout"
+  resources :requests, :path => "shoutouts"
   resources :users
   resources :locations
   resources :transactions

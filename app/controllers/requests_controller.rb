@@ -1,11 +1,9 @@
 class RequestsController < ApplicationController
   before_filter :ensure_logged_in, only: [:create, :update, :edit, :destroy]
   def index
-      @requests = Request.all 
-  end
+      @requests = Request.all.paginate(:page => params[:page], :per_page => 8).order('created_at DESC')
 
-  def show
-    @request = Request.find(params[:id])
+      gon.map_requests = @requests.pluck(:latitude, :longitude, :id, :title)
   end
 
   def new
@@ -28,10 +26,18 @@ class RequestsController < ApplicationController
     end
 
     @request = Request.new(request_params)
+
+    geocode = Geocoder.search(request_params[:postal_code]).first
+
+    if !geocode.nil?
+      @request.latitude = geocode.latitude
+      @request.longitude = geocode.longitude
+    end
+
     @request.user_id = current_user.id
     @request.tags = @hashtagboxes
     if @request.save && @request.valid?
-      redirect_to @request, notice: "request Successfully Added!"
+      redirect_to requests_path, notice: "request Successfully Added!"
     else
       flash[:message] = "This request has already been posted or Something didn't validate"
       render 'new'
@@ -44,8 +50,30 @@ class RequestsController < ApplicationController
 
   def update
     @request = Request.find(params[:id])
+
+     7.times do |count|
+      counter = "hashtag_box_#{count}".to_sym
+      unless (params[counter].to_s.empty?)
+        @hashtagboxes = @hashtagboxes.to_s + params[counter].to_s.capitalize.strip << ', '
+      end
+    end
+
+    # Strip the last comma from multiple choice questions
+    if @hashtagboxes
+      @hashtagboxes = @hashtagboxes[0...-1].chomp(",")
+
+      @request.tags = @hashtagboxes
+    end
+
+    geocode = Geocoder.search(request_params[:postal_code]).first
+
+    if !geocode.nil?
+      @request.latitude = geocode.latitude
+      @request.longitude = geocode.longitude
+    end
+
     if @request.update_attributes(request_params)
-      redirect_to @request
+      redirect_to requests_path, notice: "Shoutout Successfully Edited!"
     else
       render :edit
     end

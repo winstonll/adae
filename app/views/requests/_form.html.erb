@@ -23,7 +23,7 @@
 
 	<div class="new-request-form">
 		<p>My shoutout should expire by:</p>
-		<%= f.datetime_select :timeframe, :order => [:day, :month, :year], ampm: true %>
+		<%= f.date_field :timeframe, :value => Time.now.strftime('%Y-%m-%d'), min: Date.today, max: Date.today.next_quarter %>
 	</div>
 
 	<div class="new-request-form">

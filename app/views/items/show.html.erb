@@ -241,8 +241,14 @@
  		 		}
 			</script>
 
-			<input type="button" onclick="share_prompt()" value="Share" />
-
+			<input class="share-button" type="button" onclick="share_prompt()" value="Share" />
+			<span style="color: #4a4a4a; font-size: 15px;"> and get 5% Off! </span>
+			<span>
+				<span style="bottom: 1px;" class="wrapper">
+					<%= image_tag "question-mark.png", size:"13x14"%>
+					<div class="tooltip">Share this page before submitting your request, and get 5% off of the entire price! </div>
+				</span>
+			</span>
       <!--<div class="fb-share-button" style="margin-bottom: 20px;" data-href="<%= request.original_url %>" data-layout="button_count"></div>-->
 
       <div class="item-description">
@@ -277,7 +283,7 @@
         <p class="prompt">No Ratings yet - be the first to leave a rating!</p>
         <%= link_to "Add a Rating", new_item_rating_path(@item),class: "add-a-rating" %>
       <% else %>
-        <p class="prompt" style="margin-right: 11px; margin-top: -6px;">No Ratings yet</p>
+        <!--<p class="prompt" style="margin-right: 11px; margin-top: -6px;">No Ratings yet</p>-->
       <% end %>
     </div>
   </div>
@@ -305,11 +311,11 @@
 
   <div class="review-list">
     <div class="review-content">
-      <div class="item-reviews">Reviews for: <em><%= @item.title %></em></div>
+      <div class="item-reviews">Reviews for: <%= @item.title %></div>
       <% if @item.reviews.exists? %>
         <%= render @item.reviews.order("created_at DESC") %>
       <% else %>
-        <blockquote><i>No reviews yet.</i></blockquote>
+        <blockquote id="no-review-yet">No reviews yet.</blockquote>
       <% end %>
     </div>
   </div>
