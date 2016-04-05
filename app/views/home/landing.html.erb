@@ -1,6 +1,5 @@
 <%= stylesheet_link_tag "landing" %>
 <%= stylesheet_link_tag "modals" %>
-<%= javascript_include_tag "landing" %>
 <div class="signup-modal"></div>
 <div class="signin-modal"></div>
 
@@ -9,8 +8,6 @@
 <div id="landing">
   <div class="navlanding">
     <a class="faq" href="/faq">FAQ</a>
-    <!--<%= link_to 'Post a Listing', new_item_path, class: "share-item" %>-->
-    <!--<%= link_to 'Post a Shout Out', new_request_path, class: "share-request" %>-->
     <% unless signed_in? %>
       <%= link_to 'Sign Up', {remote: true, controller: "home", action: "signup_modal"}, id: "nav-signup-btn", class: "signup" %>
       <%= link_to 'Log In', {remote: true, controller: "home", action: "signin_modal"}, id: "nav-signin-btn", class: "login" %>
