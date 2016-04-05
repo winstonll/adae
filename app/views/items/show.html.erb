@@ -315,7 +315,7 @@
       <% if @item.reviews.exists? %>
         <%= render @item.reviews.order("created_at DESC") %>
       <% else %>
-        <blockquote><i>No reviews yet.</i></blockquote>
+        <blockquote id="no-review-yet">No reviews yet.</blockquote>
       <% end %>
     </div>
   </div>
