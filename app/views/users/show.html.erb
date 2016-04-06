@@ -114,6 +114,7 @@
 		<% if @user.requests.present? %>
 			<% @user.requests.each do |request| %>
 				<li class="shoutouts">
+					<div class="shoutout-wrap">
 					<div class="shoutout-title">
 						<%=link_to(request.title,request_path(request)) %>
 						<div class="request">
@@ -124,6 +125,7 @@
 						<%= link_to 'Edit', edit_request_path(request, request),class: "edit-shoutout" %>
 						<%= link_to 'Delete', request_path(request), method: :delete, class: "delete-shoutout", data: {confirm: "Are you sure you want to delete this shoutout? This action cannot be undone."}  %>
 					</div>
+				</div>
 				</li>
 			<% end %>
 		<% else %>
