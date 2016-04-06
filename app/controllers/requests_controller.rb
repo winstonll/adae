@@ -2,12 +2,16 @@ class RequestsController < ApplicationController
   before_filter :ensure_logged_in, only: [:create, :update, :edit, :destroy]
   def index
       @requests = Request.all.paginate(:page => params[:page], :per_page => 8).order('created_at DESC')
-
       gon.map_requests = @requests.pluck(:latitude, :longitude, :id, :title)
   end
 
   def new
     @request = Request.new
+  end
+
+  def show
+    @request = Request.find(params[:id])
+    gon.map_request = Request.where(id: @request.id).pluck(:latitude, :longitude, :id)
   end
   
   def create
