@@ -65,36 +65,39 @@ body{
     color: #419bf9;
 
     .wrapper {
+      font-weight: 400;
       cursor: default;
       line-height: normal;
-      color: #4a4a4a;
-      font-size: 14px;
+      position: relative;
+      text-align: center;
       -webkit-transform: translateZ(0); /* webkit flicker fix */
       -webkit-font-smoothing: antialiased; /* webkit text rendering fix */
-      border-radius: 50%;
-      margin: 0 auto;
-      display: table;
-      padding-bottom: 10px;
+      width: 85px;
+      top: -2px;
+      font-size: 13px;
+      color: #4a4a4a;
       text-decoration: underline;
+      display: table;
+      margin: 0 auto;
     }
 
      .tooltip {
       font-family: 'Avenir Next','Arial', sans-serif;
+      font-weight: 500;
       background: #419bf9;
       bottom: 100%;
       color: #fff;
       display: block;
       left: -25px;
       margin-bottom: 15px;
-      margin-left: -52px;
-      font-weight: 500;
+      margin-left: -42px;
       opacity: 0;
       padding: 20px;
       pointer-events: none;
       position: absolute;
-      width: 240px;
+      width: 200px;
       border-radius: 5px;
-      font-size: 16px;
+      font-size: 15px;
       text-align: left;
       -webkit-transform: translateY(10px);
          -moz-transform: translateY(10px);
@@ -133,7 +136,7 @@ body{
       content: " ";
       height: 0;
       left: 50%;
-      margin-left: -35px;
+      margin-left: -20px;
       position: absolute;
       width: 0;
     }
@@ -156,6 +159,7 @@ body{
     .lte8 .wrapper:hover .tooltip {
       display: block;
     }
+
 
 
    .code{
@@ -311,13 +315,13 @@ body{
       margin-top: 10px;
       width: 120px;
       height: 120px;
-      border: 1px solid #dcdcdc;
 
       img{
         width: 120px;
         height: 120px;
         object-fit: cover;
         object-position: center;
+        border-radius: 3px;
       }
     }
     .requests{
@@ -326,16 +330,23 @@ body{
       background-color: #fff;
       margin-top: 10px;
       margin-left: 132px;
-      height: 190px;
       width: 350px;
+      border-radius: 3px;
+
+      .request-wrap{
+        padding-bottom: 25px;
 
       .item-title{
-        text-align: left !important;
+        text-align: center !important;
         line-height: normal;
         color: #4a4a4a;
         padding: none;
         margin-left: 10px;
         margin-top: 20px;
+
+        a{
+          font-weight: 500;
+        }
 
         .status{
           text-align: center;
@@ -361,6 +372,7 @@ body{
           &:hover{
             background-color: #419bf9;
             color: #fff;
+            }
           }
         }
       }
@@ -385,13 +397,13 @@ body{
       margin-top: 10px;
       width: 120px;
       height: 120px;
-      border: 1px solid #dcdcdc;
 
       img{
         width: 120px;
         height: 120px;
         object-fit: cover;
         object-position: center;
+        border-radius: 3px;
       }
     }
     .transactions{
@@ -400,17 +412,23 @@ body{
       background-color: #fff;
       margin-top: 10px;
       margin-left: 132px;
-      height: 150px;
       width: 350px;
-      padding-bottom: 38px;
+      border-radius: 3px;
+
+      .transaction-wrap{
+        padding-bottom: 30px;
 
       .item-title{
-        text-align: left !important;
+        text-align: center !important;
         line-height: normal;
         color: #4a4a4a;
         padding: none;
         margin-left: 10px;
         margin-top: 20px;
+
+        a{
+          font-weight: 500;
+        }
 
         .status{
           text-align: center;
@@ -441,6 +459,7 @@ body{
       }
     }
   }
+}
 
   /*My Listing Section*/
   .listing-container{
@@ -467,6 +486,7 @@ body{
         height: 120px;
         object-fit: cover;
         object-position: center;
+        border-radius: 3px;
       }
     }
     .listings{
@@ -475,23 +495,35 @@ body{
       background-color: #fff;
       margin-top: 10px;
       margin-left: 132px;
-      height: 120px;
       width: 350px;
+      border-radius: 3px;
+
+      .listings-wrap{
+        padding-bottom: 20px;
 
       .item-title{
         text-align: left !important;
         line-height: normal;
         color: #4a4a4a;
-        padding: none;
+        padding: 0px 5px 5px 0px;
         margin-left: 10px;
         margin-top: 20px;
         font-size: 15px;
       }
 
       .item-edit-delete-buttons{
-        float:right;
-        margin-right: 10px;
-        margin-top: 10px;
+        margin-left: 200px;
+        margin-top: 37px;
+
+        #no-editing-text{
+          font-size: 12px;
+          color: gray;
+          text-align: left;
+          width: 200px;
+          line-height: normal;
+          margin-left: -50px;
+          margin-top: -27px;
+        }
 
         .edit-item{
           border: 1px solid #419bf9;
@@ -515,6 +547,7 @@ body{
           &:hover{
             background-color: #FF6678;
             color: #fff;
+            }
           }
         }
       }
@@ -535,28 +568,32 @@ body{
       color: #4a4a4a;
       padding-top: 10px;
     }
+
     .shoutouts{
       border: 1px solid #979797;
       list-style: none;
       background-color: #fff;
       margin-top: 10px;
       margin-left: 132px;
-      height: 120px;
       width: 350px;
+      border-radius: 3px;
+
+    .shoutout-wrap{
+      padding-bottom: 20px;
+
 
       .shoutout-title{
         text-align: left !important;
         line-height: normal;
         color: #4a4a4a;
-        padding: none;
+        padding: 0px 5px 5px 0px;
         margin-left: 10px;
         margin-top: 20px;
         font-size: 15px;
       }
 
       .shoutout-edit-delete-buttons{
-        float:right;
-        margin-right: 10px;
+        margin-left: 200px;
         margin-top: 10px;
 
         .edit-shoutout{
@@ -581,6 +618,7 @@ body{
           &:hover{
             background-color: #FF6678;
             color: #fff;
+            }
           }
         }
       }

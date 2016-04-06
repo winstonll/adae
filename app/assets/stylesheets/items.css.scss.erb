@@ -5,7 +5,7 @@ itemS INDEX/SEARCH
 $purple: #A100C2;
 $blue: #419bf9;
 $green: #7ed321;
-
+$orange: #f5a623;
 .bootstrap {
   @import "bootstrap-sprockets";
   @import "bootstrap";
@@ -39,10 +39,25 @@ $green: #7ed321;
           color: #419bf9;
           margin-right: 5px;
 
+          &:link{
+            background-color: #fff;
+            color: $blue;
+          }
+
+          &:visited{
+            background-color: $blue;
+            color: #fff;
+          }
+
           &:hover {
-            background-color: #419bf9;
+            background-color: $blue;
             color: #fff;
             transition: all .3s ease-in-out;
+          }
+
+          &:active{
+            background-color: $blue;
+            color: #fff;
           }
       }
       .share-request {

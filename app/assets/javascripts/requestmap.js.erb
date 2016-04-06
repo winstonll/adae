@@ -21,7 +21,8 @@ function initializeshout() {
         var marker = new google.maps.Marker({
             position: latlng,
             center: latlng,
-            map: map
+            map: map,
+            url: 'shoutouts/' + postcode[2]
         });
 
           var content = '<input value="'+postcode[3]+'" style=" font-size: 12px; width: 185px; margin-left: 16px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; border:none;"></input>';

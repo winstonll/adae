@@ -38,6 +38,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'bcrypt-ruby'
 gem 'cancancan'
 gem 'bootstrap-sass'
+gem 'jquery-ui-rails'
 
 gem 'stripe'
 
