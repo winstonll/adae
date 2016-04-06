@@ -9,7 +9,7 @@
 			<%= hidden_field_tag 'user_id', request.user_id%>
 		</div>
 		<div id="request-title">
-			<div id="main-title"><%= request.title %></div>
+			<div id="main-title"><%= link_to request.title, request_path(request.id) %></div>
 			<div id="description"><%= request.description %></div>
 			<%#= request.tags  %>
 		<% if signed_in? %>
