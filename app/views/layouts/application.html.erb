@@ -3,7 +3,7 @@
 <head>
   <%= favicon_link_tag 'favicon.ico' %>
   <title>adae</title>
-  
+
   <script
   	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDELDDeZFCjRjY4yvz3o0ium-jSwRvnwFY">
   </script>
@@ -11,6 +11,14 @@
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+
+  <% content_for :head do %>
+    <meta property="og:type"   content="post" />
+    <meta property="og:url"    content="https://adae.co" />
+    <meta property="og:title"  content="Adae" />
+    <meta property="og:image"  content="<%= image_path('OG_logo.png') %>" />
+  <% end %>
+
   <%= content_for?(:head) ? yield(:head) : '' %>
 
 </head>
