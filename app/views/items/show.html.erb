@@ -198,16 +198,7 @@
 
 			<script>
 				window.fbAsyncInit = function() {
-					/**FB.init({
-						appId      : '896455457041729',
-						xfbml      : true,
-						version    : 'v2.5'
-					});**/
 
-					/**FB.ui({
-					  method: 'share',
-					  href: 'https://developers.facebook.com/docs/',
-					}, function(response){});**/
 				};
 
 				(function(d, s, id){
@@ -222,12 +213,12 @@
 			  	FB.ui(
 			      {
 			        method: 'feed',
-			        name: 'Facebook Dialogs',
+			        name: "<%= @item.title %>",
 			        link: "<%= request.original_url %>",
 			        picture: "<%= "https://adae.co#{@pictures.first.image.url(:med)}"  %>",
 			        caption: 'Reference Documentation',
 			        description: "<%= @item.description %>",
-			        message: 'Facebook Dialogs are easy!'
+			        message: ''
 			      },
 			      function(response) {
 			        if (response && response.post_id) {
