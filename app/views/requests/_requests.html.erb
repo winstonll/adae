@@ -14,6 +14,8 @@
 			<%#= request.tags  %>
 		<% if signed_in? %>
 			<%= link_to 'Send Message', conversations_path(:sender_id => current_user.id, :recipient_id => request.user_id), :method=> :post, class:'send' %>
+		<% else %>
+			<%= link_to 'Send Message', {remote: true, controller: "home", action: "signup_modal"}, class: "send" %>
 		<% end %>
 		<%= link_to 'Post this listing', new_item_path, class: 'post' %>
 		</div>
