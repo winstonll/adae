@@ -1,6 +1,7 @@
 /*
 requests INDEX/SEARCH
 */
+$orange: #f5a623;
 
 #requests {
 	margin-bottom: 0px;
@@ -34,11 +35,26 @@ requests INDEX/SEARCH
 	        color: #f5a623;
 	        margin-right: 28px;
 
-	        &:hover {
-	          background-color: #f5a623;
-	          color: #fff;
-	          transition: all .3s ease-in-out;
-	        }
+					&:link{
+            background-color: #fff;
+            color: $orange;
+          }
+
+          &:visited{
+            background-color: $orange;
+            color: #fff;
+          }
+
+          &:hover {
+            background-color: $orange;
+            color: #fff;
+            transition: all .3s ease-in-out;
+          }
+
+          &:active{
+            background-color: $orange;
+            color: #fff;
+          }
 	    }
 	}
 
