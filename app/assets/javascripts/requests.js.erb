@@ -20,7 +20,7 @@ $(document).on('ready page:load', function() {
        }
       });
 
-      $('.datepicker').datepicker({ minDate: 0, maxDate: "+3M" });
+      $('#datepicker').datepicker({ minDate: 0, maxDate: "+3M", dateFormat: 'D, dd M yy'  });
 
       function validate_user_form_and_submit(event){
         var postal_code = /^[A-Za-z]\d[A-Za-z]\s?\d[A-Za-z]\d$/.test($('#request_postal_code').val());
