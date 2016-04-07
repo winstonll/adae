@@ -9,8 +9,10 @@
 			<%= hidden_field_tag 'user_id', request.user_id%>
 		</div>
 		<div id="request-title">
-			<div id="main-title"><%= link_to request.title, request_path(request.id) %></div>
+		<%= link_to request_path(request.id) do %>
+			<div id="main-title"><%= request.title %></div>
 			<div id="description"><%= request.description %></div>
+		<% end %>
 			<%#= request.tags  %>
 		<% if signed_in? %>
 			<%= link_to 'Send Message', conversations_path(:sender_id => current_user.id, :recipient_id => request.user_id), :method=> :post, class:'send' %>
