@@ -9,7 +9,7 @@ $orange: #f5a623;
   .switch {
 	margin: 20px;
 	margin-left: 12px;
-	
+
 	.share-item {
       background-color: #fff;
       border: 1px solid #419bf9;
@@ -79,7 +79,7 @@ $orange: #f5a623;
     #pagination-shout {
       margin-top: 15px;
       padding-bottom: 15px;
-      
+
       .pagination {
         .current {
           margin-right: 5px;
@@ -171,7 +171,7 @@ $orange: #f5a623;
 			margin-top: -3.3em;
 			color: #4a4a4a;
 			padding-right: 10px;
-			
+
 			#main-title {
 			  font-weight: 600;
 			  margin-bottom: 10px;
@@ -189,7 +189,7 @@ $orange: #f5a623;
 			  color: #fff;
 			  border-radius: 4px;
 			  font-size: 14px;
-			  
+
 			  &:hover {
 	            background-color: #419bf9 !important;
 	            color: #fff;
@@ -202,13 +202,13 @@ $orange: #f5a623;
 			  color: #fff;
 			  border-radius: 4px;
 			  font-size: 14px;
-			  
+
 			  &:hover{
 				background-color: #56D321 !important;
 				color: #fff;
 				transition: all .3s ease-in-out;
 			  }
-	      	}	
+	      	}
 	      }
 	    }
 	  }
@@ -219,103 +219,107 @@ $orange: #f5a623;
 /*
 request show
 */
-.request {
-  display: table;
-  width: 700px;
-  margin: auto;
-  margin-top: 30px;
+.page-body{
+		background: #f2f2f2;
+		height: 90vh;
+	.request {
+	  display: table;
+	  width: 700px;
+	  margin: auto;
+	  padding-top: 5%;
 
-  .request-index {
-    border: 1px solid #f5a623;
-    border-radius: 4px;
-    background-color: #fff;
-    margin-bottom: 10px;
-    display: inline-block;
-    width: 100%;
-  
-    .request-wrap {
-      width: 100%;
-      padding-bottom: 20px;
-  
-      .request-expiry {
-        font-size: 11px;
-        float: right;
-        font-weight: 500;
-        margin-right: 15px;
-        margin-top: -12px;
-        line-height: normal;
-        display: inline;
-        color: #979797;
-      }
-      .request-user {
-        font-size: 15px;
-        font-weight: 500;
-        margin-left: 15px;
-     	margin-top: 15px;
-        line-height: normal;
-        width: 20px;
-  
-        .avatar{
-          border-radius: 50%;
-          border: 1px solid #fff;
-          height: 50px;
-          width: 50px;
-          margin-right: 10px;
-          object-fit: cover;
-        }
-      }
-  
-      #request-title {
-        font-size: 15px;
-        line-height: normal;
-        margin-left: 6em;
-        margin-top: -3.3em;
-        color: #4a4a4a;
-        padding-right: 10px;
-  		
-  	    #main-title {
-  		  font-weight: 600;
-  		  margin-bottom: 10px;
-  	    }
-  	  	#description{
-  		  margin-bottom: 15px;
-  	  	}
-  	    .send{
-  		  background-color: #41B6F9;
-  		  padding: 5px 7px;
-  		  color: #fff;
-  		  border-radius: 4px;
-  		  font-size: 14px;
-  		  
-  		  &:hover {
-            background-color: #419bf9 !important;
-            color: #fff;
-            transition: all .3s ease-in-out;
-          }
-  	    }
-  
-  	    .post{
-  		  background-color: #7ED321;
-  		  padding: 5px 10px;
-  		  color: #fff;
-  		  border-radius: 4px;
-  		  font-size: 14px;
-  		  
-  		  &:hover{
-  		    background-color: #56D321 !important;
-  		    color: #fff;
-  		    transition: all .3s ease-in-out;
-  		  }
-  	    }
-      }
-    }
-  }
-  #shout-map{
-    position: fixed;
-    height: 300px;
-    width: 100%;
-    margin: 15px 0 25px 0;
-  }
+	  .request-index {
+	    border: 1px solid #f5a623;
+	    border-radius: 4px;
+	    background-color: #fff;
+	    margin-bottom: 10px;
+	    display: inline-block;
+	    width: 100%;
+
+	    .request-wrap {
+	      width: 100%;
+	      padding-bottom: 20px;
+
+	      .request-expiry {
+	        font-size: 11px;
+	        float: right;
+	        font-weight: 500;
+	        margin-right: 12px;
+	        margin-top: -11px;
+	        line-height: normal;
+	        display: inline;
+	        color: #979797;
+	      }
+	      .request-user {
+	        font-size: 15px;
+	        font-weight: 500;
+	        margin-left: 15px;
+	     	margin-top: 15px;
+	        line-height: normal;
+	        width: 20px;
+
+	        .avatar{
+	          border-radius: 50%;
+	          border: 1px solid #fff;
+	          height: 50px;
+	          width: 50px;
+	          margin-right: 10px;
+	          object-fit: cover;
+	        }
+	      }
+
+	      #request-title {
+	        font-size: 15px;
+	        line-height: normal;
+	        margin-left: 6em;
+	        margin-top: -3.3em;
+	        color: #4a4a4a;
+	        padding-right: 10px;
+
+	  	    #main-title {
+	  		  font-weight: 600;
+	  		  margin-bottom: 10px;
+	  	    }
+	  	  	#description{
+	  		  margin-bottom: 15px;
+	  	  	}
+	  	    .send{
+	  		  background-color: #41B6F9;
+	  		  padding: 5px 7px;
+	  		  color: #fff;
+	  		  border-radius: 4px;
+	  		  font-size: 14px;
+
+	  		  &:hover {
+	            background-color: #419bf9 !important;
+	            color: #fff;
+	            transition: all .3s ease-in-out;
+	          }
+	  	    }
+
+	  	    .post{
+	  		  background-color: #7ED321;
+	  		  padding: 5px 10px;
+	  		  color: #fff;
+	  		  border-radius: 4px;
+	  		  font-size: 14px;
+
+	  		  &:hover{
+	  		    background-color: #56D321 !important;
+	  		    color: #fff;
+	  		    transition: all .3s ease-in-out;
+	  		  }
+	  	    }
+	      }
+	    }
+	  }
+	  #shout-map{
+	    position: fixed;
+	    height: 300px;
+	    width: 100%;
+	    margin: 15px 0 25px 0;
+	  }
+	}
 }
 
 /*
