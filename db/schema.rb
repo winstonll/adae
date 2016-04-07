@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160404185927) do
+ActiveRecord::Schema.define(version: 20160407143716) do
 
   create_table "conversations", force: :cascade do |t|
     t.integer  "sender_id"
@@ -188,6 +188,7 @@ ActiveRecord::Schema.define(version: 20160404185927) do
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
     t.string   "stripe_customer_id"
+    t.string   "photo_url"
   end
 
   add_index "users", ["auth_token"], name: "index_users_on_auth_token", unique: true
