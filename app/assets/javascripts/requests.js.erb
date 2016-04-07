@@ -44,6 +44,11 @@ $(document).on('ready page:load', function() {
         validate_user_form_and_submit(event);
       });
       
+      $('#buy-button').click(function(){
+        $('.signup-modal').show();
+        toastr.warning("Please Log in or Sign up!");
+      });
+      
  });
 
  
