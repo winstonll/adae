@@ -8,4 +8,5 @@ json.user @users do |user|
   json.balance user.balance
   json.email user.email
   json.name user.name
+  json.photo_url user.photo_url
 end
