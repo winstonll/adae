@@ -6,8 +6,19 @@ module Api::V1
     # curl -X GET --header "ApiToken: 1234" --header "Authorization: zKhekYC-Mnwm1fbpU-KL"  http://localhost:3000/api/v1/conversations
     def index
       @conversations = Conversation.where("(conversations.sender_id = #{current_user.id}) OR (conversations.recipient_id = #{current_user.id})")
+      @users = []
 
-      render json: @conversations, status: :ok
+      @conversations.each do |conversation|
+        if conversation.sender_id == current_user.id
+          @users << User.find(conversation.recipient_id)
+        else
+          @users << User.find(conversation.sender_id)
+        end
+      end
+
+      render 'api/v1/conversations/index', :formats => [:json], :handlers => [:jbuilder], status: 201
+
+      #render json: @conversations, status: :ok
     end
 
     def show
