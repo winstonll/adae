@@ -55,7 +55,7 @@
     }
 
 		<% if @pictures %>
-    	$(".photos").css("width", $(".photo-container").width() / "<%= @pictures.count + 0.017 %>");
+    	$(".photos").css("width", $(".photo-container").width() / "<%= @pictures.count + 0.0017 %>");
 		<% end %>
 
     <% if user_signed_in? && @item.user_id == current_user.id %>
