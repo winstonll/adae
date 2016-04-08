@@ -6,12 +6,15 @@
 		<div id="item-feed-container" style="width: 900px; margin: 0 auto;">
 			<div id="item-collection">
 				<% @query.each do |item| %>
-					<%= render partial: "/items/items", :locals => {:item => item}  %>
+					<% if item.class == "Item" %>
+					<%#= render partial: "/items/items", :locals => {:item => item}  %>
+					<% else %>
+					<%#= render partial: "/requests/requests", locals: {requests: @query} %>
+					<% end %>
 				<% end %>
 			</div>
 		</div>
 	</div>
 	<div id="requests">
-		<%#= render partial: "/requests/requests", locals: {requests: @query} %>
 	</div>
 </body>
