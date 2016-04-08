@@ -14,13 +14,6 @@
 			<div id="description"><%= request.description %></div>
 		</div>
 		<% end %>
-
-		<div class="tag-container">
-			<% tagz = request.tags.split(', ') %>
-			<% tagz.each do |tag| %>
-		    	<span class="tags">#<%= link_to tag, { controller: "search", action: "search", search_text: tag}, class: "tags" %></span>
-		    <% end %>
-		</div>
 		<div class="request-options">
 			<% if signed_in? %>
 				<%= link_to 'Send Message', conversations_path(:sender_id => current_user.id, :recipient_id => request.user_id), :method=> :post, class:'send' %>
@@ -28,6 +21,12 @@
 				<%= link_to 'Send Message', {remote: true, controller: "home", action: "signup_modal"}, class: "send", id: "buy-button" %>
 			<% end %>
 			<%= link_to 'Post this listing', new_item_path, class: 'post' %>
+		</div>
+		<div class="tag-container">
+			<% tagz = request.tags.split(', ') %>
+			<% tagz.each do |tag| %>
+		    	<span class="tags">#<%= link_to tag, { controller: "search", action: "search", search_text: tag}, class: "tags" %></span>
+		    <% end %>
 		</div>
 	</div>
 </div>
