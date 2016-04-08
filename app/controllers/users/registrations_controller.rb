@@ -15,7 +15,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
       end
     end
 
-    @user.balance = @user.balance + 5
+    #@user.balance = @user.balance + 5
 
     if @user.save
 
