@@ -29,6 +29,7 @@ gem 'active_attr'
 gem 'geocoder'
 gem 'gon'
 gem 'toastr-rails'
+gem "introjs-rails"
 
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc

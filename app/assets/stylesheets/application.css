@@ -1,7 +1,8 @@
-/*
- *= require jquery-ui
- */
+
+/*= require jquery-ui
 /*= require toastr
+/*= require introjs
+
 
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure,
