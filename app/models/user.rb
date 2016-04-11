@@ -13,7 +13,7 @@ class User < ActiveRecord::Base
 	validates :auth_token, uniqueness: true
 	accepts_nested_attributes_for :location
 
-	devise :database_authenticatable, :registerable, #:confirmable,
+	devise :database_authenticatable, :registerable, :confirmable,
        :recoverable, :rememberable, :trackable, :validatable
 
 	before_create :ensure_authentication_token
