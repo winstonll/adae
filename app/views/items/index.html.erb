@@ -1,17 +1,26 @@
 <%= include_gon %>
 <%= stylesheet_link_tag "items" %>
+<script>
+	$(document).ready(function() {
+        document.getElementById('startButton').onclick = function() {
+          introJs().setOption('doneLabel', 'Go Now').start().oncomplete(function() {
+            window.location.href = '<%= edit_user_path(current_user) %>';
+          });
+        };
+    });
+</script>
 <body>
 	<div id="items">
 		<div class="switch">
-		<% if signed_in? && @user.confirmed? && @user.sign_in_count == "1"  %>
-	    		<a class="share-item" href="/listings" data-step="1" data-intro="This is the listings!">All Listings</a>
-	    		<a class="share-request" href="/shoutouts" data-step="2" data-intro="This is the shoutouts!">All Shout Outs</a>
+		<% if signed_in? && @user.confirmed? && @user.sign_in_count == 1  %>
+	    		<a class="share-item" href="/listings" data-step="1" data-intro="This is the listings!" data-position="right">All Listings</a>
+	    		<a class="share-request" href="/shoutouts" data-step="2" data-intro="This is the shoutouts!" data-position="right">All Shout Outs</a>
+	    		<a id="startButton" class="" href="javascript:void(0);">Start tour</a>
 	    <% else %>
 	    	<%= link_to "All Listings", items_path, class: "share-item" %>
 	    	<%= link_to "All Shout Outs", requests_path, class: "share-request" %>
 		<% end %>
 		</div>
-				<div ></div>
 		<div id="item-feed-container">
 	    	<div id="item-collection">
 				<% @items.each do |item| %>
