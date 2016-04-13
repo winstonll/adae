@@ -43,7 +43,7 @@ $(document).ready(function() {
     </div>
 
   <% if signed_in? %>
-    <div class="balance-display" data-step="3" data-intro="This is your balance and you have $<%= current_user.balance %> right now. Post a listing & start making money!" data-position="right">
+    <div class="balance-display" data-step="3" data-intro="This is your balance and you have $<%= current_user.balance %> right now. </br></br> Post a listing & start making money!" data-position="right">
       <span class="balance" onclick="$('.balancedropdown').slideToggle();"> Balance </span>
       <div class="balancedropdown">
         <p id="user_balance"> $ <%= current_user.balance %> </p>
@@ -54,7 +54,7 @@ $(document).ready(function() {
       </div>
     </div>
   <% end %>
-    <div class="requestnav" data-step="5" data-intro="This is where you can post a Shout Out!" data-position="right">
+    <div class="requestnav" data-step="5" data-intro="Looking for something?<br> We can help you find it. <br> Post a Shout Out!" data-position="right">
       <% if signed_in? %>
       <span class="shoutouts" onclick="$('.shoutoutsdropdown').slideToggle();"> <%= "Shout Outs" %> </span>
       <div class="shoutoutsdropdown">
