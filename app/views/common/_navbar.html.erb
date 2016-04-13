@@ -1,5 +1,6 @@
 <%= stylesheet_link_tag "navbar" %>
 <%= stylesheet_link_tag "modals" %>
+<%= javascript_include_tag "slide-in-menu" %>
 
 <script>
 $(document).ready(function() {
@@ -8,30 +9,69 @@ $(document).ready(function() {
     $('.signup-modal').show();
     $('.modal-backdrop').fadeOut();
   });
+
   $('#nav-signin-btn').click(function(){
     $('.signup-modal').hide();
     $('.signin-modal').show();
     $('.modal-backdrop').fadeOut();
   });
- });
+
+  var slideLeft = new Menu({
+    wrapper: '#o-wrapper',
+    type: 'slide-left',
+    menuOpenerClass: '.c-button',
+    maskId: '#c-mask'
+  });
+
+  var slideLeftBtn = document.querySelector('#c-button--slide-left');
+
+  slideLeftBtn.addEventListener('click', function(e) {
+    e.preventDefault;
+    slideLeft.open();
+  });
+});
 </script>
 
 <div class="signup-modal"></div>
 <div class="signin-modal"></div>
 <nav class="nav" role="navigation" id="home-navbar">
-    <div class="adae-home">
-      <a href="<%= items_path %>" title="home">
-        <div class="home-logo">
-          <%= image_tag("adaelogoblue.png")%>
-        </div>
-      </a>
+
+  <div id="o-wrapper" class="o-wrapper">
+    <div class="c-buttons">
+      <label id="c-button--slide-left" class="c-button"></label>
     </div>
+    <!-- other content in here -->
+  </div><!-- /o-wrapper -->
+
+  <!-- menus here -->
+  <div id="c-mask" class="c-mask"></div><!-- /c-mask -->
+
+  <nav id="c-menu--slide-left" class="c-menu c-menu--slide-left">
+    <button class="c-menu__close">&larr; Close Menu</button>
+    <ul class="c-menu__items">
+      <li class="c-menu__item"><a href="#" class="c-menu__link">Home</a></li>
+      <li class="c-menu__item"><a href="#" class="c-menu__link">About</a></li>
+      <li class="c-menu__item"><a href="#" class="c-menu__link">Services</a></li>
+      <li class="c-menu__item"><a href="#" class="c-menu__link">Work</a></li>
+      <li class="c-menu__item"><a href="#" class="c-menu__link">Contact</a></li>
+    </ul>
+  </nav><!-- /c-menu slide-left -->
+
+  <div class="adae-home">
+    <a href="<%= items_path %>" title="home">
+      <div class="home-logo">
+        <%= image_tag("adaelogoblue.png")%>
+      </div>
+    </a>
+  </div>
+
     <div class="search-bar">
       <form class="search-form" action="/search">
         <input type="text" name="search_text" class="search-field-placeholder" id="search-form" placeholder="What are you looking for? ex. Texbooks, Video Games, Tutors...">
       </form>
     </div>
-    <div class="itemnav" data-step="4" data-intro="This is where you can post a listing!" data-position="right">
+
+    <div class="itemnav" data-step="4" data-intro="This is where you can post a Listing!" data-position="right">
       <% if signed_in? %>
       <span class="listings" onclick="$('.listingsdropdown').slideToggle();"> <%= "Listings" %> </span>
       <div class="listingsdropdown">
@@ -43,7 +83,7 @@ $(document).ready(function() {
     </div>
 
   <% if signed_in? %>
-    <div class="balance-display" data-step="3" data-intro="This is your balance and you have $<%= current_user.balance %> right now. Post a listing & start making money!" data-position="right">
+    <div class="balance-display" data-step="3" data-intro="This is your balance and you have $<%= current_user.balance %> right now. </br></br> Post a listing & start making money!" data-position="right">
       <span class="balance" onclick="$('.balancedropdown').slideToggle();"> Balance </span>
       <div class="balancedropdown">
         <p id="user_balance"> $ <%= current_user.balance %> </p>
@@ -54,7 +94,7 @@ $(document).ready(function() {
       </div>
     </div>
   <% end %>
-    <div class="requestnav" data-step="5" data-intro="This is where you can post a shoutout!" data-position="right">
+    <div class="requestnav" data-step="5" data-intro="Looking for something?<br> We can help you find it. <br> Post a Shout Out!" data-position="right">
       <% if signed_in? %>
       <span class="shoutouts" onclick="$('.shoutoutsdropdown').slideToggle();"> <%= "Shout Outs" %> </span>
       <div class="shoutoutsdropdown">
@@ -97,6 +137,6 @@ $(document).ready(function() {
       </div>
     </div>
     <% if signed_in? %>
-      <span><%= image_tag(current_user.avatar.url(:med), class:"avatar") %></span>
+      <span class="navbar-avatar"><%= image_tag(current_user.avatar.url(:med), class:"avatar") %></span>
     <% end %>
 </nav>

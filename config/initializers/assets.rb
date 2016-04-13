@@ -33,5 +33,4 @@ Rails.application.config.assets.precompile += %w( users.js )
 Rails.application.config.assets.precompile += %w( map.js.erb )
 Rails.application.config.assets.precompile += %w( requestmap.js.erb )
 Rails.application.config.assets.precompile += %w( map_shoutout.js )
-
-
+Rails.application.config.assets.precompile += %w( slide-in-menu.js )

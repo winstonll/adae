@@ -3,7 +3,7 @@
 <script>
 	$(document).ready(function() {
 		$(function () {
-		    $("#bounce").effect("bounce", { times:3, distance:10 }, 400);
+		    $("#bounce").effect("bounce", { times:3, distance:10 }, 2000);
 		});
         <% if signed_in? && @user.confirmed? && @user.sign_in_count == 1 %>
         document.getElementById('startButton').onclick = function() {
@@ -15,7 +15,7 @@
     });
 </script>
 <style>
-	.introjs-tooltiptext { 
+	.introjs-tooltiptext {
 		line-height: normal;
 	}
 	#bounce {
@@ -28,10 +28,10 @@
 		<div class="switch">
 		<% if signed_in? && @user.confirmed? && @user.sign_in_count == 1  %>
 	    		<div id="bounce">
-	    			<span id="startButton" href="javascript:void(0);">Start tour</span>
+	    			<span id="startButton" href="javascript:void(0);">Start Tour</span>
 	    		</div>
-	    		<a class="share-item" href="/listings" data-step="1" data-intro="This is what others have to offer. Popular services include: tutoring, photography, music & dance lessons, professional mentorship, and moving." data-position="right">All Listings</a>
-	    		<a class="share-request" href="/shoutouts" data-step="2" data-intro="This is where people post requests. Can someone help you out? Post here." data-position="right">All Shout Outs</a>
+	    		<a class="share-item" href="/listings" data-step="1" data-intro="What others have to offer. Popular services include: <br> - tutoring <br> - photography <br> - music & dance lessons <br> - professional mentorship <br> - moving" data-position="right">All Listings</a>
+	    		<a class="share-request" href="/shoutouts" data-step="2" data-intro="This is where people post requests.</br> Can you help someone out?" data-position="right">All Shout Outs</a>
 	    <% else %>
 	    	<%= link_to "All Listings", items_path, class: "share-item" %>
 	    	<%= link_to "All Shout Outs", requests_path, class: "share-request" %>
@@ -47,7 +47,7 @@
 				<%= will_paginate @items, :next_label => "&#10095;", :previous_label => "&#10094;" %>
 			</div>
 		</div>
-		<div id="map-canvas"></div>
+		<div id="map-canvas" class="feed-map"></div>
 	</div>
 </body>
 <%= javascript_include_tag "map" %>

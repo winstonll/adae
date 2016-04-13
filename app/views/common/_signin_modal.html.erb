@@ -1,9 +1,10 @@
 <script>
 $(document).click(function (e) {
     var signin = $('#shareSigninModal');
+    var backdrop = $('.modal-backdrop');
 
     //if the target of the click isn't the modal...
-    if (!signin.is(e.target)&& signin.has(e.target).length === 0) { signin.modal('hide'); }
+    if (!signin.is(e.target)&& signin.has(e.target).length === 0) { signin.modal('hide'); backdrop.fadeOut(); }
 });
 </script>
 
