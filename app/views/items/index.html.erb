@@ -3,7 +3,7 @@
 <script>
 	$(document).ready(function() {
 		$(function () {
-		    $("#bounce").effect("bounce", { times:3, distance:10 }, 400);
+		    $("#bounce").effect("bounce", { times:3, distance:10 }, 2000);
 		});
         <% if signed_in? && @user.confirmed? && @user.sign_in_count == 1 %>
         document.getElementById('startButton').onclick = function() {
