@@ -1,5 +1,6 @@
 <%= stylesheet_link_tag "navbar" %>
 <%= stylesheet_link_tag "modals" %>
+<%= javascript_include_tag "slide-in-menu" %>
 
 <script>
 $(document).ready(function() {
@@ -8,13 +9,53 @@ $(document).ready(function() {
     $('.signup-modal').show();
     $('.modal-backdrop').fadeOut();
   });
+
   $('#nav-signin-btn').click(function(){
     $('.signup-modal').hide();
     $('.signin-modal').show();
     $('.modal-backdrop').fadeOut();
   });
- });
+
+  var slideLeft = new Menu({
+    wrapper: '#o-wrapper',
+    type: 'slide-left',
+    menuOpenerClass: '.c-button',
+    maskId: '#c-mask'
+  });
+
+  var slideLeftBtn = document.querySelector('#c-button--slide-left');
+
+  slideLeftBtn.addEventListener('click', function(e) {
+    e.preventDefault;
+    slideLeft.open();
+  });
+});
 </script>
+
+<div id="o-wrapper" class="o-wrapper">
+
+  <div class="c-buttons">
+    <label id="c-button--slide-left" class="c-button"></label>
+  </div>
+
+  <!-- other content in here -->
+
+</div><!-- /o-wrapper -->
+
+<!-- menus here -->
+
+<div id="c-mask" class="c-mask"></div><!-- /c-mask -->
+
+<nav id="c-menu--slide-left" class="c-menu c-menu--slide-left">
+  <button class="c-menu__close">&larr; Close Menu</button>
+  <ul class="c-menu__items">
+    <li class="c-menu__item"><a href="#" class="c-menu__link">Home</a></li>
+    <li class="c-menu__item"><a href="#" class="c-menu__link">About</a></li>
+    <li class="c-menu__item"><a href="#" class="c-menu__link">Services</a></li>
+    <li class="c-menu__item"><a href="#" class="c-menu__link">Work</a></li>
+    <li class="c-menu__item"><a href="#" class="c-menu__link">Contact</a></li>
+  </ul>
+</nav><!-- /c-menu slide-left -->
 
 <div class="signup-modal"></div>
 <div class="signin-modal"></div>
