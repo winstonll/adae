@@ -1,10 +1,10 @@
 <script>
   $(document).click(function (e) {
       var signup = $('#shareSignupModal');
+      var backdrop = $('.modal-backdrop');      
 
       //if the target of the click isn't the modal...
-      if (!signup.is(e.target)&& signup.has(e.target).length === 0) { signup.modal('hide'); }
-
+      if (!signup.is(e.target)&& signup.has(e.target).length === 0) { signup.modal('hide'); backdrop.fadeOut(); }
   });
 
   function validate_signup_form_and_submit(){
