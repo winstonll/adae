@@ -62,20 +62,36 @@ $orange: #f5a623;
       }
       .share-request {
           background-color: #fff;
-          border: 1px solid #f5a623;
+          border: 1px solid $orange;
           border-radius: 5px;
           font-size: 15px;
           font-weight: 500;
           padding: 7px 14px 7px 14px;
-          color: #f5a623;
+          color: $orange;
           margin-right: 28px;
 
           &:hover {
-            background-color: #f5a623;
+            background-color: $orange;
             color: #fff;
             transition: all .3s ease-in-out;
           }
       }
+      #startButton {
+        background-color: #fff;
+        border: 1px solid $purple;
+        border-radius: 5px;
+        font-size: 15px;
+        font-weight: 500;
+        padding: 7px 14px 7px 14px;
+        color: $purple;
+        margin-left: 100px;
+
+          &:hover {
+            background-color: $purple;
+            color: #fff;
+            transition: all .3s ease-in-out;
+          }
+        }
   }
 
   #map-canvas{
