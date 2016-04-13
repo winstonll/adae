@@ -20,3 +20,4 @@
 //= require jquery-fileupload/basic-plus
 //= require toastr
 //= require jquery-ui
+//= require introjs
