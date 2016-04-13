@@ -2658,23 +2658,6 @@ item new
     }
   }
 
-  /*.gallery-container{
-    width: 900px;
-    display: table;
-    margin: 0 auto;
-    margin-top: -5em;
-    margin-bottom: 3em;
-    .photo-grid{
-      display: inline-block;
-      .gallery-photo{
-        height: 200px !important;
-        margin-left: 5px;
-        object-fit: scale-down;
-        object-position: center;
-      }
-    }
-  } commented out for now*/
-
 
   /*Ratings & Reviews */
   .rating-container {
@@ -2888,8 +2871,9 @@ item new
     padding-top: 1em;
 
     p{
-      text-align: left;
+      text-align: center;
       margin-top: 25px;
+      line-height: normal;
     }
     /*question mark tooltip for deposit*/
     .wrapper {
@@ -2992,21 +2976,27 @@ item new
         font-weight: 500;
         font-size: 16px;
         color: #4a4a4a;
-
+        margin: 0 auto;
+        display: table;
         .tag-input-box{
+
           .tag-box{
-            width: 130px;
+            display: table;
+            margin: 0 auto;
+            width: 50%;
             height: 32px;
             border-radius: 3px;
             border: 1px solid #979797;
             font-size: 13px;
             padding-left: 10px;
+            margin-top: 5px;
           }
         }
 
         #tag-instruction{
           font-size: 12px;
-          margin-top: 7px;
+          margin-top: 10px;
+          text-align: center;
         }
 
         #add-tag-button-edit, #add-tag-button{
@@ -3028,9 +3018,9 @@ item new
 
         label{
           font-size: 16px;
-          margin-top: -5px;
+          margin-top: 10px;
           margin-bottom: 5px;
-
+          text-align: center;
         }
 
         .form-title{
@@ -3040,26 +3030,30 @@ item new
         }
 
         #item_postal_code{
-          width: 575px;
+          width: 93%;
           height: 32px;
           border-radius: 3px;
           border: 1px solid #979797;
           font-size: 13px;
           padding-left: 10px;
+          display: table;
+          margin: 0 auto;
         }
 
         #item_title{
-          width: 575px;
+          width: 93%;
           height: 32px;
           border-radius: 3px;
           border: 1px solid #979797;
           font-size: 13px;
           padding-left: 10px;
           margin-bottom: 25px;
+          display: table;
+          margin: 0 auto;
         }
 
         #item_description{
-          width: 565px;
+          width: 100%;
           height: 150px;
           border-radius: 3px;
           border: 1px solid #979797;
@@ -3072,6 +3066,7 @@ item new
           font-size: 12px;
           font-weight: 400;
           margin-bottom: 5px;
+          margin-top: 8px;
         }
 
         .upload-photo{
@@ -3083,11 +3078,13 @@ item new
           box-shadow: 6px 6px 6px -4px rgba(207,207,207,1);
           margin-bottom: 25px;
           margin-top: 15px;
+          display: table;
+          margin: 0 auto;
 
           #photo-image{
             height: auto;
             width: 45px;
-            margin-left: 4em;
+            margin-left: 6em;
             margin-top: 1em;
           }
 
@@ -3127,6 +3124,7 @@ item new
           font-weight: 600;
           margin-top: -2.5px;
           margin-right: -1px;
+
         }
 
         #actual-price-money-sign{
@@ -3173,13 +3171,14 @@ item new
         th{
           font-weight: 600 !important;
           font-size: 15px;
+          margin-left: 5% !important;
         }
 
         .timeframe{
           -webkit-appearance: none;
           font-size: 16px;
           text-align: center;
-          width:82px;
+          width:70px;
           height: 25px;
           border: 1px solid #979797;
           margin-bottom: -3px;
@@ -3191,7 +3190,7 @@ item new
           -webkit-appearance: none;
           font-size: 16px;
           text-align: center;
-          width:61px;
+          width:49px;
           height: 25px;
           margin-top: -6px;
           border-bottom: 1px solid #979797;
@@ -3214,7 +3213,7 @@ item new
       }
 
       .submit-listing{
-        width: 140px;
+        width: 95%;
         border: 1px solid #419bf9;
         background-color: #fff;
         border-radius: 5px;
@@ -3222,9 +3221,11 @@ item new
         font-weight: 600;
         color: #4a4a4a;
         padding: 10px;
-        margin-top: 1em;
-        margin-bottom:5px;
+        margin-top: 1em !important;
+        margin-bottom:10px !important;
         cursor: pointer;
+        display: table;
+        margin: auto;
 
         &:hover{
           background-color: #419BF9;
@@ -3238,11 +3239,13 @@ item new
         line-height: normal;
         margin-bottom: 20px;
         margin: none;
+        text-align: center;
       }
 
       #small-tip{
         font-size: 12px;
         padding-bottom: 5em;
+        text-align: center;
       }
     }
   }
@@ -3259,6 +3262,7 @@ item new
       font-size: 16px;
       font-weight: 400;
       color: #4a4a4a;
+      line-height: normal;
     }
   }
 
