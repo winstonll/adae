@@ -32,46 +32,48 @@ $(document).ready(function() {
 });
 </script>
 
-<div id="o-wrapper" class="o-wrapper">
-
-  <div class="c-buttons">
-    <label id="c-button--slide-left" class="c-button"></label>
-  </div>
-
-  <!-- other content in here -->
-
-</div><!-- /o-wrapper -->
-
-<!-- menus here -->
-
-<div id="c-mask" class="c-mask"></div><!-- /c-mask -->
-
-<nav id="c-menu--slide-left" class="c-menu c-menu--slide-left">
-  <button class="c-menu__close">&larr; Close Menu</button>
-  <ul class="c-menu__items">
-    <li class="c-menu__item"><a href="#" class="c-menu__link">Home</a></li>
-    <li class="c-menu__item"><a href="#" class="c-menu__link">About</a></li>
-    <li class="c-menu__item"><a href="#" class="c-menu__link">Services</a></li>
-    <li class="c-menu__item"><a href="#" class="c-menu__link">Work</a></li>
-    <li class="c-menu__item"><a href="#" class="c-menu__link">Contact</a></li>
-  </ul>
-</nav><!-- /c-menu slide-left -->
-
 <div class="signup-modal"></div>
 <div class="signin-modal"></div>
 <nav class="nav" role="navigation" id="home-navbar">
-    <div class="adae-home">
-      <a href="<%= items_path %>" title="home">
-        <div class="home-logo">
-          <%= image_tag("adaelogoblue.png")%>
-        </div>
-      </a>
+  <div id="o-wrapper" class="o-wrapper">
+
+    <div class="c-buttons">
+      <label id="c-button--slide-left" class="c-button"></label>
     </div>
+
+    <!-- other content in here -->
+
+  </div><!-- /o-wrapper -->
+
+  <!-- menus here -->
+
+  <div id="c-mask" class="c-mask"></div><!-- /c-mask -->
+
+  <nav id="c-menu--slide-left" class="c-menu c-menu--slide-left">
+    <button class="c-menu__close">&larr; Close Menu</button>
+    <ul class="c-menu__items">
+      <li class="c-menu__item"><a href="#" class="c-menu__link">Home</a></li>
+      <li class="c-menu__item"><a href="#" class="c-menu__link">About</a></li>
+      <li class="c-menu__item"><a href="#" class="c-menu__link">Services</a></li>
+      <li class="c-menu__item"><a href="#" class="c-menu__link">Work</a></li>
+      <li class="c-menu__item"><a href="#" class="c-menu__link">Contact</a></li>
+    </ul>
+  </nav><!-- /c-menu slide-left -->
+
+  <div class="adae-home">
+    <a href="<%= items_path %>" title="home">
+      <div class="home-logo">
+        <%= image_tag("adaelogoblue.png")%>
+      </div>
+    </a>
+  </div>
+
     <div class="search-bar">
       <form class="search-form" action="/search">
         <input type="text" name="search_text" class="search-field-placeholder" id="search-form" placeholder="What are you looking for? ex. Texbooks, Video Games, Tutors...">
       </form>
     </div>
+
     <div class="itemnav" data-step="4" data-intro="This is where you can post a Listing!" data-position="right">
       <% if signed_in? %>
       <span class="listings" onclick="$('.listingsdropdown').slideToggle();"> <%= "Listings" %> </span>
@@ -138,6 +140,6 @@ $(document).ready(function() {
       </div>
     </div>
     <% if signed_in? %>
-      <span><%= image_tag(current_user.avatar.url(:med), class:"avatar") %></span>
+      <span class="navbar-avatar"><%= image_tag(current_user.avatar.url(:med), class:"avatar") %></span>
     <% end %>
 </nav>

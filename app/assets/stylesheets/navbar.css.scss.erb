@@ -382,7 +382,9 @@ input:focus, textarea {
   width: 26px;
   height: 20px;
   position: absolute;
-  right: 20px;
+  top: 20px;
+  left: 20px;
+  display: none;
 }
 
 .c-menu {
@@ -454,14 +456,55 @@ o-wrapper {
 }
 
 @media screen and (min-width: 320px) and (max-width: 768px){
-  .nav {
+  /**.nav {
+    display: none;
+  }**/
+
+  /**body {
+    padding-top: 0px;
+  }**/
+
+  .adae-home {
     display: none;
   }
 
-  body {
-    padding-top: 0px;
+  .item-nav {
+    display: none;
   }
 
+  .balance-display {
+    display: none;
+  }
+
+  .requestnav {
+    display: none;
+  }
+
+  .inbox {
+    display: none;
+  }
+
+  .user-info {
+    display: none;
+  }
+
+  .navbar-avatar {
+    display: none;
+  }
+
+  .search-bar {
+    form {
+      margin-left: 70px !important;
+    }
+  }
+
+  .search-field-placeholder {
+    width: 300px !important;
+  }
+
+  .c-button {
+    display: block;
+  }
 
 
   .c-menu--slide-left {
