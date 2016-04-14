@@ -60,4 +60,18 @@ body{
     }
   }
 }
+
+@media screen and (min-width: 320px) and (max-width: 768px){
+
+  .edit-review-heading{
+    line-height: normal;
+  }
+  #review_comment{
+    width: 92% !important;
+  }
+
+  .update-button{
+    width: 255px !important;
+  }
+}
 /*Edit Your Review styling ends here*/
