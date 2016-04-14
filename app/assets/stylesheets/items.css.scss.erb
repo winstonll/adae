@@ -709,7 +709,8 @@ item Show
       }
 
       .send-message {
-        position: relative;
+        display: table;
+        margin: 0 auto;
         text-align: center;
         background-color:#41B6F9;
         color: #fff;
@@ -717,8 +718,8 @@ item Show
         font-weight: 600;
         border-radius: 2px;
         cursor: pointer;
-        padding: 9px 60px 9px 60px;
-        left: 21px;
+        padding: 12px 60px 12px 60px;
+        margin-top: 15px;
         &:hover{
           background-color: #419bf9 !important;
           color: #fff;
@@ -901,20 +902,20 @@ item Show
       width: 778px;
       margin: 0 auto;
     }
+    .avatar{
+      float: left;
+      margin-left: -6.5em;
+      margin-top: -2.5em;
+      border-radius: 50%;
+      height:85px;
+      width: 85px;
+      object-fit: cover;
+    }
     .item-detail-username{
       width: 380px;
       display: table;
       margin: 0 auto;
 
-      .avatar{
-        float: left;
-        margin-left: -6.5em;
-        margin-top: -2.5em;
-        border-radius: 50%;
-        height:85px;
-        width: 85px;
-        object-fit: cover;
-      }
     }
 
     .date{
@@ -2105,7 +2106,7 @@ item new
       .photos{
         display: inline-block;
         .cover-photo{
-          height: 310px;
+          height: 250px;
           width: 100%;
           object-fit: cover;
           object-position: center;
@@ -2230,20 +2231,18 @@ item new
 
     .price-details {
       margin-top: -2.75em;
-      float: right;
-      width: 400px;
+      width: 100%;
+      float:none !important;
       .item-detail-price {
-        float: right;
-        z-index:2;
-        border: 1px solid #979797;
         background-color: #fff;
-        width: 270px;
-        bottom: 270px;
-        border-radius: 3px;
+        width: 100%;
+        float:none !important;
+        border-bottom: 1px solid #dcdcdc !important;
+        border: none !important;
 
         .price-breakdown{
-          margin-left: 65px;
-          margin-top: 10px;
+          display: table;
+          margin: auto;
           .price-list{
             text-align: left;
             color: #4a4a4a;
@@ -2279,14 +2278,15 @@ item new
           background-color:#7ed321;
           text-align: center;
           opacity: 0.9;
-          padding: 12px;
+          padding: 13px;
         }
         .price-title2 {
           font-weight: 600;
           color: white;
           background-color:#419bf9;
           opacity: 0.9;
-          padding: 12px;
+          padding: 13px;
+
         }
         #qty{
           border: 1px solid #419bf9;
@@ -2415,7 +2415,6 @@ item new
         }
 
         .send-message {
-          position: relative;
           text-align: center;
           background-color:#41B6F9;
           color: #fff;
@@ -2423,8 +2422,10 @@ item new
           font-weight: 600;
           border-radius: 2px;
           cursor: pointer;
-          padding: 9px 60px 9px 60px;
-          left: 21px;
+          padding: 12px 60px 12px 60px;
+          margin: 0 auto;
+          display: table;
+          margin-top: 10px;
           &:hover{
             background-color: #419bf9 !important;
             color: #fff;
@@ -2485,15 +2486,13 @@ item new
         }
       }
       .item-lease-price {
-        float:right;
-        z-index:2;
         border: 1px solid #979797;
         background-color: #fff;
         height: 260px;
-        width: 270px;
-        margin-top: 15px;
-        margin-bottom: 35px;
-        border-radius: 3px;
+        width: 99.5%;
+        float: none;
+        margin: 0 auto;
+        display: table;
 
         p{
           text-align: left;
@@ -2594,43 +2593,41 @@ item new
 
     .item-title-and-user {
       background-color: #fff;
-      padding-top: 1em;
       border-bottom: 1px solid #C9C9C9;
       width: 100%;
+      display: table;
+      margin: 0 auto;
 
       .item-detail-title {
-        padding-top: 1em;
-        padding-bottom: .7em;
         color: #4a4a4a;
         font-size: 17px;
         font-weight:600;
-        width: 778px;
-        margin: 0 auto;
+        width: 100% !important;
+        text-align: center;
       }
       .item-detail-username{
-        width: 380px;
-        display: table;
-        margin: 0 auto;
-
+        width: 100% !important;
+        text-align: center;
         .avatar{
-          float: left;
-          margin-left: -6.5em;
-          margin-top: -2.5em;
           border-radius: 50%;
-          height:85px;
-          width: 85px;
+          height:70px;
+          width: 70px;
           object-fit: cover;
-        }
+          margin-top: 1.2em;
+          position: relative;
+          float: right;
+          right: 40%;
+          }
+
       }
 
       .date{
-        width: 380px;
-        display: table;
-        margin: 0 auto;
-        margin-top: -20px;
-        margin-bottom: 25px;
+        width: 50% !important;
+        margin-top: 10px;
+        margin-bottom: 10px;
         font-size: 14px;
         color: #979797;
+        text-align: center;
       }
     }
 
@@ -2638,22 +2635,27 @@ item new
       display: table;
       margin: 0 auto;
       height: 200px;
-      width: 500px;
+      width: 90% !important;
       margin-top: 2em;
 
       .item-description {
         line-height: normal;
         color: #4a4a4a;
-        width: 600px;
+        width: 100% !important;
+        margin: 0 auto;
+        display: table;
 
         p {text-align: left;}
       }
 
       #item-map{
         position: fixed;
-        height: 300px;
-        width: 100%;
-        margin: 15px 0 25px 0;
+        height: 250px;
+        width: 90%;
+        margin: 0 auto;
+        display: table;
+        margin-top: 10px !important;
+        margin-bottom: 25px !important
       }
     }
   }
@@ -2750,7 +2752,7 @@ item new
 
   .divider{
     border-top: 1px solid #DCDCDC;
-    width: 100%;
+    width: 95%;
     margin: 0 auto;
     margin-top: 30px;
   }
@@ -2776,7 +2778,7 @@ item new
       #review_comment {
         display: table;
         margin: 0 auto;
-        width: 550px;
+        width: 95%;
         height: 90px;
         font-size: 15px;
         padding: 10px;
@@ -2811,7 +2813,7 @@ item new
       display: table;
       margin: 0 auto;
       text-align: left;
-      width: 570px;
+      width: 93%;
       color: #4a4a4a;
 
       #no-review-yet{
@@ -2820,6 +2822,7 @@ item new
         text-align: center;
         margin-left: 1px;
         padding: 13px 0px 13px 0px;
+        width: 100% !important;
       }
 
 
