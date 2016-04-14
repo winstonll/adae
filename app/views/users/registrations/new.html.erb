@@ -33,10 +33,15 @@
     <%= f.password_field :password_confirmation, autocomplete: "off" %><br/>
   </div>
   <br/>
+  <div class="field">
+    <%= f.label :referral %>
+    <input type="text" name="referral" class="input-box" placeholder="Promo Code (Optional)" id="promo">
+  </div>
+  <br/>
   <div class="actions">
     <%= f.submit "Sign up" %>
   </div>
   <div>
     <%= render "users/shared/links" %>
-  </div> 
+  </div>
 <% end %>
