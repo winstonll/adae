@@ -69,22 +69,22 @@ $(document).ready(function() {
   <div id="c-mask" class="c-mask"></div><!-- /c-mask -->
 
   <nav id="c-menu--slide-left" class="c-menu c-menu--slide-left">
-    <button class="c-menu__close">&larr; Close Menu</button>
+    <button class="c-menu__close">&#10006;</button>
     <ul class="c-menu__items">
       <% if signed_in? %>
         <li class="c-menu__item"><a href='#' class="c-menu__link"><span>Listings</span></a>
           <ul class="c-menu__items" style="display: none;">
-             <li class="c-menu__item" style="background-color: #3184a1 !important;"><%= link_to 'Post a Listing', new_item_path, class: "c-menu__link" %></li>
-             <li class="c-menu__item" style="background-color: #3184a1 !important;"><%= link_to "All Listings", items_path, class: "c-menu__link" %></li>
-             <li class="c-menu__item" style="background-color: #3184a1 !important;"><%= link_to "My Listings", user_path(current_user, :anchor => "listing-heading"), class: "c-menu__link" %></li>
+             <li class="c-menu__item" style="background-color: #47475C !important; padding: 4px;"><%= link_to 'Post a Listing', new_item_path, class: "c-menu__link" %></li>
+             <li class="c-menu__item" style="background-color: #47475C !important; padding: 4px;"><%= link_to "All Listings", items_path, class: "c-menu__link" %></li>
+             <li class="c-menu__item" style="background-color: #47475C !important; padding: 4px;"><%= link_to "My Listings", user_path(current_user, :anchor => "listing-heading"), class: "c-menu__link" %></li>
           </ul>
         </li>
 
         <li class="c-menu__item"><a href='#' class="c-menu__link"><span>Shout Outs</span></a>
           <ul class="c-menu__items" style="display: none;">
-             <li class="c-menu__item" style="background-color: #3184a1 !important;"><%= link_to 'Post a Shout Out', new_request_path, class: "c-menu__link" %></li>
-             <li class="c-menu__item" style="background-color: #3184a1 !important;"><%= link_to "All Shout Outs", requests_path, class: "c-menu__link" %></li>
-             <li class="c-menu__item" style="background-color: #3184a1 !important;"><%= link_to "My Shout Outs", user_path(current_user, :anchor => "shoutout-heading"), class: "c-menu__link" %></li>
+             <li class="c-menu__item" style="background-color: #47475C !important; padding: 4px;"><%= link_to 'Post a Shout Out', new_request_path, class: "c-menu__link" %></li>
+             <li class="c-menu__item" style="background-color: #47475C !important; padding: 4px;"><%= link_to "All Shout Outs", requests_path, class: "c-menu__link" %></li>
+             <li class="c-menu__item" style="background-color: #47475C !important; padding: 4px;"><%= link_to "My Shout Outs", user_path(current_user, :anchor => "shoutout-heading"), class: "c-menu__link" %></li>
           </ul>
         </li>
 
@@ -96,10 +96,10 @@ $(document).ready(function() {
 
         <li class="c-menu__item"><a href='#' class="c-menu__link"><span><%= current_user.name %></span></a>
           <ul class="c-menu__items" style="display: none;">
-             <li class="c-menu__item" style="background-color: #3184a1 !important;"><%= link_to "Account", user_path(current_user), class: "c-menu__link" %></li>
-             <li class="c-menu__item" style="background-color: #3184a1 !important;"><%= link_to "Edit Profile", edit_user_path(current_user), class: "c-menu__link" %></li>
-             <li class="c-menu__item" style="background-color: #3184a1 !important;"><%= link_to "Reviews", user_path(current_user, :anchor => "user-reviews"), class: "c-menu__link" %></li>
-             <li class="c-menu__item" style="background-color: #3184a1 !important;"><%= link_to('Logout', destroy_user_session_path, :method => :delete, class: "c-menu__link") %></li>
+             <li class="c-menu__item" style="background-color: #47475C !important; padding: 4px;"><%= link_to "Account", user_path(current_user), class: "c-menu__link" %></li>
+             <li class="c-menu__item" style="background-color: #47475C !important; padding: 4px;"><%= link_to "Edit Profile", edit_user_path(current_user), class: "c-menu__link" %></li>
+             <li class="c-menu__item" style="background-color: #47475C !important; padding: 4px;"><%= link_to "Reviews", user_path(current_user, :anchor => "user-reviews"), class: "c-menu__link" %></li>
+             <li class="c-menu__item" style="background-color: #47475C !important; padding: 4px;"><%= link_to('Logout', destroy_user_session_path, :method => :delete, class: "c-menu__link") %></li>
           </ul>
         </li>
       <% else %>
@@ -108,11 +108,6 @@ $(document).ready(function() {
         <%#= link_to 'Sign Up', {remote: true, controller: "home", action: "signup_modal"}, id: "nav-signup-btn", class: "signup" %>
         <%#= link_to 'Log In', {remote: true, controller: "home", action: "signin_modal"}, id: "nav-signin-btn", class: "login" %>
       <% end %>
-
-      <!--<li class="c-menu__item"><a href="#" class="c-menu__link">About</a></li>
-      <li class="c-menu__item"><a href="#" class="c-menu__link">Services</a></li>
-      <li class="c-menu__item"><a href="#" class="c-menu__link">Work</a></li>
-      <li class="c-menu__item"><a href="#" class="c-menu__link">Contact</a></li>-->
     </ul>
   </nav><!-- /c-menu slide-left -->
 

@@ -358,7 +358,7 @@
       <% end %>
 
       <!-- Stripe transaction form OR transaction request submission -->
-      <center style="position: relative; left: 50%; margin-bottom: 3em;">
+      <center style="margin-bottom: 3em;">
         <% if current_user.stripe_customer_id.nil? %>
           <%= form_tag transactions_stripe_path do%>
             <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"

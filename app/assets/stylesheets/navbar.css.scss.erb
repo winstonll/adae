@@ -382,6 +382,7 @@ input:focus, textarea {
   width: 26px;
   height: 20px;
   position: absolute;
+  background-size: 22px 18px;
   top: 20px;
   left: 20px;
   display: none;
@@ -514,14 +515,13 @@ o-wrapper {
 
 
   .c-menu--slide-left {
-
+    background-color: #2E2E3B;
   }
 
   .c-menu--slide-left .c-menu__item {
     display: block;
-    text-align: center;
-    border-top: solid 1px #b5dbe9;
-    border-bottom: solid 1px #3184a1;
+    text-align: left;
+    border: none;
   }
 
   .c-menu--slide-left .c-menu__item:first-child {
@@ -536,12 +536,17 @@ o-wrapper {
     display: block;
     padding: 12px 24px;
     color: #fff;
+    font-weight: 500;
+    font-size: 18px;
   }
 
   .c-menu--slide-left .c-menu__close {
     display: block;
-    padding: 12px 24px;
+    padding: 12px 10px;
+    text-align: right;
+    font-size: 20px;
     width: 100%;
+    background-color: #2E2E3B;
   }
 
   .c-menu--slide-left.is-active {

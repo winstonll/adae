@@ -1,7 +1,7 @@
 <%= stylesheet_link_tag "items" %>
 <div class="bootstrap" style="margin-top: 50px;">
   <div class="col-md-4 col-md-push-4">
-    <center><h1 style="color:#419bf9;">Log In</h1></center>
+    <center><h1 style="color:#419bf9; margin: -5px 0px 25px 0px;">Welcome Back</h1></center>
       <%= form_for(resource, as: resource_name, url: user_session_path) do |f| %>
         <%= f.email_field :email, autofocus: true, placeholder: "Email", :class => "form-control" %>
         <%= f.password_field :password, autocomplete: "off", placeholder: "Password", :class => "form-control"  %>
@@ -11,7 +11,7 @@
           </div>
         <% end %>
           <p class="actions shared_links">
-            <input type="submit" name="submit" value="Log in" class="btn btn-large btn-primary" style="width: 150px;">
+            <input type="submit" name="submit" value="Log in" class="btn btn-large btn-primary" style="width: 100%; padding: 9px; margin: 10px 0px 8px 0px; border-radius: 4px; border: none; color: #fff; font-size: 16px; font-weight: 500; background-color: #419bf9; ">
           </p>
             <span><%= render "users/shared/links" %></span>
       <% end %>
