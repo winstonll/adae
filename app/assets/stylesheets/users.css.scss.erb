@@ -304,6 +304,16 @@ body{
     padding-bottom: 3em;
     float: right;
 
+    #no-request-container {
+      border: 1px solid #979797;
+      list-style: none;
+      background-color: #fff;
+			margin-top: 10px;
+      margin-left: 132px;
+      height: 100px;
+      width: 350px;
+    }
+
     .request-heading{
       font-size: 18px;
       font-weight: 600;
@@ -385,6 +395,16 @@ body{
     margin: 0 auto;
     padding-bottom: 3em;
     float: right;
+
+    #no-transaction-container {
+      border: 1px solid #979797;
+      list-style: none;
+      background-color: #fff;
+      margin-top: 10px;
+      margin-left: 132px;
+      height: 100px;
+      width: 350px;
+    }
 
     .transaction-heading{
       font-size: 18px;
@@ -473,6 +493,16 @@ body{
       font-weight: 600;
       color: #4a4a4a;
       padding-top: 10px;
+    }
+
+    #no-listing-container {
+      border: 1px solid #979797;
+      list-style: none;
+      background-color: #fff;
+			margin-top: 10px;
+      margin-left: 132px;
+      height: 100px;
+      width: 350px;
     }
 
     .listing-img{
@@ -569,12 +599,20 @@ body{
       padding-top: 10px;
     }
 
+    #no-shoutout-container {
+      border: 1px solid #979797;
+      list-style: none;
+      background-color: #fff;
+			margin-top: 10px;
+      height: 100px;
+      width: 350px;
+    }
+
     .shoutouts{
       border: 1px solid #979797;
       list-style: none;
       background-color: #fff;
       margin-top: 10px;
-      margin-left: 132px;
       width: 350px;
       border-radius: 3px;
 
@@ -851,4 +889,218 @@ body{
     border-radius: 5px !important;
     padding-bottom: 25px;
   }
+}
+
+@media screen and (min-width: 320px) and (max-width: 768px){
+
+  .user-content-container {
+    width: 100%;
+    display: block;
+
+    .profile-info {
+      display: block;
+      width: 90%;
+      padding: 0px;
+      margin: 0 auto;
+      clear: both;
+      float: none !important;
+
+      .avatar{
+        height: 60px;
+        width: 60px;
+        margin-top: 5px;
+      }
+    }
+
+    .request-container{
+      display: block;
+      width: 100%;
+
+      .request-img {
+        display: none;
+      }
+
+      .requests {
+        margin-left: 0px;
+        margin: 0 auto;
+        margin-top: 8px;
+      }
+
+      .request-heading {
+        text-align: center;
+        margin-top: 1.5em;
+        margin-bottom: 20px;
+      }
+
+      #no-request-container {
+        margin-left: 0px;
+        margin: 0 auto;
+        margin-top: 10px;
+      }
+    }
+
+    .transaction-container {
+      display: block;
+      width: 100%;
+
+      .transaction-img {
+        display: none;
+      }
+
+      .transactions {
+        margin-left: 0px;
+        margin: 0 auto;
+        margin-top: 8px;
+      }
+
+      .transaction-heading {
+        text-align: center;
+      }
+
+      #no-transaction-container {
+        margin-left: 0px;
+        margin: 0 auto;
+        margin-top: 10px;
+      }
+    }
+
+    .listing-container {
+      display: block;
+      width: 100%;
+
+      .listing-img {
+        display: none;
+      }
+
+      .listings {
+        margin-left: 0px;
+        margin: 0 auto;
+        margin-top: 8px;
+      }
+
+      #listing-heading {
+        text-align: center;
+        margin-bottom: 20px;
+        margin-top: -15px;
+      }
+
+      #no-listing-container {
+        margin-left: 0px;
+        margin: 0 auto;
+        margin-top: 10px;
+      }
+    }
+
+
+    .shoutout-container {
+      display: block;
+      width: 100%;
+
+      #shoutout-heading {
+        text-align: center;
+      }
+
+      #no-shoutout-container {
+        margin-left: 0px !important;
+        margin: 0 auto;
+        margin-top: 10px;
+      }
+    }
+
+    .ref-code {
+      padding: 0px;
+      width: 99%;
+
+    }
+
+    .account-balance-section {
+      padding: 0px;
+      width: 99%;
+    }
+
+    #mail-cheque-heading {
+      padding: 0px;
+      width: 99%;
+      text-align: center;
+    }
+
+    .mail-cheque-section {
+      padding: 0px;
+      width: 99%;
+
+      input{
+        width: 96% !important;
+      }
+    }
+
+    .payment-settings {
+      padding: 0px;
+      width: 99%;
+    }
+  }
+
+  /*User-Rating Section*/
+  .user-ratings{
+    width: 100%;
+    .account-heading{
+      text-align: center;
+      color: #4a4a4a;
+      font-weight: 500;
+    }
+    .user-rating-content{
+      width: 100%;
+
+      .rating-title{
+        text-align: center;
+        width: 95%;
+        margin-bottom: 10px;
+        &:hover{
+          text-decoration: underline;
+        }
+      }
+      .rating-info{
+        display: table !important;
+        margin: 0 auto !important;
+        float: none;
+
+      .rating{
+        color: #EADB1E;
+        font-size: 30px;
+        margin-bottom: -3px;
+        margin-top: -1px;
+        font-weight: 600;
+        }
+      }
+      .divider{
+        border-top: 1px solid #DCDCDC;
+        width: 100%;
+        margin-top: 25px;
+      }
+    }
+  }
+  /*Ratin Section Ends*/
+
+  /*User Reviews Section*/
+  #user-reviews{
+    width: 100%;
+
+    .account-heading{
+      font-weight: 500;
+      color: #4a4a4a;
+      text-align: center;
+    }
+
+    .user-review{
+      width: 95%;
+      display: table;
+      margin: 0 auto;
+      text-align: left;
+
+      .poster{
+        margin-bottom: 10px;
+      }
+
+    }
+  }
+  /*User Review Section Ends here */
 }
