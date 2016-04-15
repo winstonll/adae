@@ -39,8 +39,7 @@
 			</li>
 		  <% end %>
 		<% else %>
-			<div style="border: 1px solid #979797;list-style: none;background-color: #fff;
-			margin-top: 10px;margin-left: 132px;height: 100px;width: 350px;">
+			<div id="no-request-container">
 				<p>You have no Requests</p>
 				<p><b> <%= link_to 'Create a request now!', items_path, style:"color: #419bf9"%></b></p>
 			</div>
@@ -74,8 +73,7 @@
 			</li>
 		  <% end %>
 		<% else %>
-			<div style="border: 1px solid #979797;list-style: none;background-color: #fff;
-			margin-top: 10px;margin-left: 132px;height: 100px;width: 350px;">
+			<div id="no-transaction-container">
 				<p>You have no Transactions</p>
 			</div>
 		<% end %>
@@ -107,8 +105,7 @@
 			</li>
 			<% end %>
 		<% else %>
-			<div style="border: 1px solid #979797;list-style: none;background-color: #fff;
-			margin-top: 10px;margin-left: 132px;height: 100px;width: 350px;">
+			<div id="no-listing-container" style="">
 				<p>You have no Listings</p>
 				<p><b> <%= link_to 'Create a listing now!', new_item_path, style:"color: #419bf9"%></b></p>
 			</div>
@@ -135,8 +132,7 @@
 				</li>
 			<% end %>
 		<% else %>
-			<div style="border: 1px solid #979797;list-style: none;background-color: #fff;
-			margin-top: 10px;margin-left: 132px;height: 100px;width: 350px;">
+			<div id="no-shoutout-container" style="">
 				<p>You have no Shoutouts</p>
 				<p><b> <%= link_to 'Create a shoutout now!', new_request_path, style:"color: #419bf9"%></b></p>
 			</div>
@@ -160,7 +156,7 @@
 		</div>
 	</div>
 
-	<h4> Cash Out Options </h4>
+	<h4 id="mail-cheque-heading"> Cash Out Options </h4>
 
 	<div class="mail-cheque-section">
 			<p id="title">Mailed Cheque</p>
