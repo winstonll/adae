@@ -94,7 +94,7 @@ $(document).ready(function() {
           </a>
         </li>
 
-        <li class="c-menu__item"><a href='#' class="c-menu__link"><span style="color: #419bf9;"><%= current_user.name %></span></a>
+        <li class="c-menu__item"><a href='#' class="c-menu__link"><span style="color: #f5a623;"><%= current_user.name %></span></a>
           <ul class="c-menu__items" style="display: none;">
              <li class="c-menu__item" style="background-color: #47475C !important; padding: 4px;"><%= link_to "Account", user_path(current_user), class: "c-menu__link" %></li>
              <li class="c-menu__item" style="background-color: #47475C !important; padding: 4px;"><%= link_to "Edit Profile", edit_user_path(current_user), class: "c-menu__link" %></li>
