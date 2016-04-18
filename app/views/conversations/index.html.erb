@@ -35,7 +35,7 @@
             <div class="user-avatar-container"> <%= link_to image_tag(user.avatar(:med), class: "user-avatar"), user_path(user) %> </div>
             <label class="item-detail" id="item-title"> <%= type %> Request to: <%= user.name %> </label>
             <% end %>
-            <label class="item-detail" id="item_description"><%= item.description %></label>
+            <label class="item-detail" id="item_description"><%= item.title %></label>
             <div class="item-accept-deny-buttons">
               <%= link_to 'View', conversations_path(sender_id: @transactions[i].buyer_id,
               recipient_id: @transactions[i].seller_id, item_id: @transactions[i].item_id), method: 'post', class: "reply-transaction"%>
