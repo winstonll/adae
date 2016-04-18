@@ -1,7 +1,4 @@
 <%= stylesheet_link_tag "chat" %>
-<!--<% if @over_ten %>
-  <%= link_to 'Show Previous Messages', '?m=all' %>
-<% end %>-->
 <script>
   $(document).on('ready page:load', function() {
     var objDiv = document.getElementById("ui-segment");
@@ -32,7 +29,7 @@
 <div class="companion-modal"></div>
 
 <div class="page-content">
-  
+
   <!-- Chat area pre-transaction request -->
   <% if @conversation.sender_id == current_user.id %>
     <div class="username"> Conversation with <%=User.find_by(id: @conversation.recipient_id).name %></div>
