@@ -5,10 +5,10 @@ class MessagesController < ApplicationController
 
   def index
 
-    if @messages.length > 10
-      @over_ten = true
-      @messages = @messages[-10..-1]
-    end
+    #if @messages.length > 40
+      #@over_ten = true
+      #@messages = @messages[-10..-1]
+    #end
 
     if @messages.last
       if @messages.last.user_id != current_user.id
