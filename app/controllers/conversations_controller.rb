@@ -3,11 +3,11 @@ class ConversationsController < ApplicationController
 
   def index
 
-    @conversations = Conversation.where("(conversations.sender_id = #{current_user.id}) OR (conversations.recipient_id = #{current_user.id})").order(:created_at)
+    @conversations = Conversation.where("(conversations.sender_id = #{current_user.id}) OR (conversations.recipient_id = #{current_user.id})").order(created_at: :desc)
 
     #@transactions = []
     @transactions = Transaction.where("(transactions.seller_id = #{current_user.id} OR transactions.buyer_id = #{current_user.id}) \
-    AND (transactions.status != 'Completed' AND transactions.status != 'Denied' AND transactions.status != 'Cancelled')").order(:created_at)
+    AND (transactions.status != 'Completed' AND transactions.status != 'Denied' AND transactions.status != 'Cancelled')").order(created_at: :desc)
 
     #@conversations.each do |conversation|
     #  if transaction = Transaction.where("((transactions.seller_id = #{conversation.sender_id} AND transactions.buyer_id = #{conversation.recipient_id})\
