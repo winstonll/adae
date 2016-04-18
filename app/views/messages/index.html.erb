@@ -16,6 +16,15 @@
     var datetime = adaebot.next();
     datetime.css({'margin-left':'6em','margin-right':'6em'});
 
+    if($('#message_body').val() ==  "")
+       $('#reply_btn').attr('disabled', true);
+
+    $('#message_body').keyup(function(){
+        if($('#message_body').val() !=  "") 
+             $('#reply_btn').attr('disabled', false);    
+        else
+             $('#reply_btn').attr('disabled', true);   
+    });
   });
 
   function clickAndDisable(link) {
@@ -85,7 +94,7 @@
               <%= f.hidden_field :item_id, :value => "#{@item.id}" %>
             <% end %>
 
-            <%= f.submit "Send", class: "reply_btn", data: {disable_with: "Sending..."} %>
+            <%= f.submit "Send", id: "reply_btn", data: {disable_with: "Sending..."} %>
         </div>
       <% end %>
   </div>
