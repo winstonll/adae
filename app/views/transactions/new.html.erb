@@ -384,15 +384,16 @@
           );
         }
       </script>
-
-      <input class="share-button" type="button" onclick="share_prompt()" value="Share" />
-      <span style="color: #4a4a4a; font-size: 15px;"> and get 5% Off! </span>
-      <span>
-        <span style="bottom: 1px;" class="wrapper">
-          <%= image_tag "question-mark.png", size:"13x14"%>
-          <div class="tooltip">Share this page before submitting your request, and get 5% off of the entire price! </div>
-        </span>
-      </span>
+        <div id="fb-share-section">
+          <input class="share-button" type="button" onclick="share_prompt()" value="Share" />
+          <span style="width: 100%; color: #4a4a4a; font-size: 15px;"> and get 5% Off! </span>
+          <span>
+            <span style="bottom: 1px;" class="wrapper">
+              <%= image_tag "question-mark.png", size:"13x14"%>
+              <div class="tooltip">Share this listing before submitting your request, and get 5% off of the entire price! </div>
+            </span>
+          </span>
+      </div>
     </div>
 
     <div>
