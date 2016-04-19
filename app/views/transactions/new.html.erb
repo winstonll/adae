@@ -1,3 +1,16 @@
+<% content_for :head do %>
+  <title><%= @item.title %></title>
+    <!-- You can use open graph tags to customize link previews.
+    Learn more: https://developers.facebook.com/docs/sharing/webmasters -->
+  <meta property="og:url"           content="<%= request.original_url %>" />
+  <meta property="og:type"          content="website" />
+  <meta property="og:title"         content="<%= @item.title %>" />
+  <meta property="og:description"   content="<%= @item.description %>" />
+
+  <% if @pictures %>
+    <meta property="og:image" content="<%= "https://adae.co#{@pictures.first.image.url(:med)}"  %>" />
+  <% end %>
+<% end %>
 <%= stylesheet_link_tag "transactions" %>
 
 <script>
@@ -165,19 +178,6 @@
           <% else %>
             <p id="display-price" style="font-size: 30px; font-weight: 500; color: #4a4a4a;"></p>
           <% end %>
-          <div class="item-detail-calc">
-            <!--<section id="markup-container">
-              <label style="margin-bottom: 10px;" id="markup-label">Adae Fee:
-              <span>
-                <span class="wrapper">
-                  ?
-                  <div class="tooltip">We charge a 4% to 10% fee to cover the cost of running Adae, and to always keep it ad-free.</div>
-                </span>
-              </span>
-              </label>
-              <label id="markup-price"></label>
-            </section>-->
-          </div>
           <div style="margin-left: 0px;" class="credit-fee">
             <a style="margin-left: 20px" target="_blank" href="https://stripe.com/ca/pricing">Stripe Processing Fee:</a>
             <span>
@@ -215,17 +215,6 @@
                   <input id="subtotal" readonly="readonly" value=""></input>
 
                   <% unless @item.deposit == 0 %>
-                  <!--<section id="markup-container">
-                    <label id="markup-label">Adae Fee:
-                    <span>
-                      <span class="wrapper">
-                        ?
-                        <div class="tooltip">We charge a 4% to 10% fee to cover the cost of running Adae, and to always keep it ad-free.</div>
-                      </span>
-                    </span>
-                  </label>
-                    <label id="markup-price"></label>
-                  </section>-->
                   <input class="trust-fee"readonly="readonly" value="Trust Fee: $<%= @item.deposit %>"></input>
                   <span>
                     <span style="top: 1.5px;"class="wrapper">
@@ -250,7 +239,6 @@
                   </div>
                   <span class="finalp">Total</span>
                   <%= f.text_field :total_price, :value => "",:readonly => true %>
-                  <span><%#= f.submit 'Request to Lease', class: "rent-button"%></span>
               </div>
             <% end %>
         </div>
@@ -272,17 +260,6 @@
               <input id="subtotal" readonly="readonly" value=""></input>
 
               <% unless @item.deposit == 0 %>
-              <!--  <label id="markup-label">Adae Fee:
-
-                <span>
-                  <span class="wrapper">
-                    ?
-                    <div class="tooltip">We charge a 4% to 10% fee to cover the cost of running Adae, and to always keep it ad-free.</div>
-                  </span>
-                </span>
-
-                </label>
-                <label id="markup-price"></label>-->
                 <input class="trust-fee"readonly="readonly" value="Trust Fee: $<%= @item.deposit %>"></input>
                 <span>
                   <span style="top: 1.5px;"class="wrapper">
@@ -290,8 +267,6 @@
                     <div class="tooltip">This ensures that the item is treated with care, and is returned on time. <b style="font-weight: 600">This amount will only be charged if you fail to return the item, damage it, or lose it.</b></div>
                   </span>
                 </span>
-
-                </input>
               <% end %>
               <div class="credit-fee">
                 <a target="_blank" href="https://stripe.com/ca/pricing">Stripe Processing Fee:</a>
@@ -306,7 +281,6 @@
               <div class="division" style=" width: 85%;"></div>
               <span class="finalp">Total</span>
               <%= f.text_field :total_price, :value => "",:readonly => true %>
-              <span><%#= f.submit 'Request to Rent', class: "rent-button"%></span>
             </div>
           <% end %>
         </div>
@@ -326,15 +300,6 @@
               <input id="times" readonly="readonly" value=""></input>
               <input id="length" readonly="readonly" value=""></input>
               <input id="subtotal" readonly="readonly" value=""></input>
-                  <!--<label style="margin-bottom: 10px;"id="markup-label">Adae Fee:
-                  <span>
-                    <span class="wrapper">
-                      ?
-                      <div class="tooltip">We charge a 4% to 10% fee to cover the cost of running Adae, and to always keep it ad-free.</div>
-                    </span>
-                  </span>
-                </label>
-                  <label id="markup-price"></label>-->
                 <% unless @item.deposit == 0 %>
                   <input class="deposit" readonly="readonly" value="$<%= @item.deposit %>"></input>
                 <% end %>
@@ -351,7 +316,6 @@
                 <div class="division" style="width: 85%;"></div>
               <span class="finalp">Total</span>
               <%= f.text_field :total_price, :value => "",:readonly => true %>
-              <span><%#= f.submit 'Request Service', class: "rent-button"%></span>
             </div>
             <% end %>
         </div>
@@ -384,18 +348,63 @@
           <% end %>
         <%end%>
       </center>
+
+      <script>
+        window.fbAsyncInit = function() {
+
+        };
+
+        (function(d, s, id){
+          var js, fjs = d.getElementsByTagName(s)[0];
+          if (d.getElementById(id)) {return;}
+          js = d.createElement(s); js.id = id;
+          js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5&appId=896455457041729";
+          fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+
+        function share_prompt(){
+          FB.ui(
+            {
+              method: 'feed',
+              name: "<%= @item.title %>",
+              link: "<%= request.original_url %>",
+              picture: "<%= "https://adae.co#{@pictures.first.image.url(:med)}"  %>",
+              caption: 'Reference Documentation',
+              description: "<%= @item.description %>",
+              message: ''
+            },
+            function(response) {
+              if (response && response.post_id) {
+                alert('Post was published.');
+                $.ajax({url: "/discount", type: "POST", data: {item_id: "<%= @item.id %>"},});
+              } else {
+                alert('Post was not published.');
+              }
+            }
+          );
+        }
+      </script>
+
+      <input class="share-button" type="button" onclick="share_prompt()" value="Share" />
+      <span style="color: #4a4a4a; font-size: 15px;"> and get 5% Off! </span>
+      <span>
+        <span style="bottom: 1px;" class="wrapper">
+          <%= image_tag "question-mark.png", size:"13x14"%>
+          <div class="tooltip">Share this page before submitting your request, and get 5% off of the entire price! </div>
+        </span>
+      </span>
     </div>
 
     <div>
       <div class="why-cc">
         Why should I add my credit/debit card?
         <div class="tooltip">
-                          <ul>
-                            <li>&#x2756; Putting a credit or debit card tells us that you are sincerely interested. Adae is built for for serious users.</br></br></li>
-                            <li>&#x2756; When you add your card (you will NOT be charged), you will proceed to the chat page and discuss with the owner.</br><br></li>
-                            <li>&#x2756; Only when you are happy with the arrangements, and have worked out a suitable meeting location and time, will the owner accept your request. This is when you are charged.</br><br></li>
-                            <li>&#x2756; The owner will NOT receive your money until you meet and use our Scanner App. Your money is always 100% safe with us.</div></li>
-                          </ul>
+          <ul>
+            <li>&#x2756; Putting a credit or debit card tells us that you are sincerely interested. Adae is built for for serious users.</br></br></li>
+            <li>&#x2756; When you add your card (you will NOT be charged), you will proceed to the chat page and discuss with the owner.</br><br></li>
+            <li>&#x2756; Only when you are happy with the arrangements, and have worked out a suitable meeting location and time, will the owner accept your request. This is when you are charged.</br><br></li>
+            <li>&#x2756; The owner will NOT receive your money until you meet and use our Scanner App. Your money is always 100% safe with us.</div></li>
+          </ul>
       </div>
     </div>
 
