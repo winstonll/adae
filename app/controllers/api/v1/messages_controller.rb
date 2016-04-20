@@ -8,7 +8,7 @@ module Api::V1
     def index
       @messages = @conversation.messages
 
-      render 'api/v1/conversations/index', :formats => [:json], :handlers => [:jbuilder], status: 201
+      render json: @messages, status: :ok
     end
 
     def show
