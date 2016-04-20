@@ -51,24 +51,30 @@
 			<div class="countdown"></div>
 		</div>
 
-		<!--<div class="new-item-form">
-      <%#= file_field_tag "images[]", type: :file, multiple: true %>
-			<div class="upload-photo">
-				<%#= image_tag "phone.png", id:"photo-image" %>
-				<p id="pic-title">  + Add Photo </p>
-				<p id="descriptor"> You can upload more than one file at a time </p>
-			</div>
-		</div>-->
-
 		<% if @item.listing_type == 'timeoffer' %>
-			<%= f.fields_for :prices, @price do |p| %>
-			    <%= p.hidden_field :timeframe, :value => "Hour" %>
-			    <div class="new-item-form">
-			    	<p> Your Price:</p>
-					<div class="rent-deposit-money-sign"> $ </div>
-			        <%=p.number_field :amount %> <span class="perhr">per Hour</span>
-			    </div>
-			    <%= f.hidden_field :deposit, :value => 0 %>
+			<%= f.fields_for :prices, Price.new do |hour| %>
+			<%= f.fields_for :prices, Price.new do |flat| %>
+	    		<div class="new-item-form">
+	  				<p class="deposit-tip">
+	  				  <b> Your Price:</b></br>
+	  				  Set the price you want to charge either by Hour or as a Flat Rate.</br>
+	  				  Leave the box blank if the timeframe is not applicable.
+	  				</p>
+	  				<table>
+	  				  <tr>
+	  				  	<th>Timeframe:</th>
+	  			      	<td><%= hour.text_field :timeframe, :value => "Hour", :readonly => "True", class: "timeframe" %></td>
+	  			      	<td><%= flat.text_field :timeframe, :value => "Flat Rate", :readonly => "True", class: "timeframe" %></td>
+	  				  </tr>
+				      <tr>
+				      	<th>Price:</th>
+				      	<td><input class="money", readonly="true", value="$"></input><%=hour.number_field :amount, max: 100%></td>
+				      	<td><input class="money", readonly="true", value="$"></input><%=flat.number_field :amount, max: 1000%></td>
+				      </tr>
+	  				</table>
+	      			<br/>
+	    		</div>
+	    	<% end %>
 			<% end %>
 		<% elsif @item.listing_type == 'sell' %>
 			<%= f.fields_for :prices, @price do |p| %>
@@ -111,7 +117,7 @@
       			<div class="new-item-form">
   	          	  <% if @item.listing_type == 'lease' %>
         			<p id="deposit-title"> Deposit Price & Sale Price:</p>
-        			<div class="rent-deposit-money-sign"> $ </div>
+        			<div class="rent-deposit-money-sign" style="margin-top: -6px !important"> $ </div>
       				<%= f.text_field :deposit %>
   	          		<div class="deposit-tip">
 	  		          	This ensures that the item is treated with care, and is returned on time. </br>
@@ -123,7 +129,7 @@
   	            	</div>
       	    	  <% else %>
   	          		<p id="deposit-title"> Deposit Price</p>
-  	          		<div class="rent-deposit-money-sign"> $ </div>
+  	          		<div class="rent-deposit-money-sign" style="margin-top: -6px !important"> $ </div>
   	          		<%= f.text_field :deposit %>
   	          		<div class="deposit-tip">
 	  	          		This ensures that the item is treated with care, and is returned on time.</br>
@@ -158,9 +164,9 @@
 	<% end %>
 
 	<% @prices.each do |price| %>
-		<% if price.timeframe == 'Day' %>
+		<% if price.timeframe == 'Day' || price.timeframe == 'Hour' %>
 			$('#item_prices_attributes_0_amount').val("<%= price.amount.to_digits %>");
-		<% elsif price.timeframe == 'Week' %>
+		<% elsif price.timeframe == 'Week' || price.timeframe == 'Flat Rate' %>
 			$('#item_prices_attributes_1_amount').val("<%= price.amount.to_digits %>");
 		<% elsif price.timeframe == 'Month' %>
 			$('#item_prices_attributes_2_amount').val("<%= price.amount.to_digits %>");
