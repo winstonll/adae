@@ -16,7 +16,18 @@ module Api::V1
     end
 
     def create
+      if params[:messages][:body]
+        @message = Message.new(body: params[:messages][:body],
+        conversation_id: params[:messages][:conversation_id], user_id: current_user.id)
 
+        if @message.save
+          render :nothing => true, status: :ok
+        else
+          render json: @message.errors, status: 422
+        end
+      else
+        render :json => { :errors => "message is empty".as_json }, status: 422
+      end
     end
 
     def destroy
