@@ -43,7 +43,6 @@ $green: #7ed321;
   }
 
   .request-box{
-    height: 290px;
     width: 350px;
     background-color: #fff;
     float: left;
@@ -51,77 +50,81 @@ $green: #7ed321;
     border: 1px solid #cdcdcd;
     margin-top: 15px;
 
-    .lease-buy-item{
-      background-color: #7ed321;
-      color: #fff;
-      margin: 0 auto;
-      display: table;
-      padding: 10px 20px;
-      border-radius: 4px;
-      &:hover{
-        background-color: #5AC902;
+    .request-wrapper {
+      padding-bottom: 20px;
+
+      .lease-buy-item{
+        background-color: #7ed321;
         color: #fff;
-        transition: all .3s ease-in-out;
-      }
-    }
-
-    .item-image {
-      width: 100px;
-      height: 100px;
-      object-fit: cover;
-      object-position: center;
-    }
-
-    #heading{
-      text-align: center;
-      font-weight: 600;
-      color: #4a4a4a;
-      margin-bottom: 5px;
-    }
-
-    #item-title{
-      text-align: center;
-      color: #4a4a4a;
-      margin: 0 auto;
-      display: table;
-      line-height: normal;
-    }
-
-    #status{
-      color: #4a4a4a;
-      font-weight: 500;
-      margin-bottom: -5px;
-    }
-
-    .listings {
-      list-style: none;
-      .item-edit-delete-buttons{
-        margin-top: 25px;
-
-        .edit-item{
-          border: 1px solid #419bf9;
-          border-radius: 5px;
-          color: #419bf9;
-          font-size: 15px;
-          padding: 5px 50px 5px;
-          &:hover{
-            background-color: #419bf9;
-            color: #fff;
-            transition: all .3s ease-in-out;
-          }
+        margin: 0 auto;
+        display: table;
+        padding: 10px 20px;
+        border-radius: 4px;
+        &:hover{
+          background-color: #5AC902;
+          color: #fff;
+          transition: all .3s ease-in-out;
         }
+      }
 
-        .delete-item{
-          border: 1px solid #FF6678;
-          border-radius: 5px;
-          color: #FF6678;
-          font-size: 15px;
-          padding: 5px 52px 5px;
-          margin-left: 5px;
-          &:hover{
-            background-color: #FF6678;
-            color: #fff;
-            transition: all .3s ease-in-out;
+      .item-image {
+        width: 100px;
+        height: 100px;
+        object-fit: cover;
+        object-position: center;
+      }
+
+      #heading{
+        text-align: center;
+        font-weight: 600;
+        color: #4a4a4a;
+        margin-bottom: 5px;
+      }
+
+      #item-title{
+        text-align: center;
+        color: #4a4a4a;
+        margin: 0 auto;
+        display: table;
+        line-height: normal;
+      }
+
+      #status{
+        color: #4a4a4a;
+        font-weight: 500;
+        margin-bottom: -5px;
+      }
+
+      .listings {
+        list-style: none;
+        .item-edit-delete-buttons{
+          margin-top: 25px;
+
+          .edit-item{
+            border: 1px solid #419bf9;
+            border-radius: 5px;
+            color: #419bf9;
+            font-size: 15px;
+            padding: 5px 50px 5px;
+            &:hover{
+              background-color: #419bf9;
+              color: #fff;
+              transition: all .3s ease-in-out;
+            }
+          }
+
+          .delete-item{
+            border: 1px solid #FF6678;
+            border-radius: 5px;
+            color: #FF6678;
+            font-size: 15px;
+            padding: 5px 52px 5px;
+            margin-left: 5px;
+            &:hover{
+              background-color: #FF6678;
+              color: #fff;
+              transition: all .3s ease-in-out;
+            }
           }
         }
       }

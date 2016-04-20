@@ -102,41 +102,47 @@
     <!-- This segment is for chat rooms with a transaction START-->
     <% if @transaction %>
       <div class="request-box">
-        <% if @transaction.seller_id == current_user.id %> <!--condition to see if current user is also the seller-->
-          <% if @item.listing_type == "sell" %> <!--condition to set the opposite listing value-->
-            <p id="heading"><%= User.find_by(id: @transaction.buyer_id).name %> requested to buy</p>
-          <% elsif @item.listing_type == "timeoffer" %>
-            <p id="heading"><%= User.find_by(id: @transaction.buyer_id).name %> requested service</p>
+        <div class="request-wrapper">
+          <% if @transaction.seller_id == current_user.id %> <!--condition to see if current user is also the seller-->
+            <% if @item.listing_type == "sell" %> <!--condition to set the opposite listing value-->
+              <p id="heading"><%= User.find_by(id: @transaction.buyer_id).name %> requested to buy</p>
+            <% elsif @item.listing_type == "timeoffer" %>
+              <p id="heading"><%= User.find_by(id: @transaction.buyer_id).name %> requested service</p>
+            <% else %>
+              <p id="heading"><%= User.find_by(id: @transaction.buyer_id).name %> requested to <%= @item.listing_type %></p>
+            <% end %>
           <% else %>
-            <p id="heading"><%= User.find_by(id: @transaction.buyer_id).name %> requested to <%= @item.listing_type %></p>
+            <% if @item.listing_type == "sell" %>
+              <p id="heading">You requested to buy</p>
+            <% elsif @item.listing_type == "timeoffer" %>
+              <p id="heading">You requested the following service</p>
+            <% else %>
+              <p id="heading">You requested to <%= @item.listing_type %></p>
+            <% end %>
+          <% end %> <!--condition to see if current user is also the seller-->
+          <p id="item-title"><%= @item.title %></p>
+          <p id="item-title"> Price of $<%= @transaction.total_price.to_i %></p>
+          <% if @transaction.length %>
+            <p id="item-title"> for <%= @transaction.length %> period</p>
           <% end %>
-        <% else %>
-          <% if @item.listing_type == "sell" %>
-            <p id="heading">You requested to buy</p>
-          <% elsif @item.listing_type == "timeoffer" %>
-            <p id="heading">You requested the following service</p>
-          <% else %>
-            <p id="heading">You requested to <%= @item.listing_type %></p>
-          <% end %>
-        <% end %> <!--condition to see if current user is also the seller-->
-        <p id="item-title"><%= @item.title %></p>
-        <p><%= image_tag @picture.image, class: "item-image" %></p>
-        <p id="status">Transaction Status: <%= @transaction.status %></p>
+          <p><%= image_tag @picture.image, class: "item-image" %></p>
+          <p id="status">Transaction Status: <%= @transaction.status %></p>
 
-        <% if @transaction.seller_id == current_user.id && @transaction.status == 'Pending' %>
-          <li class="listings">
-      			<div class="item-edit-delete-buttons">
-      				<%= link_to 'Accept', accept_path(item_id: @item.id, transaction: @transaction.id), class: "edit-item", :onclick => 'clickAndDisable(this)' %>
-      				<%= link_to 'Decline', @transaction, method: :delete, class: "delete-item", data: {confirm: "Are you sure you want to decline this request?"}  %>
-      			</div>
-      		</li>
-        <% elsif @transaction.buyer_id == current_user.id %>
-          <p id ="cancel"> Need to Cancel?
-            <span style="text-decoration: underline; color: #FF2641">
-              <%= link_to 'Click Here', contact_path %>
-            </span>
-          </p>
-        <% end %>
+          <% if @transaction.seller_id == current_user.id && @transaction.status == 'Pending' %>
+            <li class="listings">
+        			<div class="item-edit-delete-buttons">
+        				<%= link_to 'Accept', accept_path(item_id: @item.id, transaction: @transaction.id), class: "edit-item", :onclick => 'clickAndDisable(this)' %>
+        				<%= link_to 'Decline', @transaction, method: :delete, class: "delete-item", data: {confirm: "Are you sure you want to decline this request?"}  %>
+        			</div>
+        		</li>
+          <% elsif @transaction.buyer_id == current_user.id %>
+            <p id ="cancel"> Need to Cancel?
+              <span style="text-decoration: underline; color: #FF2641">
+                <%= link_to 'Click Here', contact_path %>
+              </span>
+            </p>
+          <% end %>
+        </div>
       </div>
       <% if @item.listing_type == "lease" && @item.status != "Sold" && current_user.id != @item.user_id && (["In Progress"].include?(@transaction.status)) %>
         <div class="request-box" style="margin-bottom: -5px; height: 140px;">
