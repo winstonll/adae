@@ -169,9 +169,17 @@
       <% else %>
         <div class="item-detail-price" style="height:270px;">
           <div class="price-title2">Service Available</div>
-          <div class="price-breakdown" style="margin-top: 55px; margin-bottom: 50px;">
-            <span class="markup" style="font-weight: 700; font-size: 20px; color:#000;">$<%= @prices.first.amount %></span> per <%= @prices.first.timeframe %>
-          </div>
+          <% @prices.each do |price| %>
+            <div class="price-breakdown" style="margin-top: 25px; margin-bottom: 20px;">
+              <div class="price-list">
+              <% if price.timeframe == "Flat Rate" %>
+                <span class="markup" style="font-weight:500; font-size: 20px; color:#000;">$<%= price.amount %></span> <%= price.timeframe %>
+              <% else %>
+                <span class="markup" style="font-weight:500; font-size: 20px; color:#000;">$<%= price.amount %></span> per <%= price.timeframe %>
+              <% end %>
+              </div>
+            </div>
+          <% end %>
 					<% if user_signed_in? %>
             <%= link_to 'Request Service', new_transaction_path(:item_id => @item.id), class: "request-button", id: "service-button"%>
 						<%= link_to 'Send Message', conversations_path(:sender_id => current_user.id, :recipient_id => @item.user_id), :method=> :post, class: "send-message signed-in-message" %>
