@@ -173,9 +173,9 @@
             <div class="price-breakdown" style="margin-top: 25px; margin-bottom: 20px;">
               <div class="price-list">
               <% if price.timeframe == "Flat Rate" %>
-                <span class="markup" style="font-weight:500; font-size: 20px; color:#000;">$<%= price.amount %></span> <%= price.timeframe %>
+                <span class="markup">$<%= price.amount %></span> <%= price.timeframe %>
               <% else %>
-                <span class="markup" style="font-weight:500; font-size: 20px; color:#000;">$<%= price.amount %></span> per <%= price.timeframe %>
+                <span class="markup">$<%= price.amount %></span> per <%= price.timeframe %>
               <% end %>
               </div>
             </div>
