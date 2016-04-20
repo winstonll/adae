@@ -29,96 +29,96 @@
 		</div>
 
     <% if current_page? timeoffer_path %>
-			<%= f.fields_for :prices, @price do |p| %>
-			    <%= p.hidden_field :timeframe, :value => "Hour" %>
-			    <div class="new-item-form">
-			    	<p> Your Price:</p>
-						<div style="margin-top: -6.5px;"class="rent-deposit-money-sign"> $ </div>
-			        <%=p.number_field :amount %> <span class="perhr">per Hour</span>
-			    </div>
+		<%= f.fields_for :prices, @price do |p| %>
+			<%= p.hidden_field :timeframe, :value => "Hour" %>
+		    <div class="new-item-form">
+		    	<p> Your Price:</p>
+					<div style="margin-top: -6.5px;"class="rent-deposit-money-sign"> $ </div>
+		        <%=p.number_field :amount %> <span class="perhr">per Hour</span>
+		    </div>
 
-          <div class="deposit-tip" style="color: #419bf9; margin-top: 10px; font-weight: 500;">
-            &#x2756; Adae will add a 4% - 10% service fee on top of your listed price. <br> This fee helps us run the platform, and to provide the best service to our users. </br> Don't worry, you will still get paid the amount you are owed.
-          </div>
-			    <%= f.hidden_field :deposit, :value => 0 %>
-			<% end %>
-		<% elsif current_page? sell_path %>
-			<%= f.fields_for :prices, @price do |p| %>
-				<div class="new-item-form">
-			    	<p> Sale Price:</p>
-						<div id="actual-price-money-sign"> $ </div>
-			        <%=p.number_field :amount %>
-			    </div>
-          <div class="deposit-tip" style="color: #419bf9; margin-top: 10px; font-weight: 500;">
-            &#x2756; Adae will add a 4% - 10% service fee on top of your listed price. <br> This fee helps us run the platform, and to provide the best service to our users. </br> Don't worry, you will still get paid the amount you are owed.
-          </div>
-			    <%= f.hidden_field :deposit, :value => 0 %>
-			<% end %>
-		<% else %>
-			<%= f.fields_for :prices, @price do |day| %>
-        <%= f.fields_for :prices, Price.new do |week| %>
-          <%= f.fields_for :prices, Price.new do |month| %>
-    			  <div class="new-item-form">
-      				<p class="deposit-tip">
-      				  <b>Rental Price:</b></br>
-      				  Set the price you want to charge for any or all of the timeframes below.</br>
-      				  Leave the box blank if the timeframe is not applicable.
-      				</p>
-      				<table>
-      				  <tr>
-      				  	<th>Timeframe:</th>
-      			      	<td><%= day.text_field :timeframe, :value => "Day", :readonly => "True", class: "timeframe" %></td>
-      			      	<td><%= week.text_field :timeframe, :value => "Week", :readonly => "True", class: "timeframe" %></td>
-      			      	<td><%= month.text_field :timeframe, :value => "Month", :readonly => "True", class: "timeframe" %></td>
-      				  </tr>
-    			      <tr>
-    			      	<th>Price:</th>
-    			      	<td><input class="money", readonly="true", value="$"></input><%=day.number_field :amount, max: 100%></td>
-    			      	<td><input class="money", readonly="true", value="$"></input><%=week.number_field :amount, max: 1000%></td>
-    			        <td><input class="money", readonly="true", value="$"></input><%=month.number_field :amount, max: 10000%></td>
-    			      </tr>
-      				</table>
-      				<br/>
-    			  </div>
-
-      			<div class="new-item-form">
-  	          <% if current_page? lease_path %>
-        				<p id="deposit-title"> Deposit Price & Sale Price:</p>
-        				<div class="rent-deposit-money-sign"> $ </div>
-      				  <%= f.text_field :deposit %>
-                <span>
-                  <span style="bottom: 1px;"class="wrapper">
-                    <%= image_tag "question-mark.png", size:"16x17"%>
-                    <div class="tooltip">This ensures that the item is treated with care, and is returned on time. This amount will be charged only in case of loss, damage or if the other party fails to return the item.</div>
-                  </span>
-                </span>
-  	          	<div class="deposit-tip">
-  		          	During the rental period, your customer may request to buy this item.</br>
-  		          	If so, the Deposit Price becomes the Sale Price & the rental fee is deducted from the Sale Price.
-  	            </div>
-                <div class="deposit-tip" style="color: #419bf9;">
-                  &#x2756; Adae will add a 4% - 10% service fee on top of your listed price. <br> This fee helps us run the platform, and to provide the best service to our users. </br> Don't worry, you will still get paid the amount you are owed.
-  	          	</div>
-      	      <% else %>
-  	          	<p id="deposit-title"> Deposit Price</p>
-  	          	<div class="rent-deposit-money-sign"> $ </div>
-  	          	<%= f.text_field :deposit %>
-                <span>
-                  <span style="bottom: 1px;"class="wrapper">
-                    <%= image_tag "question-mark.png", size:"16x17"%>
-                    <div class="tooltip">This ensures that the item is treated with care, and is returned on time. This amount will be charged only in case of loss, damage or if the other party fails to return the item.</div>
-                  </span>
-                </span>
-                <div class="deposit-tip" style="color: #419bf9;">
-                  &#x2756; Adae will add a 4% - 10% service fee on top of your listed price. <br> This fee helps us run the platform, and to provide the best service to our users. </br> Don't worry, you will still get paid the amount you are owed.
-  	          	</div>
-      	      <% end %>
-    	      </div>
-
-          <% end %>
-        <% end %>
-			<% end %>
+	        <div class="deposit-tip" style="color: #419bf9; margin-top: 10px; font-weight: 500;">
+	        	&#x2756; Adae will add a 4% - 10% service fee on top of your listed price. <br> This fee helps us run the platform, and to provide the best service to our users. </br> Don't worry, you will still get paid the amount you are owed.
+	        </div>
+			<%= f.hidden_field :deposit, :value => 0 %>
 		<% end %>
+	<% elsif current_page? sell_path %>
+		<%= f.fields_for :prices, @price do |p| %>
+			<div class="new-item-form">
+		    	<p> Sale Price:</p>
+					<div id="actual-price-money-sign"> $ </div>
+		        <%=p.number_field :amount %>
+		    </div>
+	        <div class="deposit-tip" style="color: #419bf9; margin-top: 10px; font-weight: 500;">
+	        	&#x2756; Adae will add a 4% - 10% service fee on top of your listed price. <br> This fee helps us run the platform, and to provide the best service to our users. </br> Don't worry, you will still get paid the amount you are owed.
+	        </div>
+			<%= f.hidden_field :deposit, :value => 0 %>
+		<% end %>
+	<% else %>
+		<%= f.fields_for :prices, @price do |day| %>
+        <%= f.fields_for :prices, Price.new do |week| %>
+        <%= f.fields_for :prices, Price.new do |month| %>
+    		<div class="new-item-form">
+  				<p class="deposit-tip">
+  				  <b>Rental Price:</b></br>
+  				  Set the price you want to charge for any or all of the timeframes below.</br>
+  				  Leave the box blank if the timeframe is not applicable.
+  				</p>
+  				<table>
+  				  <tr>
+  				  	<th>Timeframe:</th>
+  			      	<td><%= day.text_field :timeframe, :value => "Day", :readonly => "True", class: "timeframe" %></td>
+  			      	<td><%= week.text_field :timeframe, :value => "Week", :readonly => "True", class: "timeframe" %></td>
+  			      	<td><%= month.text_field :timeframe, :value => "Month", :readonly => "True", class: "timeframe" %></td>
+  				  </tr>
+			      <tr>
+			      	<th>Price:</th>
+			      	<td><input class="money", readonly="true", value="$"></input><%=day.number_field :amount, max: 100%></td>
+			      	<td><input class="money", readonly="true", value="$"></input><%=week.number_field :amount, max: 1000%></td>
+			        <td><input class="money", readonly="true", value="$"></input><%=month.number_field :amount, max: 10000%></td>
+			      </tr>
+  				</table>
+      			<br/>
+    		</div>
+
+      		<div class="new-item-form">
+  	        	<% if current_page? lease_path %>
+        			<p id="deposit-title"> Deposit Price & Sale Price:</p>
+        			<div class="rent-deposit-money-sign"> $ </div>
+      				<%= f.text_field :deposit %>
+	                <span>
+	                  <span style="bottom: 1px;"class="wrapper">
+	                    <%= image_tag "question-mark.png", size:"16x17"%>
+	                    <div class="tooltip">This ensures that the item is treated with care, and is returned on time. This amount will be charged only in case of loss, damage or if the other party fails to return the item.</div>
+	                  </span>
+	                </span>
+	  	          	<div class="deposit-tip">
+	  		          	During the rental period, your customer may request to buy this item.</br>
+	  		          	If so, the Deposit Price becomes the Sale Price & the rental fee is deducted from the Sale Price.
+	  	            </div>
+	                <div class="deposit-tip" style="color: #419bf9;">
+	                  &#x2756; Adae will add a 4% - 10% service fee on top of your listed price. <br> This fee helps us run the platform, and to provide the best service to our users. </br> Don't worry, you will still get paid the amount you are owed.
+	  	          	</div>
+      	    	<% else %>
+  	          		<p id="deposit-title"> Deposit Price</p>
+  	          		<div class="rent-deposit-money-sign"> $ </div>
+  	          		<%= f.text_field :deposit %>
+	                <span>
+	                  <span style="bottom: 1px;"class="wrapper">
+	                    <%= image_tag "question-mark.png", size:"16x17"%>
+	                    <div class="tooltip">This ensures that the item is treated with care, and is returned on time. This amount will be charged only in case of loss, damage or if the other party fails to return the item.</div>
+	                  </span>
+	                </span>
+	                <div class="deposit-tip" style="color: #419bf9;">
+	                  &#x2756; Adae will add a 4% - 10% service fee on top of your listed price. <br> This fee helps us run the platform, and to provide the best service to our users. </br> Don't worry, you will still get paid the amount you are owed.
+	  	          	</div>
+      	    	<% end %>
+    	    </div>
+
+        <% end %>
+        <% end %>
+		<% end %>
+	<% end %>
 
 
 		<div class="new-item-form">
@@ -146,8 +146,7 @@
 		<div class="new-item-form">
 			<%= f.label :summary %>
 			<%= f.text_area :description, :maxlength=> "500", :placeholder => "Summarize the highlights of your listing, include as much detail as possible!" %>
-
-      <label class="countdown">500 characters remaining</label>
+      		<label class="countdown">500 characters remaining</label>
 		</div>
 
 		<div class="new-item-form">
@@ -159,11 +158,8 @@
 			</div>
 		</div>
 
-
 		<%= f.submit 'Submit', :class => 'submit-listing', data: {disable_with: "Submitting..."} %>
 		<div id="small-tip"> you can edit/update your listing after you submit.</div>
-
-
-<%end%>
 	</div>
 </div>
+<%end%>
