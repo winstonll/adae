@@ -172,7 +172,7 @@ class ItemsController < ApplicationController
       @item.longitude = geocode.longitude
     end
 
-    if ["rent", "lease"].include?(@item.listing_type) && @item.update_attributes(item_edit_params)
+    if ["rent", "lease", "timeoffer"].include?(@item.listing_type) && @item.update_attributes(item_edit_params)
       update_prices
 
 =begin
@@ -188,7 +188,7 @@ class ItemsController < ApplicationController
 =end
 
       redirect_to @item, notice: "Item Successfully Edited!"
-    elsif ["sell", "timeoffer"].include?(@item.listing_type) && @item.update_attributes(item_params)
+    elsif ["sell"].include?(@item.listing_type) && @item.update_attributes(item_params)
       redirect_to @item, notice: "Item Successfully Edited!"
     else
       redirect_to :back, flash: {error: true}
