@@ -61,14 +61,33 @@
 		</div>-->
 
 		<% if @item.listing_type == 'timeoffer' %>
-			<%= f.fields_for :prices, @price do |p| %>
-			    <%= p.hidden_field :timeframe, :value => "Hour" %>
-			    <div class="new-item-form">
-			    	<p> Your Price:</p>
-					<div class="rent-deposit-money-sign"> $ </div>
-			        <%=p.number_field :amount %> <span class="perhr">per Hour</span>
-			    </div>
-			    <%= f.hidden_field :deposit, :value => 0 %>
+		<%= f.fields_for :prices, @price do |hour| %>
+		<%= f.fields_for :prices, Price.new do |flat| %>
+				<div class="new-item-form">
+					<p class="deposit-tip">
+						<b> Your Price:</b></br>
+						Set the price you want to charge either by Hour and/or as a Flat Rate.</br>
+						Leave the box blank if the timeframe is not applicable.
+					</p>
+					<table>
+						<tr>
+							<th>Timeframe:</th>
+								<td><%= hour.text_field :timeframe, :value => "Hour", :readonly => "True", class: "timeframe" %></td>
+								<td><%= flat.text_field :timeframe, :value => "Flat Rate", :readonly => "True", class: "timeframe" %></td>
+						</tr>
+						<tr>
+							<th>Price:</th>
+							<td><input class="money", readonly="true", value="$"></input><%=hour.number_field :amount, max: 100%></td>
+							<td><input class="money", readonly="true", value="$"></input><%=flat.number_field :amount, max: 1000%></td>
+						</tr>
+					</table>
+						<br/>
+				</div>
+			<%= f.hidden_field :deposit, :value => 0 %>
+					<div class="deposit-tip" style="color: #419bf9; margin-top: 10px; font-weight: 500;">
+						&#x2756; Adae will add a 4% - 10% service fee on top of your listed price. <br> This fee helps us run the platform, and to provide the best service to our users. </br> Don't worry, you will still get paid the amount you are owed.
+					</div>
+			<% end %>
 			<% end %>
 		<% elsif @item.listing_type == 'sell' %>
 			<%= f.fields_for :prices, @price do |p| %>
