@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
-#require 'rubygems'
-require 'bundler/setup' 
+require 'rubygems'
+require 'bundler/setup'
 require 'socket'
 
 server = TCPServer.new 1991 # Server bound to port 2000
