@@ -1,5 +1,6 @@
 #!/usr/bin/env ruby
-
+require 'rubygems'
+require 'daemons'
 require 'socket'
 
 server = TCPServer.new 1991 # Server bound to port 2000
