@@ -48,6 +48,10 @@ gem 'carrierwave'
 gem 'rmagick'
 gem 'honeypot-captcha'
 gem 'gmaps4rails'
+
+gem 'eventmachine'
+gem 'daemons'
+
 #gem 'thin'
 gem 'puma'
 gem 'rails-api'
