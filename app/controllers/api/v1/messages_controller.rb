@@ -21,6 +21,8 @@ module Api::V1
         conversation_id: params[:messages][:conversation_id], user_id: current_user.id)
 
         if @message.save
+          ContactMailer.new_message(@user, @message).deliver_now
+
           render :nothing => true, status: :ok
         else
           render json: @message.errors, status: 422
