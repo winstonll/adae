@@ -1,4 +1,4 @@
-require 'rubygems'        
+require 'rubygems'
 require 'daemons'
 
-Daemons.run('myserver.rb')
+Daemons.run('server.rb')
