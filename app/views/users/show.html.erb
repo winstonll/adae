@@ -3,15 +3,20 @@
 	<div class="profile-info">
 		<%= link_to image_tag(@user.avatar.url(:med), class:"avatar") %>
 		<h1><%= @user.full_name %></h1>
+<% unless current_user %>
 		<div class="account-links">
 			<p class="p-account-edit"><%= link_to "Edit Profile", edit_user_path(@user) %></p>
 			<p class="p-account-delete"><%= link_to "Delete Account", @user, method: :delete, data: {confirm: "Are you sure you want to delete this user?"}  %></p>
 		</div>
 		<p> Email: <%= @user.email %></p>
 		<p> Phone: <%= @user.phone_number %></p>
+<% else %>
+		<p> Email: Verified <span style="color: #7ed321;">&#10003;</span></p>
+		<p> Phone: Verified <span style="color: #7ed321;">&#10003;</span></p>
+<% end %>
 	</div>
 
-
+<% unless current_user %>
 	<div class="request-container">
 		<div class="request-heading">My Requests</div>
 		<% if @requests.present? %>
@@ -221,4 +226,7 @@
 		<div class="divider"></div>
 	</li>
 	<% end %>
+<% else %>
+
+<% end %>
 </div>
