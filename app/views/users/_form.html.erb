@@ -39,16 +39,19 @@
 		<%= f.label :email %>
 		<%= f.text_field :email %>
 	</div>
-	<div class ='field'>
-		<%= f.label :password %>
-		<%= f.password_field :password %>
-	</div>
-	<div class ='field'>
-		<%= f.label :password_confirmation %>
-		<%= f.password_field :password_confirmation %>
-	</div>
-	<div class ='field'>
-    <%= f.submit 'Update Profile', :class => 'update-button' %>
-	</div>
+  <div style="border: 1px solid #BDBDBD; margin: 15px 0px 30px -13px; width: 175px; padding: 10px 15px; border-radius: 5px;">
+    <span style="line-height: normal; color: #7E7E7E;">Enter your current password, or create a new one to verify your profile and update.</span>
+  	<div class ='field'>
+  		<%= f.label :password %>
+  		<%= f.password_field :password %>
+  	</div>
+  	<div class ='field'>
+  		<%= f.label :password_confirmation %>
+  		<%= f.password_field :password_confirmation %>
+  	</div>
+  	<div class ='field'>
+      <%= f.submit 'Verify & Update', :class => 'update-button' %>
+  	</div>
+  </div>
 </div>
 <% end %>
