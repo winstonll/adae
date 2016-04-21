@@ -3,7 +3,7 @@
 	<div class="profile-info">
 		<%= link_to image_tag(@user.avatar.url(:med), class:"avatar") %>
 		<h1><%= @user.full_name %></h1>
-<% unless !signed_in? && current_user %>
+<% unless signed_in? && current_user %>
 		<div class="account-links">
 			<p class="p-account-edit"><%= link_to "Edit Profile", edit_user_path(@user) %></p>
 			<p class="p-account-delete"><%= link_to "Delete Account", @user, method: :delete, data: {confirm: "Are you sure you want to delete this user?"}  %></p>
@@ -16,7 +16,7 @@
 <% end %>
 	</div>
 
-<% unless !signed_in? && current_user %>
+<% unless signed_in? && current_user %>
 	<div class="request-container">
 		<div class="request-heading">My Requests</div>
 		<% if @requests.present? %>
