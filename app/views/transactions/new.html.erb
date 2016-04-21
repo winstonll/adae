@@ -293,6 +293,10 @@
           <%= form_for Transaction.new, html: {multipart: true}  do |f| %>
             <input id="qty" name="quantity" min="1" max="30" type="number" onChange="updateQty()"></input>
             <span><%= f.select :length,[["Hour"]], {}, :onchange => "updateLength()"%></span>
+            <!-- <div style="display: table; margin: auto;">
+              <%#= f.radio_button :length,"Flat Rate"%>
+              <label style="display: inline;"for="transaction_length_flat_rate">Flat Rate</label>
+            </div> -->
 
             <div class="division"></div>
             <div class="item-detail-calc" style="margin-bottom: 15px;">
