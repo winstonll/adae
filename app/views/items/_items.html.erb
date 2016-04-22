@@ -70,6 +70,10 @@
 					<span class="markup"><%= item.prices.first.amount %></span> /
 					<%= item.prices.first.timeframe %>
 				</div>
+				<div class="flat-rate">
+					<span class="markup"><%= item.prices.second.amount %></span> /
+					<span style="font-size: 10px"><%= item.prices.second.timeframe %></span>
+				</div>
 			<% end %>
 		</div>
 	</div>

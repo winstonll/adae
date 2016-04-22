@@ -95,6 +95,14 @@
   function updateLength() {
     if ($('#qty').val() > 0){
       update();
+    } else if ($('select[name="transaction[length]"] option:selected').val() === "Flat Rate") {
+      ($('#qty').css("visibility", "hidden"));
+      ($('#qty').val(1));
+      update();
+    } else if ($('select[name="transaction[length]"] option:selected').val() === "Hour") {
+      ($('#qty').css("visibility", "visible"));
+      ($('#qty').val(1));
+      update();
     }
   }
 
@@ -292,12 +300,7 @@
           <p class="how-long" style="font-size: 12px;">How long would you like this service to last?</p>
           <%= form_for Transaction.new, html: {multipart: true}  do |f| %>
             <input id="qty" name="quantity" min="1" max="30" type="number" onChange="updateQty()"></input>
-            <span><%= f.select :length,[["Hour"]], {}, :onchange => "updateLength()"%></span>
-            <!-- <div style="display: table; margin: auto;">
-              <%#= f.radio_button :length,"Flat Rate"%>
-              <label style="display: inline;"for="transaction_length_flat_rate">Flat Rate</label>
-            </div> -->
-
+            <span><%= f.select :length, @type_dropdown, {}, :onchange => "updateLength()"%></span>
             <div class="division"></div>
             <div class="item-detail-calc" style="margin-bottom: 15px;">
               <input id="amt" class="amount" readonly="readonly" value=""></input>

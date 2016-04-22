@@ -10,4 +10,5 @@ loop do
   client.puts "Hello !"
   client.puts "Time is #{Time.now}"
   client.puts "after user"
+  client.close
 end

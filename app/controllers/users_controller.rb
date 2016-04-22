@@ -1,16 +1,16 @@
 class UsersController < ApplicationController
 	before_filter :load_user, only:[:show, :edit, :update, :destroy]
-	before_filter :authenticate_user!
+	#before_filter :authenticate_user!
 	before_action :signed_in_user, only: [:edit, :update, :stripe_settings]
   	before_action :correct_user,   only: [:edit, :update]
 
  	def show
- 	  @items = current_user.items.where(status: "Listed")
- 	  @user = current_user
+ 	  @user = User.find(params[:id])
+ 	  @items = @user.items.where(status: "Listed")
  	  @location = Location.find_by(user_id: @user) ? Location.find_by(user_id: @user) : Location.new()
- 	  @transactions = Transaction.where("(transactions.seller_id = #{current_user.id})")
- 	  @requests = Transaction.where("(transactions.buyer_id = #{current_user.id})")
- 	  @referral = Referral.find_by(user_id: current_user.id)
+ 	  @transactions = Transaction.where("(transactions.seller_id = #{@user.id})")
+ 	  @requests = Transaction.where("(transactions.buyer_id = #{@user.id})")
+ 	  @referral = Referral.find_by(user_id: @user.id)
  	end
 
  	def edit
