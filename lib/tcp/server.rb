@@ -21,5 +21,5 @@ end
 
 # Note that this will block current thread.
 EventMachine.run {
-  EventMachine.start_server "1991", 8081, EchoServer
+  EventMachine.start_server "adae.co", 1991, EchoServer
 }
