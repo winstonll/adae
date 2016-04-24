@@ -5,7 +5,7 @@ require 'socket'
 require 'eventmachine'
 require 'pg'
 
-ActiveRecord::Base.establish_connection(:adapter => "postgresql"
+ActiveRecord::Base.establish_connection(:adapter => "postgresql",
                                         :username => "postgres",
                                         :password => "123456",
                                         :database => "test_dev")
