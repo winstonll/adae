@@ -1,0 +1,25 @@
+<div class="item-reviews">
+<% if @items.any? %>
+	<% @items.each do |item| %>
+		<% if item.reviews.exists? %>
+			<% item.reviews.order("created_at DESC").each do |review| %>
+				Reviews for <%= @user.name.capitalize %>'s listings: 
+	    		<%= review.comment %>
+	    	<% end %>
+	    <% else %>
+			<blockquote id="no-review-yet">No reviews yet.</blockquote>
+	    <% end %>
+
+	    <% if item.ratings.exists? %>
+			<% item.ratings.order("created_at DESC").each do |rating| %>
+				Ratings for <%= @user.name.capitalize %>'s listings: 
+	    		<%= rating.comment %>
+	    	<% end %>
+	    <% else %>
+			<blockquote id="no-rating-yet">No ratings yet.</blockquote>
+	    <% end %>
+	<% end %>
+<% else %>
+	This user has no Listings.
+<% end %>
+</div>
