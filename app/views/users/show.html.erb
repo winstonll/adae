@@ -16,6 +16,17 @@
 <% end %>
 	</div>
 
+<div class="request-container">
+	<div class="request-heading">About Me</div>
+		<div class="requests">
+			<div class="request-wrap">
+			  <%= @user.description %>
+			  <% if @user == current_user %>
+			  	<p class="p-account-edit"><%= link_to "Edit description", edit_user_path(@user) %></p>
+			  <% end %>
+			</div>
+		</div>
+</div>
 <% if signed_in? && @user == current_user %>
 	<div class="request-container">
 		<div class="request-heading">My Requests</div>
@@ -227,6 +238,6 @@
 	</li>
 	<% end %>
 <% elsif @user != current_user %>
-
+	<%= render 'profile' %>
 <% end %>
 </div>
