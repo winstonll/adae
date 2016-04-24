@@ -10,7 +10,6 @@ conn = PGconn.open(:username => "postgres",
                     :password => "123456",
                     :database => "test_dev")
 
-res  = conn.exec('SELECT 1 AS a, 2 AS b, NULL AS c')
 
 
  module EchoServer
