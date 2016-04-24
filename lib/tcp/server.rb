@@ -5,12 +5,11 @@ require 'socket'
 require 'eventmachine'
 require 'pg'
 require 'active_record'
-require 'rails/all' 
 
-ActiveRecord::Base.establish_connection(:adapter => "postgresql",
-                                        :username => "postgres",
-                                        :password => "123456",
-                                        :database => "test_dev")
+conn = PGconn.open(:username => "postgres",
+                    :password => "123456",
+                    :database => "test_dev")
+
 
 
  module EchoServer
