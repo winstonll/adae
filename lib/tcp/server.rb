@@ -7,7 +7,7 @@ require 'eventmachine'
  module EchoServer
    def post_init
      puts "-- someone connected to the echo server!"
-     puts User.first
+     puts User.first.name
    end
 
    def receive_data data
