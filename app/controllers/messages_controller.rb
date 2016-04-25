@@ -1,7 +1,7 @@
 class MessagesController < ApplicationController
   before_action :authenticate_user!
   before_action :validate_access!
-  before_action :transaction_exists?, only: [:index, :create]
+  before_action :transaction_exists?, only: [:index]
 
   def index
 
@@ -27,6 +27,8 @@ class MessagesController < ApplicationController
   def create
     @conversation = Conversation.find(params[:conversation_id])
     @message = @conversation.messages.new(message_params)
+    @messages = @conversation.messages.order(:created_at)
+
     @user = User.find_by(id: @conversation.recipient)
     if @message.save
       if @user == current_user
@@ -43,7 +45,6 @@ class MessagesController < ApplicationController
       end
 
       respond_to do |format|
-        #format.html { render "index" }
         format.js
       end
     end
