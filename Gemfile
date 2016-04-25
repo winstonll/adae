@@ -41,6 +41,7 @@ gem 'bootstrap-sass'
 gem 'jquery-ui-rails'
 
 gem 'stripe'
+gem 'private_pub'
 
 gem 'jquery-fileupload-rails'
 
@@ -52,7 +53,7 @@ gem 'gmaps4rails'
 gem 'eventmachine'
 gem 'daemons'
 
-#gem 'thin'
+gem 'thin'
 gem 'puma'
 gem 'rails-api'
 
