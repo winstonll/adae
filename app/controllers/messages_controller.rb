@@ -1,7 +1,7 @@
 class MessagesController < ApplicationController
   before_action :authenticate_user!
   before_action :validate_access!
-  before_action :transaction_exists?, only: [:index]
+  before_action :transaction_exists?, only: [:index, :create]
 
   def index
 
@@ -37,9 +37,14 @@ class MessagesController < ApplicationController
       ContactMailer.new_message(@user, @message).deliver_now
 
       if params[:message][:item_id]
-        redirect_to conversation_messages_path(@conversation, item_id: params[:message][:item_id])
+        #redirect_to conversation_messages_path(@conversation, item_id: params[:message][:item_id])
       else
-        redirect_to conversation_messages_path(@conversation)
+        #redirect_to conversation_messages_path(@conversation)
+      end
+
+      respond_to do |format|
+        #format.html { render "index" }
+        format.js
       end
     end
   end

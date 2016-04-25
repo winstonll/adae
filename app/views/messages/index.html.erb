@@ -20,10 +20,10 @@
        $('#reply_btn').attr('disabled', true);
 
     $('#message_body').keyup(function(){
-        if($('#message_body').val() !=  "") 
-             $('#reply_btn').attr('disabled', false);    
+        if($('#message_body').val() !=  "")
+             $('#reply_btn').attr('disabled', false);
         else
-             $('#reply_btn').attr('disabled', true);   
+             $('#reply_btn').attr('disabled', true);
     });
   });
 
@@ -58,34 +58,9 @@
 
   <div class="chat-area">
     <div class="chat-content">
-      <div id="ui-segment">
-        <% @messages.each do |message| %>
-          <% if message.body %>
-            <% user = User.find(message.user_id) %>
-            <% if user.id == current_user.id %>
-              <div class="chat-bubble">
-                <div class="bubble-text">
-                  <span class="msg"><%= message.body %></span>
-                </div>
-              </div>
-              <div class="chat-time">
-                <%= message.message_time %>
-              </div>
-            <% else %>
-              <div class="opp-chat-bubble">
-                <div class="bubble-text">
-                  <span class="msg"><%= message.body %></span>
-                </div>
-              </div>
-              <div class="opp-chat-time">
-                <%= message.message_time %>
-              </div>
-            <% end %>
-          <% end %>
-        <% end %>
-      </div>
+      <%= render partial: 'chat' %>
     </div>
-      <%= form_for [@conversation, @message] do |f| %>
+      <%= form_for [@conversation, @message], :remote => true do |f| %>
         <div class="reply-field">
             <%= f.text_area :body, :placeholder => "Type your message here. Refresh your browser to check for new messages.", class: "form-control" %>
             <%= f.text_field :user_id, value: current_user.id, type: "hidden"%>
