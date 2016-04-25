@@ -1,23 +1,25 @@
-<div class="item-reviews">
-<% if @items.any? %>
-	<% @items.each do |item| %>
-		<% if item.reviews.exists? %>
-			<% item.reviews.order("created_at DESC").each do |review| %>
-				Reviews for <%= @user.name.capitalize %>'s listings: 
-	    		<%= review.comment %>
-	    	<% end %>
-	    <% else %>
-			<blockquote id="no-review-yet">No reviews yet.</blockquote>
-	    <% end %>
+<%= stylesheet_link_tag "edit-profile" %>
 
-	    <% if item.ratings.exists? %>
+
+<!--<div style="margin-top: 15em;" class="item-reviews">
+<% if @items.any? %>
+Reviews and Ratings for <%= @user.name.capitalize %>'s Listings:
+</br>
+	<% @items.each do |item| %>
+		<%= item.title %>
+		<% if item.reviews.exists? %>
+			 <%= render item.reviews.order("created_at DESC") %>
+		<% else %>
+			<blockquote id="no-review-yet">No Reviews yet.</blockquote>
+		<% end %>
+		<% if item.ratings.exists? %>
 			<% item.ratings.order("created_at DESC").each do |rating| %>
-				Ratings for <%= @user.name.capitalize %>'s listings: 
-	    		<%= rating.comment %>
-	    	<% end %>
-	    <% else %>
-			<blockquote id="no-rating-yet">No ratings yet.</blockquote>
-	    <% end %>
+				<%= rating.score %>
+			<% end %>
+
+		<% else %>
+			 <blockquote id="no-review-yet">No Ratings yet.</blockquote>
+		<% end %>
 	<% end %>
 <% else %>
 	This user has no Listings.
