@@ -1,1 +1,4 @@
 $('.chat-content').html('<%= escape_javascript(render partial: "messages/chat") %>');
+
+var element = document.getElementById("ui-segment");
+element.scrollTop = element.scrollHeight;
