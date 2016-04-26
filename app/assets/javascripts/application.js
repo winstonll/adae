@@ -21,3 +21,4 @@
 //= require toastr
 //= require jquery-ui
 //= require introjs
+//= require private_pub

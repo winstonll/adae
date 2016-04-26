@@ -1,0 +1,10 @@
+$('.chat-content').html('<%= escape_javascript(render partial: "messages/chat") %>');
+
+document.getElementById("new_message").reset();
+
+var element = document.getElementById("ui-segment");
+element.scrollTop = element.scrollHeight;
+
+<% publish_to "/messages/index" do %>
+  element.appendChild("<div>test</div>");
+<% end %>

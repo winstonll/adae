@@ -27,7 +27,9 @@ class MessagesController < ApplicationController
   def create
     @conversation = Conversation.find(params[:conversation_id])
     @message = @conversation.messages.new(message_params)
+
     @user = User.find_by(id: @conversation.recipient)
+
     if @message.save
       if @user == current_user
         @user = User.find_by(id: @conversation.sender)
@@ -37,9 +39,15 @@ class MessagesController < ApplicationController
       ContactMailer.new_message(@user, @message).deliver_now
 
       if params[:message][:item_id]
-        redirect_to conversation_messages_path(@conversation, item_id: params[:message][:item_id])
+        #redirect_to conversation_messages_path(@conversation, item_id: params[:message][:item_id])
       else
-        redirect_to conversation_messages_path(@conversation)
+        #redirect_to conversation_messages_path(@conversation)
+      end
+
+      @messages = @conversation.messages.order(:created_at)
+
+      respond_to do |format|
+        format.js
       end
     end
   end
