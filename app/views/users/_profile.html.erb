@@ -1,27 +1,28 @@
 <%= stylesheet_link_tag "edit-profile" %>
 
-
-<!--<div style="margin-top: 15em;" class="item-reviews">
-<% if @items.any? %>
-Reviews and Ratings for <%= @user.name.capitalize %>'s Listings:
-</br>
-	<% @items.each do |item| %>
-		<%= item.title %>
-		<% if item.reviews.exists? %>
-			 <%= render item.reviews.order("created_at DESC") %>
-		<% else %>
-			<blockquote id="no-review-yet">No Reviews yet.</blockquote>
-		<% end %>
-		<% if item.ratings.exists? %>
-			<% item.ratings.order("created_at DESC").each do |rating| %>
-				<%= rating.score %>
+	<div class="item-reviews">
+	<% if @items.any? %>
+	<div class="review-title"> Reviews and Ratings for <%= @user.name.capitalize %>'s Listings:</div>
+	</br>
+		<% @items.each do |item| %>
+			<div class="item-title"><%= link_to(item.title, item_path(item)) %></div>
+			<% if item.reviews.exists? %>
+				 <%= render item.reviews.order("created_at DESC") %>
+			<% else %>
+				<blockquote id="no-review-yet">No Reviews yet.</blockquote>
 			<% end %>
+			<% if item.ratings.exists? %>
+				<% item.ratings.order("created_at DESC").each do |rating| %>
+					<div class="rating-container">
+						<div class="rating"><%= rating.score %>/5</div>
+					</div>
+				<% end %>
 
-		<% else %>
-			 <blockquote id="no-review-yet">No Ratings yet.</blockquote>
+			<% else %>
+				 <blockquote id="no-review-yet">No Ratings yet.</blockquote>
+			<% end %>
 		<% end %>
+	<% else %>
+		This user has no Listings.
 	<% end %>
-<% else %>
-	This user has no Listings.
-<% end %>
-</div>
+	</div>
