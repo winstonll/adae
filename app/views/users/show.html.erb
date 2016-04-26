@@ -11,8 +11,8 @@
 		<p> Email: <%= @user.email %></p>
 		<p> Phone: <%= @user.phone_number %></p>
 <% elsif @user != current_user %>
-		<p> Email: Verified <span style="color: #7ed321;">&#10003;</span></p>
-		<p> Phone: Verified <span style="color: #7ed321;">&#10003;</span></p>
+		<p> Email Address: <span style="font-weight: 600">Verified</span> <span style="color: #7ed321;">&#10003;</span></p>
+		<p> Phone Number: <span style="font-weight: 600">Verified</span> <span style="color: #7ed321;">&#10003;</span></p>
 <% end %>
 	</div>
 
