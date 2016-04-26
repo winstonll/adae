@@ -1,10 +1,16 @@
-$('.chat-content').html('<%= escape_javascript(render partial: "messages/chat") %>');
+//$('.chat-content').html('<%#= escape_javascript(render partial: "messages/chat") %>');
+
+var element = $('#ui-segment');
+element.append("<div class='chat-bubble'><div class='bubble-text'> <%= @message.body %> </div></div>");
+element.append("<div class='chat-time'> <%= @message.message_time %> </div>");
 
 document.getElementById("new_message").reset();
 
-var element = document.getElementById("ui-segment");
+element = document.getElementById("ui-segment");
 element.scrollTop = element.scrollHeight;
 
+
+
 <%# publish_to "/messages/index" do %>
-  //element.appendChild("<div>test</div>");
+
 <%# end %>
