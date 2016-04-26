@@ -27,9 +27,9 @@ class MessagesController < ApplicationController
   def create
     @conversation = Conversation.find(params[:conversation_id])
     @message = @conversation.messages.new(message_params)
-    @messages = @conversation.messages.order(:created_at)
 
     @user = User.find_by(id: @conversation.recipient)
+
     if @message.save
       if @user == current_user
         @user = User.find_by(id: @conversation.sender)
@@ -43,6 +43,8 @@ class MessagesController < ApplicationController
       else
         #redirect_to conversation_messages_path(@conversation)
       end
+
+      @messages = @conversation.messages.order(:created_at)
 
       respond_to do |format|
         format.js
