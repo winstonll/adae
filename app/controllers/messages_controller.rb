@@ -44,7 +44,7 @@ class MessagesController < ApplicationController
         #redirect_to conversation_messages_path(@conversation)
       end
 
-      @messages = @conversation.messages.order(:created_at)
+      #@messages = @conversation.messages.order(:created_at)
 
       respond_to do |format|
         format.js
