@@ -1,0 +1,6 @@
+port: 443
+ssl: true
+ssl_key_file: /etc/ssl/adae.key
+ssl_cert_file: /etc/ssl/cert_chain.crt
+environment: production
+rackup: private_pub.ru
