@@ -1,10 +1,10 @@
 development:
-  server: "http://localhost:9292/faye"
+  server: "http://localhost:9292/faye/faye"
   secret_token: "secret"
 test:
-  server: "http://localhost:9292/faye"
+  server: "http://localhost:9292/faye/faye"
   secret_token: "secret"
 production:
-  server: "https://adae.co/faye"
+  server: "https://adae.co/faye/faye.js"
   secret_token: "9585541cdca5252594abe630c50d298f69bb2f03068a777810ce46c04decbdee"
   signature_expiration: 3600 # one hour
