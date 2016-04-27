@@ -88,6 +88,12 @@ $(document).ready(function() {
           </ul>
         </li>
 
+        <li class="c-menu__item"><a href='#' class="c-menu__link"><span>Balance</span></a>
+          <ul class="c-menu__items" style="display: none;">
+             <li class="c-menu__item" style="background-color: #47475C !important; padding: 4px;"> <span class="c-menu__link">$<%= current_user.balance %></span></li>
+          </ul>
+        </li>
+
         <li class="c-menu__item">
           <a href="<%= conversations_path %>" class="c-menu__link">
             <span>Inbox</span>
