@@ -1,4 +1,4 @@
-//$('.chat-content').html('<%#= escape_javascript(render partial: "messages/chat") %>');
+$('.chat-content').html('<%= escape_javascript(render partial: "messages/chat") %>');
 
 var element = $('#ui-segment');
 element.append("<div class='chat-bubble'><div class='bubble-text'> <%= @message.body %> </div></div>");
