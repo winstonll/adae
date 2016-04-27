@@ -1,3 +1,4 @@
+server: "http://159.203.22.61"
 port: 4443
 ssl: true
 ssl_key_file: /etc/ssl/adae.key
