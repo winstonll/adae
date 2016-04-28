@@ -43,6 +43,9 @@ gem 'jquery-ui-rails'
 gem 'stripe'
 gem 'private_pub'
 
+gem 'delayed_job_active_record'
+#gem 'resque'
+
 gem 'jquery-fileupload-rails'
 
 gem 'carrierwave'
