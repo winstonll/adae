@@ -161,10 +161,18 @@
 <div class="payment-info">
 
   <div class="description">
-    <h1 style="font-weight: 600; text-align: left; margin-bottom: 10px; margin-top: 1em;">Payment <a target="_blank" href="https://stripe.com/gallery"><%= image_tag "outline@2x.png", id: "stripe" %></a></h1> 
-    <span> You will only be charged if the owner accepts your request. However, he/she will not receive your money until the unique Transaction QR Code on his/her phone is scanned by you via the Adae Scanner App when you two meet. </span>
+    <h1 style="font-weight: 600; text-align: left; margin-bottom: 10px; margin-top: 1em;">Payment <a target="_blank" href="https://stripe.com/gallery"><%= image_tag "outline@2x.png", id: "stripe" %></a></h1>
+    <div> You will only be charged if the owner accepts your request. However, he/she will not receive your money until the unique Transaction QR Code on his/her phone is scanned by you via the Adae Scanner App when you two meet. </div></br>
+      <div> All our transactions are processed securely through <a id="stripe-link" target="_blank" href="https://stripe.com/gallery">Stripe</a>. We accept:</br>
+          <div id="payment-icons">
+            <%= image_tag "Visa-dark.png", class: "payment-logos" %>
+            <%= image_tag "MasterCard-dark.png", class: "payment-logos" %>
+            <%= image_tag "AmericanExpress-dark.png", class: "payment-logos" %>
+            <%= image_tag "Stripe-dark.png", class: "payment-logos" %>
+          </div>
+      </div>
   </div>
-  </br>
+  <div class="divider"></div>
   </br>
   </br>
   <div class="receipt-info-and-pic">
