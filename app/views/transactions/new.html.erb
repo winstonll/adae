@@ -93,15 +93,14 @@
   }
 
   function updateLength() {
-    if ($('#qty').val() > 0){
+    if ($('#qty').val() > 0 && $('select[name="transaction[length]"] option:selected').val() === "Hour"){
+      $('#qty').prop('disabled', false);
+      $('#qty').css("visibility", "visible");
       update();
     } else if ($('select[name="transaction[length]"] option:selected').val() === "Flat Rate") {
-      ($('#qty').css("visibility", "hidden"));
-      ($('#qty').val(1));
-      update();
-    } else if ($('select[name="transaction[length]"] option:selected').val() === "Hour") {
-      ($('#qty').css("visibility", "visible"));
-      ($('#qty').val(1));
+      $('#qty').val(1);
+      $('#qty').prop('disabled', true);
+      $('#qty').css("visibility", "hidden");
       update();
     }
   }
