@@ -12,12 +12,12 @@ body{
 .payment-info {
 	display: table;
 	margin: 0 auto;
-	width: 600px;
+	width: 580px;
 
     /*fb share button styling begins*/
   #fb-share-section{
     margin-top: 1em;
-
+    margin-left: 19px;
     .share-button{
       height: 27px;
       width: 70px;
@@ -178,10 +178,12 @@ body{
  .receipt-info-and-pic{
    margin: 0 auto;
    display: table;
+   width: 100%;
   .item-pic{
     width: 220px;
     height: 220px;
     margin-right: 12px;
+    margin-left: 20px;
     object-fit: cover;
     object-position: center;
     border-radius: 3px;
@@ -776,7 +778,7 @@ body{
 	}
 	@media only screen and (min-width: 1920px) {
 		.price-details{
-		  padding-right: 20%;
+		  padding-right: 10%;
 		}
 	}
   /*end section*/
@@ -885,13 +887,18 @@ body{
     	margin: 0 auto;
     	width: 95%;
 
+      #fb-share-section{
+        display: none;
+      }
+
       .item-pic{
-        width: 100% !important;
+        width: 99% !important;
         height: 150px;
         object-fit: cover;
         object-position: center;
         border-radius: 3px;
         margin-bottom: 5px;
+        margin-left: 0px !important;
       }
 
       .price-details {
@@ -1004,14 +1011,6 @@ body{
 
         .stripe-button-el{
           width: 98% !important;
-        }
-
-        #fb-share-section{
-          margin: -10px 0px 25px 10px;
-
-          .tooltip {
-            left: -110px;
-          }
         }
 
 
