@@ -51,6 +51,26 @@ namespace :puma do
 end
 
 namespace :deploy do
+
+  def args
+    fetch(:delayed_job_args, "")
+  end
+
+  def delayed_job_roles
+    fetch(:delayed_job_server_role, :app)
+  end
+
+  desc 'Restart the delayed_job process'
+  task :restart_delayed do
+    on roles(delayed_job_roles) do
+      within release_path do
+        with rails_env: fetch(:rails_env) do
+          execute :bundle, :exec, :'bin/delayed_job', args, :restart
+        end
+      end
+    end
+  end
+
   desc "Make sure local git is in sync with remote."
   task :check_revision do
     on roles(:app) do
