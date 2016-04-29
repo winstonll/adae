@@ -37,7 +37,7 @@ class MessagesController < ApplicationController
         @user = User.find_by(id: @conversation.recipient)
       end
 
-      SendEmailJob.set(wait: 2.seconds).perform_later(@user, @message)
+      SendEmailJob.set(wait: 1.seconds).perform_later(@user, @message)
 
       if params[:message][:item_id]
         #redirect_to conversation_messages_path(@conversation, item_id: params[:message][:item_id])

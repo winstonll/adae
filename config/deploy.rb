@@ -77,10 +77,28 @@ namespace :deploy do
     end
   end
 
+  desc 'Restart the delayed_job process'
+  task :restart_delayed do
+    on roles(delayed_job_roles) do
+      within release_path do
+        with rails_env: fetch(:rails_env) do
+          execute :bundle, :exec, :'bin/delayed_job', args, :restart
+        end
+      end
+    end
+  end
+
   before :starting,     :check_revision
   after  :finishing,    :compile_assets
   after  :finishing,    :cleanup
   after  :finishing,    :restart
+end
+
+after 'deploy:publishing', 'deploy:restart'
+namespace :deploy do
+  task :restart_delayed do
+    invoke 'delayed_job:restart'
+  end
 end
 
 # ps aux | grep puma    # Get puma pid
