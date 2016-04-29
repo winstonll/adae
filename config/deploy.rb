@@ -38,14 +38,6 @@ set :puma_init_active_record, true  # Change to false when not using ActiveRecor
 # set :linked_files, %w{config/database.yml}
 set :linked_dirs,  %w{log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system/uploads public/system}
 
-require "delayed/recipes"
-
-set :rails_env, "production" # added for delayed job
-
-after "deploy:stop",    "delayed_job:stop"
-after "deploy:start",   "delayed_job:start"
-after "deploy:restart", "delayed_job:restart"
-
 namespace :puma do
   desc 'Create Directories for Puma Pids and Socket'
   task :make_dirs do
