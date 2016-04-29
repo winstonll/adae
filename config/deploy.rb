@@ -60,6 +60,12 @@ namespace :deploy do
     fetch(:delayed_job_server_role, :app)
   end
 
+  def rails_env
+    fetch(:rails_env, false) ? "RAILS_ENV=#{fetch(:rails_env)}" : ''
+  end
+
+  execute "cd #{current_path};#{rails_env} bin/delayed_job restart"
+
   desc "Make sure local git is in sync with remote."
   task :check_revision do
     on roles(:app) do
