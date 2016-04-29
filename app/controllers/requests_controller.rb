@@ -3,6 +3,8 @@ class RequestsController < ApplicationController
   def index
       @requests = Request.all.paginate(:page => params[:page], :per_page => 8).order('created_at DESC')
       gon.map_requests = @requests.pluck(:latitude, :longitude, :id, :title)
+      @user = current_user
+      @items = Item.where(status: "Listed", user_id: @user)
   end
 
   def new
