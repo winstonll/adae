@@ -41,7 +41,7 @@ gem 'bootstrap-sass'
 gem 'jquery-ui-rails'
 
 gem 'stripe'
-gem 'private_pub'
+#gem 'private_pub'
 
 gem 'delayed_job_active_record'
 #gem 'resque'
@@ -55,6 +55,10 @@ gem 'gmaps4rails'
 
 gem 'eventmachine'
 gem 'daemons'
+
+gem 'realtime'
+gem 'redis'
+#gem 'foreman'
 
 gem 'thin'
 gem 'puma'

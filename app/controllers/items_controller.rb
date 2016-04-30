@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  before_action :ensure_logged_in, only: [:create, :update, :edit, :destroy]
+  before_action :ensure_logged_in, only: [:rent, :sell, :lease, :timeoffer, :create, :update, :edit, :destroy]
   before_action :item_deleted?, only: [:show]
 
   def index
