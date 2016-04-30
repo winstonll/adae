@@ -4,7 +4,6 @@ class MessagesController < ApplicationController
   before_action :transaction_exists?, only: [:index]
 
   def index
-
     #if @messages.length > 10
     #  @over_ten = true
     #  @messages = @messages[-10..-1]
@@ -36,6 +35,8 @@ class MessagesController < ApplicationController
       else
         @user = User.find_by(id: @conversation.recipient)
       end
+
+      #$redis.set("message", @message.body)
 
       SendEmailJob.set(wait: 1.seconds).perform_later(@user, @message)
 

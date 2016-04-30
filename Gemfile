@@ -58,6 +58,8 @@ gem 'daemons'
 
 gem 'realtime'
 gem 'redis'
+gem 'redis-rails'
+gem 'redis-namespace'
 #gem 'foreman'
 
 gem 'thin'
