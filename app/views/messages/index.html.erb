@@ -1,4 +1,5 @@
 <%= stylesheet_link_tag "chat" %>
+
 <script>
   $(document).on('ready page:load', function() {
     var objDiv = document.getElementById("ui-segment");
@@ -148,4 +149,20 @@
   <!-- chat room with trasaction END -->
 </div>
 
-<%#= subscribe_to conversation_messages_path(@conversation) %>
+<script>
+  /**var socket = io("localhost:5001");
+
+  socket.on("sent", function(message){
+    var current = <%= current_user.id %>;
+
+    if (current != message["user"]){
+      var element = $('#ui-segment');
+
+      element.append("<div class='opp-chat-bubble polling'><div class='bubble-text'><span class='msg'>" + message["body"] + "</span></div></div>");
+      element.append("<div class='opp-chat-time polling'>" + message["created_at"] + "</div>");
+
+      element = document.getElementById("ui-segment");
+      element.scrollTop = element.scrollHeight;
+    }
+  });**/
+</script>

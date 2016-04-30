@@ -1,24 +1,11 @@
 $('.chat-content').html('<%= escape_javascript(render partial: "messages/chat") %>');
 
 var element = $('#ui-segment');
-//element.append("<div class='chat-bubble'><div class='bubble-text'><span class='msg'> <%#= @message.body %> </span> </div></div>");
-//element.append("<div class='chat-time'> <%#= @message.message_time %> </div>");
+
+/**element.append('<div class="chat-bubble"><div class="bubble-text"><span class="msg"> <%= @message.body %> </span> </div></div>');
+element.append("<div class='chat-time'> <%= @message.message_time %> </div>");**/
 
 document.getElementById("new_message").reset();
 
 element = document.getElementById("ui-segment");
 element.scrollTop = element.scrollHeight;
-
-
-
-<%# publish_to conversation_messages_path(@conversation) do %>
-  /**var element = $('#ui-segment');
-
-  element.append("<div class='opp-chat-bubble polling'><div class='bubble-text'><span class='msg'> <%#= @message.body %> </span></div></div>");
-  element.append("<div class='opp-chat-time polling'> <%#= @message.message_time %> </div>");
-
-  element = document.getElementById("ui-segment");
-  element.scrollTop = element.scrollHeight;
-<%# end %>
-
-$('.polling').css("display", "none");**/

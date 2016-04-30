@@ -5,17 +5,6 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
-  #realtime_controller({:queue => :redis}) # instruct all requests to enable realtime support via redis
-
-  #def realtime_user_id
-  #  return current_user.id # if using devise, change this to current_user.id
-  #end
-
-  #def realtime_server_url
-    # point this to your node.js-socket.io-redis/zmq realtime server (you can set this later)
-  #  return 'http://your-realtime-server.yourdomain.com'
-  #end
-
   def after_sign_in_path_for(resource)
     items_path
   end
