@@ -8,6 +8,16 @@
   	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDELDDeZFCjRjY4yvz3o0ium-jSwRvnwFY">
   </script>
 
+  <%= javascript_include_tag "socket.io" %>
+
+  <script>
+    /**var socket = io("localhost:5001");
+
+    socket.on("sent", function(message){
+      // If message is sent post some type of notification possibly in the inbox
+    });**/
+  </script>
+
 
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
