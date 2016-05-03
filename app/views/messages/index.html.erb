@@ -160,7 +160,7 @@
 </div>
 
 <script>
-  /**var socket = io("localhost:5001");
+  var socket = io("localhost:5001");
 
   socket.on("sent", function(message){
     var current = <%= current_user.id %>;
@@ -174,5 +174,5 @@
       element = document.getElementById("ui-segment");
       element.scrollTop = element.scrollHeight;
     }
-  });**/
+  }); 
 </script>
