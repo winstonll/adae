@@ -160,7 +160,7 @@
 </div>
 
 <script>
-  var socket = io("159.203.22.61:5001");
+  var socket = io("159.203.22.61:40045");
 
   socket.on("sent", function(message){
     var current = <%= current_user.id %>;
