@@ -160,7 +160,7 @@
 </div>
 
 <script>
-  var socket = io("https://adae.co:40091");
+  var socket = io("https://adae.co");
 
   socket.on("sent", function(message){
     var current = <%= current_user.id %>;
