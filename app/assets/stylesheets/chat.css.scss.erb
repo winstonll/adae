@@ -13,7 +13,7 @@ $green: #7ed321;
 
   .username{
     margin-top: 1em !important;
-    margin-bottom: 1em !important;
+    margin-bottom: 10px !important;
     font-size: 18px;
     font-weight: 600;
     color: #4a4a4a;
@@ -31,8 +31,8 @@ $green: #7ed321;
 
     .avatar{
       border-radius: 50%;
-      height: 75px;
-      width: 75px;
+      height: 60px;
+      width: 60px;
       object-fit: cover;
       object-position: center;
     }
@@ -41,6 +41,7 @@ $green: #7ed321;
       font-size: 20px;
       font-weight: 600;
       color: #4a4a4a;
+      margin-bottom: 5px;
     }
 
     p{
@@ -49,6 +50,27 @@ $green: #7ed321;
     }
   }
 }
+
+  .guidelines{
+    width: 350px;
+    float: left;
+    .guidelines-wrap{
+      padding-bottom: 10px;
+      #guide-title{
+        color: #fff;
+        background-color: #63CC1E;
+        padding: 10px 0px 10px 0px;
+        font-weight: 600;
+        border-radius: 4px;
+      }
+      .tips{
+        text-align: left;
+        color: #4a4a4a;
+        font-size: 15px;
+        line-height: normal;
+      }
+    }
+  }
   .request-box{
     width: 350px;
     background-color: #fff;
@@ -296,10 +318,33 @@ $green: #7ed321;
       }
     }
 
+    .guidelines{
+      width: 97%;
+      margin-left: 2%;
+    }
+
     .request-box{
       width: 92%;
       margin-bottom: 15px;
       margin-left: 3%;
+      .request-wrapper {
+        padding-bottom: 20px;
+
+        .listings {
+          list-style: none;
+          .item-edit-delete-buttons{
+            margin-top: 25px;
+
+            .edit-item{
+              padding: 5px 14% 5px;
+            }
+
+            .delete-item{
+              padding: 5px 14% 5px;
+            }
+          }
+        }
+      }
     }
 
     .helpful-tip{
@@ -329,7 +374,7 @@ $green: #7ed321;
       margin: 0 auto;
       background-color: #fff;
       border-radius: 5px 5px 0px 0px;
-      width: 92%;
+      width: 91%;
       height: 350px;
       overflow: hidden;
 
