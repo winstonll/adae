@@ -20,7 +20,14 @@
 
 				<% if @items.present? %>
 					<%= select_tag "listings", options_from_collection_for_select(@items, "id", "title"), class: "send", style: "height: 28px; width: 110px; border: none;" %>
-					<%= link_to 'Send Message', new_item_path, class: 'post' %>
+					<%#= link_to 'Send Message', new_item_path, class: 'post' %>
+					<%= form_for Conversation.new, html: {multipart: true}  do |f| %>
+						<%= f.fields_for :messages, Message.new do |m| %>
+				            <%= m.text_field :body, value: "", type: "hidden" %>
+				            <%= m.text_field :user_id, value: @user.id, type: "hidden"%>
+				            <%= m.submit "Send Message", class: "post", style: "height: 28px; width: 110px; border: none;", data: {disable_with: "Sending..."} %>
+				    	<% end %>
+			      	<% end %>
 				<% else %>
 					<%= link_to 'Post this listing', new_item_path, class: 'post' %>
 				<% end %>
