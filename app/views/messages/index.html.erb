@@ -26,6 +26,13 @@
         else
              $('#reply_btn').attr('disabled', true);
     });
+
+    $("#message_body").keypress(function(event) {
+      if (event.which == 13) {
+          event.preventDefault();
+          $(".new_message").submit();
+      }
+    });
   });
 
   function clickAndDisable(link) {
@@ -170,7 +177,7 @@
       var element = $('#ui-segment');
 
       element.append("<div class='opp-chat-bubble polling'><div class='bubble-text'><span class='msg'>" + message["body"] + "</span></div></div>");
-      element.append("<div class='opp-chat-time polling'>" + message["created_at"] + "</div>");
+      element.append("<div class='opp-chat-time polling'>" + message["time"] + "</div>");
 
       element = document.getElementById("ui-segment");
       element.scrollTop = element.scrollHeight;
