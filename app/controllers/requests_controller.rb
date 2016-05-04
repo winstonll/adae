@@ -92,6 +92,12 @@ class RequestsController < ApplicationController
     redirect_to user_path(current_user)
   end
 
+  def system_message(user)
+    @recipient = user
+    @user = current_user
+    mail(to: @recipient.email, subject: 'You have a new message in your inbox!')
+  end
+
   private
   def request_params
     params.require(:request).permit(:title, :description, :user_id, :tags, :postal_code, :timeframe)

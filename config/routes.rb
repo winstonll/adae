@@ -48,6 +48,7 @@ Rails.application.routes.draw do
     get 'privacy' => "home#privacy", as: :privacy
     match '/contact' => 'contacts#new', :via => :get
     match '/contact' => 'contacts#create', :via => :post
+    get :send_system_message, to: 'requests#send_system_message', as: :send_system_message
 
 
   concern :reviewable do
