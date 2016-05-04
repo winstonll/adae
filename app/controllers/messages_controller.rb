@@ -38,6 +38,7 @@ class MessagesController < ApplicationController
 
       my_hash = {:body => @message.body, :time => @message.message_time,
       :conversation => @message.conversation_id, :user => @message.user_id}
+
       my_hash = JSON.generate(my_hash)
 
       $redis.publish "sent", my_hash
@@ -49,7 +50,7 @@ class MessagesController < ApplicationController
       else
         #redirect_to conversation_messages_path(@conversation)
       end
- 
+
       @messages = @conversation.messages.order(:created_at)
 
       respond_to do |format|
