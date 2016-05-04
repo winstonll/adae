@@ -26,6 +26,13 @@
         else
              $('#reply_btn').attr('disabled', true);
     });
+
+    $("#message_body").keypress(function(event) {
+      if (event.which == 13) {
+          event.preventDefault();
+          $(".new_message").submit();
+      }
+    });
   });
 
   function clickAndDisable(link) {
