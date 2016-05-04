@@ -170,7 +170,7 @@
       var element = $('#ui-segment');
 
       element.append("<div class='opp-chat-bubble polling'><div class='bubble-text'><span class='msg'>" + message["body"] + "</span></div></div>");
-      element.append("<div class='opp-chat-time polling'>" + message["created_at"] + "</div>");
+      element.append("<div class='opp-chat-time polling'>" + message["time"] + "</div>");
 
       element = document.getElementById("ui-segment");
       element.scrollTop = element.scrollHeight;
