@@ -171,13 +171,14 @@
   // Production socket.io
   var socket = io("https://adae.co:40091");
 
-  var room = <%= "#{@conversation.id}#{@conversation.recipient_id}#{@conversation.sender_id}" %>;
+  var room = "<%= "#{@conversation.id}#{@conversation.recipient_id}#{@conversation.sender_id}" %>";
 
   socket.on('connect', function() {
     // Connected, let's sign-up for to receive messages for this room
 
     console.log("Client connect");
     socket.emit('room', room);
+    console.log(room);
   });
 
   socket.on("message", function(data) {
