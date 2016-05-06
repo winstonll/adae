@@ -178,6 +178,7 @@
 
     console.log("Client connect");
     socket.emit('room', room);
+    console.log(room);
   });
 
   socket.on("message", function(data) {
