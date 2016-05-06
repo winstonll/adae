@@ -22,15 +22,15 @@
 		<% end %>
 		<div class="request-options">
 			<% if signed_in? %>
-				<%= link_to 'Send Message', conversations_path(:sender_id => current_user.id, :recipient_id => request.user_id), :method=> :post, class:'send' %>
+				<%#= link_to 'Send Message', conversations_path(:sender_id => current_user.id, :recipient_id => request.user_id), :method=> :post, class:'send' %>
 
 				<% if @items.present? %>
-					<%#= select_tag "listings", options_from_collection_for_select(@items, "id", "title"), class: "send", style: "height: 28px; width: 110px; border: none;"%>
+					<%= select_tag "listings", options_from_collection_for_select(@items, "id", "title"), class: "send", style: "height: 28px; width: 110px; border: none;"%>
 					<input type="hidden" id="listing" name="listing" value="2" />
-					<%#= link_to 'Send Message', {:controller => "requests", :action => "send_system_message"}, class: 'post' %>
+					<%= link_to 'Send Message', {:controller => "requests", :action => "send_system_message"}, class: 'post' %>
 				<% else %>
-				<% end %>
 					<%= link_to 'Post this listing', new_item_path, class: 'post' %>
+				<% end %>
 
 			<% else %>
 				<%= link_to 'Send Message', {remote: true, controller: "home", action: "signup_modal"}, class: "send", id: "buy-button" %>

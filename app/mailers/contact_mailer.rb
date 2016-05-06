@@ -31,4 +31,10 @@ class ContactMailer < ActionMailer::Base
     mail(to: "winston@adae.co", :subject => "Adae.co New Signup")
   end
 
+  def system_message(user)
+    @recipient = user
+    @user = current_user
+    mail(to: @recipient.email, subject: 'You have a new message in your inbox!')
+  end
+
 end

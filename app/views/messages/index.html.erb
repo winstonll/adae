@@ -91,7 +91,7 @@
       <p id="guide-title"> Useful Guidelines to Keep In Mind</p>
       <p class="tips"><b class="tip-title">Work Out All The Details.</b></br> Make sure to agree on how long the service will take, and how much work will be done before sending/accepting any requests.</p>
         <p class="tips"><b class="tip-title">Get the Adae Scanner App!</b></br> The app is the tool you will need to securely send/receive payment via QR Code Scanning, and to verify the service actually happened.</p>
-        <p class="tips"><b class="tip-title">The Scanner App is your receipt.</b> </br> Scan once before the service, and scan once after. Each scan is time-stamped and proof of your start time and end time. This can be referenced in case of disputes/loss of payment.</p>
+        <p class="tips"><b class="tip-title">The Scanner App is your receipt.</b> </br> Scan once before the service, and scan once after. Each scan is time-stamped and proof of your start time and end time. This can be referenced in case of disputes/loss of payment.<em> For services with a Flat Rate, the second scan is optional.</em></p>
         <p class="tips"><b class="tip-title">We Discourage Cash Payments.</b> </br> Adae will not be able to keep track of your transactions if you use cash. Because of this, we cannot be held accountable for any disputes and/or loss of payment.</p>
    </div>
   </div>
@@ -168,9 +168,21 @@
 </div>
 
 <script>
+  // Production socket.io
   var socket = io("https://adae.co:40091");
 
-  socket.on("sent", function(message){
+  var room = <%= "#{@conversation.id}#{@conversation.recipient_id}#{@conversation.sender_id}" %>;
+
+  socket.on('connect', function() {
+    // Connected, let's sign-up for to receive messages for this room
+    socket.emit('room', room);
+  });
+
+  socket.on(room, function(data) {
+    console.log('Incoming message:', data);
+  });
+
+  /**socket.on("sent", function(message){
     var current = <%= current_user.id %>;
 
     if (current != message["user"]){
@@ -182,5 +194,5 @@
       element = document.getElementById("ui-segment");
       element.scrollTop = element.scrollHeight;
     }
-  });
+  });**/
 </script>

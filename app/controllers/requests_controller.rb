@@ -92,10 +92,10 @@ class RequestsController < ApplicationController
     redirect_to user_path(current_user)
   end
 
-  def system_message(user)
+  def send_system_message(user)
     @recipient = user
     @user = current_user
-    mail(to: @recipient.email, subject: 'You have a new message in your inbox!')
+    ContactMailer.adaebot_message(@user, @recipient).deliver_now
   end
 
   private

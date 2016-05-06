@@ -223,7 +223,7 @@ class ItemsController < ApplicationController
               item_price.amount = params[:item][:prices_attributes]["0"][:amount].to_f
               item_price.save
             end
-          elsif price[1][:timeframe] == "Week"
+          elsif price[1][:timeframe] == "Week" || price[1][:timeframe] == "Flat Rate"
             if params[:item][:prices_attributes]["1"][:amount].to_f == 0
               item_price.delete
             else
@@ -247,7 +247,7 @@ class ItemsController < ApplicationController
               item_price.amount = params[:item][:prices_attributes]["0"][:amount].to_f
               item_price.save
             end
-          elsif price[1][:timeframe] == "Week"
+          elsif price[1][:timeframe] == "Week" || price[1][:timeframe] == "Flat Rate"
             if params[:item][:prices_attributes]["1"][:amount].to_f != 0
               item_price.timeframe = price[1][:timeframe]
               item_price.item_id = @item.id
