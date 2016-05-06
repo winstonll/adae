@@ -1,9 +1,3 @@
-<script>
-	$(document).ready(function() {
-		var item = $('select[name="listings"] option:selected').val();
-		var dog = $('#listing').val();
-	  });
-</script>
 <div class="request-index" id="request-<%= request.id%>">
 	<div class="request-wrap">
 		<div class="request-expiry">
@@ -25,9 +19,11 @@
 				<%#= link_to 'Send Message', conversations_path(:sender_id => current_user.id, :recipient_id => request.user_id), :method=> :post, class:'send' %>
 
 				<% if @items.present? %>
-					<%= select_tag "listings", options_from_collection_for_select(@items, "id", "title"), class: "send", style: "height: 28px; width: 110px; border: none;"%>
-					<input type="hidden" id="listing" name="listing" value="2" />
-					<%= link_to 'Send Message', {:controller => "requests", :action => "send_system_message"}, class: 'post' %>
+					<%= form_for @user, :url => url_for(:controller => 'requests', :action => 'system_message', :method=> 'post')  do |f| %>
+						<%= select_tag "listings", options_from_collection_for_select(@items, "id", "title"), class: "send", style: "height: 28px; width: 110px; border: none;" %>
+			            <%= f.text_field :user_id, value: request.user_id, type: "hidden"%>
+			            <%= f.submit "Send Message", class: "post", style: "height: 28px; width: 110px; border: none;", data: {disable_with: "Sending..."} %>
+		      		<% end %>
 				<% else %>
 					<%= link_to 'Post this listing', new_item_path, class: 'post' %>
 				<% end %>

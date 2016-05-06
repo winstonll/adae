@@ -92,10 +92,11 @@ class RequestsController < ApplicationController
     redirect_to user_path(current_user)
   end
 
-  def send_system_message(user)
-    @recipient = user
+  def system_message(user)
     @user = current_user
-    ContactMailer.adaebot_message(@user, @recipient).deliver_now
+    @recipient = User.find(params[:user_id])
+    @listing = Item.find(params[:listings])
+    ContactMailer.system_message(@user, @recipient).deliver_now
   end
 
   private
