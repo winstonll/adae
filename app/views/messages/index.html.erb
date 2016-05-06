@@ -178,7 +178,7 @@
     socket.emit('room', room);
   });
 
-  socket.on(room, function(data) {
+  socket.on("message", function(data) {
     console.log('Incoming message:', data);
   });
 
