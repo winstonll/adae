@@ -175,15 +175,10 @@
 
   socket.on('connect', function() {
     // Connected, let's sign-up for to receive messages for this room
-
-    console.log("Client connect");
-    console.log(room);
     socket.emit('room', room);
   });
 
   socket.on("message", function(data) {
-    console.log("Incoming Message");
-
     var current = <%= current_user.id %>;
 
     if (current != data["user"]){
@@ -196,18 +191,4 @@
       element.scrollTop = element.scrollHeight;
     }
   });
-
-  /**socket.on("sent", function(message){
-    var current = <%= current_user.id %>;
-
-    if (current != message["user"]){
-      var element = $('#ui-segment');
-
-      element.append("<div class='opp-chat-bubble polling'><div class='bubble-text'><span class='msg'>" + message["body"] + "</span></div></div>");
-      element.append("<div class='opp-chat-time polling'>" + message["time"] + "</div>");
-
-      element = document.getElementById("ui-segment");
-      element.scrollTop = element.scrollHeight;
-    }
-  });**/
 </script>
