@@ -177,8 +177,8 @@
     // Connected, let's sign-up for to receive messages for this room
 
     console.log("Client connect");
-    socket.emit('room', room);
     console.log(room);
+    socket.emit('room', room); 
   });
 
   socket.on("message", function(data) {
