@@ -32,12 +32,15 @@ class MessagesController < ApplicationController
         @user = User.find_by(id: @conversation.recipient)
       end
 
+      room = "#{@conversation.id}#{@conversation.recipient_id}#{@conversation.sender_id}"
+
       my_hash = {:body => @message.body, :time => @message.message_time,
-      :conversation => @message.conversation_id, :user => @message.user_id}
+      :conversation => @message.conversation_id, :user => @message.user_id,
+      :room => room}
 
       my_hash = JSON.generate(my_hash)
 
-      $redis.publish "sent", my_hash
+      $redis.publish room, my_hash
 
       SendEmailJob.set(wait: 1.seconds).perform_later(@user, @message)
 

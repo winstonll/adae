@@ -168,9 +168,21 @@
 </div>
 
 <script>
+  // Production socket.io
   var socket = io("https://adae.co:40091");
 
-  socket.on("sent", function(message){
+  var room = <%= "#{@conversation.id}#{@conversation.recipient_id}#{@conversation.sender_id}" %>;
+
+  socket.on('connect', function() {
+    // Connected, let's sign-up for to receive messages for this room
+    socket.emit('room', room);
+  });
+
+  socket.on(room, function(data) {
+    console.log('Incoming message:', data);
+  });
+
+  /**socket.on("sent", function(message){
     var current = <%= current_user.id %>;
 
     if (current != message["user"]){
@@ -182,5 +194,5 @@
       element = document.getElementById("ui-segment");
       element.scrollTop = element.scrollHeight;
     }
-  });
+  });**/
 </script>
