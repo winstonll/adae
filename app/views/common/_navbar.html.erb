@@ -72,11 +72,11 @@ $(document).ready(function() {
     <button class="c-menu__close">&#10006;</button>
     <ul class="c-menu__items">
       <% if signed_in? %>
-        <li class="c-menu__item"><a href='#' class="c-menu__link"><span>Listings</span></a>
+        <li class="c-menu__item"><a href='#' class="c-menu__link"><span>Services</span></a>
           <ul class="c-menu__items" style="display: none;">
-             <li class="c-menu__item" style="background-color: #47475C !important; padding: 4px;"><%= link_to 'Post a Listing', new_item_path, class: "c-menu__link" %></li>
-             <li class="c-menu__item" style="background-color: #47475C !important; padding: 4px;"><%= link_to "All Listings", items_path, class: "c-menu__link" %></li>
-             <li class="c-menu__item" style="background-color: #47475C !important; padding: 4px;"><%= link_to "My Listings", user_path(current_user, :anchor => "listing-heading"), class: "c-menu__link" %></li>
+             <li class="c-menu__item" style="background-color: #47475C !important; padding: 4px;"><%= link_to 'Offer a Service', timeoffer_path, class: "c-menu__link" %></li>
+             <li class="c-menu__item" style="background-color: #47475C !important; padding: 4px;"><%= link_to "All Services", items_path, class: "c-menu__link" %></li>
+             <li class="c-menu__item" style="background-color: #47475C !important; padding: 4px;"><%= link_to "My Services", user_path(current_user, :anchor => "listing-heading"), class: "c-menu__link" %></li>
           </ul>
         </li>
 
@@ -127,23 +127,23 @@ $(document).ready(function() {
 
     <div class="search-bar">
       <form class="search-form" action="/search">
-        <input type="text" name="search_text" class="search-field-placeholder" id="search-form" placeholder="What are you looking for? ex. Texbooks, Video Games, Tutors...">
+        <input type="text" name="search_text" class="search-field-placeholder" id="search-form" placeholder="What are you looking for? ex. Moving, Tutors...">
       </form>
     </div>
 
-    <div class="itemnav" data-step="4" data-intro="This is where you can post a Listing!" data-position="right">
+    <div class="itemnav" data-step="4" data-intro="This is where you can post a Service!" data-position="right">
       <% if signed_in? %>
-      <span class="listings" onclick="$('.listingsdropdown').slideToggle();"> <%= "Listings" %> </span>
+      <span class="listings" onclick="$('.listingsdropdown').slideToggle();"> <%= "Services" %> </span>
       <div class="listingsdropdown">
-        <%= link_to 'Post a Listing', timeoffer_path, class: "newlisting" %>
-        <%= link_to "All Listings", items_path, class: "allistings" %>
-        <%= link_to "My Listings", user_path(current_user, :anchor => "listing-heading"), class: "profilepath" %>
+        <%= link_to 'Offer a Service', timeoffer_path, class: "newlisting" %>
+        <%= link_to "All Services", items_path, class: "allistings" %>
+        <%= link_to "My Services", user_path(current_user, :anchor => "listing-heading"), class: "profilepath" %>
       <% end %>
       </div>
     </div>
 
   <% if signed_in? %>
-    <div class="balance-display" data-step="3" data-intro="This is your balance and you have $<%= current_user.balance %> right now. </br></br> Post a listing & start making money!" data-position="right">
+    <div class="balance-display" data-step="3" data-intro="This is your balance and you have $<%= current_user.balance %> right now. </br></br> Post a Service & start making money!" data-position="right">
       <span class="balance" onclick="$('.balancedropdown').slideToggle();"> Balance </span>
       <div class="balancedropdown">
         <p id="user_balance"> $ <%= current_user.balance %> </p>

@@ -40,7 +40,7 @@
   		<%= f.text_area :description %>
 	</div>
   <div style="border: 1px solid #BDBDBD; margin: 15px 0px 30px 0px; width: 175px; padding: 10px 15px; border-radius: 5px;">
-    <span style="line-height: normal; color: #7E7E7E;">Enter your current password to verify your profile and update.</span>
+    <span style="line-height: normal; color: #7E7E7E;">Enter your current password or type a new one to update.</span>
   	<div class ='field'>
   		<%= f.label :password %>
   		<%= f.password_field :password %>
@@ -50,7 +50,7 @@
   		<%= f.password_field :password_confirmation %>
   	</div>
   	<div class ='field'>
-      <%= f.submit 'Verify & Update', :class => 'update-button' %>
+      <%= f.submit 'Save & Update', :class => 'update-button' %>
   	</div>
   </div>
 </div>

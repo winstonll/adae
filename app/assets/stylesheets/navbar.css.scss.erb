@@ -21,6 +21,11 @@ input:focus, textarea {
     height: 60px;
     border-style: none solid none none;
     border-right: 1px solid #eaeaea;
+    &:hover{
+      background-color: #FAFAFA;
+      transition: all .3s ease-in-out;
+    }
+
 
     .home-logo {
       height: 60px;
@@ -60,7 +65,7 @@ input:focus, textarea {
     .balance-display {
       position: absolute;
       top: 22px;
-      right: 544px; /*note: original was 423px. Add this value back when Shout-Outs are implemented!*/
+      right: 551px; /*note: original was 423px. Add this value back when Shout-Outs are implemented!*/
 
       .balance {
         color: #40C11B;;
@@ -193,7 +198,7 @@ input:focus, textarea {
 
       .listings {
           color: #419bf9;
-          padding: 20px 35px 20px 35px;
+          padding: 20px 35px 20px 37px;
           border-style: none none none solid;
           border-left: 1px solid #eaeaea;
           cursor: pointer;
@@ -212,6 +217,16 @@ input:focus, textarea {
         display:block;
         &:hover{
           color: #419bf9;
+          -webkit-transform: translateX(3px);
+             -moz-transform: translateX(3px);
+              -ms-transform: translateX(3px);
+               -o-transform: translateX(3px);
+                  transform: translateX(3px);
+                  -webkit-transition: all .20s ease-out;
+                     -moz-transition: all .20s ease-out;
+                      -ms-transition: all .20s ease-out;
+                       -o-transition: all .20s ease-out;
+                          transition: all .20s ease-out;
         }
       }
 
@@ -262,6 +277,16 @@ input:focus, textarea {
         display:block;
         &:hover{
           color: #f5a623;
+          -webkit-transform: translateX(3px);
+             -moz-transform: translateX(3px);
+              -ms-transform: translateX(3px);
+               -o-transform: translateX(3px);
+                  transform: translateX(3px);
+                  -webkit-transition: all .20s ease-out;
+                     -moz-transition: all .20s ease-out;
+                      -ms-transition: all .20s ease-out;
+                       -o-transition: all .20s ease-out;
+                          transition: all .20s ease-out;
         }
       }
 
@@ -333,6 +358,16 @@ input:focus, textarea {
 
         &:hover{
           color: #419bf9;
+          -webkit-transform: translateX(3px);
+             -moz-transform: translateX(3px);
+              -ms-transform: translateX(3px);
+               -o-transform: translateX(3px);
+                  transform: translateX(3px);
+                  -webkit-transition: all .20s ease-out;
+                     -moz-transition: all .20s ease-out;
+                      -ms-transition: all .20s ease-out;
+                       -o-transition: all .20s ease-out;
+                          transition: all .20s ease-out;
         }
       }
 
@@ -457,7 +492,7 @@ o-wrapper {
   display: none;
 }
 
-@media screen and (min-width: 320px) and (max-width: 1238px){
+@media screen and (min-width: 320px) and (max-width: 1130px){
   /**.nav {
     display: none;
   }**/

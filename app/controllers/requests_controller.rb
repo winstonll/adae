@@ -92,10 +92,13 @@ class RequestsController < ApplicationController
     redirect_to user_path(current_user)
   end
 
-  def send_system_message(user)
-    @recipient = user
+  def system_message
     @user = current_user
-    ContactMailer.adaebot_message(@user, @recipient).deliver_now
+    @listing = Item.find(params[:listing])
+    @recipient = User.find(params[:user][:recipient])
+    ContactMailer.system_message(@user, @recipient, @listing).deliver_now
+    redirect_to :back
+    flash[:message] = "You have replied to #{@recipient.name}'s Shout Out!"
   end
 
   private

@@ -31,17 +31,17 @@
 		-o-animation-iteration-count: 5;
 	}
 	@-webkit-keyframes bounce {
-	 0%, 20%, 50%, 80%, 100% {-webkit-transform: translateY(0);} 
+	 0%, 20%, 50%, 80%, 100% {-webkit-transform: translateY(0);}
 	 40% {-webkit-transform: translateY(-10px);}
 	 60% {-webkit-transform: translateY(-10px);}
 	}
-	 
+
 	@-moz-keyframes bounce {
 	 0%, 20%, 50%, 80%, 100% {-moz-transform: translateY(0);}
 	 40% {-moz-transform: translateY(-10px);}
 	 60% {-moz-transform: translateY(-10px);}
 	}
-	 
+
 	@-o-keyframes bounce {
 	 0%, 20%, 50%, 80%, 100% {-o-transform: translateY(0);}
 	 40% {-o-transform: translateY(-10px);}
@@ -63,7 +63,7 @@
 	    		<a class="share-item" href="/listings" data-step="1" data-intro="What others have to offer. Popular services include: <br> - tutoring <br> - photography <br> - music & dance lessons <br> - professional mentorship <br> - moving" data-position="right">All Listings</a>
 	    		<a class="share-request" href="/shoutouts" data-step="2" data-intro="This is where people post requests.</br> Can you help someone out?" data-position="right">All Shout Outs</a>
 	    <% else %>
-	    	<%= link_to "All Listings", items_path, class: "share-item" %>
+	    	<%= link_to "All Services", items_path, class: "share-item" %>
 	    	<%= link_to "All Shout Outs", requests_path, class: "share-request" %>
 		<% end %>
 		</div>
