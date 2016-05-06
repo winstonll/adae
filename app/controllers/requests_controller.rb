@@ -94,9 +94,11 @@ class RequestsController < ApplicationController
 
   def system_message
     @user = current_user
-    @recipient = User.find(params[:user_id])
-    @listing = Item.find(params[:listings])
-    ContactMailer.system_message(@user, @recipient).deliver_now
+    @listing = Item.find(params[:listing])
+    @recipient = User.find(params[:user][:recipient])
+    ContactMailer.system_message(@user, @recipient, @listing).deliver_now
+    redirect_to :back
+    flash[:message] = "You have replied to #{@recipient.name}'s Shout Out!"
   end
 
   private
