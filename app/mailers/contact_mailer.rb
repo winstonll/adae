@@ -32,7 +32,6 @@ class ContactMailer < ActionMailer::Base
   end
 
   def system_message(user,recipient,listing)
-    sadfsd
     @user = user
     @listing = listing
     @recipient = recipient
