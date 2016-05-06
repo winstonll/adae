@@ -139,7 +139,7 @@
 		<div class="new-item-form">
 			<p> Add a Location:</p>
 			<p class="form-title">Postal Code</p>
-			<%= f.text_field :postal_code, :maxlength=> "6", :placeholder => "ex. M5V3A6, This way people nearby are more likely to discover your listing" %>
+			<%= f.text_field :postal_code, :maxlength=> "6", :placeholder => "ex. M5V3A6, This way people nearby are more likely to discover your service." %>
 		</div>
 
 		<% if current_page? rent_path %>
@@ -155,12 +155,12 @@
 		<div class="new-item-form">
 			<p> Description:</p>
 			<p class="form-title">Listing Title</p>
-			<%= f.text_field :title, :maxlength=> "90", :placeholder => "Give your listing a concise and catchy headline!"  %>
+			<%= f.text_field :title, :maxlength=> "90", :placeholder => "Give your service a concise and catchy headline!"  %>
 		</div>
 
 		<div class="new-item-form">
 			<%= f.label :summary %>
-			<%= f.text_area :description, :maxlength=> "500", :placeholder => "Summarize the highlights of your listing, include as much detail as possible!" %>
+			<%= f.text_area :description, :maxlength=> "500", :placeholder => "Summarize the highlights of your service, include as much detail as possible!" %>
       		<label class="countdown">500 characters remaining</label>
 		</div>
 
@@ -169,12 +169,12 @@
 				<%= image_tag "phone.png", id:"photo-image" %>
       			<%= file_field_tag "images[]", type: :file, multiple: true %>
 				<p id="pic-title">  + Add Photos </p>
-				<p id="descriptor"> Upload at least 1 high quality picture that best represents your Listing! </p>
+				<p id="descriptor"> Upload at least 1 high quality picture that best represents your Service! </p>
 			</div>
 		</div>
 
 		<%= f.submit 'Submit', :class => 'submit-listing', data: {disable_with: "Submitting..."} %>
-		<div id="small-tip"> you can edit/update your listing after you submit.</div>
+		<div id="small-tip"> you can edit/update your post after you submit.</div>
 	</div>
 </div>
 <%end%>
