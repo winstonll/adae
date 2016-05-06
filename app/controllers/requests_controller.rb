@@ -92,7 +92,7 @@ class RequestsController < ApplicationController
     redirect_to user_path(current_user)
   end
 
-  def system_message(user)
+  def system_message
     @user = current_user
     @recipient = User.find(params[:user_id])
     @listing = Item.find(params[:listings])
