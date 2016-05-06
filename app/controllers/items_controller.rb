@@ -3,7 +3,7 @@ class ItemsController < ApplicationController
   before_action :item_deleted?, only: [:show]
 
   def index
-      @items = Item.where(status: "Listed").paginate(:page => params[:page], :per_page => 8).order('created_at DESC')
+      @items = Item.where(status: "Listed").paginate(:page => params[:page], :per_page => 12).order('created_at DESC')
       @user = current_user
       gon.map_items = @items.pluck(:latitude, :longitude, :id, :title, :photo_url)
 
