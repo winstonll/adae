@@ -47,6 +47,15 @@
         toastr.success("<%= flash[:notice] %>");
       <% end %>
 
+      <% if flash[:success] %>
+        toastr.options ={
+          'timeOut': "3000",
+          'extendedTimeOut': "2000",
+          "positionClass": 'toast-top-center'
+        };
+        toastr.success("<%= flash[:success] %>");
+      <% end %>
+
       <% if flash[:alert] %>
         toastr.options ={
           'timeOut': "5000",
