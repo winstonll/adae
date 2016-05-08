@@ -21,7 +21,18 @@ module Api::V1
         conversation_id: params[:messages][:conversation_id], user_id: current_user.id)
 
         if @message.save
-          ContactMailer.new_message(@user, @message).deliver_now
+
+          my_hash = {:body => @message.body, :time => @message.message_time,
+          :conversation => @message.conversation_id, :user => @message.user_id,
+          :room => "#{@conversation.id}#{@conversation.recipient_id}#{@conversation.sender_id}"}
+
+          my_hash = JSON.generate(my_hash)
+
+          $redis.publish "message", my_hash
+
+          SendEmailJob.set(wait: 1.seconds).perform_later(@user, @message)
+
+          #ContactMailer.new_message(@user, @message).deliver_now
 
           render :nothing => true, status: :ok
         else
