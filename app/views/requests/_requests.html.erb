@@ -20,11 +20,10 @@
 				<%#= link_to 'Send Message', conversations_path(:sender_id => current_user.id, :recipient_id => request.user_id), :method=> :post, class:'send' %>
 
 				<% if @items.present? %>
-					<%#= form_for @user, :url => url_for(:controller => 'requests', :action => 'system_message'), :method => :POST do |f| %>
 					<%= form_for @user, url: {action: "system_message"}, :method => :POST do |f| %>
-						<%= select_tag "listing", options_from_collection_for_select(@items, "id", "title"), class: "send", style: "height: 28px; width: 110px; border: none;" %>
+						<%= select_tag "listing", options_from_collection_for_select(@items, "id", "title"), class: "send", style: "height: 28px; width: 110px; border: none; cursor: pointer; vertical-align: top;" %>
 			            <%= f.hidden_field :recipient, value: request.user_id %>
-			            <%= f.submit "Send Message", class: "post", style: "height: 28px; width: 110px; border: none;", data: {disable_with: "Sending..."} %>
+			            <%= f.submit "Send Message", class: "post", style: "height: 28px; width: 110px; border: none; cursor: pointer; padding: 0; border-radius: 3px;", data: {disable_with: "Sending..."} %>
 		      		<% end %>
 				<% else %>
 					<%= link_to 'Post this listing', new_item_path, class: 'post' %>

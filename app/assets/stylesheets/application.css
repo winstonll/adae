@@ -35,6 +35,9 @@ table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
+select {
+	border-radius: 4px;
+}
 
 /* STYLESSS*/
 
@@ -233,10 +236,6 @@ a.account-links {
 
 }
 
-.user-rating {
-
-
-}
 
 .edit-review {
 	display: inline-block;
