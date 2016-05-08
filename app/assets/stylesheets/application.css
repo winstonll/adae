@@ -35,6 +35,9 @@ table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
+select {
+	border-radius: 4px;
+}
 
 /* STYLESSS*/
 
@@ -76,7 +79,7 @@ html, body {
 	line-height: normal;
 }
 
-#notice{
+#notice, #success{
 	font-size: 20px;
 	font-weight: 600;
 	color: #419bf9;
@@ -233,10 +236,6 @@ a.account-links {
 
 }
 
-.user-rating {
-
-
-}
 
 .edit-review {
 	display: inline-block;
