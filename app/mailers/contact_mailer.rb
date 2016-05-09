@@ -38,4 +38,11 @@ class ContactMailer < ActionMailer::Base
     mail(to: @recipient.email, subject: 'Someone has replied to your Shout Out!')
   end
 
+  def review_prompt(buyer, seller, listing)
+    @buyer = buyer
+    @seller = seller
+    @listing = listing
+    mail(to: @buyer.email, :subject => "Hello! Please Rate & Review #{@seller.full_name}.")
+  end
+
 end
