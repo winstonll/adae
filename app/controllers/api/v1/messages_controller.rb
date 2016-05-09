@@ -22,7 +22,7 @@ module Api::V1
 
         if @message.save
 
-          my_hash = {:body => @message.body, :time => @message.created_at,
+          my_hash = {:body => @message.body, :time => @message.message_time,
           :conversation => @message.conversation_id, :user => @message.user_id,
           :room => "#{@conversation.id}#{@conversation.recipient_id}#{@conversation.sender_id}"}
 
