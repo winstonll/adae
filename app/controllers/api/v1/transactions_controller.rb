@@ -109,6 +109,11 @@ module Api::V1
                 length = current_transaction.length.split("-")
                 if length[1] == "Flat Rate"
                   current_transaction.status = "Completed"
+
+                  @buyer = User.where(user_id: current_transaction[:buyer_id])
+                  @seller = User.where(user_id: current_transaction[:seller_id])
+                  @listing = product
+                  SendEmailJob.set(wait: 1.seconds).review_later(@buyer, @seller, @listing)
                 else
                   current_transaction.status = "In Progress"
                 end
