@@ -167,15 +167,15 @@
           </div>
         </div>
       <% else %>
-        <div class="item-detail-price" style="height:270px;">
+        <div class="item-detail-price">
           <div class="price-title2">Service Available</div>
           <% @prices.each do |price| %>
-            <div class="price-breakdown" style="margin-top: 25px; margin-bottom: 20px;">
+            <div class="price-breakdown">
               <div class="price-list">
               <% if price.timeframe == "Flat Rate" %>
-                <span class="markup">$<%= price.amount %></span> <%= price.timeframe %>
+                <span class="markup">$<%= price.amount %></span> <span class="price-time"><%= price.timeframe %></span>
               <% else %>
-                <span class="markup">$<%= price.amount %></span> per <%= price.timeframe %>
+                <span class="markup">$<%= price.amount %></span> <span class="price-time">per <%= price.timeframe %></span>
               <% end %>
               </div>
             </div>
