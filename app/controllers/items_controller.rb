@@ -8,8 +8,8 @@ class ItemsController < ApplicationController
       gon.map_items = @items.pluck(:latitude, :longitude, :id, :title, :photo_url)
 
       respond_to do |format|
-        format.html #{ render :template => '/products_home.html.erb' }
-        format.js  # Prodcuts home partial
+        format.html
+        format.js
       end
   end
 
