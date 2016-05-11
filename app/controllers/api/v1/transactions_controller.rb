@@ -109,11 +109,12 @@ module Api::V1
                 length = current_transaction.length.split("-")
                 if length[1] == "Flat Rate"
                   current_transaction.status = "Completed"
-
+=begin
                   @buyer = User.where(user_id: current_transaction[:buyer_id])
                   @seller = User.where(user_id: current_transaction[:seller_id])
                   @listing = product
                   SendEmailJob.set(wait: 1.seconds).review_later(@buyer, @seller, @listing)
+=end
                 else
                   current_transaction.status = "In Progress"
                 end
@@ -148,11 +149,12 @@ module Api::V1
               current_transaction.out_scan_date = DateTime.current
               current_transaction.status = "Completed"
               current_transaction.save
+=begin
               @buyer = User.where(user_id: current_transaction[:buyer_id])
               @seller = User.where(user_id: current_transaction[:seller_id])
               @listing = product
               SendEmailJob.set(wait: 1.seconds).review_later(@buyer, @seller, @listing)
-
+=end
               render nothing: true, status: 204
             else
               render json: {
