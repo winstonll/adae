@@ -12,7 +12,6 @@ module Api::V1
       render json: @transaction, status: :ok
     end
 
-    # I'm leaking sensitive user information, auth and api token
     def show
       transaction = Transaction.where(id: params[:id]).first
 
@@ -30,7 +29,7 @@ module Api::V1
       transaction = Transaction.new(transaction_params)
 
       if transaction.save
-        render nothing: true, status: 204#, location: user
+        render nothing: true, status: 204
       else
         render json: transaction.errors, status: 422
       end
@@ -109,12 +108,12 @@ module Api::V1
                 length = current_transaction.length.split("-")
                 if length[1] == "Flat Rate"
                   current_transaction.status = "Completed"
-=begin
+
                   @buyer = User.where(id: current_transaction[:buyer_id]).first
                   @seller = User.where(id: current_transaction[:seller_id]).first
                   @listing = product
                   ReviewPromptJob.perform_later(@buyer, @seller, @listing)
-=end
+
                 else
                   current_transaction.status = "In Progress"
                 end
@@ -149,12 +148,12 @@ module Api::V1
               current_transaction.out_scan_date = DateTime.current
               current_transaction.status = "Completed"
               current_transaction.save
-=begin
+
               @buyer = User.where(id: current_transaction[:buyer_id]).first
               @seller = User.where(id: current_transaction[:seller_id]).first
               @listing = product
               ReviewPromptJob.perform_later(@buyer, @seller, @listing)
-=end
+
               render nothing: true, status: 204
             else
               render json: {

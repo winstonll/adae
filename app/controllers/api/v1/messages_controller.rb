@@ -33,8 +33,6 @@ module Api::V1
 
           SendEmailJob.set(wait: 1.seconds).perform_later(@user, @message)
 
-          #ContactMailer.new_message(@user, @message).deliver_now
-
           render :nothing => true, status: :ok
         else
           render json: @message.errors, status: 422
