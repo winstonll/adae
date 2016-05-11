@@ -14,6 +14,7 @@ class ItemsController < ApplicationController
   end
 
   def show
+
     @item = Item.find(params[:id])
     gon.map_item = Item.where(id: @item.id).pluck(:latitude, :longitude, :id)
     @review = @item.reviews.build
