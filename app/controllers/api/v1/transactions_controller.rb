@@ -110,10 +110,10 @@ module Api::V1
                 if length[1] == "Flat Rate"
                   current_transaction.status = "Completed"
 =begin
-                  @buyer = User.where(user_id: current_transaction[:buyer_id])
-                  @seller = User.where(user_id: current_transaction[:seller_id])
+                  @buyer = User.where(id: current_transaction[:buyer_id]).first
+                  @seller = User.where(id: current_transaction[:seller_id]).first
                   @listing = product
-                  SendEmailJob.set(wait: 1.seconds).review_later(@buyer, @seller, @listing)
+                  ReviewPromptJob.perform_later(@buyer, @seller, @listing)
 =end
                 else
                   current_transaction.status = "In Progress"
@@ -150,10 +150,10 @@ module Api::V1
               current_transaction.status = "Completed"
               current_transaction.save
 =begin
-              @buyer = User.where(user_id: current_transaction[:buyer_id])
-              @seller = User.where(user_id: current_transaction[:seller_id])
+              @buyer = User.where(id: current_transaction[:buyer_id]).first
+              @seller = User.where(id: current_transaction[:seller_id]).first
               @listing = product
-              SendEmailJob.set(wait: 1.seconds).review_later(@buyer, @seller, @listing)
+              ReviewPromptJob.perform_later(@buyer, @seller, @listing)
 =end
               render nothing: true, status: 204
             else
