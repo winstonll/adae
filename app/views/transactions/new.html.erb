@@ -272,10 +272,12 @@
         <div class="item-detail-price" style="height: 410px;">
           <div class="item-title"><%=@item.title %></div>
           <div class="division"></div>
-          <p class="how-long">How long would you like to lease this?</p>
+          <p class="how-long">What would you like to purchase?</p>
             <%= form_for Transaction.new, html: {multipart: true}  do |f| %>
-              <input id="qty" name="quantity" min="1" max="30" type="number" onChange="updateQty()"></input>
-              <span><%= f.select :length, @type_dropdown, {}, :onchange => "updateLength()"%></span>
+              <%@prices.each do |price| %>
+                <input id="qty" name="quantity" min="1" max="30" type="number" onChange="updateQty()"></input>
+                <input id="prod" name="product" readonly="true" value="<%= price.title %>"></input><br>
+              <% end%>
 
               <div class="division"></div>
               <div class="item-detail-calc">
@@ -284,15 +286,6 @@
                   <input id="length" readonly="readonly" value=""></input>
                   <input id="subtotal" readonly="readonly" value=""></input>
 
-                  <% unless @item.deposit == 0 %>
-                  <input class="trust-fee"readonly="readonly" value="Trust Fee: $<%= @item.deposit %>"></input>
-                  <span>
-                    <span style="top: 1.5px;"class="wrapper">
-                      <%= image_tag "question-mark.png", size:"13x14"%>
-                      <div class="tooltip">This ensures that the item is treated with care and is returned on time. <b style="font-weight: 600;">This amount will only be charged if you fail to return the item, damage it, or lose it.</b></div>
-                    </span>
-                  </span>
-                  <% end %>
                   <div class="credit-fee">
                     <a target="_blank" href="https://stripe.com/ca/pricing">Stripe Processing Fee:</a>
                     <span>
@@ -305,7 +298,7 @@
                   </div>
                   <div class="division" style=" width: 86%;"></div>
                   <div style="font-size: 12px; margin:15px 10px 15px 21px; line-height: normal; color: #4a4a4a; width: 88%;">
-                    Pay a rental fee to try the item, and if you like it you can buy the item for the Trust Fee price. Your rental fees will count towards the final sale price.
+                    <!-- Pay a rental fee to try the item, and if you like it you can buy the item for the Trust Fee price. Your rental fees will count towards the final sale price. -->
                   </div>
                   <span class="finalp">Total</span>
                   <%= f.text_field :total_price, :value => "",:readonly => true %>
