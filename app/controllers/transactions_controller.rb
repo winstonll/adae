@@ -219,7 +219,7 @@ class TransactionsController < ApplicationController
 			charge_price = transaction.total_price.to_f
 
 			if params[:lease]
-				charge_price = (markup_calculation(item.deposit) - transaction.total_price).to_f
+				charge_price = (item.deposit - transaction.total_price).to_f
 			end
 
 			if shared = Share.where(user_id: buyer.id, item_id: item.id, discount_used: false).first
@@ -292,30 +292,6 @@ class TransactionsController < ApplicationController
 
 			hash = {"transaction" => transaction, "seller" => seller, "item" => item}
 			return hash
-		end
-
-		def markup_calculation(price)
-			l1 = 1.1
-			l2 = 1.08
-			l3 = 1.06
-			l4 = 1.04
-			l5 = 1.02
-
-			displayPrice = 0
-
-	    if(price < 100)
-	      displayPrice = (price * l1).round
-	    elsif(price >= 100 && price < 200)
-	      displayPrice = ((100 * l1) + (price - 100) * l2).round
-	    elsif(price >= 200 && price < 500)
-	      displayPrice = ((100 * l1) + (100 * l2) + ((price - 200) * l3)).round
-	    elsif(price >= 500 && price < 1000)
-	      displayPrice = ((100 * l1) + (100 * l2) + (300 * l3) + ((price - 500) * l4)).round
-	    elsif(price >= 1000)
-	      displayPrice = ((100 * l1) + (100 * l2) + (300 * l3) + (500 * l4) + ((price - 1000) * l5)).round
-			end
-
-			return displayPrice
 		end
 
 		#if transaction exists redirect
