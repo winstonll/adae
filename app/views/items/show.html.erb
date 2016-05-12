@@ -199,52 +199,6 @@
       <div class="date">Listed On: <%= @item.created_at.strftime('%d %b %Y') %></div>
     </div>
     <div class="item-detail-description">
-
-			<script>
-				window.fbAsyncInit = function() {
-
-				};
-
-				(function(d, s, id){
-					var js, fjs = d.getElementsByTagName(s)[0];
-					if (d.getElementById(id)) {return;}
-					js = d.createElement(s); js.id = id;
-					js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5&appId=896455457041729";
-					fjs.parentNode.insertBefore(js, fjs);
-				}(document, 'script', 'facebook-jssdk'));
-
-				function share_prompt(){
-			  	FB.ui(
-			      {
-			        method: 'feed',
-			        name: "<%= @item.title %>",
-			        link: "<%= request.original_url %>",
-			        picture: "<%= "https://adae.co#{@pictures.first.image.url(:med)}"  %>",
-			        caption: 'Reference Documentation',
-			        description: "<%= @item.description %>",
-			        message: ''
-			      },
-			      function(response) {
-			        if (response && response.post_id) {
-			          alert('Post was published.');
-								$.ajax({url: "/discount", type: "POST", data: {item_id: "<%= @item.id %>"},});
-			        } else {
-			          alert('Post was not published.');
-			        }
-			      }
-			    );
- 		 		}
-			</script>
-
-			<input class="share-button" type="button" onclick="share_prompt()" value="Share" />
-			<span style="color: #4a4a4a; font-size: 15px; display: none;"> and get 5% Off! </span>
-			<span>
-				<span style="bottom: 1px; display: none;" class="wrapper">
-					<%= image_tag "question-mark.png", size:"13x14"%>
-					<div class="tooltip">Share this page before submitting your request, and get 5% off of the entire price! </div>
-				</span>
-			</span>
-
       <div class="item-description">
         <div style="font-weight: 500; margin-bottom: -5px;">Description:</div>
         <%= simple_format(@item.description) %>
