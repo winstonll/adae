@@ -117,7 +117,10 @@
     var total = (amt * qty);
 
     if (validateInteger(qty)){
+      // adae fee
       var fee = ((total * 0.029) + 0.30).toFixed(2);
+
+      // sub total
       var pre_markup = total -  (qty * hash[length]);
 
       $('#subtotal').val('$' + total);
@@ -256,6 +259,7 @@
           </div>
 
           <div class="division" style=" width: 86%;"></div>
+
           <span class="finalp">Total</span>
           <% unless params[:sell] == "true" %>
             <input id="total" readonly="readonly" value=""></input>
@@ -379,6 +383,11 @@
                   <label style="margin-left: 34px" id="stripe-fee"></label>
                 </div>
                 <div class="division" style="width: 85%;"></div>
+
+              <div class="finalp">Discount</div>
+
+              <%= f.text_field :discount_price, :value => "",:readonly => true %>
+
               <span class="finalp">Total</span>
               <%= f.text_field :total_price, :value => "",:readonly => true %>
             </div>
@@ -402,53 +411,19 @@
             <%= hidden_field_tag 'item_id', @item.id %>
             <%= hidden_field_tag 'price' %>
             <%= hidden_field_tag 'duration' %>
+            <%= hidden_field_tag 'discount_used', 'false' %>
          <% end %>
         <% else %>
           <%= form_tag transactions_stripe_path do%>
             <%= hidden_field_tag 'item_id', @item.id %>
             <%= hidden_field_tag 'price' %>
             <%= hidden_field_tag 'duration' %>
+            <%= hidden_field_tag 'discount_used', 'false' %>
 
             <%= submit_tag 'Send Request', class: "request-button"%>
           <% end %>
         <%end%>
       </center>
-
-      <script>
-        window.fbAsyncInit = function() {
-
-        };
-
-        (function(d, s, id){
-          var js, fjs = d.getElementsByTagName(s)[0];
-          if (d.getElementById(id)) {return;}
-          js = d.createElement(s); js.id = id;
-          js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5&appId=896455457041729";
-          fjs.parentNode.insertBefore(js, fjs);
-        }(document, 'script', 'facebook-jssdk'));
-
-        function share_prompt(){
-          FB.ui(
-            {
-              method: 'feed',
-              name: "<%= @item.title %>",
-              link: "<%= request.original_url %>",
-              picture: "<%= "https://adae.co#{@pictures.first.image.url(:med)}"  %>",
-              caption: 'Reference Documentation',
-              description: "<%= @item.description %>",
-              message: ''
-            },
-            function(response) {
-              if (response && response.post_id) {
-                alert('Post was published.');
-                $.ajax({url: "/discount", type: "POST", data: {item_id: "<%= @item.id %>"},});
-              } else {
-                alert('Post was not published.');
-              }
-            }
-          );
-        }
-      </script>
     </div>
   </div>
 
