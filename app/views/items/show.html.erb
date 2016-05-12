@@ -141,7 +141,7 @@
           <%= link_to 'Request to Buy', new_transaction_path(:item_id => @item.id, :sell=> true), class: "request-button", id: "buy-button"%>
         </div>
       <% elsif @item.listing_type == "rent"%>
-        <div class="item-detail-price" style="height:355px;">
+        <div class="item-detail-price">
           <div class="price-title2">Available for Rent</div>
             <% @prices.each do |price| %>
               <div class="price-breakdown">
