@@ -109,7 +109,6 @@ module Api::V1
                 if length[1] == "Flat Rate"
                   current_transaction.status = "Completed"
 
-                  # Sending review prompt reminder email
                   @buyer = User.where(id: current_transaction[:buyer_id]).first
                   @seller = User.where(id: current_transaction[:seller_id]).first
                   @listing = product
@@ -126,9 +125,6 @@ module Api::V1
 
               current_transaction.save
 
-              # Calculate the 90/10 split for seller and adae
-
-=begin
               if product.listing_type != "sell"
                 length = current_transaction.length.split("-")
                 qty = length[0]
@@ -136,16 +132,11 @@ module Api::V1
                 price = Price.where(item_id: current_transaction.item_id, timeframe: length).first
 
                 sub_total = price.amount * qty.to_i
-                sub_total = sub_total * 0.90
               else
                 price = Price.where(item_id: current_transaction.item_id).first
 
                 sub_total = price.amount
-                sub_total = sub_total * 0.90
               end
-=end
-
-              sub_total = current_transaction.total_price * 0.90
 
               seller.balance = seller.balance +  sub_total
               seller.save
@@ -158,7 +149,6 @@ module Api::V1
               current_transaction.status = "Completed"
               current_transaction.save
 
-              # Sending review prompt reminder email
               @buyer = User.where(id: current_transaction[:buyer_id]).first
               @seller = User.where(id: current_transaction[:seller_id]).first
               @listing = product
