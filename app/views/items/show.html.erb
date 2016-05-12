@@ -105,40 +105,26 @@
           <% end %>
         </div>
       <% elsif @item.listing_type == "lease" %>
-        <div class="item-detail-price" style="height:350px;">
+        <div class="item-detail-price">
           <div class="price-title2">Available for Lease</div>
             <% @prices.each do |price| %>
               <div class="price-breakdown">
                   <div class="price-list">
-                    <span class="markup" style="font-weight:500;">$<%= price.amount %></span> per <%= price.timeframe %>
+                    <span class="markup" style="font-weight:500;">$<%= price.amount %></span> <%= price.title %> <%= price.description %>
                   </div>
               </div>
             <% end %>
           <div class="division"></div>
           <div class="item-detail-calc">
-            <% unless @item.deposit == 0 %>
-              <input class="trust-fee"readonly="readonly" value="Trust Fee: $<%= @item.deposit %>"></input>
-              <p class="trust-fee-text">This ensures that the item is treated with care, and is returned on time. <b style="font-weight: 500"> This amount will be charged only if you fail to return the item, damage it, or lose it.</b> </p>
-            <% end %>
             <div class="division-2"></div>
-
 						<% if user_signed_in? %>
-	            <%= link_to 'Request to Lease', new_transaction_path(:item_id => @item.id), class: "request-button", id: "lease-button"%>
+	            <%= link_to 'Request Products', new_transaction_path(:item_id => @item.id), class: "request-button", id: "lease-button"%>
 							<%= link_to 'Send Message', conversations_path(:sender_id => current_user.id, :recipient_id => @item.user_id), :method=> :post, class: "send-message signed-in-message" %>
 	          <% else %>
-	            <%= link_to 'Request to Lease', {remote: true, controller: "home", action: "signup_modal"}, id: "lease-button", class: "request-button" %>
+	            <%= link_to 'Request Products', {remote: true, controller: "home", action: "signup_modal"}, id: "lease-button", class: "request-button" %>
 							<%= link_to 'Send Message', {remote: true, controller: "home", action: "signup_modal"}, class: "send-message guest-message" %>
 	          <% end %>
           </div>
-        </div>
-        <div class="item-lease-price" >
-          <div class="price-title">Also Available for Sale</div>
-          <p>Pay a rental fee to try the item, and if you like it you can buy the item for the Trust Fee price.</p>
-          <p>Your rental fees will count towards the final sale price.</p>
-          <p class="sale-price"> Sale Price:
-            <span class="markup" style="font-weight: 700; color:#000;">$<%= @item.deposit %></span>
-          </p>
-          <%= link_to 'Request to Buy', new_transaction_path(:item_id => @item.id, :sell=> true), class: "request-button", id: "buy-button"%>
         </div>
       <% elsif @item.listing_type == "rent"%>
         <div class="item-detail-price">
