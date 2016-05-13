@@ -8,14 +8,16 @@ class TransactionsController < ApplicationController
 		@transaction = Transaction.new
 		@item = Item.find(params[:item_id])
 
-	    @prices = @item.prices
-	    @pictures = Picture.where(item_id: @item.id)
+    @prices = @item.prices
+    @pictures = Picture.where(item_id: @item.id)
 
-	    @type_dropdown = []
+    @type_dropdown = []
 
-	    @prices.each do |price|
-	    	@type_dropdown.push([price.timeframe])
-	    end
+    @prices.each do |price|
+    	@type_dropdown.push([price.timeframe])
+    end
+
+		@shared = !(Share.where(user_id: current_user.id, item_id: @item.id).empty?) && !(Share.where(user_id: current_user.id, item_id: @item.id).first.discount_used)
 	end
 
 	def stripe

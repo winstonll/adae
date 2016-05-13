@@ -123,6 +123,10 @@
       // sub total
       var pre_markup = total -  (qty * hash[length]);
 
+      if ( ($('#discount_used').val() == "true") || ("<%= @shared %>" == "true")){
+        console.log("discount");
+      }
+
       $('#subtotal').val('$' + total);
       $('#price').val(total);
 
