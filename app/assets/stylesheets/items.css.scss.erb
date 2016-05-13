@@ -544,7 +544,7 @@ item Show
       z-index:2;
       border: 1px solid #979797;
       background-color: #fff;
-      width: 270px;
+      width: 280px;
       padding-bottom: 17px;
       border-radius: 3px;
 
@@ -569,6 +569,24 @@ item Show
             float: right;
             margin-top: 4px;
             padding-left: 5px;
+          }
+        }
+
+        .price-list-product{
+          font-size: 15px;
+          font-weight: 400;
+          border: none;
+          padding: 10px 0px 0px 20px;
+          .markup{
+            font-weight: 700;
+            color: #34C819;
+            font-size: 20px;
+          }
+          .price-time{
+            margin: -21px 0px 0px 44px;
+            width: 200px;
+            color: #262626;
+            line-height: normal;
           }
         }
       }
@@ -609,32 +627,6 @@ item Show
         opacity: 0.9;
         padding: 12px;
       }
-      #qty{
-        border: 1px solid #419bf9;
-        margin-left: 4em;
-        width: 27px;
-        height:27px;
-        vertical-align: top;
-        -webkit-appearance: none;
-        border-radius: 4px;
-        color: #4a4a4a;
-        font-size: 15px;
-        padding-left: 10px;
-      }
-      #time-selection{
-        border: 1px solid #419bf9;
-        margin: auto;
-        border-radius: 0;
-        height:31px;
-        width: 100px;
-        vertical-align: top;
-        font-size: 15px;
-        border-radius: 4px;
-        background-color: #fff;
-        padding: 4px 10px;
-        color: #4a4a4a;
-        -webkit-appearance: none;
-      }
       .sale-price {
         color: #7ed321;
         font-weight: 500;
@@ -645,37 +637,6 @@ item Show
       .item-detail-calc {
         position:relative;
 
-        .amount{
-          font-size: 15px !important;
-          margin-left: 20px;
-          border:0;
-          width: 55px;
-          font-size: 16px;
-          font-weight: 200;
-          color: #4a4a4a;
-        }
-        #times{
-          border:0;
-          width: 20px;
-          font-size: 16px;
-          font-weight: 200;
-        }
-        #length{
-          border:0;
-          width: 60px;
-          font-size: 15px !important;
-          font-weight: 200;
-          color: #4a4a4a;
-        }
-        #subtotal{
-          float: right;
-          margin-right: 10px;
-          border:0;
-          width: 45px;
-          font-size: 15px !important;
-          font-weight: 200;
-          color: #4a4a4a;
-        }
         .trust-fee{
           font-size: 15px !important;
           margin-left: 20px;
@@ -685,7 +646,6 @@ item Show
           font-weight: 200;
           color: #63B707;
         }
-
         .trust-fee-text{
           background-color: #fff !important;
           font-weight: 400;
@@ -696,28 +656,6 @@ item Show
           margin-left: 22px;
           margin-top: 4px;
           line-height: normal;
-        }
-
-        .deposit{
-          float: right;
-          margin-right: 10px;
-          border:0;
-          width: 45px;
-          font-size: 15px !important;
-          font-weight: 200;
-          color: #4a4a4a;
-        }
-        .finalp{
-          font-size: 16px;
-          margin-left: 20px;
-        }
-        #total{
-          border:0;
-          width: 45px;
-          font-size: 16px;
-          font-weight: 200;
-          float: right;
-          margin-right: 10px;
         }
       }
 
@@ -784,7 +722,7 @@ item Show
       }
 
       #lease-button {
-        margin-top: 10px;
+        margin-top: 20px;
         background-color: #419bf9;
         margin-bottom: -5px;
         padding: 12px 51px 12px 51px;
@@ -1349,6 +1287,16 @@ item new
         }
       }
 
+      #description{
+        width: 565px;
+        height: 50px;
+        border-radius: 3px;
+        border: 1px solid #979797;
+        font-size: 13px;
+        padding: 10px 10px 10px 10px;
+        margin-bottom: 5px;
+      }
+
       label{
         font-size: 16px;
         margin-top: -5px;
@@ -1510,7 +1458,7 @@ item new
         color: #4a4a4a;
       }
 
-       #amount{
+      #amount{
         -webkit-appearance: none;
         font-size: 16px;
         text-align: center;
@@ -2135,6 +2083,12 @@ item new
             display: table;
             margin-bottom: 15px;
           }
+
+          .price-list-product{
+            .price-time{
+              width: 80%;
+            }
+          }
         }
 
 
@@ -2174,32 +2128,6 @@ item new
           padding: 13px;
 
         }
-        #qty{
-          border: 1px solid #419bf9;
-          margin-left: 4em;
-          width: 27px;
-          height:27px;
-          vertical-align: top;
-          -webkit-appearance: none;
-          border-radius: 4px;
-          color: #4a4a4a;
-          font-size: 15px;
-          padding-left: 10px;
-        }
-        #time-selection{
-          border: 1px solid #419bf9;
-          margin: auto;
-          border-radius: 0;
-          height:31px;
-          width: 100px;
-          vertical-align: top;
-          font-size: 15px;
-          border-radius: 4px;
-          background-color: #fff;
-          padding: 4px 10px;
-          color: #4a4a4a;
-          -webkit-appearance: none;
-        }
         .sale-price {
           color: #7ed321;
           font-weight: 500;
@@ -2210,37 +2138,6 @@ item new
         .item-detail-calc {
           position:relative;
 
-          .amount{
-            font-size: 15px !important;
-            margin-left: 20px;
-            border:0;
-            width: 55px;
-            font-size: 16px;
-            font-weight: 200;
-            color: #4a4a4a;
-          }
-          #times{
-            border:0;
-            width: 20px;
-            font-size: 16px;
-            font-weight: 200;
-          }
-          #length{
-            border:0;
-            width: 60px;
-            font-size: 15px !important;
-            font-weight: 200;
-            color: #4a4a4a;
-          }
-          #subtotal{
-            float: right;
-            margin-right: 10px;
-            border:0;
-            width: 45px;
-            font-size: 15px !important;
-            font-weight: 200;
-            color: #4a4a4a;
-          }
           .trust-fee{
             font-size: 15px !important;
             margin-left: 20px;
@@ -2261,28 +2158,6 @@ item new
             margin-left: 22px;
             margin-top: 4px;
             line-height: normal;
-          }
-
-          .deposit{
-            float: right;
-            margin-right: 10px;
-            border:0;
-            width: 45px;
-            font-size: 15px !important;
-            font-weight: 200;
-            color: #4a4a4a;
-          }
-          .finalp{
-            font-size: 16px;
-            margin-left: 20px;
-          }
-          #total{
-            border:0;
-            width: 45px;
-            font-size: 16px;
-            font-weight: 200;
-            float: right;
-            margin-right: 10px;
           }
         }
 
@@ -2833,6 +2708,13 @@ item new
             background-color: #419BF9;
             color: #fff;
           }
+        }
+
+
+
+        #item_prices_attributes_0_description, #item_prices_attributes_1_description, #item_prices_attributes_2_description,
+        #item_prices_attributes_3_description, #item_prices_attributes_4_description, #item_prices_attributes_5_description{
+          width: 90%;
         }
 
         label{
