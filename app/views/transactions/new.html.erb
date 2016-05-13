@@ -123,14 +123,20 @@
       // sub total
       var pre_markup = total -  (qty * hash[length]);
 
+      // If they previously shared the post and the discount hasn't been used OR they just shared it
       if ( ($('#discount_used').val() == "true") || ("<%= @shared %>" == "true")){
-        console.log("discount");
+        var discount = parseFloat(total * 0.05).toFixed(2);
+        $('#discount-price').val("$" + discount);
       }
 
       $('#subtotal').val('$' + total);
       $('#price').val(total);
 
-      total = (parseFloat(total) + parseFloat(fee));
+      total = (parseFloat(total) + parseFloat(fee)).toFixed(2);
+
+      if ($('#discount-price').val()){
+        total = (total - parseFloat(discount)).toFixed(2);
+      }
 
       //$('#markup-price')[0].innerHTML = "$" + pre_markup;
       $('#stripe-fee')[0].innerHTML = "$" + fee;
