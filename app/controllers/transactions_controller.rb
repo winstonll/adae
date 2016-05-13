@@ -224,7 +224,8 @@ class TransactionsController < ApplicationController
 				charge_price = (markup_calculation(item.deposit) - transaction.total_price).to_f
 			end
 
-			if shared = Share.where(user_id: buyer.id, item_id: item.id, discount_used: false).first
+			if !(Share.where(user_id: current_user.id, item_id: @item.id).empty?) && !(Share.where(user_id: current_user.id, item_id: @item.id).first.discount_used)
+				shared = Share.where(user_id: current_user.id, item_id: @item.id).first
 				charge_price = charge_price * 0.95
 				shared.discount_used = true
 				shared.save
