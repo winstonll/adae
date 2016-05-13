@@ -398,7 +398,11 @@
                 </div>
                 <div class="division" style="width: 85%;"></div>
 
-              <span class="finalp">Total</span>
+              <div class="finalp">FB Discount</div>
+
+              <%= f.text_field :discount_price, :value => "",:readonly => true %>
+
+              <span id="finalp_total">Total</span>
               <%= f.text_field :total_price, :value => "",:readonly => true %>
             </div>
             <% end %>
