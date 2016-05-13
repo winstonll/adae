@@ -38,9 +38,10 @@ $(document).ready(function() {
     var tags = $('#tag-box-1')[0].value;
     var title = $('#item_title')[0].value;
     var summary = $('#item_description')[0].value;
-    var day_hour = $('#item_prices_attributes_0_amount').length > 0
-    var week =  $('#item_prices_attributes_1_amount').length > 0
-    var month =  $('#item_prices_attributes_2_amount').length > 0
+    // var day_hour = $('#item_prices_attributes_0_amount').length > 0
+    // var week =  $('#item_prices_attributes_1_amount').length > 0
+    // var month =  $('#item_prices_attributes_2_amount').length > 0
+    
     var product1 =  $('#item_prices_attributes_0_amount').length > 0
     var product2 =  $('#item_prices_attributes_1_amount').length > 0
     var product3 =  $('#item_prices_attributes_2_amount').length > 0
@@ -58,9 +59,10 @@ $(document).ready(function() {
       images = true;
     }
 
-    price = day_hour ? ( price || ( parseFloat($('#item_prices_attributes_0_amount').val()) > 0 && $('#item_prices_attributes_0_amount').val() ) ) : price;
-    price = week ? ( price || ( parseFloat($('#item_prices_attributes_1_amount').val()) > 0 && $('#item_prices_attributes_1_amount').val() ) ) : price;
-    price = month ? ( price || ( parseFloat($('#item_prices_attributes_2_amount').val()) > 0 && $('#item_prices_attributes_2_amount').val() ) ) : price;
+    // price = day_hour ? ( price || ( parseFloat($('#item_prices_attributes_0_amount').val()) > 0 && $('#item_prices_attributes_0_amount').val() ) ) : price;
+    // price = week ? ( price || ( parseFloat($('#item_prices_attributes_1_amount').val()) > 0 && $('#item_prices_attributes_1_amount').val() ) ) : price;
+    // price = month ? ( price || ( parseFloat($('#item_prices_attributes_2_amount').val()) > 0 && $('#item_prices_attributes_2_amount').val() ) ) : price;
+    
     price = product1 ? ( price || ( parseFloat($('#item_prices_attributes_0_amount').val()) > 0 && $('#item_prices_attributes_0_amount').val() ) ) : price;
     price = product2 ? ( price || ( parseFloat($('#item_prices_attributes_1_amount').val()) > 0 && $('#item_prices_attributes_1_amount').val() ) ) : price;
     price = product3 ? ( price || ( parseFloat($('#item_prices_attributes_2_amount').val()) > 0 && $('#item_prices_attributes_2_amount').val() ) ) : price;
