@@ -45,8 +45,8 @@
   				  </tr>
 			      <tr>
 			      	<th>Price:</th>
-			      	<td><input class="money", readonly="true", value="$"></input><%=hour.number_field :amount, max: 100%></td>
-			      	<td><input class="money", readonly="true", value="$"></input><%=flat.number_field :amount, max: 1000%></td>
+			      	<td><input class="money", readonly="true", value="$"></input><%=hour.number_field :amount, max: 100, class:"amount" %></td>
+			      	<td><input class="money", readonly="true", value="$"></input><%=flat.number_field :amount, max: 100, class:"amount" %></td>
 			      </tr>
   				</table>
       			<br/>
@@ -102,16 +102,16 @@
   				  </tr>
 			      <tr>
 			      	<th>Price:</th>
-			      	<td><input class="money", readonly="true", value="$"></input><%=one.number_field :amount, max: 100, :id => "amount"%></td>
-			      	<td><input class="money", readonly="true", value="$"></input><%=two.number_field :amount, max: 100, :id => "amount"%></td>
-			        <td><input class="money", readonly="true", value="$"></input><%=three.number_field :amount, max: 100, :id => "amount"%></td>
-			        <td><input class="money", readonly="true", value="$"></input><%=four.number_field :amount, max: 100, :id => "amount"%></td>
-			        <td><input class="money", readonly="true", value="$"></input><%=five.number_field :amount, max: 100, :id => "amount"%></td>
-			        <td><input class="money", readonly="true", value="$"></input><%=six.number_field :amount, max: 100, :id => "amount"%></td>
-			      	<td><input class="money", readonly="true", value="$"></input><%=seven.number_field :amount, max: 100, :id => "amount"%></td>
-			        <td><input class="money", readonly="true", value="$"></input><%=eight.number_field :amount, max: 100, :id => "amount"%></td>
-			        <td><input class="money", readonly="true", value="$"></input><%=nine.number_field :amount, max: 100, :id => "amount"%></td>
-			        <td><input class="money", readonly="true", value="$"></input><%=ten.number_field :amount, max: 100, :id => "amount"%></td>
+			      	<td><input class="money", readonly="true", value="$"></input><%=one.number_field :amount, max: 100, class: "amount"%></td>
+			      	<td><input class="money", readonly="true", value="$"></input><%=two.number_field :amount, max: 100, class: "amount"%></td>
+			        <td><input class="money", readonly="true", value="$"></input><%=three.number_field :amount, max: 100, class: "amount"%></td>
+			        <td><input class="money", readonly="true", value="$"></input><%=four.number_field :amount, max: 100, class: "amount"%></td>
+			        <td><input class="money", readonly="true", value="$"></input><%=five.number_field :amount, max: 100, class: "amount"%></td>
+			        <td><input class="money", readonly="true", value="$"></input><%=six.number_field :amount, max: 100, class: "amount"%></td>
+			      	<td><input class="money", readonly="true", value="$"></input><%=seven.number_field :amount, max: 100, class: "amount"%></td>
+			        <td><input class="money", readonly="true", value="$"></input><%=eight.number_field :amount, max: 100, class: "amount"%></td>
+			        <td><input class="money", readonly="true", value="$"></input><%=nine.number_field :amount, max: 100, class: "amount"%></td>
+			        <td><input class="money", readonly="true", value="$"></input><%=ten.number_field :amount, max: 100, class: "amount"%></td>
 			      </tr>
   				</table>
       			<br/>
@@ -121,16 +121,16 @@
 	        </div>
 			<div class="new-item-form">
 			  	<p>Product Descriptions:</p>
-					<div><%= one.text_area :description, :placeholder => "Product 1" %></div>
-					<div><%= two.text_area :description, :placeholder => "Product 2" %></div>
-					<div><%= three.text_area :description, :placeholder => "Product 3" %></div>
-					<div><%= four.text_area :description, :placeholder => "Product 4" %></div>
-					<div><%= five.text_area :description, :placeholder => "Product 5" %></div>
-					<div><%= six.text_area :description, :placeholder => "Product 6" %></div>
-					<div><%= seven.text_area :description, :placeholder => "Product 7" %></div>
-					<div><%= eight.text_area :description, :placeholder => "Product 8" %></div>
-					<div><%= nine.text_area :description, :placeholder => "Product 9" %></div>
-					<div><%= ten.text_area :description, :placeholder => "Product 10" %></div>
+					<div><%= one.text_area :description, :placeholder => "Product 1", class: "description" %></div>
+					<div><%= two.text_area :description, :placeholder => "Product 2", class: "description" %></div>
+					<div><%= three.text_area :description, :placeholder => "Product 3", class: "description" %></div>
+					<div><%= four.text_area :description, :placeholder => "Product 4", class: "description" %></div>
+					<div><%= five.text_area :description, :placeholder => "Product 5", class: "description" %></div>
+					<div><%= six.text_area :description, :placeholder => "Product 6", class: "description" %></div>
+					<div><%= seven.text_area :description, :placeholder => "Product 7", class: "description" %></div>
+					<div><%= eight.text_area :description, :placeholder => "Product 8", class: "description" %></div>
+					<div><%= nine.text_area :description, :placeholder => "Product 9", class: "description" %></div>
+					<div><%= ten.text_area :description, :placeholder => "Product 10", class: "description" %></div>
 			</div>
 		    <div class= "hidden-fields">	
 				<%= f.hidden_field :deposit, :value => 0 %>
