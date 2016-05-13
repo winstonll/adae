@@ -41,6 +41,16 @@ $(document).ready(function() {
     var day_hour = $('#item_prices_attributes_0_amount').length > 0
     var week =  $('#item_prices_attributes_1_amount').length > 0
     var month =  $('#item_prices_attributes_2_amount').length > 0
+    var product1 =  $('#item_prices_attributes_0_amount').length > 0
+    var product2 =  $('#item_prices_attributes_1_amount').length > 0
+    var product3 =  $('#item_prices_attributes_2_amount').length > 0
+    var product4 =  $('#item_prices_attributes_3_amount').length > 0
+    var product5 =  $('#item_prices_attributes_4_amount').length > 0
+    var product6 =  $('#item_prices_attributes_5_amount').length > 0
+    var product7 =  $('#item_prices_attributes_6_amount').length > 0
+    var product8 =  $('#item_prices_attributes_7_amount').length > 0
+    var product9 =  $('#item_prices_attributes_8_amount').length > 0
+    var product10 =  $('#item_prices_attributes_9_amount').length > 0
     var images = $('#images_').val();
     var price = false;
 
@@ -51,6 +61,18 @@ $(document).ready(function() {
     price = day_hour ? ( price || ( parseFloat($('#item_prices_attributes_0_amount').val()) > 0 && $('#item_prices_attributes_0_amount').val() ) ) : price;
     price = week ? ( price || ( parseFloat($('#item_prices_attributes_1_amount').val()) > 0 && $('#item_prices_attributes_1_amount').val() ) ) : price;
     price = month ? ( price || ( parseFloat($('#item_prices_attributes_2_amount').val()) > 0 && $('#item_prices_attributes_2_amount').val() ) ) : price;
+    price = product1 ? ( price || ( parseFloat($('#item_prices_attributes_0_amount').val()) > 0 && $('#item_prices_attributes_0_amount').val() ) ) : price;
+    price = product2 ? ( price || ( parseFloat($('#item_prices_attributes_1_amount').val()) > 0 && $('#item_prices_attributes_1_amount').val() ) ) : price;
+    price = product3 ? ( price || ( parseFloat($('#item_prices_attributes_2_amount').val()) > 0 && $('#item_prices_attributes_2_amount').val() ) ) : price;
+    price = product4 ? ( price || ( parseFloat($('#item_prices_attributes_3_amount').val()) > 0 && $('#item_prices_attributes_3_amount').val() ) ) : price;
+    price = product5 ? ( price || ( parseFloat($('#item_prices_attributes_4_amount').val()) > 0 && $('#item_prices_attributes_4_amount').val() ) ) : price;
+    price = product6 ? ( price || ( parseFloat($('#item_prices_attributes_5_amount').val()) > 0 && $('#item_prices_attributes_5_amount').val() ) ) : price;
+    price = product7 ? ( price || ( parseFloat($('#item_prices_attributes_6_amount').val()) > 0 && $('#item_prices_attributes_6_amount').val() ) ) : price;
+    price = product8 ? ( price || ( parseFloat($('#item_prices_attributes_7_amount').val()) > 0 && $('#item_prices_attributes_7_amount').val() ) ) : price;
+    price = product9 ? ( price || ( parseFloat($('#item_prices_attributes_8_amount').val()) > 0 && $('#item_prices_attributes_8_amount').val() ) ) : price;
+    price = product10 ? ( price || ( parseFloat($('#item_prices_attributes_9_amount').val()) > 0 && $('#item_prices_attributes_9_amount').val() ) ) : price;
+
+
 
     if ( postal_code && tags && title && summary && price && images) {
       return true;

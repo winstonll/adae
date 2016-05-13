@@ -1287,8 +1287,7 @@ item new
         }
       }
 
-      #item_prices_attributes_0_description, #item_prices_attributes_1_description, #item_prices_attributes_2_description,
-      #item_prices_attributes_3_description, #item_prices_attributes_4_description, #item_prices_attributes_5_description{
+      #description{
         width: 565px;
         height: 50px;
         border-radius: 3px;
@@ -1459,8 +1458,7 @@ item new
         color: #4a4a4a;
       }
 
-      #item_prices_attributes_0_amount, #item_prices_attributes_1_amount,
-      #item_prices_attributes_2_amount, #item_prices_attributes_3_amount, #item_prices_attributes_4_amount{
+      #amount{
         -webkit-appearance: none;
         font-size: 16px;
         text-align: center;
@@ -1531,19 +1529,18 @@ item new
 .listing-selection {
   background-color: #f2f2f2;
   width: 100%;
-  height: 500px;
-
-}
+  height: 90vh;
+  margin-bottom: -300px;
 
 /* Listing choices */
 .listing-choices{
   padding-top: 5em;
-  margin-left: 31%;
-
+  width: 500px;
+  margin: 0 auto;
+  display: table;
   .lease{
-    width: 639px;
+    width: 100%;
     margin-bottom: 4em;
-    white-space: nowrap;
     a{
       padding: 10px 69px;
     }
@@ -1578,7 +1575,6 @@ item new
   .timeoffer{
     width: 100%;
     margin-bottom: 4em;
-    white-space: nowrap;
     a{
       padding: 10px 42px;
     }
@@ -1587,26 +1583,32 @@ item new
   .descriptor{
     margin-left: .5em;
     color: #4a4a4a;
+    margin-top: -13px;
+    margin-left: .8em;
+    line-height: normal;
+    position: absolute;
+    width: 300px;
   }
 
 
 
 
-  .lease,.rent,.sell,.timeoffer{
-    .listing-button{
-      background-color: #fff;
-      font-size: 18px;
-      border: 1px solid #419BF9;
-      border-radius: 3px;
-      color: #4a4a4a;
+    .lease,.rent,.sell,.timeoffer{
+      .listing-button{
+        background-color: #fff;
+        font-size: 18px;
+        border: 1px solid #419BF9;
+        border-radius: 3px;
+        color: #4a4a4a;
 
-      &:hover{
-        background-color: #419BF9;
-        color: #fff;
-        transition: all .3s ease-in-out;
+        &:hover{
+          background-color: #419BF9;
+          color: #fff;
+          transition: all .3s ease-in-out;
+        }
       }
-    }
 
+    }
   }
 }
 
@@ -2967,20 +2969,19 @@ item new
   .listing-selection {
     background-color: #f2f2f2;
     width: 100%;
-    height: 500px;
 
-  }
 
   /* Listing choices */
   .listing-choices{
     padding-top: 2em;
     display: table;
     margin: 0 auto;
+    width: 50%;
     .lease{
       width: 100%;
       margin-bottom: 3em;
       a{
-        padding: 10px 69px;
+        width: 100%;
       }
 
       #lease-descriptor{
@@ -3012,7 +3013,7 @@ item new
       width: 100%;
       margin-bottom: 3em;
       a{
-        padding: 10px 42px;
+        width: 100%;
       }
     }
 
@@ -3042,6 +3043,7 @@ item new
 
     }
   }
+}
 
   .why-cc {
     font-weight: 600;

@@ -1,5 +1,11 @@
 <% if @discount %>
   $('#discount_used').val(true);
+
+  if ($('#subtotal').val()){
+    var subtotal = parseFloat($('#subtotal').val().substr(1, $('#subtotal').val().length)).toFixed(2);
+    var discount = parseFloat(subtotal * 0.05).toFixed(2);
+    $('#discount-price').val("$" + discount);
+  }
 <% else %>
   $('#discount_used').val(false);
 <% end %>
