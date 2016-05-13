@@ -22,7 +22,7 @@ class ItemsController < ApplicationController
 
     if ['sell', 'timeoffer'].include?(@item.listing_type)
       @prices = @item.prices
-    else
+    elsif
       if price = @item.prices.where(timeframe: "Day").first
         @prices.push(price)
       end
@@ -34,6 +34,9 @@ class ItemsController < ApplicationController
       if price = @item.prices.where(timeframe: "Month").first
         @prices.push(price)
       end
+    else
+      @prices = @item.prices
+
     end
 
     @pictures = Picture.where(item_id: @item.id)
@@ -273,7 +276,7 @@ class ItemsController < ApplicationController
     end
 
     def item_params
-      params.require(:item).permit(:title, :photo, :description, :image, :user_id, :listing_type, :deposit, :tags, :postal_code, prices_attributes: [:id, :timeframe, :amount])
+      params.require(:item).permit(:title, :photo, :description, :image, :user_id, :listing_type, :deposit, :tags, :postal_code, prices_attributes: [:id, :timeframe, :amount, :title, :description])
     end
 
     def item_edit_params
