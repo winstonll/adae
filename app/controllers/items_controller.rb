@@ -20,9 +20,9 @@ class ItemsController < ApplicationController
     @review = @item.reviews.build
     @prices = []
 
-    if ['sell', 'timeoffer'].include?(@item.listing_type)
+    if ['sell', 'timeoffer', 'lease'].include?(@item.listing_type)
       @prices = @item.prices
-    elsif
+    else
       if price = @item.prices.where(timeframe: "Day").first
         @prices.push(price)
       end
@@ -34,9 +34,6 @@ class ItemsController < ApplicationController
       if price = @item.prices.where(timeframe: "Month").first
         @prices.push(price)
       end
-    else
-      @prices = @item.prices
-
     end
 
     @pictures = Picture.where(item_id: @item.id)
@@ -225,49 +222,167 @@ class ItemsController < ApplicationController
       params[:item][:prices_attributes].each do |price|
         item_price = @item.prices.where(timeframe: price[1][:timeframe]).first
         if !item_price.nil?
-          if price[1][:timeframe] == "Day" || price[1][:timeframe] == "Hour"
+          if price[1][:timeframe] == "Product 1" || price[1][:timeframe] == "Hour"
             if params[:item][:prices_attributes]["0"][:amount].to_f == 0
               item_price.delete
             else
               item_price.amount = params[:item][:prices_attributes]["0"][:amount].to_f
               item_price.save
             end
-          elsif price[1][:timeframe] == "Week" || price[1][:timeframe] == "Flat Rate"
+          elsif price[1][:timeframe] == "Product 2" || price[1][:timeframe] == "Flat Rate"
             if params[:item][:prices_attributes]["1"][:amount].to_f == 0
               item_price.delete
             else
               item_price.amount = params[:item][:prices_attributes]["1"][:amount].to_f
               item_price.save
             end
-          elsif price[1][:timeframe] == "Month"
+          elsif price[1][:timeframe] == "Product 3"
             if params[:item][:prices_attributes]["2"][:amount].to_f == 0
               item_price.delete
             else
               item_price.amount = params[:item][:prices_attributes]["2"][:amount].to_f
               item_price.save
             end
+          elsif price[1][:timeframe] == "Product 4"
+            if params[:item][:prices_attributes]["3"][:amount].to_f == 0
+              item_price.delete
+            else
+              item_price.amount = params[:item][:prices_attributes]["3"][:amount].to_f
+              item_price.save
+            end
+          elsif price[1][:timeframe] == "Product 5"
+            if params[:item][:prices_attributes]["4"][:amount].to_f == 0
+              item_price.delete
+            else
+              item_price.amount = params[:item][:prices_attributes]["4"][:amount].to_f
+              item_price.save
+            end
+          elsif price[1][:timeframe] == "Product 6"
+            if params[:item][:prices_attributes]["5"][:amount].to_f == 0
+              item_price.delete
+            else
+              item_price.amount = params[:item][:prices_attributes]["5"][:amount].to_f
+              item_price.save
+            end
+          elsif price[1][:timeframe] == "Product 7"
+            if params[:item][:prices_attributes]["6"][:amount].to_f == 0
+              item_price.delete
+            else
+              item_price.amount = params[:item][:prices_attributes]["6"][:amount].to_f
+              item_price.save
+            end
+          elsif price[1][:timeframe] == "Product 8"
+            if params[:item][:prices_attributes]["7"][:amount].to_f == 0
+              item_price.delete
+            else
+              item_price.amount = params[:item][:prices_attributes]["7"][:amount].to_f
+              item_price.save
+            end
+          elsif price[1][:timeframe] == "Product 9"
+            if params[:item][:prices_attributes]["8"][:amount].to_f == 0
+              item_price.delete
+            else
+              item_price.amount = params[:item][:prices_attributes]["8"][:amount].to_f
+              item_price.save
+            end
+          elsif price[1][:timeframe] == "Product 10"
+            if params[:item][:prices_attributes]["9"][:amount].to_f == 0
+              item_price.delete
+            else
+              item_price.amount = params[:item][:prices_attributes]["9"][:amount].to_f
+              item_price.save
+            end
           end
         else
           item_price = Price.new
-          if price[1][:timeframe] == "Day" || price[1][:timeframe] == "Hour"
+          if price[1][:timeframe] == "Product 1" || price[1][:timeframe] == "Hour"
             if params[:item][:prices_attributes]["0"][:amount].to_f != 0
               item_price.timeframe = price[1][:timeframe]
+              item_price.title = price[1][:title]
+              item_price.description = price[1][:description]
               item_price.item_id = @item.id
               item_price.amount = params[:item][:prices_attributes]["0"][:amount].to_f
               item_price.save
             end
-          elsif price[1][:timeframe] == "Week" || price[1][:timeframe] == "Flat Rate"
+          elsif price[1][:timeframe] == "Product 2" || price[1][:timeframe] == "Flat Rate"
             if params[:item][:prices_attributes]["1"][:amount].to_f != 0
               item_price.timeframe = price[1][:timeframe]
+              item_price.title = price[1][:title]
+              item_price.description = price[1][:description]
               item_price.item_id = @item.id
               item_price.amount = params[:item][:prices_attributes]["1"][:amount].to_f
               item_price.save
             end
-          elsif price[1][:timeframe] == "Month"
+          elsif price[1][:timeframe] == "Product 3"
             if params[:item][:prices_attributes]["2"][:amount].to_f != 0
               item_price.timeframe = price[1][:timeframe]
+              item_price.title = price[1][:title]
+              item_price.description = price[1][:description]
               item_price.item_id = @item.id
               item_price.amount = params[:item][:prices_attributes]["2"][:amount].to_f
+              item_price.save
+            end
+          elsif price[1][:timeframe] == "Product 4"
+            if params[:item][:prices_attributes]["3"][:amount].to_f != 0
+              item_price.timeframe = price[1][:timeframe]
+              item_price.title = price[1][:title]
+              item_price.description = price[1][:description]
+              item_price.item_id = @item.id
+              item_price.amount = params[:item][:prices_attributes]["3"][:amount].to_f
+              item_price.save
+            end
+          elsif price[1][:timeframe] == "Product 5"
+            if params[:item][:prices_attributes]["4"][:amount].to_f != 0
+              item_price.timeframe = price[1][:timeframe]
+              item_price.title = price[1][:title]
+              item_price.description = price[1][:description]
+              item_price.item_id = @item.id
+              item_price.amount = params[:item][:prices_attributes]["4"][:amount].to_f
+              item_price.save
+            end
+          elsif price[1][:timeframe] == "Product 6"
+            if params[:item][:prices_attributes]["5"][:amount].to_f != 0
+              item_price.timeframe = price[1][:timeframe]
+              item_price.title = price[1][:title]
+              item_price.description = price[1][:description]
+              item_price.item_id = @item.id
+              item_price.amount = params[:item][:prices_attributes]["5"][:amount].to_f
+              item_price.save
+            end
+          elsif price[1][:timeframe] == "Product 7"
+            if params[:item][:prices_attributes]["6"][:amount].to_f != 0
+              item_price.timeframe = price[1][:timeframe]
+              item_price.title = price[1][:title]
+              item_price.description = price[1][:description]
+              item_price.item_id = @item.id
+              item_price.amount = params[:item][:prices_attributes]["6"][:amount].to_f
+              item_price.save
+            end
+          elsif price[1][:timeframe] == "Product 8"
+            if params[:item][:prices_attributes]["7"][:amount].to_f != 0
+              item_price.timeframe = price[1][:timeframe]
+              item_price.title = price[1][:title]
+              item_price.description = price[1][:description]
+              item_price.item_id = @item.id
+              item_price.amount = params[:item][:prices_attributes]["7"][:amount].to_f
+              item_price.save
+            end
+          elsif price[1][:timeframe] == "Product 9"
+            if params[:item][:prices_attributes]["8"][:amount].to_f != 0
+              item_price.timeframe = price[1][:timeframe]
+              item_price.title = price[1][:title]
+              item_price.description = price[1][:description]
+              item_price.item_id = @item.id
+              item_price.amount = params[:item][:prices_attributes]["8"][:amount].to_f
+              item_price.save
+            end
+          elsif price[1][:timeframe] == "Product 10"
+            if params[:item][:prices_attributes]["9"][:amount].to_f != 0
+              item_price.timeframe = price[1][:timeframe]
+              item_price.title = price[1][:title]
+              item_price.description = price[1][:description]
+              item_price.item_id = @item.id
+              item_price.amount = params[:item][:prices_attributes]["9"][:amount].to_f
               item_price.save
             end
           end
