@@ -542,10 +542,10 @@ item Show
     .item-detail-price {
       float: right;
       z-index:2;
-      border: 1px solid #979797;
+      border: 1px solid #B4B4B4;
       background-color: #fff;
-      width: 270px;
-      padding-bottom: 15px;
+      width: 280px;
+      padding-bottom: 17px;
       border-radius: 3px;
 
       .price-breakdown{
@@ -556,10 +556,9 @@ item Show
           font-weight: 600;
           border: 1px solid #c9c9c9;
           border-radius: 4px;
-          width: 155px;
           margin: 0 auto;
           display: table;
-          padding: 10px;
+          padding: 10px 15px 10px 15px;
           margin-bottom: 15px;
           .markup{
             font-weight: 700;
@@ -569,6 +568,25 @@ item Show
           .price-time{
             float: right;
             margin-top: 4px;
+            padding-left: 5px;
+          }
+        }
+
+        .price-list-product{
+          font-size: 15px;
+          font-weight: 400;
+          border: none;
+          padding: 10px 0px 0px 20px;
+          .markup{
+            font-weight: 700;
+            color: #34C819;
+            font-size: 20px;
+          }
+          .price-time{
+            margin: -21px 0px 0px 44px;
+            width: 200px;
+            color: #262626;
+            line-height: normal;
           }
         }
       }
@@ -609,32 +627,6 @@ item Show
         opacity: 0.9;
         padding: 12px;
       }
-      #qty{
-        border: 1px solid #419bf9;
-        margin-left: 4em;
-        width: 27px;
-        height:27px;
-        vertical-align: top;
-        -webkit-appearance: none;
-        border-radius: 4px;
-        color: #4a4a4a;
-        font-size: 15px;
-        padding-left: 10px;
-      }
-      #time-selection{
-        border: 1px solid #419bf9;
-        margin: auto;
-        border-radius: 0;
-        height:31px;
-        width: 100px;
-        vertical-align: top;
-        font-size: 15px;
-        border-radius: 4px;
-        background-color: #fff;
-        padding: 4px 10px;
-        color: #4a4a4a;
-        -webkit-appearance: none;
-      }
       .sale-price {
         color: #7ed321;
         font-weight: 500;
@@ -645,37 +637,6 @@ item Show
       .item-detail-calc {
         position:relative;
 
-        .amount{
-          font-size: 15px !important;
-          margin-left: 20px;
-          border:0;
-          width: 55px;
-          font-size: 16px;
-          font-weight: 200;
-          color: #4a4a4a;
-        }
-        #times{
-          border:0;
-          width: 20px;
-          font-size: 16px;
-          font-weight: 200;
-        }
-        #length{
-          border:0;
-          width: 60px;
-          font-size: 15px !important;
-          font-weight: 200;
-          color: #4a4a4a;
-        }
-        #subtotal{
-          float: right;
-          margin-right: 10px;
-          border:0;
-          width: 45px;
-          font-size: 15px !important;
-          font-weight: 200;
-          color: #4a4a4a;
-        }
         .trust-fee{
           font-size: 15px !important;
           margin-left: 20px;
@@ -685,7 +646,6 @@ item Show
           font-weight: 200;
           color: #63B707;
         }
-
         .trust-fee-text{
           background-color: #fff !important;
           font-weight: 400;
@@ -696,28 +656,6 @@ item Show
           margin-left: 22px;
           margin-top: 4px;
           line-height: normal;
-        }
-
-        .deposit{
-          float: right;
-          margin-right: 10px;
-          border:0;
-          width: 45px;
-          font-size: 15px !important;
-          font-weight: 200;
-          color: #4a4a4a;
-        }
-        .finalp{
-          font-size: 16px;
-          margin-left: 20px;
-        }
-        #total{
-          border:0;
-          width: 45px;
-          font-size: 16px;
-          font-weight: 200;
-          float: right;
-          margin-right: 10px;
         }
       }
 
@@ -784,7 +722,7 @@ item Show
       }
 
       #lease-button {
-        margin-top: 10px;
+        margin-top: 20px;
         background-color: #419bf9;
         margin-bottom: -5px;
         padding: 12px 51px 12px 51px;
@@ -1031,7 +969,7 @@ item Show
       }
 
       .score{
-        color: #EADB1E;
+        color: #63CC1E;
         font-size: 32px;
         margin-bottom: 5px;
         margin-top: 2px;
@@ -1063,7 +1001,7 @@ item Show
         }
       }
       .rating {
-        color: #EADB1E;
+        color: #63CC1E;
         font-size: 32px;
         margin-bottom: 8px;
         margin-top: -3px;
@@ -1349,6 +1287,16 @@ item new
         }
       }
 
+      .description{
+        width: 565px;
+        height: 50px;
+        border-radius: 3px;
+        border: 1px solid #979797;
+        font-size: 13px;
+        padding: 10px 10px 10px 10px;
+        margin-bottom: 5px;
+      }
+
       label{
         font-size: 16px;
         margin-top: -5px;
@@ -1510,8 +1458,7 @@ item new
         color: #4a4a4a;
       }
 
-      #item_prices_attributes_0_amount, #item_prices_attributes_1_amount,
-      #item_prices_attributes_2_amount{
+      .amount{
         -webkit-appearance: none;
         font-size: 16px;
         text-align: center;
@@ -1573,30 +1520,33 @@ item new
   }
 
   .listing-description {
-    font-size: 16px;
+    font-size: 18px;
     font-weight: 400;
     color: #4a4a4a;
+    a{
+      color: $blue;
+      text-decoration: underline;
+    }
   }
 }
 
 .listing-selection {
   background-color: #f2f2f2;
   width: 100%;
-  height: 500px;
-
-}
+  height: 90vh;
+  margin-bottom: -300px;
 
 /* Listing choices */
 .listing-choices{
   padding-top: 5em;
-  margin-left: 31%;
-
+  width: 500px;
+  margin: 0 auto;
+  display: table;
   .lease{
-    width: 639px;
+    width: 100%;
     margin-bottom: 4em;
-    white-space: nowrap;
     a{
-      padding: 10px 72px;
+      padding: 10px 69px;
     }
 
     #lease-descriptor{
@@ -1622,14 +1572,13 @@ item new
     margin-bottom: 4em;
     white-space: nowrap;
     a{
-      padding: 10px 81px;
+      padding: 10px 76px;
     }
   }
 
   .timeoffer{
     width: 100%;
     margin-bottom: 4em;
-    white-space: nowrap;
     a{
       padding: 10px 42px;
     }
@@ -1638,26 +1587,32 @@ item new
   .descriptor{
     margin-left: .5em;
     color: #4a4a4a;
+    margin-top: -13px;
+    margin-left: .8em;
+    line-height: normal;
+    position: absolute;
+    width: 300px;
   }
 
 
 
 
-  .lease,.rent,.sell,.timeoffer{
-    .listing-button{
-      background-color: #fff;
-      font-size: 18px;
-      border: 1px solid #419BF9;
-      border-radius: 3px;
-      color: #4a4a4a;
+    .lease,.rent,.sell,.timeoffer{
+      .listing-button{
+        background-color: #fff;
+        font-size: 18px;
+        border: 1px solid #419BF9;
+        border-radius: 3px;
+        color: #4a4a4a;
 
-      &:hover{
-        background-color: #419BF9;
-        color: #fff;
-        transition: all .3s ease-in-out;
+        &:hover{
+          background-color: #419BF9;
+          color: #fff;
+          transition: all .3s ease-in-out;
+        }
       }
-    }
 
+    }
   }
 }
 
@@ -2132,6 +2087,12 @@ item new
             display: table;
             margin-bottom: 15px;
           }
+
+          .price-list-product{
+            .price-time{
+              width: 80%;
+            }
+          }
         }
 
 
@@ -2171,32 +2132,6 @@ item new
           padding: 13px;
 
         }
-        #qty{
-          border: 1px solid #419bf9;
-          margin-left: 4em;
-          width: 27px;
-          height:27px;
-          vertical-align: top;
-          -webkit-appearance: none;
-          border-radius: 4px;
-          color: #4a4a4a;
-          font-size: 15px;
-          padding-left: 10px;
-        }
-        #time-selection{
-          border: 1px solid #419bf9;
-          margin: auto;
-          border-radius: 0;
-          height:31px;
-          width: 100px;
-          vertical-align: top;
-          font-size: 15px;
-          border-radius: 4px;
-          background-color: #fff;
-          padding: 4px 10px;
-          color: #4a4a4a;
-          -webkit-appearance: none;
-        }
         .sale-price {
           color: #7ed321;
           font-weight: 500;
@@ -2207,37 +2142,6 @@ item new
         .item-detail-calc {
           position:relative;
 
-          .amount{
-            font-size: 15px !important;
-            margin-left: 20px;
-            border:0;
-            width: 55px;
-            font-size: 16px;
-            font-weight: 200;
-            color: #4a4a4a;
-          }
-          #times{
-            border:0;
-            width: 20px;
-            font-size: 16px;
-            font-weight: 200;
-          }
-          #length{
-            border:0;
-            width: 60px;
-            font-size: 15px !important;
-            font-weight: 200;
-            color: #4a4a4a;
-          }
-          #subtotal{
-            float: right;
-            margin-right: 10px;
-            border:0;
-            width: 45px;
-            font-size: 15px !important;
-            font-weight: 200;
-            color: #4a4a4a;
-          }
           .trust-fee{
             font-size: 15px !important;
             margin-left: 20px;
@@ -2258,28 +2162,6 @@ item new
             margin-left: 22px;
             margin-top: 4px;
             line-height: normal;
-          }
-
-          .deposit{
-            float: right;
-            margin-right: 10px;
-            border:0;
-            width: 45px;
-            font-size: 15px !important;
-            font-weight: 200;
-            color: #4a4a4a;
-          }
-          .finalp{
-            font-size: 16px;
-            margin-left: 20px;
-          }
-          #total{
-            border:0;
-            width: 45px;
-            font-size: 16px;
-            font-weight: 200;
-            float: right;
-            margin-right: 10px;
           }
         }
 
@@ -2832,6 +2714,13 @@ item new
           }
         }
 
+
+
+        #item_prices_attributes_0_description, #item_prices_attributes_1_description, #item_prices_attributes_2_description,
+        #item_prices_attributes_3_description, #item_prices_attributes_4_description, #item_prices_attributes_5_description{
+          width: 90%;
+        }
+
         label{
           font-size: 16px;
           margin-top: 10px;
@@ -3084,20 +2973,19 @@ item new
   .listing-selection {
     background-color: #f2f2f2;
     width: 100%;
-    height: 500px;
 
-  }
 
   /* Listing choices */
   .listing-choices{
     padding-top: 2em;
     display: table;
     margin: 0 auto;
+    width: 50%;
     .lease{
       width: 100%;
       margin-bottom: 3em;
       a{
-        padding: 10px 72px;
+        width: 100%;
       }
 
       #lease-descriptor{
@@ -3121,7 +3009,7 @@ item new
     .sell{
       width: 100%;
       a{
-        padding: 10px 81px;
+        padding: 10px 76px;
       }
     }
 
@@ -3129,7 +3017,7 @@ item new
       width: 100%;
       margin-bottom: 3em;
       a{
-        padding: 10px 42px;
+        width: 100%;
       }
     }
 
@@ -3159,6 +3047,7 @@ item new
 
     }
   }
+}
 
   .why-cc {
     font-weight: 600;

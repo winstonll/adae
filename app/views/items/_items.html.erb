@@ -53,12 +53,7 @@
 				</div>
 			<% elsif item.listing_type == "lease" %>
 				<div class="lease">
-					<span class="markup"><%= item.prices.first.amount %></span> /
-					<%= item.prices.first.timeframe %>
-				</div>
-				<div class="deposit">
-					<span class="markup"><%= item.deposit %></span>
-					<span style="font-size: 11px;">to buy</span>
+					<span class="markup">Check Prices</span>
 				</div>
 			<% elsif item.listing_type == "rent"%>
 				<div class="rent">

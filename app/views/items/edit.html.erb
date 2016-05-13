@@ -68,8 +68,8 @@
 	  				  </tr>
 				      <tr>
 				      	<th>Price:</th>
-				      	<td><input class="money", readonly="true", value="$"></input><%=hour.number_field :amount, max: 100%></td>
-				      	<td><input class="money", readonly="true", value="$"></input><%=flat.number_field :amount, max: 1000%></td>
+				      	<td><input class="money", readonly="true", value="$"></input><%=hour.number_field :amount, max: 100, class:"amount"%></td>
+				      	<td><input class="money", readonly="true", value="$"></input><%=flat.number_field :amount, max: 100, class:"amount"%></td>
 				      </tr>
 	  				</table>
 	      			<br/>
@@ -85,7 +85,85 @@
 			    </div>
 			    <%= f.hidden_field :deposit, :value => 0 %>
 			<% end %>
-		<% else %>
+		<% elsif @item.listing_type == 'lease' %>
+        	<%= f.fields_for :prices, Price.new do |one| %>
+        	<%= f.fields_for :prices, Price.new do |two| %>
+          	<%= f.fields_for :prices, Price.new do |three| %>
+          	<%= f.fields_for :prices, Price.new do |four| %>
+	        <%= f.fields_for :prices, Price.new do |five| %>
+	        <%= f.fields_for :prices, Price.new do |six| %>
+	        <%= f.fields_for :prices, Price.new do |seven| %>
+	        <%= f.fields_for :prices, Price.new do |eight| %>
+	        <%= f.fields_for :prices, Price.new do |nine| %>
+	        <%= f.fields_for :prices, Price.new do |ten| %>
+	    		<div class="new-item-form">
+	      			<table>
+	      			  <tr>
+						<th>Title:</th>
+	  			      	<td><%= one.text_field :title, class: "timeframe" %></td>
+	  			      	<td><%= two.text_field :title, class: "timeframe" %></td>
+	  			      	<td><%= three.text_field :title, class: "timeframe" %></td>
+	  			      	<td><%= four.text_field :title, class: "timeframe" %></td>
+	  			      	<td><%= five.text_field :title, class: "timeframe" %></td>
+	  			      	<td><%= six.text_field :title, class: "timeframe" %></td>
+	  			      	<td><%= seven.text_field :title, class: "timeframe" %></td>
+	  			      	<td><%= eight.text_field :title, class: "timeframe" %></td>
+	  			      	<td><%= nine.text_field :title, class: "timeframe" %></td>
+	  			      	<td><%= ten.text_field :title, class: "timeframe" %></td>
+	  				  </tr>
+				      <tr>
+				      	<th>Price:</th>
+				      	<td><input class="money", readonly="true", value="$"></input><%=one.number_field :amount, max: 100, class:"amount"%></td>
+				      	<td><input class="money", readonly="true", value="$"></input><%=two.number_field :amount, max: 100, class:"amount"%></td>
+				        <td><input class="money", readonly="true", value="$"></input><%=three.number_field :amount, max: 100, class:"amount"%></td>
+				        <td><input class="money", readonly="true", value="$"></input><%=four.number_field :amount, max: 100, class: "amount"%></td>
+				        <td><input class="money", readonly="true", value="$"></input><%=five.number_field :amount, max: 100, class: "amount"%></td>
+				        <td><input class="money", readonly="true", value="$"></input><%=six.number_field :amount, max: 100, class: "amount"%></td>
+				      	<td><input class="money", readonly="true", value="$"></input><%=seven.number_field :amount, max: 100, class: "amount"%></td>
+				        <td><input class="money", readonly="true", value="$"></input><%=eight.number_field :amount, max: 100, class: "amount"%></td>
+				        <td><input class="money", readonly="true", value="$"></input><%=nine.number_field :amount, max: 100, class: "amount"%></td>
+				        <td><input class="money", readonly="true", value="$"></input><%=ten.number_field :amount, max: 100, class: "amount"%></td>
+				      </tr>
+	  				</table>
+	      			<br/>
+	    		</div>
+	    		<div class="deposit-tip" style="color: #419bf9; margin-top: 10px; font-weight: 500;">
+		        	&#x2756; Adae will add a 4% - 10% service fee on top of your listed price. <br> This fee helps us run the platform, and to provide the best service to our users. </br> Don't worry, you will still get paid the amount you are owed.
+		        </div>
+				<div class="new-item-form">
+				  	<p>Product Descriptions:</p>
+						<div><%= one.text_area :description, class: "description" %></div>
+						<div><%= two.text_area :description, class: "description" %></div>
+						<div><%= three.text_area :description, class: "description" %></div>
+						<div><%= four.text_area :description, class: "description" %></div>
+						<div><%= five.text_area :description, class: "description" %></div>
+						<div><%= six.text_area :description, class: "description" %></div>
+						<div><%= seven.text_area :description, class: "description" %></div>
+						<div><%= eight.text_area :description, class: "description" %></div>
+						<div><%= nine.text_area :description, class: "description" %></div>
+						<div><%= ten.text_area :description, class: "description" %></div>
+				</div>
+      			<%= one.text_field :timeframe, :value => "Product 1", :hidden => "True" %>
+      			<%= two.text_field :timeframe, :value => "Product 2", :hidden => "True" %>
+      			<%= three.text_field :timeframe, :value => "Product 3", :hidden => "True" %>
+      			<%= four.text_field :timeframe, :value => "Product 4", :hidden => "True" %>
+		      	<%= five.text_field :timeframe, :value => "Product 5", :hidden => "True" %>
+				<%= six.text_field :timeframe, :value => "Product 6", :hidden => "True" %>
+		      	<%= seven.text_field :timeframe, :value => "Product 7", :hidden => "True" %>
+		      	<%= eight.text_field :timeframe, :value => "Product 8", :hidden => "True" %>
+		      	<%= nine.text_field :timeframe, :value => "Product 9", :hidden => "True" %>
+		      	<%= ten.text_field :timeframe, :value => "Product 10", :hidden => "True" %>
+        	<% end %>
+	        <% end %>
+			<% end %>
+			<% end %>
+			<% end %>
+			<% end %>
+	        <% end %>
+			<% end %>
+			<% end %>
+			<% end %>
+      	<% else %>
 			<%= f.fields_for :prices, Price.new do |day| %>
         	<%= f.fields_for :prices, Price.new do |week| %>
           	<%= f.fields_for :prices, Price.new do |month| %>
@@ -115,19 +193,6 @@
     			</div>
 
       			<div class="new-item-form">
-  	          	  <% if @item.listing_type == 'lease' %>
-        			<p id="deposit-title"> Deposit Price & Sale Price:</p>
-        			<div class="rent-deposit-money-sign" style="margin-top: -6px !important"> $ </div>
-      				<%= f.text_field :deposit %>
-  	          		<div class="deposit-tip">
-	  		          	This ensures that the item is treated with care, and is returned on time. </br>
-	  		          	This amount will be charged only if the other party fails to return the item, damage it, or lose it.</br></br>
-	  		          	After the rental period, your customer may request to buy this item.</br>
-	  		          	The Deposit Price will double as the Sale Price.</br>
-	  		          	Their rental fees will be
-	  		            credited towards the purchase.
-  	            	</div>
-      	    	  <% else %>
   	          		<p id="deposit-title"> Deposit Price</p>
   	          		<div class="rent-deposit-money-sign" style="margin-top: -6px !important"> $ </div>
   	          		<%= f.text_field :deposit %>
@@ -135,7 +200,6 @@
 	  	          		This ensures that the item is treated with care, and is returned on time.</br>
 	  	          		This amount will be charged only if the other party fails to return the item, damage it, or lose it.
   	          		</div>
-      	      	  <% end %>
     	      	</div>
         	<% end %>
         	<% end %>
@@ -164,12 +228,46 @@
 	<% end %>
 
 	<% @prices.each do |price| %>
-		<% if price.timeframe == 'Day' || price.timeframe == 'Hour' %>
+		<% if price.timeframe == 'Product 1' || price.timeframe == 'Hour' %>
 			$('#item_prices_attributes_0_amount').val("<%= price.amount.to_digits %>");
-		<% elsif price.timeframe == 'Week' || price.timeframe == 'Flat Rate' %>
+			$('#item_prices_attributes_0_title').val("<%= price.title %>");
+			$('#item_prices_attributes_0_description').val("<%= price.description %>");
+		<% elsif price.timeframe == 'Product 2' || price.timeframe == 'Flat Rate' %>
 			$('#item_prices_attributes_1_amount').val("<%= price.amount.to_digits %>");
-		<% elsif price.timeframe == 'Month' %>
+			$('#item_prices_attributes_1_title').val("<%= price.title %>");
+			$('#item_prices_attributes_1_description').val("<%= price.description %>");
+		<% elsif price.timeframe == 'Product 3' %>
 			$('#item_prices_attributes_2_amount').val("<%= price.amount.to_digits %>");
+			$('#item_prices_attributes_2_title').val("<%= price.title %>");
+			$('#item_prices_attributes_2_description').val("<%= price.description %>");
+		<% elsif price.timeframe == 'Product 4' %>
+			$('#item_prices_attributes_3_amount').val("<%= price.amount.to_digits %>");
+			$('#item_prices_attributes_3_title').val("<%= price.title %>");
+			$('#item_prices_attributes_3_description').val("<%= price.description %>");
+		<% elsif price.timeframe == 'Product 5' %>
+			$('#item_prices_attributes_4_amount').val("<%= price.amount.to_digits %>");
+			$('#item_prices_attributes_4_title').val("<%= price.title %>");
+			$('#item_prices_attributes_4_description').val("<%= price.description %>");
+		<% elsif price.timeframe == 'Product 6' %>
+			$('#item_prices_attributes_5_amount').val("<%= price.amount.to_digits %>");
+			$('#item_prices_attributes_5_title').val("<%= price.title %>");
+			$('#item_prices_attributes_5_description').val("<%= price.description %>");
+		<% elsif price.timeframe == 'Product 7' %>
+			$('#item_prices_attributes_6_amount').val("<%= price.amount.to_digits %>");
+			$('#item_prices_attributes_6_title').val("<%= price.title %>");
+			$('#item_prices_attributes_6_description').val("<%= price.description %>");
+		<% elsif price.timeframe == 'Product 8' %>
+			$('#item_prices_attributes_7_amount').val("<%= price.amount.to_digits %>");
+			$('#item_prices_attributes_7_title').val("<%= price.title %>");
+			$('#item_prices_attributes_7_description').val("<%= price.description %>");
+		<% elsif price.timeframe == 'Product 9' %>
+			$('#item_prices_attributes_8_amount').val("<%= price.amount.to_digits %>");
+			$('#item_prices_attributes_8_title').val("<%= price.title %>");
+			$('#item_prices_attributes_8_description').val("<%= price.description %>");
+		<% elsif price.timeframe == 'Product 10' %>
+			$('#item_prices_attributes_9_amount').val("<%= price.amount.to_digits %>");
+			$('#item_prices_attributes_9_title').val("<%= price.title %>");
+			$('#item_prices_attributes_9_description').val("<%= price.description %>");
 		<% end %>
 	<% end %>
 
