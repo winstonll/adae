@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160428081501) do
+ActiveRecord::Schema.define(version: 20160512144041) do
 
   create_table "conversations", force: :cascade do |t|
     t.integer  "sender_id"
@@ -89,8 +89,10 @@ ActiveRecord::Schema.define(version: 20160428081501) do
     t.string   "timeframe"
     t.decimal  "amount"
     t.integer  "item_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.string   "title"
+    t.string   "description"
   end
 
   create_table "ratings", force: :cascade do |t|
