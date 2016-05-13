@@ -106,17 +106,17 @@
         </div>
       <% elsif @item.listing_type == "lease" %>
         <div class="item-detail-price">
-          <div class="price-title2">Available for Lease</div>
+          <div class="price-title2">Available for Sale</div>
             <% @prices.each do |price| %>
               <div class="price-breakdown">
-                  <div class="price-list">
-                    <span class="markup" style="font-weight:500;">$<%= price.amount %></span> <%= price.title %> <%= price.description %>
+                  <div class="price-list-product">
+										<span class="markup">$<%= price.amount %></span>
+										<div class="price-time"><b><%= price.title %> </b><%= price.description %></div>
                   </div>
+									<div class="division-2"></div>
               </div>
             <% end %>
-          <div class="division"></div>
           <div class="item-detail-calc">
-            <div class="division-2"></div>
 						<% if user_signed_in? %>
 	            <%= link_to 'Request Products', new_transaction_path(:item_id => @item.id), class: "request-button", id: "lease-button"%>
 							<%= link_to 'Send Message', conversations_path(:sender_id => current_user.id, :recipient_id => @item.user_id), :method=> :post, class: "send-message signed-in-message" %>

@@ -544,7 +544,7 @@ item Show
       z-index:2;
       border: 1px solid #979797;
       background-color: #fff;
-      width: 270px;
+      width: 280px;
       padding-bottom: 17px;
       border-radius: 3px;
 
@@ -569,6 +569,24 @@ item Show
             float: right;
             margin-top: 4px;
             padding-left: 5px;
+          }
+        }
+
+        .price-list-product{
+          font-size: 15px;
+          font-weight: 400;
+          border: none;
+          padding: 10px 0px 0px 20px;
+          .markup{
+            font-weight: 700;
+            color: #34C819;
+            font-size: 20px;
+          }
+          .price-time{
+            margin: -21px 0px 0px 44px;
+            width: 200px;
+            color: #262626;
+            line-height: normal;
           }
         }
       }
@@ -704,7 +722,7 @@ item Show
       }
 
       #lease-button {
-        margin-top: 10px;
+        margin-top: 20px;
         background-color: #419bf9;
         margin-bottom: -5px;
         padding: 12px 51px 12px 51px;
@@ -1267,6 +1285,17 @@ item new
           background-color: #419BF9;
           color: #fff;
         }
+      }
+
+      #item_prices_attributes_0_description, #item_prices_attributes_1_description, #item_prices_attributes_2_description,
+      #item_prices_attributes_3_description, #item_prices_attributes_4_description, #item_prices_attributes_5_description{
+        width: 565px;
+        height: 50px;
+        border-radius: 3px;
+        border: 1px solid #979797;
+        font-size: 13px;
+        padding: 10px 10px 10px 10px;
+        margin-bottom: 5px;
       }
 
       label{
@@ -2052,6 +2081,12 @@ item new
             display: table;
             margin-bottom: 15px;
           }
+
+          .price-list-product{
+            .price-time{
+              width: 80%;
+            }
+          }
         }
 
 
@@ -2671,6 +2706,13 @@ item new
             background-color: #419BF9;
             color: #fff;
           }
+        }
+
+
+
+        #item_prices_attributes_0_description, #item_prices_attributes_1_description, #item_prices_attributes_2_description,
+        #item_prices_attributes_3_description, #item_prices_attributes_4_description, #item_prices_attributes_5_description{
+          width: 90%;
         }
 
         label{
