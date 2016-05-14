@@ -298,8 +298,8 @@ class ItemsController < ApplicationController
           if price[1][:timeframe] == "Product 1" || price[1][:timeframe] == "Hour"
             if params[:item][:prices_attributes]["0"][:amount].to_f != 0
               item_price.timeframe = price[1][:timeframe]
-              item_price.title = price[1][:title]
-              item_price.description = price[1][:description]
+              item_price.title = params[:item][:prices_attributes]["0"][:title]
+              item_price.description = params[:item][:prices_attributes]["0"][:description]
               item_price.item_id = @item.id
               item_price.amount = params[:item][:prices_attributes]["0"][:amount].to_f
               item_price.save
@@ -307,8 +307,8 @@ class ItemsController < ApplicationController
           elsif price[1][:timeframe] == "Product 2" || price[1][:timeframe] == "Flat Rate"
             if params[:item][:prices_attributes]["1"][:amount].to_f != 0
               item_price.timeframe = price[1][:timeframe]
-              item_price.title = price[1][:title]
-              item_price.description = price[1][:description]
+              item_price.title = params[:item][:prices_attributes]["1"][:title]
+              item_price.description = params[:item][:prices_attributes]["1"][:description]
               item_price.item_id = @item.id
               item_price.amount = params[:item][:prices_attributes]["1"][:amount].to_f
               item_price.save
@@ -316,8 +316,8 @@ class ItemsController < ApplicationController
           elsif price[1][:timeframe] == "Product 3"
             if params[:item][:prices_attributes]["2"][:amount].to_f != 0
               item_price.timeframe = price[1][:timeframe]
-              item_price.title = price[1][:title]
-              item_price.description = price[1][:description]
+              item_price.title = params[:item][:prices_attributes]["2"][:title]
+              item_price.description = params[:item][:prices_attributes]["2"][:description]
               item_price.item_id = @item.id
               item_price.amount = params[:item][:prices_attributes]["2"][:amount].to_f
               item_price.save
@@ -325,8 +325,8 @@ class ItemsController < ApplicationController
           elsif price[1][:timeframe] == "Product 4"
             if params[:item][:prices_attributes]["3"][:amount].to_f != 0
               item_price.timeframe = price[1][:timeframe]
-              item_price.title = price[1][:title]
-              item_price.description = price[1][:description]
+              item_price.title = params[:item][:prices_attributes]["3"][:title]
+              item_price.description = params[:item][:prices_attributes]["3"][:description]
               item_price.item_id = @item.id
               item_price.amount = params[:item][:prices_attributes]["3"][:amount].to_f
               item_price.save
@@ -334,8 +334,8 @@ class ItemsController < ApplicationController
           elsif price[1][:timeframe] == "Product 5"
             if params[:item][:prices_attributes]["4"][:amount].to_f != 0
               item_price.timeframe = price[1][:timeframe]
-              item_price.title = price[1][:title]
-              item_price.description = price[1][:description]
+              item_price.title = params[:item][:prices_attributes]["4"][:title]
+              item_price.description = params[:item][:prices_attributes]["4"][:description]
               item_price.item_id = @item.id
               item_price.amount = params[:item][:prices_attributes]["4"][:amount].to_f
               item_price.save
@@ -343,8 +343,8 @@ class ItemsController < ApplicationController
           elsif price[1][:timeframe] == "Product 6"
             if params[:item][:prices_attributes]["5"][:amount].to_f != 0
               item_price.timeframe = price[1][:timeframe]
-              item_price.title = price[1][:title]
-              item_price.description = price[1][:description]
+              item_price.title = params[:item][:prices_attributes]["5"][:title]
+              item_price.description = params[:item][:prices_attributes]["5"][:description]
               item_price.item_id = @item.id
               item_price.amount = params[:item][:prices_attributes]["5"][:amount].to_f
               item_price.save
@@ -352,8 +352,8 @@ class ItemsController < ApplicationController
           elsif price[1][:timeframe] == "Product 7"
             if params[:item][:prices_attributes]["6"][:amount].to_f != 0
               item_price.timeframe = price[1][:timeframe]
-              item_price.title = price[1][:title]
-              item_price.description = price[1][:description]
+              item_price.title = params[:item][:prices_attributes]["6"][:title]
+              item_price.description = params[:item][:prices_attributes]["6"][:description]
               item_price.item_id = @item.id
               item_price.amount = params[:item][:prices_attributes]["6"][:amount].to_f
               item_price.save
@@ -361,8 +361,8 @@ class ItemsController < ApplicationController
           elsif price[1][:timeframe] == "Product 8"
             if params[:item][:prices_attributes]["7"][:amount].to_f != 0
               item_price.timeframe = price[1][:timeframe]
-              item_price.title = price[1][:title]
-              item_price.description = price[1][:description]
+              item_price.title = params[:item][:prices_attributes]["7"][:title]
+              item_price.description = params[:item][:prices_attributes]["7"][:description]
               item_price.item_id = @item.id
               item_price.amount = params[:item][:prices_attributes]["7"][:amount].to_f
               item_price.save
@@ -370,8 +370,8 @@ class ItemsController < ApplicationController
           elsif price[1][:timeframe] == "Product 9"
             if params[:item][:prices_attributes]["8"][:amount].to_f != 0
               item_price.timeframe = price[1][:timeframe]
-              item_price.title = price[1][:title]
-              item_price.description = price[1][:description]
+              item_price.title = params[:item][:prices_attributes]["8"][:title]
+              item_price.description = params[:item][:prices_attributes]["8"][:description]
               item_price.item_id = @item.id
               item_price.amount = params[:item][:prices_attributes]["8"][:amount].to_f
               item_price.save
@@ -379,8 +379,8 @@ class ItemsController < ApplicationController
           elsif price[1][:timeframe] == "Product 10"
             if params[:item][:prices_attributes]["9"][:amount].to_f != 0
               item_price.timeframe = price[1][:timeframe]
-              item_price.title = price[1][:title]
-              item_price.description = price[1][:description]
+              item_price.title = params[:item][:prices_attributes]["9"][:title]
+              item_price.description = params[:item][:prices_attributes]["9"][:description]
               item_price.item_id = @item.id
               item_price.amount = params[:item][:prices_attributes]["9"][:amount].to_f
               item_price.save
