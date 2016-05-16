@@ -45,8 +45,8 @@
   				  </tr>
 			      <tr>
 			      	<th>Price:</th>
-			      	<td><input class="money", readonly="true", value="$"></input><%=hour.number_field :amount, max: 100, class:"amount" %></td>
-			      	<td><input class="money", readonly="true", value="$"></input><%=flat.number_field :amount, max: 100, class:"amount" %></td>
+			      	<td><input class="money", readonly="true", value="$"></input><%=hour.number_field :amount, min:0, max: 100, class:"amount" %></td>
+			      	<td><input class="money", readonly="true", value="$"></input><%=flat.number_field :amount, min:0, max: 100, class:"amount" %></td>
 			      </tr>
   				</table>
       			<br/>
@@ -102,16 +102,16 @@
   				  </tr>
 			      <tr>
 			      	<th>Price:</th>
-			      	<td><input class="money", readonly="true", value="$"></input><%=one.number_field :amount, max: 100, class: "amount"%></td>
-			      	<td><input class="money", readonly="true", value="$"></input><%=two.number_field :amount, max: 100, class: "amount"%></td>
-			        <td><input class="money", readonly="true", value="$"></input><%=three.number_field :amount, max: 100, class: "amount"%></td>
-			        <td><input class="money", readonly="true", value="$"></input><%=four.number_field :amount, max: 100, class: "amount"%></td>
-			        <td><input class="money", readonly="true", value="$"></input><%=five.number_field :amount, max: 100, class: "amount"%></td>
-			        <td><input class="money", readonly="true", value="$"></input><%=six.number_field :amount, max: 100, class: "amount"%></td>
-			      	<td><input class="money", readonly="true", value="$"></input><%=seven.number_field :amount, max: 100, class: "amount"%></td>
-			        <td><input class="money", readonly="true", value="$"></input><%=eight.number_field :amount, max: 100, class: "amount"%></td>
-			        <td><input class="money", readonly="true", value="$"></input><%=nine.number_field :amount, max: 100, class: "amount"%></td>
-			        <td><input class="money", readonly="true", value="$"></input><%=ten.number_field :amount, max: 100, class: "amount"%></td>
+			      	<td><input class="money", readonly="true", value="$"></input><%=one.number_field :amount, min:0, max: 100, class: "amount"%></td>
+			      	<td><input class="money", readonly="true", value="$"></input><%=two.number_field :amount, min:0, max: 100, class: "amount"%></td>
+			        <td><input class="money", readonly="true", value="$"></input><%=three.number_field :amount, min:0, max: 100, class: "amount"%></td>
+			        <td><input class="money", readonly="true", value="$"></input><%=four.number_field :amount, min:0, max: 100, class: "amount"%></td>
+			        <td><input class="money", readonly="true", value="$"></input><%=five.number_field :amount, min:0, max: 100, class: "amount"%></td>
+			        <td><input class="money", readonly="true", value="$"></input><%=six.number_field :amount, min:0, max: 100, class: "amount"%></td>
+			      	<td><input class="money", readonly="true", value="$"></input><%=seven.number_field :amount, min:0, max: 100, class: "amount"%></td>
+			        <td><input class="money", readonly="true", value="$"></input><%=eight.number_field :amount, min:0, max: 100, class: "amount"%></td>
+			        <td><input class="money", readonly="true", value="$"></input><%=nine.number_field :amount, min:0, max: 100, class: "amount"%></td>
+			        <td><input class="money", readonly="true", value="$"></input><%=ten.number_field :amount, min:0, max: 100, class: "amount"%></td>
 			      </tr>
   				</table>
       			<br/>
