@@ -15,6 +15,11 @@
 
 <script>
   $(document).ready(function() {
+    if ($('select[name="transaction[length]"] option:selected').val() === "Flat Rate") {
+      $('#qty').val(1);
+      $('#qty').prop('disabled', true);
+      $('#qty').css("visibility", "hidden");
+    };
     var total_price;
     <% if @item.listing_type != "sell" %>
       <% if params[:sell] == "true" %>
