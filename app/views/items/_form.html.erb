@@ -82,7 +82,7 @@
         <%= f.fields_for :prices, Price.new do |ten| %>
     		<div class="new-item-form">
   				<p class="deposit-tip">
-  				  <b>Prodcut Price:</b></br>
+  				  <b>Product Price:</b></br>
   				  Set the price you want to charge for any or all of the fields below.</br>
   				  Leave the box blank if the product is not available.
   				</p>
@@ -132,7 +132,7 @@
 					<div><%= nine.text_area :description, :placeholder => "Product 9", class: "description" %></div>
 					<div><%= ten.text_area :description, :placeholder => "Product 10", class: "description" %></div>
 			</div>
-		    <div class= "hidden-fields">	
+		    <div class= "hidden-fields">
 				<%= f.hidden_field :deposit, :value => 0 %>
 				<%= one.text_field :timeframe, :value => "Product 1", :hidden => "True" %>
 		      	<%= two.text_field :timeframe, :value => "Product 2", :hidden => "True" %>
