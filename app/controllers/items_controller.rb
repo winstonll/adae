@@ -227,6 +227,8 @@ class ItemsController < ApplicationController
               item_price.delete
             else
               item_price.amount = params[:item][:prices_attributes]["0"][:amount].to_f
+              item_price.title = params[:item][:prices_attributes]["0"][:title]
+              item_price.description = params[:item][:prices_attributes]["0"][:description]
               item_price.save
             end
           elsif price[1][:timeframe] == "Product 2" || price[1][:timeframe] == "Flat Rate"
@@ -234,6 +236,8 @@ class ItemsController < ApplicationController
               item_price.delete
             else
               item_price.amount = params[:item][:prices_attributes]["1"][:amount].to_f
+              item_price.title = params[:item][:prices_attributes]["1"][:title]
+              item_price.description = params[:item][:prices_attributes]["1"][:description]
               item_price.save
             end
           elsif price[1][:timeframe] == "Product 3"
@@ -241,6 +245,8 @@ class ItemsController < ApplicationController
               item_price.delete
             else
               item_price.amount = params[:item][:prices_attributes]["2"][:amount].to_f
+              item_price.title = params[:item][:prices_attributes]["2"][:title]
+              item_price.description = params[:item][:prices_attributes]["2"][:description]
               item_price.save
             end
           elsif price[1][:timeframe] == "Product 4"
@@ -248,6 +254,8 @@ class ItemsController < ApplicationController
               item_price.delete
             else
               item_price.amount = params[:item][:prices_attributes]["3"][:amount].to_f
+              item_price.title = params[:item][:prices_attributes]["3"][:title]
+              item_price.description = params[:item][:prices_attributes]["3"][:description]
               item_price.save
             end
           elsif price[1][:timeframe] == "Product 5"
@@ -255,6 +263,8 @@ class ItemsController < ApplicationController
               item_price.delete
             else
               item_price.amount = params[:item][:prices_attributes]["4"][:amount].to_f
+              item_price.title = params[:item][:prices_attributes]["4"][:title]
+              item_price.description = params[:item][:prices_attributes]["4"][:description]
               item_price.save
             end
           elsif price[1][:timeframe] == "Product 6"
@@ -262,6 +272,8 @@ class ItemsController < ApplicationController
               item_price.delete
             else
               item_price.amount = params[:item][:prices_attributes]["5"][:amount].to_f
+              item_price.title = params[:item][:prices_attributes]["5"][:title]
+              item_price.description = params[:item][:prices_attributes]["5"][:description]
               item_price.save
             end
           elsif price[1][:timeframe] == "Product 7"
@@ -269,6 +281,8 @@ class ItemsController < ApplicationController
               item_price.delete
             else
               item_price.amount = params[:item][:prices_attributes]["6"][:amount].to_f
+              item_price.title = params[:item][:prices_attributes]["6"][:title]
+              item_price.description = params[:item][:prices_attributes]["6"][:description]
               item_price.save
             end
           elsif price[1][:timeframe] == "Product 8"
@@ -276,6 +290,8 @@ class ItemsController < ApplicationController
               item_price.delete
             else
               item_price.amount = params[:item][:prices_attributes]["7"][:amount].to_f
+              item_price.title = params[:item][:prices_attributes]["7"][:title]
+              item_price.description = params[:item][:prices_attributes]["7"][:description]
               item_price.save
             end
           elsif price[1][:timeframe] == "Product 9"
@@ -283,6 +299,8 @@ class ItemsController < ApplicationController
               item_price.delete
             else
               item_price.amount = params[:item][:prices_attributes]["8"][:amount].to_f
+              item_price.title = params[:item][:prices_attributes]["8"][:title]
+              item_price.description = params[:item][:prices_attributes]["8"][:description]
               item_price.save
             end
           elsif price[1][:timeframe] == "Product 10"
@@ -290,6 +308,8 @@ class ItemsController < ApplicationController
               item_price.delete
             else
               item_price.amount = params[:item][:prices_attributes]["9"][:amount].to_f
+              item_price.title = params[:item][:prices_attributes]["9"][:title]
+              item_price.description = params[:item][:prices_attributes]["9"][:description]
               item_price.save
             end
           end
