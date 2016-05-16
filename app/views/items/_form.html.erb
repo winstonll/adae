@@ -82,64 +82,151 @@
         <%= f.fields_for :prices, Price.new do |ten| %>
     		<div class="new-item-form">
   				<p class="deposit-tip">
-  				  <b>Product Price:</b></br>
-  				  Set the price you want to charge for any or all of the fields below.</br>
-  				  Leave the box blank if the product is not available.
+  				  <b>Product Description & Price &#x2756;</b></br>
+  				  Set the price and description for any or all of the fields below.</br>
+
+            <div class="deposit-tip" style="color: #419bf9; margin-top: 10px; font-weight: 500;">
+    	        	&#x2756; Adae will add a 4% - 10% service fee on top of your listed price. <br> This fee helps us run the platform, and to provide the best service to our users. </br> Don't worry, you will still get paid the amount you are owed.
+    	        </div>
   				</p>
-  				<table>
-  				  <tr>
-  				  	<th>Title:</th>
-  			      	<td><%= one.text_field :title, :placeholder => "Product 1", class: "timeframe" %></td>
-  			      	<td><%= two.text_field :title, :placeholder => "Product 2", class: "timeframe" %></td>
-  			      	<td><%= three.text_field :title, :placeholder => "Product 3", class: "timeframe" %></td>
-  			      	<td><%= four.text_field :title, :placeholder => "Product 4", class: "timeframe" %></td>
-  			      	<td><%= five.text_field :title, :placeholder => "Product 5", class: "timeframe" %></td>
-  			      	<td><%= six.text_field :title, :placeholder => "Product 6", class: "timeframe" %></td>
-  			      	<td><%= seven.text_field :title, :placeholder => "Product 7", class: "timeframe" %></td>
-  			      	<td><%= eight.text_field :title, :placeholder => "Product 8", class: "timeframe" %></td>
-  			      	<td><%= nine.text_field :title, :placeholder => "Product 9", class: "timeframe" %></td>
-  			      	<td><%= ten.text_field :title, :placeholder => "Product 10", class: "timeframe" %></td>
-  				  </tr>
-			      <tr>
-			      	<th>Price:</th>
-			      	<td><input class="money", readonly="true", value="$"></input><%=one.number_field :amount, min:0, max: 100, class: "amount"%></td>
-			      	<td><input class="money", readonly="true", value="$"></input><%=two.number_field :amount, min:0, max: 100, class: "amount"%></td>
-			        <td><input class="money", readonly="true", value="$"></input><%=three.number_field :amount, min:0, max: 100, class: "amount"%></td>
-			        <td><input class="money", readonly="true", value="$"></input><%=four.number_field :amount, min:0, max: 100, class: "amount"%></td>
-			        <td><input class="money", readonly="true", value="$"></input><%=five.number_field :amount, min:0, max: 100, class: "amount"%></td>
-			        <td><input class="money", readonly="true", value="$"></input><%=six.number_field :amount, min:0, max: 100, class: "amount"%></td>
-			      	<td><input class="money", readonly="true", value="$"></input><%=seven.number_field :amount, min:0, max: 100, class: "amount"%></td>
-			        <td><input class="money", readonly="true", value="$"></input><%=eight.number_field :amount, min:0, max: 100, class: "amount"%></td>
-			        <td><input class="money", readonly="true", value="$"></input><%=nine.number_field :amount, min:0, max: 100, class: "amount"%></td>
-			        <td><input class="money", readonly="true", value="$"></input><%=ten.number_field :amount, min:0, max: 100, class: "amount"%></td>
-			      </tr>
-  				</table>
-      			<br/>
-    		</div>
-    		<div class="deposit-tip" style="color: #419bf9; margin-top: 10px; font-weight: 500;">
-	        	&#x2756; Adae will add a 4% - 10% service fee on top of your listed price. <br> This fee helps us run the platform, and to provide the best service to our users. </br> Don't worry, you will still get paid the amount you are owed.
-	        </div>
-			<div class="new-item-form">
-			  	<p>Product Descriptions:</p>
-					<div><%= one.text_area :description, :placeholder => "Product 1", class: "description" %></div>
-					<div><%= two.text_area :description, :placeholder => "Product 2", class: "description" %></div>
-					<div><%= three.text_area :description, :placeholder => "Product 3", class: "description" %></div>
-					<div><%= four.text_area :description, :placeholder => "Product 4", class: "description" %></div>
-					<div><%= five.text_area :description, :placeholder => "Product 5", class: "description" %></div>
-					<div><%= six.text_area :description, :placeholder => "Product 6", class: "description" %></div>
-					<div><%= seven.text_area :description, :placeholder => "Product 7", class: "description" %></div>
-					<div><%= eight.text_area :description, :placeholder => "Product 8", class: "description" %></div>
-					<div><%= nine.text_area :description, :placeholder => "Product 9", class: "description" %></div>
-					<div><%= ten.text_area :description, :placeholder => "Product 10", class: "description" %></div>
-			</div>
-		    <div class= "hidden-fields">
+            <div class="product-info">
+    				  <tr>
+    			      	<td><%= one.text_field :title, :placeholder => "Product 1 Title", class: "product-timeframe" %></td>
+    				  </tr>
+              <tr>
+  			      	<td><input class="prod-money", readonly="true", value="$"></input><%=one.number_field :amount, min:0, max: 100, class: "product-amount"%></td>
+              </tr>
+              <div class="new-item-form">
+        					<div><%= one.text_area :description, :placeholder => "Product 1 Description", class: "description" %></div>
+          			<br/>
+        		  </div>
+           </div>
+
+           <div class="product-info">
+              <tr>
+    			      	<td><%= two.text_field :title, :placeholder => "Product 2 Title", class: "product-timeframe" %></td>
+    				  </tr>
+              <tr>
+  			      	<td><input class="prod-money", readonly="true", value="$"></input><%=two.number_field :amount, min:0, max: 100, class: "product-amount"%></td>
+              </tr>
+              <div class="new-item-form">
+        					<div><%= two.text_area :description, :placeholder => "Product 2 Description", class: "description" %></div>
+          			<br/>
+        		  </div>
+          </div>
+
+          <div class="product-info">
+             <tr>
+               <td><%= three.text_field :title, :placeholder => "Product 3 Title", class: "product-timeframe" %></td>
+             </tr>
+             <tr>
+               <td><input class="prod-money", readonly="true", value="$"></input><%=three.number_field :amount, min:0, max: 100, class: "product-amount"%></td>
+             </tr>
+             <div class="new-item-form">
+               <div><%= three.text_area :description, :placeholder => "Product 3 Description", class: "description" %></div>
+               <br/>
+             </div>
+          </div>
+
+          <div class="product-info">
+             <tr>
+               <td><%= four.text_field :title, :placeholder => "Product 4 Title", class: "product-timeframe" %></td>
+             </tr>
+             <tr>
+               <td><input class="prod-money", readonly="true", value="$"></input><%=four.number_field :amount, min:0, max: 100, class: "product-amount"%></td>
+             </tr>
+             <div class="new-item-form">
+               <div><%= four.text_area :description, :placeholder => "Product 4 Description", class: "description" %></div>
+               <br/>
+             </div>
+          </div>
+
+          <div class="product-info">
+             <tr>
+               <td><%= five.text_field :title, :placeholder => "Product 5 Title", class: "product-timeframe" %></td>
+             </tr>
+             <tr>
+               <td><input class="prod-money", readonly="true", value="$"></input><%=five.number_field :amount, min:0, max: 100, class: "product-amount"%></td>
+             </tr>
+             <div class="new-item-form">
+               <div><%= five.text_area :description, :placeholder => "Product 5 Description", class: "description" %></div>
+               <br/>
+             </div>
+          </div>
+
+          <div class="product-info">
+             <tr>
+               <td><%= six.text_field :title, :placeholder => "Product 6 Title", class: "product-timeframe" %></td>
+             </tr>
+             <tr>
+               <td><input class="prod-money", readonly="true", value="$"></input><%=six.number_field :amount, min:0, max: 100, class: "product-amount"%></td>
+             </tr>
+             <div class="new-item-form">
+               <div><%= six.text_area :description, :placeholder => "Product 6 Description", class: "description" %></div>
+               <br/>
+             </div>
+          </div>
+
+          <div class="product-info">
+             <tr>
+               <td><%= seven.text_field :title, :placeholder => "Product 7 Title", class: "product-timeframe" %></td>
+             </tr>
+             <tr>
+               <td><input class="prod-money", readonly="true", value="$"></input><%=seven.number_field :amount, min:0, max: 100, class: "product-amount"%></td>
+             </tr>
+             <div class="new-item-form">
+               <div><%= seven.text_area :description, :placeholder => "Product 7 Description", class: "description" %></div>
+               <br/>
+             </div>
+          </div>
+
+          <div class="product-info">
+             <tr>
+               <td><%= eight.text_field :title, :placeholder => "Product 8 Title", class: "product-timeframe" %></td>
+             </tr>
+             <tr>
+               <td><input class="prod-money", readonly="true", value="$"></input><%=eight.number_field :amount, min:0, max: 100, class: "product-amount"%></td>
+             </tr>
+             <div class="new-item-form">
+               <div><%= eight.text_area :description, :placeholder => "Product 8 Description", class: "description" %></div>
+               <br/>
+             </div>
+          </div>
+
+          <div class="product-info">
+             <tr>
+               <td><%= nine.text_field :title, :placeholder => "Product 9 Title", class: "product-timeframe" %></td>
+             </tr>
+             <tr>
+               <td><input class="prod-money", readonly="true", value="$"></input><%=nine.number_field :amount, min:0, max: 100, class: "product-amount"%></td>
+             </tr>
+             <div class="new-item-form">
+               <div><%= nine.text_area :description, :placeholder => "Product 9 Description", class: "description" %></div>
+               <br/>
+             </div>
+          </div>
+
+          <div class="product-info">
+             <tr>
+               <td><%= ten.text_field :title, :placeholder => "Product 10 Title", class: "product-timeframe" %></td>
+             </tr>
+             <tr>
+               <td><input class="prod-money", readonly="true", value="$"></input><%=ten.number_field :amount, min:0, max: 100, class: "product-amount"%></td>
+             </tr>
+             <div class="new-item-form">
+               <div><%= ten.text_area :description, :placeholder => "Product 10 Description", class: "description" %></div>
+               <br/>
+             </div>
+          </div>
+
+        <div class= "hidden-fields">
 				<%= f.hidden_field :deposit, :value => 0 %>
 				<%= one.text_field :timeframe, :value => "Product 1", :hidden => "True" %>
 		      	<%= two.text_field :timeframe, :value => "Product 2", :hidden => "True" %>
 		      	<%= three.text_field :timeframe, :value => "Product 3", :hidden => "True" %>
 		      	<%= four.text_field :timeframe, :value => "Product 4", :hidden => "True" %>
 		      	<%= five.text_field :timeframe, :value => "Product 5", :hidden => "True" %>
-				<%= six.text_field :timeframe, :value => "Product 6", :hidden => "True" %>
+            <%= six.text_field :timeframe, :value => "Product 6", :hidden => "True" %>
 		      	<%= seven.text_field :timeframe, :value => "Product 7", :hidden => "True" %>
 		      	<%= eight.text_field :timeframe, :value => "Product 8", :hidden => "True" %>
 		      	<%= nine.text_field :timeframe, :value => "Product 9", :hidden => "True" %>

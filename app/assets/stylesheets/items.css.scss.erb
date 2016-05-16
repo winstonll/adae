@@ -1472,6 +1472,46 @@ item new
         color: #4a4a4a;
       }
 
+      .product-timeframe{ //input box styling for the product services form
+        -webkit-appearance: none;
+        font-size: 14px;
+        text-align: center;
+        width:200px;
+        height: 25px;
+        border: 1px solid $blue;
+        border-radius: 3px;
+        margin-bottom: 8px;
+        color: #4a4a4a;
+      }
+
+      .product-amount{ //input box styling for the product services form
+        -webkit-appearance: none;
+        font-size: 16px;
+        text-align: center;
+        width:50px;
+        height: 25px;
+        margin-top: -6px;
+        border-bottom: 1px solid #979797;
+        border-right: 1px solid #979797;
+        border-left: none;
+        border-radius: 0px 3px 3px 0px;
+        border-top: 1px solid #979797;
+        color: #4a4a4a;
+      }
+
+      .prod-money{ //money styling for product services form
+        -webkit-appearance: none;
+        font-size:16px;
+        width:19px;
+        height: 25px;
+        text-align: center;
+        border: 1px solid #979797;
+        border-radius: 3px 0px 0px 3px;
+        margin-right: -1px;
+        color: #fff;
+        background-color: $green;
+      }
+
       #deposit-title{
         margin-top: 3px;
       }
@@ -2714,11 +2754,16 @@ item new
           }
         }
 
+        .product-info{
+          display: table;
+          margin: 0 auto;
+          .prod-money{
+            margin-left: 5px;
+          }
+        }
 
-
-        #item_prices_attributes_0_description, #item_prices_attributes_1_description, #item_prices_attributes_2_description,
-        #item_prices_attributes_3_description, #item_prices_attributes_4_description, #item_prices_attributes_5_description{
-          width: 90%;
+        .description{
+          width: 100%;
         }
 
         label{
