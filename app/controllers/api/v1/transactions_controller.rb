@@ -102,8 +102,10 @@ module Api::V1
 
               current_transaction.in_scan_date = DateTime.current
 
-              if product.listing_type == "rent" || product.listing_type == "lease"
+              if product.listing_type == "rent"
                 current_transaction.status = "In Progress"
+              elsif product.listing_type == "lease"
+                current_transaction.status = "Completed"
               elsif product.listing_type == "timeoffer"
                 length = current_transaction.length.split("-")
                 if length[1] == "Flat Rate"
@@ -124,7 +126,7 @@ module Api::V1
               end
 
               current_transaction.save
-
+                
               if product.listing_type != "sell"
                 length = current_transaction.length.split("-")
                 qty = length[0]
