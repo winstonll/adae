@@ -23,14 +23,6 @@
     };
     var total_price;
     <% if @item.listing_type != "sell" %>
-      <% if params[:sell] == "true" %>
-        $('#display-price')[0].innerHTML = "$" + markup_price(<%= @item.deposit %>);
-        total_price = (markup_price(<%= @item.deposit %>));
-        $('#total').val("$" + ((total_price * 1.029) + 0.30).toFixed(2));
-        $('#stripe-fee')[0].innerHTML = "$" + ( (markup_price(<%= @item.deposit %>) * 0.029) + 0.30).toFixed(2);
-        $('#price').val(total_price);
-      <% end %>
-
       <% if current_user.stripe_customer_id.nil?  %>
         $('.stripe-button-el').click(function(event){
 
@@ -251,16 +243,13 @@
 
     <div class="price-details">
       <!-- If listing type sell OR request  to buy a lease item -->
-      <% if @item.listing_type == "sell" || params[:sell] == "true"%>
+      <% if @item.listing_type == "sell" %>
 
         <div class="item-detail-price" style="height: 260px;">
           <div class="item-title"><%=@item.title %></div>
           <div class="division"></div>
-          <% unless params[:sell] == "true" %>
-            <p id="display-price" style="font-size: 30px; font-weight: 500; color: #4a4a4a;"></p>
-          <% else %>
-            <p id="display-price" style="font-size: 30px; font-weight: 500; color: #4a4a4a;"></p>
-          <% end %>
+
+          <p id="display-price" style="font-size: 30px; font-weight: 500; color: #4a4a4a;"></p>
           <div style="margin-left: 0px;" class="credit-fee">
             <a style="margin-left: 20px" target="_blank" href="https://stripe.com/ca/pricing">Stripe Processing Fee:</a>
             <span>
@@ -275,11 +264,8 @@
           <div class="division" style=" width: 86%;"></div>
 
           <span class="finalp">Total</span>
-          <% unless params[:sell] == "true" %>
-            <input id="total" readonly="readonly" value=""></input>
-          <% else %>
-            <input id="total" readonly="readonly" value=""></input>
-          <% end %>
+
+          <input id="total" readonly="readonly" value=""></input>
         </div>
       <!-- If listing type lease -->
       <% elsif @item.listing_type == "lease" %>
