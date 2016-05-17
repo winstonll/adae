@@ -119,6 +119,7 @@ class TransactionsController < ApplicationController
 		redirect_to :back
 	end
 
+=begin
 	def purchase_lease
 
 		transaction_hash = charge_stripe
@@ -144,6 +145,7 @@ class TransactionsController < ApplicationController
 		redirect_to conversations_path
 
 	end
+=end
 
 	# Grabs all the necessary data and presents an invoice display page after purchases
 	def stripe_success
@@ -220,9 +222,11 @@ class TransactionsController < ApplicationController
 
 			charge_price = transaction.total_price.to_f
 
+=begin
 			if params[:lease]
 				charge_price = (markup_calculation(item.deposit) - transaction.total_price).to_f
 			end
+=end
 
 			if !(Share.where(user_id: current_user.id, item_id: item.id).empty?) && !(Share.where(user_id: current_user.id, item_id: item.id).first.discount_used)
 				shared = Share.where(user_id: current_user.id, item_id: item.id).first
