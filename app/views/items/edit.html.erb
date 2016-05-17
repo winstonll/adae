@@ -68,8 +68,8 @@
 	  				  </tr>
 				      <tr>
 				      	<th>Price:</th>
-				      	<td><input class="money", readonly="true", value="$"></input><%=hour.number_field :amount, max: 100, class:"amount"%></td>
-				      	<td><input class="money", readonly="true", value="$"></input><%=flat.number_field :amount, max: 100, class:"amount"%></td>
+				      	<td><input class="money", readonly="true", value="$"></input><%=hour.number_field :amount, min:0, max: 100, class:"amount"%></td>
+				      	<td><input class="money", readonly="true", value="$"></input><%=flat.number_field :amount, min:0, max: 100, class:"amount"%></td>
 				      </tr>
 	  				</table>
 	      			<br/>
@@ -113,16 +113,16 @@
 	  				  </tr>
 				      <tr>
 				      	<th>Price:</th>
-				      	<td><input class="money", readonly="true", value="$"></input><%=one.number_field :amount, max: 100, class:"amount"%></td>
-				      	<td><input class="money", readonly="true", value="$"></input><%=two.number_field :amount, max: 100, class:"amount"%></td>
-				        <td><input class="money", readonly="true", value="$"></input><%=three.number_field :amount, max: 100, class:"amount"%></td>
-				        <td><input class="money", readonly="true", value="$"></input><%=four.number_field :amount, max: 100, class: "amount"%></td>
-				        <td><input class="money", readonly="true", value="$"></input><%=five.number_field :amount, max: 100, class: "amount"%></td>
-				        <td><input class="money", readonly="true", value="$"></input><%=six.number_field :amount, max: 100, class: "amount"%></td>
-				      	<td><input class="money", readonly="true", value="$"></input><%=seven.number_field :amount, max: 100, class: "amount"%></td>
-				        <td><input class="money", readonly="true", value="$"></input><%=eight.number_field :amount, max: 100, class: "amount"%></td>
-				        <td><input class="money", readonly="true", value="$"></input><%=nine.number_field :amount, max: 100, class: "amount"%></td>
-				        <td><input class="money", readonly="true", value="$"></input><%=ten.number_field :amount, max: 100, class: "amount"%></td>
+				      	<td><input class="money", readonly="true", value="$"></input><%=one.number_field :amount, min:0, max: 100, class:"amount"%></td>
+				      	<td><input class="money", readonly="true", value="$"></input><%=two.number_field :amount, min:0, max: 100, class:"amount"%></td>
+				        <td><input class="money", readonly="true", value="$"></input><%=three.number_field :amount, min:0, max: 100, class:"amount"%></td>
+				        <td><input class="money", readonly="true", value="$"></input><%=four.number_field :amount, min:0, max: 100, class: "amount"%></td>
+				        <td><input class="money", readonly="true", value="$"></input><%=five.number_field :amount, min:0, max: 100, class: "amount"%></td>
+				        <td><input class="money", readonly="true", value="$"></input><%=six.number_field :amount, min:0, max: 100, class: "amount"%></td>
+				      	<td><input class="money", readonly="true", value="$"></input><%=seven.number_field :amount, min:0, max: 100, class: "amount"%></td>
+				        <td><input class="money", readonly="true", value="$"></input><%=eight.number_field :amount, min:0, max: 100, class: "amount"%></td>
+				        <td><input class="money", readonly="true", value="$"></input><%=nine.number_field :amount, min:0, max: 100, class: "amount"%></td>
+				        <td><input class="money", readonly="true", value="$"></input><%=ten.number_field :amount, min:0, max: 100, class: "amount"%></td>
 				      </tr>
 	  				</table>
 	      			<br/>
@@ -228,46 +228,51 @@
 	<% end %>
 
 	<% @prices.each do |price| %>
+		var descrip = '<%= price.description.gsub(/(?:\n\r?|\r\n?)/, '\n').html_safe %>';
+		descrip = descrip.replace(/&quot;/g, '"');
+		descrip = descrip.replace(/&amp;/g, '&');
+
+		
 		<% if price.timeframe == 'Product 1' || price.timeframe == 'Hour' %>
 			$('#item_prices_attributes_0_amount').val("<%= price.amount.to_digits %>");
 			$('#item_prices_attributes_0_title').val("<%= price.title %>");
-			$('#item_prices_attributes_0_description').val("<%= price.description %>");
+			$('#item_prices_attributes_0_description').val(descrip);
 		<% elsif price.timeframe == 'Product 2' || price.timeframe == 'Flat Rate' %>
 			$('#item_prices_attributes_1_amount').val("<%= price.amount.to_digits %>");
 			$('#item_prices_attributes_1_title').val("<%= price.title %>");
-			$('#item_prices_attributes_1_description').val("<%= price.description %>");
+			$('#item_prices_attributes_1_description').val(descrip);
 		<% elsif price.timeframe == 'Product 3' %>
 			$('#item_prices_attributes_2_amount').val("<%= price.amount.to_digits %>");
 			$('#item_prices_attributes_2_title').val("<%= price.title %>");
-			$('#item_prices_attributes_2_description').val("<%= price.description %>");
+			$('#item_prices_attributes_2_description').val(descrip);
 		<% elsif price.timeframe == 'Product 4' %>
 			$('#item_prices_attributes_3_amount').val("<%= price.amount.to_digits %>");
 			$('#item_prices_attributes_3_title').val("<%= price.title %>");
-			$('#item_prices_attributes_3_description').val("<%= price.description %>");
+			$('#item_prices_attributes_3_description').val(descrip);
 		<% elsif price.timeframe == 'Product 5' %>
 			$('#item_prices_attributes_4_amount').val("<%= price.amount.to_digits %>");
 			$('#item_prices_attributes_4_title').val("<%= price.title %>");
-			$('#item_prices_attributes_4_description').val("<%= price.description %>");
+			$('#item_prices_attributes_4_description').val(descrip);
 		<% elsif price.timeframe == 'Product 6' %>
 			$('#item_prices_attributes_5_amount').val("<%= price.amount.to_digits %>");
 			$('#item_prices_attributes_5_title').val("<%= price.title %>");
-			$('#item_prices_attributes_5_description').val("<%= price.description %>");
+			$('#item_prices_attributes_5_description').val(descrip);
 		<% elsif price.timeframe == 'Product 7' %>
 			$('#item_prices_attributes_6_amount').val("<%= price.amount.to_digits %>");
 			$('#item_prices_attributes_6_title').val("<%= price.title %>");
-			$('#item_prices_attributes_6_description').val("<%= price.description %>");
+			$('#item_prices_attributes_6_description').val(descrip);
 		<% elsif price.timeframe == 'Product 8' %>
 			$('#item_prices_attributes_7_amount').val("<%= price.amount.to_digits %>");
 			$('#item_prices_attributes_7_title').val("<%= price.title %>");
-			$('#item_prices_attributes_7_description').val("<%= price.description %>");
+			$('#item_prices_attributes_7_description').val(descrip);
 		<% elsif price.timeframe == 'Product 9' %>
 			$('#item_prices_attributes_8_amount').val("<%= price.amount.to_digits %>");
 			$('#item_prices_attributes_8_title').val("<%= price.title %>");
-			$('#item_prices_attributes_8_description').val("<%= price.description %>");
+			$('#item_prices_attributes_8_description').val(descrip);
 		<% elsif price.timeframe == 'Product 10' %>
 			$('#item_prices_attributes_9_amount').val("<%= price.amount.to_digits %>");
 			$('#item_prices_attributes_9_title').val("<%= price.title %>");
-			$('#item_prices_attributes_9_description').val("<%= price.description %>");
+			$('#item_prices_attributes_9_description').val(descrip);
 		<% end %>
 	<% end %>
 

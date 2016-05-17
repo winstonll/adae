@@ -119,32 +119,6 @@ class TransactionsController < ApplicationController
 		redirect_to :back
 	end
 
-	def purchase_lease
-
-		transaction_hash = charge_stripe
-
-		item = transaction_hash["item"]
-		transaction = transaction_hash["transaction"]
-		seller = transaction_hash["seller"]
-
-
-		item.status = "Sold"
-		item.save
-		transaction.status = "Completed"
-		transaction.save
-		seller.balance = seller.balance + transaction.total_price
-		seller.save
-
-		@conversation = Conversation.between(transaction.seller_id,transaction.buyer_id).first
-  		@user = User.find(transaction.seller_id)
-		@message = @conversation.messages.new(user_id: @user.id)
-		@message.body = "AdaeBot: Your item has been sold."
-		@message.save
-		ContactMailer.adaebot_message(@user, @message).deliver_now
-		redirect_to conversations_path
-
-	end
-
 	# Grabs all the necessary data and presents an invoice display page after purchases
 	def stripe_success
 		@order = Transaction.find(params[:id])
@@ -219,10 +193,6 @@ class TransactionsController < ApplicationController
 			@customer = Stripe::Customer.retrieve(buyer.stripe_customer_id)
 
 			charge_price = transaction.total_price.to_f
-
-			if params[:lease]
-				charge_price = (markup_calculation(item.deposit) - transaction.total_price).to_f
-			end
 
 			if !(Share.where(user_id: current_user.id, item_id: item.id).empty?) && !(Share.where(user_id: current_user.id, item_id: item.id).first.discount_used)
 				shared = Share.where(user_id: current_user.id, item_id: item.id).first

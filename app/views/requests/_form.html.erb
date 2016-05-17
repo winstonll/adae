@@ -39,12 +39,12 @@
 
 	<div class="new-request-form">
 		<p> Summary </p>
-		<%= f.text_area :description, :maxlength=> "350", :placeholder => "Briefly describe what you are looking for, make sure to indicate if you want to rent, buy, lease, or looking for a service (ex. Tutoring). Mention when you would like to have the item/service." %>
+		<%= f.text_area :description, :maxlength=> "350", :placeholder => "Briefly describe what you are looking for. Mention when you would prefer to have the service." %>
 		<div class="character-count"></div>
 	</div>
 
 	<%= f.submit 'Submit', :class => 'submit-shoutout' %>
-	<div id="small-tip"> you can edit/update your listing at anytime after you submit.</div>
+	<div id="small-tip"> you can edit/update your Shout Out at anytime after you submit.</div>
 <%end%>
 	</div>
 </div>

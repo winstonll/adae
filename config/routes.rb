@@ -16,7 +16,6 @@ Rails.application.routes.draw do
   get 'signin_modal' => 'home#signin_modal'
   get 'signin_modal' => 'users/home#signin_modal'
   get 'companion_modal' => 'home#companion_modal'
-  get 'purchase_lease' => 'transactions#purchase_lease'
   post 'discount' => 'items#discount'
 
   #constraints subdomain: 'api' do
