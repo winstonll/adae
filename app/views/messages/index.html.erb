@@ -36,6 +36,14 @@
   });
 
   function clickAndDisable(link) {
+    var element = document.getElementById('accepting');
+    if (element.innerHTML === 'Accept'){
+      element.innerHTML = 'Accepting...';
+      element.style.backgroundColor = '#419bf9';
+      element.style.color = '#fff';
+    }else {
+      element.innerHTML = 'Accept';
+    }
      // disable subsequent clicks
     link.onclick = function(event) {
       event.preventDefault();
@@ -128,7 +136,7 @@
           <% if @transaction.seller_id == current_user.id && @transaction.status == 'Pending' %>
             <li class="listings">
         			<div class="item-edit-delete-buttons">
-        				<%= link_to 'Accept', accept_path(item_id: @item.id, transaction: @transaction.id), class: "edit-item", :onclick => 'clickAndDisable(this)' %>
+        				<%= link_to 'Accept', accept_path(item_id: @item.id, transaction: @transaction.id), class: "edit-item", id: "accepting", :onclick => 'clickAndDisable(this)' %>
         				<%= link_to 'Decline', @transaction, method: :delete, class: "delete-item", data: {confirm: "Are you sure you want to decline this request?"}  %>
         			</div>
         		</li>
