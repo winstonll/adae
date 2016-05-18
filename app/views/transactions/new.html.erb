@@ -68,8 +68,43 @@
   }
 
   function updateQty() {
-    update();
-  }
+    var qty = document.getElementsByClassName('qty');
+    var prod = document.getElementsByClassName('prod');
+    var amount = document.getElementsByClassName('amount');
+    var times = document.getElementsByClassName('times');
+    var addon = document.getElementsByClassName('addon');
+    var price = document.getElementsByClassName('price');
+    var subtotal = document.getElementsByClassName('subtotal');
+    for(var i=0; i< qty.length; i++){
+      var amt = markup_price(price[i].value);
+        times[i].value = qty[i].value;
+        addon[i].value = prod[i].value;
+        amount[i].value = ('$ ' + amt + ' x');
+      var total = (amt * qty[i].value);
+        subtotal[i].value = ('$' + total);
+      $('#transaction_addons').val((qty[i].value + "-" + prod[i].value + "|"));
+      var total_price = 0
+      $('.subtotal').each(function(){
+          total_price += parseFloat(amt);
+      });
+      var fee = ((total_price * 0.029) + 0.30).toFixed(2);
+    }
+
+      // // If they previously shared the post and the discount hasn't been used OR they just shared it
+      // if ( ($('#discount_used').val() == "true") || ("<%= @shared %>" == "true")){
+      //   var discount = parseFloat(total * 0.05).toFixed(2);
+      //   $('#discount-price').val("$" + discount);
+      // }
+
+      // if ($('#discount-price').val()){
+      //   total = (total - parseFloat(discount)).toFixed(2);
+      // }
+
+      $('#stripe-fee')[0].innerHTML = "$" + fee;
+
+      //decide wether to disable submit button or not depending on qty
+      $('#transaction_total_price').val('$' + total_price);
+    }
 
   function validateInteger(quantity){
     if (quantity > 0 && (parseFloat(quantity) === parseInt(quantity, 10))){
@@ -275,16 +310,21 @@
           <p class="how-long">What would you like to purchase?</p>
             <%= form_for Transaction.new, html: {multipart: true}  do |f| %>
               <%@prices.each do |price| %>
-                <input id="qty" name="quantity" min="1" max="30" type="number" onChange="updateQty()"></input>
-                <input id="prod" name="product" readonly="true" value="<%= price.title %>"></input><br>
+                <input class="qty" name="quantity" min="1" max="30" type="number" onChange="updateQty()"></input>
+                <input class="prod" name="product" readonly="true" value="<%= price.title %>"></input><br>
+                <input class="price" name="price" hidden="true" value="<%= price.amount %>"></input>
               <% end%>
+                <%= f.text_field :length, :value => "1-addon", hidden: 'true' %>
 
               <div class="division"></div>
               <div class="item-detail-calc">
-                  <input id="amt" class="amount" readonly="readonly" value=""></input>
-                  <input id="times" readonly="readonly" value=""></input>
-                  <input id="length" readonly="readonly" value=""></input>
-                  <input id="subtotal" readonly="readonly" value=""></input>
+                <%@prices.each do |price| %>
+                  <input class="amount" readonly="readonly" value=""></input>
+                  <input class="times" readonly="readonly" value=""></input>
+                  <input class="addon" readonly="readonly" value=""></input>
+                  <input class="subtotal" readonly="readonly" value=""></input>
+                <% end %>
+                  <%= f.text_field :addons, :value => "", hidden: 'true' %>
 
                   <div class="credit-fee">
                     <a target="_blank" href="https://stripe.com/ca/pricing">Stripe Processing Fee:</a>
@@ -297,9 +337,6 @@
                     <label id="stripe-fee"></label>
                   </div>
                   <div class="division" style=" width: 86%;"></div>
-                  <div style="font-size: 12px; margin:15px 10px 15px 21px; line-height: normal; color: #4a4a4a; width: 88%;">
-                    <!-- Pay a rental fee to try the item, and if you like it you can buy the item for the Trust Fee price. Your rental fees will count towards the final sale price. -->
-                  </div>
                   <span class="finalp">Total</span>
                   <%= f.text_field :total_price, :value => "",:readonly => true %>
               </div>
@@ -312,7 +349,7 @@
           <div class="division"></div>
           <p class="how-long">How long would you like to rent this?</p>
           <%= form_for Transaction.new, html: {multipart: true}  do |f| %>
-            <input id="qty" name="quantity" min="1" max="30" type="number" onChange="updateQty()"></input>
+            <input id="qty" name="quantity" min="1" max="30" type="number" onChange="update()"></input>
             <span><%= f.select :length, @type_dropdown, {}, :onchange => "updateLength()"%></span>
 
             <div class="division"></div>
@@ -354,7 +391,7 @@
           <div class="division"></div>
           <p class="how-long" style="font-size: 12px;">How long would you like this service to last?</p>
           <%= form_for Transaction.new, html: {multipart: true}  do |f| %>
-            <input id="qty" name="quantity" min="1" max="30" type="number" onChange="updateQty()"></input>
+            <input id="qty" name="quantity" min="1" max="30" type="number" onChange="update()"></input>
             <span><%= f.select :length, @type_dropdown, {}, :onchange => "updateLength()"%></span>
             <div class="division"></div>
             <div class="item-detail-calc" style="margin-bottom: 15px;">
