@@ -744,44 +744,54 @@ item Show
         }
       }
     }
-    .item-lease-price {
-      float:right;
+    .item-detail-price-product {
+      float: right;
       z-index:2;
-      border: 1px solid #979797;
+      border: 1px solid #B4B4B4;
       background-color: #fff;
-      height: 260px;
-      width: 270px;
-      margin-top: 15px;
-      margin-bottom: 35px;
+      width: 370px;
+      padding-bottom: 17px;
       border-radius: 3px;
 
-      p{
-        text-align: left;
-        color: #4a4a4a;
-        font-size: 14px;
-        width: 220px;
-        margin-left: 30px;
-        line-height: normal;
-        margin-bottom: 10px;
+      .price-breakdown{
+        margin-top: 15px;
+
+        .price-list-product{
+          font-size: 15px;
+          font-weight: 400;
+          border: none;
+          padding: 10px 0px 0px 20px;
+          .markup{
+            font-weight: 700;
+            color: #34C819;
+            font-size: 20px;
+          }
+          .price-time{
+            margin: -21px 0px 0px 44px;
+            width: 80%;
+            color: #262626;
+            line-height: normal;
+          }
+        }
       }
-      .price-title {
+
+      .division-2 {
+        border-top: 1px solid #DCDCDC;
+        width: 83%;
+        margin: 10px auto;
+      }
+
+      .price-title2 {
         font-weight: 600;
         color: white;
-        background-color:#7ed321;
-        text-align: center;
+        background-color:#419bf9;
         opacity: 0.9;
-        padding: 10px;
+        padding: 12px;
       }
-      .sale-price {
-        color: #7ed321;
-        font-weight: 500;
-        font-size: 18px;
-        text-align: center;
-        margin-top: 5px;
-      }
-      #buy-button {
+
+      .request-button {
         display: table;
-        position: relative;
+        top: 3.5em;
         text-align: center;
         margin: auto;
         background-color:#7ed321;
@@ -791,9 +801,44 @@ item Show
         border-radius: 2px;
         cursor: pointer;
         padding: 12px 55px 12px 55px;
+      }
+
+      .send-message {
+        display: table;
+        margin: 0 auto;
+        text-align: center;
+        background-color:#41B6F9;
+        color: #fff;
+        font-size: 16px;
+        font-weight: 600;
+        border-radius: 2px;
+        cursor: pointer;
+        padding: 12px 100px 12px 100px;
+        margin-top: 15px;
+        &:hover{
+          background-color: #419bf9 !important;
+          color: #fff;
+          transition: all .3s ease-in-out;
+        }
+      }
+
+      .signed-in-message {
+        top: 1.5em;
+      }
+
+      .guest-message {
+        top: 1.5em;
+      }
+
+
+      #lease-button {
+        margin-top: 20px;
+        background-color: #419bf9;
+        margin-bottom: -5px;
+        padding: 12px 90px 12px 90px;
 
         &:hover{
-          background-color: #5AC902;
+          background-color: #0077f3;
           color: #fff;
           transition: all .3s ease-in-out;
         }
@@ -806,6 +851,11 @@ item Show
     .item-detail-price{
       margin-right: 15% !important;
     }
+
+    .item-detail-price-product{
+      margin-right: 15% !important;
+    }
+
     .item-lease-price {
       margin-right: 15% !important;
     }
@@ -813,6 +863,9 @@ item Show
 
   @media only screen and (min-width: 1366px) {
     .item-detail-price{
+      margin-right: 20% !important;
+    }
+    .item-detail-price-product{
       margin-right: 20% !important;
     }
     .item-lease-price {
@@ -825,6 +878,9 @@ item Show
     .item-detail-price{
       margin-right: 32% !important;
     }
+    .item-detail-price-product{
+      margin-right: 32% !important;
+    }
     .item-lease-price {
       margin-right: 32% !important;
     }
@@ -835,6 +891,10 @@ item Show
       margin-right: 55% !important;
       bottom: 322px !important;
     }
+    .item-detail-price-product{
+      margin-right: 55% !important;
+      bottom: 322px !important;
+    }
     .item-lease-price {
       margin-right: 55% !important;
       bottom: 50px !important;
@@ -842,6 +902,10 @@ item Show
   }
   @media only screen and (min-width: 1920px) {
     .item-detail-price{
+      margin-right: 82% !important;
+      bottom: 472px !important;
+    }
+    .item-detail-price-product{
       margin-right: 82% !important;
       bottom: 472px !important;
     }
@@ -941,7 +1005,6 @@ item Show
   display: table;
   margin: 0 auto;
   background-color: #fff;
-  width: 100%;
   padding-top: 2em;
 
   .overall-rating {
@@ -1082,7 +1145,7 @@ item Show
   width: 100%;
   background-color: #fff;
   margin: 0 auto;
-  padding-bottom: 2em;
+  padding-bottom: 21em;
 
   .review-content {
     display: table;
@@ -2110,6 +2173,16 @@ item new
       margin-top: -2.75em;
       width: 100%;
       float:none !important;
+
+      .item-detail-price-product {
+        width: 100%;
+        float:none !important;
+        border-bottom: 1px solid #dcdcdc !important;
+        border: none !important;
+        .price-title2{
+          padding: 13px;
+        }
+      }
       .item-detail-price {
         background-color: #fff;
         width: 100%;
