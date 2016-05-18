@@ -232,7 +232,7 @@
 		descrip = descrip.replace(/&quot;/g, '"');
 		descrip = descrip.replace(/&amp;/g, '&');
 
-		
+
 		<% if price.timeframe == 'Product 1' || price.timeframe == 'Hour' %>
 			$('#item_prices_attributes_0_amount').val("<%= price.amount.to_digits %>");
 			$('#item_prices_attributes_0_title').val("<%= price.title %>");
