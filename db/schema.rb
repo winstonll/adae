@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160512144041) do
+ActiveRecord::Schema.define(version: 20160518144540) do
 
   create_table "conversations", force: :cascade do |t|
     t.integer  "sender_id"
@@ -171,6 +171,7 @@ ActiveRecord::Schema.define(version: 20160512144041) do
     t.datetime "in_scan_date"
     t.datetime "out_scan_date"
     t.string   "status",                                 default: "Pending"
+    t.text     "addons"
   end
 
   create_table "users", force: :cascade do |t|
