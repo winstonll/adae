@@ -287,7 +287,6 @@
             alert('Post was published.');
             $.ajax({url: "/discount", type: "POST", data: {item_id: "<%= @item.id %>"},});
           } else {
-            $.ajax({url: "/discount", type: "POST", data: {item_id: "<%= @item.id %>"},});
             alert('Post was not published.');
           }
         }
