@@ -11,6 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+
 ActiveRecord::Schema.define(version: 20160518144540) do
 
   create_table "conversations", force: :cascade do |t|
@@ -209,6 +210,8 @@ ActiveRecord::Schema.define(version: 20160518144540) do
     t.string   "stripe_customer_id"
     t.string   "photo_url"
     t.string   "description"
+    t.string   "provider"
+    t.string   "uid"
   end
 
   add_index "users", ["auth_token"], name: "index_users_on_auth_token", unique: true

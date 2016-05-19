@@ -14,7 +14,8 @@ class User < ActiveRecord::Base
 	accepts_nested_attributes_for :location
 
 	devise :database_authenticatable, :registerable, :confirmable,
-       :recoverable, :rememberable, :trackable, :validatable
+       :recoverable, :rememberable, :trackable, :validatable,
+			 :omniauthable, :omniauth_providers => [:facebook]
 
 	before_create :ensure_authentication_token
 
