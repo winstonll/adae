@@ -74,7 +74,7 @@ gem 'friendly_id'
 gem 'kaminari'
 
 #gem 'devise_token_auth'
-gem 'omniauth'
+#gem 'omniauth'
 gem 'pg'
 
 # Authentication library

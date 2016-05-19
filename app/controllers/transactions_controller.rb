@@ -44,6 +44,10 @@ class TransactionsController < ApplicationController
 			order_transaction = Transaction.new(item_id: item.id, buyer_id: current_user.id,
 			seller_id: item.user_id, total_price: params[:price], length: item.listing_type == 'sell' ? nil : params[:duration])
 
+			if item.listing_type == "lease"
+				order_transaction.addons = params[:addon]
+			end
+
 			order_transaction.save
 
 			if Conversation.between(current_user.id, seller.id).present?

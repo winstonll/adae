@@ -228,11 +228,13 @@
 	<% end %>
 
 	<% @prices.each do |price| %>
-		var descrip = '<%= price.description.gsub(/(?:\n\r?|\r\n?)/, '\n').html_safe %>';
-		descrip = descrip.replace(/&quot;/g, '"');
-		descrip = descrip.replace(/&amp;/g, '&');
+		<% if @item.listing_type == "lease"  %>
+			var descrip = '<%= price.description.gsub(/(?:\n\r?|\r\n?)/, '\n').html_safe %>';
+			descrip = descrip.replace(/&quot;/g, '"');
+			descrip = descrip.replace(/&amp;/g, '&');
+		<% end %>
 
-		
+
 		<% if price.timeframe == 'Product 1' || price.timeframe == 'Hour' %>
 			$('#item_prices_attributes_0_amount').val("<%= price.amount.to_digits %>");
 			$('#item_prices_attributes_0_title').val("<%= price.title %>");
