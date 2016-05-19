@@ -104,15 +104,15 @@
       var fee = ((total_price * 0.029) + 0.30).toFixed(2);
     }
 
-      // // If they previously shared the post and the discount hasn't been used OR they just shared it
-      // if ( ($('#discount_used').val() == "true") || ("<%= @shared %>" == "true")){
-      //   var discount = parseFloat(total * 0.05).toFixed(2);
-      //   $('#discount-price').val("$" + discount);
-      // }
+      // If they previously shared the post and the discount hasn't been used OR they just shared it
+      if ( ($('#discount_used').val() == "true") || ("<%= @shared %>" == "true")){
+        var discount = parseFloat(total * 0.05).toFixed(2);
+        $('#discount-price').val("$" + discount);
+      }
 
-      // if ($('#discount-price').val()){
-      //   total = (total - parseFloat(discount)).toFixed(2);
-      // }
+      if ($('#discount-price').val()){
+        total = (total - parseFloat(discount)).toFixed(2);
+      }
 
       $('#stripe-fee')[0].innerHTML = "$" + fee;
 
