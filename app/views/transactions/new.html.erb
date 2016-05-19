@@ -89,36 +89,49 @@
     var addon = document.getElementsByClassName('addon');
     var price = document.getElementsByClassName('price');
     var subtotal = document.getElementsByClassName('subtotal');
+
     for(var i=0; i< qty.length; i++){
+
       var amt = markup_price(price[i].value);
-        times[i].value = qty[i].value;
-        addon[i].value = prod[i].value;
-        amount[i].value = ('$ ' + amt + ' x');
+
+      times[i].value = qty[i].value;
+      addon[i].value = prod[i].value;
+      amount[i].value = ('$ ' + amt + ' x');
+
       var total = (amt * qty[i].value);
-        subtotal[i].value = ('$' + total);
+      subtotal[i].value = ('$' + total);
+
       $('#transaction_addons').val((qty[i].value + "-" + prod[i].value + "|"));
-      var total_price = 0
-      $('.subtotal').each(function(){
-          total_price += parseFloat(amt);
-      });
-      var fee = ((total_price * 0.029) + 0.30).toFixed(2);
+
     }
 
-      // If they previously shared the post and the discount hasn't been used OR they just shared it
-      if ( ($('#discount_used').val() == "true") || ("<%= @shared %>" == "true")){
-        var discount = parseFloat(total * 0.05).toFixed(2);
-        $('#discount-price').val("$" + discount);
-      }
+    var total_price = 0;
 
-      if ($('#discount-price').val()){
-        total = (total - parseFloat(discount)).toFixed(2);
-      }
+    $('.subtotal').each(function(sub){
+      total_price += parseFloat($('.subtotal')[sub].value.substr(1, $('.subtotal')[0].value.length));
+      console.log(total_price);
+    });
 
-      $('#stripe-fee')[0].innerHTML = "$" + fee;
+    var fee = ((total_price * 0.029) + 0.30).toFixed(2);
 
-      //decide wether to disable submit button or not depending on qty
-      $('#transaction_total_price').val('$' + total_price);
+    // If they previously shared the post and the discount hasn't been used OR they just shared it
+    if ( ($('#discount_used').val() == "true") || ("<%= @shared %>" == "true")){
+      var discount = parseFloat(total * 0.05).toFixed(2);
+      $('#discount-price').val("$" + discount);
     }
+
+    if ($('#discount-price').val()){
+      total = (total - parseFloat(discount)).toFixed(2);
+    }
+
+    $('#stripe-fee')[0].innerHTML = "$" + fee;
+
+    //decide wether to disable submit button or not depending on qty
+    $('#transaction_total_price').val('$' + total_price);
+
+    $('#price').val(total_price);
+    $('#duration')[0].value = $('#transaction_length').val();
+  }
 
   function validateInteger(quantity){
     if (quantity > 0 && (parseFloat(quantity) === parseInt(quantity, 10))){
