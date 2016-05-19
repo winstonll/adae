@@ -279,7 +279,7 @@
           link: "<%= request.original_url %>",
           picture: "<%= "https://adae.co#{@pictures.first.image.url(:med)}"  %>",
           caption: 'Reference Documentation',
-          description: "<%= @item.description %>",
+          description: "<%= @item.description.gsub(/(?:\n\r?|\r\n?)/, '\n').html_safe %>",
           message: ''
         },
         function(response) {
