@@ -117,26 +117,21 @@
     // Set add on
     $('#addon').val(addon_result.substring(0, addon_result.length - 1));
 
-    console.log($('#addon').val());
-
     var total_price = 0;
 
     $('.subtotal').each(function(sub){
       total_price += parseFloat($('.subtotal')[sub].value.substr(1, $('.subtotal')[0].value.length));
-      //console.log(total_price);
     });
-
-    var fee = ((total_price * 0.029) + 0.30).toFixed(2);
 
     // If they previously shared the post and the discount hasn't been used OR they just shared it
     if ( ($('#discount_used').val() == "true") || ("<%= @shared %>" == "true")){
       var discount = parseFloat(total_price * 0.05).toFixed(2);
       $('#discount-price').val("$" + discount);
+
+      total_price = ( parseFloat(total_price) - parseFloat(discount) ).toFixed(2);
     }
 
-    if ($('#discount-price').val()){
-      total_price = parseFloat(total_price - parseFloat(discount)).toFixed(2);
-    }
+    var fee = parseFloat((total_price * 0.029) + 0.30).toFixed(2);
 
     $('#stripe-fee')[0].innerHTML = "$" + fee;
 
