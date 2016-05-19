@@ -89,13 +89,18 @@
     var addon = document.getElementsByClassName('addon');
     var price = document.getElementsByClassName('price');
     var subtotal = document.getElementsByClassName('subtotal');
+    var addon_result = "";
+
+    $('#addon').val("");
 
     for(var i=0; i< qty.length; i++){
 
       var amt = markup_price(price[i].value);
 
       times[i].value = qty[i].value;
+      //times[i].val(qty[i].value);
       addon[i].value = prod[i].value;
+      //addon[i].val(prod[i].value);
       amount[i].value = ('$ ' + amt + ' x');
 
       var total = (amt * qty[i].value);
@@ -103,13 +108,22 @@
 
       $('#transaction_addons').val((qty[i].value + "-" + prod[i].value + "|"));
 
+      if (qty[i].value) {
+        // concatenate all addons to pass as param
+        addon_result += (qty[i].value + "-" + prod[i].value + "|");
+      }
     }
+
+    // Set add on
+    $('#addon').val(addon_result.substring(0, addon_result.length - 1));
+
+    console.log($('#addon').val());
 
     var total_price = 0;
 
     $('.subtotal').each(function(sub){
       total_price += parseFloat($('.subtotal')[sub].value.substr(1, $('.subtotal')[0].value.length));
-      console.log(total_price);
+      //console.log(total_price);
     });
 
     var fee = ((total_price * 0.029) + 0.30).toFixed(2);
@@ -472,6 +486,7 @@
             <%= hidden_field_tag 'price' %>
             <%= hidden_field_tag 'duration' %>
             <%= hidden_field_tag 'discount_used', 'false' %>
+            <%= hidden_field_tag 'addon' %>
          <% end %>
         <% else %>
           <%= form_tag transactions_stripe_path do%>
@@ -479,6 +494,7 @@
             <%= hidden_field_tag 'price' %>
             <%= hidden_field_tag 'duration' %>
             <%= hidden_field_tag 'discount_used', 'false' %>
+            <%= hidden_field_tag 'addon' %>
 
             <%= submit_tag 'Send Request', class: "request-button"%>
           <% end %>
