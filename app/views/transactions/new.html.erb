@@ -22,7 +22,7 @@
       update();
     };
     var total_price;
-    <% if @item.listing_type != "sell" %>
+    <% if @item.listing_type != "sell" && @item.listing_type != "lease" %>
       <% if current_user.stripe_customer_id.nil?  %>
         $('.stripe-button-el').click(function(event){
 
@@ -37,7 +37,21 @@
           }
         });
       <% end %>
+    <% elsif @item.listing_type == "lease" %>
+      <% if current_user.stripe_customer_id.nil?  %>
+        $('.stripe-button-el').click(function(event){
 
+          /**if (!validateInteger($('#qty').val())){
+            event.preventDefault();
+          }**/
+        });
+      <% else %>
+        $('.request-button').click(function(event){
+          /**if (!validateInteger($('#qty').val())){
+            event.preventDefault();
+          }**/
+        });
+      <% end %>
     <% elsif @item.listing_type == "sell" %>
       $('#display-price')[0].innerHTML = "$" + markup_price(<%= @prices.first.amount %>);
       total_price = (markup_price(<%= @prices.first.amount %>));
@@ -277,7 +291,7 @@
     </div>
 
     <div class="price-details">
-      <!-- If listing type sell OR request  to buy a lease item -->
+      <!-- If listing type sell -->
       <% if @item.listing_type == "sell" %>
 
         <div class="item-detail-price" style="height: 260px;">
@@ -304,15 +318,16 @@
         </div>
       <!-- If listing type lease -->
       <% elsif @item.listing_type == "lease" %>
+
         <div class="item-detail-price">
           <div class="item-title"><%=@item.title %></div>
           <div class="division"></div>
           <p class="how-long">What would you like to purchase?</p>
             <%= form_for Transaction.new, html: {multipart: true}  do |f| %>
               <%@prices.each do |price| %>
-                <input class="qty" name="quantity" min="1" max="30" type="number" onChange="updateQty()"></input>
-                <input class="prod" name="product" readonly="true" value="<%= price.title %>"></input><br>
-                <input class="price" name="price" hidden="true" value="<%= price.amount %>"></input>
+                <input class="qty" id="qty-<%= price.id %>" name="quantity" min="1" max="30" type="number" onChange="updateQty()"></input>
+                <input class="prod" id="prod-<%= price.id %>" name="product" readonly="true" value="<%= price.title %>"></input><br>
+                <input class="price" id="price-<%= price.id %>" name="price" hidden="true" value="<%= price.amount %>"></input>
               <% end%>
                 <%= f.text_field :length, :value => "1-addon", hidden: 'true' %>
 
