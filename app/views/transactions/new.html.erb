@@ -130,15 +130,17 @@
 
     // If they previously shared the post and the discount hasn't been used OR they just shared it
     if ( ($('#discount_used').val() == "true") || ("<%= @shared %>" == "true")){
-      var discount = parseFloat(total * 0.05).toFixed(2);
+      var discount = parseFloat(total_price * 0.05).toFixed(2);
       $('#discount-price').val("$" + discount);
     }
 
     if ($('#discount-price').val()){
-      total = (total - parseFloat(discount)).toFixed(2);
+      total_price = parseFloat(total_price - parseFloat(discount)).toFixed(2);
     }
 
     $('#stripe-fee')[0].innerHTML = "$" + fee;
+
+    total_price = (parseFloat(total_price) + parseFloat(fee)).toFixed(2);
 
     //decide wether to disable submit button or not depending on qty
     $('#transaction_total_price').val('$' + total_price);
@@ -367,6 +369,11 @@
                   <input class="subtotal" readonly="readonly" value=""></input>
                 <% end %>
                   <%= f.text_field :addons, :value => "", hidden: 'true' %>
+
+                  <br style="clear:both;">
+
+                  <input id="discount-title" readonly="readonly" value="Discount"></input>
+                  <input id="discount-price" readonly="readonly" value=""></input>
 
                   <div class="credit-fee">
                     <a target="_blank" href="https://stripe.com/ca/pricing">Stripe Processing Fee:</a>

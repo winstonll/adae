@@ -83,6 +83,7 @@ class ItemsController < ApplicationController
   def discount
 
     @discount = false
+    @item = Item.find(params[:item_id])
 
     if user_signed_in? && Share.where(user_id: current_user.id, item_id: params[:item_id]).empty?
       share = Share.new()

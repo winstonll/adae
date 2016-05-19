@@ -1,11 +1,27 @@
 <% if @discount %>
-  $('#discount_used').val(true);
+  <% if @item.listing_type == "lease" %>
+    $('#discount_used').val(true);
 
-  if ($('#subtotal').val()){
-    var subtotal = parseFloat($('#subtotal').val().substr(1, $('#subtotal').val().length)).toFixed(2);
-    var discount = parseFloat(subtotal * 0.05).toFixed(2);
-    $('#discount-price').val("$" + discount);
-  }
+    if ($('#transaction_total_price').val()){
+      var subtotal = parseFloat($('#transaction_total_price').val().substr(1, $('#transaction_total_price').val().length)).toFixed(2);
+
+      pre_fee = ((subtotal - 0.30) / 1.029).toFixed(2);
+
+      var discount = parseFloat(pre_fee * 0.05).toFixed(2);
+      $('#discount-price').val("$" + discount);
+      $('#transaction_total_price').val(subtotal - discount);
+    }
+  <% else %>
+    $('#discount_used').val(true);
+
+    if ($('#subtotal').val()){
+      var subtotal = parseFloat($('#subtotal').val().substr(1, $('#subtotal').val().length)).toFixed(2);
+      var discount = parseFloat(subtotal * 0.05).toFixed(2);
+      $('#discount-price').val("$" + discount);
+      //$('#transaction_total_price').val(subtotal - discount);
+    }
+  <% end %>
+
 <% else %>
   $('#discount_used').val(false);
 <% end %>
