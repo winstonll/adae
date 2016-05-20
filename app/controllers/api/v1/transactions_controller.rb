@@ -126,8 +126,18 @@ module Api::V1
               end
 
               current_transaction.save
+
+              if product.listing_type == "lease"
+                addons = current_transaction.addons.split("|")
+                sub_total = 0
+
+                addons.each do |service|
+                  detail = service.split("-")
+                  price = Price.where(item_id: current_transaction.item_id, title: detail[1]).first
+                  sub_total = sub_total + (price.amount * detail[0].to_i)
+                end
                 
-              if product.listing_type != "sell"
+              elsif product.listing_type == "rent" || product.listing_type == "timeoffer"
                 length = current_transaction.length.split("-")
                 qty = length[0]
                 length = length[1]

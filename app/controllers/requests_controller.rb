@@ -13,6 +13,8 @@ class RequestsController < ApplicationController
 
   def show
     @request = Request.find(params[:id])
+    @user = current_user
+    @items = Item.where(status: "Listed", user_id: @user)
     gon.map_request = Request.where(id: @request.id).pluck(:latitude, :longitude, :id)
   end
   
