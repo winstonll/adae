@@ -114,7 +114,7 @@
             <% elsif @item.listing_type == "timeoffer" %>
               <p id="heading"><%= User.find_by(id: @transaction.buyer_id).name %> requested service</p>
             <% else %>
-              <p id="heading"><%= User.find_by(id: @transaction.buyer_id).name %> requested to <%= @item.listing_type %></p>
+              <p id="heading"><%= User.find_by(id: @transaction.buyer_id).name %> requested:</p>
             <% end %>
           <% else %>
             <% if @item.listing_type == "sell" %>
