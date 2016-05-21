@@ -260,3 +260,13 @@ EDIT REVIEWS
 .edit-review-heading {
 	color: #000000;
 }
+
+@media screen and (min-width: 320px) and (max-width: 768px){
+	.toast-top-center {
+		top: 32px;
+	  left: 41%;
+		line-height: normal;
+		font-size: 17px;
+	}
+
+}
