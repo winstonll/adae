@@ -26,6 +26,27 @@ class User < ActiveRecord::Base
 	has_attached_file :avatar, styles: { small: "40x40", med: "120x120", large: "200x200" },
 			:default_url => "/paperclip/default/default_avatar_:style.png"
 
+	def self.from_omniauth(auth)
+		where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
+			user.email = auth.info.email
+			user.password = Devise.friendly_token[0,20]
+
+			name = auth.info.name.split(" ")
+
+			# split name into first name and surname
+			user.name = name.first
+			user.surname = name.second
+
+			# create user avatar from facebook profile image
+			user.photo_url = auth.info.image
+			user.update( avatar: process_uri(auth.info.image))
+		end
+	end
+
+	def self.find_for_facebook_oauth(auth, signed_in_resource=nil)
+    user = User.update( image:process_uri(auth.info.image))
+	end
+
 	def ensure_authentication_token
 		if auth_token.blank?
 			self.auth_token = generate_authentication_token
@@ -64,6 +85,12 @@ class User < ActiveRecord::Base
 	end
 
 	private
+
+	def self.process_uri(uri)
+    avatar_url = URI.parse(uri)
+    avatar_url.scheme = 'https'
+    avatar_url.to_s
+	end
 
 	def generate_authentication_token
 		loop do

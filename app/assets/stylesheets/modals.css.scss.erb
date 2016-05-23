@@ -14,16 +14,38 @@
   top: 22%;
   right: 40%;
   width: 16.3em;
-  height: 18em;
+  height: 26em;
   margin-right: 30px;
   background-color: #F9F9F9;
   border-radius: 5px;
   border: 1px solid #419bf9;
 
+  #fb-container {
+    display: block;
+    position: relative;
+    top: 20px;
+    text-align: center;
+    margin: 0 auto;
+
+    .fb-icon {
+      position: absolute;
+      width: 30px;
+      height: 30px;
+      left: 15px;
+      bottom: -7px;
+    }
+
+    .fb-oauth{
+      background-color: #3b5998;
+      padding: 10px 45px 10px 45px;
+      color: #ffffff;
+      font-size: 15px;
+    }
+  }
     .signin-form{
       display: table;
       margin: 0 auto;
-      padding-top: 15px;
+      padding-top: 65px;
 
       #user_email, #password{
         height: 40px;
