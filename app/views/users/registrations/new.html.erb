@@ -4,6 +4,15 @@
 
   <center><h1 style="color:#419bf9; margin: -10px 0px 25px 0px;">Sign Up</h1></center>
 
+  <div id="fb-container">
+    <%= image_tag "fb_letter.png", class: "fb-icon" %>
+    <%= link_to "Sign Up with Facebook", user_omniauth_authorize_path(:facebook), class: "fb-oauth" %>
+  </div>
+
+  <hr align="left" width="40%" style="position: relative; top: 50px; left: 10px; height:1px; border:none;color:#C2C2C2; background-color:#C2C2C2;">
+  <div style="text-align: center; color: #B6B6B6; position: relative; top: 22px;">or</div>
+  <hr align="right" width="40%" style="position: relative; bottom: 7px; right: 10px; height:1px; border:none;color:#C2C2C2; background-color:#C2C2C2;">
+
   <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
     <div id="error_explanation">
           <%= devise_error_messages! %>
@@ -21,9 +30,9 @@
 
       <input type="text" style="font-size: 14px; padding: 6px; width: 100%;border: 1px solid #7ED321; color: #5AC902; border-radius: 4px;" name="referral" class="input-box" placeholder="Promo Code (Optional)" id="promo">
     <div class="actions">
-      <%= f.submit "Sign up", style:" width: 100%; padding: 14px; margin: 10px 0px 8px 0px; border-radius: 4px; border: none; color: #fff; font-weight: 500; background-color: #419bf9;" %>
+      <%= f.submit "Sign Up", style:" width: 100%; padding: 14px; margin: 10px 0px 8px 0px; border-radius: 4px; border: none; color: #fff; font-weight: 500; background-color: #419bf9;" %>
     </div>
-    <div>
+    <div style="padding-bottom: 25px;">
       <%= render "users/shared/links" %>
     </div>
   </div>
