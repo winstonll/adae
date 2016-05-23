@@ -1,7 +1,7 @@
 <script>
   $(document).click(function (e) {
       var signup = $('#shareSignupModal');
-      var backdrop = $('.modal-backdrop');      
+      var backdrop = $('.modal-backdrop');
 
       //if the target of the click isn't the modal...
       if (!signup.is(e.target)&& signup.has(e.target).length === 0) { signup.modal('hide'); backdrop.fadeOut(); }
@@ -65,6 +65,15 @@
 </script>
 
 <div id="shareSignupModal" tabindex="-1" role="dialog" aria-labelledby="shareSignupModal" aria-hidden="true">
+
+  <div id="fb-container">
+    <%= image_tag "facebook-white.png", class: "fb-icon" %>
+    <%= link_to "Sign up with Facebook", user_omniauth_authorize_path(:facebook), class: "fb-oauth" %>
+  </div>
+
+  <hr align="left" width="100px" style="position: relative; top: 60px; left: 10px;">
+  <div style="text-align: center; color: black; position: relative; top: 42px;">or</div>
+  <hr align="right" width="100px" style="position: relative; top: 26px; right: 10px;">
 
     <div class="share-modal-content-container">
       <div class="signup-form">
