@@ -2,6 +2,16 @@
 <div class="bootstrap" style="margin-top: 50px;">
   <div class="col-md-4 col-md-push-4">
     <center><h1 style="color:#419bf9; margin: -5px 0px 25px 0px;">Welcome Back</h1></center>
+
+    <div id="fb-container">
+      <%= image_tag "fb_letter.png", class: "fb-icon" %>
+      <%= link_to "Log In with Facebook", user_omniauth_authorize_path(:facebook), class: "fb-oauth" %>
+    </div>
+
+    <hr align="left" width="40%" style="position: relative; top: 50px; left: 10px; height:1px; border:none;color:#C2C2C2; background-color:#C2C2C2;">
+    <div style="text-align: center; color: #B6B6B6; position: relative; top: 22px;">or</div>
+    <hr align="right" width="40%" style="position: relative; bottom: 7px; right: 10px; height:1px; border:none;color:#C2C2C2; background-color:#C2C2C2;">
+
       <%= form_for(resource, as: resource_name, url: user_session_path) do |f| %>
         <%= f.email_field :email, autofocus: true, placeholder: "Email", :class => "form-control" %>
         <%= f.password_field :password, autocomplete: "off", placeholder: "Password", :class => "form-control"  %>

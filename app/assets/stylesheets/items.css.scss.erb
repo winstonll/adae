@@ -3250,3 +3250,35 @@ item new
   }
 
 }
+
+#fb-container { /*fb sign up/log in styling for mobile */
+  display: block;
+  position: relative;
+  top: 25px;
+  text-align: center;
+  margin: 0 auto;
+
+  .fb-icon {
+    position: relative;
+    width: 11px;
+    height: auto;
+    left: 10%;
+    bottom: 1px;
+  }
+
+  .fb-oauth{
+    background-color: #484FA8;
+    padding: 12px 20% 12px 20%;
+    color: #ffffff;
+    font-size: 15px;
+    border-radius: 2px;
+    -webkit-box-shadow: 1px 1px 4px -1px rgba(0,0,10,1);
+    -moz-box-shadow: 1px 1px 4px -1px rgba(0,0,10,1);
+    box-shadow: 1px 1px 4px -1px rgba(0,0,10,1);
+    &:hover{
+      background-color: #4F57BD;
+      transition: all .3s ease-in-out;
+      text-decoration: none;
+    }
+  }
+}
