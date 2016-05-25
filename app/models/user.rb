@@ -42,8 +42,9 @@ class User < ActiveRecord::Base
 			user.photo_url = auth.info.image
 			user.update( avatar: process_uri(auth.info.image))
 
+			@user = user
 			# Send email reminding user to change their randomly generated password
-			ChangePasswordEmailJob.set(wait: 1.seconds).perform_later(user, @pass)
+			ChangePasswordEmailJob.set(wait: 1.seconds).perform_later(@user, @pass)
 
 			# Generate referral code and their location
 			@referral = Referral.new()
