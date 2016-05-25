@@ -42,7 +42,26 @@ class User < ActiveRecord::Base
 			user.photo_url = auth.info.image
 			user.update( avatar: process_uri(auth.info.image))
 
+			# Send email reminding user to change their randomly generated password
 			ChangePasswordEmailJob.set(wait: 1.seconds).perform_later(@user, @pass)
+
+			# Generate referral code and their location
+			@referral = Referral.new()
+
+      loop do
+        @code=SecureRandom.hex(8).upcase
+        [4,9,14].each do |f|
+          @code.insert(f, "-")
+        end
+  			break @referral.code = @code unless Referral.where(code: @code).first
+  		end
+
+      @referral.amount = 5.00
+      @referral.user_id = @user.id
+      @referral.save
+
+      @location = Location.new(user_id: @user.id, country: "CA", city: "Toronto")
+      @location.save
 		end
 	end
 
