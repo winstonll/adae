@@ -29,7 +29,8 @@ class User < ActiveRecord::Base
 	def self.from_omniauth(auth)
 		where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
 			user.email = auth.info.email
-			user.password = Devise.friendly_token[0,20]
+			@pass = Devise.friendly_token[0,20]
+			user.password = @pass
 
 			name = auth.info.name.split(" ")
 
@@ -40,6 +41,28 @@ class User < ActiveRecord::Base
 			# create user avatar from facebook profile image
 			user.photo_url = auth.info.image
 			user.update( avatar: process_uri(auth.info.image))
+
+			@user = user
+			# Send email reminding user to change their randomly generated password
+			ChangePasswordEmailJob.set(wait: 1.seconds).perform_later(@user, @pass)
+
+			# Generate referral code and their location
+			@referral = Referral.new()
+
+      loop do
+        @code=SecureRandom.hex(8).upcase
+        [4,9,14].each do |f|
+          @code.insert(f, "-")
+        end
+  			break @referral.code = @code unless Referral.where(code: @code).first
+  		end
+
+      @referral.amount = 5.00
+      @referral.user_id = @user.id
+      @referral.save
+
+      @location = Location.new(user_id: @user.id, country: "CA", city: "Toronto")
+      @location.save
 		end
 	end
 
