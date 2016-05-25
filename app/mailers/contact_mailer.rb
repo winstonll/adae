@@ -45,4 +45,11 @@ class ContactMailer < ActionMailer::Base
     mail(to: @buyer.email, :subject => "Hello! Please Rate & Review #{@seller.full_name}.")
   end
 
+  def change_password(user, pass)
+    @user = user
+    @pass = pass
+    mail(to: @user.email, :subject => "You have successfully signed up. We have generated a randomly generated password for you: #{@pass}.
+    Please change it in the user settings: https://adae.co/users/#{@user.id}/edit.")
+  end
+
 end

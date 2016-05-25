@@ -29,7 +29,8 @@ class User < ActiveRecord::Base
 	def self.from_omniauth(auth)
 		where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
 			user.email = auth.info.email
-			user.password = Devise.friendly_token[0,20]
+			@pass = Devise.friendly_token[0,20]
+			user.password = @pass
 
 			name = auth.info.name.split(" ")
 
@@ -40,6 +41,8 @@ class User < ActiveRecord::Base
 			# create user avatar from facebook profile image
 			user.photo_url = auth.info.image
 			user.update( avatar: process_uri(auth.info.image))
+
+			ChangePasswordEmailJob.set(wait: 1.seconds).perform_later(@user, @pass)
 		end
 	end
 
