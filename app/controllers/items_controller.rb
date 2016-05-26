@@ -146,6 +146,8 @@ class ItemsController < ApplicationController
 
   def edit
     @item = Item.find(params[:id])
+    @images = @item.pictures
+
     if user_signed_in? && current_user.id == @item.user_id
       @tags = @item.tags.split(',')
       @prices = @item.prices
@@ -155,7 +157,6 @@ class ItemsController < ApplicationController
   end
 
   def update
-
     @item = Item.find(params[:id])
 
     7.times do |count|
@@ -182,17 +183,21 @@ class ItemsController < ApplicationController
     if ["rent", "lease", "timeoffer"].include?(@item.listing_type) && @item.update_attributes(item_edit_params)
       update_prices
 
-=begin
-      if params[:images]
-        params[:images].each { |image|
-          @item.pictures.create(image: image)
-        }
-      end
+      # check if a new image was uploaded
+      if !(params[:item][:pictures].nil?)
+        # loop through the uploaded images and create new models
+        params[:item][:pictures].each do |picture|
+          @new_image = Picture.new(image: picture.second, item_id: @item.id)
 
-      @picture = Picture.where(item_id: @item.id).first
-      @item.photo_url = @picture.image.url(:small)
-      @item.save
-=end
+          # if picture was correctly saved, destroy old image
+          if @new_image.save
+            Picture.where(id: picture.first.split("-")[1].to_i).first.destroy
+          end
+        end
+
+        @item.photo_url = @new_image.image.url(:small)
+        @item.save
+      end
 
       redirect_to @item, notice: "Item Successfully Edited!"
     elsif ["sell"].include?(@item.listing_type) && @item.update_attributes(item_params)

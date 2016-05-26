@@ -51,6 +51,17 @@
 			<div class="countdown"></div>
 		</div>
 
+		<%= f.fields_for :pictures, Picture.new do |i| %>
+			<div class="new-item-form">
+	      <% @images.each do |picture| %>
+					<div class="picture-upload-container">
+		        <%= image_tag picture.image.url(:small), class: "uploaded-image", id: "picture-#{picture.id}" %>
+		        <%= i.file_field "p-#{picture.id}" %>
+					</div>
+	      <% end %>
+	    </div>
+		<% end %>
+
 		<% if @item.listing_type == 'timeoffer' %>
 			<%= f.fields_for :prices, Price.new do |hour| %>
 			<%= f.fields_for :prices, Price.new do |flat| %>
@@ -324,11 +335,15 @@
 		<% if price.timeframe == 'Product 1' || price.timeframe == 'Hour' %>
 			$('#item_prices_attributes_0_amount').val("<%= price.amount.to_digits %>");
 			$('#item_prices_attributes_0_title').val("<%= price.title %>");
-			$('#item_prices_attributes_0_description').val(descrip);
+			<% if @item.listing_type == "lease"  %>
+				$('#item_prices_attributes_0_description').val(descrip);
+			<% end %>
 		<% elsif price.timeframe == 'Product 2' || price.timeframe == 'Flat Rate' %>
 			$('#item_prices_attributes_1_amount').val("<%= price.amount.to_digits %>");
 			$('#item_prices_attributes_1_title').val("<%= price.title %>");
-			$('#item_prices_attributes_1_description').val(descrip);
+			<% if @item.listing_type == "lease"  %>
+				$('#item_prices_attributes_1_description').val(descrip);
+			<% end %>
 		<% elsif price.timeframe == 'Product 3' %>
 			$('#item_prices_attributes_2_amount').val("<%= price.amount.to_digits %>");
 			$('#item_prices_attributes_2_title').val("<%= price.title %>");
