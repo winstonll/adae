@@ -1317,6 +1317,26 @@ item new
       font-size: 16px;
       color: #4a4a4a;
 
+      .picture-upload-container {
+        width: 100px;
+        display: inline-block;
+        padding: 2px;
+
+        .uploaded-image {
+          width: 100px;
+          height: 100px;
+          object-fit: cover;
+          object-position: center;
+          border-radius: 2px;
+        }
+
+        input[type=file]{
+          color:transparent;
+        }
+      }
+
+
+
       .tag-input-box{
         .tag-box{
           width: 130px;
