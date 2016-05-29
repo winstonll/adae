@@ -48,8 +48,7 @@ class ContactMailer < ActionMailer::Base
   def change_password(user, pass)
     @user = user
     @pass = pass
-    mail(to: @user.email, :subject => "You have successfully signed up. We have generated a randomly generated password for you: #{@pass}.
-    Please change it in the user settings: https://adae.co/users/#{@user.id}/edit.")
+    mail(to: @user.email, :subject => "You have successfully signed up.")
   end
 
 end

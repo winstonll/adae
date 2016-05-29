@@ -23,7 +23,7 @@ class User < ActiveRecord::Base
     attachment_content_type: { content_type: /\Aimage\/.*\Z/ },
     attachment_size: { less_than: 5.megabytes }
 
-	has_attached_file :avatar, styles: { small: "40x40", med: "120x120", large: "200x200" },
+	has_attached_file :avatar, styles: { small: "120x120", med: "240x240", large: "400x400" },
 			:default_url => "/paperclip/default/default_avatar_:style.png"
 
 	def self.from_omniauth(auth)
