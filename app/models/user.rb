@@ -64,7 +64,7 @@ class User < ActiveRecord::Base
       @location = Location.new(user_id: @user.id, country: "CA", city: "Toronto")
       @location.save
 
-			@user.skip_confirmation!
+			user.skip_confirmation!
 		end
 	end
 
