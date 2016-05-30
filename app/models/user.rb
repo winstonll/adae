@@ -28,6 +28,8 @@ class User < ActiveRecord::Base
 
 	def self.from_omniauth(auth)
 		where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
+			user.skip_confirmation!
+
 			user.email = auth.info.email
 			@pass = Devise.friendly_token[0,20]
 			user.password = @pass
@@ -63,8 +65,6 @@ class User < ActiveRecord::Base
 
       @location = Location.new(user_id: @user.id, country: "CA", city: "Toronto")
       @location.save
-
-			user.skip_confirmation!
 		end
 	end
 
