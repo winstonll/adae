@@ -57,6 +57,8 @@ class TransactionsController < ApplicationController
 				@conversation = Conversation.create!(sender_id: current_user.id, recipient_id: seller.id)
 			end
 
+			RequestSentEmailJob.set(wait: 1.seconds).perform_later(order_transaction)
+
 			redirect_to conversation_messages_path(@conversation, item_id: item.id)
 
 		else

@@ -51,4 +51,10 @@ class ContactMailer < ActionMailer::Base
     mail(to: @user.email, :subject => "You have successfully signed up.")
   end
 
+  def request_sent_email_job(transaction)
+    @transaction = transaction
+    @user = User.find(@transaction.seller_id)
+    mail(to: @user.email, :subject => "You have received a request.")
+  end
+
 end
