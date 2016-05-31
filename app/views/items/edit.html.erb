@@ -56,7 +56,7 @@
 	      <% @images.each do |picture| %>
 					<div class="picture-upload-container">
 		        <%= image_tag picture.image.url(:small), class: "uploaded-image", id: "picture-#{picture.id}" %>
-		        <%= i.file_field "p-#{picture.id}" %>
+		        <%= i.file_field "p-#{picture.id}", :onchange => "handleFileSelect(this);" %>
 					</div>
 	      <% end %>
 	    </div>
