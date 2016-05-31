@@ -1,3 +1,15 @@
+// Function for previewing uploaded images.
+function handleFileSelect(event) {
+
+  var reader = new FileReader();
+
+  reader.onload = function (e) {
+    $("#picture-" + event.id.split("-")[1])[0].src = e.target.result;
+  }
+
+  reader.readAsDataURL(event.files[0]);
+}
+
 $(document).ready(function() {
 // Make sure the add answer button is showing
   $("#add-tag-button").css("display", "inline-block");
@@ -41,7 +53,7 @@ $(document).ready(function() {
     // var day_hour = $('#item_prices_attributes_0_amount').length > 0
     // var week =  $('#item_prices_attributes_1_amount').length > 0
     // var month =  $('#item_prices_attributes_2_amount').length > 0
-    
+
     var product1 =  $('#item_prices_attributes_0_amount').length > 0
     var product2 =  $('#item_prices_attributes_1_amount').length > 0
     var product3 =  $('#item_prices_attributes_2_amount').length > 0
@@ -62,7 +74,7 @@ $(document).ready(function() {
     // price = day_hour ? ( price || ( parseFloat($('#item_prices_attributes_0_amount').val()) > 0 && $('#item_prices_attributes_0_amount').val() ) ) : price;
     // price = week ? ( price || ( parseFloat($('#item_prices_attributes_1_amount').val()) > 0 && $('#item_prices_attributes_1_amount').val() ) ) : price;
     // price = month ? ( price || ( parseFloat($('#item_prices_attributes_2_amount').val()) > 0 && $('#item_prices_attributes_2_amount').val() ) ) : price;
-    
+
     price = product1 ? ( price || ( parseFloat($('#item_prices_attributes_0_amount').val()) > 0 && $('#item_prices_attributes_0_amount').val() ) ) : price;
     price = product2 ? ( price || ( parseFloat($('#item_prices_attributes_1_amount').val()) > 0 && $('#item_prices_attributes_1_amount').val() ) ) : price;
     price = product3 ? ( price || ( parseFloat($('#item_prices_attributes_2_amount').val()) > 0 && $('#item_prices_attributes_2_amount').val() ) ) : price;
