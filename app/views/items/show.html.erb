@@ -176,6 +176,7 @@
         </div>
       <% end %>
     </div>
+		<%= image_tag(@prices.first.photo.url(:thumb))%>
 
     <div class="item-title-and-user">
       <div class="item-detail-title"><%= @item.title %></div>
