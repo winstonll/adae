@@ -123,10 +123,10 @@
             <% end %>
           <div class="item-detail-calc">
 						<% if user_signed_in? %>
-	            <%= link_to 'Request Products', new_transaction_path(:item_id => @item.id), class: "request-button", id: "lease-button"%>
+	            <%= link_to 'Pick Your Item(s)', new_transaction_path(:item_id => @item.id), class: "request-button", id: "lease-button"%>
 							<%= link_to 'Send Message', conversations_path(:sender_id => current_user.id, :recipient_id => @item.user_id), :method=> :post, class: "send-message signed-in-message" %>
 	          <% else %>
-	            <%= link_to 'Request Products', {remote: true, controller: "home", action: "signup_modal"}, id: "lease-button", class: "request-button" %>
+	            <%= link_to 'Pick Your Item(s)', {remote: true, controller: "home", action: "signup_modal"}, id: "lease-button", class: "request-button" %>
 							<%= link_to 'Send Message', {remote: true, controller: "home", action: "signup_modal"}, class: "send-message guest-message" %>
 	          <% end %>
           </div>
