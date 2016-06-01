@@ -276,7 +276,7 @@
         {
           method: 'feed',
           name: "<%= @item.title %>",
-          link: "<%= request.original_url %>",
+          link: "<%= "http://adae.co/listings/#{@item.id}" %>",
           picture: "<%= "https://adae.co#{@pictures.first.image.url(:med)}"  %>",
           caption: 'Reference Documentation',
           description: "<%= @item.description.gsub(/(?:\n\r?|\r\n?)/, '\n').html_safe %>",
