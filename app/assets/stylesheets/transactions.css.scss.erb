@@ -390,9 +390,32 @@ body{
       margin-bottom: -5px;
       font-size: 15px;
 	  }
+    .image-wrap {
+      margin-left: 5px;
+      border: 1px solid #ffffff;
+      float: left;
+      -webkit-transition: max-width .5s ease-out;  /* Saf3.2+, Chrome */
+      -moz-transition: max-width .5s ease-out;  /* FF4+ */
+      -ms-transition: max-width .5s ease-out;  /* IE10? */
+      -o-transition: max-width .5s ease-out;  /* Opera 10.5+ */
+      transition: max-width .5s ease-out;
+
+      .price-photo {
+        border-radius: 4px;
+        height: 30px;
+        width: 40px;
+        object-fit: cover;
+        object-position: center;
+        -webkit-transition: margin-top .5s ease-out;  /* Saf3.2+, Chrome */
+        -moz-transition: margin-top .5s ease-out;  /* FF4+ */
+        -ms-transition: margin-top .5s ease-out;  /* IE10? */
+        -o-transition: margin-top .5s ease-out;  /* Opera 10.5+ */
+        transition: margin-top .5s ease-out;
+      }
+    }
 	  #qty, .qty{
 	  	border: 1px solid #419bf9;
-	  	margin-left: 1em;
+	  	margin-left: .5em;
 	  	width: 30px;
 	  	height:27px;
 	  	vertical-align: top;
@@ -403,7 +426,7 @@ body{
 	  }
     #prod, .prod{
       border: 1px solid #419bf9;
-      width: 68%;
+      width: 55%;
       height:27px;
       vertical-align: top;
       border-radius: 4px;

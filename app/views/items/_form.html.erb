@@ -97,8 +97,14 @@
 				  <td><input class="prod-money", readonly="true", value="$"></input><%=one.number_field :amount, min:0, max: 100, class: "product-amount"%></td>
 				</tr>
 				<div class="new-item-form">
-				  <div><%= one.text_area :description, :placeholder => "Product 1 Description", class: "description" %></div><br/>
+				  <div><%= one.text_area :description, :placeholder => "Product 1 Description", class: "description" %></div>
+          <div class="picture-upload-container">
+            <%= image_tag "add-pic.png", class: "uploaded-image dn" %>
+		        <%= one.file_field :photo, :onchange => "serviceFileSelect(this);" %>
+					</div>
 				</div>
+        <br/>
+
 			  </div>
 
 			  <div class="product-info">
@@ -109,8 +115,14 @@
 				  <td><input class="prod-money", readonly="true", value="$"></input><%=two.number_field :amount, min:0, max: 100, class: "product-amount"%></td>
 				</tr>
 			 	<div class="new-item-form">
-				  <div><%= two.text_area :description, :placeholder => "Product 2 Description", class: "description" %></div><br/>
+				  <div><%= two.text_area :description, :placeholder => "Product 2 Description", class: "description" %></div>
+          <div class="picture-upload-container">
+            <%= image_tag "add-pic.png", class: "uploaded-image dn" %>
+		        <%= two.file_field :photo, :onchange => "serviceFileSelect(this);" %>
+					</div>
 				</div>
+        <br/>
+
 			  </div>
 
 			  <div class="product-info">
@@ -121,8 +133,14 @@
 				  <td><input class="prod-money", readonly="true", value="$"></input><%=three.number_field :amount, min:0, max: 100, class: "product-amount"%></td>
 				</tr>
 			 	<div class="new-item-form">
-				  <div><%= three.text_area :description, :placeholder => "Product 3 Description", class: "description" %></div><br/>
+				  <div><%= three.text_area :description, :placeholder => "Product 3 Description", class: "description" %></div>
+          <div class="picture-upload-container">
+            <%= image_tag "add-pic.png", class: "uploaded-image dn" %>
+		        <%= three.file_field :photo, :onchange => "serviceFileSelect(this);" %>
+					</div>
 				</div>
+        <br/>
+
 			  </div>
 
 			  <div class="product-info">
@@ -133,8 +151,14 @@
 				  <td><input class="prod-money", readonly="true", value="$"></input><%=four.number_field :amount, min:0, max: 100, class: "product-amount"%></td>
 				</tr>
 			 	<div class="new-item-form">
-				  <div><%= four.text_area :description, :placeholder => "Product 4 Description", class: "description" %></div><br/>
+				  <div><%= four.text_area :description, :placeholder => "Product 4 Description", class: "description" %></div>
+          <div class="picture-upload-container">
+            <%= image_tag "add-pic.png", class: "uploaded-image dn" %>
+		        <%= four.file_field :photo, :onchange => "serviceFileSelect(this);" %>
+					</div>
 				</div>
+        <br/>
+
 			  </div>
 
 			  <div class="product-info">
@@ -145,8 +169,14 @@
 				  <td><input class="prod-money", readonly="true", value="$"></input><%=five.number_field :amount, min:0, max: 100, class: "product-amount"%></td>
 				</tr>
 			 	<div class="new-item-form">
-				  <div><%= five.text_area :description, :placeholder => "Product 5 Description", class: "description" %></div><br/>
+				  <div><%= five.text_area :description, :placeholder => "Product 5 Description", class: "description" %></div>
+          <div class="picture-upload-container">
+            <%= image_tag "add-pic.png", class: "uploaded-image dn" %>
+		        <%= five.file_field :photo, :onchange => "serviceFileSelect(this);" %>
+					</div>
 				</div>
+        <br/>
+
 			  </div>
 
 			  <div class="product-info">
@@ -157,8 +187,14 @@
 				  <td><input class="prod-money", readonly="true", value="$"></input><%=six.number_field :amount, min:0, max: 100, class: "product-amount"%></td>
 				</tr>
 			 	<div class="new-item-form">
-				  <div><%= six.text_area :description, :placeholder => "Product 6 Description", class: "description" %></div><br/>
+				  <div><%= six.text_area :description, :placeholder => "Product 6 Description", class: "description" %></div>
+          <div class="picture-upload-container">
+            <%= image_tag "add-pic.png", class: "uploaded-image dn" %>
+		        <%= six.file_field :photo, :onchange => "serviceFileSelect(this);" %>
+					</div>
 				</div>
+        <br/>
+
 			  </div>
 
 			  <div class="product-info">
@@ -169,8 +205,14 @@
 				  <td><input class="prod-money", readonly="true", value="$"></input><%=seven.number_field :amount, min:0, max: 100, class: "product-amount"%></td>
 				</tr>
 			 	<div class="new-item-form">
-				  <div><%= seven.text_area :description, :placeholder => "Product 7 Description", class: "description" %></div><br/>
+				  <div><%= seven.text_area :description, :placeholder => "Product 7 Description", class: "description" %></div>
+          <div class="picture-upload-container">
+            <%= image_tag "add-pic.png", class: "uploaded-image dn" %>
+		        <%= seven.file_field :photo, :onchange => "serviceFileSelect(this);" %>
+					</div>
 				</div>
+        <br/>
+
 			  </div>
 
 			  <div class="product-info">
@@ -181,8 +223,14 @@
 				  <td><input class="prod-money", readonly="true", value="$"></input><%=eight.number_field :amount, min:0, max: 100, class: "product-amount"%></td>
 				</tr>
 			 	<div class="new-item-form">
-				  <div><%= eight.text_area :description, :placeholder => "Product 8 Description", class: "description" %></div><br/>
+				  <div><%= eight.text_area :description, :placeholder => "Product 8 Description", class: "description" %></div>
+          <div class="picture-upload-container">
+            <%= image_tag "add-pic.png", class: "uploaded-image dn" %>
+		        <%= eight.file_field :photo, :onchange => "serviceFileSelect(this);" %>
+					</div>
 				</div>
+        <br/>
+
 			  </div>
 
 			  <div class="product-info">
@@ -193,8 +241,14 @@
 				  <td><input class="prod-money", readonly="true", value="$"></input><%=nine.number_field :amount, min:0, max: 100, class: "product-amount"%></td>
 				</tr>
 			 	<div class="new-item-form">
-				  <div><%= nine.text_area :description, :placeholder => "Product 9 Description", class: "description" %></div><br/>
+				  <div><%= nine.text_area :description, :placeholder => "Product 9 Description", class: "description" %></div>
+          <div class="picture-upload-container">
+            <%= image_tag "add-pic.png", class: "uploaded-image dn" %>
+		        <%= nine.file_field :photo, :onchange => "serviceFileSelect(this);" %>
+					</div>
 				</div>
+        <br/>
+
 			  </div>
 
 			  <div class="product-info">
@@ -205,8 +259,14 @@
 				  <td><input class="prod-money", readonly="true", value="$"></input><%=ten.number_field :amount, min:0, max: 100, class: "product-amount"%></td>
 				</tr>
 			 	<div class="new-item-form">
-				  <div><%= ten.text_area :description, :placeholder => "Product 10 Description", class: "description" %></div><br/>
+				  <div><%= ten.text_area :description, :placeholder => "Product 10 Description", class: "description" %></div>
+          <div class="picture-upload-container">
+            <%= image_tag "add-pic.png", class: "uploaded-image dn" %>
+		        <%= ten.file_field :photo, :onchange => "serviceFileSelect(this);" %>
+					</div>
 				</div>
+        <br/>
+
 			  </div>
 
 	          <div class= "hidden-fields">
@@ -313,8 +373,8 @@
 			<div class="upload-photo">
 				<%= image_tag "phone.png", id:"photo-image" %>
       			<%= file_field_tag "images[]", type: :file, multiple: true %>
-				<p id="pic-title">  + Add Photos </p>
-				<p id="descriptor"> Upload at least 1 high quality picture that best represents your Service! </p>
+				<p id="pic-title">  + Add Cover Photos </p>
+				<p id="descriptor"> Upload at least 1 high quality picture that best summarizes your service! </p>
 			</div>
 		</div>
 

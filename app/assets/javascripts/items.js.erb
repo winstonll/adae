@@ -1,10 +1,24 @@
-// Function for previewing uploaded images.
+// Preview image function in item edit
 function handleFileSelect(event) {
 
   var reader = new FileReader();
 
   reader.onload = function (e) {
     $("#picture-" + event.id.split("-")[1])[0].src = e.target.result;
+  }
+
+  reader.readAsDataURL(event.files[0]);
+}
+
+// Preview image function in item form
+function serviceFileSelect(event) {
+
+  var reader = new FileReader();
+
+  reader.onload = function (e) {
+    var image = $(event).prev();
+    image.removeClass("dn");
+    image[0].src = e.target.result;
   }
 
   reader.readAsDataURL(event.files[0]);

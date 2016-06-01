@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160518144540) do
+ActiveRecord::Schema.define(version: 20160601041504) do
 
   create_table "conversations", force: :cascade do |t|
     t.integer  "sender_id"
@@ -89,10 +89,14 @@ ActiveRecord::Schema.define(version: 20160518144540) do
     t.string   "timeframe"
     t.decimal  "amount"
     t.integer  "item_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
     t.string   "title"
     t.string   "description"
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+    t.datetime "photo_updated_at"
   end
 
   create_table "ratings", force: :cascade do |t|
