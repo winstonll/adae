@@ -1,4 +1,4 @@
-// Function for previewing uploaded images.
+// Preview image function in item edit
 function handleFileSelect(event) {
 
   var reader = new FileReader();
@@ -10,6 +10,7 @@ function handleFileSelect(event) {
   reader.readAsDataURL(event.files[0]);
 }
 
+// Preview image function in item form
 function serviceFileSelect(event) {
 
   var reader = new FileReader();
