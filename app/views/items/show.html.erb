@@ -111,9 +111,7 @@
               <div class="price-breakdown">
                   <div class="price-list-product">
 										<div class="image-wrap" id="wrapper">
-											<%#= image_tag(price.photo.url(:thumb), class: "price-photo", alt: "product")%>
-                      <meta property="og:image" content="<%= "https://adae.co#{price.photo.url(:thumb)}" %>" />
-
+											<%= image_tag(price.photo.url(:thumb), class: "price-photo", alt: "product")%>
 										</div>
 
 										<div class="price-time"><b><%= price.title %> </b></br><%= price.description.html_safe %></div>
