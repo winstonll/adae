@@ -10,6 +10,20 @@ function handleFileSelect(event) {
   reader.readAsDataURL(event.files[0]);
 }
 
+function serviceFileSelect(event) {
+
+  var reader = new FileReader();
+  console.log("here");
+
+  reader.onload = function (e) {
+    var image = $(event).prev();
+    image.removeClass("dn");
+    image[0].src = e.target.result;
+  }
+
+  reader.readAsDataURL(event.files[0]);
+}
+
 $(document).ready(function() {
 // Make sure the add answer button is showing
   $("#add-tag-button").css("display", "inline-block");
