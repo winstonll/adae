@@ -111,9 +111,7 @@
               <div class="price-breakdown">
                   <div class="price-list-product">
 										<div class="image-wrap" id="wrapper">
-											<%#= image_tag(price.photo.url(:thumb), class: "price-photo", alt: "product")%>
-                      <%= link_to image_tag(price.photo.url(:thumb), alt: "product"), price.photo.url, :rel => "lightbox", :class => "price-photo" %>
-
+											<%= image_tag(price.photo.url(:thumb), class: "price-photo", alt: "product")%>
 										</div>
 
 										<div class="price-time"><b><%= price.title %> </b></br><%= price.description.html_safe %></div>
