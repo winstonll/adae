@@ -1,8 +1,8 @@
-
+<!-- Header meta tags -->
 <% content_for :head do %>
 	<title><%= @item.title %></title>
-    <!-- You can use open graph tags to customize link previews.
-    Learn more: https://developers.facebook.com/docs/sharing/webmasters -->
+  <!-- You can use open graph tags to customize link previews.
+  Learn more: https://developers.facebook.com/docs/sharing/webmasters -->
 	<meta property="og:url"           content="<%= request.original_url %>" />
 	<meta property="og:type"          content="website" />
 	<meta property="og:title"         content="<%= @item.title %>" />
@@ -17,7 +17,7 @@
 <%= include_gon %>
 
 <script>
-
+	// Calculation of markup price for every item in our platform
   function markup(price) {
     var l1 = 1.1;
     var l2 = 1.08;
@@ -227,6 +227,7 @@
     </div>
   </div>
 
+	<!-- Review section for registered users -->
   <% if signed_in? && !@reviewable %>
     <%= form_for([@item, @review],:remote => true) do |f| %>
       <div class="review-area">
@@ -247,7 +248,9 @@
       </div>
     <% end %>
   <% end %>
+	<!-- End Review section -->
 
+	<!-- List of Reviews for all users -->
   <div class="review-list">
     <div class="review-content">
       <div class="item-reviews">Reviews for: <%= @item.title %></div>
@@ -258,8 +261,11 @@
       <% end %>
     </div>
   </div>
+	<!-- End Review list -->
 <% end %>
 
+
+<!-- Popup for guests to explain our payment system -->
 <% unless signed_in? %>
   <div class="why-cc">
     Why shop on Adae?
@@ -272,3 +278,4 @@
     </div>
   </div>
 <% end %>
+<!-- End popup -->
