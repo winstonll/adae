@@ -765,11 +765,6 @@ item Show
           .image-wrap {
             float: left;
             border: 1px solid #ffffff;
-            border-radius: 4px;
-            height: 50px;
-            overflow: hidden;
-            width: 80px;
-            margin-bottom: 10px;
             -webkit-transition: max-width .5s ease-out;  /* Saf3.2+, Chrome */
             -moz-transition: max-width .5s ease-out;  /* FF4+ */
             -ms-transition: max-width .5s ease-out;  /* IE10? */
@@ -778,6 +773,13 @@ item Show
 
             .price-photo {
               width: 100%;
+              height: 70px;
+              width: 80px;
+              border-radius: 4px;
+              margin-bottom: 10px;
+              object-fit: cover;
+              object-position: center;
+              cursor: pointer;
               -webkit-transition: margin-top .5s ease-out;  /* Saf3.2+, Chrome */
               -moz-transition: margin-top .5s ease-out;  /* FF4+ */
               -ms-transition: margin-top .5s ease-out;  /* IE10? */
@@ -787,33 +789,30 @@ item Show
           }
 
           .markup{
-            clear: both;
-            display: block;
             font-weight: 700;
             color: #34C819;
             border: 2px solid #34C819;
             border-radius: 4px;
-            font-size: 20px;
-            width: 80px;
+            font-size: 19px;
             text-align: center;
-            padding-top: 5px;
-            padding-bottom: 5px;
+            padding: 2px 19px 2px 20px;
           }
           .price-time{
-            float:left;
-            margin: 0px 0px 0px 10px;
+            float:right;
+            margin: 0px 10px 15px 0px;
             width: 70%;
             color: #262626;
             line-height: normal;
           }
         }
+        .division-2 {
+          border-top: 1px solid #DCDCDC;
+          width: 83%;
+          margin: 0 auto;
+          display: table;
+        }
       }
 
-      .division-2 {
-        border-top: 1px solid #DCDCDC;
-        width: 83%;
-        margin: 10px auto;
-      }
 
       .price-title2 {
         font-weight: 600;
