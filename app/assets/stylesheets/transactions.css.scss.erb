@@ -393,11 +393,7 @@ body{
     .image-wrap {
       margin-left: 5px;
       border: 1px solid #ffffff;
-      border-radius: 4px;
       float: left;
-      height: 27px;
-      overflow: hidden;
-      width: 40px;
       -webkit-transition: max-width .5s ease-out;  /* Saf3.2+, Chrome */
       -moz-transition: max-width .5s ease-out;  /* FF4+ */
       -ms-transition: max-width .5s ease-out;  /* IE10? */
@@ -405,8 +401,11 @@ body{
       transition: max-width .5s ease-out;
 
       .price-photo {
-        width: 100%;
-        height: 100%;
+        border-radius: 4px;
+        height: 30px;
+        width: 40px;
+        object-fit: cover;
+        object-position: center;
         -webkit-transition: margin-top .5s ease-out;  /* Saf3.2+, Chrome */
         -moz-transition: margin-top .5s ease-out;  /* FF4+ */
         -ms-transition: margin-top .5s ease-out;  /* IE10? */
@@ -416,7 +415,7 @@ body{
     }
 	  #qty, .qty{
 	  	border: 1px solid #419bf9;
-	  	margin-left: 1em;
+	  	margin-left: .5em;
 	  	width: 30px;
 	  	height:27px;
 	  	vertical-align: top;
@@ -427,7 +426,7 @@ body{
 	  }
     #prod, .prod{
       border: 1px solid #419bf9;
-      width: 50%;
+      width: 55%;
       height:27px;
       vertical-align: top;
       border-radius: 4px;
