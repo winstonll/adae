@@ -390,6 +390,30 @@ body{
       margin-bottom: -5px;
       font-size: 15px;
 	  }
+    .image-wrap {
+      margin-left: 5px;
+      border: 1px solid #419bf9;
+      border-radius: 4px;
+      float: left;
+      height: 27px;
+      overflow: hidden;
+      max-width: 40px;
+      -webkit-transition: max-width .5s ease-out;  /* Saf3.2+, Chrome */
+      -moz-transition: max-width .5s ease-out;  /* FF4+ */
+      -ms-transition: max-width .5s ease-out;  /* IE10? */
+      -o-transition: max-width .5s ease-out;  /* Opera 10.5+ */
+      transition: max-width .5s ease-out;
+
+      .price-photo {
+        width: 100%;
+        height: 100%;
+        -webkit-transition: margin-top .5s ease-out;  /* Saf3.2+, Chrome */
+        -moz-transition: margin-top .5s ease-out;  /* FF4+ */
+        -ms-transition: margin-top .5s ease-out;  /* IE10? */
+        -o-transition: margin-top .5s ease-out;  /* Opera 10.5+ */
+        transition: margin-top .5s ease-out;
+      }
+    }
 	  #qty, .qty{
 	  	border: 1px solid #419bf9;
 	  	margin-left: 1em;
@@ -403,7 +427,7 @@ body{
 	  }
     #prod, .prod{
       border: 1px solid #419bf9;
-      width: 68%;
+      width: 50%;
       height:27px;
       vertical-align: top;
       border-radius: 4px;

@@ -348,6 +348,9 @@
           <p class="how-long">What would you like to purchase?</p>
             <%= form_for Transaction.new, html: {multipart: true}  do |f| %>
               <%@prices.each do |price| %>
+                <div class="image-wrap" id="wrapper">
+                  <%= image_tag(price.photo.url(:thumb), class: "price-photo", alt: "product")%>
+                </div>
                 <input class="qty" id="qty-<%= price.id %>" name="quantity" min="1" max="30" type="number" onChange="updateQty()"></input>
                 <input class="prod" id="prod-<%= price.id %>" name="product" readonly="true" value="<%= price.title %>"></input><br>
                 <input class="price" id="price-<%= price.id %>" name="price" hidden="true" value="<%= price.amount %>"></input>
