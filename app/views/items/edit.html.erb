@@ -51,8 +51,10 @@
 			<div class="countdown"></div>
 		</div>
 
+
 		<%= f.fields_for :pictures, Picture.new do |i| %>
 			<div class="new-item-form">
+				<p class="form-title">Header Images</p>
 	      <% @images.each do |picture| %>
 					<div class="picture-upload-container">
 		        <%= image_tag picture.image.url(:small), class: "uploaded-image", id: "picture-#{picture.id}" %>
