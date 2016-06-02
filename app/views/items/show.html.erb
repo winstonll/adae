@@ -112,8 +112,8 @@
                   <div class="price-list-product">
 										<div class="image-wrap" id="wrapper">
                       <% unless price.photo.url == "/photos/original/missing.png" %>
-											<%= image_tag(price.photo.url(:thumb), class: "price-photo", alt: "product")%>
-                      <%#= link_to image_tag(price.photo.url(:thumb), alt: "product", class: "price-photo"), price.photo.url, :rel => "lightbox" %>
+											<%#= image_tag(price.photo.url(:thumb), class: "price-photo", alt: "product")%>
+                      <%= link_to image_tag(price.photo.url(:thumb), alt: "product", class: "price-photo"), price.photo.url, :rel => "lightbox" %>
                       <% end %>
 
 										</div>
