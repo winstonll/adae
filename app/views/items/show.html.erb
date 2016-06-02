@@ -118,7 +118,7 @@
 
 										</div>
 
-										<div class="price-time"><b><%= price.title %> </b></br><%= simple_format price.description.html_safe, :style =>"text-align: left;" %></div>
+										<div class="price-time"><span id="price-title"><%= price.title %> </span><%= simple_format price.description.html_safe, :style =>"text-align: left; margin-top: 5px; font-size: 14px;" %></div>
 										<span class="markup">$<%= price.amount %></span>
 
                   </div>

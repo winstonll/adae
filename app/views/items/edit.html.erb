@@ -51,8 +51,10 @@
 			<div class="countdown"></div>
 		</div>
 
+
 		<%= f.fields_for :pictures, Picture.new do |i| %>
 			<div class="new-item-form">
+				<p class="form-title">Cover Photos (Click Image to Change)</p>
 	      <% @images.each do |picture| %>
 					<div class="picture-upload-container">
 		        <%= image_tag picture.image.url(:small), class: "uploaded-image", id: "picture-#{picture.id}" %>
@@ -125,6 +127,16 @@
 					</tr>
 					<div class="new-item-form">
 					  <div><%= one.text_area :description, :placeholder => "Product 1 Description", class: "description" %></div><br/>
+						<div class="picture-upload-container">
+							<% tp = Price.where(item_id: @item.id, timeframe: "Product 1") %>
+							<% if tp.empty? %>
+								<%= image_tag "add-pic.png", class: "uploaded-image" %>
+								<%= one.file_field :photo, :onchange => "serviceFileSelect(this);" %>
+							<% else %>
+								<%= image_tag(tp.first.photo.url(:thumb), class: "uploaded-image", alt: "product")%>
+								<%= one.file_field :photo, :onchange => "serviceFileSelect(this);" %>
+							<% end %>
+						</div>
 					</div>
 				  </div>
 
@@ -137,6 +149,16 @@
 					</tr>
 				 	<div class="new-item-form">
 					  <div><%= two.text_area :description, :placeholder => "Product 2 Description", class: "description" %></div><br/>
+						<div class="picture-upload-container">
+							<% tp = Price.where(item_id: @item.id, timeframe: "Product 2") %>
+							<% if tp.empty? %>
+		            <%= image_tag "add-pic.png", class: "uploaded-image" %>
+				        <%= two.file_field :photo, :onchange => "serviceFileSelect(this);" %>
+							<% else %>
+								<%= image_tag(tp.photo.url(:thumb), class: "uploaded-image", alt: "product")%>
+								<%= two.file_field :photo, :onchange => "serviceFileSelect(this);" %>
+							<% end %>
+						</div>
 					</div>
 				  </div>
 
@@ -149,6 +171,16 @@
 					</tr>
 				 	<div class="new-item-form">
 					  <div><%= three.text_area :description, :placeholder => "Product 3 Description", class: "description" %></div><br/>
+						<div class="picture-upload-container">
+							<% tp = Price.where(item_id: @item.id, timeframe: "Product 3") %>
+							<% if tp.empty? %>
+		            <%= image_tag "add-pic.png", class: "uploaded-image" %>
+				        <%= three.file_field :photo, :onchange => "serviceFileSelect(this);" %>
+							<% else %>
+								<%= image_tag(tp.photo.url(:thumb), class: "uploaded-image", alt: "product")%>
+								<%= three.file_field :photo, :onchange => "serviceFileSelect(this);" %>
+							<% end %>
+						</div>
 					</div>
 				  </div>
 
@@ -161,6 +193,16 @@
 					</tr>
 				 	<div class="new-item-form">
 					  <div><%= four.text_area :description, :placeholder => "Product 4 Description", class: "description" %></div><br/>
+						<div class="picture-upload-container">
+							<% tp = Price.where(item_id: @item.id, timeframe: "Product 4") %>
+							<% if tp.empty? %>
+		            <%= image_tag "add-pic.png", class: "uploaded-image" %>
+				        <%= four.file_field :photo, :onchange => "serviceFileSelect(this);" %>
+							<% else %>
+								<%= image_tag(tp.photo.url(:thumb), class: "uploaded-image", alt: "product")%>
+								<%= four.file_field :photo, :onchange => "serviceFileSelect(this);" %>
+							<% end %>
+						</div>
 					</div>
 				  </div>
 
@@ -173,6 +215,16 @@
 					</tr>
 				 	<div class="new-item-form">
 					  <div><%= five.text_area :description, :placeholder => "Product 5 Description", class: "description" %></div><br/>
+						<div class="picture-upload-container">
+							<% tp = Price.where(item_id: @item.id, timeframe: "Product 5") %>
+							<% if tp.empty? %>
+		            <%= image_tag "add-pic.png", class: "uploaded-image" %>
+				        <%= five.file_field :photo, :onchange => "serviceFileSelect(this);" %>
+							<% else %>
+								<%= image_tag(tp.photo.url(:thumb), class: "uploaded-image", alt: "product")%>
+								<%= five.file_field :photo, :onchange => "serviceFileSelect(this);" %>
+							<% end %>
+						</div>
 					</div>
 				  </div>
 
@@ -185,6 +237,16 @@
 					</tr>
 				 	<div class="new-item-form">
 					  <div><%= six.text_area :description, :placeholder => "Product 6 Description", class: "description" %></div><br/>
+						<div class="picture-upload-container">
+							<% tp = Price.where(item_id: @item.id, timeframe: "Product 6") %>
+							<% if tp.empty? %>
+		            <%= image_tag "add-pic.png", class: "uploaded-image" %>
+				        <%= six.file_field :photo, :onchange => "serviceFileSelect(this);" %>
+							<% else %>
+								<%= image_tag(tp.photo.url(:thumb), class: "uploaded-image", alt: "product")%>
+								<%= six.file_field :photo, :onchange => "serviceFileSelect(this);" %>
+							<% end %>
+						</div>
 					</div>
 				  </div>
 
@@ -197,6 +259,16 @@
 					</tr>
 				 	<div class="new-item-form">
 					  <div><%= seven.text_area :description, :placeholder => "Product 7 Description", class: "description" %></div><br/>
+						<div class="picture-upload-container">
+							<% tp = Price.where(item_id: @item.id, timeframe: "Product 7") %>
+							<% if tp.empty? %>
+		            <%= image_tag "add-pic.png", class: "uploaded-image" %>
+				        <%= seven.file_field :photo, :onchange => "serviceFileSelect(this);" %>
+							<% else %>
+								<%= image_tag(tp.photo.url(:thumb), class: "uploaded-image", alt: "product")%>
+								<%= seven.file_field :photo, :onchange => "serviceFileSelect(this);" %>
+							<% end %>
+						</div>
 					</div>
 				  </div>
 
@@ -209,6 +281,16 @@
 					</tr>
 				 	<div class="new-item-form">
 					  <div><%= eight.text_area :description, :placeholder => "Product 8 Description", class: "description" %></div><br/>
+						<div class="picture-upload-container">
+							<% tp = Price.where(item_id: @item.id, timeframe: "Product 8") %>
+							<% if tp.empty? %>
+		            <%= image_tag "add-pic.png", class: "uploaded-image" %>
+				        <%= eight.file_field :photo, :onchange => "serviceFileSelect(this);" %>
+							<% else %>
+								<%= image_tag(tp.photo.url(:thumb), class: "uploaded-image", alt: "product")%>
+								<%= eight.file_field :photo, :onchange => "serviceFileSelect(this);" %>
+							<% end %>
+						</div>
 					</div>
 				  </div>
 
@@ -221,6 +303,16 @@
 					</tr>
 				 	<div class="new-item-form">
 					  <div><%= nine.text_area :description, :placeholder => "Product 9 Description", class: "description" %></div><br/>
+						<div class="picture-upload-container">
+							<% tp = Price.where(item_id: @item.id, timeframe: "Product 9") %>
+							<% if tp.empty? %>
+		            <%= image_tag "add-pic.png", class: "uploaded-image" %>
+				        <%= nine.file_field :photo, :onchange => "serviceFileSelect(this);" %>
+							<% else %>
+								<%= image_tag(tp.photo.url(:thumb), class: "uploaded-image", alt: "product")%>
+								<%= nine.file_field :photo, :onchange => "serviceFileSelect(this);" %>
+							<% end %>
+						</div>
 					</div>
 				  </div>
 
@@ -233,6 +325,16 @@
 					</tr>
 				 	<div class="new-item-form">
 					  <div><%= ten.text_area :description, :placeholder => "Product 10 Description", class: "description" %></div><br/>
+						<div class="picture-upload-container">
+							<% tp = Price.where(item_id: @item.id, timeframe: "Product 10") %>
+							<% if tp.empty? %>
+		            <%= image_tag "add-pic.png", class: "uploaded-image" %>
+				        <%= ten.file_field :photo, :onchange => "serviceFileSelect(this);" %>
+							<% else %>
+								<%= image_tag(tp.photo.url(:thumb), class: "uploaded-image", alt: "product")%>
+								<%= ten.file_field :photo, :onchange => "serviceFileSelect(this);" %>
+							<% end %>
+						</div>
 					</div>
 				  </div>
 
