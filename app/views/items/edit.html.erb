@@ -133,7 +133,7 @@
 								<%= image_tag "add-pic.png", class: "uploaded-image" %>
 								<%= one.file_field :photo, :onchange => "serviceFileSelect(this);" %>
 							<% else %>
-								<%#= image_tag(tp.first.photo.url(:thumb), class: "uploaded-image", alt: "product")%>
+								<%= image_tag(tp.first.photo.url(:thumb), class: "uploaded-image", alt: "product")%>
 								<%= one.file_field :photo, :onchange => "serviceFileSelect(this);" %>
 							<% end %>
 						</div>
