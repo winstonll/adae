@@ -133,8 +133,7 @@
 								<%= image_tag "add-pic.png", class: "uploaded-image" %>
 								<%= one.file_field :photo, :onchange => "serviceFileSelect(this);" %>
 							<% else %>
-								<%#= image_tag "add-pic.png", class: "uploaded-image" %>
-								<%= image_tag(tp.first.photo.url(:thumb), class: "uploaded-image", alt: "product")%>
+								<%= image_tag(tp.photo.url(:thumb), class: "uploaded-image", alt: "product")%>
 								<%= one.file_field :photo, :onchange => "serviceFileSelect(this);" %>
 							<% end %>
 						</div>
@@ -153,11 +152,10 @@
 						<div class="picture-upload-container">
 							<% tp = Price.where(item_id: @item.id, timeframe: "Product 2") %>
 							<% if tp.empty? %>
-		            			<%= image_tag "add-pic.png", class: "uploaded-image" %>
-				        		<%= two.file_field :photo, :onchange => "serviceFileSelect(this);" %>
+					            <%= image_tag "add-pic.png", class: "uploaded-image" %>
+					           	<%= two.file_field :photo, :onchange => "serviceFileSelect(this);" %>
 							<% else %>
-								<%#= image_tag "add-pic.png", class: "uploaded-image" %>
-								<%= image_tag(tp.first.photo.url(:thumb), class: "uploaded-image", alt: "product")%>
+								<%= image_tag(tp.photo.url(:thumb), class: "uploaded-image", alt: "product")%>
 								<%= two.file_field :photo, :onchange => "serviceFileSelect(this);" %>
 							<% end %>
 						</div>
@@ -176,11 +174,10 @@
 						<div class="picture-upload-container">
 							<% tp = Price.where(item_id: @item.id, timeframe: "Product 3") %>
 							<% if tp.empty? %>
-		            			<%= image_tag "add-pic.png", class: "uploaded-image" %>
-				        		<%= three.file_field :photo, :onchange => "serviceFileSelect(this);" %>
+					            <%= image_tag "add-pic.png", class: "uploaded-image" %>
+						        <%= three.file_field :photo, :onchange => "serviceFileSelect(this);" %>
 							<% else %>
-								<%#= image_tag "add-pic.png", class: "uploaded-image" %>
-								<%= image_tag(tp.first.photo.url(:thumb), class: "uploaded-image", alt: "product")%>
+								<%= image_tag(tp.photo.url(:thumb), class: "uploaded-image", alt: "product")%>
 								<%= three.file_field :photo, :onchange => "serviceFileSelect(this);" %>
 							<% end %>
 						</div>
@@ -199,11 +196,10 @@
 						<div class="picture-upload-container">
 							<% tp = Price.where(item_id: @item.id, timeframe: "Product 4") %>
 							<% if tp.empty? %>
-		            			<%= image_tag "add-pic.png", class: "uploaded-image" %>
-				        		<%= four.file_field :photo, :onchange => "serviceFileSelect(this);" %>
+					            <%= image_tag "add-pic.png", class: "uploaded-image" %>
+						        <%= four.file_field :photo, :onchange => "serviceFileSelect(this);" %>
 							<% else %>
-								<%#= image_tag "add-pic.png", class: "uploaded-image" %>
-								<%= image_tag(tp.first.photo.url(:thumb), class: "uploaded-image", alt: "product")%>
+								<%= image_tag(tp.photo.url(:thumb), class: "uploaded-image", alt: "product")%>
 								<%= four.file_field :photo, :onchange => "serviceFileSelect(this);" %>
 							<% end %>
 						</div>
@@ -222,11 +218,10 @@
 						<div class="picture-upload-container">
 							<% tp = Price.where(item_id: @item.id, timeframe: "Product 5") %>
 							<% if tp.empty? %>
-		            			<%= image_tag "add-pic.png", class: "uploaded-image" %>
-				        		<%= five.file_field :photo, :onchange => "serviceFileSelect(this);" %>
+					            <%= image_tag "add-pic.png", class: "uploaded-image" %>
+						        <%= five.file_field :photo, :onchange => "serviceFileSelect(this);" %>
 							<% else %>
-								<%#= image_tag "add-pic.png", class: "uploaded-image" %>
-								<%= image_tag(tp.first.photo.url(:thumb), class: "uploaded-image", alt: "product")%>
+								<%= image_tag(tp.photo.url(:thumb), class: "uploaded-image", alt: "product")%>
 								<%= five.file_field :photo, :onchange => "serviceFileSelect(this);" %>
 							<% end %>
 						</div>
@@ -245,11 +240,10 @@
 						<div class="picture-upload-container">
 							<% tp = Price.where(item_id: @item.id, timeframe: "Product 6") %>
 							<% if tp.empty? %>
-		            			<%= image_tag "add-pic.png", class: "uploaded-image" %>
-				        		<%= six.file_field :photo, :onchange => "serviceFileSelect(this);" %>
+					            <%= image_tag "add-pic.png", class: "uploaded-image" %>
+						        <%= six.file_field :photo, :onchange => "serviceFileSelect(this);" %>
 							<% else %>
-								<%#= image_tag "add-pic.png", class: "uploaded-image" %>
-								<%= image_tag(tp.first.photo.url(:thumb), class: "uploaded-image", alt: "product")%>
+								<%= image_tag(tp.photo.url(:thumb), class: "uploaded-image", alt: "product")%>
 								<%= six.file_field :photo, :onchange => "serviceFileSelect(this);" %>
 							<% end %>
 						</div>
@@ -268,11 +262,10 @@
 						<div class="picture-upload-container">
 							<% tp = Price.where(item_id: @item.id, timeframe: "Product 7") %>
 							<% if tp.empty? %>
-		            			<%= image_tag "add-pic.png", class: "uploaded-image" %>
-				        		<%= seven.file_field :photo, :onchange => "serviceFileSelect(this);" %>
+					            <%= image_tag "add-pic.png", class: "uploaded-image" %>
+						        <%= seven.file_field :photo, :onchange => "serviceFileSelect(this);" %>
 							<% else %>
-								<%#= image_tag "add-pic.png", class: "uploaded-image" %>
-								<%= image_tag(tp.first.photo.url(:thumb), class: "uploaded-image", alt: "product")%>
+								<%= image_tag(tp.photo.url(:thumb), class: "uploaded-image", alt: "product")%>
 								<%= seven.file_field :photo, :onchange => "serviceFileSelect(this);" %>
 							<% end %>
 						</div>
@@ -291,11 +284,10 @@
 						<div class="picture-upload-container">
 							<% tp = Price.where(item_id: @item.id, timeframe: "Product 8") %>
 							<% if tp.empty? %>
-		            			<%= image_tag "add-pic.png", class: "uploaded-image" %>
-				        		<%= eight.file_field :photo, :onchange => "serviceFileSelect(this);" %>
+					            <%= image_tag "add-pic.png", class: "uploaded-image" %>
+						        <%= eight.file_field :photo, :onchange => "serviceFileSelect(this);" %>
 							<% else %>
-								<%#= image_tag "add-pic.png", class: "uploaded-image" %>
-								<%= image_tag(tp.first.photo.url(:thumb), class: "uploaded-image", alt: "product")%>
+								<%= image_tag(tp.photo.url(:thumb), class: "uploaded-image", alt: "product")%>
 								<%= eight.file_field :photo, :onchange => "serviceFileSelect(this);" %>
 							<% end %>
 						</div>
@@ -314,11 +306,10 @@
 						<div class="picture-upload-container">
 							<% tp = Price.where(item_id: @item.id, timeframe: "Product 9") %>
 							<% if tp.empty? %>
-		            			<%= image_tag "add-pic.png", class: "uploaded-image" %>
-				        		<%= nine.file_field :photo, :onchange => "serviceFileSelect(this);" %>
+					            <%= image_tag "add-pic.png", class: "uploaded-image" %>
+						        <%= nine.file_field :photo, :onchange => "serviceFileSelect(this);" %>
 							<% else %>
-								<%#= image_tag "add-pic.png", class: "uploaded-image" %>
-								<%= image_tag(tp.first.photo.url(:thumb), class: "uploaded-image", alt: "product")%>
+								<%= image_tag(tp.photo.url(:thumb), class: "uploaded-image", alt: "product")%>
 								<%= nine.file_field :photo, :onchange => "serviceFileSelect(this);" %>
 							<% end %>
 						</div>
@@ -337,11 +328,10 @@
 						<div class="picture-upload-container">
 							<% tp = Price.where(item_id: @item.id, timeframe: "Product 10") %>
 							<% if tp.empty? %>
-		            			<%= image_tag "add-pic.png", class: "uploaded-image" %>
-				        		<%= ten.file_field :photo, :onchange => "serviceFileSelect(this);" %>
+					            <%= image_tag "add-pic.png", class: "uploaded-image" %>
+						        <%= ten.file_field :photo, :onchange => "serviceFileSelect(this);" %>
 							<% else %>
-								<%#= image_tag "add-pic.png", class: "uploaded-image" %>
-								<%= image_tag(tp.first.photo.url(:thumb), class: "uploaded-image", alt: "product")%>
+								<%= image_tag(tp.photo.url(:thumb), class: "uploaded-image", alt: "product")%>
 								<%= ten.file_field :photo, :onchange => "serviceFileSelect(this);" %>
 							<% end %>
 						</div>
