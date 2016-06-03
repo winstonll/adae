@@ -133,7 +133,7 @@
 								<%= image_tag "add-pic.png", class: "uploaded-image" %>
 								<%= one.file_field :photo, :onchange => "serviceFileSelect(this);" %>
 							<% else %>
-								<%= image_tag(tp.photo.url(:thumb), class: "uploaded-image", alt: "product")%>
+								<%= image_tag(tp.first.photo.url(:thumb), class: "uploaded-image", alt: "product")%>
 								<%= one.file_field :photo, :onchange => "serviceFileSelect(this);" %>
 							<% end %>
 						</div>
@@ -155,7 +155,7 @@
 					            <%= image_tag "add-pic.png", class: "uploaded-image" %>
 					           	<%= two.file_field :photo, :onchange => "serviceFileSelect(this);" %>
 							<% else %>
-								<%= image_tag(tp.photo.url(:thumb), class: "uploaded-image", alt: "product")%>
+								<%= image_tag(tp.first.photo.url(:thumb), class: "uploaded-image", alt: "product")%>
 								<%= two.file_field :photo, :onchange => "serviceFileSelect(this);" %>
 							<% end %>
 						</div>
@@ -177,7 +177,7 @@
 					            <%= image_tag "add-pic.png", class: "uploaded-image" %>
 						        <%= three.file_field :photo, :onchange => "serviceFileSelect(this);" %>
 							<% else %>
-								<%= image_tag(tp.photo.url(:thumb), class: "uploaded-image", alt: "product")%>
+								<%= image_tag(tp.first.photo.url(:thumb), class: "uploaded-image", alt: "product")%>
 								<%= three.file_field :photo, :onchange => "serviceFileSelect(this);" %>
 							<% end %>
 						</div>
@@ -199,7 +199,7 @@
 					            <%= image_tag "add-pic.png", class: "uploaded-image" %>
 						        <%= four.file_field :photo, :onchange => "serviceFileSelect(this);" %>
 							<% else %>
-								<%= image_tag(tp.photo.url(:thumb), class: "uploaded-image", alt: "product")%>
+								<%= image_tag(tp.first.photo.url(:thumb), class: "uploaded-image", alt: "product")%>
 								<%= four.file_field :photo, :onchange => "serviceFileSelect(this);" %>
 							<% end %>
 						</div>
@@ -221,7 +221,7 @@
 					            <%= image_tag "add-pic.png", class: "uploaded-image" %>
 						        <%= five.file_field :photo, :onchange => "serviceFileSelect(this);" %>
 							<% else %>
-								<%= image_tag(tp.photo.url(:thumb), class: "uploaded-image", alt: "product")%>
+								<%= image_tag(tp.first.photo.url(:thumb), class: "uploaded-image", alt: "product")%>
 								<%= five.file_field :photo, :onchange => "serviceFileSelect(this);" %>
 							<% end %>
 						</div>
@@ -243,7 +243,7 @@
 					            <%= image_tag "add-pic.png", class: "uploaded-image" %>
 						        <%= six.file_field :photo, :onchange => "serviceFileSelect(this);" %>
 							<% else %>
-								<%= image_tag(tp.photo.url(:thumb), class: "uploaded-image", alt: "product")%>
+								<%= image_tag(tp.first.photo.url(:thumb), class: "uploaded-image", alt: "product")%>
 								<%= six.file_field :photo, :onchange => "serviceFileSelect(this);" %>
 							<% end %>
 						</div>
@@ -265,7 +265,7 @@
 					            <%= image_tag "add-pic.png", class: "uploaded-image" %>
 						        <%= seven.file_field :photo, :onchange => "serviceFileSelect(this);" %>
 							<% else %>
-								<%= image_tag(tp.photo.url(:thumb), class: "uploaded-image", alt: "product")%>
+								<%= image_tag(tp.first.photo.url(:thumb), class: "uploaded-image", alt: "product")%>
 								<%= seven.file_field :photo, :onchange => "serviceFileSelect(this);" %>
 							<% end %>
 						</div>
@@ -287,7 +287,7 @@
 					            <%= image_tag "add-pic.png", class: "uploaded-image" %>
 						        <%= eight.file_field :photo, :onchange => "serviceFileSelect(this);" %>
 							<% else %>
-								<%= image_tag(tp.photo.url(:thumb), class: "uploaded-image", alt: "product")%>
+								<%= image_tag(tp.first.photo.url(:thumb), class: "uploaded-image", alt: "product")%>
 								<%= eight.file_field :photo, :onchange => "serviceFileSelect(this);" %>
 							<% end %>
 						</div>
@@ -309,7 +309,7 @@
 					            <%= image_tag "add-pic.png", class: "uploaded-image" %>
 						        <%= nine.file_field :photo, :onchange => "serviceFileSelect(this);" %>
 							<% else %>
-								<%= image_tag(tp.photo.url(:thumb), class: "uploaded-image", alt: "product")%>
+								<%= image_tag(tp.first.photo.url(:thumb), class: "uploaded-image", alt: "product")%>
 								<%= nine.file_field :photo, :onchange => "serviceFileSelect(this);" %>
 							<% end %>
 						</div>
@@ -331,7 +331,7 @@
 					            <%= image_tag "add-pic.png", class: "uploaded-image" %>
 						        <%= ten.file_field :photo, :onchange => "serviceFileSelect(this);" %>
 							<% else %>
-								<%= image_tag(tp.photo.url(:thumb), class: "uploaded-image", alt: "product")%>
+								<%= image_tag(tp.first.photo.url(:thumb), class: "uploaded-image", alt: "product")%>
 								<%= ten.file_field :photo, :onchange => "serviceFileSelect(this);" %>
 							<% end %>
 						</div>
