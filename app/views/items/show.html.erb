@@ -110,7 +110,6 @@
             <% @prices.each do |price| %>
               <div class="price-breakdown">
                   <div class="price-list-product">
-										<span class="markup">$<%= price.amount %></span>
                     <div class="price-time">
                       <span id="price-title"><%= price.title %></span>
                       <%= simple_format price.description.html_safe, :style =>"text-align: left; margin-top: 5px; font-size: 14px;" %>
@@ -118,6 +117,7 @@
                     <div class="image-wrap" id="wrapper">
                       <%= link_to image_tag(price.photo.url(:thumb), alt: "product", class: "price-photo"), price.photo.url, :rel => "lightbox" %>
                     </div>
+										<span class="markup">$<%= price.amount %></span>
                   </div>
 									<div class="division-2"></div>
               </div>
