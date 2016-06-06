@@ -79,7 +79,6 @@
 					<div class="status">Status: <%= transaction.status %></div>
 					<div class="price">Price: $<%= transaction.total_price %></div>
 					<div class="length"><%= transaction.length %></div>
-					<div class="length"><%= transaction.addons %></div>
 				  </div>
 				  <div class="transaction-link">
 				  	<% unless transaction.status == "Completed" || transaction.status == "Denied" || transaction.status == "Cancelled" %>
