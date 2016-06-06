@@ -199,6 +199,79 @@ class ItemsController < ApplicationController
         @item.save
       end
 
+      if @item.listing_type == "lease"
+        if !(Price.where(item_id: @item.id, timeframe: "Product 1").first.nil?)
+          if !(params[:item][:prices_attributes]["0"][:photo].nil?)
+            price = Price.where(item_id: @item.id, timeframe: "Product 1").first
+            price.photo = params[:item][:prices_attributes]["0"][:photo]
+            price.save
+          end
+        end
+        if !(Price.where(item_id: @item.id, timeframe: "Product 2").first.nil?)
+          if !(params[:item][:prices_attributes]["1"][:photo].nil?)
+            price = Price.where(item_id: @item.id, timeframe: "Product 2").first
+            price.photo = params[:item][:prices_attributes]["1"][:photo]
+            price.save
+          end
+        end
+        if !(Price.where(item_id: @item.id, timeframe: "Product 3").first.nil?)
+          if !(params[:item][:prices_attributes]["2"][:photo].nil?)
+            price = Price.where(item_id: @item.id, timeframe: "Product 3").first
+            price.photo = params[:item][:prices_attributes]["2"][:photo]
+            price.save
+          end
+        end
+        if !(Price.where(item_id: @item.id, timeframe: "Product 4").first.nil?)
+          if !(params[:item][:prices_attributes]["3"][:photo].nil?)
+            price = Price.where(item_id: @item.id, timeframe: "Product 4").first
+            price.photo = params[:item][:prices_attributes]["3"][:photo]
+            price.save
+          end
+        end
+        if !(Price.where(item_id: @item.id, timeframe: "Product 5").first.nil?)
+          if !(params[:item][:prices_attributes]["4"][:photo].nil?)
+            price = Price.where(item_id: @item.id, timeframe: "Product 5").first
+            price.photo = params[:item][:prices_attributes]["4"][:photo]
+            price.save
+          end
+        end
+        if !(Price.where(item_id: @item.id, timeframe: "Product 6").first.nil?)
+          if !(params[:item][:prices_attributes]["5"][:photo].nil?)
+            price = Price.where(item_id: @item.id, timeframe: "Product 6").first
+            price.photo = params[:item][:prices_attributes]["5"][:photo]
+            price.save
+          end
+        end
+        if !(Price.where(item_id: @item.id, timeframe: "Product 7").first.nil?)
+          if !(params[:item][:prices_attributes]["6"][:photo].nil?)
+            price = Price.where(item_id: @item.id, timeframe: "Product 7").first
+            price.photo = params[:item][:prices_attributes]["6"][:photo]
+            price.save
+          end
+        end
+        if !(Price.where(item_id: @item.id, timeframe: "Product 8").first.nil?)
+          if !(params[:item][:prices_attributes]["7"][:photo].nil?)
+            price = Price.where(item_id: @item.id, timeframe: "Product 8").first
+            price.photo = params[:item][:prices_attributes]["7"][:photo]
+            price.save
+          end
+        end
+        if !(Price.where(item_id: @item.id, timeframe: "Product 9").first.nil?)
+          if !(params[:item][:prices_attributes]["8"][:photo].nil?)
+            price = Price.where(item_id: @item.id, timeframe: "Product 9").first
+            price.photo = params[:item][:prices_attributes]["8"][:photo]
+            price.save
+          end
+        end
+        if !(Price.where(item_id: @item.id, timeframe: "Product 10").first.nil?)
+          if !(params[:item][:prices_attributes]["9"][:photo].nil?)
+            price = Price.where(item_id: @item.id, timeframe: "Product 10").first
+            price.photo = params[:item][:prices_attributes]["9"][:photo]
+            price.save
+          end
+        end
+      end
+
       redirect_to @item, notice: "Item Successfully Edited!"
     elsif ["sell"].include?(@item.listing_type) && @item.update_attributes(item_params)
       redirect_to @item, notice: "Item Successfully Edited!"

@@ -349,7 +349,7 @@
             <%= form_for Transaction.new, html: {multipart: true}  do |f| %>
               <%@prices.each do |price| %>
                 <div class="image-wrap" id="wrapper">
-                  <%#= image_tag(price.photo.url(:thumb), class: "price-photo", alt: "product")%>
+                  <%= image_tag(price.photo.url(:thumb), class: "price-photo", alt: "product")%>
                 </div>
                 <input class="qty" id="qty-<%= price.id %>" name="quantity" min="1" max="30" type="number" onChange="updateQty()"></input>
                 <input class="prod" id="prod-<%= price.id %>" name="product" readonly="true" value="<%= price.title %>"></input><br>
@@ -521,3 +521,15 @@
     </div>
 
 </div>
+
+<!-- Google analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-78544137-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
