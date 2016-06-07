@@ -85,7 +85,7 @@ module Api::V2
           end
         end
 
-        render 'api/v1/transactions/transaction_detail', :formats => [:json], :handlers => [:jbuilder], status: 201
+        render 'api/v2/transactions/transaction_detail', :formats => [:json], :handlers => [:jbuilder], status: 201
 
         #render :json => {:transaction => transaction, :item => item, :user => user}
       elsif !@completed.nil?
@@ -120,7 +120,7 @@ module Api::V2
           end
         end
 
-        render 'api/v1/transactions/transaction_detail', :formats => [:json], :handlers => [:jbuilder], status: 201
+        render 'api/v2/transactions/transaction_detail', :formats => [:json], :handlers => [:jbuilder], status: 201
 
       else
         render json: {
