@@ -88,7 +88,6 @@ module Api::V2
         render 'api/v2/transactions/transaction_detail', :formats => [:json], :handlers => [:jbuilder], status: 201
 
         #render :json => {:transaction => transaction, :item => item, :user => user}
-=begin
       elsif !@completed.nil?
 
         @item_co = []
@@ -106,7 +105,6 @@ module Api::V2
         end
 
         render 'api/v2/transactions/transaction_detail', :formats => [:json], :handlers => [:jbuilder], status: 201
-=end
       else
         render json: {
           error: "No such transaction; check the user_id",

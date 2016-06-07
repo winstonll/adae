@@ -20,7 +20,6 @@ json.user_og @user_og do |u_og|
   json.stripe_account_type u_og.stripe_account_type
 end
 
-=begin
 json.completed @completed do |t_c|
   json.merge! t_c.attributes
 end
@@ -42,4 +41,3 @@ json.user_co @user_co do |u_co|
   json.name u_co.name
   json.stripe_account_type u_co.stripe_account_type
 end
-=end
