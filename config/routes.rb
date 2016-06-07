@@ -24,7 +24,7 @@ Rails.application.routes.draw do
       namespace :v1 do
         resources :users, :items, :locations, :prices, :ratings, :reviews, :transactions, :sessions, :conversations, :messages
       end
-      
+
       namespace :v2 do
         resources :users, :items, :locations, :prices, :ratings, :reviews, :transactions, :sessions, :conversations, :messages
       end
@@ -43,6 +43,8 @@ Rails.application.routes.draw do
 
   get '/api/v1/verify_scan/' => 'api/v1/transactions#verify_scan'
   get '/api/v1/transaction_detail/:id' => 'api/v1/transactions#transaction_detail'
+
+  get '/api/v2/transaction_detail/:id' => 'api/v1/transactions#transaction_detail'
 
   # simple/static pages
     get 'terms'   => "home#terms",   as: :terms
