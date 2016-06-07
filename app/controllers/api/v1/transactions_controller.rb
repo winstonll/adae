@@ -102,22 +102,27 @@ module Api::V1
 
               current_transaction.in_scan_date = DateTime.current
 
+              @buyer = User.where(id: current_transaction[:buyer_id]).first
+              @seller = User.where(id: current_transaction[:seller_id]).first
+              @listing = product
+
               if product.listing_type == "rent"
                 current_transaction.status = "In Progress"
               elsif product.listing_type == "lease"
                 current_transaction.status = "Completed"
+
+                ReviewPromptJob.perform_later(@buyer, @seller, @listing)
               elsif product.listing_type == "timeoffer"
                 length = current_transaction.length.split("-")
+
                 if length[1] == "Flat Rate"
                   current_transaction.status = "Completed"
 
-                  @buyer = User.where(id: current_transaction[:buyer_id]).first
-                  @seller = User.where(id: current_transaction[:seller_id]).first
-                  @listing = product
                   ReviewPromptJob.perform_later(@buyer, @seller, @listing)
-
                 else
                   current_transaction.status = "In Progress"
+
+                  ReviewPromptJob.perform_later(@buyer, @seller, @listing)
                 end
               elsif product.listing_type == "sell"
                 product.status = "Sold"
