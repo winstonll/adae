@@ -18,6 +18,7 @@ json.user_og @user_og do |u_og|
   json.email u_og.email
   json.name u_og.name
   json.stripe_account_type u_og.stripe_account_type
+  json.photo_url u_og.photo_url
 end
 
 json.completed @completed do |t_c|
@@ -40,4 +41,5 @@ json.user_co @user_co do |u_co|
   json.email u_co.email
   json.name u_co.name
   json.stripe_account_type u_co.stripe_account_type
+  json.photo_url u_co.photo_url
 end
