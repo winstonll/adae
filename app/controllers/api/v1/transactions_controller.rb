@@ -50,20 +50,34 @@ module Api::V1
     end
 
     def transaction_detail
-      @transaction = Transaction.where("(transactions.seller_id = #{params[:id]} OR transactions.buyer_id = #{params[:id]}) AND (transactions.status != 'Pending' AND transactions.status != 'Denied' AND transactions.status != 'Cancelled')")
+      @ongoing = Transaction.where("(transactions.seller_id = #{params[:id]} OR transactions.buyer_id = #{params[:id]}) AND (transactions.status != 'Pending' AND transactions.status != 'Denied' AND transactions.status != 'Cancelled' AND transactions.status != 'Completed')")
+      @completed = Transaction.where("(transactions.seller_id = #{params[:id]} OR transactions.buyer_id = #{params[:id]}) AND (transactions.status == 'Completed')")
+      
+      if !@ongoing.nil?
+        @item_og = []
+        @user_og = []
+        @item_co = []
+        @user_co = []
 
-      if !@transaction.nil?
-        @item = []
-        @user = []
+        @ongoing.each do |t|
 
-        @transaction.each do |t|
-
-          @item.push(Item.where(id: t.item_id).first)
+          @item_og.push(Item.where(id: t.item_id).first)
 
           if t.buyer_id != params[:id].to_i
-            @user.push(User.where(id: t.buyer_id).first)
+            @user_og.push(User.where(id: t.buyer_id).first)
           else
-            @user.push(User.where(id: t.seller_id).first)
+            @user_og.push(User.where(id: t.seller_id).first)
+          end
+        end
+
+        @completed.each do |t|
+
+          @item_co.push(Item.where(id: t.item_id).first)
+
+          if t.buyer_id != params[:id].to_i
+            @user_co.push(User.where(id: t.buyer_id).first)
+          else
+            @user_co.push(User.where(id: t.seller_id).first)
           end
         end
 
@@ -136,7 +150,7 @@ module Api::V1
                   price = Price.where(item_id: current_transaction.item_id, title: detail[1]).first
                   sub_total = sub_total + (price.amount * detail[0].to_i)
                 end
-                
+
               elsif product.listing_type == "rent" || product.listing_type == "timeoffer"
                 length = current_transaction.length.split("-")
                 qty = length[0]
