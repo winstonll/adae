@@ -1,4 +1,4 @@
-module Api::V1
+module Api::V2
   class TransactionsController < BaseController
 
     before_action :authenticate_user_token!, only: [:verify_scan]
@@ -50,26 +50,78 @@ module Api::V1
     end
 
     def transaction_detail
-      @transaction = Transaction.where("(transactions.seller_id = #{params[:id]} OR transactions.buyer_id = #{params[:id]}) AND (transactions.status != 'Pending' AND transactions.status != 'Denied' AND transactions.status != 'Cancelled')")
+      @ongoing = Transaction.where("(transactions.seller_id = #{params[:id]} OR transactions.buyer_id = #{params[:id]}) AND (transactions.status != 'Pending' AND transactions.status != 'Denied' AND transactions.status != 'Cancelled' AND transactions.status != 'Completed')")
+      @completed = Transaction.where("(transactions.seller_id = #{params[:id]} OR transactions.buyer_id = #{params[:id]}) AND (transactions.status == 'Completed')")
 
-      if !@transaction.nil?
-        @item = []
-        @user = []
+      if !@ongoing.nil?
 
-        @transaction.each do |t|
+        @item_og = []
+        @user_og = []
 
-          @item.push(Item.where(id: t.item_id).first)
+        @ongoing.each do |t|
+
+          @item_og.push(Item.where(id: t.item_id).first)
 
           if t.buyer_id != params[:id].to_i
-            @user.push(User.where(id: t.buyer_id).first)
+            @user_og.push(User.where(id: t.buyer_id).first)
           else
-            @user.push(User.where(id: t.seller_id).first)
+            @user_og.push(User.where(id: t.seller_id).first)
+          end
+        end
+
+        if !@completed.nil?
+          @item_co = []
+          @user_co = []
+
+          @completed.each do |t|
+
+            @item_co.push(Item.where(id: t.item_id).first)
+
+            if t.buyer_id != params[:id].to_i
+              @user_co.push(User.where(id: t.buyer_id).first)
+            else
+              @user_co.push(User.where(id: t.seller_id).first)
+            end
           end
         end
 
         render 'api/v1/transactions/transaction_detail', :formats => [:json], :handlers => [:jbuilder], status: 201
 
         #render :json => {:transaction => transaction, :item => item, :user => user}
+      elsif !@completed.nil?
+
+        @item_co = []
+        @user_co = []
+
+        @completed.each do |t|
+
+          @item_co.push(Item.where(id: t.item_id).first)
+
+          if t.buyer_id != params[:id].to_i
+            @user_co.push(User.where(id: t.buyer_id).first)
+          else
+            @user_co.push(User.where(id: t.seller_id).first)
+          end
+        end
+
+        if !@ongoing.nil?
+          @item_og = []
+          @user_og = []
+
+          @ongoing.each do |t|
+
+            @item_og.push(Item.where(id: t.item_id).first)
+
+            if t.buyer_id != params[:id].to_i
+              @user_og.push(User.where(id: t.buyer_id).first)
+            else
+              @user_og.push(User.where(id: t.seller_id).first)
+            end
+          end
+        end
+
+        render 'api/v1/transactions/transaction_detail', :formats => [:json], :handlers => [:jbuilder], status: 201
+
       else
         render json: {
           error: "No such transaction; check the user_id",

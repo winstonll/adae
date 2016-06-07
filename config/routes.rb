@@ -24,6 +24,10 @@ Rails.application.routes.draw do
       namespace :v1 do
         resources :users, :items, :locations, :prices, :ratings, :reviews, :transactions, :sessions, :conversations, :messages
       end
+      
+      namespace :v2 do
+        resources :users, :items, :locations, :prices, :ratings, :reviews, :transactions, :sessions, :conversations, :messages
+      end
     end
   #end
 
