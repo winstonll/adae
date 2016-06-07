@@ -1,4 +1,4 @@
-module Api::V1
+module Api::V2
   class LocationsController < BaseController
     def index
       location = Location.all

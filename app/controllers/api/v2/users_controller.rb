@@ -1,4 +1,4 @@
-module Api::V1
+module Api::V2
   class UsersController < BaseController
     #use this to authenticate
     #include DeviseTokenAuth::Concerns::SetUserByToken

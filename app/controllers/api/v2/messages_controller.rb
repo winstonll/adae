@@ -1,4 +1,4 @@
-module Api::V1
+module Api::V2
   class MessagesController < BaseController
 
     before_action :authenticate_user_token!, only: [:index]

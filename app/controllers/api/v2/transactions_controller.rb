@@ -1,4 +1,4 @@
-module Api::V1
+module Api::V2
   class TransactionsController < BaseController
 
     before_action :authenticate_user_token!, only: [:verify_scan]

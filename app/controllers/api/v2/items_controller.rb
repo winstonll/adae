@@ -1,4 +1,4 @@
-module Api::V1
+module Api::V2
   class ItemsController < BaseController
     def index
       item = Item.all.page params[:page]

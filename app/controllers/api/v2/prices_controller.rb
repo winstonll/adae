@@ -1,4 +1,4 @@
-module Api::V1
+module Api::V2
   class PricesController < BaseController
     def index
       price = Price.all
