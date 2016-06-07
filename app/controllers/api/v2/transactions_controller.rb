@@ -51,7 +51,7 @@ module Api::V2
 
     def transaction_detail
       @ongoing = Transaction.where("(transactions.seller_id = #{params[:id]} OR transactions.buyer_id = #{params[:id]}) AND (transactions.status != 'Pending' AND transactions.status != 'Denied' AND transactions.status != 'Cancelled' AND transactions.status != 'Completed')")
-      #@completed = Transaction.where("(transactions.seller_id = #{params[:id]} OR transactions.buyer_id = #{params[:id]}) AND (transactions.status == 'Completed')")
+      @completed = Transaction.where("(transactions.seller_id = #{params[:id]} OR transactions.buyer_id = #{params[:id]}) AND (transactions.status == 'Completed')")
 
       if !@ongoing.nil?
 
