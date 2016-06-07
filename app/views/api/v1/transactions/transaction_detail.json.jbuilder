@@ -6,7 +6,7 @@ json.item @item do |item|
   json.merge! item.attributes
 end
 
-json.user @user do |user|
+json.blah @user do |user|
   json.id user.id
   json.phone_number user.phone_number
   json.phone_verified user.phone_verified
