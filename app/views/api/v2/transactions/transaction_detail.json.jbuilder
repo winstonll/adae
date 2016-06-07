@@ -1,4 +1,4 @@
-if @ongoing
+if !@ongoing.nil?
   json.ongoing @ongoing do |t_o|
     json.merge! t_o.attributes
   end
@@ -22,7 +22,7 @@ if @ongoing
   end
 end
 
-if @completed
+if !@completed.nil?
   json.completed @completed do |t_c|
     json.merge! t_c.attributes
   end
