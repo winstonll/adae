@@ -51,7 +51,7 @@ module Api::V2
 
     def transaction_detail
       @ongoing = Transaction.where("(transactions.seller_id = #{params[:id]} OR transactions.buyer_id = #{params[:id]}) AND (transactions.status != 'Pending' AND transactions.status != 'Denied' AND transactions.status != 'Cancelled' AND transactions.status != 'Completed')")
-      @completed = Transaction.where("(transactions.seller_id = #{params[:id]} OR transactions.buyer_id = #{params[:id]}) AND (transactions.status == 'Completed')")
+      #@completed = Transaction.where("(transactions.seller_id = #{params[:id]} OR transactions.buyer_id = #{params[:id]}) AND (transactions.status == 'Completed')")
 
       if !@ongoing.nil?
 
@@ -88,6 +88,7 @@ module Api::V2
         render 'api/v2/transactions/transaction_detail', :formats => [:json], :handlers => [:jbuilder], status: 201
 
         #render :json => {:transaction => transaction, :item => item, :user => user}
+=begin
       elsif !@completed.nil?
 
         @item_co = []
@@ -104,24 +105,8 @@ module Api::V2
           end
         end
 
-        if !@ongoing.nil?
-          @item_og = []
-          @user_og = []
-
-          @ongoing.each do |t|
-
-            @item_og.push(Item.where(id: t.item_id).first)
-
-            if t.buyer_id != params[:id].to_i
-              @user_og.push(User.where(id: t.buyer_id).first)
-            else
-              @user_og.push(User.where(id: t.seller_id).first)
-            end
-          end
-        end
-
         render 'api/v2/transactions/transaction_detail', :formats => [:json], :handlers => [:jbuilder], status: 201
-
+=end
       else
         render json: {
           error: "No such transaction; check the user_id",
