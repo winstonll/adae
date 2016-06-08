@@ -94,7 +94,7 @@
 				<div class="new-item-form">
 			    	<p> Sale Price:</p>
 					<div id="actual-price-money-sign"> $ </div>
-			        <%=p.number_field :amount %>
+			        <%=p.number_field :amount, class: "amount"%>
 			    </div>
 			    <%= f.hidden_field :deposit, :value => 0 %>
 			<% end %>
