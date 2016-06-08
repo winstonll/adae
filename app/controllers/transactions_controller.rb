@@ -222,10 +222,6 @@ class TransactionsController < ApplicationController
 				end
 			end
 
-			unless charge_price <= 0
-				charge_price = (((charge_price * 1.029) + 0.30) * 100).ceil
-			end
-
 			if charge_price > 0
 				# Charge the customer instead of the card
 				begin
@@ -272,31 +268,7 @@ class TransactionsController < ApplicationController
 			hash = {"transaction" => transaction, "seller" => seller, "item" => item}
 			return hash
 		end
-
-		def markup_calculation(price)
-			l1 = 1.1
-			l2 = 1.08
-			l3 = 1.06
-			l4 = 1.04
-			l5 = 1.02
-
-			displayPrice = 0
-
-	    if(price < 100)
-	      displayPrice = (price * l1).round
-	    elsif(price >= 100 && price < 200)
-	      displayPrice = ((100 * l1) + (price - 100) * l2).round
-	    elsif(price >= 200 && price < 500)
-	      displayPrice = ((100 * l1) + (100 * l2) + ((price - 200) * l3)).round
-	    elsif(price >= 500 && price < 1000)
-	      displayPrice = ((100 * l1) + (100 * l2) + (300 * l3) + ((price - 500) * l4)).round
-	    elsif(price >= 1000)
-	      displayPrice = ((100 * l1) + (100 * l2) + (300 * l3) + (500 * l4) + ((price - 1000) * l5)).round
-			end
-
-			return displayPrice
-		end
-
+		
 		#if transaction exists redirect
 		def transaction_exists?
 			@item = Item.find(params[:item_id])
