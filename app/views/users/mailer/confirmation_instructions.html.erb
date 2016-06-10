@@ -1,23 +1,5 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type'/>
-  </head>
-    <body style="background-color: #f6f6f6; padding: 10px 25px 25px 25px;">
+<p>Welcome <%= @email %>!</p>
 
-      <p style="font-size: 15px; color: #4a4a4a; font-weight: 500;">Welcome <%= @email %>!</p>
+<p>You can confirm your account email through the link below:</p>
 
-      <p style="font-size: 15px; color: #4a4a4a; font-weight: 500;">You can confirm your account email through the link below:</p>
-
-      <p style="font-size: 15px !important; font-weight: 500;"><%= link_to 'Confirm my account', confirmation_url(@resource, confirmation_token: @token) %></p>
-
-      <p style="font-size: 15px; color: #4a4a4a; font-weight: 500;"> Thank You! </p>
-
-      <p style="font-size: 15px; color: #4a4a4a; font-weight: 500;"> Team Adae </p>
-
-      <a href="https://adae.co">
-        <img style="height: 30px; width: 80px;" src="https://adae.co/assets/adaelogoblue-0dc62fb795ac842414f4b829322a58d72993aa3d8f725b81ae394782ed74e869.png">
-      </a>
-
-    </body>
-</html>
+<p><%= link_to 'Confirm my account', confirmation_url(@resource, confirmation_token: @token) %></p>

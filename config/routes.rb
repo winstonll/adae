@@ -3,8 +3,7 @@ Rails.application.routes.draw do
     registrations: "users/registrations",
     sessions: "users/sessions",
     passwords: "users/passwords",
-    confirmations: "users/confirmations",
-    :omniauth_callbacks => "users/omniauth_callbacks" }
+    confirmations: "users/confirmations" }
 
   devise_scope :user do
     get 'signup',  to: 'users/registrations#new'
@@ -17,15 +16,11 @@ Rails.application.routes.draw do
   get 'signin_modal' => 'home#signin_modal'
   get 'signin_modal' => 'users/home#signin_modal'
   get 'companion_modal' => 'home#companion_modal'
-  post 'discount' => 'items#discount'
+  get 'purchase_lease' => 'transactions#purchase_lease'
 
   #constraints subdomain: 'api' do
     namespace :api do
       namespace :v1 do
-        resources :users, :items, :locations, :prices, :ratings, :reviews, :transactions, :sessions, :conversations, :messages
-      end
-
-      namespace :v2 do
         resources :users, :items, :locations, :prices, :ratings, :reviews, :transactions, :sessions, :conversations, :messages
       end
     end
@@ -35,7 +30,7 @@ Rails.application.routes.draw do
     resources :messages
   end
 
-  root 'home#fruit'
+  root 'home#landing'
 
   get 'search' => "search#search"
   get 'cancel' => 'transactions#cancel'
@@ -43,9 +38,6 @@ Rails.application.routes.draw do
 
   get '/api/v1/verify_scan/' => 'api/v1/transactions#verify_scan'
   get '/api/v1/transaction_detail/:id' => 'api/v1/transactions#transaction_detail'
-  get '/api/v1/omniauth/' => 'api/v1/omniauth_callbacks#facebook'
-
-  get '/api/v2/transaction_detail/:id' => 'api/v2/transactions#transaction_detail'
 
   # simple/static pages
     get 'terms'   => "home#terms",   as: :terms
@@ -55,7 +47,6 @@ Rails.application.routes.draw do
     get 'privacy' => "home#privacy", as: :privacy
     match '/contact' => 'contacts#new', :via => :get
     match '/contact' => 'contacts#create', :via => :post
-    post :system_message, to: 'requests#system_message', as: :system_message
 
 
   concern :reviewable do
@@ -77,7 +68,7 @@ Rails.application.routes.draw do
   post 'transactions/hook' => 'transactions#hook', :to => "transactions_hook"
 
   resources :items,  :concerns => :reviewable, :path => "listings"
-  resources :requests, :path => "shoutouts"
+  resources :requests, :path => "shoutout"
   resources :users
   resources :locations
   resources :transactions

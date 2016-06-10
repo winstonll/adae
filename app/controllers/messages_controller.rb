@@ -4,10 +4,11 @@ class MessagesController < ApplicationController
   before_action :transaction_exists?, only: [:index]
 
   def index
-    #if @messages.length > 10
-    #  @over_ten = true
-    #  @messages = @messages[-10..-1]
-    #end
+
+    if @messages.length > 10
+      @over_ten = true
+      @messages = @messages[-10..-1]
+    end
 
     if @messages.last
       if @messages.last.user_id != current_user.id
@@ -26,37 +27,19 @@ class MessagesController < ApplicationController
   def create
     @conversation = Conversation.find(params[:conversation_id])
     @message = @conversation.messages.new(message_params)
-
     @user = User.find_by(id: @conversation.recipient)
-
     if @message.save
       if @user == current_user
         @user = User.find_by(id: @conversation.sender)
       else
         @user = User.find_by(id: @conversation.recipient)
       end
-
-      my_hash = {:body => @message.body, :time => @message.message_time,
-      :conversation => @message.conversation_id, :user => @message.user_id,
-      :room => "#{@conversation.id}#{@conversation.recipient_id}#{@conversation.sender_id}",
-      :mobile_time => @message.created_at}
-
-      my_hash = JSON.generate(my_hash)
-
-      $redis.publish "message", my_hash
-
-      SendEmailJob.set(wait: 1.seconds).perform_later(@user, @message)
+      ContactMailer.new_message(@user, @message).deliver_now
 
       if params[:message][:item_id]
-        #redirect_to conversation_messages_path(@conversation, item_id: params[:message][:item_id])
+        redirect_to conversation_messages_path(@conversation, item_id: params[:message][:item_id])
       else
-        #redirect_to conversation_messages_path(@conversation)
-      end
-
-      @messages = @conversation.messages.order(:created_at)
-
-      respond_to do |format|
-        format.js
+        redirect_to conversation_messages_path(@conversation)
       end
     end
   end

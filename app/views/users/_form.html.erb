@@ -15,43 +15,40 @@
 	<% end %>
 
 <div class="field-content">
-  	<div class ='field'>
-    	<p> Profile Picture </p>
-    	<%= f.file_field :avatar %>
+  <div class ='field'>
+    <p> Profile Picture </p>
+    <%= f.file_field :avatar %>
 	</div>
+
 	<div class = 'field'>
 		<p> First Name </p>
 		<%= f.text_field :name %>
 	</div>
+
 	<div class ='field'>
-    	<p> Last Name </p>
-  		<%= f.text_field :surname %>
+    <p> Last Name </p>
+  <%= f.text_field :surname %>
 	</div>
-	<div class ='field'>
-		<%= f.label :email %>
-		<%= f.text_field :email %>
-	</div>
+
 	<div class="field">
 		<%= f.label :phone_number %>
 		<%= f.telephone_field :phone_number, :size => 10, :maxlength => 10  %>
 	</div>
+
 	<div class ='field'>
-    	<p> About Me </p>
-  		<%= f.text_area :description %>
+		<%= f.label :email %>
+		<%= f.text_field :email %>
 	</div>
-  <div style="border: 1px solid #BDBDBD; margin: 15px 0px 30px 0px; width: 175px; padding: 10px 15px; border-radius: 5px;">
-    <span style="line-height: normal; color: #7E7E7E;">Enter your current password or type a new one to update.</span>
-  	<div class ='field'>
-  		<%= f.label :password %>
-  		<%= f.password_field :password %>
-  	</div>
-  	<div class ='field'>
-  		<%= f.label :password_confirmation %>
-  		<%= f.password_field :password_confirmation %>
-  	</div>
-  	<div class ='field'>
-      <%= f.submit 'Save & Update', :class => 'update-button' %>
-  	</div>
-  </div>
+	<div class ='field'>
+		<%= f.label :password %>
+		<%= f.password_field :password %>
+	</div>
+	<div class ='field'>
+		<%= f.label :password_confirmation %>
+		<%= f.password_field :password_confirmation %>
+	</div>
+	<div class ='field'>
+    <%= f.submit 'Update Profile', :class => 'update-button' %>
+	</div>
 </div>
 <% end %>

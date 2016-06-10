@@ -7,7 +7,7 @@ Navbar/Landing
   text-align: right;
   margin-right: 50px;
 
-  .signup {
+  .share-item, .share-request, .signup {
     background-color: rgba(0, 0, 0, 0.6);
     border: 1px solid #fff;
     border-radius: 5px;
@@ -43,7 +43,7 @@ Navbar/Landing
 Landing
 */
 #landing{
-  background-image: url(<%= asset_path 'fruit.jpg' %>);
+  background-image: url(<%= asset_path 'landing_bg.jpg' %>);
   background-position: center;
   background-repeat: no-repeat;
   -webkit-background-size: cover;
@@ -52,7 +52,7 @@ Landing
   background-size: cover;
   text-align: center;
   color: #fff;
-  margin-bottom: 3em;
+  margin-bottom: 5em;
 
   #logo{
     height: 72px;
@@ -66,17 +66,13 @@ Landing
     font-weight: bold;
     color: #fff;
     font-size: 45px;
-    margin-bottom: 10px;
   }
   .summary{
-    font-weight: 500;
+    font-weight: 400;
     font-size: 20px;
+    line-height: 1.3;
     margin-top: -1em;
-    padding-bottom: 10px;
-    line-height: normal;
-    width: 370px;
-    margin: 0 auto;
-    display: table;
+    padding-bottom: 5px;
   }
 
   .coming-soon{
@@ -86,20 +82,19 @@ Landing
   }
 
   .explore{
-    width: 250px;
-    height: 40px;
+    width: 150px;
+    height: 38px;
     border: 1px solid #fff;
     border-radius: 4px;
     cursor: pointer;
     color: #fff;
     background: rgba(000, 000, 000, 0.5);
-    font-size: 17px;
+    font-size: 16px;
     font-weight: 300;
-    margin-bottom: 90px;
-    margin-top: 15px;
+    margin-bottom: 20px;
     &:hover{
       color: #fff;
-      background-color: #7ED321;
+      background-color: #419bf9;
       transition: all .4s ease-in-out;
     }
   }
@@ -231,8 +226,7 @@ Landing
 	height: 100%;
 	background-color: #F2F2F2;
   display: inline-block;
-	padding-bottom: 2em;
-  padding-top: 2em;
+	padding-bottom: 5em;
 
 	#title{
 		color: #4a4a4a;
@@ -260,23 +254,17 @@ Landing
     width: 1000px;
     margin-top: -12em;
 
-    .mobile-preview{
-      transform: scale(0.8);
-      position: relative;
-      margin-top: 7em;
-    }
-
     .app-descriptions{
       float: right;
       width: 565px;
-      margin-top: -47em;
+      margin-top: -45em;
       line-height: normal;
       color: #4a4a4a;
 
       li{
         text-align: left;
         margin-bottom: 25px;
-        text-indent: -17px;
+        text-indent: -18px;
         .star{
           color: #419bf9;
         }
@@ -316,386 +304,73 @@ Landing
 		margin: 0 auto;
 		padding-left: 6%;
 		width: 85%;
-
-    .square {
-      display: inline-block;
-      width: 20%;
-      padding-top: 20%;
-      margin:1.5%;
-      background-color:#1E1E1E;
-    }
-
-    .bg{
-      background-position:center center;
-      background-repeat:no-repeat;
-      background-size:cover; /* you change this to "contain" if you don't want the images to be cropped */
-    }
-
-    .img1{
-      background-image: url('<%= asset_path 'u of t.jpg' %>');
-      &:hover {
-        #background-image: url('<%= asset_path 'coming-soon.png' %>');
-          }
-    }
-    .img2{
-      background-image: url('<%= asset_path 'harbourfront.jpg'%>');
-      &:hover {
-        #background-image: url('<%= asset_path 'coming-soon.png' %>');
-          }
-    }
-    .img3{
-      background-image: url('<%= asset_path 'discovery.jpg'%>');
-      &:hover {
-        #background-image: url('<%= asset_path 'coming-soon.png' %>');
-          }
-    }
-
-    .img4{
-      background-image: url('<%= asset_path 'dundas & yonge.jpg'%>');
-      &:hover {
-        #background-image: url('<%= asset_path 'coming-soon.png' %>');
-          }
-    }
-
-    .img5{
-      background-image: url('<%= asset_path 'annex.jpg'%>');
-      &:hover {
-        #background-image: url('<%= asset_path 'coming-soon.png' %>');
-          }
-    }
-
-    .img6{
-      background-image: url('<%= asset_path 'yorkville.jpg'%>');
-      &:hover {
-        #background-image: url('<%= asset_path 'coming-soon.png' %>');
-          }
-    }
-
-    .img7{
-      background-image: url('<%= asset_path 'distillery.jpg'%>');
-      &:hover {
-        #background-image: url('<%= asset_path 'coming-soon.png' %>');
-          }
-    }
-
-    .img8{
-      background-image: url('<%= asset_path 'dufferin.jpg'%>');
-      &:hover {
-        #background-image: url('<%= asset_path 'coming-soon.png' %>');
-          }
-    }
 	}
-}
 
-@media screen and (min-width: 320px) and (max-width: 768px){
+	.square {
+    display: inline-block;
+    width: 20%;
+    padding-top: 20%;
+    margin:1.5%;
+    background-color:#1E1E1E;
+	}
 
-  .navlanding {
-    top: 30px;
-    text-align: right;
-    display: table;
-    margin: 0 auto;
-    .signup {
-      background-color: rgba(0, 0, 0, 0.6);
-      border: 1px solid #fff;
-      border-radius: 5px;
-      font-size: 14px;
-      padding: 9px 14px 9px 14px;
-      color: #fff;
-      margin-left: 10px;
+	.bg{
+	    background-position:center center;
+	    background-repeat:no-repeat;
+	    background-size:cover; /* you change this to "contain" if you don't want the images to be cropped */
+	}
 
-      &:hover{
-        color: #fff;
-        background-color: #000;
-        transition: all .4s ease-in-out;
-      }
-    }
+	.img1{
+	    background-image: url('<%= asset_path 'u of t.jpg' %>');
+			&:hover {
+				background-image: url('<%= asset_path 'coming-soon.png' %>');
+	      }
+	}
+	.img2{
+	    background-image: url('<%= asset_path 'harbourfront.jpg'%>');
+			&:hover {
+				background-image: url('<%= asset_path 'coming-soon.png' %>');
+	      }
+	}
+	.img3{
+	    background-image: url('<%= asset_path 'discovery.jpg'%>');
+			&:hover {
+				background-image: url('<%= asset_path 'coming-soon.png' %>');
+	      }
+	}
 
-    .faq {
-      background-color: #7ED321;
-      border-radius: 5px;
-      font-size: 14px;
-      padding: 9px 30px 9px 30px;
-      color: #fff;
-    }
+	.img4{
+	    background-image: url('<%= asset_path 'dundas & yonge.jpg'%>');
+			&:hover {
+				background-image: url('<%= asset_path 'coming-soon.png' %>');
+	      }
+	}
 
-    .login {
-      font-size: 14px;
-      padding: 9px 12px 9px 12px;
-      color: #fff;
-    }
-  }
+	.img5{
+	    background-image: url('<%= asset_path 'annex.jpg'%>');
+			&:hover {
+				background-image: url('<%= asset_path 'coming-soon.png' %>');
+	      }
+	}
 
+	.img6{
+	    background-image: url('<%= asset_path 'yorkville.jpg'%>');
+			&:hover {
+				background-image: url('<%= asset_path 'coming-soon.png' %>');
+	      }
+	}
 
-  /*
-  Landing
-  */
-  #landing{
-    background-image: url(<%= asset_path 'fruit.jpg' %>);
-    background-position: center;
-    background-repeat: no-repeat;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-    text-align: center;
-    color: #fff;
-    margin-bottom: 5em;
+	.img7{
+	    background-image: url('<%= asset_path 'distillery.jpg'%>');
+			&:hover {
+				background-image: url('<%= asset_path 'coming-soon.png' %>');
+	      }
+	}
 
-    #logo{
-      height: 85px;
-      width: auto;
-      margin-top: 5em;
-  		margin-bottom: -1em;
-  		text-align: center;
-    }
-
-    #welcome{
-      font-weight: bold;
-      color: #fff;
-      font-size: 45px;
-    }
-    .summary{
-      font-weight: 400;
-      font-size: 20px;
-      line-height: 1.3;
-      margin-top: -1em;
-      padding-bottom: 10px;
-      line-height: normal;
-      width: 98%;
-      margin: 0 auto;
-      display: table;
-    }
-
-    .coming-soon{
-      height:40px;
-      width:auto;
-      padding-bottom: 20px;
-    }
-
-    .explore{
-      width: 80%;
-      height: 38px;
-      border: 1px solid #fff;
-      border-radius: 4px;
-      cursor: pointer;
-      color: #fff;
-      background: rgba(000, 000, 000, 0.5);
-      font-size: 17px;
-      font-weight: 300;
-      margin-bottom: 10px;
-      &:hover{
-        color: #fff;
-        background-color: #7ED321;
-        transition: all .4s ease-in-out;
-      }
-    }
-
-    #search-field {
-      background-color: rgba(0,0,0,0.70);
-      height: 100px;
-      margin-top: 2em;
-
-      .search-bar {
-        position: relative;
-        top: 25px;
-        display: block;
-
-        .search-field-placeholder{
-          font-size: 13px;
-          padding-left: 10px;
-        }
-
-        #search-form {
-        	width: 60%;
-        	height: 50px;
-          background-color: #fff;
-          border-radius: 3px 0px 0px 3px;
-          border:none;
-        }
-      }
-
-      .search-bar-label {
-        background-color: #419BF9;
-        color: #fff;
-       	display: inline-block;
-       	font-size: 18px;
-      	font-weight: 400;
-      	margin-left: -.25em;
-        height: 52px;
-        width: 50px;
-        border-radius: 0px 3px 3px 0px;
-        border: none;
-        cursor: pointer;
-      }
-    }
-  }
-  .how-it-works-toggle {
-    display:none;
-    margin-top: 5em;
-
-  }
-  #key-points-container, .how-it-works-container{
-      width: 100%;
-      background-color: #fff;
-      text-align: center;
-      display: inline-block;
-
-      .how-it-works-header {
-        color: #4a4a4a;
-        font-weight: 600;
-        font-size: 20px;
-  			text-align: center;
-  			padding-bottom: 50px;
-  			width: 100%
-      }
-
-      .key-points-section {
-        width: 100%;
-        display: inline-block;
-        vertical-align: top;
-        padding-bottom: 40px;
-  			font-family: avenir next;
-
-        .key-points-header {
-          font-size: 22px;
-  				margin-bottom: -20px;
-  				color: #4a4a4a;
-  	      font-weight: 600;
-        }
-
-        .key-points-logo {
-  				margin-bottom: -1em;
-        }
-
-        .discover-logo {
-  				margin-bottom: -1em;
-        }
-
-        .key-points-summary {
-          font-weight: 400;
-          text-align: left;
-          font-size: 15px;
-          line-height: 1.3;
-  				padding:30px;
-  				padding-left: 50px;
-  				margin-bottom: -2em;
-        }
-
-  			.how-it-works-summary {
-          font-weight: 400;
-          text-align: left;
-          font-size: 15px;
-          line-height: 1.3;
-  				padding:30px;
-  				padding-left: 50px;
-  				text-indent: -18px;
-        }
-      }
-    }
-
-    .how-it-works {
-      display: block;
-      margin: 0 auto;
-      padding: 10px;
-      border: none;
-      background-color: #7ED321;
-      color: #fff;
-      font-size: 15px;
-      border-radius: 4px;
-      font-family: 'Avenir Next', sans-serif;
-      cursor: pointer;
-  		margin-bottom: 3em;
-      &:hover {
-          background-color: #52D321;
-        }
-    }
-
-  .explore-container{
-  	width:100%;
-  	background-color: #F2F2F2;
-    display: block;
-  	padding-bottom: 5em;
-    display: none;
-
-  	#title{
-  		color: #4a4a4a;
-  		font-weight: 400;
-  		font-size: 18px;
-  		text-align: center;
-  		padding-top: 30px;
-      width: 100%;
-      margin: 0 auto;
-      line-height: normal;
-
-      #secure{
-        color: #419bf9;
-        font-weight: 500;
-
-        &:hover{
-          color: #1E86F2;
-        }
-      }
-  	}
-
-    .app-info{
-      display: table;
-      margin: 0 auto;
-      width: 100%;
-      margin-top: -12em;
-      display: none;
-
-      .mobile-preview{
-        transform: scale(0.6);
-        width: 100%;
-        margin-top: 6em;
-      }
-
-
-      .app-descriptions{
-        width: 100%;
-        line-height: normal;
-        color: #4a4a4a;
-        margin-top: -2em;
-
-        li{
-          width: 100%;
-          text-align: left;
-          margin-bottom: 25px;
-          text-indent: -18px;
-          .star{
-            color: #419bf9;
-          }
-        }
-
-        #app-title{
-          color: #419bf9;
-          font-size: 24px;
-          display: none;
-        }
-
-        #arrow{
-          display: none;
-        }
-
-        button{
-          display: table;
-          margin: 0 auto;
-          width: 250px;
-          height: 50px;
-          border: 1px solid #419bf9;
-          border-radius: 4px;
-          cursor: pointer;
-          color: #4a4a4a;
-          background-color: #fff;
-          font-size: 18px;
-          font-weight: 500;
-          &:hover{
-            color: #fff;
-            background-color: #419bf9;
-            transition: all .3s ease-in-out;
-          }
-        }
-      }
-    }
-  }
+	.img8{
+	    background-image: url('<%= asset_path 'dufferin.jpg'%>');
+			&:hover {
+				background-image: url('<%= asset_path 'coming-soon.png' %>');
+	      }
+	}
 }

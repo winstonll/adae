@@ -3,7 +3,7 @@
 
     <div id="comment">
       <%= link_to image_tag(review.user.avatar.url(:med), class:"avatar"), user_path(review.user) %>
-      <p id="review-comment"><%= review.comment %></p>
+      <p><%= review.comment %></p>
     </div>
 
     <div class="poster">

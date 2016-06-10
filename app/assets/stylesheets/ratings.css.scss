@@ -57,34 +57,3 @@ body{
     color: #fff;
   }
 }
-
-@media screen and (min-width: 320px) and (max-width: 768px){
-  .rating-title{
-    background-color: #fff;
-    line-height: normal;
-    padding: 0px;
-    width: 100%;
-
-
-      h1{
-        background-color: #fff;
-        padding: 15px 0px 10px 0px;
-        font-weight: 600;
-        font-size: 20px;
-        color: #419bf9;
-        width: 100%;
-        margin: 0 auto;
-        display: table;
-        text-align: center;
-        line-height: normal;
-      }
-    }
-
-    h4{
-      line-height: normal;
-    }
-
-    .rating-button{
-      width: 280px;
-    }
-  }

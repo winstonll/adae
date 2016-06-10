@@ -11,6 +11,7 @@ body{
     display: table;
     margin: 0 auto;
     width: 650px;
+    height: 80px;
     margin-bottom: 10px;
   }
   .inbox-img {
@@ -29,7 +30,6 @@ body{
 
   .listings{
     list-style: none;
-    padding-bottom: 50px;
 
     .user-avatar-container {
       display: inline-block;
@@ -40,8 +40,6 @@ body{
         height: 60px;
         width: 60px;
         border-radius: 50%;
-        object-fit: cover;
-        object-position: center;
       }
     }
 
@@ -58,14 +56,17 @@ body{
     }
 
     #item_description {
-      width: 100%;
+      width: 400px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
       margin-top: 5px;
     }
 
     .item-accept-deny-buttons{
       float:right;
       margin-right: 10px;
-      margin-top: 16px;
+      margin-top: 25px;
 
       .reply-transaction{
         border: 1px solid #419bf9;
@@ -93,103 +94,4 @@ body{
   border-radius: 5px;
   border: 1px solid #cacaca;
   color: #4a4a4a;
-}
-
-@media screen and (min-width: 320px) and (max-width: 768px){
-  .message-list{
-    margin-top: 3em;
-    width: 99%;
-    .message{
-      border: 1px solid #979797;
-      border-radius: 3px;
-      background-color: #fff;
-      display: table;
-      margin: 0 auto;
-      width: 99% !important;
-      margin-bottom: 10px;
-    }
-    .inbox-img {
-      float: left;
-      width: 100px;
-      height: 100px;
-      margin-right: 20px;
-      display: none;
-
-      img {
-        width: 100px;
-        height: 100px;
-        object-fit: cover;
-        object-position: center;
-        display: none;
-      }
-    }
-
-    .listings{
-      list-style: none;
-      margin-left: 5%;
-      padding-bottom: 50px;
-
-      .user-avatar-container {
-        display: inline-block;
-        margin-right: 15px;
-
-        .user-avatar{
-          height: 40px;
-          width: 40px;
-          border-radius: 50%;
-          object-fit: cover;
-          object-position: center;
-        }
-      }
-
-      .item-detail{
-        text-align: left !important;
-        line-height: normal;
-        color: #4a4a4a;
-        font-size: 15px;
-      }
-
-      #item-title {
-        font-weight: 600;
-        width: 80%;
-      }
-
-      #item_description {
-        width: 80%;
-        margin-left: 55px;
-      }
-
-      .item-accept-deny-buttons{
-        margin-right: 10px;
-        margin-top: 15px;
-
-
-        .reply-transaction{
-          border: 1px solid #419bf9;
-          border-radius: 5px;
-          color: #419bf9;
-          font-size: 16px;
-          padding: 6px 30px 6px;
-          &:hover{
-            background-color: #419bf9;
-            color: #fff;
-            transition: all .3s ease-in-out;
-          }
-        }
-      }
-    }
-  }
-
-  #no-convo{
-    margin-top: 120px !important;
-    background-color: #fff;
-    width: 80%;
-    margin: 0 auto;
-    display: table;
-    padding: 25px;
-    border-radius: 5px;
-    border: 1px solid #cacaca;
-    color: #4a4a4a;
-    line-height: normal;
-  }
 }
