@@ -71,7 +71,7 @@
       <p id="user-name"><%=User.find_by(id: @conversation.sender_id).name %></p>
       <p><%= image_tag(User.find_by(id: @conversation.sender_id).avatar.url(:med), class:"avatar") %></p>
     <% end %>
-    <p> Email Address: <span style="font-weight: 600;">Verified</span> <span style="color: #39DC12;">&#10003;</span></p>
+    <!--<p> Email Address: <span style="font-weight: 600;">Verified</span> <span style="color: #39DC12;">&#10003;</span></p>-->
   </div>
   </div>
 
@@ -159,8 +159,7 @@
         <div class="helpful-tip">
           <p id="seller">Your Credit or Debit Card will be charged once your
                 request has been accepted.
-                Don’t worry, your money will NOT be sent to
-                the other party until you both meet up and scan the in-app QR code.</p>
+          </p>
         </div>
       <% end %>
     </div>
