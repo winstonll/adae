@@ -144,16 +144,16 @@ $(document).ready(function() {
     </div>
 
   <% if signed_in? %>
-    <div class="balance-display" data-step="3" data-intro="This is your balance and you have $<%= current_user.balance %> right now. </br></br> Post a Service & start making money!" data-position="right">
+    <!--<div class="balance-display" data-step="3" data-intro="This is your balance and you have $<%#= current_user.balance %> right now. </br></br> Post a Service & start making money!" data-position="right">
       <span class="balance" onclick="$('.balancedropdown').slideToggle();"> Balance </span>
       <div class="balancedropdown">
-        <p id="user_balance"> $ <%= current_user.balance %> </p>
+        <p id="user_balance"> $ <%#= current_user.balance %> </p>
         <div class="wrapper">
     			What's This?
     			<div class="tooltip">This is the amount you have in your Adae balance. Use it as credit in your payments!</div>
     		</div>
       </div>
-    </div>
+    </div>-->
   <% end %>
     <div class="requestnav" data-step="5" data-intro="Looking for something?<br> We can help you find it. <br> Post a Shout Out!" data-position="right">
       <% if signed_in? %>
