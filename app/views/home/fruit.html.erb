@@ -1,0 +1,136 @@
+<%= stylesheet_link_tag "landing" %>
+<%= stylesheet_link_tag "modals" %>
+<div class="signup-modal"></div>
+<div class="signin-modal"></div>
+
+<title>adae - Share what you have, get what you want.</title>
+
+<div id="landing">
+  <div class="navlanding">
+    <!-- <a class="faq" href="/faq">FAQ</a> -->
+    <% unless signed_in? %>
+      <%= link_to 'Sign Up', {remote: true, controller: "home", action: "signup_modal"}, id: "nav-signup-btn", class: "signup" %>
+      <%= link_to 'Log In', {remote: true, controller: "home", action: "signin_modal"}, id: "nav-signin-btn", class: "login" %>
+    <% end %>
+  </div>
+	<div id="landing-container">
+		<div class="logo-name-container">
+			<%= image_tag "logo-lg-white.png", id: "logo" %>
+			<h1 id="welcome">A Delicious Assortment Everydae</h1>
+		</div>
+		<div id="summary-container">
+			<p class="summary">We purchase & deliver fruit in bulk to offer you delicious value and variety!</p>
+		</div>
+    <!--<div class="coming-soon">
+      <a target="_blank" href="https://itunes.apple.com/ca/app/adae/id1084039853?mt=8"><%= image_tag "App-Store.png", class: "coming-soon" %></a>
+      <a target="_blank" href="https://play.google.com/store/apps/details?id=com.adae.justinelee.adaecompanion&hl=en"><%= image_tag "Play-Store.png", class: "coming-soon" %></a>
+    </div>-->
+
+    <a href="/listings/121"><button class="explore">Buy Fruits</button></a>
+ </div>
+</div>
+
+<div id="key-points-container">
+		<div class="key-points-section">
+			<%= image_tag("fruitbox.png") %>
+			<h4 class="key-points-header">Select your craving</h4>
+			<p class="key-points-summary">
+        		Choose the box size that best suits your fruit cravings!
+        		We adjust to your schedule by offering a subscription service.
+        	</p>
+		</div>
+		<div class="key-points-section">
+			<%= image_tag("meeting.png", size: "90x90") %>
+			<h4 class="key-points-header">For delivery</h4>
+			<p class="key-points-summary">
+				Tell us when and a fruit ninja will deliver your fruit craving straight to your door!
+        	</p>
+		</div>
+		<div class="key-points-section">
+			<%= image_tag("money_transfer.png", size: "90x90") %>
+			<h4 class="key-points-header">Quick & Easy</h4>
+			<p class="key-points-summary">
+        		Never worry about payment hassle again!
+        	</p>
+		</div>
+</div>
+
+<button class="how-it-works" onclick="$('.how-it-works-toggle').slideToggle();">How It Works</button>
+
+<div class="how-it-works-toggle">
+  	<div class="how-it-works-container">
+      <h3 class="how-it-works-header">Fulfill you fruit cravings:</h3>
+  		<div class="key-points-section">
+  			<%= image_tag("tails.png", size: "55x55", class: "discover-logo") %>
+  			<p class="how-it-works-summary">
+          <strong>1.</strong>Selecting what you want and when you want it.
+  		</div>
+  		<div class="key-points-section">
+  			<%= image_tag("checkout_price_tag_usd.png", size: "60x50", class: "key-points-logo")%>
+  			<p class="how-it-works-summary">
+          		<strong>2.</strong> Check-Out: Request your fruit subscription.
+          	</p>
+  		</div>
+  		<div class="key-points-section">
+  			<%= image_tag("stripe.png", size: "60x55", class: "key-points-logo") %>
+  			<p class="how-it-works-summary">
+          <strong>3.</strong> Pay with a debit or credit-card securely via <a target="_blank" href="https://stripe.com/gallery" style="color: #41B6F9;">Stripe</a>, no need to carry cash.
+  				</p>
+  		</div>
+	</div>
+	<div class="how-it-works-container">
+  		<div class="key-points-section">
+  			<%= image_tag("contact.png", size: "45", class: "key-points-logo") %>
+  			<p class="how-it-works-summary">
+          	  We are always happy to help and resovle any issue you may have to the best of our abilities.
+  			</p>
+  		</div>
+	</div>
+</div>
+<div class="explore-container">
+  <div class="square-content">
+  	<div class="square bg img1">
+
+  	</div>
+
+  	<div class="square bg img2">
+
+  	</div>
+
+  	<div class="square bg img3">
+
+  	</div>
+
+  	<div class="square bg img4">
+
+  	</div>
+
+  	<div class="square bg img5">
+
+  	</div>
+
+  	<div class="square bg img6">
+
+  	</div>
+
+  	<div class="square bg img7">
+
+  	</div>
+
+  	<div class="square bg img8">
+
+  	</div>
+  </div>
+</div>
+
+<!-- Google analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-78544137-1', 'auto');
+  ga('send', 'pageview');
+
+</script>

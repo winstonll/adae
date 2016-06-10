@@ -3,6 +3,7 @@ class User < ActiveRecord::Base
 	has_many :reviews
 	has_many :ratings
 	has_many :items
+	has_many :requests
 	has_many :items_reviewed, through: :reviews, source: :items
 	has_many :items_rated, through: :ratings, source: :items
 	has_many :referrals
@@ -13,7 +14,8 @@ class User < ActiveRecord::Base
 	accepts_nested_attributes_for :location
 
 	devise :database_authenticatable, :registerable, :confirmable,
-       :recoverable, :rememberable, :trackable, :validatable
+       :recoverable, :rememberable, :trackable, :validatable,
+			 :omniauthable, :omniauth_providers => [:facebook]
 
 	before_create :ensure_authentication_token
 
@@ -21,8 +23,58 @@ class User < ActiveRecord::Base
     attachment_content_type: { content_type: /\Aimage\/.*\Z/ },
     attachment_size: { less_than: 5.megabytes }
 
-	has_attached_file :avatar, styles: { small: "40x40", med: "120x120", large: "200x200" },
+	has_attached_file :avatar, styles: { small: "120x120", med: "240x240", large: "400x400" },
 			:default_url => "/paperclip/default/default_avatar_:style.png"
+
+	def self.from_omniauth(auth)
+		where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
+			user.skip_confirmation!
+
+			user.email = auth.info.email
+			@pass = Devise.friendly_token[0,20]
+			user.password = @pass
+
+			name = auth.info.name.split(" ")
+
+			# split name into first name and surname
+			user.name = name.first
+			user.surname = name.second
+
+			# create user avatar from facebook profile image
+			user.photo_url = auth.info.image
+			user.update( avatar: process_uri(auth.info.image))
+
+			@user = user
+
+			# Send email reminding user to change their randomly generated password
+			ChangePasswordEmailJob.set(wait: 1.seconds).perform_later(@user, @pass)
+
+			# Send email to winston
+			ContactMailer.signup_message(@user).deliver_now
+
+			# Generate referral code and their location
+			@referral = Referral.new()
+
+      loop do
+        @code=SecureRandom.hex(8).upcase
+        [4,9,14].each do |f|
+          @code.insert(f, "-")
+        end
+  			break @referral.code = @code unless Referral.where(code: @code).first
+  		end
+
+      @referral.amount = 5.00
+      @referral.user_id = @user.id
+      @referral.save
+
+      @location = Location.new(user_id: @user.id, country: "CA", city: "Toronto")
+      @location.save
+		end
+	end
+
+	def self.find_for_facebook_oauth(auth, signed_in_resource=nil)
+    user = User.update( image:process_uri(auth.info.image))
+	end
 
 	def ensure_authentication_token
 		if auth_token.blank?
@@ -62,6 +114,12 @@ class User < ActiveRecord::Base
 	end
 
 	private
+
+	def self.process_uri(uri)
+    avatar_url = URI.parse(uri)
+    avatar_url.scheme = 'https'
+    avatar_url.to_s
+	end
 
 	def generate_authentication_token
 		loop do

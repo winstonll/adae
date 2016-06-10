@@ -14,16 +14,46 @@
   top: 22%;
   right: 40%;
   width: 16.3em;
-  height: 18em;
+  height: 25em;
   margin-right: 30px;
   background-color: #F9F9F9;
   border-radius: 5px;
   border: 1px solid #419bf9;
 
+  #fb-container {
+    display: block;
+    position: relative;
+    top: 25px;
+    text-align: center;
+    margin: 0 auto;
+
+    .fb-icon {
+      position: absolute;
+      width: 11px;
+      height: auto;
+      left: 25px;
+      bottom: -2px;
+    }
+
+    .fb-oauth{
+      background-color: #484FA8;
+      padding: 11px 50px 11px 50px;
+      color: #ffffff;
+      font-size: 15px;
+      border-radius: 2px;
+      -webkit-box-shadow: 1px 1px 4px -1px rgba(0,0,10,1);
+      -moz-box-shadow: 1px 1px 4px -1px rgba(0,0,10,1);
+      box-shadow: 1px 1px 4px -1px rgba(0,0,10,1);
+      &:hover{
+        background-color: #4F57BD;
+        transition: all .3s ease-in-out;
+      }
+    }
+  }
     .signin-form{
       display: table;
       margin: 0 auto;
-      padding-top: 15px;
+      padding-top: 36px;
 
       #user_email, #password{
         height: 40px;
@@ -36,7 +66,7 @@
         color: #4a4a4a;
         padding-left: 0.75em;
         padding-right: .5em;
-        border: 1px solid #929292;
+        border: 1px solid #b6b6b6;
         margin-bottom: .6em;
       }
 
@@ -134,7 +164,7 @@
 
 #shareSignupModal {
   position: fixed;
-  top: 10%;
+  top: 20%;
   bottom:10%;
   right:25%;
   left:25%;
@@ -143,10 +173,41 @@
   z-index: 2;
   opacity: 1;
   background-color: #F9F9F9;
-  width: 16.3em;
+  width: 17em;
   height: 28.5em;
   border-radius: 5px;
   border: 1px solid #419bf9;
+
+  #fb-container {
+    display: block;
+    position: relative;
+    top: 25px;
+    text-align: center;
+    margin: 0 auto;
+
+    .fb-icon {
+      position: absolute;
+      width: 11px;
+      height: auto;
+      left: 25px;
+      bottom: -2px;
+    }
+
+    .fb-oauth{
+      background-color: #484FA8;
+      padding: 11px 49px 11px 49px;
+      color: #ffffff;
+      font-size: 15px;
+      border-radius: 2px;
+      -webkit-box-shadow: 1px 1px 4px -1px rgba(0,0,10,1);
+      -moz-box-shadow: 1px 1px 4px -1px rgba(0,0,10,1);
+      box-shadow: 1px 1px 4px -1px rgba(0,0,10,1);
+      &:hover{
+        background-color: #4F57BD;
+        transition: all .3s ease-in-out;
+      }
+    }
+  }
 
   #username-output{
     font-weight: 400;
@@ -171,7 +232,7 @@
 
             .input-box{
               height: 40px;
-              width: 225px;
+              width: 234px;
               margin: auto;
               font-size: 15px;
               font-weight: normal;
@@ -180,7 +241,7 @@
               color: #4a4a4a;
               padding-left: 0.75em;
               padding-right: .5em;
-              border: 1px solid #929292;
+              border: 1px solid #B6B6B6;
             }
 
             #promo{
@@ -264,7 +325,7 @@
           text-align: center;
 
           .signup-button {
-            padding: 13px 96px;
+            padding: 13px 101px;
             background-color: #419bf9;
             color: #fff;
             border-radius: 3px;
@@ -372,6 +433,10 @@
         text-indent: -17px;
         font-weight: 500;
         color: #1E1E1E;
+
+        .heading{
+          font-weight: 600;
+        }
 
         li{
           text-align: left;
@@ -505,5 +570,37 @@
         }
       }
     }
+  }
+}
+
+@media screen and (min-width: 320px) and (max-width: 768px){
+  #shareSignupModal {
+    position: fixed;
+    top: 15%;
+    bottom:10%;
+    right:15%;
+    left:12%;
+    display: table;
+    margin: auto;
+    z-index: 2;
+    opacity: 1;
+  }
+  #shareSigninModal {
+    position: fixed;
+    margin: 0 auto;
+    opacity: 1;
+    z-index: 2;
+    top: 22%;
+    right: 5%;
+    width: 16.3em;
+    height: 18em;
+    margin-right: 30px;
+  }
+  #shareCompanionModal {
+    display: none !important;
+  }
+
+  .modal-backdrop{
+    display: none !important;
   }
 }

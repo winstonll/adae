@@ -12,7 +12,7 @@
   <%= form_for @contact, :url => url_for(:controller => 'contacts', :action => 'new') do |f| %>
     <div class="issue-section">
       <h4> Reason for Contacting </h4>
-      <%= f.select :subject, [["Refund"],["Cancel Transaction"],["Resolving a Dispute"],["Suggestions"],["General Inquiries"]]%>
+      <%= f.select :subject, [["Cancel Transaction"], ["I need help making a post"],["Refund"],["Resolving a Dispute"],["Suggestions"],["General Inquiries"]]%>
     </div>
 
     <div>
@@ -33,4 +33,3 @@
     </div>
 <% end %>
 </div>
-

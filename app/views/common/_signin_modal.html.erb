@@ -1,13 +1,24 @@
 <script>
 $(document).click(function (e) {
     var signin = $('#shareSigninModal');
+    var backdrop = $('.modal-backdrop');
 
     //if the target of the click isn't the modal...
-    if (!signin.is(e.target)&& signin.has(e.target).length === 0) { signin.modal('hide'); }
+    if (!signin.is(e.target)&& signin.has(e.target).length === 0) { signin.modal('hide'); backdrop.fadeOut(); }
 });
 </script>
 
 <div id="shareSigninModal" tabindex="-1" role="dialog" aria-labelledby="shareSigninModal" aria-hidden="true">
+
+      <div id="fb-container">
+        <%= image_tag "fb_letter.png", class: "fb-icon" %>
+        <%= link_to "Log In with Facebook", user_omniauth_authorize_path(:facebook), class: "fb-oauth" %>
+      </div>
+
+      <hr align="left" width="100px" style="position: relative; top: 50px; left: 10px; height:1px; border:none;color:#C2C2C2; background-color:#C2C2C2;">
+      <div style="text-align: center; color: #B6B6B6; position: relative; top: 42px; margin-top: -10px;">or</div>
+      <hr align="right" width="100px" style="position: relative; top: 27px; right: 10px; height:1px; border:none;color:#C2C2C2; background-color:#C2C2C2;">
+
       <div class="signin-form">
         <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
           <div class="field">
@@ -26,7 +37,7 @@ $(document).click(function (e) {
           <% end -%>
 
           <div id="signin-start">
-            <%= f.submit "Log in", class: "login-button" %>
+            <%= f.submit "Log In", class: "login-button" %>
           </div>
 
           <div id="divider"></div>
