@@ -256,7 +256,7 @@
 	<!-- List of Reviews for all users -->
   <div class="review-list">
     <div class="review-content">
-      <div class="item-reviews">Reviews for: <%= @item.title %></div>
+      <div class="item-reviews">What People Say About Us:</div>
       <% if @item.reviews.exists? %>
         <%= render @item.reviews.order("created_at DESC") %>
       <% else %>
