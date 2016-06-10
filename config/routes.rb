@@ -35,7 +35,8 @@ Rails.application.routes.draw do
     resources :messages
   end
 
-  root 'home#landing'
+  #root 'home#landing'
+  root 'items#show', :id => '121'
 
   get 'search' => "search#search"
   get 'cancel' => 'transactions#cancel'
