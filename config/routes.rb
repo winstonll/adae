@@ -35,7 +35,7 @@ Rails.application.routes.draw do
     resources :messages
   end
 
-  root 'home#landing'
+  root 'home#fruit'
 
   get 'search' => "search#search"
   get 'cancel' => 'transactions#cancel'

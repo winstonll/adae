@@ -26,7 +26,7 @@
   <% content_for :head do %>
     <meta property="fb:app_id" content="896455457041729" />
     <meta property="og:type"   content="website" />
-    <meta property="og:url"    content="https://adae.co" />
+    <meta property="og:url"    content="https://www.adae.co" />
     <meta property="og:title"  content="Adae" />
     <meta property="og:image"  content="https://adae.co<%= image_path('OG_logo.png') %>" />
   <% end %>
@@ -79,7 +79,7 @@
   </header>
 
   <body>
-    <%= render partial: "common/navbar" unless current_page?(root_path) %>
+    <%= render partial: "common/navbar" unless current_page?(root_path)%>
     <div class="page-wrap">
     <%= yield %>
     </div>
