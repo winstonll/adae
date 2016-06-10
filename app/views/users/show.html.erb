@@ -129,7 +129,7 @@
 		<% end %>
 	</div>
 
-	<div class="shoutout-container">
+	<!-- <div class="shoutout-container">
 		<div id="shoutout-heading">My Shoutouts </div>
 		<% if @user.requests.present? %>
 			<% @user.requests.each do |request| %>
@@ -154,7 +154,7 @@
 				<p><b> <%= link_to 'Create a shoutout now!', new_request_path, style:"color: #419bf9"%></b></p>
 			</div>
 		<% end %>
-	</div>
+	</div> -->
 
 	<div class="ref-code">
 			<p>Referral Code</p>
@@ -165,15 +165,15 @@
 		</span>
 
 	</div>
-
+<!-- 
 	<div class="account-balance-section">
 		<div id="account-balance">
 			<p>Account Balance</p>
 			<p id="balance"> $ <%= @user.balance %> </p>
 		</div>
-	</div>
+	</div> -->
 
-	<h4 id="mail-cheque-heading"> Cash Out Options </h4>
+	<!-- <h4 id="mail-cheque-heading"> Cash Out Options </h4>
 
 	<div class="mail-cheque-section">
 			<p id="title">Mailed Cheque</p>
@@ -188,8 +188,8 @@
 			    </div>
 		    <% end %>
 		</div>
-	</div>
-	<div class="payment-settings">
+	</div> -->
+	<!-- <div class="payment-settings">
 		<% if signed_in? %>
 		<span class="personal_purchases"><%#= link_to "Personal Purchase History", trx_orders_list_personal_purchases_path %></span>
 		<p> Direct Deposit</p>
@@ -199,7 +199,7 @@
 		<span class="orders"><%#= link_to "Order Requests", items_orders_path %></span>
 		<span class="accepted_orders"><%#= link_to "Accepted Orders", items_accepted_orders_path %></span>
 		<% end %>
-	</div>
+	</div> -->
 </div>
 
 <div class="user-ratings">
