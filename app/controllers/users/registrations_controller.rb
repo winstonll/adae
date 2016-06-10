@@ -42,7 +42,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
       @location.save
 
       session[:user_id] = @user.id
-      redirect_to items_path, notice: "Signed up! A message with a confirmation link has been sent to your email. Please follow that link to activate your account!"
+      redirect_to root_path, notice: "Signed up! A message with a confirmation link has been sent to your email. Please follow that link to activate your account!"
     else
       redirect_to :back, notice: "This account is already taken"
     end
