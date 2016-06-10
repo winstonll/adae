@@ -79,7 +79,7 @@
   </header>
 
   <body>
-    <%= render partial: "common/navbar" %> <!-- unless current_page?(root_path) -->
+    <%= render partial: "common/navbar" unless current_page?(root_path)%>
     <div class="page-wrap">
     <%= yield %>
     </div>
