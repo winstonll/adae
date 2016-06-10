@@ -184,8 +184,8 @@
     </div>
 
     <div class="item-title-and-user">
-      <div class="item-detail-title"><!--<%= @item.title %>--></div>
       <% if current_page?('adae.co/listings/121') %>
+        <div class="item-detail-title"><%= @item.title %></div>
         <div class="item-detail-username"><%= @item.user.full_name%>
           <%= link_to image_tag(@item.user.avatar.url(:med), class:"avatar"), user_path(@item.user) %>
         </div>
