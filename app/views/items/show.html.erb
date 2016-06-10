@@ -184,7 +184,7 @@
     </div>
 
     <div class="item-title-and-user">
-      <div class="item-detail-title"><%= @item.title %></div>
+      <div class="item-detail-title"><!--<%= @item.title %>--></div>
       <% if current_page?('adae.co/listings/121') %>
         <div class="item-detail-username"><%= @item.user.full_name%>
           <%= link_to image_tag(@item.user.avatar.url(:med), class:"avatar"), user_path(@item.user) %>
@@ -274,7 +274,7 @@
     Why Use Adae?
     <div class="tooltip">
       <ul>
-        <li>&#x2756; <b>Convenience:</b>Instead of spending time picking out and carrying your weekly fruits, have us do the work and deliver to you!</br></br></li>
+        <li>&#x2756; <b>Convenience:</b> Instead of spending time picking out and carrying your weekly fruits, have us do the work and deliver to you!</br></br></li>
         <li>&#x2756; <b>Security:</b> Only when your request is accepted, will your card will be charged. We won't receive your money until the delivery is made.</br><br></li>
         <li>&#x2756; We are always happy to help and try to resolve any problems and issue refunds, whenever necessary.</br><br></li>
       </ul>
