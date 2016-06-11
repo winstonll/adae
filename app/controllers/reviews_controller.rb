@@ -47,8 +47,8 @@ class ReviewsController < ApplicationController
   end
 
   def load_item
-    item = params[:item_id]
-    @item = Item.find(item)
+    item = params[:title]
+    @item = Item.find_by(item)
   end
 
   def load_review

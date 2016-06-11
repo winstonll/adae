@@ -51,7 +51,6 @@ namespace :puma do
 end
 
 namespace :deploy do
-
   desc "Make sure local git is in sync with remote."
   task :check_revision do
     on roles(:app) do
@@ -82,13 +81,6 @@ namespace :deploy do
   after  :finishing,    :compile_assets
   after  :finishing,    :cleanup
   after  :finishing,    :restart
-end
-
-after 'deploy:publishing', 'deploy:restart'
-namespace :deploy do
-  task :restart do
-    invoke 'delayed_job:restart'
-  end
 end
 
 # ps aux | grep puma    # Get puma pid

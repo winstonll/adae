@@ -1,8 +1,5 @@
 
-/*= require jquery-ui
 /*= require toastr
-/*= require introjs
-
 
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure,
@@ -34,9 +31,6 @@ q:before, q:after {
 table {
 	border-collapse: collapse;
 	border-spacing: 0;
-}
-select {
-	border-radius: 4px;
 }
 
 /* STYLESSS*/
@@ -79,7 +73,7 @@ html, body {
 	line-height: normal;
 }
 
-#notice, #success{
+#notice{
 	font-size: 20px;
 	font-weight: 600;
 	color: #419bf9;
@@ -236,6 +230,10 @@ a.account-links {
 
 }
 
+.user-rating {
+
+
+}
 
 .edit-review {
 	display: inline-block;
@@ -259,14 +257,4 @@ EDIT REVIEWS
 
 .edit-review-heading {
 	color: #000000;
-}
-
-@media screen and (min-width: 320px) and (max-width: 768px){
-	.toast-top-center {
-		top: 32px;
-	  left: 41%;
-		line-height: normal;
-		font-size: 17px;
-	}
-
 }

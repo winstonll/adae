@@ -1,10 +1,10 @@
 <script>
   $(document).click(function (e) {
       var signup = $('#shareSignupModal');
-      var backdrop = $('.modal-backdrop');
 
       //if the target of the click isn't the modal...
-      if (!signup.is(e.target)&& signup.has(e.target).length === 0) { signup.modal('hide'); backdrop.fadeOut(); }
+      if (!signup.is(e.target)&& signup.has(e.target).length === 0) { signup.modal('hide'); }
+
   });
 
   function validate_signup_form_and_submit(){
@@ -65,15 +65,6 @@
 </script>
 
 <div id="shareSignupModal" tabindex="-1" role="dialog" aria-labelledby="shareSignupModal" aria-hidden="true">
-
-  <div id="fb-container">
-    <%= image_tag "fb_letter.png", class: "fb-icon" %>
-    <%= link_to "Sign Up with Facebook", user_omniauth_authorize_path(:facebook), class: "fb-oauth" %>
-  </div>
-
-  <hr align="left" width="100px" style="position: relative; top: 50px; left: 10px; height:1px; border:none;color:#C2C2C2; background-color:#C2C2C2;">
-  <div style="text-align: center; color: #B6B6B6; position: relative; top: 42px; margin-top: -10px">or</div>
-  <hr align="right" width="100px" style="position: relative; top: 27px; right: 10px; height:1px; border:none;color:#C2C2C2; background-color:#C2C2C2;">
 
     <div class="share-modal-content-container">
       <div class="signup-form">

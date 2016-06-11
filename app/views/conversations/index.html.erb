@@ -1,11 +1,9 @@
 <%= stylesheet_link_tag "conversations" %>
-<% if @transactions.present? || @conversations.present? %>
+<% if @transactions.present? %>
 
 <div class="message-list">
   <div class="ui list">
-
-    <!-- Transaction current user is involved in -->
-    <% for i in 0..@transactions.length-1 %>
+    <% for i in 0..@conversations.length-1 %>
 
       <% if @transactions[i] %>
         <% user = User.find(@transactions[i].seller_id) %>
@@ -17,17 +15,17 @@
         <% elsif item.listing_type == 'timeoffer' %>
           <% type = 'Service' %>
         <% elsif item.listing_type == 'lease' %>
-          <% type = 'Service-Product' %>
+          <% type = 'Lease' %>
         <% else item.listing_type == 'rent' %>
           <% type = 'Rental' %>
         <% end %>
 
         <div class="message">
           <div class="inbox-img">
-            <%=link_to image_tag(item.photo_url), item_path(item) %>
-          </div>
+      			<%=link_to image_tag(item.photo_url), item_path(item) %>
+      		</div>
 
-          <li class="listings">
+      		<li class="listings">
             <% if user == current_user %>
             <div class="user-avatar-container"> <%= link_to image_tag(other.avatar(:med), class: "user-avatar"), user_path(user) %> </div>
             <label class="item-detail" id="item-title"> <%= type %> Request from: <%= other.name %> </label>
@@ -35,39 +33,37 @@
             <div class="user-avatar-container"> <%= link_to image_tag(user.avatar(:med), class: "user-avatar"), user_path(user) %> </div>
             <label class="item-detail" id="item-title"> <%= type %> Request to: <%= user.name %> </label>
             <% end %>
-            <label class="item-detail" id="item_description"><%= item.title %></label>
-            <div class="item-accept-deny-buttons">
+            <label class="item-detail" id="item_description"><%= item.description %></label>
+      			<div class="item-accept-deny-buttons">
               <%= link_to 'View', conversations_path(sender_id: @transactions[i].buyer_id,
               recipient_id: @transactions[i].seller_id, item_id: @transactions[i].item_id), method: 'post', class: "reply-transaction"%>
+      		  </div>
+      		</li>
+        </div>
+      <% else %>
+
+        <% @conversations[i].sender_id == current_user.id ? user = User.find(@conversations[i].recipient_id) : user = User.find(@conversations[i].sender_id) %>
+
+        <div class="message">
+          <div class="inbox-img">
+            <%= link_to image_tag(user.avatar(:med), class: "user-avatar"), user_path(user) %>
+          </div>
+
+          <li class="listings">
+            <label class="item-detail" id="item-title"> Conversation with: <%= user.name %> </label>
+
+            <label class="item-detail" id="item_description"><%= if @conversations[i].messages.last then @conversations[i].messages.last.body end %></label> 
+
+            <div class="item-accept-deny-buttons">
+              <%= link_to 'View', conversations_path(sender_id: @conversations[i].sender_id,
+              recipient_id: @conversations[i].recipient_id), method: 'post', class: "reply-transaction"%>
             </div>
           </li>
         </div>
       <% end %>
     <% end %>
-
-    <!-- All raw conversations without any transaction associations -->
-    <% for i in 0..@conversations.length-1 %>
-      <% @conversations[i].sender_id == current_user.id ? user = User.find(@conversations[i].recipient_id) : user = User.find(@conversations[i].sender_id) %>
-
-      <div class="message">
-        <div class="inbox-img">
-          <%= link_to image_tag(user.avatar(:med), class: "user-avatar"), user_path(user) %>
-        </div>
-
-        <li class="listings">
-          <label class="item-detail" id="item-title"> Conversation with: <%= user.name %> </label>
-
-          <label class="item-detail" id="item_description"><%= if @conversations[i].messages.last then @conversations[i].messages.last.body end %></label>
-
-          <div class="item-accept-deny-buttons">
-            <%= link_to 'View', conversations_path(sender_id: @conversations[i].sender_id,
-            recipient_id: @conversations[i].recipient_id), method: 'post', class: "reply-transaction"%>
-          </div>
-        </li>
-      </div>
-    <% end %>
   </div>
 </div>
 <% else %>
-  <p id="no-convo">You have no conversations. Message someone or send a request!</p>
+  <p id="no-convo">You have no conversations. Request an item or service or start one.</p>
 <% end %>

@@ -3,37 +3,15 @@
 <head>
   <%= favicon_link_tag 'favicon.ico' %>
   <title>adae</title>
-
+  
   <script
   	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDELDDeZFCjRjY4yvz3o0ium-jSwRvnwFY">
   </script>
 
-  <%= javascript_include_tag "socket.io" %>
-
-  <script>
-    /**var socket = io("localhost:5001");
-
-    socket.on("sent", function(message){
-      // If message is sent post some type of notification possibly in the inbox
-    });**/
-  </script>
-
-
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
-
-  <% content_for :head do %>
-    <meta property="fb:app_id" content="896455457041729" />
-    <meta property="og:type"   content="website" />
-    <meta property="og:url"    content="https://adae.co" />
-    <meta property="og:title"  content="Adae" />
-    <meta property="og:image"  content="https://adae.co<%= image_path('OG_logo.png') %>" />
-  <% end %>
-
   <%= content_for?(:head) ? yield(:head) : '' %>
-
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 </head>
   <header>
@@ -45,15 +23,6 @@
           "positionClass": 'toast-top-center'
         };
         toastr.success("<%= flash[:notice] %>");
-      <% end %>
-
-      <% if flash[:success] %>
-        toastr.options ={
-          'timeOut': "3000",
-          'extendedTimeOut': "2000",
-          "positionClass": 'toast-top-center'
-        };
-        toastr.success("<%= flash[:success] %>");
       <% end %>
 
       <% if flash[:alert] %>
@@ -79,7 +48,7 @@
   </header>
 
   <body>
-    <%= render partial: "common/navbar" unless current_page?(root_path)%>
+    <%= render partial: "common/navbar" unless current_page?(root_path) %>
     <div class="page-wrap">
     <%= yield %>
     </div>

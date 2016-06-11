@@ -1,9 +1,12 @@
 <%= form_for @request, html: {multipart: true}  do |f| %>
 	<% if @request.errors.any? %>
 		<div id="error_explaination">
-			<% @request.errors.full_messages.each do |msg| %>
-			<script> toastr.error('<%= msg %>') </script>
-			<% end %>
+			<h2><%= pluralize(@request.errors.count, "error") %> please correct the following before submitting</h2>
+			<ul>
+				<% @request.errors.full_messages.each do |msg| %>
+				<li><%= msg %> </li>
+				<% end %>
+			</ul>
 		</div>
 	<% end %>
 
@@ -22,11 +25,6 @@
 	</div>
 
 	<div class="new-request-form">
-		<p>My shoutout should expire by:</p>
-		<%= f.date_field :timeframe, :placeholder => Time.now.strftime('%d-%m-%Y'), type: 'text', id: 'datepicker' %>
-	</div>
-
-	<div class="new-request-form">
 		<p> Add a location:</p>
 		<p class="form-title">Postal Code</p>
 		<%= f.text_field :postal_code, :maxlength=> "6", :placeholder => "ex. M5V3A6, This way people nearby are more likely to discover your Shout Out" %>
@@ -39,12 +37,12 @@
 
 	<div class="new-request-form">
 		<p> Summary </p>
-		<%= f.text_area :description, :maxlength=> "350", :placeholder => "Briefly describe what you are looking for. Mention when you would prefer to have the service." %>
+		<%= f.text_area :description, :maxlength=> "350", :placeholder => "Briefly describe what you are looking for, make sure to indicate if you want to rent, buy, lease, or looking for a service (ex. Tutoring). Mention when you would like to have the item/service." %>
 		<div class="character-count"></div>
 	</div>
 
 	<%= f.submit 'Submit', :class => 'submit-shoutout' %>
-	<div id="small-tip"> you can edit/update your Shout Out at anytime after you submit.</div>
+	<div id="small-tip"> you can edit/update your listing at anytime after you submit.</div>
 <%end%>
 	</div>
 </div>
