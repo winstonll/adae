@@ -47,322 +47,39 @@
 
 		<div class="new-item-form">
 			<%= f.label :summary %>
-			<%= f.text_area :description, :maxlength=> "1000", :placeholder => "Tell people about the qualities and highlights of your listing. You can include as many details as you'd like." %>
+			<%= f.text_area :description, :maxlength=> "500", :placeholder => "Tell people about the qualities and highlights of your listing. You can include as many details as you'd like." %>
 			<div class="countdown"></div>
 		</div>
 
-
-		<%= f.fields_for :pictures, Picture.new do |i| %>
-			<div class="new-item-form">
-				<p class="form-title">Cover Photos (Click Image to Change)</p>
-	      <% @images.each do |picture| %>
-					<div class="picture-upload-container">
-		        <%= image_tag picture.image.url(:small), class: "uploaded-image", id: "picture-#{picture.id}" %>
-		        <%= i.file_field "p-#{picture.id}", :onchange => "handleFileSelect(this);" %>
-					</div>
-	      <% end %>
-	    </div>
-		<% end %>
+		<!--<div class="new-item-form">
+      <%#= file_field_tag "images[]", type: :file, multiple: true %>
+			<div class="upload-photo">
+				<%#= image_tag "phone.png", id:"photo-image" %>
+				<p id="pic-title">  + Add Photo </p>
+				<p id="descriptor"> You can upload more than one file at a time </p>
+			</div>
+		</div>-->
 
 		<% if @item.listing_type == 'timeoffer' %>
-			<%= f.fields_for :prices, Price.new do |hour| %>
-			<%= f.fields_for :prices, Price.new do |flat| %>
-	    		<div class="new-item-form">
-	  				<p class="deposit-tip">
-	  				  <b> Your Price:</b></br>
-	  				  Set the price you want to charge either by Hour or as a Flat Rate.</br>
-	  				  Leave the box blank if the timeframe is not applicable.
-	  				</p>
-	  				<table>
-	  				  <tr>
-	  				  	<th>Timeframe:</th>
-	  			      	<td><%= hour.text_field :timeframe, :value => "Hour", :readonly => "True", class: "timeframe" %></td>
-	  			      	<td><%= flat.text_field :timeframe, :value => "Flat Rate", :readonly => "True", class: "timeframe" %></td>
-	  				  </tr>
-				      <tr>
-				      	<th>Price:</th>
-				      	<td><input class="money", readonly="true", value="$"></input><%=hour.number_field :amount, min:0, max: 100, class:"amount"%></td>
-				      	<td><input class="money", readonly="true", value="$"></input><%=flat.number_field :amount, min:0, max: 100, class:"amount"%></td>
-				      </tr>
-	  				</table>
-	      			<br/>
-	    		</div>
-	    	<% end %>
+			<%= f.fields_for :prices, @price do |p| %>
+			    <%= p.hidden_field :timeframe, :value => "Hour" %>
+			    <div class="new-item-form">
+			    	<p> Your Price:</p>
+					<div class="rent-deposit-money-sign"> $ </div>
+			        <%=p.number_field :amount %> <span class="perhr">per Hour</span>
+			    </div>
+			    <%= f.hidden_field :deposit, :value => 0 %>
 			<% end %>
 		<% elsif @item.listing_type == 'sell' %>
 			<%= f.fields_for :prices, @price do |p| %>
 				<div class="new-item-form">
 			    	<p> Sale Price:</p>
 					<div id="actual-price-money-sign"> $ </div>
-			        <%=p.number_field :amount, class: "amount"%>
+			        <%=p.number_field :amount %>
 			    </div>
 			    <%= f.hidden_field :deposit, :value => 0 %>
 			<% end %>
-		<% elsif @item.listing_type == 'lease' %>
-        	<%= f.fields_for :prices, Price.new do |one| %>
-        	<%= f.fields_for :prices, Price.new do |two| %>
-          	<%= f.fields_for :prices, Price.new do |three| %>
-          	<%= f.fields_for :prices, Price.new do |four| %>
-	        <%= f.fields_for :prices, Price.new do |five| %>
-	        <%= f.fields_for :prices, Price.new do |six| %>
-	        <%= f.fields_for :prices, Price.new do |seven| %>
-	        <%= f.fields_for :prices, Price.new do |eight| %>
-	        <%= f.fields_for :prices, Price.new do |nine| %>
-	        <%= f.fields_for :prices, Price.new do |ten| %>
-	    		<div class="new-item-form">
-	  			  <p class="deposit-tip">
-	  				<b>Product Description & Price &#x2756;</b></br>
-	  				Set the price and description for any or all of the fields below.</br>
-
-			        <div class="deposit-tip" style="color: #419bf9; margin-top: 10px; font-weight: 500;">
-			    	    &#x2756; Adae will add a 4% - 10% service fee on top of your listed price. <br> This fee helps us run the platform, and to provide the best service to our users. </br> Don't worry, you will still get paid the amount you are owed.
-			    	</div>
-	  			  </p>
-				  <div class="product-info">
-					<tr>
-					  <td><%= one.text_field :title, :placeholder => "Product 1 Title", class: "product-timeframe" %></td>
-					</tr>
-					<tr>
-					  <td><input class="prod-money", readonly="true", value="$"></input><%=one.number_field :amount, min:0, max: 100, class: "product-amount"%></td>
-					</tr>
-					<div class="new-item-form">
-					  <div><%= one.text_area :description, :placeholder => "Product 1 Description", class: "description" %></div><br/>
-						<div class="picture-upload-container">
-							<% tp = Price.where(item_id: @item.id, timeframe: "Product 1") %>
-							<% if tp.empty? %>
-								<%= image_tag "add-pic.png", class: "uploaded-image" %>
-								<%= one.file_field :photo, :onchange => "serviceFileSelect(this);" %>
-							<% else %>
-								<%= image_tag(tp.first.photo.url(:thumb), class: "uploaded-image", alt: "product")%>
-								<%= one.file_field :photo, :onchange => "serviceFileSelect(this);" %>
-							<% end %>
-						</div>
-					</div>
-				  </div>
-
-				  <div class="product-info">
-					<tr>
-					  <td><%= two.text_field :title, :placeholder => "Product 2 Title", class: "product-timeframe" %></td>
-					</tr>
-					<tr>
-					  <td><input class="prod-money", readonly="true", value="$"></input><%=two.number_field :amount, min:0, max: 100, class: "product-amount"%></td>
-					</tr>
-				 	<div class="new-item-form">
-					  <div><%= two.text_area :description, :placeholder => "Product 2 Description", class: "description" %></div><br/>
-						<div class="picture-upload-container">
-							<% tp = Price.where(item_id: @item.id, timeframe: "Product 2") %>
-							<% if tp.empty? %>
-					            <%= image_tag "add-pic.png", class: "uploaded-image" %>
-					           	<%= two.file_field :photo, :onchange => "serviceFileSelect(this);" %>
-							<% else %>
-								<%= image_tag(tp.first.photo.url(:thumb), class: "uploaded-image", alt: "product")%>
-								<%= two.file_field :photo, :onchange => "serviceFileSelect(this);" %>
-							<% end %>
-						</div>
-					</div>
-				  </div>
-
-				  <div class="product-info">
-					<tr>
-					  <td><%= three.text_field :title, :placeholder => "Product 3 Title", class: "product-timeframe" %></td>
-					</tr>
-					<tr>
-					  <td><input class="prod-money", readonly="true", value="$"></input><%=three.number_field :amount, min:0, max: 100, class: "product-amount"%></td>
-					</tr>
-				 	<div class="new-item-form">
-					  <div><%= three.text_area :description, :placeholder => "Product 3 Description", class: "description" %></div><br/>
-						<div class="picture-upload-container">
-							<% tp = Price.where(item_id: @item.id, timeframe: "Product 3") %>
-							<% if tp.empty? %>
-					            <%= image_tag "add-pic.png", class: "uploaded-image" %>
-						        <%= three.file_field :photo, :onchange => "serviceFileSelect(this);" %>
-							<% else %>
-								<%= image_tag(tp.first.photo.url(:thumb), class: "uploaded-image", alt: "product")%>
-								<%= three.file_field :photo, :onchange => "serviceFileSelect(this);" %>
-							<% end %>
-						</div>
-					</div>
-				  </div>
-
-				  <div class="product-info">
-					<tr>
-					  <td><%= four.text_field :title, :placeholder => "Product 4 Title", class: "product-timeframe" %></td>
-					</tr>
-					<tr>
-					  <td><input class="prod-money", readonly="true", value="$"></input><%=four.number_field :amount, min:0, max: 100, class: "product-amount"%></td>
-					</tr>
-				 	<div class="new-item-form">
-					  <div><%= four.text_area :description, :placeholder => "Product 4 Description", class: "description" %></div><br/>
-						<div class="picture-upload-container">
-							<% tp = Price.where(item_id: @item.id, timeframe: "Product 4") %>
-							<% if tp.empty? %>
-					            <%= image_tag "add-pic.png", class: "uploaded-image" %>
-						        <%= four.file_field :photo, :onchange => "serviceFileSelect(this);" %>
-							<% else %>
-								<%= image_tag(tp.first.photo.url(:thumb), class: "uploaded-image", alt: "product")%>
-								<%= four.file_field :photo, :onchange => "serviceFileSelect(this);" %>
-							<% end %>
-						</div>
-					</div>
-				  </div>
-
-				  <div class="product-info">
-					<tr>
-					  <td><%= five.text_field :title, :placeholder => "Product 5 Title", class: "product-timeframe" %></td>
-					</tr>
-					<tr>
-					  <td><input class="prod-money", readonly="true", value="$"></input><%=five.number_field :amount, min:0, max: 100, class: "product-amount"%></td>
-					</tr>
-				 	<div class="new-item-form">
-					  <div><%= five.text_area :description, :placeholder => "Product 5 Description", class: "description" %></div><br/>
-						<div class="picture-upload-container">
-							<% tp = Price.where(item_id: @item.id, timeframe: "Product 5") %>
-							<% if tp.empty? %>
-					            <%= image_tag "add-pic.png", class: "uploaded-image" %>
-						        <%= five.file_field :photo, :onchange => "serviceFileSelect(this);" %>
-							<% else %>
-								<%= image_tag(tp.first.photo.url(:thumb), class: "uploaded-image", alt: "product")%>
-								<%= five.file_field :photo, :onchange => "serviceFileSelect(this);" %>
-							<% end %>
-						</div>
-					</div>
-				  </div>
-
-				  <div class="product-info">
-					<tr>
-					  <td><%= six.text_field :title, :placeholder => "Product 6 Title", class: "product-timeframe" %></td>
-					</tr>
-					<tr>
-					  <td><input class="prod-money", readonly="true", value="$"></input><%=six.number_field :amount, min:0, max: 100, class: "product-amount"%></td>
-					</tr>
-				 	<div class="new-item-form">
-					  <div><%= six.text_area :description, :placeholder => "Product 6 Description", class: "description" %></div><br/>
-						<div class="picture-upload-container">
-							<% tp = Price.where(item_id: @item.id, timeframe: "Product 6") %>
-							<% if tp.empty? %>
-					            <%= image_tag "add-pic.png", class: "uploaded-image" %>
-						        <%= six.file_field :photo, :onchange => "serviceFileSelect(this);" %>
-							<% else %>
-								<%= image_tag(tp.first.photo.url(:thumb), class: "uploaded-image", alt: "product")%>
-								<%= six.file_field :photo, :onchange => "serviceFileSelect(this);" %>
-							<% end %>
-						</div>
-					</div>
-				  </div>
-
-				  <div class="product-info">
-					<tr>
-					  <td><%= seven.text_field :title, :placeholder => "Product 7 Title", class: "product-timeframe" %></td>
-					</tr>
-					<tr>
-					  <td><input class="prod-money", readonly="true", value="$"></input><%=seven.number_field :amount, min:0, max: 100, class: "product-amount"%></td>
-					</tr>
-				 	<div class="new-item-form">
-					  <div><%= seven.text_area :description, :placeholder => "Product 7 Description", class: "description" %></div><br/>
-						<div class="picture-upload-container">
-							<% tp = Price.where(item_id: @item.id, timeframe: "Product 7") %>
-							<% if tp.empty? %>
-					            <%= image_tag "add-pic.png", class: "uploaded-image" %>
-						        <%= seven.file_field :photo, :onchange => "serviceFileSelect(this);" %>
-							<% else %>
-								<%= image_tag(tp.first.photo.url(:thumb), class: "uploaded-image", alt: "product")%>
-								<%= seven.file_field :photo, :onchange => "serviceFileSelect(this);" %>
-							<% end %>
-						</div>
-					</div>
-				  </div>
-
-				  <div class="product-info">
-					<tr>
-					  <td><%= eight.text_field :title, :placeholder => "Product 8 Title", class: "product-timeframe" %></td>
-					</tr>
-					<tr>
-					  <td><input class="prod-money", readonly="true", value="$"></input><%=eight.number_field :amount, min:0, max: 100, class: "product-amount"%></td>
-					</tr>
-				 	<div class="new-item-form">
-					  <div><%= eight.text_area :description, :placeholder => "Product 8 Description", class: "description" %></div><br/>
-						<div class="picture-upload-container">
-							<% tp = Price.where(item_id: @item.id, timeframe: "Product 8") %>
-							<% if tp.empty? %>
-					            <%= image_tag "add-pic.png", class: "uploaded-image" %>
-						        <%= eight.file_field :photo, :onchange => "serviceFileSelect(this);" %>
-							<% else %>
-								<%= image_tag(tp.first.photo.url(:thumb), class: "uploaded-image", alt: "product")%>
-								<%= eight.file_field :photo, :onchange => "serviceFileSelect(this);" %>
-							<% end %>
-						</div>
-					</div>
-				  </div>
-
-				  <div class="product-info">
-					<tr>
-					  <td><%= nine.text_field :title, :placeholder => "Product 9 Title", class: "product-timeframe" %></td>
-					</tr>
-					<tr>
-					  <td><input class="prod-money", readonly="true", value="$"></input><%=nine.number_field :amount, min:0, max: 100, class: "product-amount"%></td>
-					</tr>
-				 	<div class="new-item-form">
-					  <div><%= nine.text_area :description, :placeholder => "Product 9 Description", class: "description" %></div><br/>
-						<div class="picture-upload-container">
-							<% tp = Price.where(item_id: @item.id, timeframe: "Product 9") %>
-							<% if tp.empty? %>
-					            <%= image_tag "add-pic.png", class: "uploaded-image" %>
-						        <%= nine.file_field :photo, :onchange => "serviceFileSelect(this);" %>
-							<% else %>
-								<%= image_tag(tp.first.photo.url(:thumb), class: "uploaded-image", alt: "product")%>
-								<%= nine.file_field :photo, :onchange => "serviceFileSelect(this);" %>
-							<% end %>
-						</div>
-					</div>
-				  </div>
-
-				  <div class="product-info">
-					<tr>
-					  <td><%= ten.text_field :title, :placeholder => "Product 10 Title", class: "product-timeframe" %></td>
-					</tr>
-					<tr>
-					  <td><input class="prod-money", readonly="true", value="$"></input><%=ten.number_field :amount, min:0, max: 100, class: "product-amount"%></td>
-					</tr>
-				 	<div class="new-item-form">
-					  <div><%= ten.text_area :description, :placeholder => "Product 10 Description", class: "description" %></div><br/>
-						<div class="picture-upload-container">
-							<% tp = Price.where(item_id: @item.id, timeframe: "Product 10") %>
-							<% if tp.empty? %>
-					            <%= image_tag "add-pic.png", class: "uploaded-image" %>
-						        <%= ten.file_field :photo, :onchange => "serviceFileSelect(this);" %>
-							<% else %>
-								<%= image_tag(tp.first.photo.url(:thumb), class: "uploaded-image", alt: "product")%>
-								<%= ten.file_field :photo, :onchange => "serviceFileSelect(this);" %>
-							<% end %>
-						</div>
-					</div>
-				  </div>
-
-		          <div class= "hidden-fields">
-				 	<%= f.hidden_field :deposit, :value => 0 %>
-				 	<%= one.text_field :timeframe, :value => "Product 1", :hidden => "True" %>
-				    <%= two.text_field :timeframe, :value => "Product 2", :hidden => "True" %>
-				    <%= three.text_field :timeframe, :value => "Product 3", :hidden => "True" %>
-				    <%= four.text_field :timeframe, :value => "Product 4", :hidden => "True" %>
-				    <%= five.text_field :timeframe, :value => "Product 5", :hidden => "True" %>
-		         	<%= six.text_field :timeframe, :value => "Product 6", :hidden => "True" %>
-				    <%= seven.text_field :timeframe, :value => "Product 7", :hidden => "True" %>
-				    <%= eight.text_field :timeframe, :value => "Product 8", :hidden => "True" %>
-				    <%= nine.text_field :timeframe, :value => "Product 9", :hidden => "True" %>
-				    <%= ten.text_field :timeframe, :value => "Product 10", :hidden => "True" %>
-			      </div>
-	        	</div>
-        	<% end %>
-	        <% end %>
-			<% end %>
-			<% end %>
-			<% end %>
-			<% end %>
-	        <% end %>
-			<% end %>
-			<% end %>
-			<% end %>
-      	<% else %>
+		<% else %>
 			<%= f.fields_for :prices, Price.new do |day| %>
         	<%= f.fields_for :prices, Price.new do |week| %>
           	<%= f.fields_for :prices, Price.new do |month| %>
@@ -392,13 +109,27 @@
     			</div>
 
       			<div class="new-item-form">
+  	          	  <% if @item.listing_type == 'lease' %>
+        			<p id="deposit-title"> Deposit Price & Sale Price:</p>
+        			<div class="rent-deposit-money-sign"> $ </div>
+      				<%= f.text_field :deposit %>
+  	          		<div class="deposit-tip">
+	  		          	This ensures that the item is treated with care, and is returned on time. </br>
+	  		          	This amount will be charged only if the other party fails to return the item, damage it, or lose it.</br></br>
+	  		          	After the rental period, your customer may request to buy this item.</br>
+	  		          	The Deposit Price will double as the Sale Price.</br>
+	  		          	Their rental fees will be
+	  		            credited towards the purchase.
+  	            	</div>
+      	    	  <% else %>
   	          		<p id="deposit-title"> Deposit Price</p>
-  	          		<div class="rent-deposit-money-sign" style="margin-top: -6px !important"> $ </div>
+  	          		<div class="rent-deposit-money-sign"> $ </div>
   	          		<%= f.text_field :deposit %>
   	          		<div class="deposit-tip">
 	  	          		This ensures that the item is treated with care, and is returned on time.</br>
 	  	          		This amount will be charged only if the other party fails to return the item, damage it, or lose it.
   	          		</div>
+      	      	  <% end %>
     	      	</div>
         	<% end %>
         	<% end %>
@@ -427,57 +158,12 @@
 	<% end %>
 
 	<% @prices.each do |price| %>
-		<% if @item.listing_type == "lease"  %>
-			var descrip = '<%= price.description.gsub(/(?:\n\r?|\r\n?)/, '\n').html_safe %>';
-			descrip = descrip.replace(/&quot;/g, '"');
-			descrip = descrip.replace(/&amp;/g, '&');
-		<% end %>
-
-
-		<% if price.timeframe == 'Product 1' || price.timeframe == 'Hour' %>
+		<% if price.timeframe == 'Day' %>
 			$('#item_prices_attributes_0_amount').val("<%= price.amount.to_digits %>");
-			$('#item_prices_attributes_0_title').val("<%= price.title %>");
-			<% if @item.listing_type == "lease"  %>
-				$('#item_prices_attributes_0_description').val(descrip);
-			<% end %>
-		<% elsif price.timeframe == 'Product 2' || price.timeframe == 'Flat Rate' %>
+		<% elsif price.timeframe == 'Week' %>
 			$('#item_prices_attributes_1_amount').val("<%= price.amount.to_digits %>");
-			$('#item_prices_attributes_1_title').val("<%= price.title %>");
-			<% if @item.listing_type == "lease"  %>
-				$('#item_prices_attributes_1_description').val(descrip);
-			<% end %>
-		<% elsif price.timeframe == 'Product 3' %>
+		<% elsif price.timeframe == 'Month' %>
 			$('#item_prices_attributes_2_amount').val("<%= price.amount.to_digits %>");
-			$('#item_prices_attributes_2_title').val("<%= price.title %>");
-			$('#item_prices_attributes_2_description').val(descrip);
-		<% elsif price.timeframe == 'Product 4' %>
-			$('#item_prices_attributes_3_amount').val("<%= price.amount.to_digits %>");
-			$('#item_prices_attributes_3_title').val("<%= price.title %>");
-			$('#item_prices_attributes_3_description').val(descrip);
-		<% elsif price.timeframe == 'Product 5' %>
-			$('#item_prices_attributes_4_amount').val("<%= price.amount.to_digits %>");
-			$('#item_prices_attributes_4_title').val("<%= price.title %>");
-			$('#item_prices_attributes_4_description').val(descrip);
-		<% elsif price.timeframe == 'Product 6' %>
-			$('#item_prices_attributes_5_amount').val("<%= price.amount.to_digits %>");
-			$('#item_prices_attributes_5_title').val("<%= price.title %>");
-			$('#item_prices_attributes_5_description').val(descrip);
-		<% elsif price.timeframe == 'Product 7' %>
-			$('#item_prices_attributes_6_amount').val("<%= price.amount.to_digits %>");
-			$('#item_prices_attributes_6_title').val("<%= price.title %>");
-			$('#item_prices_attributes_6_description').val(descrip);
-		<% elsif price.timeframe == 'Product 8' %>
-			$('#item_prices_attributes_7_amount').val("<%= price.amount.to_digits %>");
-			$('#item_prices_attributes_7_title').val("<%= price.title %>");
-			$('#item_prices_attributes_7_description').val(descrip);
-		<% elsif price.timeframe == 'Product 9' %>
-			$('#item_prices_attributes_8_amount').val("<%= price.amount.to_digits %>");
-			$('#item_prices_attributes_8_title').val("<%= price.title %>");
-			$('#item_prices_attributes_8_description').val(descrip);
-		<% elsif price.timeframe == 'Product 10' %>
-			$('#item_prices_attributes_9_amount').val("<%= price.amount.to_digits %>");
-			$('#item_prices_attributes_9_title').val("<%= price.title %>");
-			$('#item_prices_attributes_9_description').val(descrip);
 		<% end %>
 	<% end %>
 

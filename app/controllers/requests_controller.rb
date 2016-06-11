@@ -1,21 +1,15 @@
 class RequestsController < ApplicationController
   before_filter :ensure_logged_in, only: [:create, :update, :edit, :destroy]
   def index
-      @requests = Request.all.paginate(:page => params[:page], :per_page => 8).order('created_at DESC')
-      gon.map_requests = @requests.pluck(:latitude, :longitude, :id, :title)
-      @user = current_user
-      @items = Item.where(status: "Listed", user_id: @user)
-  end
-
-  def new
-    @request = Request.new
+      @requests = Request.all 
   end
 
   def show
     @request = Request.find(params[:id])
-    @user = current_user
-    @items = Item.where(status: "Listed", user_id: @user)
-    gon.map_request = Request.where(id: @request.id).pluck(:latitude, :longitude, :id)
+  end
+
+  def new
+    @request = Request.new
   end
   
   def create
@@ -34,18 +28,10 @@ class RequestsController < ApplicationController
     end
 
     @request = Request.new(request_params)
-
-    geocode = Geocoder.search(request_params[:postal_code]).first
-
-    if !geocode.nil?
-      @request.latitude = geocode.latitude
-      @request.longitude = geocode.longitude
-    end
-
     @request.user_id = current_user.id
     @request.tags = @hashtagboxes
     if @request.save && @request.valid?
-      redirect_to requests_path, notice: "request Successfully Added!"
+      redirect_to @request, notice: "request Successfully Added!"
     else
       flash[:message] = "This request has already been posted or Something didn't validate"
       render 'new'
@@ -58,30 +44,8 @@ class RequestsController < ApplicationController
 
   def update
     @request = Request.find(params[:id])
-
-     7.times do |count|
-      counter = "hashtag_box_#{count}".to_sym
-      unless (params[counter].to_s.empty?)
-        @hashtagboxes = @hashtagboxes.to_s + params[counter].to_s.capitalize.strip << ', '
-      end
-    end
-
-    # Strip the last comma from multiple choice questions
-    if @hashtagboxes
-      @hashtagboxes = @hashtagboxes[0...-1].chomp(",")
-
-      @request.tags = @hashtagboxes
-    end
-
-    geocode = Geocoder.search(request_params[:postal_code]).first
-
-    if !geocode.nil?
-      @request.latitude = geocode.latitude
-      @request.longitude = geocode.longitude
-    end
-
     if @request.update_attributes(request_params)
-      redirect_to requests_path, notice: "Shoutout Successfully Edited!"
+      redirect_to @request
     else
       render :edit
     end
@@ -92,15 +56,6 @@ class RequestsController < ApplicationController
     @request = Request.find(params[:id])
     @request.destroy
     redirect_to user_path(current_user)
-  end
-
-  def system_message
-    @user = current_user
-    @listing = Item.find(params[:listing])
-    @recipient = User.find(params[:user][:recipient])
-    ContactMailer.system_message(@user, @recipient, @listing).deliver_now
-    redirect_to :back
-    flash[:success] = "You have replied to #{@recipient.name}'s Shout Out!"
   end
 
   private

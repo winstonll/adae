@@ -9,7 +9,7 @@ module Api::V1
     end
 
     def show
-      item = Item.find(params[:id])
+      item = Item.find_by(params[:title])
       if !item.nil?
         render json: item
       else
@@ -31,7 +31,7 @@ module Api::V1
     end
 
     def destroy
-      item = Item.find(params[:id])
+      item = Item.find_by(params[:title])
 
       if !item.nil?
         Item.destroy(params[:id])

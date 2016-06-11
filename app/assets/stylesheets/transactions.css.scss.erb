@@ -12,183 +12,11 @@ body{
 .payment-info {
 	display: table;
 	margin: 0 auto;
-	width: 600px;
+	width: 500px;
 
-  .bold{
-    font-weight: 600;
-  }
-
-    /*fb share button styling begins*/
-  #fb-share-section{
-    margin-top: 1em;
-    margin-left: 19px;
-    .share-button{
-      height: 27px;
-      width: 70px;
-      border: none;
-      background-color: #3D54A8;
-      color:#fff;
-      cursor: pointer;
-      border-radius: 3px;
-      font-size: 13px;
-      font-family: 'arial', sans-serif;
-      background-image: url('<%= asset_path 'fb-share-icon.png'%>');
-      background-repeat: no-repeat;
-      background-position: 6px 5px;
-      background-size: 16px;
-      padding: 1px 0px 0px 19px;
-
-      &:hover{
-        background-color: #364C9B;
-        transition: all .3s ease-in-out;
-      }
-    }
-
-    /* fb share button helping tip*/
-    .wrapper {
-      font-weight: 500;
-      cursor: default;
-      line-height: normal;
-      position: relative;
-      text-align: center;
-      -webkit-transform: translateZ(0); /* webkit flicker fix */
-      -webkit-font-smoothing: antialiased; /* webkit text rendering fix */
-      width: 5px;
-      top: 2px;
-      border-radius: 50%;
-    }
-
-    .tooltip {
-      font-family: 'Avenir Next','Arial', sans-serif;
-      background: #419bf9;
-      bottom: 100%;
-      color: #fff;
-      display: block;
-      left: -125px;
-      margin-bottom: 15px;
-      margin-left: -52px;
-      opacity: 0;
-      padding: 15px;
-      pointer-events: none;
-      position: absolute;
-      width: 205px;
-      border-radius: 5px;
-      font-size: 15px;
-      text-align: left;
-      -webkit-transform: translateY(10px);
-         -moz-transform: translateY(10px);
-          -ms-transform: translateY(10px);
-           -o-transform: translateY(10px);
-              transform: translateY(10px);
-      -webkit-transition: all .25s ease-out;
-         -moz-transition: all .25s ease-out;
-          -ms-transition: all .25s ease-out;
-           -o-transition: all .25s ease-out;
-              transition: all .25s ease-out;
-      -webkit-box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.28);
-         -moz-box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.28);
-          -ms-box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.28);
-           -o-box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.28);
-              box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.28);
-    }
-
-    /* This bridges the gap so you can mouse into the tooltip without it disappearing */
-    .wrapper .tooltip:before {
-      bottom: -20px;
-      content: " ";
-      display: block;
-      height: 20px;
-      left: 0;
-      position: absolute;
-      width: 100%;
-    }
-
-    /* tooltip little triangle  */
-    .wrapper .tooltip:after {
-      border-left: solid transparent 10px;
-      border-right: solid transparent 10px;
-      border-top: solid #419bf9 10px;
-      bottom: -10px;
-      content: " ";
-      height: 0;
-      left: 50%;
-      margin-left: 55px;
-      position: absolute;
-      width: 0;
-    }
-
-    .wrapper:hover .tooltip {
-      opacity: 1;
-      pointer-events: auto;
-      -webkit-transform: translateY(0px);
-         -moz-transform: translateY(0px);
-          -ms-transform: translateY(0px);
-           -o-transform: translateY(0px);
-              transform: translateY(0px);
-    }
-
-    /* IE can just show/hide with no transition */
-    .lte8 .wrapper .tooltip {
-      display: none;
-    }
-
-    .lte8 .wrapper:hover .tooltip {
-      display: block;
-    }
-  }
-    /*fb share button ends here*/
-
-  .description{
-    width: 100%;
-    display: table;
-    margin:auto;
-    line-height: normal;
-    color: #4a4a4a;
-    margin-bottom: -20px;
-    margin-left: 4px;
-
-    #stripe{
-      width: auto;
-      height: 20px;
-    }
-
-    #stripe-link{
-      color: #008cdd;
-      font-weight: 700;
-      &:hover{
-        text-decoration: underline;
-      }
-    }
-  #payment-icons{
-    display: table;
-    margin: 0 auto;
-    margin-top: 8px;
-    .payment-logos{
-      width: auto;
-      height: 30px;
-      margin: 5px;
-    }
-  }
-}
-
-  .divider{
-    border-top: 1px solid #dcdcdc;
-    width: 55%;
-    height: 0px;
-    display: table;
-    margin: 0 auto;
-    margin-top: 30px;
-  }
-
- .receipt-info-and-pic{
-   margin: 0 auto;
-   display: table;
-   width: 100%;
   .item-pic{
     width: 220px;
     height: 220px;
-    margin-right: 12px;
-    margin-left: 20px;
     object-fit: cover;
     object-position: center;
     border-radius: 3px;
@@ -196,7 +24,7 @@ body{
 
   .price-details {
   	display: inline-block;
-  	width: 40%;
+  	width: 27%;
   	vertical-align: top;
 
     .credit-fee{
@@ -320,6 +148,25 @@ body{
         -webkit-appearance: none;
         border: none;
        }
+
+      .reply_btn{
+        border-radius: 2px;
+        cursor: pointer;
+        background-color: #419BF9;
+        border: none;
+        color: #fff;
+        padding: 4px;
+        width: 70px;
+        height: 31px;
+        font-size: 14px;
+        float: right;
+        margin: 5px 10px;
+        &:hover{
+          background-color: #fff;
+          color: #419BF9;
+          border: 1px solid #419BF9;
+        }
+      }
     }
 
     .request-button{
@@ -330,21 +177,14 @@ body{
   		font-weight: 600;
   		border-radius: 3px;
   		cursor: pointer;
-      width: 270px;
-      height: 40px;
-      margin-bottom: 1em;
+  		padding: 12px 78px 12px 78px;
+      margin-left: -66px;
     		&:hover{
           background-color: #0077f3;
           color: #fff;
           transition: all .3s ease-in-out;
     		}
   	   }
-
-    .stripe-button-el{
-      width: 271px;
-      margin-bottom: 1em;
-    }
-
 
 
 
@@ -355,7 +195,6 @@ body{
     padding-bottom: 15px;
     border-radius: 3px;
     margin-bottom: 10px;
-    padding-bottom: 15px;
 
   	.division {
   		border-top: 1px solid #DCDCDC;
@@ -394,32 +233,9 @@ body{
       margin-bottom: -5px;
       font-size: 15px;
 	  }
-    .image-wrap {
-      margin-left: 5px;
-      border: 1px solid #ffffff;
-      float: left;
-      -webkit-transition: max-width .5s ease-out;  /* Saf3.2+, Chrome */
-      -moz-transition: max-width .5s ease-out;  /* FF4+ */
-      -ms-transition: max-width .5s ease-out;  /* IE10? */
-      -o-transition: max-width .5s ease-out;  /* Opera 10.5+ */
-      transition: max-width .5s ease-out;
-
-      .price-photo {
-        border-radius: 4px;
-        height: 30px;
-        width: 40px;
-        object-fit: cover;
-        object-position: center;
-        -webkit-transition: margin-top .5s ease-out;  /* Saf3.2+, Chrome */
-        -moz-transition: margin-top .5s ease-out;  /* FF4+ */
-        -ms-transition: margin-top .5s ease-out;  /* IE10? */
-        -o-transition: margin-top .5s ease-out;  /* Opera 10.5+ */
-        transition: margin-top .5s ease-out;
-      }
-    }
-	  #qty, .qty{
+	  #qty{
 	  	border: 1px solid #419bf9;
-	  	margin-left: .5em;
+	  	margin-left: 4em;
 	  	width: 30px;
 	  	height:27px;
 	  	vertical-align: top;
@@ -428,17 +244,6 @@ body{
   		font-size: 15px;
   		padding-left: 5px;
 	  }
-    #prod, .prod{
-      border: 1px solid #419bf9;
-      width: 55%;
-      height:27px;
-      vertical-align: top;
-      border-radius: 4px;
-      color: #4a4a4a;
-      font-size: 14px;
-      padding-left: 10px;
-      margin-bottom: 5px;
-    }
 	  #transaction_length{
 	  	border: 1px solid #419bf9;
 	  	margin: auto;
@@ -468,20 +273,20 @@ body{
 	  	  font-weight: 400;
         color: #4a4a4a;
 	  	}
-	  	#times, .times{
+	  	#times{
 	  	  border:0;
 	  	  width: 20px;
 	  	  font-size: 16px;
 	  	  font-weight: 400;
 	  	}
-	  	#length, .addon{
+	  	#length{
 	  	  border:0;
-	  	  width: 70px;
+	  	  width: 60px;
 	  	  font-size: 15px;
 	  	  font-weight: 400;
         color: #4a4a4a;
 	  	}
-	  	#subtotal, .subtotal{
+	  	#subtotal{
 	  	  float: right;
 	  	  margin-right: 5px;
 	  	  border:0;
@@ -490,23 +295,6 @@ body{
 	  	  font-weight: 400;
         color: #4a4a4a;
 	  	}
-      #discount-title {
-        border:0;
-	  	  font-size: 15px;
-	  	  font-weight: 200;
-        margin-left: 20px;
-        margin-top: 5px;
-      }
-      #discount-price {
-        border:0;
-	  	  width: 50px;
-	  	  font-size: 15px;
-	  	  font-weight: 200;
-        margin-right: 5px;
-        margin-top: 5px;
-        color: $green;
-        float: right;
-      }
 	  	.trust-fee{
 	  	  font-size: 15px;
 	  	  margin-left: 19px;
@@ -811,7 +599,6 @@ body{
 	    font-size: 24px;
 	  }
 
-      }
     }
   }
 }
@@ -835,7 +622,7 @@ body{
 	}
 	@media only screen and (min-width: 1920px) {
 		.price-details{
-		  padding-right: 10%;
+		  padding-right: 20%;
 		}
 	}
   /*end section*/
@@ -936,608 +723,4 @@ body{
 
   .lte8 .wrapper:hover .tooltip {
     display: block;
-  }
-
-  @media screen and (min-width: 320px) and (max-width: 768px){
-    .payment-info {
-    	display: table;
-    	margin: 0 auto;
-    	width: 95%;
-
-      #fb-share-section{
-        display: none;
-      }
-
-      .item-pic{
-        width: 99% !important;
-        height: 150px;
-        object-fit: cover;
-        object-position: center;
-        border-radius: 3px;
-        margin-bottom: 5px;
-        margin-left: 0px !important;
-      }
-
-      .price-details {
-      	width: 100% !important;
-
-        .credit-fee{
-          color: #4a4a4a;
-          font-size: 14px;
-          margin-left: 21px;
-          margin-top: 10px;
-          margin-bottom: 15px;
-
-          /*question mark for stripe fee*/
-          .wrapper {
-            font-weight: 500;
-            cursor: default;
-            position: relative;
-            line-height: normal;
-            top: .2em;
-            -webkit-transform: translateZ(0); /* webkit flicker fix */
-            -webkit-font-smoothing: antialiased; /* webkit text rendering fix */
-          }
-
-           .tooltip {
-            font-family: 'Avenir Next','Arial', sans-serif;
-            background: #419bf9;
-            bottom: 100%;
-            color: #fff;
-            display: block;
-            left: -30px;
-            margin-bottom: 15px;
-            margin-left: -52px;
-            opacity: 0;
-            padding: 20px;
-            pointer-events: none;
-            position: absolute;
-            width: 250px;
-            border-radius: 5px;
-            font-size: 14px;
-          }
-
-          /* This bridges the gap so you can mouse into the tooltip without it disappearing */
-          .wrapper .tooltip:before {
-            bottom: -20px;
-            content: " ";
-            display: block;
-            height: 20px;
-            left: 0;
-            position: absolute;
-            width: 100%;
-          }
-
-          /* CSS Triangles - see Trevor's post */
-          .wrapper .tooltip:after {
-            border-left: solid transparent 10px;
-            border-right: solid transparent 10px;
-            border-top: solid #419bf9 10px;
-            bottom: -10px;
-            content: " ";
-            height: 0;
-            left: 50%;
-            margin-left: -65px;
-            position: absolute;
-            width: 0;
-          }
-
-          .wrapper:hover .tooltip {
-            opacity: 1;
-            pointer-events: auto;
-
-          }
-
-          /* IE can just show/hide with no transition */
-          .lte8 .wrapper .tooltip {
-            display: none;
-          }
-
-          .lte8 .wrapper:hover .tooltip {
-            display: block;
-          }
-
-          a{
-            color: #419bf9;
-            text-decoration: underline;
-          }
-          #stripe-fee{
-            font-size: 14px;
-            color: #4a4a4a;
-            display: inline;
-            margin-left: 25px;
-          }
-        }
-
-        .request-button{
-          border: none;
-      		background-color:#419bf9;
-      		color: #fff;
-      		font-size: 16px;
-      		font-weight: 600;
-      		border-radius: 3px;
-      		cursor: pointer;
-          width: 99% !important;
-          height: 40px;
-        		&:hover{
-              background-color: #0077f3;
-              color: #fff;
-              transition: all .3s ease-in-out;
-        		}
-      	   }
-
-        .stripe-button-el{
-          width: 98% !important;
-        }
-
-
-
-    	.item-detail-price {
-    	  border: 1px solid #979797;
-    	  background-color: #fff;
-    	  width: 99% !important;
-        padding-bottom: 15px;
-        border-radius: 3px;
-        margin-bottom: 10px;
-
-      	.division {
-      		border-top: 1px solid #DCDCDC;
-      		width: 100%;
-      		margin: 10px auto;
-    	  }
-
-    	  .finalp{
-    	  	  font-size: 16px;
-    	  	  margin-left: 20px;
-            font-weight: 500;
-    	  }
-    	  #total{
-    	  	border:0;
-    	  	width: 75px;
-    	  	font-size: 16px;
-    	  	font-weight: 500;
-    	  	float: right;
-    	  	margin-right: 10px;
-    	  }
-    	  .how-long{
-      		margin-top: -10px;
-      		text-align: center;
-      		color: #4a4a4a;
-      		font-size: 13px;
-      		background-color: #E8E8E8;
-      		padding: 5px;
-      		font-weight: 500;
-    	  }
-    	  .item-title {
-      		font-weight: 600;
-      		color: #4a4a4a;
-      		text-align: left;
-      		padding: 12px;
-          line-height: normal;
-          margin-bottom: -5px;
-          font-size: 15px;
-    	  }
-    	  #qty{
-    	  	border: 1px solid #419bf9;
-    	  	margin-left: 4em;
-    	  	width: 30px;
-    	  	height:27px;
-    	  	vertical-align: top;
-      		border-radius: 4px;
-      		color: #4a4a4a;
-      		font-size: 15px;
-      		padding-left: 5px;
-    	  }
-    	  #transaction_length{
-    	  	border: 1px solid #419bf9;
-    	  	margin: auto;
-    	  	border-radius: 0;
-    	  	height:31px;
-    	    width: 100px;
-    	  	vertical-align: top;
-    	  	font-size: 15px;
-    	    border-radius: 4px;
-      		background-color: #fff;
-      		padding: 4px 10px;
-      		color: #4a4a4a;
-    	  }
-    	  .sale-price {
-      		color: #7ed321;
-      		font-weight: 500;
-      		font-size: 20px;
-      		padding-top: 55px;
-    	  }
-    	  .item-detail-calc {
-    	  	position:relative;
-    	  	.amount{
-    	  	  font-size: 15px;
-    	  	  margin-left: 20px;
-    	  	  border:0;
-    	  	  width: 55px;
-    	  	  font-weight: 400;
-            color: #4a4a4a;
-    	  	}
-    	  	#times{
-    	  	  border:0;
-    	  	  width: 20px;
-    	  	  font-size: 16px;
-    	  	  font-weight: 400;
-    	  	}
-    	  	#length{
-    	  	  border:0;
-    	  	  width: 60px;
-    	  	  font-size: 15px;
-    	  	  font-weight: 400;
-            color: #4a4a4a;
-    	  	}
-    	  	#subtotal{
-    	  	  float: right;
-    	  	  margin-right: 5px;
-    	  	  border:0;
-    	  	  width: 50px;
-    	  	  font-size: 15px;
-    	  	  font-weight: 400;
-            color: #4a4a4a;
-    	  	}
-    	  	.trust-fee{
-    	  	  font-size: 15px;
-    	  	  margin-left: 19px;
-    	  	  border:0;
-    	  	  width: 120px;
-    	  	  font-weight: 200;
-            color: #979797;
-            margin-top: 10px;
-            margin-bottom: 4px;
-            margin-right: -10px;
-    	  	}
-          /* trust fee too-tip below*/
-          .wrapper {
-            font-weight: 500;
-            cursor: default;
-            line-height: normal;
-            font-size: 11px;
-            position: relative;
-            top: 3px;
-            -webkit-transform: translateZ(0); /* webkit flicker fix */
-            -webkit-font-smoothing: antialiased; /* webkit text rendering fix */
-          }
-
-           .tooltip {
-            font-family: 'Avenir Next','Arial', sans-serif;
-            background: #419bf9;
-            bottom: 100%;
-            color: #fff;
-            display: block;
-            left: -26px;
-            margin-bottom: 15px;
-            margin-left: -52px;
-            opacity: 0;
-            padding: 20px;
-            pointer-events: none;
-            position: absolute;
-            width: 240px;
-            border-radius: 5px;
-            font-size: 14px;
-            text-align: left;
-          }
-
-          /* This bridges the gap so you can mouse into the tooltip without it disappearing */
-          .wrapper .tooltip:before {
-            bottom: -20px;
-            content: " ";
-            display: block;
-            height: 20px;
-            left: 0;
-            position: absolute;
-            width: 100%;
-          }
-
-          /* CSS Triangles - see Trevor's post */
-          .wrapper .tooltip:after {
-            border-left: solid transparent 10px;
-            border-right: solid transparent 10px;
-            border-top: solid #419bf9 10px;
-            bottom: -10px;
-            content: " ";
-            height: 0;
-            left: 50%;
-            margin-left: -65px;
-            position: absolute;
-            width: 0;
-          }
-
-          .wrapper:hover .tooltip {
-            opacity: 1;
-            pointer-events: auto;
-            -webkit-transform: translateY(0px);
-               -moz-transform: translateY(0px);
-                -ms-transform: translateY(0px);
-                 -o-transform: translateY(0px);
-                    transform: translateY(0px);
-          }
-
-          /* IE can just show/hide with no transition */
-          .lte8 .wrapper .tooltip {
-            display: none;
-          }
-
-          .lte8 .wrapper:hover .tooltip {
-            display: block;
-          }
-
-          #markup-label {
-            float: left;
-            font-size: 15px;
-    	  	  margin-left: 20px;
-    	  	  border:0;
-    	  	  width: 195px;
-            color: #4a4a4a;
-            margin-top: 12px;
-            margin-bottom: 2px;
-
-            .wrapper {
-              background: #e8e8e8;
-              color: #4a4a4a;
-              font-weight: 600;
-              cursor: default;
-              line-height: normal;
-              font-size: 11px;
-              position: relative;
-              text-align: center;
-              -webkit-transform: translateZ(0); /* webkit flicker fix */
-              -webkit-font-smoothing: antialiased; /* webkit text rendering fix */
-              border-radius: 50%;
-            }
-
-             .tooltip {
-              font-family: 'Avenir Next','Arial', sans-serif;
-              background: #419bf9;
-              bottom: 100%;
-              color: #fff;
-              display: block;
-              left: -25px;
-              margin-bottom: 15px;
-              margin-left: -52px;
-              opacity: 0;
-              padding: 20px;
-              pointer-events: none;
-              position: absolute;
-              width: 240px;
-              border-radius: 5px;
-              font-size: 14px;
-              text-align: left;
-            }
-
-            /* This bridges the gap so you can mouse into the tooltip without it disappearing */
-            .wrapper .tooltip:before {
-              bottom: -20px;
-              content: " ";
-              display: block;
-              height: 20px;
-              left: 0;
-              position: absolute;
-              width: 100%;
-            }
-
-            /* CSS Triangles - see Trevor's post */
-            .wrapper .tooltip:after {
-              border-left: solid transparent 10px;
-              border-right: solid transparent 10px;
-              border-top: solid #419bf9 10px;
-              bottom: -10px;
-              content: " ";
-              height: 0;
-              left: 50%;
-              margin-left: -65px;
-              position: absolute;
-              width: 0;
-            }
-
-            .wrapper:hover .tooltip {
-              opacity: 1;
-              pointer-events: auto;
-              -webkit-transform: translateY(0px);
-                 -moz-transform: translateY(0px);
-                  -ms-transform: translateY(0px);
-                   -o-transform: translateY(0px);
-                      transform: translateY(0px);
-            }
-
-            /* IE can just show/hide with no transition */
-            .lte8 .wrapper .tooltip {
-              display: none;
-            }
-
-            .lte8 .wrapper:hover .tooltip {
-              display: block;
-            }
-          }
-
-          #markup-price {
-            float: left;
-            font-size: 15px;
-    	  	  border:0;
-            margin-top: 12px;
-    	  	  width: 20px;
-            color: #4a4a4a;
-            left: 0px;
-          }
-
-          .trust-fee-text{
-            width: 87%;
-            font-size: 12px;
-            color: #63B707;
-            line-height: normal;
-            margin-left: 21px;
-            margin-top: 8px;
-          }
-    	  	.deposit{
-    	  	  float: right;
-    	  	  margin-right: 10px;
-    	  	  border:0;
-    	  	  width: 45px;
-    	  	  font-size: 15px;
-    	  	  font-weight: 200;
-            color: #4a4a4a;
-            margin-top: 5px;
-    	  	}
-
-    	  	.finalp{
-    	  	  font-size: 16px;
-    	  	  margin-left: 20px;
-    	  	}
-    	  	#transaction_total_price{
-    	  	  border:0;
-    	  	  width: 85px;
-    	  	  font-size: 16px;
-    	  	  font-weight: 500;
-    	  	  float: right;
-    	  	  margin-right: 10px;
-            margin-top: -3px;
-    	  	}
-    	  }
-    	  .buy-button {
-    	  	display: table;
-    	  	margin: auto;
-    		background-color:#7ed321;
-    		color: #fff;
-    		font-size: 16px;
-    		font-weight: 600;
-    		border-radius: 2px;
-    		cursor: pointer;
-    		padding: 10px 50px 10px 50px;
-    		&:hover{
-    			background-color: #5AC902;
-    			color: #fff;
-    		}
-    	  }
-    	  .rent-button {
-    	  	display: table;
-    	  	position: relative;
-    	    margin: auto;
-    	  	text-align: center;
-    		background-color:#419bf9;
-    		margin-top: 1em;
-    		color: #fff;
-    		font-size: 16px;
-    		font-weight: 600;
-    		border-radius: 2px;
-    		cursor: pointer;
-    		padding: 10px 50px 10px 50px;
-    		&:hover{
-    			background-color: #0077f3;
-    			color: #fff;
-    		}
-    	  }
-    	}
-    	.item-lease-price {
-          position: relative;
-    	  z-index:2;
-    	  border: 1px solid #979797;
-    	  background-color: #fff;
-      	  height: 270px;
-      	  width: 270px;
-    	  bottom: 15px;
-
-    	  .price-title {
-    	    font-weight: 600;
-    	    color: white;
-    	    background-color:#7ed321;
-    	    text-align: center;
-    	    opacity: 0.6;
-    	    padding: 10px;
-    	  }
-    	  .sale-price {
-    	    color: #7ed321;
-    	    font-weight: 500;
-    	    font-size: 24px;
-    	  }
-
-        }
-      }
-    }
-
-      .why-cc {
-        font-weight: 600;
-        color: #fff;
-        cursor: default;
-        line-height: normal;
-        position: fixed;
-        right: 20px;
-        bottom: 20px;
-        background-color: $purple;
-        padding: 15px 20px;
-        border-radius: 6px;
-        font-size: 13px;
-        -webkit-transform: translateZ(0); /* webkit flicker fix */
-        -webkit-font-smoothing: antialiased; /* webkit text rendering fix */
-      }
-
-      .why-cc:after {
-        content:'';
-        position: absolute;
-        margin-left: 15px;
-        top: 100%;
-        left: 50%;
-        width: 0;
-        height: 0;
-        border-top: solid 10px #A100C2;
-        border-left: solid 10px transparent;
-        border-right: solid 10px transparent;
-
-      }
-
-       .tooltip {
-        font-family: 'Avenir Next','Arial', sans-serif;
-        background: #419bf9;
-        bottom: 100%;
-        color: #fff;
-        display: block;
-        left: 5px;
-        margin-bottom: 15px;
-        margin-left: -52px;
-        opacity: 0;
-        padding: 20px;
-        pointer-events: none;
-        position: absolute;
-        width: 120%;
-        border-radius: 5px;
-        font-size: 14px;
-        text-align: left;
-        li{
-          text-align: left;
-          text-indent: -18px;
-          margin-right: 20px;
-        }
-      }
-
-      /* This bridges the gap so you can mouse into the tooltip without it disappearing */
-      .why-cc .tooltip:before {
-        bottom: -20px;
-        content: " ";
-        display: block;
-        height: 20px;
-        left: 0;
-        position: absolute;
-        width: 100%;
-      }
-
-      .why-cc:hover .tooltip {
-        opacity: 1;
-        pointer-events: auto;
-        -webkit-transform: translateY(0px);
-           -moz-transform: translateY(0px);
-            -ms-transform: translateY(0px);
-             -o-transform: translateY(0px);
-                transform: translateY(0px);
-      }
-
-      /* IE can just show/hide with no transition */
-      .lte8 .wrapper .tooltip {
-        display: none;
-      }
-
-      .lte8 .wrapper:hover .tooltip {
-        display: block;
-      }
   }

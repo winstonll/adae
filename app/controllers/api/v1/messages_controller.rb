@@ -16,30 +16,7 @@ module Api::V1
     end
 
     def create
-      if params[:messages][:body]
-        @message = Message.new(body: params[:messages][:body],
-        conversation_id: params[:messages][:conversation_id], user_id: current_user.id)
 
-        if @message.save
-
-          my_hash = {:body => @message.body, :time => @message.message_time,
-          :conversation => @message.conversation_id, :user => @message.user_id,
-          :room => "#{@conversation.id}#{@conversation.recipient_id}#{@conversation.sender_id}",
-          :mobile_time => @message.created_at}
-
-          my_hash = JSON.generate(my_hash)
-
-          $redis.publish "message", my_hash
-
-          SendEmailJob.set(wait: 1.seconds).perform_later(@user, @message)
-
-          render :nothing => true, status: :ok
-        else
-          render json: @message.errors, status: 422
-        end
-      else
-        render :json => { :errors => "message is empty".as_json }, status: 422
-      end
     end
 
     def destroy

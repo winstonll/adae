@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.3'
 # Use sqlite3 as the database for Active Record
@@ -28,8 +29,6 @@ gem 'active_attr'
 gem 'geocoder'
 gem 'gon'
 gem 'toastr-rails'
-gem "introjs-rails"
-gem 'omniauth-facebook'
 
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
@@ -39,13 +38,8 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'bcrypt-ruby'
 gem 'cancancan'
 gem 'bootstrap-sass'
-gem 'jquery-ui-rails'
 
 gem 'stripe'
-#gem 'private_pub'
-
-gem 'delayed_job_active_record'
-#gem 'resque'
 
 gem 'jquery-fileupload-rails'
 
@@ -53,17 +47,7 @@ gem 'carrierwave'
 gem 'rmagick'
 gem 'honeypot-captcha'
 gem 'gmaps4rails'
-
-gem 'eventmachine'
-gem 'daemons'
-
-gem 'realtime'
-gem 'redis'
-gem 'redis-rails'
-gem 'redis-namespace'
-#gem 'foreman'
-
-gem 'thin'
+#gem 'thin'
 gem 'puma'
 gem 'rails-api'
 
@@ -74,7 +58,7 @@ gem 'friendly_id'
 gem 'kaminari'
 
 #gem 'devise_token_auth'
-#gem 'omniauth'
+gem 'omniauth'
 gem 'pg'
 
 # Authentication library

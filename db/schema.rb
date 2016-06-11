@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160601041504) do
+ActiveRecord::Schema.define(version: 20160331150344) do
 
   create_table "conversations", force: :cascade do |t|
     t.integer  "sender_id"
@@ -19,22 +19,6 @@ ActiveRecord::Schema.define(version: 20160601041504) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
-
-  create_table "delayed_jobs", force: :cascade do |t|
-    t.integer  "priority",   default: 0, null: false
-    t.integer  "attempts",   default: 0, null: false
-    t.text     "handler",                null: false
-    t.text     "last_error"
-    t.datetime "run_at"
-    t.datetime "locked_at"
-    t.datetime "failed_at"
-    t.string   "locked_by"
-    t.string   "queue"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "delayed_jobs", ["priority", "run_at"], name: "delayed_jobs_priority"
 
   create_table "items", force: :cascade do |t|
     t.string   "title"
@@ -51,7 +35,10 @@ ActiveRecord::Schema.define(version: 20160601041504) do
     t.string   "status",       default: "Listed"
     t.float    "latitude",     default: 43.6617
     t.float    "longitude",    default: -79.395
+    t.string   "slug"
   end
+
+  add_index "items", ["slug"], name: "index_items_on_slug", unique: true
 
   create_table "locations", force: :cascade do |t|
     t.string   "city"
@@ -89,14 +76,8 @@ ActiveRecord::Schema.define(version: 20160601041504) do
     t.string   "timeframe"
     t.decimal  "amount"
     t.integer  "item_id"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
-    t.string   "title"
-    t.string   "description"
-    t.string   "photo_file_name"
-    t.string   "photo_content_type"
-    t.integer  "photo_file_size"
-    t.datetime "photo_updated_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "ratings", force: :cascade do |t|
@@ -123,16 +104,12 @@ ActiveRecord::Schema.define(version: 20160601041504) do
   end
 
   create_table "requests", force: :cascade do |t|
-    t.string   "title"
-    t.string   "description"
-    t.integer  "user_id"
-    t.string   "tags"
-    t.string   "postal_code"
-    t.datetime "timeframe"
-    t.float    "latitude",    default: 43.6617
-    t.float    "longitude",   default: -79.395
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.string  "title"
+    t.string  "description"
+    t.integer "user_id"
+    t.string  "tags"
+    t.string  "timeframe"
+    t.string  "postal_code"
   end
 
   create_table "reviews", force: :cascade do |t|
@@ -141,14 +118,6 @@ ActiveRecord::Schema.define(version: 20160601041504) do
     t.integer  "item_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "shares", force: :cascade do |t|
-    t.integer  "user_id"
-    t.boolean  "discount_used"
-    t.integer  "item_id"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
   end
 
   create_table "stripe_transactions", force: :cascade do |t|
@@ -175,7 +144,6 @@ ActiveRecord::Schema.define(version: 20160601041504) do
     t.datetime "in_scan_date"
     t.datetime "out_scan_date"
     t.string   "status",                                 default: "Pending"
-    t.text     "addons"
   end
 
   create_table "users", force: :cascade do |t|
@@ -211,10 +179,6 @@ ActiveRecord::Schema.define(version: 20160601041504) do
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
     t.string   "stripe_customer_id"
-    t.string   "photo_url"
-    t.string   "description"
-    t.string   "provider"
-    t.string   "uid"
   end
 
   add_index "users", ["auth_token"], name: "index_users_on_auth_token", unique: true

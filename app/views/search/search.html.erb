@@ -1,16 +1,17 @@
-<%= stylesheet_link_tag "search" %>
+<%= stylesheet_link_tag "items" %>
+<%= stylesheet_link_tag "requests" %>
 
 <body>
-	<div id="search" style="margin: 15px !important;">
-		<div id="search-feed-container" style="width: 900px; margin: 0 auto;">
-			<div id="search-collection">
-				<% @itemquery.each do |item| %>
+	<div id="items" style="margin: 15px !important;">
+		<div id="item-feed-container" style="width: 900px; margin: 0 auto;">
+			<div id="item-collection">
+				<% @query.each do |item| %>
 					<%= render partial: "/items/items", :locals => {:item => item}  %>
-				<% end %>
-				<% @requestquery.each do |request| %>
-					<%= render partial: "/requests/requests", :locals => {:request => request} %>
 				<% end %>
 			</div>
 		</div>
+	</div>
+	<div id="requests">
+		<%#= render partial: "/requests/requests", locals: {requests: @query} %>
 	</div>
 </body>

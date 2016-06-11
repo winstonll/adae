@@ -31,31 +31,4 @@ class ContactMailer < ActionMailer::Base
     mail(to: "winston@adae.co", :subject => "Adae.co New Signup")
   end
 
-  def system_message(user,recipient,listing)
-    @user = user
-    @listing = listing
-    @recipient = recipient
-    mail(to: @recipient.email, subject: 'Someone has replied to your Shout Out!')
-  end
-
-  def review_prompt(buyer, seller, listing)
-    @buyer = buyer
-    @seller = seller
-    @listing = listing
-    mail(to: @buyer.email, :subject => "Hello! Please Rate & Review #{@seller.full_name}.")
-  end
-
-  def change_password(user, pass)
-    @user = user
-    @pass = pass
-    mail(to: @user.email, :subject => "You have successfully signed up.")
-  end
-
-  def request_sent_email_job(transaction)
-    @transaction = transaction
-    @user = User.find(@transaction.seller_id)
-    @other = User.find(@transaction.buyer_id)
-    mail(to: @user.email, :subject => "You have received a request.")
-  end
-
 end

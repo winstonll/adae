@@ -1,62 +1,74 @@
-<!-- Header meta tags -->
+
 <% content_for :head do %>
 	<title><%= @item.title %></title>
-  <!-- You can use open graph tags to customize link previews.
-  Learn more: https://developers.facebook.com/docs/sharing/webmasters -->
+    <!-- You can use open graph tags to customize link previews.
+    Learn more: https://developers.facebook.com/docs/sharing/webmasters -->
 	<meta property="og:url"           content="<%= request.original_url %>" />
-	<meta property="og:type"          content="website" />
+	<meta property="og:type"          content="product" />
 	<meta property="og:title"         content="<%= @item.title %>" />
 	<meta property="og:description"   content="<%= @item.description %>" />
-
-	<% if @pictures %>
-		<meta property="og:image" content="<%= "https://adae.co#{@pictures.first.image.url(:med)}"  %>" />
-	<% end %>
+	<meta property="og:image"         content="<%= "https://adae.co#{@pictures.first.image.url(:med)}"  %>" />
 <% end %>
 
 <%= stylesheet_link_tag "items" %>
 <%= include_gon %>
 
 <script>
-	// Calculation of markup price for every item in our platform
-  // function markup(price) {
-  //   var l1 = 1.1;
-  //   var l2 = 1.08;
-  //   var l3 = 1.06;
-  //   var l4 = 1.04;
-  //   var l5 = 1.02;
-  //   var x = price.innerHTML;
-  //   var y = x.replace('$','');
-  //   var amount = parseInt(y);
-  //   var displayPrice = 0;
 
-  //   if(amount < 100) {
-  //       displayPrice = Math.round(amount*l1, 0);
-  //       price.innerHTML = '$' + displayPrice;
-  //   }else if(amount >= 100 & amount < 200) {
-  //       displayPrice = Math.round(100*l1 + (amount-100)*l2, -1);
-  //       price.innerHTML = '$' + displayPrice;
-  //   }else if(amount >= 200 & amount < 500) {
-  //       displayPrice = Math.round(100*l1 + 100*l2 + (amount-200)*l3, -1);
-  //       price.innerHTML = '$' + displayPrice;
-  //   }else if(amount >= 500 & amount < 1000) {
-  //       displayPrice = Math.round(100*l1 + 100*l2 + 300*l3 + (amount-500)*l4, -1);
-  //       price.innerHTML = '$' + displayPrice;
-  //   }else if(amount >= 1000) {
-  //       displayPrice = Math.round(100*l1 + 100*l2 + 300*l3 + 500*l4 + (amount-1000)*l5, -1);
-  //       price.innerHTML = '$' + displayPrice;
-  //   }
-  // }
+  function markup(price) {
+    var l1 = 1.1;
+    var l2 = 1.08;
+    var l3 = 1.06;
+    var l4 = 1.04;
+    var l5 = 1.02;
+    var x = price.innerHTML;
+    var y = x.replace('$','');
+    var amount = parseInt(y);
+    var displayPrice = 0;
+
+    if(amount < 100) {
+        displayPrice = Math.round(amount*l1, 0);
+        price.innerHTML = '$' + displayPrice;
+    }else if(amount >= 100 & amount < 200) {
+        displayPrice = Math.round(100*l1 + (amount-100)*l2, -1);
+        price.innerHTML = '$' + displayPrice;
+    }else if(amount >= 200 & amount < 500) {
+        displayPrice = Math.round(100*l1 + 100*l2 + (amount-200)*l3, -1);
+        price.innerHTML = '$' + displayPrice;
+    }else if(amount >= 500 & amount < 1000) {
+        displayPrice = Math.round(100*l1 + 100*l2 + 300*l3 + (amount-500)*l4, -1);
+        price.innerHTML = '$' + displayPrice;
+    }else if(amount >= 1000) {
+        displayPrice = Math.round(100*l1 + 100*l2 + 300*l3 + 500*l4 + (amount-1000)*l5, -1);
+        price.innerHTML = '$' + displayPrice;
+    }
+  }
 
   $(document).ready(function() {
-    // var ogprice = document.querySelectorAll('.markup');
-    // var p
-    // for (p = 0; p < ogprice.length; p++) {
-    //   markup(ogprice[p]);
-    // }
 
-		<% if @pictures %>
-    	$(".photos").css("width", $(".photo-container").width() / "<%= @pictures.count + 0.0017 %>");
-		<% end %>
+		window.fbAsyncInit = function() {
+			FB.init({
+				appId      : '896455457041729',
+				xfbml      : true,
+				version    : 'v2.5'
+			});
+		};
+
+		(function(d, s, id){
+			 var js, fjs = d.getElementsByTagName(s)[0];
+			 if (d.getElementById(id)) {return;}
+			 js = d.createElement(s); js.id = id;
+			 js.src = "//connect.facebook.net/en_US/sdk.js";
+			 fjs.parentNode.insertBefore(js, fjs);
+		 }(document, 'script', 'facebook-jssdk'));
+
+    var ogprice = document.querySelectorAll('.markup');
+    var p
+    for (p = 0; p < ogprice.length; p++) {
+      markup(ogprice[p]);
+    }
+
+    $(".photos").css("width", $(".photo-container").width() / "<%= @pictures.count + 0.017 %>");
 
     <% if user_signed_in? && @item.user_id == current_user.id %>
       $('.request-button').bind('click', false);
@@ -74,6 +86,10 @@
       $('.request-button').css("cursor", "default");
     <% end %>
 
+    $('#buy-button').click(function(){
+      $('.signup-modal').show();
+      //$('.modal-backdrop').fadeOut();
+    });
   });
 
 </script>
@@ -94,7 +110,7 @@
         <div class="item-detail-price" style="height:265px;">
           <div class="price-title">For Sale</div>
           <p class="sale-price"> Price:
-            <span class="markup" style="font-weight: 700; color:#000;">$<%= @prices.first.amount.to_i %></span>
+            <span class="markup" style="font-weight: 700; color:#000;">$<%= @prices.first.amount %></span>
           </p>
           <% if user_signed_in? %>
             <%= link_to 'Request to Buy', new_transaction_path(:item_id => @item.id), class: "request-button", id: "buy-button"%>
@@ -105,40 +121,48 @@
           <% end %>
         </div>
       <% elsif @item.listing_type == "lease" %>
-        <div class="item-detail-price-product">
-          <div class="price-title2">Available for Sale</div>
+        <div class="item-detail-price" style="height:350px;">
+          <div class="price-title2">Available for Lease</div>
             <% @prices.each do |price| %>
               <div class="price-breakdown">
-                  <div class="price-list-product">
-                    <div class="price-time">
-                      <span id="price-title"><%= price.title %></span>
-                      <%= simple_format price.description.html_safe, :style =>"text-align: left; margin-top: 5px; font-size: 14px;" %>
-                    </div>
-                    <div class="image-wrap" id="wrapper">
-                      <%= link_to image_tag(price.photo.url(:thumb), alt: "product", class: "price-photo"), price.photo.url, :rel => "lightbox" %>
-                    </div>
-										<span class="markup">$<%= price.amount.to_i %></span>
+                  <div class="price-list">
+                    <span class="markup" style="font-weight:500;">$<%= price.amount %></span> per <%= price.timeframe %>
                   </div>
-									<div class="division-2"></div>
               </div>
             <% end %>
+          <div class="division"></div>
           <div class="item-detail-calc">
+            <% unless @item.deposit == 0 %>
+              <input class="trust-fee"readonly="readonly" value="Trust Fee: $<%= @item.deposit %>"></input>
+              <p class="trust-fee-text">This ensures that the item is treated with care, and is returned on time. <b style="font-weight: 500"> This amount will be charged only if you fail to return the item, damage it, or lose it.</b> </p>
+            <% end %>
+            <div class="division-2"></div>
+
 						<% if user_signed_in? %>
-	            <%= link_to 'Request Item(s)', new_transaction_path(:item_id => @item.id), class: "request-button", id: "lease-button"%>
+	            <%= link_to 'Request to Lease', new_transaction_path(:item_id => @item.id), class: "request-button", id: "lease-button"%>
 							<%= link_to 'Send Message', conversations_path(:sender_id => current_user.id, :recipient_id => @item.user_id), :method=> :post, class: "send-message signed-in-message" %>
 	          <% else %>
-	            <%= link_to 'Request Item(s)', {remote: true, controller: "home", action: "signup_modal"}, id: "lease-button", class: "request-button" %>
+	            <%= link_to 'Request to Lease', {remote: true, controller: "home", action: "signup_modal"}, id: "lease-button", class: "request-button" %>
 							<%= link_to 'Send Message', {remote: true, controller: "home", action: "signup_modal"}, class: "send-message guest-message" %>
 	          <% end %>
           </div>
         </div>
+        <div class="item-lease-price" >
+          <div class="price-title">Also Available for Sale</div>
+          <p>Pay a rental fee to try the item, and if you like it you can buy the item for the Trust Fee price.</p>
+          <p>Your rental fees will count towards the final sale price.</p>
+          <p class="sale-price"> Sale Price:
+            <span class="markup" style="font-weight: 700; color:#000;">$<%= @item.deposit %></span>
+          </p>
+          <%= link_to 'Request to Buy', new_transaction_path(:item_id => @item.id, :sell=> true), class: "request-button", id: "buy-button"%>
+        </div>
       <% elsif @item.listing_type == "rent"%>
-        <div class="item-detail-price">
+        <div class="item-detail-price" style="height:355px;">
           <div class="price-title2">Available for Rent</div>
             <% @prices.each do |price| %>
               <div class="price-breakdown">
                   <div class="price-list">
-                    <span class="markup" style="font-weight:500;">$<%= price.amount.to_i %></span> per <%= price.timeframe %>
+                    <span class="markup" style="font-weight:500;">$<%= price.amount %></span> per <%= price.timeframe %>
                   </div>
               </div>
             <% end %>
@@ -159,19 +183,11 @@
           </div>
         </div>
       <% else %>
-        <div class="item-detail-price">
+        <div class="item-detail-price" style="height:270px;">
           <div class="price-title2">Service Available</div>
-          <% @prices.each do |price| %>
-            <div class="price-breakdown">
-              <div class="price-list">
-              <% if price.timeframe == "Flat Rate" %>
-                <span class="markup">$<%= price.amount.to_i %></span> <span class="price-time"><%= price.timeframe %></span>
-              <% else %>
-                <span class="markup">$<%= price.amount.to_i %></span> <span class="price-time">per <%= price.timeframe %></span>
-              <% end %>
-              </div>
-            </div>
-          <% end %>
+          <div class="price-breakdown" style="margin-top: 55px; margin-bottom: 50px;">
+            <span class="markup" style="font-weight: 700; font-size: 20px; color:#000;">$<%= @prices.first.amount %></span> per <%= @prices.first.timeframe %>
+          </div>
 					<% if user_signed_in? %>
             <%= link_to 'Request Service', new_transaction_path(:item_id => @item.id), class: "request-button", id: "service-button"%>
 						<%= link_to 'Send Message', conversations_path(:sender_id => current_user.id, :recipient_id => @item.user_id), :method=> :post, class: "send-message signed-in-message" %>
@@ -184,15 +200,18 @@
     </div>
 
     <div class="item-title-and-user">
-      <% if current_page?('adae.co/listings/121') %>
-        <div class="item-detail-title"><%= @item.title %></div>
-        <div class="item-detail-username"><%= @item.user.full_name%>
-          <%= link_to image_tag(@item.user.avatar.url(:med), class:"avatar"), user_path(@item.user) %>
-        </div>
-        <div class="date">Listed On: <%= @item.created_at.strftime('%d %b %Y') %></div>
-      <% end %>
+      <div class="item-detail-title"><%= @item.title %></div>
+      <div class="item-detail-username"><%= @item.user.full_name%>
+        <%= link_to image_tag(@item.user.avatar.url(:med), class:"avatar"), user_path(@item.user) %>
+      </div>
+      <div class="date">Listed On: <%= @item.created_at.strftime('%d %b %Y') %></div>
     </div>
     <div class="item-detail-description">
+
+			<div id="fb-root"></div>
+
+      <div class="fb-share-button" style="margin-bottom: 20px;" data-href="<%= request.original_url %>" data-layout="button_count"></div>
+
       <div class="item-description">
         <div style="font-weight: 500; margin-bottom: -5px;">Description:</div>
         <%= simple_format(@item.description) %>
@@ -204,7 +223,7 @@
 </div>
 
 <% unless @item.listing_type == "sell" %>
-  <div class="rating-container" id="rating-container">
+  <div class="rating-container">
     <div class="overall-rating">
       <div class="rating-score">
         <p>Rating Score:</p>
@@ -225,12 +244,11 @@
         <p class="prompt">No Ratings yet - be the first to leave a rating!</p>
         <%= link_to "Add a Rating", new_item_rating_path(@item),class: "add-a-rating" %>
       <% else %>
-        <!--<p class="prompt" style="margin-right: 11px; margin-top: -6px;">No Ratings yet</p>-->
+        <p class="prompt" style="margin-right: 11px; margin-top: -6px;">No Ratings yet</p>
       <% end %>
     </div>
   </div>
 
-	<!-- Review section for registered users -->
   <% if signed_in? && !@reviewable %>
     <%= form_for([@item, @review],:remote => true) do |f| %>
       <div class="review-area">
@@ -251,46 +269,28 @@
       </div>
     <% end %>
   <% end %>
-	<!-- End Review section -->
 
-	<!-- List of Reviews for all users -->
   <div class="review-list">
     <div class="review-content">
-      <div class="item-reviews">What People Say About Us:</div>
+      <div class="item-reviews">Reviews for: <em><%= @item.title %></em></div>
       <% if @item.reviews.exists? %>
         <%= render @item.reviews.order("created_at DESC") %>
       <% else %>
-        <blockquote id="no-review-yet">No reviews yet.</blockquote>
+        <blockquote><i>No reviews yet.</i></blockquote>
       <% end %>
     </div>
   </div>
-	<!-- End Review list -->
 <% end %>
 
-
-<!-- Popup for guests to explain our payment system -->
 <% unless signed_in? %>
   <div class="why-cc">
-    Why Use Adae?
+    Why shop on Adae?
     <div class="tooltip">
       <ul>
-        <li>&#x2756; <b>Convenience:</b> Instead of spending time picking out and carrying your weekly fruits, have us do the work and deliver to you!</br></br></li>
-        <li>&#x2756; <b>Security:</b> Only when your request is accepted, will your card will be charged. We won't receive your money until the delivery is made.</br><br></li>
-        <li>&#x2756; We are always happy to help and try to resolve any problems and issue refunds, whenever necessary.</br><br></li>
+        <li>&#x2756; <b>Convenience:</b> We ask for a credit or debit card (securely via <a style="text-decoration: underline" target="_blank" href="https://stripe.com/gallery">Stripe</a>) before making a request; in return, no need to bring cash as the owner gets paid electronically.</br></br></li>
+        <li>&#x2756; <b>Security:</b> Only when your request is accepted, will your card will be charged. The owner won't receive your money until you meet.</br><br></li>
+        <li>&#x2756; We are always happy to help and try to resolve disputes and issue refunds, whenever necessary.</br><br></li>
       </ul>
     </div>
   </div>
 <% end %>
-<!-- End popup -->
-
-<!-- Google analytics -->
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
-  ga('create', 'UA-78544137-1', 'auto');
-  ga('send', 'pageview');
-
-</script>

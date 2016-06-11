@@ -1,11 +1,11 @@
 <%= stylesheet_link_tag "items" %>
 <div class="bootstrap" style="margin-top: 50px;">
 	<center><h2 style="color:#419bf9;">Resend confirmation instructions</h2></center>
-	<div style="width: 700px; display: table; margin: auto;">
+	<div class="col-md-4 col-md-push-4">
 		<%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f| %>
-		  <div><%= devise_error_messages! %></div>
+		  <span><%= devise_error_messages! %></span>
 
-		  <div style="width: 200px; display: table; margin: auto;"> 
+		  <div> 
 		  	<%= f.email_field :email, autofocus: true,value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email), placeholder: "Email", :class => "form-control" %>
 		  </div>
 		  </br>
@@ -13,6 +13,6 @@
 		    <%= f.submit "Resend confirmation instructions", class: "btn btn-large btn-primary" %>
 		  </p>
 		<% end %>
-        <p><%= render "users/shared/links" %></p>
+        <span><%= render "users/shared/links" %></span>
  	</div>
 </div>
