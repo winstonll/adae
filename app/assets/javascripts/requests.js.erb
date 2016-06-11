@@ -6,7 +6,7 @@ $(document).on('ready page:load', function() {
     var hashtagBoxCounter = 4;
     var MAX_BOX_COUNT = 6;
 
-     $("#add-hashtag-button").click(function() {
+      $("#add-hashtag-button").click(function() {
        // add another hashtag text box when clicked under existing text box.
        var newBoxNumber = hashtagBoxCounter + 1;
 
@@ -18,9 +18,32 @@ $(document).on('ready page:load', function() {
        } else {
          $("#add-hashtag-button").css("display", "none");
        }
-     });
+      });
 
+      $('#datepicker').datepicker({ minDate: 0, maxDate: "+3M", dateFormat: 'D, dd M yy'  });
 
+      function validate_user_form_and_submit(event){
+        var postal_code = /^[A-Za-z]\d[A-Za-z]\s?\d[A-Za-z]\d$/.test($('#request_postal_code').val());
+        if (postal_code) {
+          return true;
+        } else {
+          var error_message = "Postal Code is in the wrong format";
+          
+          $('.toast').remove();
+          toastr.options ={
+            'timeOut': "6000",
+            'extendedTimeOut': "2000",
+            "positionClass": 'toast-top-right'
+          };
+          toastr.error(error_message);
+          event.preventDefault();
+        }
+      }
+
+      $('.submit-shoutout').click(function(event){
+        validate_user_form_and_submit(event);
+      });
+      
  });
 
  

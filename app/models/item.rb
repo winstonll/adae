@@ -15,8 +15,11 @@ class Item < ActiveRecord::Base
 
 	has_many :pictures, :dependent => :destroy
 
-	extend FriendlyId
-	friendly_id :title, use: :slugged
+	#validates :photo,
+  #  attachment_content_type: { content_type: /\Aimage\/.*\Z/ },
+  #  attachment_size: { less_than: 5.megabytes }
+
+	#has_attached_file :photo, styles: { small: "400x400", med: "800x800", large: "1200x1200" }
 
 	def ratings_by_user(user)
 		ratings.find_by(user: user).score

@@ -1,0 +1,27 @@
+<div id="ui-segment">
+  <% @messages.each do |message| %>
+    <% if message.body %>
+      <% user = User.find(message.user_id) %>
+      <% if user.id == current_user.id %>
+        <div class="chat-bubble">
+          <div class="bubble-text">
+            <span class="msg"><%= message.body %></span>
+          </div>
+        </div>
+
+        <div class="chat-time">
+          <%= message.message_time %>
+        </div>
+      <% else %>
+        <div class="opp-chat-bubble">
+          <div class="bubble-text">
+            <span class="msg"><%= message.body %></span>
+          </div>
+        </div>
+        <div class="opp-chat-time">
+          <%= message.message_time %>
+        </div>
+      <% end %>
+    <% end %>
+  <% end %>
+</div>

@@ -1,0 +1,35 @@
+var mapOptions;
+
+function initializeshout() {
+    // Other options for the map, pretty much selfexplanatory
+    if (document.getElementById("shout-map") != null){
+      mapOptions = {
+          zoom: 12,
+          scrollwheel: false,
+          center: new google.maps.LatLng(43.6617, -79.3950),
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+      };
+
+      // Attach a map to the DOM Element, with the defined settings
+      var map = new google.maps.Map(document.getElementById("shout-map"), mapOptions);
+
+      var address = gon.map_request;
+
+      address.forEach(function(postcode) {
+          var latlng = new google.maps.LatLng(String(postcode[0]), String(postcode[1]) );
+
+          var marker = new google.maps.Marker({
+              position: latlng,
+              center: latlng,
+              map: map,
+              url: 'shoutouts/' + postcode[2]
+          });
+
+          google.maps.event.addListener(marker, 'click', function() {
+            window.location.href = marker.url;
+          });
+      });
+    }
+}
+
+initializeshout();

@@ -1,7 +1,5 @@
 <%= stylesheet_link_tag "chat" %>
-<!--<% if @over_ten %>
-  <%= link_to 'Show Previous Messages', '?m=all' %>
-<% end %>-->
+
 <script>
   $(document).on('ready page:load', function() {
     var objDiv = document.getElementById("ui-segment");
@@ -19,9 +17,33 @@
     var datetime = adaebot.next();
     datetime.css({'margin-left':'6em','margin-right':'6em'});
 
+    if($('#message_body').val() ==  "")
+       $('#reply_btn').attr('disabled', true);
+
+    $('#message_body').keyup(function(){
+        if($('#message_body').val() !=  "")
+             $('#reply_btn').attr('disabled', false);
+        else
+             $('#reply_btn').attr('disabled', true);
+    });
+
+    $("#message_body").keypress(function(event) {
+      if (event.which == 13) {
+          event.preventDefault();
+          $(".new_message").submit();
+      }
+    });
   });
 
   function clickAndDisable(link) {
+    var element = document.getElementById('accepting');
+    if (element.innerHTML === 'Accept'){
+      element.innerHTML = 'Accepting...';
+      element.style.backgroundColor = '#419bf9';
+      element.style.color = '#fff';
+    }else {
+      element.innerHTML = 'Accept';
+    }
      // disable subsequent clicks
     link.onclick = function(event) {
       event.preventDefault();
@@ -32,7 +54,7 @@
 <div class="companion-modal"></div>
 
 <div class="page-content">
-  
+
   <!-- Chat area pre-transaction request -->
   <% if @conversation.sender_id == current_user.id %>
     <div class="username"> Conversation with <%=User.find_by(id: @conversation.recipient_id).name %></div>
@@ -41,6 +63,7 @@
   <% end %>
 
   <div class="user-profile">
+    <div class="user-wrap">
     <% if @conversation.sender_id == current_user.id %>
     <p id="user-name"><%=User.find_by(id: @conversation.recipient_id).name %></p>
     <p><%= image_tag(User.find_by(id: @conversation.recipient_id).avatar.url(:med), class:"avatar") %></p>
@@ -48,47 +71,24 @@
       <p id="user-name"><%=User.find_by(id: @conversation.sender_id).name %></p>
       <p><%= image_tag(User.find_by(id: @conversation.sender_id).avatar.url(:med), class:"avatar") %></p>
     <% end %>
+    <!--<p> Email Address: <span style="font-weight: 600;">Verified</span> <span style="color: #39DC12;">&#10003;</span></p>-->
+  </div>
   </div>
 
   <div class="chat-area">
     <div class="chat-content">
-      <div id="ui-segment">
-        <% @messages.each do |message| %>
-          <% if message.body %>
-            <% user = User.find(message.user_id) %>
-            <% if user.id == current_user.id %>
-              <div class="chat-bubble">
-                <div class="bubble-text">
-                  <span class="msg"><%= message.body %></span>
-                </div>
-              </div>
-              <div class="chat-time">
-                <%= message.message_time %>
-              </div>
-            <% else %>
-              <div class="opp-chat-bubble">
-                <div class="bubble-text">
-                  <span class="msg"><%= message.body %></span>
-                </div>
-              </div>
-              <div class="opp-chat-time">
-                <%= message.message_time %>
-              </div>
-            <% end %>
-          <% end %>
-        <% end %>
-      </div>
+      <%= render partial: 'chat' %>
     </div>
-      <%= form_for [@conversation, @message] do |f| %>
+      <%= form_for [@conversation, @message], :remote => true do |f| %>
         <div class="reply-field">
-            <%= f.text_area :body, :placeholder => "Type your message here. Refresh your browser to check for new messages.", class: "form-control" %>
+            <%= f.text_area :body, :placeholder => "Type your message here.", class: "form-control" %>
             <%= f.text_field :user_id, value: current_user.id, type: "hidden"%>
 
             <% if @transaction %>
               <%= f.hidden_field :item_id, :value => "#{@item.id}" %>
             <% end %>
 
-            <%= f.submit "Send", class: "reply_btn", data: {disable_with: "Sending..."} %>
+            <%= f.submit "Send", id: "reply_btn", data: {disable_with: "Sending..."} %>
         </div>
       <% end %>
   </div>
@@ -104,53 +104,51 @@
    </div>
  </div>-->
   <% end %>
-
     <!-- This segment is for chat rooms with a transaction START-->
     <% if @transaction %>
       <div class="request-box">
-        <% if @transaction.seller_id == current_user.id %> <!--condition to see if current user is also the seller-->
-          <% if @item.listing_type == "sell" %> <!--condition to set the opposite listing value-->
-            <p id="heading"><%= User.find_by(id: @transaction.buyer_id).name %> requested to buy</p>
-          <% elsif @item.listing_type == "timeoffer" %>
-            <p id="heading"><%= User.find_by(id: @transaction.buyer_id).name %> requested service</p>
+        <div class="request-wrapper">
+          <% if @transaction.seller_id == current_user.id %> <!--condition to see if current user is also the seller-->
+            <% if @item.listing_type == "sell" %> <!--condition to set the opposite listing value-->
+              <p id="heading"><%= User.find_by(id: @transaction.buyer_id).name %> requested to buy</p>
+            <% elsif @item.listing_type == "timeoffer" %>
+              <p id="heading"><%= User.find_by(id: @transaction.buyer_id).name %> requested service</p>
+            <% else %>
+              <p id="heading"><%= User.find_by(id: @transaction.buyer_id).name %> requested:</p>
+            <% end %>
           <% else %>
-            <p id="heading"><%= User.find_by(id: @transaction.buyer_id).name %> requested to <%= @item.listing_type %></p>
+            <% if @item.listing_type == "sell" %>
+              <p id="heading">You requested to buy</p>
+            <% elsif @item.listing_type == "timeoffer" %>
+              <p id="heading">You requested the following service</p>
+            <% else %>
+              <p id="heading">You requested to <%= @item.listing_type %></p>
+            <% end %>
+          <% end %> <!--condition to see if current user is also the seller-->
+          <p id="item-title"><%= @item.title %></p>
+          <p id="item-title"> Price of $<%= @transaction.total_price.to_i %></p>
+          <% if @transaction.length %>
+            <p id="item-title"> for <%= @transaction.length %> period</p>
           <% end %>
-        <% else %>
-          <% if @item.listing_type == "sell" %>
-            <p id="heading">You requested to buy</p>
-          <% elsif @item.listing_type == "timeoffer" %>
-            <p id="heading">You requested the following service</p>
-          <% else %>
-            <p id="heading">You requested to <%= @item.listing_type %></p>
-          <% end %>
-        <% end %> <!--condition to see if current user is also the seller-->
-        <p id="item-title"><%= @item.title %></p>
-        <p><%= image_tag @picture.image, class: "item-image" %></p>
-        <p id="status">Transaction Status: <%= @transaction.status %></p>
+          <p><%= image_tag @picture.image, class: "item-image" %></p>
+          <p id="status">Transaction Status: <%= @transaction.status %></p>
 
-        <% if @transaction.seller_id == current_user.id && @transaction.status == 'Pending' %>
-          <li class="listings">
-      			<div class="item-edit-delete-buttons">
-      				<%= link_to 'Accept', accept_path(item_id: @item.id, transaction: @transaction.id), class: "edit-item", :onclick => 'clickAndDisable(this)' %>
-      				<%= link_to 'Decline', @transaction, method: :delete, class: "delete-item", data: {confirm: "Are you sure you want to decline this request?"}  %>
-      			</div>
-      		</li>
-        <% elsif @transaction.buyer_id == current_user.id %>
-          <p id ="cancel"> Need to Cancel?
-            <span style="text-decoration: underline; color: #FF2641">
-              <%= link_to 'Click Here', contact_path %>
-            </span>
-          </p>
-        <% end %>
-      </div>
-      <% if @item.listing_type == "lease" && @item.status != "Sold" && current_user.id != @item.user_id && (["In Progress"].include?(@transaction.status)) %>
-        <div class="request-box" style="margin-bottom: -5px; height: 140px;">
-          <p style="font-weight: 500px; color: #4a4a4a; line-height: normal;">If you would like to buy the item during your rental period, click below.</p>
-            <%= link_to 'Request to Purchase', purchase_lease_path(item_id: @item.id, transaction: @transaction.id, lease: "true"), class: "lease-buy-item",
-            data: {confirm: "Are you sure you want to purchase this item?"} %>
+          <% if @transaction.seller_id == current_user.id && @transaction.status == 'Pending' %>
+            <li class="listings">
+        			<div class="item-edit-delete-buttons">
+        				<%= link_to 'Accept', accept_path(item_id: @item.id, transaction: @transaction.id), class: "edit-item", id: "accepting", :onclick => 'clickAndDisable(this)' %>
+        				<%= link_to 'Decline', @transaction, method: :delete, class: "delete-item", data: {confirm: "Are you sure you want to decline this request?"}  %>
+        			</div>
+        		</li>
+          <% elsif @transaction.buyer_id == current_user.id %>
+            <p id ="cancel"> Need to Cancel?
+              <span style="text-decoration: underline; color: #FF2641">
+                <%= link_to 'Click Here', contact_path %>
+              </span>
+            </p>
+          <% end %>
         </div>
-      <% end %>
+      </div>
 
       <% if @transaction.seller_id == current_user.id %>
         <div class="helpful-tip">
@@ -161,11 +159,48 @@
         <div class="helpful-tip">
           <p id="seller">Your Credit or Debit Card will be charged once your
                 request has been accepted.
-                Don’t worry, your money will NOT be sent to
-                the other party until you both meet up and scan the in-app QR code.</p>
+          </p>
         </div>
       <% end %>
     </div>
   <% end %>
   <!-- chat room with trasaction END -->
 </div>
+
+<script>
+  // Production socket.io
+  var socket = io("https://adae.co:40525").connect();
+
+  var room = "<%= "#{@conversation.id}#{@conversation.recipient_id}#{@conversation.sender_id}" %>";
+
+  socket.on('connect', function() {
+    // Connected, let's sign-up for to receive messages for this room
+    socket.emit('room', room);
+  });
+
+  socket.on("message", function(data) {
+    var current = <%= current_user.id %>;
+
+    if (current != data["user"]){
+      var element = $('#ui-segment');
+
+      element.append("<div class='opp-chat-bubble polling'><div class='bubble-text'><span class='msg'>" + data["body"] + "</span></div></div>");
+      element.append("<div class='opp-chat-time polling'>" + data["time"] + "</div>");
+
+      element = document.getElementById("ui-segment");
+      element.scrollTop = element.scrollHeight;
+    }
+  });
+</script>
+
+<!-- Google analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-78544137-1', 'auto');
+  ga('send', 'pageview');
+
+</script>

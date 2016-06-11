@@ -5,7 +5,8 @@ itemS INDEX/SEARCH
 $purple: #A100C2;
 $blue: #419bf9;
 $green: #7ed321;
-
+$orange: #f5a623;
+$pink: #FF8686;
 .bootstrap {
   @import "bootstrap-sprockets";
   @import "bootstrap";
@@ -24,8 +25,76 @@ $green: #7ed321;
 }
 
 #items {
-  margin-left: 15px;
   margin-bottom: 0px;
+
+  .switch {
+    margin: 20px;
+    margin-left: 12px;
+    .share-item {
+          background-color: #fff;
+          border: 1px solid #419bf9;
+          border-radius: 5px;
+          font-size: 15px;
+          font-weight: 500;
+          padding: 7px 25px 7px 25px;
+          color: #419bf9;
+          margin-right: 5px;
+
+          &:link{
+            background-color: #fff;
+            color: $blue;
+          }
+
+          &:visited{
+            background-color: $blue;
+            color: #fff;
+          }
+
+          &:hover {
+            background-color: $blue;
+            color: #fff;
+            transition: all .3s ease-in-out;
+          }
+
+          &:active{
+            background-color: $blue;
+            color: #fff;
+          }
+      }
+      .share-request {
+          background-color: #fff;
+          border: 1px solid $orange;
+          border-radius: 5px;
+          font-size: 15px;
+          font-weight: 500;
+          padding: 7px 14px 7px 14px;
+          color: $orange;
+          margin-right: 28px;
+
+          &:hover {
+            background-color: $orange;
+            color: #fff;
+            transition: all .3s ease-in-out;
+          }
+      }
+      #startButton {
+        background-color: #fff;
+        border: 1px solid $purple;
+        border-radius: 5px;
+        font-size: 15px;
+        font-weight: 500;
+        padding: 7px 34px 7px 34px;
+        color: $purple;
+        margin-left: -26px;
+        cursor: pointer;
+
+          &:hover {
+            background-color: $purple;
+            color: #fff;
+            transition: all .3s ease-in-out;
+          }
+        }
+  }
 
   #map-canvas{
     position: absolute;
@@ -34,19 +103,18 @@ $green: #7ed321;
     width: 50%;
     top: 60px;
     right: 0;
-    //background-image: asset-url('coming-soon-map.png');
-    //background-size: cover;
-    //background-position: center;
   }
 
   #item-feed-container {
     height: 90vh;
     overflow-y: scroll;
     position: relative;
-    margin-right: 10px;
-    margin-top: 10px;
-    margin-bottom: 10px;
+    padding-right: 10px;
+    padding-top: 10px;
+    padding-left: 10px;
     width: 48%;
+    background: #f2f2f2;
+    border-top: 1px solid #eaeaea;
 
     #pagination-div {
       margin-top: 15px;
@@ -108,6 +176,11 @@ $green: #7ed321;
         margin-bottom: 10px;
         display: inline-block;
         width: 100%;
+        border-radius: 4px;
+        border-left: 1px solid #dcdcdc;
+        border-top: 1px solid #dcdcdc;
+        border-right: 1px solid #dcdcdc;
+
 
         .price-wrap {
           width: 100%;
@@ -168,11 +241,23 @@ $green: #7ed321;
             }
             .timeoffer {
               background: $blue;
-              padding:10px 5px 10px 5px;
-              width: 90px;
+              padding:10px 10px 10px 5px;
               border-radius: 1px;
               &:hover{
                 background-color: #0077f3;
+                color: #fff;
+                transition: all .3s ease-in-out;
+              }
+            }
+
+            .flat-rate {
+              background: $green;
+              padding:10px 5px 10px 5px;
+              width: 90px;
+              border-radius: 1px;
+              margin-top: 8px;
+              &:hover{
+                background-color: #5AC902;
                 color: #fff;
                 transition: all .3s ease-in-out;
               }
@@ -181,44 +266,51 @@ $green: #7ed321;
         }
 
         .item-wrap {
-          background: rgba(000, 000, 000, 0.7);
+          background: #fff;
           width: 100%;
-          height: 80px;
+          height: 82px;
           margin-top: 10px;
+          margin-left: -1px;
+          border-radius: 0px 0px 2px 2px;
+          border-left: 1px solid #dcdcdc;
+          border-bottom: 1px solid #dcdcdc;
+          border-right: 1px solid #dcdcdc;
 
           .avatar{
             border-radius: 50%;
-            border: 1px solid #fff;
-            height: 30px;
-            width: 30px;
+            height: 35px;
+            width: 35px;
+            margin-bottom: 10px;
             float: left;
             margin-right: 10px;
+            margin-left: -5px;
             object-fit: cover;
           }
 
 
           #item-title {
             text-align: left;
-            color: #fff;
-            font-size: 14px;
-            font-weight: 500;
+            color: #4a4a4a;
+            font-size: 15px;
+            font-weight: 600;
             margin-left: 15px;
             line-height: normal;
-            padding-top: 10px;
-            white-space: nowrap;
+            padding-top: 8px;
+            height: 45px;
+            /*white-space: nowrap;
             overflow: hidden;
-            text-overflow: ellipsis;
+            text-overflow: ellipsis;*/
             &:hover{
-              text-decoration: underline;
+              color: $blue;
             }
           }
 
+
           .tag-container{
             float: right;
-            margin-top: 18px;
-            margin-right: 5px;
+            margin: 8px 5px 5px 0px;
             .tags{
-              color: #fff;
+              color: $blue;
               font-size: 10px;
               text-align: right;
               margin-right: 1px;
@@ -233,6 +325,13 @@ $green: #7ed321;
     }
   }
 }
+
+@media screen and (min-width: 320px) and (max-width: 768px){
+  .feed-map {
+    display: none;
+  }
+}
+
 /*media screen parameters for listing feed and item page*/
 @media only screen and (min-width: 1280px) {
   .item-index{
@@ -301,12 +400,11 @@ $green: #7ed321;
 /*
 item Show
 */
-body{
-  background-color: #f2f2f2;
-}
+
 .item-info {
   width: 100%;
   margin: auto;
+  background: #f2f2f2;
 
   .photo-container {
     white-space: nowrap;
@@ -322,6 +420,122 @@ body{
     }
   }
 
+  .share-button{
+    height: 27px;
+    width: 70px;
+    border: none;
+    background-color: #3D54A8;
+    color:#fff;
+    cursor: pointer;
+    border-radius: 3px;
+    font-size: 13px;
+    font-family: 'arial', sans-serif;
+    background-image: url('<%= asset_path 'fb-share-icon.png'%>');
+    background-repeat: no-repeat;
+    background-position: 6px 5px;
+    background-size: 16px;
+    margin: -10px 0px 12px 0px;
+    padding: 1px 0px 0px 19px;
+    display: none;
+
+    &:hover{
+      background-color: #364C9B;
+      transition: all .3s ease-in-out;
+    }
+  }
+
+  /* fb share button helping tip*/
+  .wrapper {
+    font-weight: 500;
+    cursor: default;
+    line-height: normal;
+    position: relative;
+    text-align: center;
+    -webkit-transform: translateZ(0); /* webkit flicker fix */
+    -webkit-font-smoothing: antialiased; /* webkit text rendering fix */
+    width: 5px;
+    top: 2px;
+    border-radius: 50%;
+  }
+
+   .tooltip {
+    font-family: 'Avenir Next','Arial', sans-serif;
+    background: #419bf9;
+    bottom: 100%;
+    color: #fff;
+    display: block;
+    left: -25px;
+    margin-bottom: 15px;
+    margin-left: -52px;
+    opacity: 0;
+    padding: 20px;
+    pointer-events: none;
+    position: absolute;
+    width: 240px;
+    border-radius: 5px;
+    font-size: 15px;
+    text-align: left;
+    -webkit-transform: translateY(10px);
+       -moz-transform: translateY(10px);
+        -ms-transform: translateY(10px);
+         -o-transform: translateY(10px);
+            transform: translateY(10px);
+    -webkit-transition: all .25s ease-out;
+       -moz-transition: all .25s ease-out;
+        -ms-transition: all .25s ease-out;
+         -o-transition: all .25s ease-out;
+            transition: all .25s ease-out;
+    -webkit-box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.28);
+       -moz-box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.28);
+        -ms-box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.28);
+         -o-box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.28);
+            box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.28);
+  }
+
+  /* This bridges the gap so you can mouse into the tooltip without it disappearing */
+  .wrapper .tooltip:before {
+    bottom: -20px;
+    content: " ";
+    display: block;
+    height: 20px;
+    left: 0;
+    position: absolute;
+    width: 100%;
+  }
+
+  /* CSS Triangles - see Trevor's post */
+  .wrapper .tooltip:after {
+    border-left: solid transparent 10px;
+    border-right: solid transparent 10px;
+    border-top: solid #419bf9 10px;
+    bottom: -10px;
+    content: " ";
+    height: 0;
+    left: 50%;
+    margin-left: -65px;
+    position: absolute;
+    width: 0;
+  }
+
+  .wrapper:hover .tooltip {
+    opacity: 1;
+    pointer-events: auto;
+    -webkit-transform: translateY(0px);
+       -moz-transform: translateY(0px);
+        -ms-transform: translateY(0px);
+         -o-transform: translateY(0px);
+            transform: translateY(0px);
+  }
+
+  /* IE can just show/hide with no transition */
+  .lte8 .wrapper .tooltip {
+    display: none;
+  }
+
+  .lte8 .wrapper:hover .tooltip {
+    display: block;
+  }
+
   .price-details {
     margin-top: -2.75em;
     float: right;
@@ -329,20 +543,52 @@ body{
     .item-detail-price {
       float: right;
       z-index:2;
-      border: 1px solid #979797;
+      border: 1px solid #B4B4B4;
       background-color: #fff;
-      width: 270px;
-      bottom: 270px;
+      width: 280px;
+      padding-bottom: 17px;
       border-radius: 3px;
 
       .price-breakdown{
-        margin-left: 65px;
-        margin-top: 10px;
+        margin-top: 15px;
         .price-list{
-          text-align: left;
           color: #4a4a4a;
-          font-size: 17px;
-          margin-top: 8px;
+          font-size: 18px;
+          font-weight: 600;
+          border: 1px solid #c9c9c9;
+          border-radius: 4px;
+          margin: 0 auto;
+          display: table;
+          padding: 10px 15px 10px 15px;
+          margin-bottom: 15px;
+          .markup{
+            font-weight: 700;
+            color: #34C819;
+            font-size: 25px;
+          }
+          .price-time{
+            float: right;
+            margin-top: 4px;
+            padding-left: 5px;
+          }
+        }
+
+        .price-list-product{
+          font-size: 15px;
+          font-weight: 400;
+          border: none;
+          padding: 10px 0px 0px 20px;
+          .markup{
+            font-weight: 700;
+            color: #34C819;
+            font-size: 20px;
+          }
+          .price-time{
+            margin: -21px 0px 0px 44px;
+            width: 200px;
+            color: #262626;
+            line-height: normal;
+          }
         }
       }
 
@@ -382,32 +628,6 @@ body{
         opacity: 0.9;
         padding: 12px;
       }
-      #qty{
-        border: 1px solid #419bf9;
-        margin-left: 4em;
-        width: 27px;
-        height:27px;
-        vertical-align: top;
-        -webkit-appearance: none;
-        border-radius: 4px;
-        color: #4a4a4a;
-        font-size: 15px;
-        padding-left: 10px;
-      }
-      #time-selection{
-        border: 1px solid #419bf9;
-        margin: auto;
-        border-radius: 0;
-        height:31px;
-        width: 100px;
-        vertical-align: top;
-        font-size: 15px;
-        border-radius: 4px;
-        background-color: #fff;
-        padding: 4px 10px;
-        color: #4a4a4a;
-        -webkit-appearance: none;
-      }
       .sale-price {
         color: #7ed321;
         font-weight: 500;
@@ -418,37 +638,6 @@ body{
       .item-detail-calc {
         position:relative;
 
-        .amount{
-          font-size: 15px !important;
-          margin-left: 20px;
-          border:0;
-          width: 55px;
-          font-size: 16px;
-          font-weight: 200;
-          color: #4a4a4a;
-        }
-        #times{
-          border:0;
-          width: 20px;
-          font-size: 16px;
-          font-weight: 200;
-        }
-        #length{
-          border:0;
-          width: 60px;
-          font-size: 15px !important;
-          font-weight: 200;
-          color: #4a4a4a;
-        }
-        #subtotal{
-          float: right;
-          margin-right: 10px;
-          border:0;
-          width: 45px;
-          font-size: 15px !important;
-          font-weight: 200;
-          color: #4a4a4a;
-        }
         .trust-fee{
           font-size: 15px !important;
           margin-left: 20px;
@@ -458,7 +647,6 @@ body{
           font-weight: 200;
           color: #63B707;
         }
-
         .trust-fee-text{
           background-color: #fff !important;
           font-weight: 400;
@@ -469,28 +657,6 @@ body{
           margin-left: 22px;
           margin-top: 4px;
           line-height: normal;
-        }
-
-        .deposit{
-          float: right;
-          margin-right: 10px;
-          border:0;
-          width: 45px;
-          font-size: 15px !important;
-          font-weight: 200;
-          color: #4a4a4a;
-        }
-        .finalp{
-          font-size: 16px;
-          margin-left: 20px;
-        }
-        #total{
-          border:0;
-          width: 45px;
-          font-size: 16px;
-          font-weight: 200;
-          float: right;
-          margin-right: 10px;
         }
       }
 
@@ -509,7 +675,8 @@ body{
       }
 
       .send-message {
-        position: relative;
+        display: table;
+        margin: 0 auto;
         text-align: center;
         background-color:#41B6F9;
         color: #fff;
@@ -517,8 +684,8 @@ body{
         font-weight: 600;
         border-radius: 2px;
         cursor: pointer;
-        padding: 9px 60px 9px 60px;
-        left: 21px;
+        padding: 12px 60px 12px 60px;
+        margin-top: 15px;
         &:hover{
           background-color: #419bf9 !important;
           color: #fff;
@@ -556,7 +723,7 @@ body{
       }
 
       #lease-button {
-        margin-top: 10px;
+        margin-top: 20px;
         background-color: #419bf9;
         margin-bottom: -5px;
         padding: 12px 51px 12px 51px;
@@ -578,44 +745,92 @@ body{
         }
       }
     }
-    .item-lease-price {
-      float:right;
+    .item-detail-price-product {
+      float: right;
       z-index:2;
-      border: 1px solid #979797;
+      border: 1px solid #B4B4B4;
       background-color: #fff;
-      height: 260px;
-      width: 270px;
-      margin-top: 15px;
-      margin-bottom: 35px;
+      width: 370px;
+      padding-bottom: 17px;
       border-radius: 3px;
 
-      p{
-        text-align: left;
-        color: #4a4a4a;
-        font-size: 14px;
-        width: 220px;
-        margin-left: 30px;
-        line-height: normal;
-        margin-bottom: 10px;
+      .price-breakdown{
+        margin-top: 15px;
+
+        .price-list-product{
+          font-size: 15px;
+          font-weight: 400;
+          border: none;
+          padding: 10px 0px 25px 20px;
+
+          .image-wrap {
+            float: left;
+            border: 1px solid #ffffff;
+            -webkit-transition: max-width .5s ease-out;  /* Saf3.2+, Chrome */
+            -moz-transition: max-width .5s ease-out;  /* FF4+ */
+            -ms-transition: max-width .5s ease-out;  /* IE10? */
+            -o-transition: max-width .5s ease-out;  /* Opera 10.5+ */
+            transition: max-width .5s ease-out;
+
+            .price-photo {
+              //width: 100%;
+              height: 70px;
+              width: 80px;
+              border-radius: 4px;
+              margin-bottom: 10px;
+              object-fit: cover;
+              object-position: center;
+              cursor: pointer;
+              -webkit-transition: margin-top .5s ease-out;  /* Saf3.2+, Chrome */
+              -moz-transition: margin-top .5s ease-out;  /* FF4+ */
+              -ms-transition: margin-top .5s ease-out;  /* IE10? */
+              -o-transition: margin-top .5s ease-out;  /* Opera 10.5+ */
+              transition: margin-top .5s ease-out;
+            }
+          }
+
+          .markup{
+            font-weight: 700;
+            color: #34C819;
+            border: 2px solid #34C819;
+            border-radius: 4px;
+            font-size: 19px;
+            text-align: center;
+            padding: 2px 19px 2px 20px;
+            position: relative;
+          }
+          .price-time{
+            float:right;
+            margin: 0px 10px 25px 0px;
+            width: 70%;
+            color: #262626;
+            line-height: normal;
+            #price-title{
+              font-weight: 600;
+              font-size: 16px;
+            }
+          }
+        }
+        .division-2 {
+          border-top: 1px solid #DCDCDC;
+          width: 83%;
+          margin: 0 auto;
+          display: table;
+        }
       }
-      .price-title {
+
+
+      .price-title2 {
         font-weight: 600;
         color: white;
-        background-color:#7ed321;
-        text-align: center;
+        background-color:$green;
         opacity: 0.9;
-        padding: 10px;
+        padding: 12px;
       }
-      .sale-price {
-        color: #7ed321;
-        font-weight: 500;
-        font-size: 18px;
-        text-align: center;
-        margin-top: 5px;
-      }
-      #buy-button {
+
+      .request-button {
         display: table;
-        position: relative;
+        top: 3.5em;
         text-align: center;
         margin: auto;
         background-color:#7ed321;
@@ -625,9 +840,44 @@ body{
         border-radius: 2px;
         cursor: pointer;
         padding: 12px 55px 12px 55px;
+      }
+
+      .send-message {
+        display: table;
+        margin: 0 auto;
+        text-align: center;
+        background-color:#41B6F9;
+        color: #fff;
+        font-size: 16px;
+        font-weight: 600;
+        border-radius: 2px;
+        cursor: pointer;
+        padding: 12px 100px 12px 100px;
+        margin-top: 15px;
+        &:hover{
+          background-color: #419bf9 !important;
+          color: #fff;
+          transition: all .3s ease-in-out;
+        }
+      }
+
+      .signed-in-message {
+        top: 1.5em;
+      }
+
+      .guest-message {
+        top: 1.5em;
+      }
+
+
+      #lease-button {
+        margin-top: 20px;
+        background-color: $pink;
+        margin-bottom: -5px;
+        padding: 12px 96px 12px 96px;
 
         &:hover{
-          background-color: #5AC902;
+          background-color: $green;
           color: #fff;
           transition: all .3s ease-in-out;
         }
@@ -638,25 +888,36 @@ body{
   /*responsive width styling for the page content not to be too spread out*/
   @media only screen and (max-width: 1280px) {
     .item-detail-price{
-      margin-right: 5% !important;
+      margin-right: 15% !important;
     }
+
+    .item-detail-price-product{
+      margin-right: 15% !important;
+    }
+
     .item-lease-price {
-      margin-right: 5% !important;
+      margin-right: 15% !important;
     }
   }
 
   @media only screen and (min-width: 1366px) {
     .item-detail-price{
-      margin-right: 6% !important;
+      margin-right: 20% !important;
+    }
+    .item-detail-price-product{
+      margin-right: 20% !important;
     }
     .item-lease-price {
-      margin-right: 6% !important;
+      margin-right: 20% !important;
     }
   }
 
 
-  @media only screen and (min-width: 1440px) {
+  @media only screen and (max-width: 1440px) {
     .item-detail-price{
+      margin-right: 32% !important;
+    }
+    .item-detail-price-product{
       margin-right: 32% !important;
     }
     .item-lease-price {
@@ -669,6 +930,10 @@ body{
       margin-right: 55% !important;
       bottom: 322px !important;
     }
+    .item-detail-price-product{
+      margin-right: 55% !important;
+      bottom: 322px !important;
+    }
     .item-lease-price {
       margin-right: 55% !important;
       bottom: 50px !important;
@@ -676,6 +941,10 @@ body{
   }
   @media only screen and (min-width: 1920px) {
     .item-detail-price{
+      margin-right: 82% !important;
+      bottom: 472px !important;
+    }
+    .item-detail-price-product{
       margin-right: 82% !important;
       bottom: 472px !important;
     }
@@ -701,20 +970,20 @@ body{
       width: 778px;
       margin: 0 auto;
     }
+    .avatar{
+      float: left;
+      margin-left: -6.5em;
+      margin-top: -2.5em;
+      border-radius: 50%;
+      height:85px;
+      width: 85px;
+      object-fit: cover;
+    }
     .item-detail-username{
       width: 380px;
       display: table;
       margin: 0 auto;
 
-      .avatar{
-        float: left;
-        margin-left: -6.5em;
-        margin-top: -2.5em;
-        border-radius: 50%;
-        height:85px;
-        width: 85px;
-        object-fit: cover;
-      }
     }
 
     .date{
@@ -775,7 +1044,6 @@ body{
   display: table;
   margin: 0 auto;
   background-color: #fff;
-  width: 100%;
   padding-top: 2em;
 
   .overall-rating {
@@ -803,7 +1071,7 @@ body{
       }
 
       .score{
-        color: #EADB1E;
+        color: #63CC1E;
         font-size: 32px;
         margin-bottom: 5px;
         margin-top: 2px;
@@ -835,7 +1103,7 @@ body{
         }
       }
       .rating {
-        color: #EADB1E;
+        color: #63CC1E;
         font-size: 32px;
         margin-bottom: 8px;
         margin-top: -3px;
@@ -916,7 +1184,7 @@ body{
   width: 100%;
   background-color: #fff;
   margin: 0 auto;
-  padding-bottom: 2em;
+  padding-bottom: 10em;
 
   .review-content {
     display: table;
@@ -925,12 +1193,27 @@ body{
     width: 570px;
     color: #4a4a4a;
 
+    #no-review-yet{
+      background-color: #F2F2F2;
+      border-radius: 5px;
+      text-align: center;
+      margin-left: 1px;
+      padding: 13px 0px 13px 0px;
+      color: gray;
+    }
+
+
     #comment{
+      #review-comment{
+        line-height: normal;
+        margin-left: 80px;
+      }
+
       .avatar{
         border-radius: 50%;
         float: left;
         margin-right: 20px;
-        margin-top: -5px;
+        margin-top: 3px;
         height: 55px;
         width: 55px;
         object-fit: cover;
@@ -941,6 +1224,7 @@ body{
     }
     .poster{
       color: #979797;
+      margin-left: 80px;
     }
     .item-reviews{
       font-size: 18px;
@@ -972,18 +1256,16 @@ item new
   }
   /*question mark tooltip for deposit*/
   .wrapper {
-    background: #4a4a4a;
-    color: #fff;
     font-weight: 600;
     cursor: default;
     line-height: normal;
     font-size: 12px;
-    padding: 0px 5px;
     position: relative;
     text-align: center;
     -webkit-transform: translateZ(0); /* webkit flicker fix */
     -webkit-font-smoothing: antialiased; /* webkit text rendering fix */
     width: 5px;
+    top: 4px;
     border-radius: 50%;
   }
 
@@ -1074,6 +1356,37 @@ item new
       font-size: 16px;
       color: #4a4a4a;
 
+      .picture-upload-container {
+        width: 100px;
+        height: 50px;
+        display: inline-block;
+        padding: 2px;
+
+        .dn {
+
+        }
+
+        .uploaded-image {
+          width: 100px;
+          height: 100px;
+          object-fit: cover;
+          object-position: center;
+          border-radius: 2px;
+        }
+
+        input[type=file]{
+          color:transparent;
+          position: relative;
+          bottom: 102px;
+          height: 100px;
+          width: 100px;
+          opacity: 0;
+          cursor: pointer;
+        }
+      }
+
+
+
       .tag-input-box{
         .tag-box{
           width: 130px;
@@ -1105,6 +1418,16 @@ item new
           background-color: #419BF9;
           color: #fff;
         }
+      }
+
+      .description{
+        width: 565px;
+        height: 50px;
+        border-radius: 3px;
+        border: 1px solid #979797;
+        font-size: 13px;
+        padding: 10px 10px 10px 10px;
+        margin-bottom: 5px;
       }
 
       label{
@@ -1156,8 +1479,8 @@ item new
       }
 
       .upload-photo{
-        width:170px;
-        height: 150px;
+        width:175px;
+        height: 170px;
         background-color: #fff;
         -webkit-box-shadow: 6px 6px 6px -4px rgba(207,207,207,1);
         -moz-box-shadow: 6px 6px 6px -4px rgba(207,207,207,1);
@@ -1167,24 +1490,25 @@ item new
 
         #photo-image{
           height: auto;
-          width: 45px;
+          width: 42px;
           margin-left: 4em;
-          margin-top: 1em;
+          margin-top: 15px;
         }
 
         #pic-title{
           text-align: center;
           color: #419bf9;
           margin-top: 10px;
-          font-size: 15px;
+          font-size: 14px;
         }
 
         #descriptor{
-          font-size: 13px;
-          color: #9B9B9B;
+          font-size: 14px;
+          color: #5D5B5F;
           text-align: center;
           line-height: normal;
           margin-top: -13px;
+          padding: 1px;
         }
       }
 
@@ -1206,7 +1530,7 @@ item new
         font-size: 18px;
         color: #fff;
         font-weight: 600;
-        margin-top: -6.5px;
+        margin-top: -2.5px;
         margin-right: -1px;
       }
 
@@ -1267,8 +1591,7 @@ item new
         color: #4a4a4a;
       }
 
-      #item_prices_attributes_0_amount, #item_prices_attributes_1_amount,
-      #item_prices_attributes_2_amount{
+      .amount{
         -webkit-appearance: none;
         font-size: 16px;
         text-align: center;
@@ -1282,15 +1605,48 @@ item new
         color: #4a4a4a;
       }
 
-      #deposit-title{
-        margin-top: 3px;
+      .product-timeframe{ //input box styling for the product services form
+        -webkit-appearance: none;
+        font-size: 14px;
+        text-align: center;
+        width:200px;
+        height: 25px;
+        border: 1px solid #979797;
+        border-radius: 3px;
+        margin-bottom: 8px;
+        color: #4a4a4a;
       }
 
-      .perhr{
+      .product-amount{ //input box styling for the product services form
+        -webkit-appearance: none;
+        font-size: 16px;
+        text-align: center;
+        width:50px;
+        height: 25px;
+        margin-top: -6px;
+        border-bottom: 1px solid #979797;
+        border-right: 1px solid #979797;
+        border-left: none;
+        border-radius: 0px 3px 3px 0px;
+        border-top: 1px solid #979797;
+        color: #4a4a4a;
+      }
+
+      .prod-money{ //money styling for product services form
+        -webkit-appearance: none;
+        font-size:16px;
+        width:19px;
+        height: 25px;
+        text-align: center;
         border: 1px solid #979797;
-        background-color: white;
-        padding: 2.5px 15px 2.5px 15px;
-        margin-left: 5px;
+        border-radius: 3px 0px 0px 3px;
+        margin-right: -1px;
+        color: #fff;
+        background-color: $green;
+      }
+
+      #deposit-title{
+        margin-top: 3px;
       }
     }
 
@@ -1303,7 +1659,7 @@ item new
       font-weight: 600;
       color: #4a4a4a;
       padding: 10px;
-      margin-top: 1em;
+      margin-top: 5px;
       margin-bottom:5px;
       cursor: pointer;
 
@@ -1337,30 +1693,33 @@ item new
   }
 
   .listing-description {
-    font-size: 16px;
+    font-size: 18px;
     font-weight: 400;
     color: #4a4a4a;
+    a{
+      color: $blue;
+      text-decoration: underline;
+    }
   }
 }
 
 .listing-selection {
   background-color: #f2f2f2;
   width: 100%;
-  height: 500px;
-
-}
+  height: 90vh;
+  margin-bottom: -300px;
 
 /* Listing choices */
 .listing-choices{
   padding-top: 5em;
-  margin-left: 31%;
-
+  width: 500px;
+  margin: 0 auto;
+  display: table;
   .lease{
-    width: 639px;
+    width: 100%;
     margin-bottom: 4em;
-    white-space: nowrap;
     a{
-      padding: 10px 72px;
+      padding: 10px 69px;
     }
 
     #lease-descriptor{
@@ -1386,14 +1745,13 @@ item new
     margin-bottom: 4em;
     white-space: nowrap;
     a{
-      padding: 10px 81px;
+      padding: 10px 76px;
     }
   }
 
   .timeoffer{
     width: 100%;
     margin-bottom: 4em;
-    white-space: nowrap;
     a{
       padding: 10px 42px;
     }
@@ -1402,26 +1760,32 @@ item new
   .descriptor{
     margin-left: .5em;
     color: #4a4a4a;
+    margin-top: -13px;
+    margin-left: .8em;
+    line-height: normal;
+    position: absolute;
+    width: 300px;
   }
 
 
 
 
-  .lease,.rent,.sell,.timeoffer{
-    .listing-button{
-      background-color: #fff;
-      font-size: 18px;
-      border: 1px solid #419BF9;
-      border-radius: 3px;
-      color: #4a4a4a;
+    .lease,.rent,.sell,.timeoffer{
+      .listing-button{
+        background-color: #fff;
+        font-size: 18px;
+        border: 1px solid #419BF9;
+        border-radius: 3px;
+        color: #4a4a4a;
 
-      &:hover{
-        background-color: #419BF9;
-        color: #fff;
-        transition: all .3s ease-in-out;
+        &:hover{
+          background-color: #419BF9;
+          color: #fff;
+          transition: all .3s ease-in-out;
+        }
       }
-    }
 
+    }
   }
 }
 
@@ -1520,4 +1884,1527 @@ item new
 
 .lte8 .wrapper:hover .tooltip {
   display: block;
+}
+
+/*Mobile View Styles begin here*/
+@media screen and (min-width: 320px) and (max-width: 1024px){
+
+
+  #items {
+    margin-bottom: 0px;
+
+    .switch {
+      margin-left: 12px;
+      width: 95%;
+      .share-item {
+            background-color: #fff;
+            border: 1px solid #419bf9;
+            border-radius: 5px;
+            font-size: 15px;
+            font-weight: 500;
+            padding: 7px 25px 7px 25px;
+            color: #419bf9;
+            margin-right: 5px;
+
+            &:link{
+              background-color: #fff;
+              color: $blue;
+            }
+
+            &:visited{
+              background-color: $blue;
+              color: #fff;
+            }
+
+            &:hover {
+              background-color: $blue;
+              color: #fff;
+              transition: all .3s ease-in-out;
+            }
+
+            &:active{
+              background-color: $blue;
+              color: #fff;
+            }
+        }
+        .share-request {
+            background-color: #fff;
+            border: 1px solid $orange;
+            border-radius: 5px;
+            font-size: 15px;
+            font-weight: 500;
+            padding: 7px 14px 7px 14px;
+            color: $orange;
+            margin-right: 28px;
+
+            &:hover {
+              background-color: $orange;
+              color: #fff;
+              transition: all .3s ease-in-out;
+            }
+        }
+        #startButton {
+          background-color: #fff;
+          border: 1px solid $purple;
+          border-radius: 5px;
+          font-size: 13px;
+          font-weight: 500;
+          padding: 7px 15px 7px 10px;
+          color: $purple;
+          margin-left: -82px;
+          cursor: pointer;
+          display: none;
+
+            &:hover {
+              background-color: $purple;
+              color: #fff;
+              transition: all .3s ease-in-out;
+            }
+          }
+    }
+
+    #map-canvas{
+      position: absolute;
+      z-index: 0 !important;
+      height: 92vh;
+      width: 50%;
+      top: 60px;
+      right: 0;
+      //background-image: asset-url('coming-soon-map.png');
+      //background-size: cover;
+      //background-position: center;
+      display: none;
+    }
+
+    #item-feed-container {
+      height: 90vh;
+      overflow-y: scroll;
+      position: relative;
+      padding-top: 10px;
+      width: 93%;
+      background: #f2f2f2;
+      border-top: 1px solid #eaeaea;
+
+      #pagination-div {
+        margin-top: 15px;
+        padding-bottom: 15px;
+        .pagination {
+
+          .current {
+            margin-right: 5px;
+            padding: 4px 10px 2px 10px;
+            background: #419bf9;
+            color: #fff;
+            border-radius: 70%;
+            font-style: normal;
+            font-weight: 500;
+          }
+
+          a {
+            margin-right: 5px;
+            padding: 3px 9px 2px 10px;
+            border: 1px solid #979797;
+            background-color: #fff;
+            color: #419bf9;
+            border-radius: 70%;
+
+            &:hover{
+              color: #fff;
+              background-color: #419bf9;
+              transition: all .3s ease-in-out;
+            }
+          }
+
+          .next_page{
+            padding: 3px 9px 2px 10px;
+          }
+
+          .previous_page{
+            padding: 3px 9px 2px 10px;
+          }
+
+          .disabled{
+            color: #dcdcdc;
+            padding: 3px 9px 2px 10px;
+            border: 1px solid #dcdcdc;
+            border-radius: 70%;
+            margin-right: 5px;
+          }
+        }
+      }
+
+      #item-collection {
+        -moz-column-count: 1;
+        -webkit-column-count: 1;
+        column-count: 1;
+        -webkit-column-width: 100%;
+        -moz-column-width: 100%;
+        column-width: 100%;
+
+        .item-index {
+          margin-bottom: 10px;
+          display: inline-block;
+          width: 100%;
+          border: 1px solid #dcdcdc;
+          border-radius: 4px;
+
+          .price-wrap {
+            width: 100%;
+            height: 120px;
+            position: relative;
+
+            .item-prices {
+              color: #fff;
+              font-size: 15px;
+              font-weight: 400;
+              position: absolute;
+              bottom: 0;
+
+              .sell {
+                background: $green;
+                padding:10px 5px 10px 5px;
+                width: 90px;
+                border-radius: 1px;
+                &:hover{
+                  background-color: #5AC902;
+                  color: #fff;
+                  transition: all .3s ease-in-out;
+                }
+              }
+              .lease {
+                background: $blue;
+                padding:10px 5px 10px 5px;
+                width: 90px;
+                border-radius: 1px;
+                &:hover{
+                  background-color: #0077f3;
+                  color: #fff;
+                  transition: all .3s ease-in-out;
+                }
+              }
+              .deposit {
+                background: $green;
+                padding:10px 5px 10px 5px;
+                width: 90px;
+                margin-top: 8px;
+                border-radius: 1px;
+                &:hover{
+                  background-color: #5AC902;
+                  color: #fff;
+                  transition: all .3s ease-in-out;
+                }
+              }
+              .rent {
+                background: $blue;
+                padding:10px 5px 10px 5px;
+                width: 90px;
+                border-radius: 1px;
+                &:hover{
+                  background-color: #0077f3;
+                  color: #fff;
+                  transition: all .3s ease-in-out;
+                }
+              }
+              .timeoffer {
+                background: $blue;
+                padding:10px 10px 10px 5px;
+                border-radius: 1px;
+                &:hover{
+                  background-color: #0077f3;
+                  color: #fff;
+                  transition: all .3s ease-in-out;
+                }
+              }
+            }
+          }
+
+          .item-wrap {
+            background: rgba(255, 255, 255, 0.98);
+            width: 100%;
+            height: 85px;
+            margin-top: 10px;
+            border-radius: 0px 0px 2px 2px;
+
+
+            .avatar{
+              border-radius: 50%;
+              height: 35px;
+              width: 35px;
+              margin-bottom: 10px;
+              float: left;
+              margin-right: 10px;
+              margin-left: -5px;
+              object-fit: cover;
+            }
+
+
+            #item-title {
+              text-align: left;
+              color: #4a4a4a;
+              font-size: 15px;
+              font-weight: 600;
+              margin-left: 15px;
+              line-height: normal;
+              padding-top: 8px;
+              height: 45px;
+              /*white-space: nowrap;
+              overflow: hidden;
+              text-overflow: ellipsis;*/
+              &:hover{
+                color: $blue;
+              }
+            }
+
+
+            .tag-container{
+              float: right;
+              margin: 8px 5px 5px 0px;
+              .tags{
+                color: $blue;
+                font-size: 10px;
+                text-align: right;
+                margin-right: 1px;
+                &:hover{
+                  color: #5DC2FF;
+                  transition: all .3s ease-in-out;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  /*
+  item Show
+  */
+
+  .item-info {
+    width: 100%;
+    margin: auto;
+    background: #f2f2f2;
+
+    .photo-container {
+      white-space: nowrap;
+      width: 100%;
+      .photos{
+        display: inline-block;
+        .cover-photo{
+          height: 250px;
+          width: 100%;
+          object-fit: cover;
+          object-position: center;
+        }
+      }
+    }
+
+
+    /* fb share button helping tip*/
+
+     .tooltip {
+      left: -95px;
+    }
+
+    /* This bridges the gap so you can mouse into the tooltip without it disappearing */
+    .wrapper .tooltip:before {
+      width: 100%;
+    }
+
+    /* CSS Triangles - see Trevor's post */
+    .wrapper .tooltip:after {
+      border-left: solid transparent 10px;
+      border-right: solid transparent 10px;
+      border-top: solid #419bf9 10px;
+      bottom: -10px;
+      content: " ";
+      height: 0;
+      left: 50%;
+      margin-left: -65px;
+      position: absolute;
+      width: 0;
+    }
+
+    .wrapper:hover .tooltip {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    /* IE can just show/hide with no transition */
+    .lte8 .wrapper .tooltip {
+      display: none;
+    }
+
+    .lte8 .wrapper:hover .tooltip {
+      display: block;
+    }
+
+    .price-details {
+      margin-top: -2.75em;
+      width: 100%;
+      float:none !important;
+
+      .item-detail-price-product {
+        width: 100%;
+        float:none !important;
+        border-bottom: 1px solid #dcdcdc !important;
+        border: none !important;
+        .price-breakdown{
+          margin-top: 15px;
+
+          .price-list-product{
+            font-size: 15px;
+            font-weight: 400;
+            border: none;
+            padding: 10px 0px 0px 20px;
+
+            .image-wrap {
+              float: left;
+              border: 1px solid #ffffff;
+
+              .price-photo {
+                width: 100%;
+                height: 70px;
+                width: 80px;
+                border-radius: 4px;
+                margin-bottom: 5px;
+                object-fit: cover;
+                object-position: center;
+                cursor: pointer;
+              }
+            }
+
+            .markup{
+              float: left;
+              font-weight: 700;
+              color: #34C819;
+              border: 2px solid #34C819;
+              border-radius: 4px;
+              font-size: 19px;
+              text-align: center;
+              padding: 4px 19px 2px 20px;
+            }
+            .price-time{
+              float:right;
+              margin: 0px 5px 25px 0px;
+              width: 70%;
+              color: #262626;
+              line-height: normal;
+              #price-title{
+                font-weight: 600;
+                font-size: 16px;
+              }
+            }
+          }
+          .division-2 {
+            border-top: 1px solid #DCDCDC;
+            width: 83%;
+            margin: 0 auto;
+            display: table;
+          }
+        }
+        .price-title2{
+          padding: 13px;
+        }
+      }
+      .item-detail-price {
+        background-color: #fff;
+        width: 100%;
+        float:none !important;
+        border-bottom: 1px solid #dcdcdc !important;
+        border: none !important;
+
+        .price-breakdown{
+          .price-list{
+            color: #1e1e1e;
+            font-size: 17px;
+            margin-top: 8px;
+            font-weight: 600;
+            margin: 0 auto;
+            display: table;
+            margin-bottom: 15px;
+          }
+
+          .price-list-product{
+
+
+            .price-time{
+              width: 80%;
+            }
+          }
+        }
+
+
+        .how-long{
+          margin-top: 0px;
+          text-align: left;
+          color: #4a4a4a;
+          font-size: 13px;
+          background-color: #E8E8E8;
+          padding: 7px;
+          font-weight: 500;
+        }
+        .division {
+          border-top: 1px solid #DCDCDC;
+          width: 100%;
+          margin: 10px auto;
+        }
+
+        .division-2 {
+          border-top: 1px solid #DCDCDC;
+          width: 83%;
+          margin: 10px auto;
+        }
+        .price-title {
+          font-weight: 600;
+          color: white;
+          background-color:#7ed321;
+          text-align: center;
+          opacity: 0.9;
+          padding: 13px;
+        }
+        .price-title2 {
+          font-weight: 600;
+          color: white;
+          background-color:#419bf9;
+          opacity: 0.9;
+          padding: 13px;
+
+        }
+        .sale-price {
+          color: #7ed321;
+          font-weight: 500;
+          font-size: 20px;
+          padding-top: 30px;
+          padding-bottom: 30px;
+        }
+        .item-detail-calc {
+          position:relative;
+
+          .trust-fee{
+            font-size: 15px !important;
+            margin-left: 20px;
+            border:0;
+            width: 120px;
+            font-size: 16px;
+            font-weight: 200;
+            color: #63B707;
+          }
+
+          .trust-fee-text{
+            background-color: #fff !important;
+            font-weight: 400;
+            font-size: 12px;
+            width: 233px;
+            color: #63B707;
+            text-align: left;
+            margin-left: 22px;
+            margin-top: 4px;
+            line-height: normal;
+          }
+        }
+
+        .request-button {
+          display: table;
+          top: 3.5em;
+          text-align: center;
+          margin: auto;
+          background-color:#7ed321;
+          color: #fff;
+          font-size: 16px;
+          font-weight: 600;
+          border-radius: 2px;
+          cursor: pointer;
+          padding: 12px 55px 12px 55px;
+        }
+
+        .send-message {
+          text-align: center;
+          background-color:#41B6F9;
+          color: #fff;
+          font-size: 16px;
+          font-weight: 600;
+          border-radius: 2px;
+          cursor: pointer;
+          padding: 12px 60px 12px 60px;
+          margin: 0 auto;
+          display: table;
+          margin-top: 10px;
+          &:hover{
+            background-color: #419bf9 !important;
+            color: #fff;
+            transition: all .3s ease-in-out;
+          }
+        }
+
+        .signed-in-message {
+          top: 1.5em;
+        }
+
+        .guest-message {
+          top: 1.5em;
+        }
+
+        #buy-button {
+          padding: 12px 58px 12px 58px;
+          margin-bottom: -5px;
+          &:hover{
+            background-color: #5AC902;
+            color: #fff;
+            transition: all .3s ease-in-out;
+          }
+        }
+
+        #rent-button {
+          margin-top: 10px;
+          background-color: #419bf9;
+          margin-bottom: -5px;
+          &:hover{
+            background-color: #0077f3;
+            color: #fff;
+            transition: all .3s ease-in-out;
+          }
+        }
+
+        #lease-button {
+          margin-top: 10px;
+          background-color: #419bf9;
+          margin-bottom: -5px;
+          padding: 12px 51px 12px 51px;
+
+          &:hover{
+            background-color: #0077f3;
+            color: #fff;
+            transition: all .3s ease-in-out;
+          }
+        }
+
+        #service-button {
+          background-color: #419bf9;
+          margin-bottom: -5px;
+          &:hover{
+            background-color: #0077f3;
+            color: #fff;
+            transition: all .3s ease-in-out;
+          }
+        }
+      }
+      .item-lease-price {
+        border: 1px solid #979797;
+        background-color: #fff;
+        height: 260px;
+        width: 99.5%;
+        float: none;
+        margin: 0 auto;
+        display: table;
+
+        p{
+          text-align: left;
+          color: #4a4a4a;
+          font-size: 14px;
+          width: 220px;
+          margin-left: 30px;
+          line-height: normal;
+          margin-bottom: 10px;
+        }
+        .price-title {
+          font-weight: 600;
+          color: white;
+          background-color:#7ed321;
+          text-align: center;
+          opacity: 0.9;
+          padding: 10px;
+        }
+        .sale-price {
+          color: #7ed321;
+          font-weight: 500;
+          font-size: 18px;
+          text-align: center;
+          margin-top: 5px;
+        }
+        #buy-button {
+          display: table;
+          position: relative;
+          text-align: center;
+          margin: auto;
+          background-color:#7ed321;
+          color: #fff;
+          font-size: 16px;
+          font-weight: 600;
+          border-radius: 2px;
+          cursor: pointer;
+          padding: 12px 55px 12px 55px;
+
+          &:hover{
+            background-color: #5AC902;
+            color: #fff;
+            transition: all .3s ease-in-out;
+          }
+        }
+      }
+    }
+
+
+    .item-title-and-user {
+      background-color: #fff;
+      border-bottom: 1px solid #C9C9C9;
+      width: 100%;
+      display: table;
+      margin: 0 auto;
+
+      .item-detail-title {
+        color: #4a4a4a;
+        font-size: 17px;
+        font-weight:600;
+        width: 100% !important;
+        text-align: center;
+      }
+      .item-detail-username{
+        width: 100% !important;
+        text-align: center;
+        .avatar{
+          border-radius: 50%;
+          height:70px;
+          width: 70px;
+          object-fit: cover;
+          margin-top: 1.2em;
+          position: relative;
+          float: right;
+          right: 40%;
+          }
+
+      }
+
+      .date{
+        width: 50% !important;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        font-size: 14px;
+        color: #979797;
+        text-align: center;
+      }
+    }
+
+    .item-detail-description {
+      display: table;
+      margin: 0 auto;
+      height: 200px;
+      width: 90% !important;
+      margin-top: 2em;
+
+      .item-description {
+        line-height: normal;
+        color: #4a4a4a;
+        width: 100% !important;
+        margin: 0 auto;
+        display: table;
+
+        p {text-align: left;}
+      }
+
+      #item-map{
+        position: fixed;
+        height: 250px;
+        width: 90%;
+        margin: 0 auto;
+        display: table;
+        margin-top: 10px !important;
+        margin-bottom: 25px !important
+      }
+    }
+  }
+
+
+  /*Ratings & Reviews */
+  .rating-container {
+    display: table;
+    margin: 0 auto;
+    background-color: #fff;
+    width: 100%;
+    padding-top: 2em;
+
+    .overall-rating {
+      font-size: 18px;
+      font-family: 'Avenir Next', 'Avenir', sans-serif;
+      font-weight: 400;
+      display: table;
+      margin: 0 auto;
+      color: #419bf9;
+      margin-bottom: 10px;
+
+      .rating-score {
+        border: 1px solid #DCDCDC;
+        width: 105px;
+        height: 105px;
+        border-radius: 5px;
+        float: left;
+        padding: 5px;
+        margin-bottom: 10px;
+        margin-right: 10px;
+
+        p{
+          font-size:15px;
+          margin-top: 14px;
+        }
+
+        .score{
+          color: #EADB1E;
+          font-size: 32px;
+          margin-bottom: 5px;
+          margin-top: 2px;
+          font-weight: 600;
+        }
+      }
+    }
+
+    .rating-by-user {
+      font-size: 15px;
+      font-family: 'Avenir Next', 'Avenir', sans-serif;
+      font-weight: 400;
+      display: table;
+      margin: 0 auto;
+
+      .rating-info{
+        border: 1px solid #DCDCDC;
+        width: 105px;
+        height: 105px;
+        border-radius: 5px;
+        float: right;
+        padding: 5px;
+
+        a{
+          color: #419bf9;
+          margin-left: 38px;
+          &:hover{
+            text-decoration: underline;
+          }
+        }
+        .rating {
+          color: #EADB1E;
+          font-size: 32px;
+          margin-bottom: 8px;
+          margin-top: -3px;
+          font-weight: 600;
+        }
+      }
+      .add-a-rating {
+        font-size: 16px;
+        background-color: #419bf9;
+        padding: 9px 18px;
+        border-radius: 3px;
+        color: #fff;
+        margin: 0 auto;
+        display: table;
+        &:hover{
+          text-decoration: none;
+          color: #fff;
+          background-color: #EADB1E;
+        }
+      }
+    }
+  }
+
+  .divider{
+    border-top: 1px solid #DCDCDC;
+    width: 95%;
+    margin: 0 auto;
+    margin-top: 30px;
+  }
+
+  .review-area {
+    width: 100%;
+    background-color: #fff;
+    margin: 0 auto;
+    padding-bottom: 2em;
+
+    .create_review-fields {
+      display: table;
+      margin: 0 auto;
+      padding-top: 2em;
+
+      label{
+        font-size: 20px;
+        font-weight: 500;
+        color: #419bf9;
+        margin-bottom: 10px;
+      }
+
+      #review_comment {
+        display: table;
+        margin: 0 auto;
+        width: 95%;
+        height: 90px;
+        font-size: 15px;
+        padding: 10px;
+        border-radius: 4px;
+        border: 1px solid #979797;
+      }
+
+      .review-submit {
+        margin-top: 5px;
+        .review-button {
+          font-size: 13px;
+          padding: 8px;
+          border: none;
+          background-color: #419bf9;
+          color: #fff;
+          border-radius: 4px;
+          cursor: pointer;
+          &:hover {
+            background-color: #0E84FF;
+          }
+        }
+      }
+    }
+  }
+  .review-list {
+    width: 100%;
+    background-color: #fff;
+    margin: 0 auto;
+    padding-bottom: 2em;
+
+    .review-content {
+      display: table;
+      margin: 0 auto;
+      text-align: left;
+      width: 93%;
+      color: #4a4a4a;
+
+      #no-review-yet{
+        background-color: #F2F2F2;
+        border-radius: 5px;
+        text-align: center;
+        margin-left: 1px;
+        padding: 13px 0px 13px 0px;
+        width: 100% !important;
+      }
+
+
+      #comment{
+        #review-comment{
+          line-height: normal;
+          margin-left: 80px;
+        }
+
+        .avatar{
+          border-radius: 50%;
+          float: left;
+          margin-right: 20px;
+          margin-top: 3px;
+          height: 55px;
+          width: 55px;
+          object-fit: cover;
+        }
+      }
+      p{
+        text-align: left;
+      }
+      .poster{
+        color: #979797;
+        margin-left: 80px;
+      }
+      .item-reviews{
+        font-size: 18px;
+        font-weight: 500;
+        display: table;
+        color: #4a4a4a;
+        margin-top: 1em;
+        margin-bottom: 20px;
+        text-transform: none;
+        text-align: left;
+        line-height: normal;
+      }
+    }
+  }
+
+  /*Ratings & Reviews ends here*/
+
+  /*
+  item new
+  */
+  .item-container {
+    background-color: #f2f2f2;
+    width: 100%;
+    padding-top: 1em;
+
+    p{
+      text-align: center;
+      margin-top: 25px;
+      line-height: normal;
+    }
+    /*question mark tooltip for deposit*/
+    .wrapper {
+      font-weight: 600;
+      cursor: default;
+      line-height: normal;
+      font-size: 12px;
+      position: relative;
+      text-align: center;
+      -webkit-transform: translateZ(0); /* webkit flicker fix */
+      -webkit-font-smoothing: antialiased; /* webkit text rendering fix */
+      width: 5px;
+      top: 4px;
+      border-radius: 50%;
+    }
+
+     .tooltip {
+      font-family: 'Avenir Next','Arial', sans-serif;
+      background: #419bf9;
+      bottom: 100%;
+      color: #fff;
+      display: block;
+      left: -25px;
+      margin-bottom: 15px;
+      margin-left: -52px;
+      opacity: 0;
+      padding: 20px;
+      pointer-events: none;
+      position: absolute;
+      width: 240px;
+      border-radius: 5px;
+      font-size: 14px;
+      text-align: left;
+    }
+
+    /* This bridges the gap so you can mouse into the tooltip without it disappearing */
+    .wrapper .tooltip:before {
+      bottom: -20px;
+      content: " ";
+      display: block;
+      height: 20px;
+      left: 0;
+      position: absolute;
+      width: 100%;
+    }
+
+    /* CSS Triangles - see Trevor's post */
+    .wrapper .tooltip:after {
+      border-left: solid transparent 10px;
+      border-right: solid transparent 10px;
+      border-top: solid #419bf9 10px;
+      bottom: -10px;
+      content: " ";
+      height: 0;
+      left: 50%;
+      margin-left: -65px;
+      position: absolute;
+      width: 0;
+    }
+
+    .wrapper:hover .tooltip {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    /* IE can just show/hide with no transition */
+    .lte8 .wrapper .tooltip {
+      display: none;
+    }
+
+    .lte8 .wrapper:hover .tooltip {
+      display: block;
+    }
+
+    .form-content{
+      display: table;
+      margin: 0 auto;
+
+      .new-item-form{
+        font-weight: 500;
+        font-size: 16px;
+        color: #4a4a4a;
+        margin: 0 auto;
+        display: table;
+        .tag-input-box{
+
+          .tag-box{
+            display: table;
+            margin: 0 auto;
+            width: 50%;
+            height: 32px;
+            border-radius: 3px;
+            border: 1px solid #979797;
+            font-size: 13px;
+            padding-left: 10px;
+            margin-top: 5px;
+          }
+        }
+
+        #tag-instruction{
+          font-size: 12px;
+          margin-top: 10px;
+          text-align: center;
+        }
+
+        #add-tag-button-edit, #add-tag-button{
+          border: 1px solid #419BF9;
+          border-radius: 3px;
+          background-color: #f2f2f2;
+          width: 80px;
+          height: 32px;
+          color: #419BF9;
+          font-size: 13px;
+          margin-top: 8px;
+          cursor: pointer;
+
+          &:hover{
+            background-color: #419BF9;
+            color: #fff;
+          }
+        }
+
+        .product-info{
+          display: table;
+          margin: 0 auto;
+          .prod-money{
+            margin-left: 5px;
+          }
+        }
+
+        .description{
+          width: 261px;
+        }
+
+        label{
+          font-size: 16px;
+          margin-top: 10px;
+          margin-bottom: 5px;
+          text-align: center;
+        }
+
+        .form-title{
+          margin-top: 15px;
+          margin-bottom: 8px;
+          font-weight: 400;
+        }
+
+        #item_postal_code{
+          width: 93%;
+          height: 32px;
+          border-radius: 3px;
+          border: 1px solid #979797;
+          font-size: 13px;
+          padding-left: 10px;
+          display: table;
+          margin: 0 auto;
+        }
+
+        #item_title{
+          width: 93%;
+          height: 32px;
+          border-radius: 3px;
+          border: 1px solid #979797;
+          font-size: 13px;
+          padding-left: 10px;
+          margin-bottom: 25px;
+          display: table;
+          margin: 0 auto;
+        }
+
+        #item_description{
+          width: 100%;
+          height: 150px;
+          border-radius: 3px;
+          border: 1px solid #979797;
+          font-size: 13px;
+          padding: 10px 10px 10px 10px;
+          margin-bottom: 5px;
+        }
+
+        .countdown{
+          font-size: 12px;
+          font-weight: 400;
+          margin-bottom: 5px;
+          margin-top: 8px;
+        }
+
+        .upload-photo{
+          width:170px;
+          height: 150px;
+          background-color: #fff;
+          -webkit-box-shadow: 6px 6px 6px -4px rgba(207,207,207,1);
+          -moz-box-shadow: 6px 6px 6px -4px rgba(207,207,207,1);
+          box-shadow: 6px 6px 6px -4px rgba(207,207,207,1);
+          margin-bottom: 25px;
+          margin-top: 15px;
+          display: table;
+          margin: 0 auto;
+
+          #photo-image{
+            height: auto;
+            width: 45px;
+            margin-left: 6em;
+            margin-top: 1em;
+          }
+
+          #pic-title{
+            text-align: center;
+            color: #419bf9;
+            margin-top: 10px;
+            font-size: 15px;
+          }
+
+          #descriptor{
+            font-size: 13px;
+            color: #9B9B9B;
+            text-align: center;
+            line-height: normal;
+            margin-top: -13px;
+          }
+        }
+
+        #item_photo{ /*this is to hide the default upload button*/
+          height: 170px;
+          border: 1px solid #979797;
+          width: 170px;
+          cursor: pointer;
+          opacity: 0;
+          margin-bottom: -170px;
+        }
+
+        .rent-deposit-money-sign{ /*this is the color for the dollar sign for rent/lease/deposit price box*/
+          background-color: #419bf9;
+          text-align: center;
+          border: 1px solid #979797;
+          padding:6px 10px 3px 10px;
+          float: left;
+          font-size: 18px;
+          color: #fff;
+          font-weight: 600;
+          margin-top: -2.5px;
+          margin-right: -1px;
+        }
+
+        #actual-price-money-sign{
+          background-color: #7ED321;
+          text-align: center;
+          border: 1px solid #979797;
+          padding:6px 10px 3px 10px;
+          float: left;
+          font-size: 18px;
+          color: #fff;
+          font-weight: 600;
+          margin-top: -6.5px;
+          margin-right: -1px;
+        }
+
+        #item_deposit{
+          border: 1px solid #979797;
+          width: 90px;
+          height: 25px;
+          margin-bottom: 10px;
+          margin-top: -10px;
+          padding-left: 10px;
+          font-size: 13px;
+          color: #4a4a4a;
+        }
+
+        .money{
+          -webkit-appearance: none;
+          font-size:16px;
+          width:19px;
+          height: 25px;
+          text-align: center;
+          border: 1px solid #979797;
+          margin-right: -1px;
+          color: #979797;
+        }
+
+        b{
+          font-size: 17px;
+          font-weight: 500;
+          color: #419bf9;
+        }
+
+        th{
+          font-weight: 600 !important;
+          font-size: 15px;
+          margin-left: 5% !important;
+        }
+
+        .timeframe{
+          -webkit-appearance: none;
+          font-size: 16px;
+          text-align: center;
+          width:70px;
+          height: 25px;
+          border: 1px solid #979797;
+          margin-bottom: -3px;
+          color: #4a4a4a;
+        }
+
+        #item_prices_attributes_0_amount, #item_prices_attributes_1_amount,
+        #item_prices_attributes_2_amount{
+          -webkit-appearance: none;
+          font-size: 16px;
+          text-align: center;
+          width:49px;
+          height: 25px;
+          margin-top: -6px;
+          border-bottom: 1px solid #979797;
+          border-right: 1px solid #979797;
+          border-left: none;
+          border-top: 1px solid #979797;
+          color: #4a4a4a;
+        }
+
+        #deposit-title{
+          margin-top: 3px;
+        }
+
+        .perhr{
+          border: 1px solid #979797;
+          background-color: white;
+          padding: 2.5px 15px 2.5px 15px;
+          margin-left: 5px;
+        }
+      }
+
+      .submit-listing{
+        width: 95%;
+        border: 1px solid #419bf9;
+        background-color: #fff;
+        border-radius: 5px;
+        font-size: 16px;
+        font-weight: 600;
+        color: #4a4a4a;
+        padding: 10px;
+        margin-top: 1em !important;
+        margin-bottom:10px !important;
+        cursor: pointer;
+        display: table;
+        margin: auto;
+
+        &:hover{
+          background-color: #419BF9;
+          color: #fff;
+          transition: all .3s ease-in-out;
+        }
+      }
+
+      .deposit-tip{
+        font-size: 13px;
+        line-height: normal;
+        margin-bottom: 20px;
+        margin: none;
+        text-align: center;
+      }
+
+      #small-tip{
+        font-size: 12px;
+        padding-bottom: 5em;
+        text-align: center;
+      }
+    }
+  }
+  .list-title {
+    padding: 2em;
+    background-color: #fff;
+
+    .item-listing {
+      color: #419bf9;
+      font-weight: 600;
+    }
+
+    .listing-description {
+      font-size: 16px;
+      font-weight: 400;
+      color: #4a4a4a;
+      line-height: normal;
+    }
+  }
+
+  .listing-selection {
+    background-color: #f2f2f2;
+    width: 100%;
+
+
+  /* Listing choices */
+  .listing-choices{
+    padding-top: 2em;
+    display: table;
+    margin: 0 auto;
+    width: 50%;
+    .lease{
+      width: 100%;
+      margin-bottom: 3em;
+      a{
+        width: 100%;
+      }
+
+      #lease-descriptor{
+        margin-top: -13px;
+        margin-left: .8em;
+        color: #4a4a4a;
+        line-height: normal;
+        position: absolute;
+        display: none;
+      }
+    }
+
+    .rent{
+      width: 100%;
+      margin-bottom: 3em;
+      a{
+        padding: 10px 78px;
+      }
+    }
+
+    .sell{
+      width: 100%;
+      a{
+        padding: 10px 76px;
+      }
+    }
+
+    .timeoffer{
+      width: 100%;
+      margin-bottom: 3em;
+      a{
+        width: 100%;
+      }
+    }
+
+    .descriptor{
+      margin-left: .5em;
+      color: #4a4a4a;
+      display: none;
+    }
+
+
+
+
+    .lease,.rent,.sell,.timeoffer{
+      .listing-button{
+        background-color: #fff;
+        font-size: 18px;
+        border: 1px solid #419BF9;
+        border-radius: 3px;
+        color: #4a4a4a;
+
+        &:hover{
+          background-color: #419BF9;
+          color: #fff;
+          transition: all .3s ease-in-out;
+        }
+      }
+
+    }
+  }
+}
+
+  .why-cc {
+    font-weight: 600;
+    color: #fff;
+    cursor: default;
+    line-height: normal;
+    position: fixed;
+    right: 10px;
+    bottom: 20px;
+    background-color: $purple;
+    padding: 8px 17px;
+    font-size: 13px;
+    border-radius: 6px;
+    -webkit-transform: translateZ(0); /* webkit flicker fix */
+    -webkit-font-smoothing: antialiased; /* webkit text rendering fix */
+  }
+
+  .why-cc:after {
+    content:'';
+    position: absolute;
+    margin-left: 15px;
+    top: 100%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-top: solid 10px #A100C2;
+    border-left: solid 10px transparent;
+    border-right: solid 10px transparent;
+
+  }
+
+   .tooltip {
+    font-family: 'Avenir Next','Arial', sans-serif;
+    background: #419bf9;
+    bottom: 100%;
+    color: #fff;
+    display: block;
+    margin-bottom: 15px;
+    margin-left: -75px;
+    opacity: 0;
+    padding: 18px;
+    pointer-events: none;
+    position: absolute;
+    width: 140%;
+    border-radius: 5px;
+    font-size: 14px;
+        li{
+          text-align: left;
+          text-indent: -18px;
+          width: 100%;
+          }
+  }
+
+  /* This bridges the gap so you can mouse into the tooltip without it disappearing */
+  .why-cc .tooltip:before {
+    bottom: -20px;
+    content: " ";
+    display: block;
+    height: 20px;
+    left: 0;
+    position: absolute;
+    width: 100%;
+  }
+
+  .why-cc:hover .tooltip {
+    opacity: 1;
+    pointer-events: auto;
+    -webkit-transform: translateY(0px);
+       -moz-transform: translateY(0px);
+        -ms-transform: translateY(0px);
+         -o-transform: translateY(0px);
+            transform: translateY(0px);
+  }
+
+  /* IE can just show/hide with no transition */
+  .lte8 .wrapper .tooltip {
+    display: none;
+  }
+
+  .lte8 .wrapper:hover .tooltip {
+    display: block;
+  }
+
+}
+
+#fb-container { /*fb sign up/log in styling for mobile */
+  display: block;
+  position: relative;
+  top: 25px;
+  text-align: center;
+  margin: 0 auto;
+
+  .fb-icon {
+    position: relative;
+    width: 11px;
+    height: auto;
+    left: 10%;
+    bottom: 1px;
+  }
+
+  .fb-oauth{
+    background-color: #484FA8;
+    padding: 12px 20% 12px 20%;
+    color: #ffffff;
+    font-size: 15px;
+    border-radius: 2px;
+    -webkit-box-shadow: 1px 1px 4px -1px rgba(0,0,10,1);
+    -moz-box-shadow: 1px 1px 4px -1px rgba(0,0,10,1);
+    box-shadow: 1px 1px 4px -1px rgba(0,0,10,1);
+    &:hover{
+      background-color: #4F57BD;
+      transition: all .3s ease-in-out;
+      text-decoration: none;
+    }
+  }
 }

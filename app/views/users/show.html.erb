@@ -3,17 +3,33 @@
 	<div class="profile-info">
 		<%= link_to image_tag(@user.avatar.url(:med), class:"avatar") %>
 		<h1><%= @user.full_name %></h1>
+<% if signed_in? && @user == current_user %>
 		<div class="account-links">
 			<p class="p-account-edit"><%= link_to "Edit Profile", edit_user_path(@user) %></p>
 			<p class="p-account-delete"><%= link_to "Delete Account", @user, method: :delete, data: {confirm: "Are you sure you want to delete this user?"}  %></p>
 		</div>
 		<p> Email: <%= @user.email %></p>
 		<p> Phone: <%= @user.phone_number %></p>
+<% elsif @user != current_user %>
+		<p> Email Address: <span style="font-weight: 600">Verified</span> <span style="color: #39DC12;">&#10003;</span></p>
+		<!--<p> Phone Number: <span style="font-weight: 600">Verified</span> <span style="color: #39DC12;">&#10003;</span></p>-->
+<% end %>
 	</div>
 
-
+<div class="about-container">
+	<div class="about-heading">About Me</div>
+		<div class="about">
+			<div class="about-wrap">
+			  <%= @user.description %>
+			  <% if @user == current_user %>
+			  	<p class="p-account-edit"><%= link_to "Edit description", edit_user_path(@user) %></p>
+			  <% end %>
+			</div>
+		</div>
+</div>
+<% if signed_in? && @user == current_user %>
 	<div class="request-container">
-		<div class= "request-heading">My Requests</div>
+		<div class="request-heading">My Requests</div>
 		<% if @requests.present? %>
 			<% @requests.each do |request| %>
 		  	<% user = User.find(request.seller_id) %>
@@ -23,30 +39,31 @@
 				<%=link_to image_tag(item.photo_url), item_path(item) %>
 			</div>
 			<li class="requests">
-			  <div class="item-title">
-				<%= link_to item.title, item_path(item)%>
-				<div class="status">Status: <%= request.status %></div>
-				<div class="price">Price: $<%= request.total_price %></div>
-				<div class="length"><%= request.length %></div>
-			  </div>
-			  <div class="request-link">
-			  	<% unless request.status == "Completed" || request.status == "Denied" || request.status == "Cancelled" %>
-			    	<%= link_to 'See Request Page', conversations_path(request), class: "request-path" %>
-			  	<% end %>
-			  </div>
+				<div class="request-wrap">
+				  <div class="item-title">
+					<%= link_to item.title, item_path(item)%>
+					<div class="status">Status: <%= request.status %></div>
+					<div class="price">Price: $<%= request.total_price %></div>
+					<div class="length"><%= request.length %></div>
+				  </div>
+				  <div class="request-link">
+				  	<% unless request.status == "Completed" || request.status == "Denied" || request.status == "Cancelled" %>
+				    	<%= link_to 'See Request Page', conversations_path(request), class: "request-path" %>
+				  	<% end %>
+				  </div>
+				</div>
 			</li>
 		  <% end %>
 		<% else %>
-			<div style="border: 1px solid #979797;list-style: none;background-color: #fff;
-			margin-top: 10px;margin-left: 132px;height: 100px;width: 350px;">
+			<div id="no-request-container">
 				<p>You have no Requests</p>
-				<p><b> <%= link_to 'Create a request now!', items_path, style:"color: #419bf9"%></b></p>
+				<p><b> <%#= link_to 'Create a request now!', items_path, style:"color: #419bf9"%></b></p>
 			</div>
 		<% end %>
 	</div>
 
 	<div class="transaction-container">
-		<div class= "transaction-heading">My Transactions </div>
+		<div class="transaction-heading">My Transactions </div>
 		<% if @transactions.present? %>
 		  <% @transactions.each do |transaction| %>
 		  	<% user = User.find(transaction.seller_id) %>
@@ -56,29 +73,31 @@
 				<%=link_to image_tag(item.photo_url), item_path(item) %>
 			</div>
 			<li class="transactions">
-			  <div class="item-title">
-				<%= link_to item.title, item_path(item)%>
-				<div class="status">Status: <%= transaction.status %></div>
-				<div class="price">Price: $<%= transaction.total_price %></div>
-				<div class="length"><%= transaction.length %></div>
-			  </div>
-			  <div class="transaction-link">
-			  	<% unless transaction.status == "Completed" || transaction.status == "Denied" || transaction.status == "Cancelled" %>
-			    	<%= link_to 'See current transaction', conversations_path(transaction), class: "request-path" %>
-			  	<% end %>
-			  </div>
+				<div class="transaction-wrap">
+				  <div class="item-title">
+					<%= link_to item.title, item_path(item)%>
+					<div class="status">Status: <%= transaction.status %></div>
+					<div class="price">Price: $<%= transaction.total_price %></div>
+					<div class="length"><%= transaction.length %></div>
+					<div class="length"><%= transaction.addons %></div>
+				  </div>
+				  <div class="transaction-link">
+				  	<% unless transaction.status == "Completed" || transaction.status == "Denied" || transaction.status == "Cancelled" %>
+				    	<%= link_to 'See current transaction', conversations_path(transaction), class: "request-path" %>
+				  	<% end %>
+				  </div>
+				</div>
 			</li>
 		  <% end %>
 		<% else %>
-			<div style="border: 1px solid #979797;list-style: none;background-color: #fff;
-			margin-top: 10px;margin-left: 132px;height: 100px;width: 350px;">
+			<div id="no-transaction-container">
 				<p>You have no Transactions</p>
 			</div>
 		<% end %>
 	</div>
 
 	<div class="listing-container">
-		<div id= "listing-heading">My Listings </div>
+		<div id="listing-heading">My Services </div>
 		<% if @items.present? %>
 			<% @items.each do |item| %>
 				<% itemout = Transaction.where("(transactions.item_id = #{item.id}) \
@@ -89,48 +108,76 @@
 				<%=link_to image_tag(item.photo_url), item_path(item) %>
 			</div>
 			<li class="listings">
-				<div class="item-title"> <%= link_to item.title, item_path(item)%> </div>
-				<div class="item-edit-delete-buttons">
-					<% if itemout && notrx %>
-						<p style="font-size: 11px; color: gray; ">This listing cannot be edited while it's part of a current transaction.</p>
-			  		<% else %>
-			    		<%= link_to 'Edit', edit_item_path(item),class: "edit-item" %>
-						<%= link_to 'Delete', item, method: :delete, class: "delete-item", data: {confirm: "Are you sure you want to delete this Item?"}  %>
-			  		<% end %>
+				<div class="listings-wrap">
+					<div class="item-title"> <%= link_to item.title, item_path(item)%> </div>
+					<div class="item-edit-delete-buttons">
+						<% if itemout && notrx %>
+							<p id="no-editing-text">This Service cannot be edited while it's part of a current transaction.</p>
+				  		<% else %>
+				    		<%= link_to 'Edit', edit_item_path(item),class: "edit-item" %>
+							<%= link_to 'Delete', item, method: :delete, class: "delete-item", data: {confirm: "Are you sure you want to delete this Item?"}  %>
+				  		<% end %>
+					</div>
 				</div>
 			</li>
 			<% end %>
 		<% else %>
-			<div style="border: 1px solid #979797;list-style: none;background-color: #fff;
-			margin-top: 10px;margin-left: 132px;height: 100px;width: 350px;">
-				<p>You have no Listings</p>
-				<p><b> <%= link_to 'Create a listing now!', new_item_path, style:"color: #419bf9"%></b></p>
+			<div id="no-listing-container" style="">
+				<p>You have not offered an Services</p>
+				<p><b> <%= link_to 'Offer a Service now!', new_item_path, style:"color: #419bf9"%></b></p>
 			</div>
 		<% end %>
 	</div>
 
+	<!-- <div class="shoutout-container">
+		<div id="shoutout-heading">My Shoutouts </div>
+		<% if @user.requests.present? %>
+			<% @user.requests.each do |request| %>
+				<li class="shoutouts">
+					<div class="shoutout-wrap">
+					<div class="shoutout-title">
+						<%=link_to(request.title,request_path(request)) %>
+						<div class="request">
+							<span style="color: red;">Expiry:</span> <%=request.timeframe.strftime("%m/%d/%y at %l:%M %p")%>
+						</div>
+					</div>
+					<div class="shoutout-edit-delete-buttons">
+						<%= link_to 'Edit', edit_request_path(request, request),class: "edit-shoutout" %>
+						<%= link_to 'Delete', request_path(request), method: :delete, class: "delete-shoutout", data: {confirm: "Are you sure you want to delete this shoutout? This action cannot be undone."}  %>
+					</div>
+				</div>
+				</li>
+			<% end %>
+		<% else %>
+			<div id="no-shoutout-container" style="">
+				<p>You have no Shoutouts</p>
+				<p><b> <%= link_to 'Create a shoutout now!', new_request_path, style:"color: #419bf9"%></b></p>
+			</div>
+		<% end %>
+	</div> -->
+
 	<div class="ref-code">
 			<p>Referral Code</p>
 		<p class="code"><%= @referral.code %></p>
-		<div class="wrapper">
+		<span class="wrapper">
 			What's This?
 			<div class="tooltip">Invite a friend to sign up with this code, and both of you will get $5 credit! </div>
-		</div>
+		</span>
 
 	</div>
-
+<!-- 
 	<div class="account-balance-section">
 		<div id="account-balance">
 			<p>Account Balance</p>
 			<p id="balance"> $ <%= @user.balance %> </p>
 		</div>
-	</div>
+	</div> -->
 
-	<h4> Cash Out Options </h4>
+	<!-- <h4 id="mail-cheque-heading"> Cash Out Options </h4>
 
 	<div class="mail-cheque-section">
 			<p id="title">Mailed Cheque</p>
-			<p id="description">Enter your address below, and we will mail a cheque with the amount on your balance to you! <span style="color: #419bf9">Min. $20 Required</span></p>
+			<p id="description">Enter your address below, and we will mail a cheque with the amount on your balance to you! <span style="color: #419bf9">Min. $10 Required</span></p>
 		<div id="mail-form">
 			<%= form_for @location, :method => :PUT do |f| %>
 				<%= f.text_field :address, class: 'mail-check-input', placeholder: "Street and/or Unit Number" %>
@@ -141,8 +188,8 @@
 			    </div>
 		    <% end %>
 		</div>
-	</div>
-	<div class="payment-settings">
+	</div> -->
+	<!-- <div class="payment-settings">
 		<% if signed_in? %>
 		<span class="personal_purchases"><%#= link_to "Personal Purchase History", trx_orders_list_personal_purchases_path %></span>
 		<p> Direct Deposit</p>
@@ -152,11 +199,11 @@
 		<span class="orders"><%#= link_to "Order Requests", items_orders_path %></span>
 		<span class="accepted_orders"><%#= link_to "Accepted Orders", items_accepted_orders_path %></span>
 		<% end %>
-	</div>
+	</div> -->
 </div>
 
-<div class = "user-ratings">
-	<h4 class= "account-heading">My Ratings</h4>
+<div class="user-ratings">
+	<h4 class="account-heading">My Ratings</h4>
 	<% @user.ratings.each do |rating| %>
 	<li class="user-rating-content">
 		<div class="rating-title"><%=link_to(rating.item.title, item_path(rating.item)) %></div>
@@ -169,8 +216,8 @@
 	<% end %>
 </div>
 
-<div id= "user-reviews">
-	<h4 class= "account-heading"> My Reviews </h4>
+<div id="user-reviews">
+	<h4 class="account-heading"> My Reviews </h4>
 	<% @user.reviews.each do |review| %>
 	<li class="user-review">
 		<p class="review-title"> <%=link_to(review.item.title, item_path(review.item)) %></p>
@@ -191,4 +238,7 @@
 		<div class="divider"></div>
 	</li>
 	<% end %>
+<% elsif @user != current_user %>
+	<%= render 'profile' %>
+<% end %>
 </div>

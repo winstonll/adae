@@ -8,14 +8,16 @@ class TransactionsController < ApplicationController
 		@transaction = Transaction.new
 		@item = Item.find(params[:item_id])
 
-	    @prices = @item.prices
-	    @pictures = Picture.where(item_id: @item.id)
+    @prices = @item.prices
+    @pictures = Picture.where(item_id: @item.id)
 
-	    @type_dropdown = []
+    @type_dropdown = []
 
-	    @prices.each do |price|
-	    	@type_dropdown.push([price.timeframe])
-	    end
+    @prices.each do |price|
+    	@type_dropdown.push([price.timeframe])
+    end
+
+		@shared = !(Share.where(user_id: current_user.id, item_id: @item.id).empty?) && !(Share.where(user_id: current_user.id, item_id: @item.id).first.discount_used)
 	end
 
 	def stripe
@@ -42,6 +44,10 @@ class TransactionsController < ApplicationController
 			order_transaction = Transaction.new(item_id: item.id, buyer_id: current_user.id,
 			seller_id: item.user_id, total_price: params[:price], length: item.listing_type == 'sell' ? nil : params[:duration])
 
+			if item.listing_type == "lease"
+				order_transaction.addons = params[:addon]
+			end
+
 			order_transaction.save
 
 			if Conversation.between(current_user.id, seller.id).present?
@@ -50,6 +56,8 @@ class TransactionsController < ApplicationController
 			else
 				@conversation = Conversation.create!(sender_id: current_user.id, recipient_id: seller.id)
 			end
+
+			RequestSentEmailJob.set(wait: 1.seconds).perform_later(order_transaction)
 
 			redirect_to conversation_messages_path(@conversation, item_id: item.id)
 
@@ -115,32 +123,6 @@ class TransactionsController < ApplicationController
 		ContactMailer.adaebot_message(@buyer, @message).deliver_now
 		ContactMailer.adaebot_message(@seller, @message2).deliver_now
 		redirect_to :back
-	end
-
-	def purchase_lease
-
-		transaction_hash = charge_stripe
-
-		item = transaction_hash["item"]
-		transaction = transaction_hash["transaction"]
-		seller = transaction_hash["seller"]
-
-
-		item.status = "Sold"
-		item.save
-		transaction.status = "Completed"
-		transaction.save
-		seller.balance = seller.balance + transaction.total_price
-		seller.save
-
-		@conversation = Conversation.between(transaction.seller_id,transaction.buyer_id).first
-  		@user = User.find(transaction.seller_id)
-		@message = @conversation.messages.new(user_id: @user.id)
-		@message.body = "AdaeBot: Your item has been sold."
-		@message.save
-		ContactMailer.adaebot_message(@user, @message).deliver_now
-		redirect_to conversations_path
-
 	end
 
 	# Grabs all the necessary data and presents an invoice display page after purchases
@@ -218,8 +200,11 @@ class TransactionsController < ApplicationController
 
 			charge_price = transaction.total_price.to_f
 
-			if params[:lease]
-				charge_price = (markup_calculation(item.deposit) - transaction.total_price).to_f
+			if !(Share.where(user_id: current_user.id, item_id: item.id).empty?) && !(Share.where(user_id: current_user.id, item_id: item.id).first.discount_used)
+				shared = Share.where(user_id: current_user.id, item_id: item.id).first
+				charge_price = charge_price * 0.95
+				shared.discount_used = true
+				shared.save
 			end
 
 			#If the Buyer has a balance, subtract the balance from the total before charge.
@@ -235,10 +220,6 @@ class TransactionsController < ApplicationController
 					buyer.balance = 0
 					buyer.save
 				end
-			end
-
-			unless charge_price <= 0
-				charge_price = (((charge_price * 1.029) + 0.30) * 100).ceil
 			end
 
 			if charge_price > 0
@@ -287,31 +268,7 @@ class TransactionsController < ApplicationController
 			hash = {"transaction" => transaction, "seller" => seller, "item" => item}
 			return hash
 		end
-
-		def markup_calculation(price)
-			l1 = 1.1
-			l2 = 1.08
-			l3 = 1.06
-			l4 = 1.04
-			l5 = 1.02
-
-			displayPrice = 0
-
-	    if(price < 100)
-	      displayPrice = (price * l1).round
-	    elsif(price >= 100 && price < 200)
-	      displayPrice = ((100 * l1) + (price - 100) * l2).round
-	    elsif(price >= 200 && price < 500)
-	      displayPrice = ((100 * l1) + (100 * l2) + ((price - 200) * l3)).round
-	    elsif(price >= 500 && price < 1000)
-	      displayPrice = ((100 * l1) + (100 * l2) + (300 * l3) + ((price - 500) * l4)).round
-	    elsif(price >= 1000)
-	      displayPrice = ((100 * l1) + (100 * l2) + (300 * l3) + (500 * l4) + ((price - 1000) * l5)).round
-			end
-
-			return displayPrice
-		end
-
+		
 		#if transaction exists redirect
 		def transaction_exists?
 			@item = Item.find(params[:item_id])
