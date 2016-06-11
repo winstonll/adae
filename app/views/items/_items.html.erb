@@ -1,37 +1,37 @@
 <script type="text/javascript">
-	function markup(price) {
-    var l1 = 1.1;
-    var l2 = 1.08;
-    var l3 = 1.06;
-    var l4 = 1.04;
-    var l5 = 1.02;
-    var x = price.innerHTML;
-    var amount = parseInt(x);
-    var displayPrice = 0;
+	// function markup(price) {
+ //    var l1 = 1.1;
+ //    var l2 = 1.08;
+ //    var l3 = 1.06;
+ //    var l4 = 1.04;
+ //    var l5 = 1.02;
+ //    var x = price.innerHTML;
+ //    var amount = parseInt(x);
+ //    var displayPrice = 0;
 
-    if(amount < 100) {
-        displayPrice = Math.round(amount*l1, 0);
-        price.innerHTML = '$' + displayPrice;
-    }else if(amount >= 100 & amount < 200) {
-        displayPrice = Math.round(100*l1 + (amount-100)*l2, -1);
-        price.innerHTML = '$' + displayPrice;
-    }else if(amount >= 200 & amount < 500) {
-        displayPrice = Math.round(100*l1 + 100*l2 + (amount-200)*l3, -1);
-        price.innerHTML = '$' + displayPrice;
-    }else if(amount >= 500 & amount < 1000) {
-        displayPrice = Math.round(100*l1 + 100*l2 + 300*l3 + (amount-500)*l4, -1);
-        price.innerHTML = '$' + displayPrice;
-    }else if(amount >= 1000) {
-        displayPrice = Math.round(100*l1 + 100*l2 + 300*l3 + 500*l4 + (amount-1000)*l5, -1);
-        price.innerHTML = '$' + displayPrice;
-    }
-  }
+ //    if(amount < 100) {
+ //        displayPrice = Math.round(amount*l1, 0);
+ //        price.innerHTML = '$' + displayPrice;
+ //    }else if(amount >= 100 & amount < 200) {
+ //        displayPrice = Math.round(100*l1 + (amount-100)*l2, -1);
+ //        price.innerHTML = '$' + displayPrice;
+ //    }else if(amount >= 200 & amount < 500) {
+ //        displayPrice = Math.round(100*l1 + 100*l2 + (amount-200)*l3, -1);
+ //        price.innerHTML = '$' + displayPrice;
+ //    }else if(amount >= 500 & amount < 1000) {
+ //        displayPrice = Math.round(100*l1 + 100*l2 + 300*l3 + (amount-500)*l4, -1);
+ //        price.innerHTML = '$' + displayPrice;
+ //    }else if(amount >= 1000) {
+ //        displayPrice = Math.round(100*l1 + 100*l2 + 300*l3 + 500*l4 + (amount-1000)*l5, -1);
+ //        price.innerHTML = '$' + displayPrice;
+ //    }
+ //  }
 	$(document).ready(function() {
-		var ogprice = document.querySelectorAll('.markup');
-	    var p
-	    for (p = 0; p < ogprice.length; p++) {
-	      markup(ogprice[p]);
-	    }
+		// var ogprice = document.querySelectorAll('.markup');
+	 //    var p
+	 //    for (p = 0; p < ogprice.length; p++) {
+	 //      markup(ogprice[p]);
+	 //    }
 
 	  $("#item-<%= item.id%>").css("background-image", "url(" + "<%= item.photo_url %>" + ")");
 	  $("#item-<%= item.id%>").css("background-repeat", "no-repeat");
@@ -42,34 +42,35 @@
 </script>
 
 <div class="item-index" id="item-<%= item.id%>">
-  <a href="<%= items_path %>/<%=item.title.gsub(' ','-')%>">
+  <a href="<%= items_path %>/<%=item.id %>">
 	<div class="price-wrap">
 		<div class="item-prices">
 
 			<% if item.listing_type == "sell" %>
 				<div class="sell">
-					<span class="markup"><%= item.prices.first.amount %></span>
+					<span class="markup">$<%= item.prices.first.amount.to_i %></span>
 					<span style="font-size: 11px;">to buy</span>
 				</div>
 			<% elsif item.listing_type == "lease" %>
 				<div class="lease">
-					<span class="markup"><%= item.prices.first.amount %></span> /
-					<%= item.prices.first.timeframe %>
-				</div>
-				<div class="deposit">
-					<span class="markup"><%= item.deposit %></span>
-					<span style="font-size: 11px;">to buy</span>
+					<span class="markup">Check Prices</span>
 				</div>
 			<% elsif item.listing_type == "rent"%>
 				<div class="rent">
-					<span class="markup"><%= item.prices.first.amount %></span> /
+					<span class="markup">$<%= item.prices.first.amount.to_i %></span> /
 					<%= item.prices.first.timeframe %>
 				</div>
 			<% else %>
 				<div class="timeoffer">
-					<span class="markup"><%= item.prices.first.amount %></span> /
+					<span class="markup">$<%= item.prices.first.amount.to_i %></span> /
 					<%= item.prices.first.timeframe %>
 				</div>
+				<% if item.prices.second %>
+				<div class="flat-rate">
+					<span class="markup">$<%= item.prices.second.amount.to_i %></span>
+					<span style="font-size: 12px"><%= item.prices.second.timeframe %></span>
+				</div>
+				<% end %>
 			<% end %>
 		</div>
 	</div>
@@ -79,7 +80,7 @@
 		<%= link_to item_path(item.id) do %>
 		<div id="item-title">
 			<%= link_to image_tag(item.user.avatar.url(:med), class:"avatar"), user_path(item.user) %>
-			<%= link_to item.title, item_path(item.title.gsub(' ','-')) %>
+			<%= link_to item.title, item_path(item.id) %>
 		</div>
 		<% end %>
 

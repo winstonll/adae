@@ -12,7 +12,6 @@ module Api::V1
       render json: @transaction, status: :ok
     end
 
-    # I'm leaking sensitive user information, auth and api token
     def show
       transaction = Transaction.where(id: params[:id]).first
 
@@ -30,7 +29,7 @@ module Api::V1
       transaction = Transaction.new(transaction_params)
 
       if transaction.save
-        render nothing: true, status: 204#, location: user
+        render nothing: true, status: 204
       else
         render json: transaction.errors, status: 422
       end
@@ -82,7 +81,6 @@ module Api::V1
     # Verifying a requested In scan or Out scan and updating the respective
     # users balance
     def verify_scan
-
       decoded = ""
 
       if !params[:transactions].nil? && !params[:transactions][:scan].nil? && !params[:transactions][:balance].nil?
@@ -98,34 +96,40 @@ module Api::V1
           product = Item.where(id: current_transaction.item_id).first
 
           if transaction_validation
-
             if decoded[3] == "inscan" && current_transaction.status != "In Progress" && current_transaction.status != "Completed"
 
               current_transaction.in_scan_date = DateTime.current
 
-              if product.listing_type == "rent" || product.listing_type == "timeoffer" || product.listing_type == "lease"
+              @buyer = User.where(id: current_transaction[:buyer_id]).first
+              @seller = User.where(id: current_transaction[:seller_id]).first
+              @listing = product
+
+              if product.listing_type == "rent"
                 current_transaction.status = "In Progress"
+              elsif product.listing_type == "lease"
+                current_transaction.status = "Completed"
+              elsif product.listing_type == "timeoffer"
+                length = current_transaction.length.split("-")
+
+                if length[1] == "Flat Rate"
+                  current_transaction.status = "Completed"
+                else
+                  current_transaction.status = "In Progress"
+                end
               elsif product.listing_type == "sell"
                 product.status = "Sold"
                 product.save
                 current_transaction.status = "Completed"
               end
 
+              ReviewPromptJob.perform_later(@buyer, @seller, @listing)
+
               current_transaction.save
 
-              if product.listing_type != "sell"
-                length = current_transaction.length.split("-")
-                qty = length[0]
-                length = length[1]
-                price = Price.where(item_id: current_transaction.item_id, timeframe: length).first
+              # Adae takes a 15% cut from the seller, covering service fee and stripe fee
+              sub_total = (current_transaction.total_price * 0.85).round(2)
 
-                sub_total = price.amount * qty.to_i
-              else
-                price = Price.where(item_id: current_transaction.item_id).first
-
-                sub_total = price.amount
-              end
-
+              # Seller gets revenue after 15% cut
               seller.balance = seller.balance +  sub_total
               seller.save
 
@@ -136,6 +140,11 @@ module Api::V1
               current_transaction.out_scan_date = DateTime.current
               current_transaction.status = "Completed"
               current_transaction.save
+
+              @buyer = User.where(id: current_transaction[:buyer_id]).first
+              @seller = User.where(id: current_transaction[:seller_id]).first
+              @listing = product
+              ReviewPromptJob.perform_later(@buyer, @seller, @listing)
 
               render nothing: true, status: 204
             else

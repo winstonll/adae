@@ -25,9 +25,11 @@ class Users::ConfirmationsController < Devise::ConfirmationsController
   def after_confirmation_path_for(resource_name, resource)
     @referred = Referred.where(redeemer: resource.id).first
 
-    @referrer = User.find(@referred.provider)
-    @referrer.balance = @referrer.balance + 5
-    @referrer.save
+    if !@referred.nil?
+      @referrer = User.find(@referred.provider)
+      @referrer.balance = @referrer.balance + 5
+      @referrer.save
+    end
 
     signin_path
   end

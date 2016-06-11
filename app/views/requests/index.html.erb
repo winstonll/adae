@@ -1,10 +1,24 @@
+<%= include_gon %>
 <%= stylesheet_link_tag "requests" %>
 
 <body>
 	<div id="requests">
-    	<div id="map-canvas"></div>
-    	<div id="request-collection">
-		<%= render partial: "/requests/requests", locals: {requests: @requests} %>
-    	</div>
+		<div class="switch">
+	    	<%= link_to "All Services", items_path, class: "share-item" %>
+	    	<%= link_to "All Shout Outs", requests_path, class: "share-request" %>
+		</div>
+		<div id="request-feed-container">
+	    	<div id="request-collection">
+	    		<% @requests.each do |request| %>
+					<%= render partial: "/requests/requests", :locals => {:request => request} %>
+				<% end %>
+	    	</div>
+	    	<div id="pagination-shout">
+				<%= will_paginate @requests, :next_label => "&#10095;", :previous_label => "&#10094;" %>
+			</div>
+		</div>
+    	<div id="request-map"></div>
 	</div>
 </body>
+
+<%= javascript_include_tag "requestmap" %>
