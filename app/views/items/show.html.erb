@@ -8,9 +8,9 @@
 	<meta property="og:title"         content="<%= @item.title %>" />
 	<meta property="og:description"   content="<%= @item.description %>" />
 
-	<% if @pictures %>
+	<%# if @pictures %>
 		<meta property="og:image" content="<%= "https://adae.co#{image_path("social-pic")}"  %>" />
-	<% end %>
+	<%# end %>
 <% end %>
 
 <%= stylesheet_link_tag "items" %>
