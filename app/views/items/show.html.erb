@@ -146,12 +146,13 @@
             <div class="item-detail-calc">
             <% if user_signed_in? %>
               <% if current_page?('/listings/121') || current_page?('/listings/123')  %>
-                <%= link_to 'Credit or Debit', new_transaction_path(:item_id => @item.id), class: "request-button", id: "lease-button"%>
-                <%= link_to 'Pay with Cash', contact_path, class: "send-message", style:"background-color: #7ed321;"%>
+                <%= link_to 'Select & Use Debit or Credit', new_transaction_path(:item_id => @item.id), class: "request-button", id: "lease-button", style: "padding: 10px;"%>
+                <%= link_to 'Request Order Pay with Cash', contact_path, class: "send-message", style: "padding: 10px; background-color: #7ed321;"%>
+                <%= link_to 'Send Message', conversations_path(:sender_id => current_user.id, :recipient_id => @item.user_id), :method=> :post, class: "send-message signed-in-message", style: "padding: 10px 65px 10px 65px;"%>
               <% else %>
                 <%= link_to 'Request Item(s)', new_transaction_path(:item_id => @item.id), class: "request-button", id: "lease-button"%>
+                <%= link_to 'Send Message', conversations_path(:sender_id => current_user.id, :recipient_id => @item.user_id), :method=> :post, class: "send-message signed-in-message"%>
               <% end %>
-              <%= link_to 'Send Message', conversations_path(:sender_id => current_user.id, :recipient_id => @item.user_id), :method=> :post, class: "send-message signed-in-message" %>
             <% else %>
               <%= link_to 'Request Item(s)', {remote: true, controller: "home", action: "signup_modal"}, id: "lease-button", class: "request-button" %>
               <%= link_to 'Send Message', {remote: true, controller: "home", action: "signup_modal"}, class: "send-message guest-message" %>
