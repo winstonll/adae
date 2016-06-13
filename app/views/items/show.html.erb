@@ -88,7 +88,7 @@
     <%= hidden_field_tag 'id', @item.id%>
     <%= hidden_field_tag 'listing_type', @item.listing_type %>
   
-  <% if !current_page?('/listings/123') %>
+  <% if !current_page?('adae.co/listings/123') %>
     <div class="price-details">
   <% else %>
     <div class="price-details" style="width: 590px;">
@@ -205,7 +205,7 @@
     </div>
 
     <div class="item-title-and-user">
-      <% if !current_page?('/listings/121') %>
+      <% if !current_page?('/adae.co/listings/121') %>
         <div class="item-detail-title"><%= @item.title %></div>
         <div class="item-detail-username"><%= @item.user.full_name%>
           <%= link_to image_tag(@item.user.avatar.url(:med), class:"avatar"), user_path(@item.user) %>
