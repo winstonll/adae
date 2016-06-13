@@ -104,33 +104,61 @@
           <% end %>
         </div>
       <% elsif @item.listing_type == "lease" %>
-        <div class="item-detail-price-product">
-          <div class="price-title2">Available for Sale</div>
-            <% @prices.each do |price| %>
-              <div class="price-breakdown">
-                  <div class="price-list-product">
-                    <div class="price-time">
-                      <span id="price-title"><%= price.title %></span>
-                      <%= simple_format price.description.html_safe, :style =>"text-align: left; margin-top: 5px; font-size: 14px;" %>
+        <% if current_page?('/listings/122') %>
+          <div class="item-detail-price-product" style="width: 293%;">
+            <div class="price-title2">Available for Sale</div>
+              <% @prices.each do |price| %>
+                <div class="price-breakdown" style="display: inline-block;">
+                    <div class="price-list-product" style="display: inline-block;">
+                      <div class="price-time">
+                        <span id="price-title"><%= price.title %></span>
+                      </div>
+                      <div class="image-wrap" id="wrapper">
+                        <%= link_to image_tag(price.photo.url(:thumb), alt: "product", class: "price-photo"), price.photo.url, :rel => "lightbox" %>
+                      </div>
+                      <span class="markup">$<%= price.amount.to_i %></span>
                     </div>
-                    <div class="image-wrap" id="wrapper">
-                      <%= link_to image_tag(price.photo.url(:thumb), alt: "product", class: "price-photo"), price.photo.url, :rel => "lightbox" %>
-                    </div>
-										<span class="markup">$<%= price.amount.to_i %></span>
-                  </div>
-									<div class="division-2"></div>
-              </div>
-            <% end %>
-          <div class="item-detail-calc">
-						<% if user_signed_in? %>
-	            <%= link_to 'Request Item(s)', new_transaction_path(:item_id => @item.id), class: "request-button", id: "lease-button"%>
-							<%= link_to 'Send Message', conversations_path(:sender_id => current_user.id, :recipient_id => @item.user_id), :method=> :post, class: "send-message signed-in-message" %>
-	          <% else %>
-	            <%= link_to 'Request Item(s)', {remote: true, controller: "home", action: "signup_modal"}, id: "lease-button", class: "request-button" %>
-							<%= link_to 'Send Message', {remote: true, controller: "home", action: "signup_modal"}, class: "send-message guest-message" %>
-	          <% end %>
+                </div>
+              <% end %>
+            <div class="item-detail-calc">
+              <% if user_signed_in? %>
+                <%= link_to 'Request Item(s)', new_transaction_path(:item_id => @item.id), class: "request-button", id: "lease-button"%>
+                <%= link_to 'Send Message', conversations_path(:sender_id => current_user.id, :recipient_id => @item.user_id), :method=> :post, class: "send-message signed-in-message" %>
+              <% else %>
+                <%= link_to 'Request Item(s)', {remote: true, controller: "home", action: "signup_modal"}, id: "lease-button", class: "request-button" %>
+                <%= link_to 'Send Message', {remote: true, controller: "home", action: "signup_modal"}, class: "send-message guest-message" %>
+              <% end %>
+            </div>
           </div>
-        </div>
+        <% else %>
+          <div class="item-detail-price-product">
+            <div class="price-title2">Available for Sale</div>
+              <% @prices.each do |price| %>
+                <div class="price-breakdown">
+                    <div class="price-list-product">
+                      <div class="price-time">
+                        <span id="price-title"><%= price.title %></span>
+                        <%= simple_format price.description.html_safe, :style =>"text-align: left; margin-top: 5px; font-size: 14px;" %>
+                      </div>
+                      <div class="image-wrap" id="wrapper">
+                        <%= link_to image_tag(price.photo.url(:thumb), alt: "product", class: "price-photo"), price.photo.url, :rel => "lightbox" %>
+                      </div>
+  										<span class="markup">$<%= price.amount.to_i %></span>
+                    </div>
+  									<div class="division-2"></div>
+                </div>
+              <% end %>
+            <div class="item-detail-calc">
+  						<% if user_signed_in? %>
+  	            <%= link_to 'Request Item(s)', new_transaction_path(:item_id => @item.id), class: "request-button", id: "lease-button"%>
+  							<%= link_to 'Send Message', conversations_path(:sender_id => current_user.id, :recipient_id => @item.user_id), :method=> :post, class: "send-message signed-in-message" %>
+  	          <% else %>
+  	            <%= link_to 'Request Item(s)', {remote: true, controller: "home", action: "signup_modal"}, id: "lease-button", class: "request-button" %>
+  							<%= link_to 'Send Message', {remote: true, controller: "home", action: "signup_modal"}, class: "send-message guest-message" %>
+  	          <% end %>
+            </div>
+          </div>
+        <% end %>
       <% elsif @item.listing_type == "rent"%>
         <div class="item-detail-price">
           <div class="price-title2">Available for Rent</div>
@@ -197,8 +225,10 @@
         <%= simple_format(@item.description) %>
         <div class="divider"></div>
       </div>
-      <div id="item-map"></div>
-      <%= javascript_include_tag "map_description" %>
+      <% unless current_page?('/listings/122') %>
+        <div id="item-map"></div>
+        <%= javascript_include_tag "map_description" %>
+      <% end %>
     </div>
 </div>
 
