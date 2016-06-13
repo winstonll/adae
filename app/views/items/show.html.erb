@@ -108,8 +108,8 @@
           <% end %>
         </div>
       <% elsif @item.listing_type == "lease" %>
-        <% if !current_page?('/listings/123') %>
-          <div class="item-detail-price-product">
+        <% if !current_page?('adae.co/listings/123') %>
+         <!--  <div class="item-detail-price-product">
             <div class="price-title2">Available for Sale</div>
               <% @prices.each do |price| %>
                 <div class="price-breakdown">
@@ -125,7 +125,7 @@
                     </div>
                     <div class="division-2"></div>
                 </div>
-              <% end %>
+              <% end %> -->
         <% else %>
           <div class="item-detail-price-product" style="width: 92%; float: none;">
             <div style="font-weight: 600; color: white; background-color: #7ed321; opacity: 0.9; padding: 12px;">Available for Sale</div>
@@ -205,7 +205,7 @@
     </div>
 
     <div class="item-title-and-user">
-      <% if !current_page?('/adae.co/listings/121') %>
+      <% if !current_page?('adae.co/listings/121') %>
         <div class="item-detail-title"><%= @item.title %></div>
         <div class="item-detail-username"><%= @item.user.full_name%>
           <%= link_to image_tag(@item.user.avatar.url(:med), class:"avatar"), user_path(@item.user) %>
