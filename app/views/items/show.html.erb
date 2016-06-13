@@ -88,7 +88,7 @@
     <%= hidden_field_tag 'id', @item.id%>
     <%= hidden_field_tag 'listing_type', @item.listing_type %>
   
-  <% if !current_page?('adae.co/listings/123') %>
+  <% if !current_page?('/listings/123') %>
     <div class="price-details">
   <% else %>
     <div class="price-details" style="width: 590px;">
@@ -144,7 +144,11 @@
               <% end %>
         <% end %>
             <div class="item-detail-calc">
-            <% if user_signed_in? %>
+            <% if current_page?('/listings/121') || current_page?('/listings/123')  %>
+              <%= link_to 'Credit or Debit', new_transaction_path(:item_id => @item.id), class: "request-button", id: "lease-button"%>
+              <%= link_to 'Pay with Cash', contact_path, class: "send-message", style:"background-color: #7ed321;"%>
+              <%= link_to 'Send Message', conversations_path(:sender_id => current_user.id, :recipient_id => @item.user_id), :method=> :post, class: "send-message signed-in-message" %>
+            <% elsif user_signed_in? %>
               <%= link_to 'Request Item(s)', new_transaction_path(:item_id => @item.id), class: "request-button", id: "lease-button"%>
               <%= link_to 'Send Message', conversations_path(:sender_id => current_user.id, :recipient_id => @item.user_id), :method=> :post, class: "send-message signed-in-message" %>
             <% else %>
@@ -205,7 +209,7 @@
     </div>
 
     <div class="item-title-and-user">
-      <% if !current_page?('/adae.co/listings/121') %>
+      <% if !current_page?('/listings/121') && !current_page?('/listings/123') %>
         <div class="item-detail-title"><%= @item.title %></div>
         <div class="item-detail-username"><%= @item.user.full_name%>
           <%= link_to image_tag(@item.user.avatar.url(:med), class:"avatar"), user_path(@item.user) %>
