@@ -87,8 +87,12 @@
   </div>
     <%= hidden_field_tag 'id', @item.id%>
     <%= hidden_field_tag 'listing_type', @item.listing_type %>
-
+  
+  <% if !current_page?('adae.co/listings/123') %>
     <div class="price-details">
+  <% else %>
+    <div class="price-details" style="width: 590px;">
+  <% end %>
       <% if @item.listing_type == "sell" %>
         <div class="item-detail-price" style="height:265px;">
           <div class="price-title">For Sale</div>
@@ -104,33 +108,7 @@
           <% end %>
         </div>
       <% elsif @item.listing_type == "lease" %>
-        <% if current_page?('/listings/122') %>
-          <div class="item-detail-price-product" style="width: 293%;">
-            <div class="price-title2">Available for Sale</div>
-              <% @prices.each do |price| %>
-                <div class="price-breakdown" style="display: inline-block;">
-                    <div class="price-list-product" style="display: inline-block;">
-                      <div class="price-time">
-                        <span id="price-title"><%= price.title %></span>
-                      </div>
-                      <div class="image-wrap" id="wrapper">
-                        <%= link_to image_tag(price.photo.url(:thumb), alt: "product", class: "price-photo"), price.photo.url, :rel => "lightbox" %>
-                      </div>
-                      <span class="markup">$<%= price.amount.to_i %></span>
-                    </div>
-                </div>
-              <% end %>
-            <div class="item-detail-calc">
-              <% if user_signed_in? %>
-                <%= link_to 'Request Item(s)', new_transaction_path(:item_id => @item.id), class: "request-button", id: "lease-button"%>
-                <%= link_to 'Send Message', conversations_path(:sender_id => current_user.id, :recipient_id => @item.user_id), :method=> :post, class: "send-message signed-in-message" %>
-              <% else %>
-                <%= link_to 'Request Item(s)', {remote: true, controller: "home", action: "signup_modal"}, id: "lease-button", class: "request-button" %>
-                <%= link_to 'Send Message', {remote: true, controller: "home", action: "signup_modal"}, class: "send-message guest-message" %>
-              <% end %>
-            </div>
-          </div>
-        <% else %>
+        <% if !current_page?('/listings/123') %>
           <div class="item-detail-price-product">
             <div class="price-title2">Available for Sale</div>
               <% @prices.each do |price| %>
@@ -143,22 +121,38 @@
                       <div class="image-wrap" id="wrapper">
                         <%= link_to image_tag(price.photo.url(:thumb), alt: "product", class: "price-photo"), price.photo.url, :rel => "lightbox" %>
                       </div>
-  										<span class="markup">$<%= price.amount.to_i %></span>
+                      <span class="markup">$<%= price.amount.to_i %></span>
                     </div>
-  									<div class="division-2"></div>
+                    <div class="division-2"></div>
                 </div>
               <% end %>
+        <% else %>
+          <div class="item-detail-price-product" style="width: 92%; float: none;">
+            <div style="font-weight: 600; color: white; background-color: #7ed321; opacity: 0.9; padding: 12px;">Available for Sale</div>
+              <% @prices.each do |price| %>
+                <div style="display: inline-block;">
+                    <div style="display: inline-block; font-size: 15px; font-weight: 400; border: none; padding: 10px 0px 25px 20px;">
+                      <div style="display: inline-block; margin: 0px 0px 5% 20%; width: 70%; color: #262626; line-height: normal;">
+                        <div style="font-weight: 600; font-size: 16px;"><%= price.title %></div>
+                      </div>
+                      <div style="border: 1px solid #ffffff; -webkit-transition: max-width .5s ease-out; -moz-transition: max-width .5s ease-out;-ms-transition: max-width .5s ease-out; -o-transition: max-width .5s ease-out; transition: max-width .5s ease-out;">
+                        <%= link_to image_tag(price.photo.url(:thumb), alt: "product", style: "height: 70px; width: 80px; border-radius: 4px; margin-bottom: 10px; object-fit: cover; object-position: center; cursor: pointer;"), price.photo.url, :rel => "lightbox"%>
+                      </div>
+                      <div style="display: inline-block;font-weight: 700; color: #34C819; border: 2px solid #34C819; border-radius: 4px; font-size: 19px; text-align: center; padding: 2px 19px 2px 20px; position: relative;">$<%= price.amount.to_i %></div>
+                    </div>
+                </div>
+              <% end %>
+        <% end %>
             <div class="item-detail-calc">
-  						<% if user_signed_in? %>
-  	            <%= link_to 'Request Item(s)', new_transaction_path(:item_id => @item.id), class: "request-button", id: "lease-button"%>
-  							<%= link_to 'Send Message', conversations_path(:sender_id => current_user.id, :recipient_id => @item.user_id), :method=> :post, class: "send-message signed-in-message" %>
-  	          <% else %>
-  	            <%= link_to 'Request Item(s)', {remote: true, controller: "home", action: "signup_modal"}, id: "lease-button", class: "request-button" %>
-  							<%= link_to 'Send Message', {remote: true, controller: "home", action: "signup_modal"}, class: "send-message guest-message" %>
-  	          <% end %>
+            <% if user_signed_in? %>
+              <%= link_to 'Request Item(s)', new_transaction_path(:item_id => @item.id), class: "request-button", id: "lease-button"%>
+              <%= link_to 'Send Message', conversations_path(:sender_id => current_user.id, :recipient_id => @item.user_id), :method=> :post, class: "send-message signed-in-message" %>
+            <% else %>
+              <%= link_to 'Request Item(s)', {remote: true, controller: "home", action: "signup_modal"}, id: "lease-button", class: "request-button" %>
+              <%= link_to 'Send Message', {remote: true, controller: "home", action: "signup_modal"}, class: "send-message guest-message" %>
+            <% end %>
             </div>
           </div>
-        <% end %>
       <% elsif @item.listing_type == "rent"%>
         <div class="item-detail-price">
           <div class="price-title2">Available for Rent</div>
@@ -225,10 +219,8 @@
         <%= simple_format(@item.description) %>
         <div class="divider"></div>
       </div>
-      <% unless current_page?('/listings/122') %>
         <div id="item-map"></div>
         <%= javascript_include_tag "map_description" %>
-      <% end %>
     </div>
 </div>
 
