@@ -25,7 +25,7 @@
     </div>
     <div>
         <label for="msg">Message:</label>
-        <%= f.text_area :content, :as => :text, :input_html => {:rows => 10}, id:"msg" %>
+        <%= f.text_area :content, :as => :text, :input_html => {:rows => 10}, placeholder: "If You Are Paying with Cash: Type what you'd like to order here, make sure to leave your address and phone number!", id:"msg" %>
     </div>
     <%= recaptcha_tags%>
     <div class="button">
