@@ -126,8 +126,25 @@
                     <div class="division-2"></div>
                 </div>
               <% end %>
+            <div class="item-detail-calc">
+            <% if user_signed_in? %>
+              <% if current_page?('/listings/121') %>
+                <%= link_to 'Select Box & Pay with Card', new_transaction_path(:item_id => @item.id), class: "fruit-button one"%>
+                <%= link_to 'Select Box & Pay with Cash', contact_path, class: "fruit-button two"%>
+                <%= link_to 'Send us a Message', conversations_path(:sender_id => current_user.id, :recipient_id => @item.user_id), :method=> :post, class: "fruit-button three"%>
+              <% else %>
+                <%= link_to 'Request Item(s)', new_transaction_path(:item_id => @item.id), class: "request-button", id: "lease-button"%>
+                <%= link_to 'Send Message', conversations_path(:sender_id => current_user.id, :recipient_id => @item.user_id), :method=> :post, class: "send-message signed-in-message"%>
+              <% end %>
+            <% else %>
+              <%= link_to 'Select & Pay with Card', {remote: true, controller: "home", action: "signup_modal"}, class:"select-button one" %>
+              <%= link_to 'Select & Pay with Cash', contact_path, class: "select-button two"%>
+              <%= link_to 'Send Message', {remote: true, controller: "home", action: "signup_modal"}, class: "select-button three" %>
+            <% end %>
+            </div>
+          </div>
         <% else %>
-          <div class="item-detail-price-product" style="width: 92%; float: none;">
+          <div class="item-detail-price-product" style="width: 92%;">
             <div style="font-weight: 600; color: white; background-color: #7ed321; opacity: 0.9; padding: 12px;">Available for Sale</div>
               <% @prices.each do |price| %>
                 <div style="display: inline-block;">
@@ -142,24 +159,19 @@
                     </div>
                 </div>
               <% end %>
-        <% end %>
-            <div class="item-detail-calc">
-            <% if user_signed_in? %>
-              <% if current_page?('/listings/121') || current_page?('/listings/123')  %>
-                <%= link_to 'Select Box & Pay with Card', new_transaction_path(:item_id => @item.id), class: "request-button", id: "lease-button", style: "padding: 10px;"%>
-                <%= link_to 'Select Box & Pay with Cash', contact_path, class: "send-message", style: "padding: 10px; background-color: #7ed321;"%>
-                <%= link_to 'Send Message', conversations_path(:sender_id => current_user.id, :recipient_id => @item.user_id), :method=> :post, class: "send-message signed-in-message", style: "padding: 10px 65px 10px 65px;"%>
+              <div class="item-detail-calc">
+              <% if user_signed_in? %>
+                  <%= link_to 'Select Box & Pay with Card', new_transaction_path(:item_id => @item.id), class: "fruit-button one"%>
+                  <%= link_to 'Select Box & Pay with Cash', contact_path, class: "fruit-button two"%>
+                  <%= link_to 'Send us a Message', conversations_path(:sender_id => current_user.id, :recipient_id => @item.user_id), :method=> :post, class: "fruit-button three"%>
               <% else %>
-                <%= link_to 'Request Item(s)', new_transaction_path(:item_id => @item.id), class: "request-button", id: "lease-button"%>
-                <%= link_to 'Send Message', conversations_path(:sender_id => current_user.id, :recipient_id => @item.user_id), :method=> :post, class: "send-message signed-in-message"%>
+                <%= link_to 'Select & Pay with Card', {remote: true, controller: "home", action: "signup_modal"}, class:"select-button one" %>
+                <%= link_to 'Select & Pay with Cash', contact_path, class: "select-button two"%>
+                <%= link_to 'Send Message', {remote: true, controller: "home", action: "signup_modal"}, class: "select-button three" %>
               <% end %>
-            <% else %>
-              <%= link_to 'Select & Pay with Card', {remote: true, controller: "home", action: "signup_modal"}, id: "lease-button", class: "request-button", style: "padding: 10px;" %>
-              <%= link_to 'Select & Pay with Cash', contact_path, class: "send-message", style: "padding: 10px; background-color: #7ed321;"%>
-              <%= link_to 'Send Message', {remote: true, controller: "home", action: "signup_modal"}, class: "send-message guest-message", style: "padding: 10px 35px 10px 35px;" %>
-            <% end %>
+              </div>
             </div>
-          </div>
+        <% end %>
       <% elsif @item.listing_type == "rent"%>
         <div class="item-detail-price">
           <div class="price-title2">Available for Rent</div>
