@@ -129,17 +129,17 @@
             <div class="item-detail-calc">
             <% if user_signed_in? %>
               <% if current_page?('/listings/121') %>
-                <%= link_to 'Select & Pay with Card', new_transaction_path(:item_id => @item.id), class: "fruit-button one"%>
-                <%= link_to 'Select & Pay with Cash', contact_path, class: "fruit-button two"%>
-                <%= link_to 'Send us a Message', conversations_path(:sender_id => current_user.id, :recipient_id => @item.user_id), :method=> :post, class: "fruit-button three"%>
+                <%= link_to 'Select Box & Pay with Card', new_transaction_path(:item_id => @item.id), class: "fruit-button one"%>
+                <%= link_to 'Select Box & Pay with Cash', contact_path, class: "fruit-button two"%>
+                <%= link_to 'Send Us a Message', conversations_path(:sender_id => current_user.id, :recipient_id => @item.user_id), :method=> :post, class: "fruit-button three"%>
               <% else %>
                 <%= link_to 'Request Item(s)', new_transaction_path(:item_id => @item.id), class: "request-button", id: "lease-button"%>
-                <%= link_to 'Send Message', conversations_path(:sender_id => current_user.id, :recipient_id => @item.user_id), :method=> :post, class: "send-message signed-in-message"%>
+                <%= link_to 'Send Us a Message', conversations_path(:sender_id => current_user.id, :recipient_id => @item.user_id), :method=> :post, class: "send-message signed-in-message"%>
               <% end %>
             <% else %>
-              <%= link_to 'Select & Pay with Card', {remote: true, controller: "home", action: "signup_modal"}, class:"select-button one" %>
-              <%= link_to 'Select & Pay with Cash', contact_path, class: "select-button two"%>
-              <%= link_to 'Send Message', {remote: true, controller: "home", action: "signup_modal"}, class: "select-button three" %>
+              <%= link_to 'Select Box & Pay with Card', {remote: true, controller: "home", action: "signup_modal"}, class:"select-button one" %>
+              <%= link_to 'Select Box & Pay with Cash', contact_path, class: "select-button two"%>
+              <%= link_to 'Send Us a Message', {remote: true, controller: "home", action: "signup_modal"}, class: "select-button three" %>
             <% end %>
             </div>
           </div>
@@ -161,13 +161,13 @@
               <% end %>
               <div class="item-detail-calc">
               <% if user_signed_in? %>
-                  <%= link_to 'Select Box & Pay with Card', new_transaction_path(:item_id => @item.id), class: "fruit-button one"%>
-                  <%= link_to 'Select Box & Pay with Cash', contact_path, class: "fruit-button two"%>
-                  <%= link_to 'Send us a Message', conversations_path(:sender_id => current_user.id, :recipient_id => @item.user_id), :method=> :post, class: "fruit-button three"%>
+                  <%= link_to 'Select & Pay with Card', new_transaction_path(:item_id => @item.id), class: "fruit-button one"%>
+                  <%= link_to 'Select & Pay with Cash', contact_path, class: "fruit-button two"%>
+                  <%= link_to 'Send Us a Message', conversations_path(:sender_id => current_user.id, :recipient_id => @item.user_id), :method=> :post, class: "fruit-button three"%>
               <% else %>
                 <%= link_to 'Select & Pay with Card', {remote: true, controller: "home", action: "signup_modal"}, class:"select-button one" %>
                 <%= link_to 'Select & Pay with Cash', contact_path, class: "select-button two"%>
-                <%= link_to 'Send Message', {remote: true, controller: "home", action: "signup_modal"}, class: "select-button three" %>
+                <%= link_to 'Send Us a Message', {remote: true, controller: "home", action: "signup_modal"}, class: "select-button three" %>
               <% end %>
               </div>
             </div>
