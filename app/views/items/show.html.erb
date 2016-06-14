@@ -161,8 +161,8 @@
               <% end %>
               <div class="item-detail-calc">
               <% if user_signed_in? %>
-                  <%= link_to 'Select & Pay with Card', new_transaction_path(:item_id => @item.id), class: "fruit-button one"%>
-                  <%= link_to 'Select & Pay with Cash', contact_path, class: "fruit-button two"%>
+                  <%= link_to 'Select Box & Pay with Card', new_transaction_path(:item_id => @item.id), class: "fruit-button one"%>
+                  <%= link_to 'Select Box & Pay with Cash', contact_path, class: "fruit-button two"%>
                   <%= link_to 'Send us a Message', conversations_path(:sender_id => current_user.id, :recipient_id => @item.user_id), :method=> :post, class: "fruit-button three"%>
               <% else %>
                 <%= link_to 'Select & Pay with Card', {remote: true, controller: "home", action: "signup_modal"}, class:"select-button one" %>
