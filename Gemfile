@@ -30,6 +30,7 @@ gem 'gon'
 gem 'toastr-rails'
 gem "introjs-rails"
 gem 'omniauth-facebook'
+gem "omniauth-google-oauth2"
 
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
