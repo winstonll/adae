@@ -37,7 +37,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
-gem 'bcrypt-ruby'
+gem 'bcrypt'
 gem 'cancancan'
 gem 'bootstrap-sass'
 gem 'jquery-ui-rails'
@@ -105,8 +105,8 @@ group :development, :test do
   gem 'web-console', '~> 2.0'
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-  gem 'spring'
 end
+  gem 'spring'
 group :production do
   gem 'pg'
   gem 'rails_12factor'
