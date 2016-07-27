@@ -2,8 +2,7 @@ source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.3'
-# Use sqlite3 as the database for Active Record
-gem 'sqlite3'
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -75,7 +74,6 @@ gem 'kaminari'
 
 #gem 'devise_token_auth'
 #gem 'omniauth'
-gem 'pg'
 
 # Authentication library
 gem 'devise'
@@ -83,13 +81,14 @@ gem 'devise'
 # Use Unicorn as the app server
 # gem 'unicorn'
 
-group :development do
+group :development, :test do
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'pry-rails'
   gem 'quiet_assets'
   gem 'awesome_print'
   gem 'faker'
+  gem 'sqlite3'
 
   gem 'capistrano'
   gem 'capistrano-rbenv', github: 'capistrano/rbenv'
@@ -105,4 +104,7 @@ group :development do
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
+end
+group :production do
+  gem 'pg'
 end
