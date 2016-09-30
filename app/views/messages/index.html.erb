@@ -6,10 +6,10 @@
     objDiv.scrollTop = objDiv.scrollHeight;
 
     <% if @transaction && @transaction.status == "Accepted" %>
-      // setTimeout(function() {
-      //  $('.companion-modal').html('<%#= escape_javascript(render partial: 'common/companion_modal') %>')
-      //  $('#shareCompanionModal').modal('show');
-      // }, 1000);
+      setTimeout(function() {
+       $('.companion-modal').html('<%= escape_javascript(render partial: 'common/companion_modal') %>')
+       $('#shareCompanionModal').modal('show');
+      }, 1000);
     <% end %>
 
     var adaebot= $( "span:contains('AdaeBot:')" ).parent().parent().addClass('botmsg');
