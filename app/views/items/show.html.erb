@@ -224,13 +224,11 @@
     </div>
 
     <div class="item-title-and-user">
-      <% if !current_page?('/listings/121') && !current_page?('/listings/123') %>
-        <div class="item-detail-title"><%= @item.title %></div>
-        <div class="item-detail-username"><%= @item.user.full_name%>
-          <%= link_to image_tag(@item.user.avatar.url(:med), class:"avatar"), user_path(@item.user) %>
-        </div>
-        <div class="date">Listed On: <%= @item.created_at.strftime('%d %b %Y') %></div>
-      <% end %>
+      <div class="item-detail-title"><%= @item.title %></div>
+			<div class="item-detail-username"><%= @item.user.full_name%>
+				<%= link_to image_tag(@item.user.avatar.url(:med), class:"avatar"), user_path(@item.user) %>
+			</div>
+      <div class="date">Listed On: <%= @item.created_at.strftime('%d %b %Y') %></div>
     </div>
     <div class="item-detail-description">
       <div class="item-description">
@@ -296,7 +294,7 @@
 	<!-- List of Reviews for all users -->
   <div class="review-list">
     <div class="review-content">
-      <div class="item-reviews">What People Say About Us:</div>
+      <div class="item-reviews">Reviews for: <%= @item.title %></div>
       <% if @item.reviews.exists? %>
         <%= render @item.reviews.order("created_at DESC") %>
       <% else %>
@@ -311,12 +309,12 @@
 <!-- Popup for guests to explain our payment system -->
 <% unless signed_in? %>
   <div class="why-cc">
-    Why Use Adae?
+    Why shop on Adae?
     <div class="tooltip">
       <ul>
-        <li>&#x2756; <b>Convenience:</b> Instead of spending time picking out and carrying your weekly fruits, have us do the work and deliver to you!</br></br></li>
-        <li>&#x2756; <b>Security:</b> Only when your request is accepted, will your card will be charged. We won't receive your money until the delivery is made.</br><br></li>
-        <li>&#x2756; We are always happy to help and try to resolve any problems and issue refunds, whenever necessary.</br><br></li>
+        <li>&#x2756; <b>Convenience:</b> We ask for a credit or debit card (securely via <a style="text-decoration: underline" target="_blank" href="https://stripe.com/gallery">Stripe</a>) before making a request; in return, no need to bring cash as the owner gets paid electronically.</br></br></li>
+        <li>&#x2756; <b>Security:</b> Only when your request is accepted, will your card will be charged. The owner won't receive your money until you meet.</br><br></li>
+        <li>&#x2756; We are always happy to help and try to resolve disputes and issue refunds, whenever necessary.</br><br></li>
       </ul>
     </div>
   </div>
