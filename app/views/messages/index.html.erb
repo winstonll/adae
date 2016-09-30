@@ -57,21 +57,21 @@
 
   <!-- Chat area pre-transaction request -->
   <% if @conversation.sender_id == current_user.id %>
-    <div class="username">  <%#=User.find_by(id: @conversation.recipient_id).name %></div>
+    <div class="username"> Conversation with <%=User.find_by(id: @conversation.recipient_id).name %></div>
   <% else %>
-    <div class="username">  <%#=User.find_by(id: @conversation.sender_id).name %></div>
+    <div class="username"> Conversation with <%=User.find_by(id: @conversation.sender_id).name %></div>
   <% end %>
 
-  <div class="user-profile" style="visibility: hidden;">
+  <div class="user-profile">
     <div class="user-wrap">
     <% if @conversation.sender_id == current_user.id %>
-    <p id="user-name"><%#=User.find_by(id: @conversation.recipient_id).name %></p>
-    <p><%#= image_tag(User.find_by(id: @conversation.recipient_id).avatar.url(:med), class:"avatar") %></p>
+    <p id="user-name"><%=User.find_by(id: @conversation.recipient_id).name %></p>
+    <p><%= image_tag(User.find_by(id: @conversation.recipient_id).avatar.url(:med), class:"avatar") %></p>
     <% else %>
       <p id="user-name"><%=User.find_by(id: @conversation.sender_id).name %></p>
-      <p><%#= image_tag(User.find_by(id: @conversation.sender_id).avatar.url(:med), class:"avatar") %></p>
+      <p><%= image_tag(User.find_by(id: @conversation.sender_id).avatar.url(:med), class:"avatar") %></p>
     <% end %>
-    <p> Email Address: <span style="font-weight: 600;">Verified</span> <span style="color: #39DC12;">&#10003;</span></p>
+    <!--<p> Email Address: <span style="font-weight: 600;">Verified</span> <span style="color: #39DC12;">&#10003;</span></p>-->
   </div>
   </div>
 
