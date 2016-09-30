@@ -73,27 +73,27 @@ $(document).ready(function() {
     <button class="c-menu__close">&#10006;</button>
     <ul class="c-menu__items">
       <% if signed_in? %>
-        <li class="c-menu__item"><a href='#' class="c-menu__link"><span>Services</span></a>
+        <!--<li class="c-menu__item"><a href='#' class="c-menu__link"><span>Services</span></a>
           <ul class="c-menu__items" style="display: none;">
              <li class="c-menu__item" style="background-color: #47475C !important; padding: 4px;"><%#= link_to 'Offer a Service', new_item_path, class: "c-menu__link" %></li>
              <li class="c-menu__item" style="background-color: #47475C !important; padding: 4px;"><%#= link_to "All Services", items_path, class: "c-menu__link" %></li>
              <li class="c-menu__item" style="background-color: #47475C !important; padding: 4px;"><%#= link_to "My Services", user_path(current_user, :anchor => "listing-heading"), class: "c-menu__link" %></li>
           </ul>
-        </li>
+        </li>-->
 
-        <li class="c-menu__item"><a href='#' class="c-menu__link"><span>Shout Outs</span></a>
+        <!--<li class="c-menu__item"><a href='#' class="c-menu__link"><span>Shout Outs</span></a>
           <ul class="c-menu__items" style="display: none;">
              <li class="c-menu__item" style="background-color: #47475C !important; padding: 4px;"><%#= link_to 'Post a Shout Out', new_request_path, class: "c-menu__link" %></li>
              <li class="c-menu__item" style="background-color: #47475C !important; padding: 4px;"><%#= link_to "All Shout Outs", requests_path, class: "c-menu__link" %></li>
              <li class="c-menu__item" style="background-color: #47475C !important; padding: 4px;"><%#= link_to "My Shout Outs", user_path(current_user, :anchor => "shoutout-heading"), class: "c-menu__link" %></li>
           </ul>
-        </li>
+        </li>-->
 
-        <li class="c-menu__item"><a href='#' class="c-menu__link"><span>Balance</span></a>
+        <!--<li class="c-menu__item"><a href='#' class="c-menu__link"><span>Balance</span></a>
           <ul class="c-menu__items" style="display: none;">
              <li class="c-menu__item" style="background-color: #47475C !important; padding: 4px;"> <span class="c-menu__link">$<%= current_user.balance %></span></li>
           </ul>
-        </li>
+        </li>-->
 
         <li class="c-menu__item">
           <a href="<%= conversations_path %>" class="c-menu__link">
@@ -112,8 +112,8 @@ $(document).ready(function() {
       <% else %>
         <li class="c-menu__item"><%= link_to('Sign Up', new_user_registration_path, class: "c-menu__link")  %></li>
         <li class="c-menu__item"><%= link_to('Login', new_user_session_path, class: "c-menu__link")  %></li>
-        <%= link_to 'Sign Up', {remote: true, controller: "home", action: "signup_modal"}, id: "nav-signup-btn", class: "signup" %>
-        <%= link_to 'Log In', {remote: true, controller: "home", action: "signin_modal"}, id: "nav-signin-btn", class: "login" %>
+        <%#= link_to 'Sign Up', {remote: true, controller: "home", action: "signup_modal"}, id: "nav-signup-btn", class: "signup" %>
+        <%#= link_to 'Log In', {remote: true, controller: "home", action: "signin_modal"}, id: "nav-signin-btn", class: "login" %>
       <% end %>
     </ul>
   </nav><!-- /c-menu slide-left -->
@@ -126,7 +126,7 @@ $(document).ready(function() {
     </a>
   </div>
 
-    <div class="search-bar">
+    <!-- <div class="search-bar">
       <form class="search-form" action="/search">
         <input type="text" name="search_text" class="search-field-placeholder" id="search-form" placeholder="What are you looking for? ex. Moving, Tutors...">
       </form>
@@ -136,9 +136,9 @@ $(document).ready(function() {
       <% if signed_in? %>
       <span class="listings" onclick="$('.listingsdropdown').slideToggle();"> <%#= "Services" %> </span>
       <div class="listingsdropdown">
-        <%= link_to 'Offer a Service', new_item_path, class: "newlisting" %>
-        <%= link_to "All Services", items_path, class: "allistings" %>
-        <%= link_to "My Services", user_path(current_user, :anchor => "listing-heading"), class: "profilepath" %>
+        <%#= link_to 'Offer a Service', new_item_path, class: "newlisting" %>
+        <%#= link_to "All Services", items_path, class: "allistings" %>
+        <%#= link_to "My Services", user_path(current_user, :anchor => "listing-heading"), class: "profilepath" %>
       <% end %>
       </div>
     </div>
@@ -159,12 +159,12 @@ $(document).ready(function() {
       <% if signed_in? %>
       <span class="shoutouts" onclick="$('.shoutoutsdropdown').slideToggle();"> <%#= "Shout Outs" %> </span>
       <div class="shoutoutsdropdown">
-        <%= link_to 'Post a Shout Out', new_request_path, class: "newshoutout" %>
-        <%= link_to "All Shout Outs", requests_path, class: "allshoutouts" %>
-        <%= link_to "My Shout Outs", user_path(current_user, :anchor => "shoutout-heading"), class: "profilepath" %>
+        <%#= link_to 'Post a Shout Out', new_request_path, class: "newshoutout" %>
+        <%#= link_to "All Shout Outs", requests_path, class: "allshoutouts" %>
+        <%#= link_to "My Shout Outs", user_path(current_user, :anchor => "shoutout-heading"), class: "profilepath" %>
       <% end %>
     </div>
-    </div>
+    </div> -->
 
     <div class="inbox">
       <% if signed_in? %>
