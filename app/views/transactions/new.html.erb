@@ -248,8 +248,8 @@
 
   <div class="description">
     <h1 style="font-size: 27px;font-weight: 600; text-align: left; margin-bottom: 10px; margin-top: 1em; color: #419bf9;">How Requests & Payments Work<!--<a target="_blank" href="https://stripe.com/gallery"><%= image_tag "outline@2x.png", id: "stripe" %></a>--></h1>
-    <div class="bold"> Add a Debit/Credit card before sending a request, your card will be charged only when your request is processed. <br></div></br>
-      <div> You can always cancel and request a refund until 5 hours before your delivery. <a style="font-weight: 600; color: #419bf9; text-decoration: underline;",target="_blank" href="https://adae.co/contact">Contact Us</a>, and we will try and resolve any issues you may encounter.</div></br>
+    <div class="bold"> Add a Debit/Credit card before sending a request, your card will be charged only if the other party accepts your request. Use the Adae Scanner App to send the actual payment when you two meet.<br><br> The other party will not receive your money until you scan the unique Transaction QR Code on their phone. Until then, you may request a refund!</div></br>
+      <div> You can always cancel and request a refund until 5 hours before your meeting. <a style="font-weight: 600; color: #419bf9; text-decoration: underline;",target="_blank" href="https://adae.co/contact">Contact Us</a>, and we will try and resolve any issues you may encounter.</div></br>
       <div> All our transactions are processed securely through <a id="stripe-link" target="_blank" href="https://stripe.com/gallery">Stripe</a>. We accept:</br>
           <div id="payment-icons">
             <%= image_tag "Visa-dark.png", class: "payment-logos" %>
@@ -326,7 +326,7 @@
 
           <p id="display-price" style="font-size: 30px; font-weight: 500; color: #4a4a4a;"></p>
           <div style="margin-left: 0px;" class="credit-fee">
- <!--            <a style="margin-left: 20px" target="_blank" href="https://stripe.com/ca/pricing">Stripe Processing Fee:</a>
+            <a style="margin-left: 20px" target="_blank" href="https://stripe.com/ca/pricing">Stripe Processing Fee:</a>
             <span>
               <span class="wrapper">
                 <%#= image_tag "question-mark.png", size:"13x14"%>
@@ -334,7 +334,7 @@
               </span>
             </span>
             <label style="margin-left: 30px" id="stripe-fee"></label>
-  -->         </div>
+          </div>
 
           <div class="division" style=" width: 86%;"></div>
 
@@ -376,7 +376,7 @@
                   <input id="discount-price" readonly="readonly" value=""></input>
 
                   <div class="credit-fee">
- <!--                    <a target="_blank" href="https://stripe.com/ca/pricing">Stripe Processing Fee:</a>
+                    <a target="_blank" href="https://stripe.com/ca/pricing">Stripe Processing Fee:</a>
                     <span>
                       <span class="wrapper">
                         <%#= image_tag "question-mark.png", size:"13x14"%>
@@ -384,7 +384,7 @@
                       </span>
                     </span>
                     <label id="stripe-fee"></label>
-  -->                 </div>
+                  </div>
                   <div class="division" style=" width: 86%;"></div>
                   <span class="finalp">Total</span>
                   <%= f.text_field :total_price, :value => "",:readonly => true %>
@@ -412,21 +412,21 @@
                 <input class="trust-fee"readonly="readonly" value="Trust Fee: $<%= @item.deposit %>"></input>
                 <span>
                   <span style="top: 1.5px;"class="wrapper">
-                    <%#= image_tag "question-mark.png", size:"13x14"%>
+                    <%= image_tag "question-mark.png", size:"13x14"%>
                     <div class="tooltip">This ensures that the item is treated with care, and is returned on time. <b style="font-weight: 600">This amount will only be charged if you fail to return the item, damage it, or lose it.</b></div>
                   </span>
                 </span>
               <% end %>
               <div class="credit-fee">
- <!--                <a target="_blank" href="https://stripe.com/ca/pricing">Stripe Processing Fee:</a>
+                <a target="_blank" href="https://stripe.com/ca/pricing">Stripe Processing Fee:</a>
                 <span>
                   <span class="wrapper">
-                    <%#= image_tag "question-mark.png", size:"13x14"%>
+                    <%= image_tag "question-mark.png", size:"13x14"%>
                     <div class="tooltip">Stripe charges a flat fee of 2.9% + ¢30 to use their payment services. </br> Have a balance on Adae? We will pay with your balance first & reduce the Stripe fee proportionally.</div>
                   </span>
                 </span>
                 <label id="stripe-fee"></label>
-  -->             </div>
+              </div>
               <div class="division" style=" width: 85%;"></div>
               <span class="finalp">Total</span>
               <%= f.text_field :total_price, :value => "",:readonly => true %>
@@ -458,15 +458,15 @@
                   <input class="deposit" readonly="readonly" value="$<%= @item.deposit %>"></input>
                 <% end %>
                 <div style="margin-left: 0px;"class="credit-fee">
- <!--                  <a style="margin-left:20px;" target="_blank" href="https://stripe.com/ca/pricing">Stripe Processing Fee:</a>
+                  <a style="margin-left:20px;" target="_blank" href="https://stripe.com/ca/pricing">Stripe Processing Fee:</a>
                   <span>
                     <span class="wrapper">
-                      <%#= image_tag "question-mark.png", size:"13x14"%>
+                      <%= image_tag "question-mark.png", size:"13x14"%>
                       <div class="tooltip">Stripe charges a flat fee of 2.9% + ¢30 to use their payment services. </br> Have a balance on Adae? We will pay with your balance first & reduce the Stripe fee proportionally.</div>
                     </span>
                   </span>
                   <label style="margin-left: 34px" id="stripe-fee"></label>
-  -->               </div>
+                </div>
                 <div class="division" style="width: 85%;"></div>
 
               <span class="finalp">Total</span>
@@ -510,18 +510,18 @@
     </div>
   </div>
 
-    <!--<div>
+    <div>
       <div class="why-cc">
         Why should I add my credit/debit card?
         <div class="tooltip">
           <ul>
-            <li>&#x2756; <b>Convenience & Security</b>: No need to deal with the hassle of counting cash or forgotten change. Adae safe keeps your money until you meet with the delivery person and pay electronically via the Adae Scanner App.</br></br></li>
-            <li>&#x2756; When you add your card (you will NOT be charged), you will proceed to the chat page and give us your delivery details.</br><br></li>
-            <li>&#x2756; Only when we have worked out the details, will your delivery request be accepted. This is when your card is charged.</br><br></li>
-            <li>&#x2756; Adae will not receive your money until your fruits are delivered, and you pay with the Adae Scanner App. You can cancel and get a refund at until 5 hours before your delivery date.</div></li>
+            <li>&#x2756; <b>Convenience & Security</b>: No need to deal with the hassle of counting cash or forgotten change. Adae safe keeps your money until you meet with the owner and pay electronically via the Adae Scanner App.</br></br></li>
+            <li>&#x2756; When you add your card (you will NOT be charged), you will proceed to the chat page and discuss with the owner.</br><br></li>
+            <li>&#x2756; Only when you have worked out the details, will the owner accept your request. This is when you are charged.</br><br></li>
+            <li>&#x2756; The owner will NOT receive your money until you meet and pay with the Adae Scanner App. You can cancel and get a refund at until 5 hours before you meet.</div></li>
           </ul>
       </div>
-    </div>-->
+    </div>
 
 </div>
 

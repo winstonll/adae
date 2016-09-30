@@ -6,10 +6,10 @@
     objDiv.scrollTop = objDiv.scrollHeight;
 
     <% if @transaction && @transaction.status == "Accepted" %>
-      // setTimeout(function() {
-      //  $('.companion-modal').html('<%#= escape_javascript(render partial: 'common/companion_modal') %>')
-      //  $('#shareCompanionModal').modal('show');
-      // }, 1000);
+      setTimeout(function() {
+       $('.companion-modal').html('<%= escape_javascript(render partial: 'common/companion_modal') %>')
+       $('#shareCompanionModal').modal('show');
+      }, 1000);
     <% end %>
 
     var adaebot= $( "span:contains('AdaeBot:')" ).parent().parent().addClass('botmsg');
@@ -122,14 +122,14 @@
             <% elsif @item.listing_type == "timeoffer" %>
               <p id="heading">You requested the following service</p>
             <% else %>
-              <p id="heading">You requested:<%#= @item.listing_type %></p>
+              <p id="heading">You requested to <%= @item.listing_type %></p>
             <% end %>
           <% end %> <!--condition to see if current user is also the seller-->
           <p id="item-title"><%= @item.title %></p>
-          <p id="item-title"> Price: $<%= @transaction.total_price.to_i %></p>
+          <p id="item-title"> Price of $<%= @transaction.total_price.to_i %></p>
           <% if @transaction.length %>
-<!--             <p id="item-title"> for <%= @transaction.length %> period</p>
- -->          <% end %>
+            <p id="item-title"> for <%= @transaction.length %> period</p>
+          <% end %>
           <p><%= image_tag @picture.image, class: "item-image" %></p>
           <p id="status">Transaction Status: <%= @transaction.status %></p>
 
@@ -159,7 +159,8 @@
         <div class="helpful-tip">
           <p id="seller">Your Credit or Debit Card will be charged once your
                 request has been accepted.
-          </p>
+                Don’t worry, your money will NOT be sent to
+                the other party until you both meet up and scan the in-app QR code.</p>
         </div>
       <% end %>
     </div>
