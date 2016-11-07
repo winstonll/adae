@@ -42,7 +42,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
       @location.save
 
       session[:user_id] = @user.id
-      redirect_to items_path, notice: "Signed up! A message with a confirmation link has been sent to your email. Please follow that link to activate your account!"
+      redirect_to items_path, notice: "Signed up!"
+      # redirect_to items_path, notice: "Signed up! A message with a confirmation link has been sent to your email. Please follow that link to activate your account!"
     else
       redirect_to :back, notice: "This account is already taken"
     end
@@ -75,6 +76,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # If you have extra params to permit, append them to the sanitizer.
   def configure_sign_up_params
-    devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:name, :email, :password, :password_confirmation)}
+    devise_parameter_sanitizer.permit(:sign_up) { |u| u.permit(:name, :email, :password, :password_confirmation)}
   end
 end
