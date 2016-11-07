@@ -2,7 +2,7 @@
 <%= stylesheet_link_tag "items" %>
 <script>
 	$(document).ready(function() {
-        <% if signed_in? && @user.confirmed? && @user.sign_in_count == 1 %>
+        <% if signed_in? && @user.sign_in_count == 1 %>
         document.getElementById('startButton').onclick = function() {
           introJs().setOption('doneLabel', 'Go Now').start().oncomplete(function() {
             	window.location.href = '<%= edit_user_path(@user) %>';
@@ -56,7 +56,7 @@
 <body>
 	<div id="items">
 		<div class="switch">
-		<% if signed_in? && @user.confirmed? && @user.sign_in_count == 1  %>
+		<% if signed_in? && @user.sign_in_count == 1  %>
 	    		<div id="bounce">
 	    			<span id="startButton" href="javascript:void(0);">Start Tour</span>
 	    		</div>

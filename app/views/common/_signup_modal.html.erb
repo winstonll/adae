@@ -64,7 +64,7 @@
   }
 </script>
 
-<div id="shareSignupModal" tabindex="-1" role="dialog" aria-labelledby="shareSignupModal" aria-hidden="true">
+<div id="shareSignupModal" tabindex="-1" role="dialog" aria-labelledby="shareSignupModal" data-backdrop="static" data-keyboard="false" aria-hidden="true">
 
   <div id="fb-container">
     <%= image_tag "fb_letter.png", class: "fb-icon" %>
@@ -96,12 +96,12 @@
             <div class="input-password">
               <%= f.password_field :password_confirmation, autocomplete: "off", placeholder: "Password Confirmation", class: "input-box" %>
             </div>
-            <div class="input-referral">
-              <input type="text" name="referral" class="input-box" placeholder="Promo Code (Optional)" id="promo">
+             <div class="input-referral">
+              <input type="text" hidden="true" name="referral" class="input-box" placeholder="Promo Code (Optional)" id="promo">
             </div>
           </div>
           <div class="signup-links-bottom">
-            <p class="terms"> By signing up, I agree to Adae's <a target="_blank" href="https://adae.co/privacy">Privacy Policy</a> and <a target="_blank" href="https://adae.co/terms">Terms of Service</a>.</p>
+            <p class="terms"> By signing up, I agree to Adae's <a target="_blank" href="https://adae.herokuapp.com/privacy">Privacy Policy</a> and <a target="_blank" href="https://adae.herokuapp.com/terms">Terms of Service</a>.</p>
             <div id="signup-start">
               <%= f.submit "Sign Up", class: "signup-button", :onclick => 'validate_signup_form_and_submit()' %>
             </div>
