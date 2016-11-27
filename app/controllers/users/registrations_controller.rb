@@ -4,6 +4,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def create
 
     @user = User.new(user_params)
+    @user.skip_confirmation!
 
     if !params[:referral].empty?
       if referral_check = Referral.where(code: params[:referral]).first
