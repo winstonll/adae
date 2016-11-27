@@ -88,7 +88,7 @@ class User < ActiveRecord::Base
 	end
 
 	def self.find_for_facebook_oauth(auth, signed_in_resource=nil)
-    user = User.update( image:process_uri(auth.info.image))
+    user = User.create( image:process_uri(auth.info.image))
 	end
 
 	def ensure_authentication_token
